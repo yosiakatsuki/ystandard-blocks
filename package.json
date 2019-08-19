@@ -1,0 +1,24 @@
+{
+  "name": "ystandard-blocks",
+  "version": "0.0.1",
+  "description": "yStandard用ブロック追加プラグイン",
+  "scripts": {
+    "start": "wp-scripts start --config ystandard-blocks-webpack-config.js",
+    "build": "wp-scripts build --config ystandard-blocks-webpack-config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yosiakatsuki/ystandard-blocks.git"
+  },
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/yosiakatsuki/ystandard-blocks/issues"
+  },
+  "homepage": "https://github.com/yosiakatsuki/ystandard-blocks#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "3.4.0",
+    "classnames": "^2.2.6"
+  },
+  "dependencies": {}
+}
