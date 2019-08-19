@@ -3,7 +3,7 @@ const defaultConfig = require("@wordpress/scripts/config/webpack.config");
 module.exports = {
     ...defaultConfig,
     entry: {
-        'ystandard-blocks': './src/ystandard-blocks.js'
+        'ystandard-blocks': './src/js/ystandard-blocks.js'
     },
     output: {
         filename: '[name].js',

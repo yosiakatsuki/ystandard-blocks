@@ -13,7 +13,6 @@ const {__} = wp.i18n;
 const wrapClass = classnames(
     'wp-block-button',
     'ystdb-btn-wrap',
-    'wp-block-html'
 );
 
 const previewStyles = `
@@ -23,15 +22,28 @@ const previewStyles = `
         overflow: visible !important;
         min-height: auto !important;
     }
+    .wp-block-button a {
+        display: inline-block;
+        padding: .5rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        border-width: 1px;
+        border-style: solid;
+    }
+    .wp-block-button a:not(.has-background) {
+        background-color: #222;
+        border-color: #222;
+    }
+    .wp-block-button a:not(.has-text-color) {
+        color: #fff;
+    }
 `;
 
-const editorStyles = {
-    'width':'100%'
-}
-
-const edit = ({attributes, setAttributes, setState, isPreview}) => {
+const edit = ({attributes, setAttributes, setState, isPreview, styles}) => {
     return (
-        <div className={wrapClass} style={editorStyles}>
+        <div className={'wp-block-html'}>
             <Fragment>
                 <BlockControls>
                     <div className="components-toolbar">
@@ -56,7 +68,13 @@ const edit = ({attributes, setAttributes, setState, isPreview}) => {
                 <Disabled.Consumer>
                     {() => (
                         (isPreview) ? (
-                            <SandBox html={attributes.content} style={previewStyles}/>
+                            <SandBox
+                                html={`
+                                    <div class="${wrapClass}">
+                                        ${attributes.content}
+                                    </div>`}
+                                styles={[previewStyles, styles]}
+                            />
                         ) : (
                             <PlainText
                                 value={attributes.content}
@@ -72,7 +90,7 @@ const edit = ({attributes, setAttributes, setState, isPreview}) => {
     );
 }
 
-registerBlockType('ystdb/afi-btn', {
+registerBlockType('ystdb/afi-button', {
     title: 'アフィリエイトリンクボタンブロック',
     description: 'アフィリエイトリンクなど、入力したリンクをボタン形式で表示します。',
     icon: 'embed-generic',
@@ -87,12 +105,8 @@ registerBlockType('ystdb/afi-btn', {
         className: false
         // html: false,
     },
-    edit: withState({isPreview: false})(edit),
-    save({attributes}) {
-        return (
-            <div className={wrapClass}>
-                <RawHTML>{attributes.content}</RawHTML>
-            </div>
-        );
-    },
+    edit: withState({isPreview: false, styles: ''})(edit),
+    save() {
+        return null;
+    }
 });

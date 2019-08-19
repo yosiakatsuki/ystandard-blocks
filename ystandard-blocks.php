@@ -17,6 +17,10 @@ defined( 'ABSPATH' ) || die();
 define( 'YSTDB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YSTDB_URL', plugin_dir_url( __FILE__ ) );
 
-require_once YSTDB_PATH . 'class/block.php';
+if ( ! function_exists( 'register_block_type' ) ) {
+	return;
+}
+
+require_once YSTDB_PATH . 'class/main.php';
 
 new Ystandard_Blocks();

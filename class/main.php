@@ -12,31 +12,28 @@
  */
 class Ystandard_Blocks {
 
+	/**
+	 * 読み込むファイル群
+	 */
+	const YSTDB_CLASS_PATH = YSTDB_PATH . 'class/';
+
 	public function __construct() {
-		add_action( 'init', array( $this, 'init' ) );
-		add_filter( 'block_categories', array( $this, 'block_categories' ) );
+		$this->require();
+		add_filter( 'block_categories', [ $this, 'block_categories' ] );
+		new Ystandard_Blocks_Register();
 	}
 
 	/**
-	 * Init
+	 * ファイル読み込み
 	 */
-	public function init() {
-		wp_register_script(
-			'ystandard-blocks',
-			YSTDB_URL . 'js/ystandard-blocks.js',
-			array(
-				'wp-blocks',
-				'wp-element',
-				'wp-editor',
-				'wp-components',
-			)
-		);
-		register_block_type(
-			'ystdb/ys-button',
-			array(
-				'editor_script' => 'ystandard-blocks',
-			)
-		);
+	private function require() {
+		$files = [
+			self::YSTDB_CLASS_PATH . 'register.php',
+			self::YSTDB_CLASS_PATH . 'dynamic_block.php',
+		];
+		foreach ( $files as $file ) {
+			require_once( $file );
+		}
 	}
 
 	/**
@@ -47,10 +44,10 @@ class Ystandard_Blocks {
 	 * @return array
 	 */
 	public function block_categories( $categories ) {
-		$categories[] = array(
+		$categories[] = [
 			'slug'  => 'ystdb',
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
-		);
+		];
 
 		return $categories;
 	}
