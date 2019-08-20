@@ -20,7 +20,6 @@ class Ystandard_Blocks {
 	public function __construct() {
 		$this->require();
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
-		new Ystandard_Blocks_Register();
 	}
 
 	/**
@@ -28,8 +27,9 @@ class Ystandard_Blocks {
 	 */
 	private function require() {
 		$files = [
-			self::YSTDB_CLASS_PATH . 'register.php',
 			self::YSTDB_CLASS_PATH . 'dynamic_block.php',
+			self::YSTDB_CLASS_PATH . 'register.php',
+			self::YSTDB_CLASS_PATH . 'enqueue.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );

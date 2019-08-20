@@ -57,3 +57,5 @@ class Ystandard_Blocks_Register {
 		}
 	}
 }
+
+new Ystandard_Blocks_Register();
