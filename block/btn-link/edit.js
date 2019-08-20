@@ -1,4 +1,5 @@
-import {wrapClass, previewStyles} from './styles';
+import classnames from 'classnames';
+import {previewStyles} from './styles';
 
 const {BlockControls, PlainText, InspectorControls, PanelColorSettings, ContrastChecker, getColorClassName, withColors} = wp.editor;
 const {Fragment} = wp.element;
@@ -21,6 +22,17 @@ export default function (props) {
     const {
         content
     } = attributes;
+
+    const bgColor = backgroundColor.color ? backgroundColor.color : '#222';
+    const txtColor = textColor.color ? textColor.color : '#fff';
+
+    const colorStyle = `
+        .ystdb-btn-link {
+            background-color: ${bgColor};
+            border-color: ${bgColor};
+            color: ${txtColor};
+        }
+    `;
 
     return (
         <div className={'wp-block-html'}>
@@ -50,10 +62,12 @@ export default function (props) {
                         (isPreview) ? (
                             <SandBox
                                 html={`
-                                    <div class="${wrapClass}">
-                                        ${(content ? content : '')}
+                                    <div class="wp-block-button">
+                                        <div class="ystdb-btn-link">
+                                            ${(content ? content : '')}
+                                        </div>
                                     </div>`}
-                                styles={[previewStyles, styles]}
+                                styles={[previewStyles, styles, colorStyle]}
                             />
                         ) : (
                             <PlainText
@@ -68,7 +82,7 @@ export default function (props) {
                 <InspectorControls>
                     <PanelColorSettings
                         title={__('Color Settings')}
-                        initialOpen={false}
+                        initialOpen={true}
                         colorSettings={[
                             {
                                 value: backgroundColor.color,

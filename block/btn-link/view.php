@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-$attributes            = wp_parse_args(
+$attributes = wp_parse_args(
 	$attributes,
 	[
 		'content'               => '',
@@ -15,6 +15,7 @@ $attributes            = wp_parse_args(
 		'textColor'             => '',
 		'customBackgroundColor' => '',
 		'customTextColor'       => '',
+		'className'             => '',
 	]
 );
 $content               = $attributes['content'];
@@ -22,6 +23,7 @@ $backgroundColor       = $attributes['backgroundColor'];
 $textColor             = $attributes['textColor'];
 $customBackgroundColor = $attributes['customBackgroundColor'];
 $customTextColor       = $attributes['customTextColor'];
+$className       = $attributes['className'];
 if ( ! $content ) {
 	return;
 }
@@ -66,7 +68,7 @@ if ( ! empty( $style ) ) {
 	$style = '';
 }
 ?>
-<div class="wp-block-button">
+<div class="wp-block-button<?php echo $className ? ' '. $className : ''; ?>">
 	<?php
 	printf(
 		'<div %s%s>%s</div>',

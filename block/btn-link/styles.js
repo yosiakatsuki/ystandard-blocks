@@ -1,13 +1,3 @@
-import classnames from 'classnames';
-
-/**
- * ラッパークラス
- */
-export const wrapClass = classnames(
-    'wp-block-button',
-    'ystdb-btn-wrap',
-);
-
 export const previewStyles = `
     html,body,:root {
         margin: 0 !important;
@@ -31,5 +21,19 @@ export const previewStyles = `
     }
     .wp-block-button a:not(.has-text-color) {
         color: #fff;
+    }
+    .ystdb-btn-link {
+      position: relative;
+      display: inline-block;
+      border-radius:4px;
+    }
+    .wp-block-button .ystdb-btn-link a {
+      display: block;
+      background-color: transparent;
+      border-color: inherit;
+      color: inherit;
+    }
+    .ystdb-btn-link img {
+      position: absolute;
     }
 `;
