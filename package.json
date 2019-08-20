@@ -9,7 +9,7 @@
     "build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker --dir css --no-map",
     "build:css": "npm run build:sass && npm run build:postcss",
     "watch:css": "watch 'npm run build:css' src/sass",
-    "build": "npm run build:block & build:css"
+    "build": "npm run build:block & npm run build:css"
   },
   "repository": {
     "type": "git",

@@ -30,7 +30,12 @@ class Ystandard_Blocks_Enqueue {
 	 * Enqueue Styles
 	 */
 	public function enqueue_styles() {
-
+		wp_enqueue_style(
+			'ystandard-blocks',
+			YSTDB_URL . 'css/ystandard-blocks.css',
+			[],
+			YSTDB_VERSION
+		);
 	}
 
 }

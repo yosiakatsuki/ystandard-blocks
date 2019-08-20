@@ -14,6 +14,7 @@
 
 defined( 'ABSPATH' ) || die();
 
+define( 'YSTDB_VERSION', '0.0.1' );
 define( 'YSTDB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YSTDB_URL', plugin_dir_url( __FILE__ ) );
 

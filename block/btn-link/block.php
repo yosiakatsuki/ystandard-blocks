@@ -13,11 +13,11 @@
 class Ystandard_Blocks_Afi_button extends Ystandard_Dynamic_block {
 	function __construct() {
 		register_block_type(
-			'ystdb/afi-button',
+			'ystdb/btn-link',
 			[
 				'editor_script'   => 'ystandard-blocks',
 				'render_callback' => function ( $attributes ) {
-					return $this->render( 'afi-button', $attributes );
+					return $this->render( 'btn-link', $attributes );
 				},
 			]
 		);

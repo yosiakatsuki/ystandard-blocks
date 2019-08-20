@@ -1,12 +1,27 @@
 import {wrapClass, previewStyles} from './styles';
 
-const {BlockControls, PlainText, InspectorControls, PanelColorSettings, ContrastChecker, getColorClassName} = wp.editor;
+const {BlockControls, PlainText, InspectorControls, PanelColorSettings, ContrastChecker, getColorClassName, withColors} = wp.editor;
 const {Fragment} = wp.element;
 const {Disabled, SandBox} = wp.components;
 const {withState} = wp.compose;
 const {__} = wp.i18n;
 
-export default function ({attributes, setAttributes, setState, isPreview, styles}) {
+export default function (props) {
+    const {
+        backgroundColor,
+        textColor,
+        setBackgroundColor,
+        setTextColor,
+        attributes,
+        setAttributes,
+        setState,
+        isPreview,
+        styles
+    } = props;
+    const {
+        content
+    } = attributes;
+
     return (
         <div className={'wp-block-html'}>
             <Fragment>
@@ -36,15 +51,15 @@ export default function ({attributes, setAttributes, setState, isPreview, styles
                             <SandBox
                                 html={`
                                     <div class="${wrapClass}">
-                                        ${attributes.content}
+                                        ${(content ? content : '')}
                                     </div>`}
                                 styles={[previewStyles, styles]}
                             />
                         ) : (
                             <PlainText
-                                value={attributes.content}
+                                value={content}
                                 onChange={(content) => setAttributes({content})}
-                                placeholder={'アフィリエイトタグを入力'}
+                                placeholder={'HTMLを入力...'}
                                 aria-label={__('HTML')}
                             />
                         )
@@ -52,28 +67,24 @@ export default function ({attributes, setAttributes, setState, isPreview, styles
                 </Disabled.Consumer>
                 <InspectorControls>
                     <PanelColorSettings
-                        title={ __( 'Color Settings' ) }
-                        colorSettings={ [
+                        title={__('Color Settings')}
+                        initialOpen={false}
+                        colorSettings={[
                             {
                                 value: backgroundColor.color,
                                 onChange: setBackgroundColor,
-                                label: __( 'Background Color' ),
+                                label: __('Background Color'),
                             },
                             {
                                 value: textColor.color,
                                 onChange: setTextColor,
-                                label: __( 'Text Color' ),
+                                label: __('Text Color'),
                             },
-                        ] }
+                        ]}
                     >
                         <ContrastChecker
-                            { ...{
-                                isLargeText: false,
-                                textColor: textColor.color,
-                                backgroundColor: backgroundColor.color,
-                                fallbackBackgroundColor,
-                                fallbackTextColor,
-                            } }
+                            backgroundColor={backgroundColor.color}
+                            textColor={textColor.color}
                         />
                     </PanelColorSettings>
                 </InspectorControls>
