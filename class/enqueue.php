@@ -17,6 +17,7 @@ class Ystandard_Blocks_Enqueue {
 	function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
 	}
 
 	/**
@@ -35,6 +36,19 @@ class Ystandard_Blocks_Enqueue {
 			YSTDB_URL . 'css/ystandard-blocks.css',
 			[],
 			YSTDB_VERSION
+		);
+	}
+
+	/**
+	 * Enqueue Styles
+	 */
+	public function enqueue_editor_styles() {
+		$fa_ver = 'v5.10.1';
+		wp_enqueue_style(
+			'font-awesome',
+			'https://use.fontawesome.com/releases/' . $fa_ver . '/css/all.css',
+			[],
+			$fa_ver
 		);
 	}
 

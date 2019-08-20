@@ -1,9 +1,23 @@
 import classnames from 'classnames';
 import {previewStyles} from './styles';
 
-const {BlockControls, PlainText, InspectorControls, PanelColorSettings, ContrastChecker, getColorClassName, withColors} = wp.editor;
+const {
+    BlockControls,
+    PlainText,
+    InspectorControls,
+    PanelColorSettings,
+    ContrastChecker,
+    getColorClassName,
+    withColors
+} = wp.editor;
 const {Fragment} = wp.element;
-const {Disabled, SandBox} = wp.components;
+const {
+    Disabled,
+    SandBox,
+    PanelBody,
+    BaseControl,
+    Button
+} = wp.components;
 const {withState} = wp.compose;
 const {__} = wp.i18n;
 
@@ -20,7 +34,8 @@ export default function (props) {
         styles
     } = props;
     const {
-        content
+        content,
+        icon
     } = attributes;
 
     const bgColor = backgroundColor.color ? backgroundColor.color : '#222';
@@ -34,6 +49,7 @@ export default function (props) {
         }
     `;
 
+    const value = 'check';
     return (
         <div className={'wp-block-html'}>
             <Fragment>
@@ -80,6 +96,19 @@ export default function (props) {
                     )}
                 </Disabled.Consumer>
                 <InspectorControls>
+                    <PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
+                        <BaseControl label={__('アイコン', 'ystandard-blocks')}>
+                            <div>
+                                <Button
+                                    isDefault
+                                    isPrimary={icon === value}
+                                    onClick={() => setAttributes({icon: value})}
+                                >
+                                    <i className="fas fa-angle-double-right"></i>
+                                </Button>
+                            </div>
+                        </BaseControl>
+                    </PanelBody>
                     <PanelColorSettings
                         title={__('Color Settings')}
                         initialOpen={true}
@@ -101,6 +130,7 @@ export default function (props) {
                             textColor={textColor.color}
                         />
                     </PanelColorSettings>
+
                 </InspectorControls>
             </Fragment>
         </div>

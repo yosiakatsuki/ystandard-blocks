@@ -27,6 +27,9 @@ registerBlockType('ystdb/btn-link', {
         },
         customTextColor: {
             type: "string"
+        },
+        icon: {
+            type: "string"
         }
     },
     supports: {
