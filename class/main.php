@@ -21,11 +21,30 @@ class Ystandard_Blocks {
 	 * Ystandard_Blocks constructor.
 	 */
 	public function __construct() {
-		$this->require();
-		add_filter( 'block_categories', [ $this, 'block_categories' ] );
 		if ( is_admin() ) {
 			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
 		}
+
+		/**
+		 * Gutenbergチェック
+		 */
+		if ( function_exists( 'register_block_type' ) ) {
+			/**
+			 * 後で案内表示入れたい
+			 */
+			return;
+		}
+		$this->require();
+		add_filter( 'block_categories', [ $this, 'block_categories' ] );
+	}
+
+	/**
+	 * テーマ有効化チェック
+	 *
+	 * @return bool
+	 */
+	public static function is_ystandard() {
+		return 'ystandard' === get_template();
 	}
 
 	/**

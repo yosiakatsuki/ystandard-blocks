@@ -15,8 +15,12 @@ class Ystandard_Blocks_Enqueue {
 	 * Ystandard_Blocks_Enqueue constructor.
 	 */
 	function __construct() {
+		if ( Ystandard_Blocks::is_ystandard() ) {
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+		} else {
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles_no_ystandard' ] );
+		}
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
 	}
 
@@ -31,9 +35,32 @@ class Ystandard_Blocks_Enqueue {
 	 * Enqueue Styles
 	 */
 	public function enqueue_styles() {
+		if ( function_exists( 'ys_enqueue_css' ) ) {
+			ys_enqueue_css(
+				'ystandard-blocks',
+				YSTDB_URL . 'css/ystandard-blocks.css',
+				true,
+				[],
+				YSTDB_VERSION
+			);
+		} else {
+			wp_enqueue_style(
+				'ystandard-blocks',
+				YSTDB_URL . 'css/ystandard-blocks.css',
+				[],
+				YSTDB_VERSION
+			);
+		}
+
+	}
+
+	/**
+	 * Enqueue Styles(非yStandard)
+	 */
+	public function enqueue_styles_no_ystandard() {
 		wp_enqueue_style(
-			'ystandard-blocks',
-			YSTDB_URL . 'css/ystandard-blocks.css',
+			'ystandard-blocks-no-ystandard',
+			YSTDB_URL . 'css/ystandard-blocks-no-ystandard.css',
 			[],
 			YSTDB_VERSION
 		);
