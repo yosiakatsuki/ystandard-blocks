@@ -5,6 +5,7 @@ import {icons} from './icons';
 const {
     BlockControls,
     PlainText,
+    AlignmentToolbar,
     InspectorControls,
     PanelColorSettings,
     ContrastChecker,
@@ -36,7 +37,8 @@ export default function (props) {
     } = props;
     const {
         content,
-        icon
+        icon,
+        align
     } = attributes;
 
     /**
@@ -68,16 +70,25 @@ export default function (props) {
     const refreshPreview = () => {
         if (isPreview) {
             setState({isPreview: false})
-            setTimeout(() =>{
+            setTimeout(() => {
                 setState({isPreview: true})
-            },100);
+            }, 100);
         }
     };
+
+    const alignPreview = align ? `has-text-align-${align}` : '';
 
     return (
         <div className={'wp-block-html'}>
             <Fragment>
                 <BlockControls>
+                    <AlignmentToolbar
+                        value={align}
+                        onChange={(nextAlign) => {
+                            setAttributes({align: nextAlign});
+                            refreshPreview();
+                        }}
+                    />
                     <div className="components-toolbar">
                         <button
                             className={`components-tab-button ${!isPreview ? 'is-active' : ''}`}
@@ -102,7 +113,7 @@ export default function (props) {
                         (isPreview) ? (
                             <SandBox
                                 html={`
-                                    <div class="wp-block-button">
+                                    <div class="wp-block-button ${alignPreview}">
                                         <div class="${previewClass}">
                                             ${previewContent}
                                         </div>
@@ -157,7 +168,7 @@ export default function (props) {
                         colorSettings={[
                             {
                                 value: backgroundColor.color,
-                                onChange: (color)=>{
+                                onChange: (color) => {
                                     setBackgroundColor(color);
                                     refreshPreview();
                                 },
@@ -165,7 +176,7 @@ export default function (props) {
                             },
                             {
                                 value: textColor.color,
-                                onChange: (color)=>{
+                                onChange: (color) => {
                                     setTextColor(color);
                                     refreshPreview();
                                 },

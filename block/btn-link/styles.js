@@ -49,5 +49,13 @@ export const previewStyles = `
     }
     .ystdb-btn-link img {
       position: absolute;
+      top:0;
+      left:0;
+    }
+    .has-text-align-center {
+        text-align: center;
+    }
+    .has-text-align-right {
+        text-align: right;
     }
 `;

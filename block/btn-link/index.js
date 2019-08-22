@@ -30,6 +30,9 @@ registerBlockType('ystdb/btn-link', {
         },
         icon: {
             type: "string"
+        },
+        align : {
+            type: "string"
         }
     },
     supports: {
