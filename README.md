@@ -11,3 +11,8 @@ yStandard : <https://wp-ystandard.com/>
 Font License: SIL OFL 1.1  
 Code License: MIT License  
 Source      : <https://fortawesome.github.io/Font-Awesome/>
+
+### Plugin Update Checker
+
+License: MIT  
+Source : <https://github.com/YahnisElsts/plugin-update-checker>

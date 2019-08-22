@@ -17,9 +17,15 @@ class Ystandard_Blocks {
 	 */
 	const YSTDB_CLASS_PATH = YSTDB_PATH . 'class/';
 
+	/**
+	 * Ystandard_Blocks constructor.
+	 */
 	public function __construct() {
 		$this->require();
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
+		if ( is_admin() ) {
+			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
+		}
 	}
 
 	/**
@@ -50,5 +56,17 @@ class Ystandard_Blocks {
 		];
 
 		return $categories;
+	}
+
+	/**
+	 * アップデートチェック
+	 */
+	function update_check() {
+		require_once YSTDB_PATH . 'library/plugin-update-checker/plugin-update-checker.php';
+		Puc_v4_Factory::buildUpdateChecker(
+			'https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.json',
+			YSTDB_PATH . 'ystandard-blocks.php',
+			'yStandard Blocks'
+		);
 	}
 }
