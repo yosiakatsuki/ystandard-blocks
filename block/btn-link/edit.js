@@ -63,7 +63,7 @@ export default function (props) {
     let previewContent = content ? content : '';
     let previewClass = 'ystdb-btn-link';
     if (icon) {
-        previewContent = `${content}<i class="${icon}"></i>`;
+        previewContent = `${content}<i class="ystdb-btn-link__icon ${icon}"></i>`;
         previewClass = `${previewClass} -has-icon`;
     }
 

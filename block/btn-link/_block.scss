@@ -13,11 +13,13 @@
   padding-right: 2.5rem;
   padding-left: 2.5rem;
 }
-.ystdb-btn-link i {
+.ystdb-btn-link__icon {
   position: absolute;
+  font-size: 1.25rem;
   top: 50%;
   right: 1rem;
-  transform: translateY(-50%);
+  transform: translateY(-58%);
+  height: auto;
 }
 .ystdb-btn-link img {
   position: absolute;

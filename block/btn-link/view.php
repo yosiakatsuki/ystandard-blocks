@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-$attributes = wp_parse_args(
+$attributes            = wp_parse_args(
 	$attributes,
 	[
 		'content'               => '',
@@ -23,12 +23,24 @@ $backgroundColor       = $attributes['backgroundColor'];
 $textColor             = $attributes['textColor'];
 $customBackgroundColor = $attributes['customBackgroundColor'];
 $customTextColor       = $attributes['customTextColor'];
-$className       = $attributes['className'];
+$className             = $attributes['className'];
+$icon                  = $attributes['icon'];
+$align                 = $attributes['align'];
 if ( ! $content ) {
 	return;
 }
-$class = [ 'ystdb-btn-link' ];
-$style = [];
+$wrapClass = [
+	'wp-block-button'
+];
+$class     = [ 'ystdb-btn-link' ];
+$style     = [];
+/**
+ * アイコン
+ */
+if ( $icon ) {
+	$content .= sprintf( '<i class="ystdb-btn-link__icon %s"></i>', $icon );
+	$class[] = '-has-icon';
+}
 /**
  * クラス
  */
@@ -49,7 +61,7 @@ if ( $textColor ) {
 	$class[] = sprintf( 'has-%s-color', $textColor );
 }
 if ( ! empty( $class ) ) {
-	$class = sprintf( 'class="%s"', implode( ' ', $class ) );
+	$class = sprintf( 'class="%s"', esc_attr( implode( ' ', $class ) ) );
 } else {
 	$class = '';
 }
@@ -63,12 +75,22 @@ if ( $customTextColor ) {
 	$style[] = sprintf( 'color:%s;', $customTextColor );
 }
 if ( ! empty( $style ) ) {
-	$style = sprintf( ' style="%s"', implode( '', $style ) );
+	$style = sprintf( ' style="%s"', esc_attr( implode( '', $style ) ) );
 } else {
 	$style = '';
 }
+
+/**
+ * ラッパークラス
+ */
+if ( $className ) {
+	$wrapClass[] = $className;
+}
+if ( $align ) {
+	$wrapClass[] = 'has-text-align-' . $align;
+}
 ?>
-<div class="wp-block-button<?php echo $className ? ' '. $className : ''; ?>">
+<div class="<?php echo esc_attr( implode( ' ', $wrapClass ) ); ?>">
 	<?php
 	printf(
 		'<div %s%s>%s</div>',

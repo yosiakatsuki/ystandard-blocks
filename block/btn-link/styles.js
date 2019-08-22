@@ -41,10 +41,11 @@ export const previewStyles = `
       padding-right: 2.5rem;
       padding-left: 2.5rem;
     }
-    .ystdb-btn-link i {
+    .ystdb-btn-link__icon {
       position: absolute;
       top: 50%;
       right: 1rem;
+      font-size: 1.25rem;
       transform: translateY(-50%);
     }
     .ystdb-btn-link img {
