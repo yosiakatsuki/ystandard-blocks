@@ -16,6 +16,9 @@ $attributes            = wp_parse_args(
 		'customBackgroundColor' => '',
 		'customTextColor'       => '',
 		'className'             => '',
+		'icon'                  => '',
+		'align'                 => '',
+		'buttonType'            => '',
 	]
 );
 $content               = $attributes['content'];
@@ -26,6 +29,7 @@ $customTextColor       = $attributes['customTextColor'];
 $className             = $attributes['className'];
 $icon                  = $attributes['icon'];
 $align                 = $attributes['align'];
+$buttonType            = $attributes['buttonType'];
 if ( ! $content ) {
 	return;
 }
@@ -59,6 +63,9 @@ if ( $backgroundColor ) {
 }
 if ( $textColor ) {
 	$class[] = sprintf( 'has-%s-color', $textColor );
+}
+if ( $buttonType ) {
+	$class[] = sprintf( '-%s', $buttonType );
 }
 if ( ! empty( $class ) ) {
 	$class = sprintf( 'class="%s"', esc_attr( implode( ' ', $class ) ) );

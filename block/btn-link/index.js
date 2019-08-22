@@ -31,13 +31,16 @@ registerBlockType('ystdb/btn-link', {
         icon: {
             type: "string"
         },
-        align : {
+        align: {
+            type: "string"
+        },
+        buttonType: {
             type: "string"
         }
     },
     supports: {
-        className: false
-        // html: false,
+        className: false,
+        html: false
     },
     edit: compose([
         withColors('backgroundColor', {textColor: 'color'}),

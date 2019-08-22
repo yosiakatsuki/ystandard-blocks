@@ -1,3 +1,14 @@
 .ystdb-btn-link--edit__icons-clear {
   margin-top: .5rem;
 }
+.ystdb-btn-link--edit__icons {
+  display: flex;
+  flex-wrap: wrap;
+  button {
+    display: block;
+    flex: 1 1 20%;
+    max-width: 20%;
+    margin-bottom: .25em;
+    text-align: center;
+  }
+}

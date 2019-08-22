@@ -18,7 +18,8 @@ const {
     SandBox,
     PanelBody,
     BaseControl,
-    Button
+    Button,
+    ToggleControl
 } = wp.components;
 const {withState} = wp.compose;
 const {__} = wp.i18n;
@@ -33,12 +34,14 @@ export default function (props) {
         setAttributes,
         setState,
         isPreview,
-        styles
+        styles,
+        className
     } = props;
     const {
         content,
         icon,
-        align
+        align,
+        buttonType
     } = attributes;
 
     /**
@@ -61,10 +64,18 @@ export default function (props) {
      * プレビュー作成
      */
     let previewContent = content ? content : '';
-    let previewClass = 'ystdb-btn-link';
+    const alignPreview = align ? `has-text-align-${align}` : '';
+    const previewClass = classnames('ystdb-btn-link', {
+        '-has-icon':icon,
+        '-block':'block' === buttonType
+    });
+    const wrapClass = classnames(
+        'wp-block-button',
+        className,
+        alignPreview
+    );
     if (icon) {
         previewContent = `${content}<i class="ystdb-btn-link__icon ${icon}"></i>`;
-        previewClass = `${previewClass} -has-icon`;
     }
 
     const refreshPreview = () => {
@@ -76,7 +87,6 @@ export default function (props) {
         }
     };
 
-    const alignPreview = align ? `has-text-align-${align}` : '';
 
     return (
         <div className={'wp-block-html'}>
@@ -113,7 +123,7 @@ export default function (props) {
                         (isPreview) ? (
                             <SandBox
                                 html={`
-                                    <div class="wp-block-button ${alignPreview}">
+                                    <div class="${wrapClass}">
                                         <div class="${previewClass}">
                                             ${previewContent}
                                         </div>
@@ -160,6 +170,20 @@ export default function (props) {
                                     {__('クリア', 'ystandard-blocks')}
                                 </Button>
                             </div>
+                        </BaseControl>
+                    </PanelBody>
+                    <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
+                        <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
+                            <ToggleControl
+                                label={__('1列表示にする', 'ystandard-blocks')}
+                                checked={(buttonType === 'block')}
+                                onChange={() => {
+                                    setAttributes({
+                                        buttonType: buttonType === 'block' ? '' : 'block'
+                                    });
+                                    refreshPreview();
+                                }}
+                            />
                         </BaseControl>
                     </PanelBody>
                     <PanelColorSettings

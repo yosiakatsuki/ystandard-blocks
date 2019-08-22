@@ -26,10 +26,19 @@ export const previewStyles = `
     .wp-block-button a:not(.has-text-color) {
         color: #fff;
     }
+    .has-text-align-center {
+        text-align: center;
+    }
+    .has-text-align-right {
+        text-align: right;
+    }
     .ystdb-btn-link {
       position: relative;
       display: inline-block;
-      border-radius:4px;
+      border-radius: 4px;
+    }
+    .ystdb-btn-link.-block {
+      display: block;
     }
     .wp-block-button .ystdb-btn-link a {
       display: block;
@@ -41,22 +50,22 @@ export const previewStyles = `
       padding-right: 2.5rem;
       padding-left: 2.5rem;
     }
+    .wp-block-button .ystdb-btn-link.-block.-has-icon a {
+      padding-right: 3.5rem;
+      padding-left: 3.5rem;
+    }
     .ystdb-btn-link__icon {
       position: absolute;
+      font-size: 1.25rem;
       top: 50%;
       right: 1rem;
-      font-size: 1.25rem;
       transform: translateY(-50%);
+      height: auto;
+    }
+    .ystdb-btn-link.-block .ystdb-btn-link__icon {
+      right: 2rem;
     }
     .ystdb-btn-link img {
       position: absolute;
-      top:0;
-      left:0;
-    }
-    .has-text-align-center {
-        text-align: center;
-    }
-    .has-text-align-right {
-        text-align: right;
     }
 `;

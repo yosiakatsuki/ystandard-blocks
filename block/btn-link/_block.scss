@@ -3,6 +3,9 @@
   display: inline-block;
   border-radius: 4px;
 }
+.ystdb-btn-link.-block {
+  display: block;
+}
 .wp-block-button .ystdb-btn-link a {
   display: block;
   background-color: transparent;
@@ -13,6 +16,10 @@
   padding-right: 2.5rem;
   padding-left: 2.5rem;
 }
+.wp-block-button .ystdb-btn-link.-block.-has-icon a {
+  padding-right: 3.5rem;
+  padding-left: 3.5rem;
+}
 .ystdb-btn-link__icon {
   position: absolute;
   font-size: 1.25rem;
@@ -20,6 +27,9 @@
   right: 1rem;
   transform: translateY(-58%);
   height: auto;
+}
+.ystdb-btn-link.-block .ystdb-btn-link__icon {
+  right: 2rem;
 }
 .ystdb-btn-link img {
   position: absolute;
