@@ -50,6 +50,12 @@ class Ystandard_Blocks_Enqueue {
 			[],
 			$fa_ver
 		);
+		wp_enqueue_style(
+			'ystandard-blocks-edit',
+			YSTDB_URL . 'css/ystandard-blocks-edit.css',
+			[],
+			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
+		);
 	}
 
 }

@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import {previewStyles} from './styles';
+import {icons} from './icons';
 
 const {
     BlockControls,
@@ -38,9 +39,15 @@ export default function (props) {
         icon
     } = attributes;
 
+    /**
+     * 色設定
+     */
     const bgColor = backgroundColor.color ? backgroundColor.color : '#222';
     const txtColor = textColor.color ? textColor.color : '#fff';
 
+    /**
+     * 色設定をプレビューに反映する
+     */
     const colorStyle = `
         .ystdb-btn-link {
             background-color: ${bgColor};
@@ -48,8 +55,25 @@ export default function (props) {
             color: ${txtColor};
         }
     `;
+    /**
+     * プレビュー作成
+     */
+    let previewContent = content ? content : '';
+    let previewClass = 'ystdb-btn-link';
+    if (icon) {
+        previewContent = `${content}<i class="${icon}"></i>`;
+        previewClass = `${previewClass} -has-icon`;
+    }
 
-    const value = 'check';
+    const refreshPreview = () => {
+        if (isPreview) {
+            setState({isPreview: false})
+            setTimeout(() =>{
+                setState({isPreview: true})
+            },100);
+        }
+    };
+
     return (
         <div className={'wp-block-html'}>
             <Fragment>
@@ -79,8 +103,8 @@ export default function (props) {
                             <SandBox
                                 html={`
                                     <div class="wp-block-button">
-                                        <div class="ystdb-btn-link">
-                                            ${(content ? content : '')}
+                                        <div class="${previewClass}">
+                                            ${previewContent}
                                         </div>
                                     </div>`}
                                 styles={[previewStyles, styles, colorStyle]}
@@ -98,13 +122,31 @@ export default function (props) {
                 <InspectorControls>
                     <PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
                         <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                            <div>
+                            <div className={'ystdb-btn-link--edit__icons'}>
+                                {icons.map((item) => {
+                                    return (
+                                        <Button
+                                            isDefault
+                                            isPrimary={icon === item.class}
+                                            onClick={() => {
+                                                setAttributes({icon: item.class});
+                                                refreshPreview();
+                                            }}
+                                        >
+                                            <i className={item.class} title={item.title}></i>
+                                        </Button>
+                                    );
+                                })}
+                            </div>
+                            <div className={'ystdb-btn-link--edit__icons-clear'}>
                                 <Button
                                     isDefault
-                                    isPrimary={icon === value}
-                                    onClick={() => setAttributes({icon: value})}
+                                    onClick={() => {
+                                        setAttributes({icon: ''});
+                                        refreshPreview();
+                                    }}
                                 >
-                                    <i className="fas fa-angle-double-right"></i>
+                                    {__('クリア', 'ystandard-blocks')}
                                 </Button>
                             </div>
                         </BaseControl>
@@ -115,12 +157,18 @@ export default function (props) {
                         colorSettings={[
                             {
                                 value: backgroundColor.color,
-                                onChange: setBackgroundColor,
+                                onChange: (color)=>{
+                                    setBackgroundColor(color);
+                                    refreshPreview();
+                                },
                                 label: __('Background Color'),
                             },
                             {
                                 value: textColor.color,
-                                onChange: setTextColor,
+                                onChange: (color)=>{
+                                    setTextColor(color);
+                                    refreshPreview();
+                                },
                                 label: __('Text Color'),
                             },
                         ]}

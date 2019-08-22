@@ -1,4 +1,8 @@
+/**
+ * プレビューボタンのスタイル
+ */
 export const previewStyles = `
+    @import url("https://use.fontawesome.com/releases/v5.10.1/css/all.css");
     html,body,:root {
         margin: 0 !important;
         padding: 0 !important;
@@ -32,6 +36,16 @@ export const previewStyles = `
       background-color: transparent;
       border-color: inherit;
       color: inherit;
+    }
+    .wp-block-button .ystdb-btn-link.-has-icon a {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+    }
+    .ystdb-btn-link i {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
     }
     .ystdb-btn-link img {
       position: absolute;

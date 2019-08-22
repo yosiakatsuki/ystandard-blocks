@@ -7,8 +7,8 @@ const {__} = wp.i18n;
 
 
 registerBlockType('ystdb/btn-link', {
-    title: 'ボタン型リンク',
-    description: '入力したリンク(a)タグをボタン形式で表示するブロック',
+    title: __('ボタン型リンク', 'ystandard-blocks'),
+    description: __('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
     icon: 'embed-generic',
     keywords: [__('link'), __('button'), 'button'],
     category: 'ystdb',
