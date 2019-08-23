@@ -33,15 +33,3 @@
 
 .ystdb-btn-link img {
   position: absolute; }
-
-.ystdb-inline--1 {
-  background: linear-gradient(transparent 75%, rgba(213, 57, 57, 0.5) 75%);
-  background-position-y: -0.2rem; }
-
-.ystdb-inline--2 {
-  background: linear-gradient(transparent 75%, rgba(130, 185, 227, 0.5) 75%);
-  background-position-y: -0.2rem; }
-
-.ystdb-inline--3 {
-  background: linear-gradient(transparent 75%, rgba(245, 236, 132, 0.5) 75%);
-  background-position-y: -0.2rem; }

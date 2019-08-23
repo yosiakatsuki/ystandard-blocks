@@ -21,10 +21,6 @@ class Ystandard_Blocks {
 	 * Ystandard_Blocks constructor.
 	 */
 	public function __construct() {
-		if ( is_admin() ) {
-			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
-		}
-
 		/**
 		 * Gutenbergチェック
 		 */
@@ -36,6 +32,15 @@ class Ystandard_Blocks {
 		}
 		$this->require();
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
+
+		if ( is_admin() ) {
+			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
+			/**
+			 * カスタマイザー追加
+			 */
+			$customizer = new Ystandard_Blocks_Customizer();
+			$customizer->add_customizer();
+		}
 	}
 
 	/**
@@ -55,6 +60,8 @@ class Ystandard_Blocks {
 			self::YSTDB_CLASS_PATH . 'dynamic_block.php',
 			self::YSTDB_CLASS_PATH . 'register.php',
 			self::YSTDB_CLASS_PATH . 'enqueue.php',
+			self::YSTDB_CLASS_PATH . 'option.php',
+			self::YSTDB_CLASS_PATH . 'customizer.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );

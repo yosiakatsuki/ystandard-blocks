@@ -43,6 +43,9 @@ class Ystandard_Blocks_Enqueue {
 				[],
 				YSTDB_VERSION
 			);
+			ys_enqueue_inline_css(
+				Ystandard_Blocks_Customizer::get_inline_style_css()
+			);
 		} else {
 			wp_enqueue_style(
 				'ystandard-blocks',
@@ -77,12 +80,29 @@ class Ystandard_Blocks_Enqueue {
 			[],
 			$fa_ver
 		);
+		/**
+		 * エディタ用CSS
+		 */
+		$customizer = new Ystandard_Blocks_Customizer();
+		$css_file   = 'css/ystandard-blocks-edit-no-ystandard.css';
+		$inline_css = $customizer->get_inline_style_css(
+			'.editor-styles-wrapper'
+		);
+		if ( Ystandard_Blocks::is_ystandard() ) {
+			$css_file   = 'css/ystandard-blocks-edit.css';
+			$inline_css .= $customizer->get_editor_button_css();
+		}
 		wp_enqueue_style(
 			'ystandard-blocks-edit',
-			YSTDB_URL . 'css/ystandard-blocks-edit.css',
+			YSTDB_URL . $css_file,
 			[],
-			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
+			filemtime( YSTDB_PATH . '/' . $css_file )
 		);
+		wp_add_inline_style(
+			'ystandard-blocks-edit',
+			$inline_css
+		);
+
 	}
 
 }
