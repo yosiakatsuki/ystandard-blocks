@@ -41,6 +41,7 @@ class Ystandard_Blocks_Register {
 				'wp-blocks',
 				'wp-element',
 				'wp-editor',
+				'wp-rich-text',
 				'wp-i18n',
 			],
 			filemtime( YSTDB_PATH . '/js/ystandard-blocks.js' )
@@ -57,6 +58,7 @@ class Ystandard_Blocks_Register {
 				'wp-blocks',
 				'wp-element',
 				'wp-editor',
+				'wp-rich-text',
 				'wp-i18n',
 			],
 			filemtime( YSTDB_PATH . '/js/ystandard-blocks-no-ystandard.js' )

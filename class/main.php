@@ -28,7 +28,7 @@ class Ystandard_Blocks {
 		/**
 		 * Gutenbergチェック
 		 */
-		if ( function_exists( 'register_block_type' ) ) {
+		if ( ! function_exists( 'register_block_type' ) ) {
 			/**
 			 * 後で案内表示入れたい
 			 */
