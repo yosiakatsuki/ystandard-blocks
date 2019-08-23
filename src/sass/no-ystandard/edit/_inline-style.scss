@@ -1,0 +1,11 @@
+.ystdb-inline-style-toolbar {
+  &.inline-style-1 svg {
+    @include highlight(#D53939);
+  }
+  &.inline-style-2 svg {
+    @include highlight(#82B9E3);
+  }
+  &.inline-style-3 svg {
+    @include highlight(#F5EC84);
+  }
+}

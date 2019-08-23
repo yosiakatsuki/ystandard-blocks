@@ -10,3 +10,34 @@
     max-width: 20%;
     margin-bottom: .25em;
     text-align: center; }
+
+.ystdb-inline-style-toolbar {
+  position: relative; }
+  .ystdb-inline-style-toolbar::before, .ystdb-inline-style-toolbar::after {
+    display: block;
+    position: absolute; }
+  .ystdb-inline-style-toolbar::before {
+    top: 0;
+    left: 0;
+    padding: 0.1rem 0.2rem;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: #222; }
+  .ystdb-inline-style-toolbar.inline-style-1::before {
+    content: '1'; }
+  .ystdb-inline-style-toolbar.inline-style-2::before {
+    content: '2'; }
+  .ystdb-inline-style-toolbar.inline-style-3::before {
+    content: '3'; }
+
+.ystdb-inline-style-toolbar.inline-style-1 svg {
+  background: linear-gradient(transparent 75%, rgba(213, 57, 57, 0.5) 75%);
+  background-position-y: -0.2rem; }
+
+.ystdb-inline-style-toolbar.inline-style-2 svg {
+  background: linear-gradient(transparent 75%, rgba(130, 185, 227, 0.5) 75%);
+  background-position-y: -0.2rem; }
+
+.ystdb-inline-style-toolbar.inline-style-3 svg {
+  background: linear-gradient(transparent 75%, rgba(245, 236, 132, 0.5) 75%);
+  background-position-y: -0.2rem; }
