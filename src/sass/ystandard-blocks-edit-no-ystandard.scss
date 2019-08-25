@@ -1,5 +1,5 @@
 @charset "UTF-8";
 @import "./mixin/higlight";
 
-@import "./edit/inline-style";
-@import "./no-ystandard/edit/inline-style";
+@import "../../block/format/inline-style/edit";
+@import "../../block/format/inline-style/edit-no-ystd";

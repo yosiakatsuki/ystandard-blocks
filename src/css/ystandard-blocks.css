@@ -33,3 +33,6 @@
 
 .ystdb-btn-link img {
   position: absolute; }
+
+.wp-block-button a i, .wp-block-button a svg {
+  margin-left: .5rem; }

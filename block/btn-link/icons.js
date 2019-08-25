@@ -32,4 +32,8 @@ export const icons = [
         class: 'far fa-file',
         title: __('ファイル', 'ystandard-blocks'),
     },
+    {
+        class: 'fas fa-download',
+        title: __('ファイル', 'ystandard-blocks'),
+    },
 ]

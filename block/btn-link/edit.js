@@ -175,7 +175,7 @@ export default function (props) {
                     <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
                         <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
                             <ToggleControl
-                                label={__('1列表示にする', 'ystandard-blocks')}
+                                label={__('ブロック表示にする', 'ystandard-blocks')}
                                 checked={(buttonType === 'block')}
                                 onChange={() => {
                                     setAttributes({

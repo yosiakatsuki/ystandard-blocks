@@ -1,0 +1,14 @@
+.wp-block-button {
+  &.-full {
+    display: block;
+
+    & .wp-block-button__link {
+      display: block;
+    }
+  }
+  .wp-block-button__link {
+    i {
+      margin-left: .5rem;
+    }
+  }
+}

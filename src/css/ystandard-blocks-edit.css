@@ -11,6 +11,14 @@
     margin-bottom: .25em;
     text-align: center; }
 
+.wp-block-button.-full {
+  display: block; }
+  .wp-block-button.-full .wp-block-button__link {
+    display: block; }
+
+.wp-block-button .wp-block-button__link i {
+  margin-left: .5rem; }
+
 .ystdb-inline-style-toolbar {
   position: relative; }
   .ystdb-inline-style-toolbar::before, .ystdb-inline-style-toolbar::after {

@@ -1,3 +1,3 @@
-import "./format/inline-style/index";
+import "../../block/format/inline-style/index";
 
 console.log('yStandard Blocks');
