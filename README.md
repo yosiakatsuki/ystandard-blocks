@@ -4,6 +4,14 @@
 
 yStandard : <https://wp-ystandard.com/>
 
+
+## 更新履歴
+
+- v0.0.1
+  * β版作成
+  * 「ボタン型リンク」ブロック追加
+  * コアのボタンブロックにアイコンとブロック型表示オプションを追加
+
 ## Third-party resources
 
 ### Font Awesome
