@@ -199,6 +199,8 @@ class Ystandard_Blocks_Customizer {
 	 * カスタマイザー追加
 	 *
 	 * @param WP_Customize_Manager $wp_customize wp_customize.
+	 *
+	 * @return WP_Customize_Manager
 	 */
 	public function customize_register( $wp_customize ) {
 		$ys_customizer = new YS_Customizer( $wp_customize );
@@ -296,5 +298,6 @@ class Ystandard_Blocks_Customizer {
 				]
 			);
 		}
+		return $wp_customize;
 	}
 }
