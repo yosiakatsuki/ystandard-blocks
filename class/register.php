@@ -83,7 +83,7 @@ class Ystandard_Blocks_Register {
 	 */
 	public function register_dynamic_block() {
 		$files = [
-			YSTDB_PATH . '/block/btn-link/block.php',
+			YSTDB_PATH . 'block/btn-link/block.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );
