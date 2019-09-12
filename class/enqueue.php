@@ -16,25 +16,17 @@ class Ystandard_Blocks_Enqueue {
 	 */
 	function __construct() {
 		if ( Ystandard_Blocks::is_ystandard() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		} else {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles_no_ystandard' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_no_ystandard' ] );
 		}
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
 	}
 
 	/**
-	 * Enqueue Scripts
+	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
-
-	}
-
-	/**
-	 * Enqueue Styles
-	 */
-	public function enqueue_styles() {
 		if ( function_exists( 'ys_enqueue_css' ) ) {
 			ys_enqueue_css(
 				'ystandard-blocks',
@@ -58,27 +50,39 @@ class Ystandard_Blocks_Enqueue {
 	}
 
 	/**
-	 * Enqueue Styles(非yStandard)
+	 * Enqueue scripts(非yStandard)
 	 */
-	public function enqueue_styles_no_ystandard() {
+	public function enqueue_scripts_no_ystandard() {
 		wp_enqueue_style(
 			'ystandard-blocks-no-ystandard',
 			YSTDB_URL . 'css/ystandard-blocks-no-ystandard.css',
 			[],
 			YSTDB_VERSION
 		);
+		wp_enqueue_script(
+			'font-awesome',
+			YSTDB_URL . 'library/fontawesome/js/all.js',
+			[],
+			YSTDB_VERSION,
+			true
+		);
+		wp_add_inline_script(
+			'font-awesome',
+			'FontAwesomeConfig = { searchPseudoElements: true };',
+			'before'
+		);
+		wp_script_add_data( 'font-awesome', 'defer', true );
 	}
 
 	/**
 	 * Enqueue Styles
 	 */
 	public function enqueue_editor_styles() {
-		$fa_ver = 'v5.10.1';
 		wp_enqueue_style(
 			'font-awesome',
-			'https://use.fontawesome.com/releases/' . $fa_ver . '/css/all.css',
+			YSTDB_URL . 'library/fontawesome/css/all.css',
 			[],
-			$fa_ver
+			YSTDB_VERSION
 		);
 		/**
 		 * エディタ用CSS
