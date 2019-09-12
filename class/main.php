@@ -25,15 +25,17 @@ class Ystandard_Blocks {
 		 * Gutenbergチェック
 		 */
 		if ( ! function_exists( 'register_block_type' ) ) {
-			/**
-			 * 後で案内表示入れたい
-			 */
+			add_action( 'admin_notices', [ $this, 'gutenberg_notice' ] );
+
 			return;
 		}
 		$this->require();
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
 
 		if ( is_admin() ) {
+			if ( ! $this->is_ystandard() ) {
+				add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
+			}
 			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
 			/**
 			 * カスタマイザー追加
@@ -87,12 +89,36 @@ class Ystandard_Blocks {
 	/**
 	 * アップデートチェック
 	 */
-	function update_check() {
+	public function update_check() {
 		require_once YSTDB_PATH . 'library/plugin-update-checker/plugin-update-checker.php';
 		Puc_v4_Factory::buildUpdateChecker(
 			'https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.json',
 			YSTDB_PATH . 'ystandard-blocks.php',
 			'yStandard Blocks'
 		);
+	}
+
+	/**
+	 * Gutenberg使えない案内
+	 */
+	public function gutenberg_notice() {
+		?>
+		<div class="notice notice-error is-dismissible">
+			<p>このサイトではGutenbergが使えないためyStandard Blocksが機能しません。</p>
+			<p>クラシックエディター(Classic Editor)を停止するなど、Gutenbergが使える状態にしてください。</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * テーマ確認案内
+	 */
+	public function ystandard_notice() {
+		?>
+		<div class="notice notice-warning is-dismissible">
+			<p>このサイトではyStandardが有効化されていません。</p>
+			<p>yStandard Blocksのブロックのデザインが崩れたり、機能によっては正常に動作しない恐れがあります。</p>
+		</div>
+		<?php
 	}
 }
