@@ -34,5 +34,11 @@
 .ystdb-btn-link img {
   position: absolute; }
 
+.ystdb-section__inner > *:first-child {
+  margin-top: 0; }
+
+.ystdb-section__inner > *:last-child {
+  margin-bottom: 0; }
+
 .wp-block-button a i, .wp-block-button a svg {
   margin-left: .5rem; }

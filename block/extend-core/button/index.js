@@ -72,7 +72,7 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                         <InspectorControls>
                             <PanelBody title={__('[ys]アイコン設定', 'ystandard-blocks')}>
                                 <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                                    <div className={'ystdb-btn-link--edit__icons'}>
+                                    <div className={'ystdb-btn-selector -icons'}>
                                         {icons.map((item) => {
                                             return (
                                                 <Button
@@ -87,9 +87,9 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                                             );
                                         })}
                                     </div>
-                                    <div className={'ystdb-btn-link--edit__icons-notice'}>※ボタンテキストを編集する際は一度アイコンをクリアしてください。</div>
+                                    <div className={'ystdb-btn-selector -notice'}>※ボタンテキストを編集する際は一度アイコンをクリアしてください。</div>
 
-                                    <div className={'ystdb-btn-link--edit__icons-clear'}>
+                                    <div className={'ystdb-btn-selector__clear'}>
                                         <Button
                                             isDefault
                                             onClick={() => {

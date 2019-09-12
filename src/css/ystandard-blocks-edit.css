@@ -1,15 +1,27 @@
-.ystdb-btn-link--edit__icons-clear {
+.ystdb-btn-selector__clear {
   margin-top: .5rem; }
 
-.ystdb-btn-link--edit__icons {
+.ystdb-btn-selector {
   display: flex;
   flex-wrap: wrap; }
-  .ystdb-btn-link--edit__icons button {
+  .ystdb-btn-selector button {
     display: block;
-    flex: 1 1 20%;
-    max-width: 20%;
+    margin-right: .25rem;
     margin-bottom: .25em;
     text-align: center; }
+  .ystdb-btn-selector.-icons button {
+    flex: 1 1 20%;
+    max-width: 20%;
+    margin-right: 0; }
+
+.ystdb-inspectorcontrols .components-base-control__label {
+  font-weight: bold; }
+
+.ystdb-inspectorcontrols .components-base-control__field .components-base-control__field .components-base-control__label {
+  font-weight: normal; }
+
+.ystd-section__inner {
+  padding: 2rem 1rem; }
 
 .wp-block-button.-full {
   display: block; }

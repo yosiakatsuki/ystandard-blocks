@@ -143,7 +143,7 @@ export default function (props) {
                 <InspectorControls>
                     <PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
                         <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                            <div className={'ystdb-btn-link--edit__icons'}>
+                            <div className={'ystdb-btn-selector -icons'}>
                                 {icons.map((item) => {
                                     return (
                                         <Button
@@ -159,7 +159,7 @@ export default function (props) {
                                     );
                                 })}
                             </div>
-                            <div className={'ystdb-btn-link--edit__icons-clear'}>
+                            <div className={'ystdb-btn-selector__clear'}>
                                 <Button
                                     isDefault
                                     onClick={() => {

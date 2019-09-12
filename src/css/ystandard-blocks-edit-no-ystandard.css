@@ -1,3 +1,36 @@
+.ystdb-btn-selector__clear {
+  margin-top: .5rem; }
+
+.ystdb-btn-selector {
+  display: flex;
+  flex-wrap: wrap; }
+  .ystdb-btn-selector button {
+    display: block;
+    margin-right: .25rem;
+    margin-bottom: .25em;
+    text-align: center; }
+  .ystdb-btn-selector.-icons button {
+    flex: 1 1 20%;
+    max-width: 20%;
+    margin-right: 0; }
+
+.ystdb-inspectorcontrols .components-base-control__label {
+  font-weight: bold; }
+
+.ystdb-inspectorcontrols .components-base-control__field .components-base-control__field .components-base-control__label {
+  font-weight: normal; }
+
+.ystd-section__inner {
+  padding: 2rem 1rem; }
+
+.wp-block-button.-full {
+  display: block; }
+  .wp-block-button.-full .wp-block-button__link {
+    display: block; }
+
+.wp-block-button .wp-block-button__link i {
+  margin-left: .5rem; }
+
 .ystdb-inline-style-toolbar {
   position: relative; }
   .ystdb-inline-style-toolbar::before, .ystdb-inline-style-toolbar::after {
@@ -16,15 +49,3 @@
     content: '2'; }
   .ystdb-inline-style-toolbar.inline-style-3::before {
     content: '3'; }
-
-.ystdb-inline-style-toolbar.inline-style-1 svg {
-  background: linear-gradient(transparent 75%, rgba(213, 57, 57, 0.5) 75%);
-  background-position-y: -0.2rem; }
-
-.ystdb-inline-style-toolbar.inline-style-2 svg {
-  background: linear-gradient(transparent 75%, rgba(130, 185, 227, 0.5) 75%);
-  background-position-y: -0.2rem; }
-
-.ystdb-inline-style-toolbar.inline-style-3 svg {
-  background: linear-gradient(transparent 75%, rgba(245, 236, 132, 0.5) 75%);
-  background-position-y: -0.2rem; }

@@ -1,0 +1,23 @@
+.ystdb-btn-selector__clear {
+  margin-top: .5rem;
+}
+
+.ystdb-btn-selector {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    display: block;
+    margin-right: .25rem;
+    margin-bottom: .25em;
+    text-align: center;
+  }
+
+  &.-icons {
+    button {
+      flex: 1 1 20%;
+      max-width: 20%;
+      margin-right: 0;
+    }
+  }
+}
