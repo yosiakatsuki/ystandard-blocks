@@ -37,11 +37,16 @@ class Ystandard_Blocks {
 				add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 			}
 			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
-			/**
-			 * カスタマイザー追加
-			 */
-			$customizer = new Ystandard_Blocks_Customizer();
-			$customizer->add_customizer();
+		}
+		/**
+		 * カスタマイザー追加
+		 */
+		if ( Ystandard_Blocks::is_ystandard() ) {
+			add_filter(
+				'ys_customizer_add_extension',
+				[ 'Ystandard_Blocks_Customizer', 'ystdb_customize_register' ],
+				11
+			);
 		}
 	}
 

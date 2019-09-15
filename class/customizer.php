@@ -13,24 +13,10 @@
 class Ystandard_Blocks_Customizer {
 
 	/**
-	 * 設定追加するパネル名
-	 */
-	const PANEL_NAME = 'ys_customizer_panel_extension';
-
-	/**
 	 * Ystandard_Blocks_Customizer constructor.
 	 */
 	public function __construct() {
 
-	}
-
-	/**
-	 * カスタマイザー追加
-	 */
-	public function add_customizer() {
-		if ( Ystandard_Blocks::is_ystandard() ) {
-			add_filter( 'ys_customizer_add_extension', [ $this, 'customize_register' ], 11 );
-		}
 	}
 
 	/**
@@ -202,7 +188,7 @@ class Ystandard_Blocks_Customizer {
 	 *
 	 * @return WP_Customize_Manager
 	 */
-	public function customize_register( $wp_customize ) {
+	public static function ystdb_customize_register( $wp_customize ) {
 		$ys_customizer = new YS_Customizer( $wp_customize );
 		/**
 		 * セクション追加
@@ -211,7 +197,7 @@ class Ystandard_Blocks_Customizer {
 			[
 				'section'     => 'ystdb_inline_style',
 				'title'       => '[ys blocks]インラインスタイル設定',
-				'panel'       => self::PANEL_NAME,
+				'panel'       => 'ys_customizer_panel_extension',
 				'description' => 'yStandard Blocks: インライン装飾の設定<br><br><strong>※設定後再読み込みするとプレビュー画面に反映されます。</strong><br><br>',
 			]
 		);
