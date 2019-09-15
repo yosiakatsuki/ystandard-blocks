@@ -70,6 +70,7 @@ class Ystandard_Blocks_Options {
 	 */
 	public static function get_default_option( $name ) {
 		$defaults = self::get_default_options();
+		$name     = self::get_option_name( $name );
 
 		return isset( $defaults[ $name ] ) ? $defaults[ $name ] : false;
 	}

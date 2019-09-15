@@ -222,8 +222,9 @@ class Ystandard_Blocks_Customizer {
 			 */
 			$ys_customizer->add_label(
 				[
-					'id'    => $ystdb_opt->get_option_name( 'inline_style_label_' . $i ),
-					'label' => '■「[ys]インラインスタイル ' . $i . '」の設定',
+					'id'      => $ystdb_opt->get_option_name( 'inline_style_label_' . $i ),
+					'label'   => '■「[ys]インラインスタイル ' . $i . '」の設定',
+					'section' => 'ystdb_inline_style',
 				]
 			);
 			/**
@@ -235,6 +236,7 @@ class Ystandard_Blocks_Customizer {
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_fz_' . $i ),
 					'label'       => '文字サイズ(%)',
 					'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
+					'section'     => 'ystdb_inline_style',
 					'transport'   => 'postMessage',
 					'input_attrs' => [
 						'min'  => 60,
@@ -251,6 +253,7 @@ class Ystandard_Blocks_Customizer {
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_color_' . $i ),
 					'label'     => '文字色',
+					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
 				]
 			);
@@ -262,6 +265,7 @@ class Ystandard_Blocks_Customizer {
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i ),
 					'label'     => 'マーカー色',
+					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
 				]
 			);
@@ -274,6 +278,7 @@ class Ystandard_Blocks_Customizer {
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_weight_' . $i ),
 					'label'       => 'マーカー太さ(%)',
 					'description' => 'マーカー（蛍光ペン風）の太さ設定。0~100の間で設定してください。<br>0にするとマーカー表示がOFFになります。',
+					'section'     => 'ystdb_inline_style',
 					'transport'   => 'postMessage',
 					'input_attrs' => [
 						'min' => 0,
@@ -289,6 +294,7 @@ class Ystandard_Blocks_Customizer {
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_type_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_type_' . $i ),
 					'label'     => '装飾タイプ',
+					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
 					'choices'   => [
 						'normal' => '装飾なし',
@@ -298,6 +304,7 @@ class Ystandard_Blocks_Customizer {
 				]
 			);
 		}
+
 		return $wp_customize;
 	}
 }
