@@ -34,11 +34,34 @@
 .ystdb-btn-link img {
   position: absolute; }
 
-.ystdb-section__inner > *:first-child {
-  margin-top: 0; }
+.ystdb-section {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden; }
+  .ystdb-section.has-background-mask {
+    background-image: none;
+    background-color: transparent; }
+  .ystdb-section.has-background-dim:not(.has-background) {
+    background-color: #fff; }
 
-.ystdb-section__inner > *:last-child {
-  margin-bottom: 0; }
+.ystdb-section__inner {
+  position: relative;
+  z-index: 2; }
+  .ystdb-section__inner > *:first-child {
+    margin-top: 0; }
+  .ystdb-section__inner > *:last-child {
+    margin-bottom: 0; }
+
+.ystdb-section__mask {
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1; }
 
 .wp-block-button a i, .wp-block-button a svg {
   margin-left: .5rem; }

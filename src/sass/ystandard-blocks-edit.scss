@@ -1,8 +1,10 @@
 @charset "UTF-8";
-@import "./mixin/higlight";
+@import "foundation/import";
 
 @import "edit/component/button-selector";
 @import "edit/component/inspectorcontrols";
+@import "edit/component/mediaupload";
+@import "edit/component/editor-text";
 
 @import "../../block/btn-link/edit";
 @import "../../block/section/edit";

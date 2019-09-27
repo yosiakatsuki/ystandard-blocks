@@ -1,3 +1,31 @@
-.ystd-section__inner {
-  padding: 2rem 1rem;
+@import "block";
+
+.ystdb-section {
+  &.has-background-dim:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    opacity: .5;
+    z-index: 1;
+  }
+
+  &.has-background-dim:not(.has-background) {
+    background-color: #fff;
+  }
+
+  &.has-background-mask {
+    background-image: none;
+    background-color: transparent;
+  }
+}
+[data-align="full"] {
+  .ystdb-section__inner {
+    .wp-block {
+      max-width: 100%;
+    }
+  }
 }

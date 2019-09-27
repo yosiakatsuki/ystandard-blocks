@@ -1,5 +1,6 @@
 import edit from './edit';
 import save from './save';
+import { deprecated } from './_deprecated';
 
 const {registerBlockType} = wp.blocks;
 const {withColors} = wp.editor;
@@ -30,37 +31,51 @@ registerBlockType('ystdb/section', {
         customTextColor: {
             type: "string"
         },
-        margin: {
-            type: "string",
-            default: "normal", //normal,wide,narrow
-        },
         marginTop: {
-            type: "integer",
-            default: 24
+            type: "number",
+            default: 2
         },
         marginBottom: {
-            type: "integer",
-            default: 24
-        },
-        padding: {
-            type: "string",
-            default: "normal", //normal,wide,narrow
+            type: "number",
+            default: 2
         },
         paddingTop: {
-            type: "integer",
-            default: 32
+            type: "number",
+            default: 3
         },
         paddingBottom: {
-            type: "integer",
-            default: 32
+            type: "number",
+            default: 3
         },
-        innerWidth: {
-            type: "string",
-            default: "normal", //normal,narrow
+        paddingLeft: {
+            type: "number",
+            default: 0
+        },
+        paddingRight: {
+            type: "number",
+            default: 0
         },
         innerCustomWidth: {
             type: "integer",
+            default: 960,
+        },
+        backgroundImageURL: {
+            type: "string"
+        },
+        backgroundImageAlt: {
+            type: "string"
+        },
+        backgroundImageID: {
+            type: "integer",
             default: 0,
+        },
+        backgroundImageOpacity: {
+            type: "integer",
+            default: 50
+        },
+        backgroundSkew: {
+            type: "number",
+            default: 0
         }
     },
     supports: {
@@ -71,5 +86,6 @@ registerBlockType('ystdb/section', {
     edit: compose([
         withColors('backgroundColor', {textColor: 'color'}),
     ])(edit),
-    save: save
+    save: save,
+    deprecated: deprecated
 });

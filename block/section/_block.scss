@@ -1,10 +1,41 @@
+.ystdb-section {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+
+  &.has-background-mask {
+    background-image: none;
+    background-color: transparent;
+  }
+
+  &.has-background-dim:not(.has-background) {
+    background-color: #fff;
+  }
+}
+
 .ystdb-section__inner {
+  position: relative;
+  z-index: 2;
+
   & > * {
     &:first-child {
       margin-top: 0;
     }
+
     &:last-child {
       margin-bottom: 0;
     }
   }
+}
+
+.ystdb-section__mask {
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
 }

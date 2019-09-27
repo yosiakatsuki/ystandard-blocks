@@ -4,62 +4,62 @@ export const marginType = {
     margin: [
         {
             value: 'normal',
-            label: __('通常'),
-            num: 24
+            label: __('リセット'),
+            num: 2
         },
         {
             value: 'wide',
-            label: __('余白 大'),
-            num: 48
+            label: __('大'),
+            num: 4
         },
         {
             value: 'narrow',
-            label: __('余白 小'),
-            num: 8
+            label: __('小'),
+            num: 1
         },
         {
             value: 'none',
-            label: __('余白 なし'),
+            label: __('なし'),
             num: 0
         }
     ],
     padding: [
         {
             value: 'normal',
-            label: __('通常'),
-            num: 32
+            label: __('リセット'),
+            num: 3
         },
         {
             value: 'wide',
-            label: __('余白 大'),
-            num: 64
+            label: __('大'),
+            num: 5
         },
         {
             value: 'narrow',
-            label: __('余白 小'),
-            num: 16
+            label: __('小'),
+            num: 1
         },
         {
             value: 'none',
-            label: __('余白 なし'),
+            label: __('なし'),
             num: 0
         }
     ],
     innerWidth: [
         {
-            value: 'none',
-            label: __('最大幅指定なし'),
-            num: 0
-        },
-        {
             value: 'wide',
-            label: __('幅広'),
+            label: __('ワイド'),
             num: 1232
         },
         {
             value: 'narrow',
             label: __('スリム'),
             num: 560
-        }
+        },
+        {
+            value: 'none',
+            label: __('なし'),
+            num: 0
+        },
     ]
 }
