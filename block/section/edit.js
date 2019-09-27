@@ -107,7 +107,9 @@ export default function (props) {
         color: textColor.color,
         'padding-top': 0 === paddingTop ? 0 : paddingTop + 'rem',
         'padding-bottom': 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-        backgroundImage: hasBackgroundImage ? `url("${backgroundImageURL}")` : undefined
+        backgroundImage: hasBackgroundImage ? `url("${backgroundImageURL}")` : undefined,
+        'padding-left':'1rem',
+        'padding-right':'1rem'
     };
     /**
      * インナーのスタイル
@@ -171,7 +173,7 @@ export default function (props) {
                 'ystdb-section__mask'
             );
             return (
-                <div className={skewClass} style={skewStyle}> </div>
+                <div className={skewClass} style={skewStyle}></div>
             );
         }
     };
@@ -220,7 +222,7 @@ export default function (props) {
                             <RangeControl
                                 label={__('数値 上側', 'ystandard-blocks')}
                                 value={marginTop}
-                                onChange={(value) => setAttributes({marginTop: getNum(value, -10, 10)})}
+                                onChange={(value) => setAttributes({marginTop: getNum(value, -10, 10, 0)})}
                                 min={-10}
                                 max={10}
                                 step={rangeStep}
@@ -228,7 +230,7 @@ export default function (props) {
                             <RangeControl
                                 label={__('数値 下側', 'ystandard-blocks')}
                                 value={marginBottom}
-                                onChange={(value) => setAttributes({marginBottom: getNum(value, -10, 10)})}
+                                onChange={(value) => setAttributes({marginBottom: getNum(value, -10, 10, 0)})}
                                 min={-10}
                                 max={10}
                                 step={rangeStep}
@@ -368,7 +370,8 @@ export default function (props) {
                             />
                             <p>
                                 <span className={`ystdb-info__small ystdb-info__bold`}>※傾きの設定をする場合、背景画像設定が無視されます。</span>
-                                <span className={`ystdb-info__small`}>※コンテンツがはみ出る・余白が少なく感じる場合、「余白設定(内側)」の上下を大きくして調整して下さい。</span>
+                                <span
+                                    className={`ystdb-info__small`}>※コンテンツがはみ出る・余白が少なく感じる場合、「余白設定(内側)」の上下を大きくして調整して下さい。</span>
                                 <span className={`ystdb-info__small`}>※背景色は、色設定の「背景色」で変更できます。</span>
                             </p>
                         </BaseControl>

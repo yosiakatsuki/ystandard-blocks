@@ -87,5 +87,5 @@ registerBlockType('ystdb/section', {
         withColors('backgroundColor', {textColor: 'color'}),
     ])(edit),
     save: save,
-    deprecated: deprecated
+    deprecated: deprecated,
 });

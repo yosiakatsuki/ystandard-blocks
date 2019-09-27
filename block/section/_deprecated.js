@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import getNum from "../../src/js/util/_getNum";
 
 const {
     getColorClassName,
@@ -57,6 +58,14 @@ export const deprecated = [
                 type: "integer",
                 default: 0,
             }
+        },
+        migrate({marginTop, marginBottom, paddingTop, paddingBottom}) {
+            return {
+                marginTop: getNum(marginTop, -10, 10, 0),
+                marginBottom: getNum(marginBottom, -10, 10, 0),
+                paddingTop: getNum(paddingTop, 0, 10),
+                paddingBottom: getNum(paddingBottom, 0, 10),
+            };
         },
         save(props) {
             const {
