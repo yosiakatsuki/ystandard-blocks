@@ -205,7 +205,7 @@ export default function (props) {
                                 })}
                             </div>
                             <RangeControl
-                                label={__('数値 上側', 'ystandard-blocks')}
+                                label={__('上側', 'ystandard-blocks')}
                                 value={marginTop}
                                 onChange={(value) => setAttributes({marginTop: getNum(value, -10, 10, 0)})}
                                 min={-10}
@@ -213,7 +213,7 @@ export default function (props) {
                                 step={rangeStep}
                             />
                             <RangeControl
-                                label={__('数値 下側', 'ystandard-blocks')}
+                                label={__('下側', 'ystandard-blocks')}
                                 value={marginBottom}
                                 onChange={(value) => setAttributes({marginBottom: getNum(value, -10, 10, 0)})}
                                 min={-10}
@@ -249,7 +249,7 @@ export default function (props) {
                                 </div>
                             </div>
                             <RangeControl
-                                label={__('数値 上側', 'ystandard-blocks')}
+                                label={__('上側', 'ystandard-blocks')}
                                 value={paddingTop}
                                 onChange={(value) => setAttributes({paddingTop: getNum(value, 0, 10)})}
                                 min={0}
@@ -257,7 +257,7 @@ export default function (props) {
                                 step={rangeStep}
                             />
                             <RangeControl
-                                label={__('数値 下側', 'ystandard-blocks')}
+                                label={__('下側', 'ystandard-blocks')}
                                 value={paddingBottom}
                                 onChange={(value) => setAttributes({paddingBottom: getNum(value, 0, 10)})}
                                 min={0}
@@ -265,7 +265,7 @@ export default function (props) {
                                 step={rangeStep}
                             />
                             <RangeControl
-                                label={__('数値 左側', 'ystandard-blocks')}
+                                label={__('左側', 'ystandard-blocks')}
                                 value={paddingLeft}
                                 onChange={(value) => setAttributes({paddingLeft: getNum(value, 0, 5)})}
                                 min={0}
@@ -273,7 +273,7 @@ export default function (props) {
                                 step={rangeStep}
                             />
                             <RangeControl
-                                label={__('数値 右側', 'ystandard-blocks')}
+                                label={__('右側', 'ystandard-blocks')}
                                 value={paddingRight}
                                 onChange={(value) => setAttributes({paddingRight: getNum(value, 0, 5)})}
                                 min={0}
@@ -305,7 +305,7 @@ export default function (props) {
                             })}
                         </div>
                         <RangeControl
-                            label={__('数値', 'ystandard-blocks')}
+                            label={__('コンテンツ部分の最大幅', 'ystandard-blocks')}
                             value={innerCustomWidth}
                             onChange={(value) => setAttributes({innerCustomWidth: getNum(value, 0, 1920, 960)})}
                             min={0}
@@ -321,6 +321,9 @@ export default function (props) {
                         title={__('HTMLタグ設定', 'ystandard-blocks')}
                         initialOpen={false}
                     >
+                        <p>
+                            <span className={`ystdb-info__small`}>コンテンツを囲むHTMLタグを選択できます。</span>
+                        </p>
                         <div className={'ystdb-btn-selector components-base-control'}>
                             {wrapperTagNames.map((item) => {
                                 return (
