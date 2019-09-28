@@ -76,6 +76,10 @@ registerBlockType('ystdb/section', {
         backgroundSkew: {
             type: "number",
             default: 0
+        },
+        backgroundSkewWidth: {
+            type: "number",
+            default: 90
         }
     },
     supports: {

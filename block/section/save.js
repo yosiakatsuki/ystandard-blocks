@@ -25,6 +25,7 @@ export default function save(props) {
         backgroundImageURL,
         backgroundImageOpacity,
         backgroundSkew,
+        backgroundSkewWidth,
         innerCustomWidth
     } = attributes;
 
@@ -98,6 +99,7 @@ export default function save(props) {
         if (backgroundSkew) {
             const backgroundSkewValue = backgroundSkew + 'deg';
             const skewStyle = {
+                height: backgroundSkewWidth ? backgroundSkewWidth + '%' : undefined,
                 backgroundColor: backgroundClass ? undefined : customBackgroundColor,
                 transform: `skewY(${backgroundSkewValue}) translateY(-50%)`
             };

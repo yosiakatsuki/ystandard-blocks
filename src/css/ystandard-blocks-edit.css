@@ -89,7 +89,7 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
     margin-bottom: 0; }
 
 .ystdb-section__mask {
-  height: 80%;
+  height: 90%;
   position: absolute;
   top: 50%;
   left: 0;
@@ -105,7 +105,6 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
   bottom: 0;
   right: 0;
   background-color: inherit;
-  opacity: .5;
   z-index: 1; }
 
 .ystdb-section.has-background-dim:not(.has-background) {

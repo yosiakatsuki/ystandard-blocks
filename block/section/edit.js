@@ -45,6 +45,7 @@ export default function (props) {
         backgroundImageID,
         backgroundImageOpacity,
         backgroundSkew,
+        backgroundSkewWidth,
         innerCustomWidth
     } = attributes;
 
@@ -108,8 +109,8 @@ export default function (props) {
         paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
         paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
         backgroundImage: hasBackgroundImage ? `url("${backgroundImageURL}")` : undefined,
-        paddingLeft:'1rem',
-        paddingRight:'1rem'
+        paddingLeft: '1rem',
+        paddingRight: '1rem'
     };
     /**
      * インナーのスタイル
@@ -166,6 +167,7 @@ export default function (props) {
         if (backgroundSkew) {
             const backgroundSkewValue = backgroundSkew + 'deg';
             const skewStyle = {
+                height: backgroundSkewWidth ? backgroundSkewWidth + '%' : undefined,
                 backgroundColor: backgroundColor.color,
                 transform: `skewY(${backgroundSkewValue}) translateY(-50%)`
             };
@@ -182,24 +184,7 @@ export default function (props) {
         <Fragment>
             <InspectorControls>
                 <div className="ystdb-inspectorcontrols">
-                    <PanelBody title={__('ブロック設定', 'ystandard-blocks')}>
-                        <BaseControl label={__('HTMLタグ', 'ystandard-blocks')}>
-                            <div className={'ystdb-btn-selector components-base-control'}>
-                                {wrapperTagNames.map((item) => {
-                                    return (
-                                        <Button
-                                            isDefault
-                                            isPrimary={wrapperTag === item.tag}
-                                            onClick={() => {
-                                                setAttributes({wrapperTag: item.tag});
-                                            }}
-                                        >
-                                            <span>{item.tag}</span>
-                                        </Button>
-                                    );
-                                })}
-                            </div>
-                        </BaseControl>
+                    <PanelBody title={__('余白設定', 'ystandard-blocks')}>
                         <BaseControl label={__('余白設定(外側)', 'ystandard-blocks')}>
                             <div className={`ystdb-info__label`}>かんたん設定</div>
                             <div className={'ystdb-btn-selector components-base-control'}>
@@ -300,81 +285,118 @@ export default function (props) {
                                 <span className={`ystdb-info__small`}>※単位はremです。</span>
                             </div>
                         </BaseControl>
-                        <BaseControl label={__('セクション内コンテンツの最大幅', 'ystandard-blocks')}>
-                            <div className={`ystdb-info__label`}>かんたん設定</div>
-                            <div className={'ystdb-btn-selector components-base-control'}>
-                                {marginType.innerWidth.map((item) => {
-                                    return (
-                                        <Button
-                                            isDefault
-                                            onClick={() => {
-                                                setAttributes({
-                                                    innerCustomWidth: item.num
-                                                });
-                                            }}
-                                        >
-                                            <span>{item.label}</span>
-                                        </Button>
-                                    );
-                                })}
-                            </div>
-                            <RangeControl
-                                label={__('数値', 'ystandard-blocks')}
-                                value={innerCustomWidth}
-                                onChange={(value) => setAttributes({innerCustomWidth: getNum(value, 0, 1920, 960)})}
-                                min={0}
-                                max={1920}
-                                step={16}
-                                allowReset={true}
-                            />
-                            <p>
-                                <span className={`ystdb-info__small`}>※最大幅指定なしにしたい場合0にしてください。</span>
-                            </p>
-                        </BaseControl>
-                        <BaseControl label={__('背景画像', 'ystandard-blocks')}>
-                            <MediaUpload
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        backgroundImageURL: media.url,
-                                        backgroundImageID: media.id,
-                                        backgroundImageAlt: media.alt
-                                    });
-                                }}
-                                type={ALLOWED_MEDIA_TYPES}
-                                value={backgroundImageID}
-                                render={mediaUploadRender}
-                            />
-                            <br/><br/>
-                            <RangeControl
-                                label={__('画像の上に重ねる色の濃さ', 'ystandard-blocks')}
-                                value={backgroundImageOpacity}
-                                onChange={(value) => setAttributes({backgroundImageOpacity: getNum(value, 0, 100)})}
-                                min={0}
-                                max={100}
-                                step={10}
-                            />
-                            <p>
-                                <span className={`ystdb-info__small`}>※数値が大きいほど背景画像が見えづらくなります。</span>
-                                <span className={`ystdb-info__small`}>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
-                            </p>
-                        </BaseControl>
-                        <BaseControl label={__('背景を傾ける', 'ystandard-blocks')}>
-                            <RangeControl
-                                label={__('背景の傾き具合', 'ystandard-blocks') + '(-3 ~ 3)'}
-                                value={backgroundSkew}
-                                onChange={(value) => setAttributes({backgroundSkew: getNum(value, -3, 3, 0)})}
-                                min={-3}
-                                max={3}
-                                step={0.5}
-                                allowReset={true}
-                            />
-                            <p>
-                                <span className={`ystdb-info__small ystdb-info__bold`}>※傾きの設定をする場合、背景画像設定が無視されます。</span>
+                    </PanelBody>
+                    <PanelBody title={__('セクションコンテンツ幅設定', 'ystandard-blocks')}>
+                        <div className={`ystdb-info__label`}>かんたん設定</div>
+                        <div className={'ystdb-btn-selector components-base-control'}>
+                            {marginType.innerWidth.map((item) => {
+                                return (
+                                    <Button
+                                        isDefault
+                                        onClick={() => {
+                                            setAttributes({
+                                                innerCustomWidth: item.num
+                                            });
+                                        }}
+                                    >
+                                        <span>{item.label}</span>
+                                    </Button>
+                                );
+                            })}
+                        </div>
+                        <RangeControl
+                            label={__('数値', 'ystandard-blocks')}
+                            value={innerCustomWidth}
+                            onChange={(value) => setAttributes({innerCustomWidth: getNum(value, 0, 1920, 960)})}
+                            min={0}
+                            max={1920}
+                            step={16}
+                            allowReset={true}
+                        />
+                        <p>
+                            <span className={`ystdb-info__small`}>※最大幅指定なしにしたい場合0にしてください。</span>
+                        </p>
+                    </PanelBody>
+                    <PanelBody
+                        title={__('HTMLタグ設定', 'ystandard-blocks')}
+                        initialOpen={false}
+                    >
+                        <div className={'ystdb-btn-selector components-base-control'}>
+                            {wrapperTagNames.map((item) => {
+                                return (
+                                    <Button
+                                        isDefault
+                                        isPrimary={wrapperTag === item.tag}
+                                        onClick={() => {
+                                            setAttributes({wrapperTag: item.tag});
+                                        }}
+                                    >
+                                        <span>{item.tag}</span>
+                                    </Button>
+                                );
+                            })}
+                        </div>
+                    </PanelBody>
+                    <PanelBody
+                        title={__('背景画像設定', 'ystandard-blocks')}
+                        initialOpen={false}
+                    >
+                        <MediaUpload
+                            onSelect={(media) => {
+                                setAttributes({
+                                    backgroundImageURL: media.url,
+                                    backgroundImageID: media.id,
+                                    backgroundImageAlt: media.alt
+                                });
+                            }}
+                            type={ALLOWED_MEDIA_TYPES}
+                            value={backgroundImageID}
+                            render={mediaUploadRender}
+                        />
+                        <br/><br/>
+                        <RangeControl
+                            label={__('画像の上に重ねる色の濃さ', 'ystandard-blocks')}
+                            value={backgroundImageOpacity}
+                            onChange={(value) => setAttributes({backgroundImageOpacity: getNum(value, 0, 100)})}
+                            min={0}
+                            max={100}
+                            step={10}
+                        />
+                        <p>
+                            <span className={`ystdb-info__small`}>※数値が大きいほど背景画像が見えづらくなります。</span>
+                            <span className={`ystdb-info__small`}>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
+                        </p>
+                    </PanelBody>
+                    <PanelBody
+                        title={__('背景の傾き設定', 'ystandard-blocks')}
+                        initialOpen={false}
+                    >
+                        <p>
+                            <span className={`ystdb-info__small ystdb-info__bold`}>※傾きの設定をする場合、背景画像設定が無視されます。</span>
+                        </p>
+                        <RangeControl
+                            label={__('背景の傾き具合', 'ystandard-blocks')}
+                            value={backgroundSkew}
+                            onChange={(value) => setAttributes({backgroundSkew: getNum(value, -3, 3, 0)})}
+                            min={-3}
+                            max={3}
+                            step={0.5}
+                            allowReset={true}
+                        />
+                        <RangeControl
+                            label={__('背景の太さ', 'ystandard-blocks')}
+                            value={backgroundSkewWidth}
+                            onChange={(value) => setAttributes({backgroundSkewWidth: getNum(value, 70, 100, 90)})}
+                            min={70}
+                            max={100}
+                            step={1}
+                            allowReset={true}
+                        />
+                        <p>
                                 <span
-                                    className={`ystdb-info__small`}>※コンテンツがはみ出る・余白が少なく感じる場合、「余白設定(内側)」の上下を大きくして調整して下さい。</span>
-                                <span className={`ystdb-info__small`}>※背景色は、色設定の「背景色」で変更できます。</span>
-                            </p>
-                        </BaseControl>
+                                    className={`ystdb-info__small`}>※コンテンツがはみ出る・余白が少なく感じる場合、「背景の太さ」と「余白設定(内側)」の上下を大きくして調整して下さい。</span>
+                            <span className={`ystdb-info__small`}>※背景色は、色設定の「背景色」で変更できます。</span>
+                        </p>
                     </PanelBody>
                     <PanelColorSettings
                         title={__('Color Settings')}
