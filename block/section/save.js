@@ -73,23 +73,23 @@ export default function save(props) {
     const sectionStyles = {
         backgroundColor: (backgroundClass || backgroundSkew) ? undefined : customBackgroundColor,
         color: textClass ? undefined : customTextColor,
-        'margin-top': 0 === marginTop ? 0 : marginTop + 'rem',
-        'margin-bottom': 0 === marginBottom ? 0 : marginBottom + 'rem',
-        'padding-top': 0 === paddingTop ? 0 : paddingTop + 'rem',
-        'padding-bottom': 0 === paddingBottom ? 0 : paddingBottom + 'rem',
+        marginTop: 0 === marginTop ? 0 : marginTop + 'rem',
+        marginBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
+        paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
+        paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
         backgroundImage: hasBackgroundImage ? `url("${backgroundImageURL}")` : undefined,
-        'padding-left':'1rem',
-        'padding-right':'1rem'
+        paddingLeft: '1rem',
+        paddingRight: '1rem'
     };
     /**
      * インナーのスタイル
      */
     const innerStyles = {
-        'max-width': innerCustomWidth !== 0 ? innerCustomWidth : undefined,
-        'margin-right': 'auto',
-        'margin-left': 'auto',
-        'padding-left': 0 === paddingLeft ? 0 : paddingLeft + 'rem',
-        'padding-right': 0 === paddingRight ? 0 : paddingRight + 'rem'
+        maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
+        paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem'
     };
     /**
      * 背景斜めのマスク

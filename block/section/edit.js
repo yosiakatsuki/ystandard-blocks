@@ -96,8 +96,8 @@ export default function (props) {
      * 編集画面のラッパースタイル
      */
     const editWrapStyle = {
-        'padding-top': 0 === marginTop ? 0 : marginTop + 'rem',
-        'padding-bottom': 0 === marginBottom ? 0 : marginBottom + 'rem',
+        paddingTop: 0 === marginTop ? 0 : marginTop + 'rem',
+        paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
     };
     /**
      * セクションスタイル
@@ -105,21 +105,21 @@ export default function (props) {
     const sectionStyles = {
         backgroundColor: (backgroundColor.color && !backgroundSkew) ? backgroundColor.color : undefined,
         color: textColor.color,
-        'padding-top': 0 === paddingTop ? 0 : paddingTop + 'rem',
-        'padding-bottom': 0 === paddingBottom ? 0 : paddingBottom + 'rem',
+        paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
+        paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
         backgroundImage: hasBackgroundImage ? `url("${backgroundImageURL}")` : undefined,
-        'padding-left':'1rem',
-        'padding-right':'1rem'
+        paddingLeft:'1rem',
+        paddingRight:'1rem'
     };
     /**
      * インナーのスタイル
      */
     const innerStyles = {
-        'max-width': innerCustomWidth !== 0 ? innerCustomWidth : undefined,
-        'margin-right': 'auto',
-        'margin-left': 'auto',
-        'padding-left': 0 === paddingLeft ? 0 : paddingLeft + 'rem',
-        'padding-right': 0 === paddingRight ? 0 : paddingRight + 'rem'
+        maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
+        paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem'
     };
     /**
      * 画像設定コントロール
