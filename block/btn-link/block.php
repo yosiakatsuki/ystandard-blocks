@@ -16,9 +16,42 @@ class Ystandard_Blocks_Afi_button extends Ystandard_Dynamic_block {
 			'ystdb/btn-link',
 			[
 				'editor_script'   => 'ystandard-blocks',
+				'attributes'      => [
+					'content'               => [
+						'type' => "string"
+					],
+					'backgroundColor'       => [
+						'type' => "string"
+					],
+					'textColor'             => [
+						'type' => "string"
+					],
+					'customBackgroundColor' => [
+						'type' => "string"
+					],
+					'customTextColor'       => [
+						'type' => "string"
+					],
+					'icon'                  => [
+						'type' => "string"
+					],
+					'align'                 => [
+						'type' => "string"
+					],
+					'buttonType'            => [
+						'type' => "string"
+					],
+					'customIcon'            => [
+						'type' => "string"
+					],
+					'iconPosition'          => [
+						'type'    => "string",
+						'default' => "right"
+					]
+				],
 				'render_callback' => function ( $attributes ) {
 					return $this->render( 'btn-link', $attributes );
-				},
+				}
 			]
 		);
 	}

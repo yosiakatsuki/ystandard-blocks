@@ -77,9 +77,6 @@ if ( $backgroundColor ) {
 if ( $textColor ) {
 	$class[] = 'has-' . $textColor . '-color';
 }
-if ( $buttonType ) {
-	$class[] = '-' . $buttonType;
-}
 if ( ! empty( $class ) ) {
 	$class = 'class="' . esc_attr( implode( ' ', $class ) ) . '"';
 } else {
@@ -105,6 +102,9 @@ if ( ! empty( $style ) ) {
  */
 if ( $className ) {
 	$wrapClass[] = $className;
+}
+if ( $buttonType ) {
+	$wrapClass[] = '-' . $buttonType;
 }
 if ( $align ) {
 	$wrapClass[] = 'has-text-align-' . $align;

@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import {previewStyles} from './styles';
 import IconSelect, {icons} from '../../src/js/components/icon-select/index';
 
 const {
@@ -15,11 +14,10 @@ const {
 const {Fragment} = wp.element;
 const {
     Disabled,
-    SandBox,
     PanelBody,
     BaseControl,
-    Button,
-    ToggleControl
+    ToggleControl,
+    ServerSideRender
 } = wp.components;
 const {withState} = wp.compose;
 const {__} = wp.i18n;
@@ -52,44 +50,6 @@ export default function (props) {
     const bgColor = backgroundColor.color ? backgroundColor.color : '#222';
     const txtColor = textColor.color ? textColor.color : '#fff';
 
-    /**
-     * 色設定をプレビューに反映する
-     */
-    const colorStyle = `
-        .ystdb-btn-link {
-            background-color: ${bgColor};
-            border-color: ${bgColor};
-            color: ${txtColor};
-        }
-    `;
-    /**
-     * プレビュー作成
-     */
-    let previewContent = content ? content : '';
-    const alignPreview = align ? `has-text-align-${align}` : '';
-    const previewClass = classnames('ystdb-btn-link', {
-        '-has-icon':icon,
-        '-block':'block' === buttonType
-    });
-    const wrapClass = classnames(
-        'wp-block-button',
-        className,
-        alignPreview
-    );
-    if (icon) {
-        previewContent = `${content}<i class="ystdb-btn-link__icon ${icon}"></i>`;
-    }
-
-    const refreshPreview = () => {
-        if (isPreview) {
-            setState({isPreview: false})
-            setTimeout(() => {
-                setState({isPreview: true})
-            }, 100);
-        }
-    };
-
-
     return (
         <div className={'wp-block-html'}>
             <Fragment>
@@ -98,7 +58,6 @@ export default function (props) {
                         value={align}
                         onChange={(nextAlign) => {
                             setAttributes({align: nextAlign});
-                            refreshPreview();
                         }}
                     />
                     <div className="components-toolbar">
@@ -123,15 +82,12 @@ export default function (props) {
                 <Disabled.Consumer>
                     {() => (
                         (isPreview) ? (
-                            <SandBox
-                                html={`
-                                    <div class="${wrapClass}">
-                                        <div class="${previewClass}">
-                                            ${previewContent}
-                                        </div>
-                                    </div>`}
-                                styles={[previewStyles, styles, colorStyle]}
-                            />
+                            <div className={'ystdb-btn-link__preview'}>
+                                <ServerSideRender
+                                    block="ystdb/btn-link"
+                                    attributes={attributes}
+                                />
+                            </div>
                         ) : (
                             <PlainText
                                 value={content}
@@ -169,12 +125,11 @@ export default function (props) {
                         <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
                             <ToggleControl
                                 label={__('ブロック表示にする', 'ystandard-blocks')}
-                                checked={(buttonType === 'block')}
+                                checked={(buttonType === 'full')}
                                 onChange={() => {
                                     setAttributes({
-                                        buttonType: buttonType === 'block' ? '' : 'block'
+                                        buttonType: buttonType === 'full' ? '' : 'full'
                                     });
-                                    refreshPreview();
                                 }}
                             />
                         </BaseControl>
@@ -187,7 +142,6 @@ export default function (props) {
                                 value: backgroundColor.color,
                                 onChange: (color) => {
                                     setBackgroundColor(color);
-                                    refreshPreview();
                                 },
                                 label: __('Background Color'),
                             },
@@ -195,7 +149,6 @@ export default function (props) {
                                 value: textColor.color,
                                 onChange: (color) => {
                                     setTextColor(color);
-                                    refreshPreview();
                                 },
                                 label: __('Text Color'),
                             },
