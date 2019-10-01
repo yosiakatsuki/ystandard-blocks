@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import {previewStyles} from './styles';
-import {icons} from './icons';
+import {icons} from '../../src/js/components/icon-select/icons';
 
 const {
     BlockControls,

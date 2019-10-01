@@ -1,12 +1,12 @@
 import classnames from 'classnames';
-import {icons} from "../../btn-link/icons";
+import {IconSelect} from "../../../src/js/components/icon-select/index";
 
 const {__} = wp.i18n;
 const {addFilter} = wp.hooks;
 const {Fragment} = wp.element;
 const {InspectorControls} = wp.editor;
 const {createHigherOrderComponent} = wp.compose;
-const {PanelBody, ToggleControl, BaseControl, Button} = wp.components;
+const {PanelBody, ToggleControl, BaseControl} = wp.components;
 
 const allowedBlocks = ['core/button'];
 
@@ -20,6 +20,9 @@ export function addAttribute(settings) {
                 type: 'boolean',
             },
             icon: {
+                type: "string"
+            },
+            customIcon: {
                 type: "string"
             },
         });
@@ -44,7 +47,8 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
             } = props;
             const {
                 buttonBlock,
-                icon
+                icon,
+                customIcon
             } = attributes;
             console.log(attributes);
             /**
@@ -70,37 +74,20 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                     <Fragment>
                         <BlockEdit {...props} />
                         <InspectorControls>
-                            <PanelBody title={__('[ys]アイコン設定', 'ystandard-blocks')}>
-                                <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                                    <div className={'ystdb-btn-selector -icons'}>
-                                        {icons.map((item) => {
-                                            return (
-                                                <Button
-                                                    isDefault
-                                                    isPrimary={icon === item.class}
-                                                    onClick={() => {
-                                                        setAttributes({icon: item.class});
-                                                    }}
-                                                >
-                                                    <i className={item.class} title={item.title}></i>
-                                                </Button>
-                                            );
-                                        })}
-                                    </div>
-                                    <div className={'ystdb-btn-selector -notice'}>※ボタンテキストを編集する際は一度アイコンをクリアしてください。</div>
+                            <IconSelect
+                                selectIcon={(value) => {
+                                    setAttributes({icon: value});
+                                }}
+                                clearIcon={() => {
+                                    setAttributes({icon: ''});
+                                }}
+                                inputIcon={(content) => {
+                                    setAttributes({customIcon: content});
+                                }}
+                                customIcon={customIcon}
+                                customInfo={`<div class="ystdb-btn-selector -notice">※ボタンテキストを編集する際は一度アイコンをクリアしてください。</div>`}
+                            />
 
-                                    <div className={'ystdb-btn-selector__clear'}>
-                                        <Button
-                                            isDefault
-                                            onClick={() => {
-                                                setAttributes({icon: ''});
-                                            }}
-                                        >
-                                            {__('クリア', 'ystandard-blocks')}
-                                        </Button>
-                                    </div>
-                                </BaseControl>
-                            </PanelBody>
                             <PanelBody
                                 title={__('[ys]ブロック表示', 'ystandard-blocks')}
                                 initialOpen={false}
