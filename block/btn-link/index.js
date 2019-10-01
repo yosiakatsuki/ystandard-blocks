@@ -36,6 +36,13 @@ registerBlockType('ystdb/btn-link', {
         },
         buttonType: {
             type: "string"
+        },
+        customIcon: {
+            type: "string"
+        },
+        iconPosition: {
+            type: "string",
+            default: "right"
         }
     },
     supports: {

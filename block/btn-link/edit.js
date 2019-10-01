@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import {previewStyles} from './styles';
-import {icons} from '../../src/js/components/icon-select/icons';
+import IconSelect, {icons} from '../../src/js/components/icon-select/index';
 
 const {
     BlockControls,
@@ -41,7 +41,9 @@ export default function (props) {
         content,
         icon,
         align,
-        buttonType
+        buttonType,
+        customIcon,
+        iconPosition
     } = attributes;
 
     /**
@@ -141,37 +143,28 @@ export default function (props) {
                     )}
                 </Disabled.Consumer>
                 <InspectorControls>
-                    <PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
-                        <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                            <div className={'ystdb-btn-selector -icons'}>
-                                {icons.map((item) => {
-                                    return (
-                                        <Button
-                                            isDefault
-                                            isPrimary={icon === item.class}
-                                            onClick={() => {
-                                                setAttributes({icon: item.class});
-                                                refreshPreview();
-                                            }}
-                                        >
-                                            <i className={item.class} title={item.title}></i>
-                                        </Button>
-                                    );
-                                })}
-                            </div>
-                            <div className={'ystdb-btn-selector__clear'}>
-                                <Button
-                                    isDefault
-                                    onClick={() => {
-                                        setAttributes({icon: ''});
-                                        refreshPreview();
-                                    }}
-                                >
-                                    {__('クリア', 'ystandard-blocks')}
-                                </Button>
-                            </div>
-                        </BaseControl>
-                    </PanelBody>
+                    <IconSelect
+                        iconPosition={iconPosition}
+                        onChangePosition={(option) => {
+                            setAttributes({iconPosition: option});
+                        }}
+                        selectedIcon={icon}
+                        onClickIcon={(value) => {
+                            setAttributes({icon: value});
+                        }}
+                        onClickClear={() => {
+                            setAttributes({icon: ''});
+                        }}
+                        onChangeCustomIcon={(content) => {
+                            setAttributes({customIcon: content});
+                            if (content) {
+                                setAttributes({icon: 'custom'});
+                            } else {
+                                setAttributes({icon: ''});
+                            }
+                        }}
+                        customIcon={customIcon}
+                    />
                     <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
                         <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
                             <ToggleControl

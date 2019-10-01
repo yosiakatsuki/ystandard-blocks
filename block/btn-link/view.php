@@ -19,6 +19,8 @@ $attributes            = wp_parse_args(
 		'icon'                  => '',
 		'align'                 => '',
 		'buttonType'            => '',
+		'customIcon'            => '',
+		'iconPosition'          => 'right',
 	]
 );
 $content               = $attributes['content'];
@@ -30,6 +32,8 @@ $className             = $attributes['className'];
 $icon                  = $attributes['icon'];
 $align                 = $attributes['align'];
 $buttonType            = $attributes['buttonType'];
+$customIcon            = $attributes['customIcon'];
+$iconPosition          = $attributes['iconPosition'];
 if ( ! $content ) {
 	return;
 }
@@ -42,8 +46,17 @@ $style     = [];
  * アイコン
  */
 if ( $icon ) {
-	$content .= sprintf( '<i class="ystdb-btn-link__icon %s"></i>', $icon );
-	$class[] = '-has-icon';
+	$margin     = 'right' === $iconPosition ? 'left' : 'right';
+	$icon_style      = 'margin-' . $margin . ':.5rem;';
+	$icon_html  = '<i style="' . $icon_style . '" class="ystdb-btn-link__icon ' . $icon . '"></i>';
+	$icon_left  = 'left' === $iconPosition ? $icon_html : '';
+	$icon_right = 'right' === $iconPosition ? $icon_html : '';
+	$content    = preg_replace(
+		'/(<a.+?>)(.*)?(<\/a>)/i',
+		"$1${icon_left}$2${icon_right}$3",
+		$content
+	);
+	$class[]    = '-has-icon';
 }
 /**
  * クラス
@@ -59,16 +72,16 @@ if ( $textColor || $customTextColor ) {
 	$style[] = 'color:#fff;';
 }
 if ( $backgroundColor ) {
-	$class[] = sprintf( 'has-%s-background-color', $backgroundColor );
+	$class[] = 'has-' . $backgroundColor . '-background-color';
 }
 if ( $textColor ) {
-	$class[] = sprintf( 'has-%s-color', $textColor );
+	$class[] = 'has-' . $textColor . '-color';
 }
 if ( $buttonType ) {
-	$class[] = sprintf( '-%s', $buttonType );
+	$class[] = '-' . $buttonType;
 }
 if ( ! empty( $class ) ) {
-	$class = sprintf( 'class="%s"', esc_attr( implode( ' ', $class ) ) );
+	$class = 'class="' . esc_attr( implode( ' ', $class ) ) . '"';
 } else {
 	$class = '';
 }
@@ -76,13 +89,13 @@ if ( ! empty( $class ) ) {
  * スタイル
  */
 if ( $customBackgroundColor ) {
-	$style[] = sprintf( 'background-color:%s;', $customBackgroundColor );
+	$style[] = 'background-color:' . $customBackgroundColor . ';';
 }
 if ( $customTextColor ) {
-	$style[] = sprintf( 'color:%s;', $customTextColor );
+	$style[] = 'color:' . $customTextColor . ';';
 }
 if ( ! empty( $style ) ) {
-	$style = sprintf( ' style="%s"', esc_attr( implode( '', $style ) ) );
+	$style = ' style="' . esc_attr( implode( '', $style ) ) . '"';
 } else {
 	$style = '';
 }
@@ -98,12 +111,7 @@ if ( $align ) {
 }
 ?>
 <div class="<?php echo esc_attr( implode( ' ', $wrapClass ) ); ?>">
-	<?php
-	printf(
-		'<div %s%s>%s</div>',
-		$class,
-		$style,
-		$content
-	);
-	?>
+	<div <?php echo $class . $style; ?>>
+		<?php echo $content; ?>
+	</div>
 </div>
