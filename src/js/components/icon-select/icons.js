@@ -36,4 +36,20 @@ export const icons = [
         class: 'fas fa-download',
         title: __('ファイル', 'ystandard-blocks'),
     },
+    {
+        class: 'far fa-envelope',
+        title: __('メール', 'ystandard-blocks'),
+    },
+    {
+        class: 'fab fa-twitter',
+        title: __('Twitter', 'ystandard-blocks'),
+    },
+    {
+        class: 'fab fa-facebook-square',
+        title: __('Facebook', 'ystandard-blocks'),
+    },
+    {
+        class: 'fab fa-youtube',
+        title: __('YouTube', 'ystandard-blocks'),
+    },
 ]

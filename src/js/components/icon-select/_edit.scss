@@ -1,0 +1,39 @@
+.ystdb-icon-select__btn-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    display: block;
+    flex: 1 1 20%;
+    max-width: 20%;
+    margin-right: 0;
+    margin-bottom: .25em;
+    text-align: center;
+  }
+  .ystdb-icon-select__custom {
+    flex: 1 1 100%;
+    max-width: 100%;
+
+    margin-top: .5rem;
+  }
+}
+.ystdb-icon-select__label {
+  margin-top: 1rem;
+}
+
+.ystdb-icon-select__sub {
+  font-size: .9em;
+}
+.ystdb-icon-select__clear {
+  margin-top: .5rem;
+}
+
+.ystdb-icon-select__position {
+  .components-radio-control__option {
+    display: inline-block;
+    margin-right: 2.5rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

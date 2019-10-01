@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import {IconSelect} from "../../../src/js/components/icon-select/index";
+import IconSelect from "../../../src/js/components/icon-select/index";
 
 const {__} = wp.i18n;
 const {addFilter} = wp.hooks;
@@ -25,6 +25,10 @@ export function addAttribute(settings) {
             customIcon: {
                 type: "string"
             },
+            iconPosition: {
+                type: "string",
+                default: "right"
+            }
         });
     }
     return settings;
@@ -48,9 +52,9 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
             const {
                 buttonBlock,
                 icon,
-                customIcon
+                customIcon,
+                iconPosition
             } = attributes;
-            console.log(attributes);
             /**
              * クラスの反映
              */
@@ -62,12 +66,26 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
             /**
              * アイコンの反映
              */
-            const text = attributes.text ? attributes.text.replace(/<i.+?>/g, '').replace(/<\/i>/g, '') : '';
-            let previewIcon = '';
-            if (icon) {
-                previewIcon = `<i class="${icon}"></i>`;
+            const text = attributes.text ? attributes.text.replace(/<i.+class=".+?"><\/i>/g, '') : '';
+            let leftIcon = '';
+            let rightIcon = '';
+            let iconClass = icon;
+            if (iconClass) {
+                if ('custom' === iconClass) {
+                    if (customIcon) {
+                        iconClass = customIcon;
+                    } else {
+                        iconClass = '';
+                    }
+                }
             }
-            attributes.text = `${text}${previewIcon}`;
+            const iconStyle = `margin-${('right' === iconPosition ? 'left' : 'right')}:.5rem;`;
+            if (iconClass) {
+                const iconHTML = `<i style="${iconStyle}" class="${iconClass}"></i>`;
+                leftIcon = 'left' === iconPosition ? iconHTML : '';
+                rightIcon = 'right' === iconPosition ? iconHTML : '';
+            }
+            attributes.text = `${leftIcon}${text}${rightIcon}`;
 
             if (props.isSelected) {
                 return (
@@ -75,17 +93,27 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                         <BlockEdit {...props} />
                         <InspectorControls>
                             <IconSelect
-                                selectIcon={(value) => {
+                                iconPosition={iconPosition}
+                                onChangePosition={(option) => {
+                                    setAttributes({iconPosition: option});
+                                }}
+                                selectedIcon={icon}
+                                onClickIcon={(value) => {
                                     setAttributes({icon: value});
                                 }}
-                                clearIcon={() => {
+                                onClickClear={() => {
                                     setAttributes({icon: ''});
                                 }}
-                                inputIcon={(content) => {
+                                onChangeCustomIcon={(content) => {
                                     setAttributes({customIcon: content});
+                                    if (content) {
+                                        setAttributes({icon: 'custom'});
+                                    } else {
+                                        setAttributes({icon: ''});
+                                    }
                                 }}
                                 customIcon={customIcon}
-                                customInfo={`<div class="ystdb-btn-selector -notice">※ボタンテキストを編集する際は一度アイコンをクリアしてください。</div>`}
+                                customInfo={`※ボタンテキストを編集する際は一度アイコンをクリアしてください。`}
                             />
 
                             <PanelBody
@@ -124,12 +152,32 @@ addFilter(
  */
 export function addSaveProps(extraProps, blockType, attributes) {
     if (allowedBlocks.includes(blockType.name)) {
-        const value = extraProps.children.props.value.replace(/<i class=".+?"><\/i>/g, '');
-        let icon = '';
-        if (attributes.icon) {
-            icon = `<i class="${attributes.icon}"></i>`
+        const value = extraProps.children.props.value.replace(/<i.+class=".+?"><\/i>/g, '');
+        const {
+            icon,
+            customIcon,
+            iconPosition
+        } = attributes;
+
+        let leftIcon = '';
+        let rightIcon = '';
+        let iconClass = icon;
+        if (iconClass) {
+            if ('custom' === iconClass) {
+                if (customIcon) {
+                    iconClass = customIcon;
+                } else {
+                    iconClass = '';
+                }
+            }
         }
-        extraProps.children.props.value = `${value}${icon}`;
+        const iconStyle = `margin-${('right' === iconPosition ? 'left' : 'right')}:.5rem;`;
+        if (iconClass) {
+            const iconHTML = `<i style="${iconStyle}" class="${iconClass}"></i>`;
+            leftIcon = 'left' === iconPosition ? iconHTML : '';
+            rightIcon = 'right' === iconPosition ? iconHTML : '';
+        }
+        extraProps.children.props.value = `${leftIcon}${value}${rightIcon}`;
     }
     return extraProps;
 }

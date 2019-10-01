@@ -1,37 +1,66 @@
 import {icons} from "./icons";
 
-const {Button, BaseControl, PanelBody} = wp.components;
-const {PlainText} = wp.editor;
+const {__} = wp.i18n;
+const {Button, BaseControl, PanelBody, ExternalLink, RadioControl} = wp.components;
 const {Component} = wp.element;
 
 class IconSelect extends Component {
     constructor(props) {
         super(props);
+        this.onChangeCustomIcon = this.onChangeCustomIcon.bind(this);
+    }
 
-        this.onIconSelect = this.onIconSelect.bind(this);
-        this.onIconInput = this.onIconInput.bind(this);
+    /**
+     * カスタムアイコンの変更処理
+     */
+    onChangeCustomIcon(e) {
+        const {onChangeCustomIcon} = this.props;
+        /**
+         * Font AwesomeのHTMLコピーをそのまま貼り付けたときの処理
+         */
+        let iconClass = e.target.value.match(/<i.+?class="(.+)?"><\/i>/);
+        if (iconClass && 1 <= iconClass.length) {
+            iconClass = iconClass[1];
+        } else {
+            iconClass = e.target.value;
+        }
+        onChangeCustomIcon(iconClass);
     }
 
     render() {
         const {
-            selectIcon,
-            clearIcon,
-            inputIcon,
+            iconPosition,
+            onChangePosition,
+            selectedIcon,
+            onClickIcon,
+            onClickClear,
             customIcon,
             customInfo
         } = this.props;
 
         return (
             <PanelBody title={__('[ys]アイコン設定', 'ystandard-blocks')}>
-                <BaseControl label={__('アイコン', 'ystandard-blocks')}>
-                    <div className={'ystdb-btn-selector -icons'}>
+                <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
+                    <div className={'ystdb-icon-select__position'}>
+                        <RadioControl
+                            selected={iconPosition}
+                            options={[
+                                {label: __('右', 'ystandard-blocks'), value: 'right'},
+                                {label: __('左', 'ystandard-blocks'), value: 'left'},
+                            ]}
+                            onChange={onChangePosition}
+                        />
+                    </div>
+                </BaseControl>
+                <BaseControl label={__('アイコン種類', 'ystandard-blocks')}>
+                    <div className={'ystdb-icon-select__btn-list'}>
                         {icons.map((item) => {
                             return (
                                 <Button
                                     isDefault
-                                    isPrimary={icon === item.class}
+                                    isPrimary={selectedIcon === item.class}
                                     onClick={() => {
-                                        selectIcon(item.class);
+                                        onClickIcon(item.class);
                                     }}
                                 >
                                     <i className={item.class} title={item.title}></i>
@@ -39,30 +68,47 @@ class IconSelect extends Component {
                             );
                         })}
                     </div>
-                    <div className={'ystdb-icon-select__label'}>カスタムアイコン(上級者向け)</div>
-                    <PlainText
-                        value={customIcon}
-                        onChange={(content) => {
-                            inputIcon(content);
-                        }}
-                        placeholder={'fas fa-angle-right'}
-                        aria-label={__('アイコンのクラスを入力')}
-                    />
-                    <div className={'ystdb-btn-selector -notice'}>※<a href={`https://fontawesome.com/icons?d=gallery`}>Font
-                        Awesome</a>のクラスを入力して下さい。
-                    </div>
-                    <div className={'ystdb-btn-selector -notice'}>※カスタムアイコンが入力されている場合、ボタンで選択したアイコンよりカスタムアイコンが優先されます。
-                    </div>
-                    <br/>
-                    <div className={'ystdb-btn-selector__clear'}>
+                    <div className={'ystdb-icon-select__clear'}>
                         <Button
                             isDefault
-                            onClick={clearIcon}
+                            onClick={onClickClear}
                         >
                             {__('クリア', 'ystandard-blocks')}
                         </Button>
                     </div>
-                    {customInfo ? customInfo : ''}
+                    {customInfo &&
+                    (
+                        <div className={'ystdb-icon-select__sub'}>
+                            {customInfo}
+                        </div>
+                    )}
+                </BaseControl>
+                <BaseControl label={__('カスタムアイコン(上級者向け)', 'ystandard-blocks')}>
+                    <input
+                        className={`components-text-control__input`}
+                        type={'text'}
+                        value={customIcon}
+                        onChange={this.onChangeCustomIcon}
+                        placeholder={'fas fa-angle-right'}
+                        aria-label={__('アイコンのクラスを入力')}
+                    />
+                    <div className={'ystdb-icon-select__sub'}>
+                        <div>※<ExternalLink href={`https://fontawesome.com/icons?d=gallery`}>Font Awesome</ExternalLink>のクラスを入力して下さい。
+                        </div>
+                    </div>
+                    <div className={'ystdb-icon-select__btn-list'}>
+                        <Button
+                            className={'ystdb-icon-select__custom'}
+                            isDefault
+                            isPrimary={'custom' === selectedIcon}
+                            onClick={() => {
+                                onClickIcon('custom');
+                            }}
+                        >
+                            カスタムアイコンを使用する
+                        </Button>
+                    </div>
+
                 </BaseControl>
             </PanelBody>
         );
