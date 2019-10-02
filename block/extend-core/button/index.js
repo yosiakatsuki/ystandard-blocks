@@ -4,9 +4,10 @@ import IconSelect from "../../../src/js/components/icon-select/index";
 const {__} = wp.i18n;
 const {addFilter} = wp.hooks;
 const {Fragment} = wp.element;
-const {InspectorControls} = wp.editor;
+const {InspectorControls, FontSizePicker, getFontSizeClass} = wp.editor;
 const {createHigherOrderComponent} = wp.compose;
 const {PanelBody, ToggleControl, BaseControl} = wp.components;
+const {select} = wp.data;
 
 const allowedBlocks = ['core/button'];
 
@@ -28,6 +29,10 @@ export function addAttribute(settings) {
             iconPosition: {
                 type: "string",
                 default: "right"
+            },
+            fontSize: {
+                type: "integer",
+                default: 16
             }
         });
     }
@@ -53,15 +58,23 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                 buttonBlock,
                 icon,
                 customIcon,
-                iconPosition
+                iconPosition,
+                fontSize
             } = attributes;
+            const {fontSizes} = select('core/block-editor').getSettings();
+            const selectedFontSize = fontSizes.find(item => item.size === fontSize);
+            const fontSizeClass = selectedFontSize ? getFontSizeClass(selectedFontSize.slug) : '';
             /**
              * クラスの反映
              */
             const attrClassName = attributes.className ? attributes.className : '';
             attributes.className = classnames(
-                attrClassName.replace(/\s?\-full\s?/g, ''),
-                {'-full': buttonBlock}
+                attrClassName.replace(/\s?\-full\s?/g, '').replace(/has-.+-font-size/g, ''),
+                {
+                    '-full': buttonBlock,
+                    [fontSizeClass]: fontSizeClass,
+                    'has-custom-font-size': fontSizeClass,
+                }
             );
             /**
              * アイコンの反映
@@ -92,6 +105,19 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                     <Fragment>
                         <BlockEdit {...props} />
                         <InspectorControls>
+                            <PanelBody title={__('[ys]テキスト設定', 'ystandard-blocks')}>
+                                <div className={'ystdb-inspectorcontrols__disablecustomfont'}>
+                                    <FontSizePicker
+                                        label={__('文字サイズ', 'ystandard-blocks')}
+                                        disableCustomFontSizes={true}
+                                        value={fontSize}
+                                        onChange={(newFontSize) => {
+                                            console.log(newFontSize);
+                                            setAttributes({fontSize: newFontSize})
+                                        }}
+                                    />
+                                </div>
+                            </PanelBody>
                             <IconSelect
                                 iconPosition={iconPosition}
                                 onChangePosition={(option) => {

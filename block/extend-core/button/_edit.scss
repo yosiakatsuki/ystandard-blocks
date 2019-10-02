@@ -1,4 +1,11 @@
 .wp-block-button {
+  &.has-custom-font-size {
+    margin-top: 1.5rem;
+  }
+  .wp-block-button__link {
+    font-size: 1em;
+  }
+
   &.-full {
     display: block;
 
