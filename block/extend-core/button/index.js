@@ -6,7 +6,7 @@ const {addFilter} = wp.hooks;
 const {Fragment} = wp.element;
 const {InspectorControls, FontSizePicker, getFontSizeClass} = wp.editor;
 const {createHigherOrderComponent} = wp.compose;
-const {PanelBody, ToggleControl, BaseControl} = wp.components;
+const {PanelBody, ToggleControl, BaseControl, RadioControl} = wp.components;
 const {select} = wp.data;
 
 const allowedBlocks = ['core/button'];
@@ -33,6 +33,10 @@ export function addAttribute(settings) {
             fontSize: {
                 type: "integer",
                 default: 16
+            },
+            buttonSize: {
+                type: "string",
+                default: ""
             }
         });
     }
@@ -59,7 +63,8 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                 icon,
                 customIcon,
                 iconPosition,
-                fontSize
+                fontSize,
+                buttonSize
             } = attributes;
             const {fontSizes} = select('core/block-editor').getSettings();
             const selectedFontSize = fontSizes.find(item => item.size === fontSize);
@@ -68,12 +73,24 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
              * クラスの反映
              */
             const attrClassName = attributes.className ? attributes.className : '';
+            /**
+             * クラス初期化
+             */
+            const initClassName = (className) => {
+                return className
+                    .replace(/\s?\-full\s?/g, '')
+                    .replace(/has-.+-font-size/g, '')
+                    .replace(/\s?\-sm\s?/g, '')
+                    .replace(/\s?\-lg\s?/g, '');
+            }
+
             attributes.className = classnames(
-                attrClassName.replace(/\s?\-full\s?/g, '').replace(/has-.+-font-size/g, ''),
+                initClassName(attrClassName),
                 {
                     '-full': buttonBlock,
                     [fontSizeClass]: fontSizeClass,
                     'has-custom-font-size': fontSizeClass,
+                    ['-' + buttonSize]: buttonSize
                 }
             );
             /**
@@ -143,10 +160,10 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                             />
 
                             <PanelBody
-                                title={__('[ys]ブロック表示', 'ystandard-blocks')}
+                                title={__('[ys]表示タイプ', 'ystandard-blocks')}
                                 initialOpen={false}
                             >
-                                <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
+                                <BaseControl>
                                     <ToggleControl
                                         label={__('ブロック表示にする', 'ystandard-blocks')}
                                         checked={buttonBlock}
@@ -157,6 +174,20 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                                         }}
                                     />
                                 </BaseControl>
+                                <div className={`ystdb-inspectorcontrols__horizontal-radio`}>
+                                    <RadioControl
+                                        label={__('ボタンサイズ', 'ystandard-blocks')}
+                                        selected={buttonSize}
+                                        options={[
+                                            {label: __('通常', 'ystandard-blocks'), value: ''},
+                                            {label: __('大', 'ystandard-blocks'), value: 'lg'},
+                                            {label: __('小', 'ystandard-blocks'), value: 'sm'},
+                                        ]}
+                                        onChange={(option) => {
+                                            setAttributes({buttonSize: option});
+                                        }}
+                                    />
+                                </div>
                             </PanelBody>
                         </InspectorControls>
                     </Fragment>
