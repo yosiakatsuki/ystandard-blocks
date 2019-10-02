@@ -29,6 +29,7 @@ class IconSelect extends Component {
 
     render() {
         const {
+            panelTitle,
             iconPosition,
             onChangePosition,
             selectedIcon,
@@ -38,8 +39,10 @@ class IconSelect extends Component {
             customInfo
         } = this.props;
 
+        const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
+
         return (
-            <PanelBody title={__('[ys]アイコン設定', 'ystandard-blocks')}>
+            <PanelBody title={controlPanelTitle}>
                 <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
                     <div className={'ystdb-icon-select__position'}>
                         <RadioControl

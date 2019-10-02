@@ -2,4 +2,9 @@
   & > div:first-child .wp-block-button {
     margin-top: 0;
   }
+  .wp-block-button {
+    .wp-block-button__link {
+      padding: 0;
+    }
+  }
 }

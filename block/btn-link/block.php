@@ -47,6 +47,17 @@ class Ystandard_Blocks_Afi_button extends Ystandard_Dynamic_block {
 					'iconPosition'          => [
 						'type'    => "string",
 						'default' => "right"
+					],
+					'buttonSize'          => [
+						'type'    => "string",
+						'default' => ""
+					],
+					'fontSize'          => [
+						'type'    => "string",
+						'default' => ""
+					],
+					'customFontSize'          => [
+						'type'    => "integer",
 					]
 				],
 				'render_callback' => function ( $attributes ) {

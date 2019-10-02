@@ -9,7 +9,9 @@ const {
     PanelColorSettings,
     ContrastChecker,
     getColorClassName,
-    withColors
+    withColors,
+    FontSizePicker,
+    withFontSizes
 } = wp.editor;
 const {Fragment} = wp.element;
 const {
@@ -17,7 +19,8 @@ const {
     PanelBody,
     BaseControl,
     ToggleControl,
-    ServerSideRender
+    ServerSideRender,
+    RadioControl
 } = wp.components;
 const {withState} = wp.compose;
 const {__} = wp.i18n;
@@ -33,7 +36,9 @@ export default function (props) {
         setState,
         isPreview,
         styles,
-        className
+        className,
+        fontSize,
+        setFontSize
     } = props;
     const {
         content,
@@ -41,7 +46,8 @@ export default function (props) {
         align,
         buttonType,
         customIcon,
-        iconPosition
+        iconPosition,
+        buttonSize,
     } = attributes;
 
     /**
@@ -99,41 +105,6 @@ export default function (props) {
                     )}
                 </Disabled.Consumer>
                 <InspectorControls>
-                    <IconSelect
-                        iconPosition={iconPosition}
-                        onChangePosition={(option) => {
-                            setAttributes({iconPosition: option});
-                        }}
-                        selectedIcon={icon}
-                        onClickIcon={(value) => {
-                            setAttributes({icon: value});
-                        }}
-                        onClickClear={() => {
-                            setAttributes({icon: ''});
-                        }}
-                        onChangeCustomIcon={(content) => {
-                            setAttributes({customIcon: content});
-                            if (content) {
-                                setAttributes({icon: 'custom'});
-                            } else {
-                                setAttributes({icon: ''});
-                            }
-                        }}
-                        customIcon={customIcon}
-                    />
-                    <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
-                        <BaseControl label={__('表示タイプ', 'ystandard-blocks')}>
-                            <ToggleControl
-                                label={__('ブロック表示にする', 'ystandard-blocks')}
-                                checked={(buttonType === 'full')}
-                                onChange={() => {
-                                    setAttributes({
-                                        buttonType: buttonType === 'full' ? '' : 'full'
-                                    });
-                                }}
-                            />
-                        </BaseControl>
-                    </PanelBody>
                     <PanelColorSettings
                         title={__('Color Settings')}
                         initialOpen={true}
@@ -159,6 +130,66 @@ export default function (props) {
                             textColor={textColor.color}
                         />
                     </PanelColorSettings>
+                    <PanelBody title={__('テキスト設定', 'ystandard-blocks')}>
+                        <FontSizePicker
+                            label={__('文字サイズ', 'ystandard-blocks')}
+                            value={fontSize.size}
+                            onChange={(font) => {
+                                setFontSize(font)
+                            }}
+                        />
+                    </PanelBody>
+                    <IconSelect
+                        panelTitle={__('アイコン設定', 'ystandard-blocks')}
+                        iconPosition={iconPosition}
+                        onChangePosition={(option) => {
+                            setAttributes({iconPosition: option});
+                        }}
+                        selectedIcon={icon}
+                        onClickIcon={(value) => {
+                            setAttributes({icon: value});
+                        }}
+                        onClickClear={() => {
+                            setAttributes({icon: ''});
+                        }}
+                        onChangeCustomIcon={(content) => {
+                            setAttributes({customIcon: content});
+                            if (content) {
+                                setAttributes({icon: 'custom'});
+                            } else {
+                                setAttributes({icon: ''});
+                            }
+                        }}
+                        customIcon={customIcon}
+                    />
+                    <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
+                        <BaseControl>
+                            <ToggleControl
+                                label={__('ブロック表示にする', 'ystandard-blocks')}
+                                checked={(buttonType === 'full')}
+                                onChange={() => {
+                                    setAttributes({
+                                        buttonType: buttonType === 'full' ? '' : 'full'
+                                    });
+                                }}
+                            />
+                            <div className={`ystdb-inspectorcontrols__horizontal-radio`}>
+                                <RadioControl
+                                    label={__('ボタンサイズ', 'ystandard-blocks')}
+                                    selected={buttonSize}
+                                    options={[
+                                        {label: __('通常', 'ystandard-blocks'), value: ''},
+                                        {label: __('大', 'ystandard-blocks'), value: 'lg'},
+                                        {label: __('小', 'ystandard-blocks'), value: 'sm'},
+                                    ]}
+                                    onChange={(option) => {
+                                        setAttributes({buttonSize: option});
+                                    }}
+                                />
+                            </div>
+                        </BaseControl>
+                    </PanelBody>
+
 
                 </InspectorControls>
             </Fragment>

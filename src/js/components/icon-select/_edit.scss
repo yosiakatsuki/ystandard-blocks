@@ -31,9 +31,12 @@
 .ystdb-icon-select__position {
   .components-radio-control__option {
     display: inline-block;
-    margin-right: 2.5rem;
+    margin-right: 1rem;
     &:last-child {
       margin-right: 0;
+    }
+    .components-radio-control__input {
+      margin-right: .25rem;
     }
   }
 }

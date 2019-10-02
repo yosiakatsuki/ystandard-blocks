@@ -2,9 +2,31 @@
   .components-base-control__label {
     font-weight: bold;
   }
+
   .components-base-control__field .components-base-control__field {
     .components-base-control__label {
       font-weight: normal;
     }
+  }
+}
+
+.ystdb-inspectorcontrols__horizontal-radio {
+  .components-radio-control__option {
+    display: inline-block;
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .components-radio-control__input {
+      margin-right: .25rem;
+    }
+  }
+}
+
+.ystdb-inspectorcontrols__disablecustomfont {
+  .components-range-control__number {
+    display: none;
   }
 }

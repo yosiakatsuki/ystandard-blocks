@@ -1,7 +1,7 @@
 import edit from './edit';
 
 const {registerBlockType} = wp.blocks;
-const {withColors} = wp.editor;
+const {withColors, withFontSizes} = wp.editor;
 const {compose, withState} = wp.compose;
 const {__} = wp.i18n;
 
@@ -43,6 +43,16 @@ registerBlockType('ystdb/btn-link', {
         iconPosition: {
             type: "string",
             default: "right"
+        },
+        buttonSize: {
+            type: "string",
+            default: ""
+        },
+        fontSize: {
+            type: "string",
+        },
+        customFontSize: {
+            type: "integer",
         }
     },
     supports: {
@@ -51,7 +61,8 @@ registerBlockType('ystdb/btn-link', {
     },
     edit: compose([
         withColors('backgroundColor', {textColor: 'color'}),
-        withState({isPreview: false, styles: ''})
+        withState({isPreview: false, styles: ''}),
+        withFontSizes('fontSize'),
     ])(edit),
     save() {
         return null;

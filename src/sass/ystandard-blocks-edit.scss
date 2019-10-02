@@ -7,7 +7,10 @@
 @import "edit/component/mediaupload";
 @import "edit/component/editor-text";
 
-@import "../../block/btn-link/edit";
-@import "../../block/section/edit";
-@import "../../block/extend-core/button/edit";
-@import "../../block/format/inline-style/edit";
+.editor-styles-wrapper {
+  @import "../../block/btn-link/edit";
+  @import "../../block/section/edit";
+  @import "../../block/extend-core/button/edit";
+  @import "../../block/format/inline-style/edit";
+}
+
