@@ -110,8 +110,16 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
 .editor-styles-wrapper .ystdb-btn-link__preview > div:first-child .wp-block-button {
   margin-top: 0; }
 
-.editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button .wp-block-button__link {
-  padding: 0; }
+.editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button {
+  border-radius: 4px; }
+  .editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button .wp-block-button__link {
+    padding: 0;
+    background-color: transparent; }
+    .editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button .wp-block-button__link a {
+      background-color: transparent;
+      color: inherit; }
+  .editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button.-lg .wp-block-button__link, .editor-styles-wrapper .ystdb-btn-link__preview .wp-block-button.-sm .wp-block-button__link {
+    padding: 0; }
 
 .editor-styles-wrapper .ystdb-section {
   position: relative;

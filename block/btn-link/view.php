@@ -64,20 +64,20 @@ if ( $attributes['icon'] ) {
  * 色関連
  */
 if ( $attributes['backgroundColor'] || $attributes['customBackgroundColor'] ) {
-	$class[] = '-has-bg-color';
+	$wrapClass[] = 'has-background';
 } else {
 	$style[] = 'background-color:#222;border-color:#222;';
 }
 if ( $attributes['textColor'] || $attributes['customTextColor'] ) {
-	$class[] = '-has-text-color';
+	$wrapClass[] = 'has-text-color';
 } else {
 	$style[] = 'color:#fff;';
 }
 if ( $attributes['backgroundColor'] ) {
-	$class[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
+	$wrapClass[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
 }
 if ( $attributes['textColor'] ) {
-	$class[] = 'has-' . $attributes['textColor'] . '-color';
+	$wrapClass[] = 'has-' . $attributes['textColor'] . '-color';
 }
 /**
  * フォントサイズ
@@ -85,7 +85,7 @@ if ( $attributes['textColor'] ) {
 if ( $attributes['customFontSize'] ) {
 	$style[] = 'font-size:' . $attributes['customFontSize'] . 'px;';
 } elseif ( $attributes['fontSize'] ) {
-	$class[] = 'has-' . $attributes['fontSize'] . '-font-size';
+	$wrapClass[] = 'has-' . $attributes['fontSize'] . '-font-size';
 }
 if ( ! empty( $class ) ) {
 	$class = 'class="' . esc_attr( implode( ' ', $class ) ) . '"';
