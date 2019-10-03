@@ -1,17 +1,24 @@
+.wp-block-button {
+  &.-full {
+    .ystdb-btn-link {
+      display: block;
+    }
+  }
+
+  .ystdb-btn-link a {
+    display: block;
+    background-color: transparent;
+    border-color: inherit;
+    color: inherit;
+  }
+}
+
 .ystdb-btn-link {
   position: relative;
   display: inline-block;
   border-radius: 4px;
 }
-.ystdb-btn-link.-block {
-  display: block;
-}
-.wp-block-button .ystdb-btn-link a {
-  display: block;
-  background-color: transparent;
-  border-color: inherit;
-  color: inherit;
-}
+
 .ystdb-btn-link img {
   position: absolute;
 }
