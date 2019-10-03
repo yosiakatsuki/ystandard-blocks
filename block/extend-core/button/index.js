@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import IconSelect from "../../../src/js/components/icon-select/index";
+import deprecated from "./_deprecated";
 
 const {__} = wp.i18n;
 const {addFilter} = wp.hooks;
@@ -16,6 +17,9 @@ const allowedBlocks = ['core/button'];
  */
 export function addAttribute(settings) {
     if (typeof settings.attributes !== 'undefined' && allowedBlocks.includes(settings.name)) {
+        /**
+         * attributes
+         */
         settings.attributes = Object.assign(settings.attributes, {
             buttonBlock: {
                 type: 'boolean',
@@ -39,6 +43,11 @@ export function addAttribute(settings) {
                 default: ""
             }
         });
+        /**
+         * deprecated
+         */
+        settings.deprecated = settings.deprecated.concat(deprecated);
+
     }
     return settings;
 }
@@ -96,7 +105,7 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
             /**
              * アイコンの反映
              */
-            const text = attributes.text ? attributes.text.replace(/<i.+class=".+?"><\/i>/g, '') : '';
+            const text = attributes.text ? attributes.text.replace(/<i.*class=".*?">.*?<\/i>/g, '') : '';
             let leftIcon = '';
             let rightIcon = '';
             let iconClass = icon;
@@ -129,7 +138,6 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
                                         disableCustomFontSizes={true}
                                         value={fontSize}
                                         onChange={(newFontSize) => {
-                                            console.log(newFontSize);
                                             setAttributes({fontSize: newFontSize})
                                         }}
                                     />
@@ -209,7 +217,8 @@ addFilter(
  */
 export function addSaveProps(extraProps, blockType, attributes) {
     if (allowedBlocks.includes(blockType.name)) {
-        const value = extraProps.children.props.value.replace(/<i.+class=".+?"><\/i>/g, '');
+        let value = extraProps.children.props.value ? extraProps.children.props.value : '';
+        value = value.replace(/<span.+class=".+?"><\/span>/g, '');
         const {
             icon,
             customIcon,
