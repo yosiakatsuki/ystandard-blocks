@@ -120,7 +120,7 @@ export const addBlockControls = createHigherOrderComponent((BlockEdit) => {
             }
             const iconStyle = `margin-${('right' === iconPosition ? 'left' : 'right')}:.5rem;`;
             if (iconClass) {
-                const iconHTML = `<i style="${iconStyle}" class="${iconClass}"></i>`;
+                const iconHTML = `<i style="${iconStyle}" class="${iconClass}"> </i>`;
                 leftIcon = 'left' === iconPosition ? iconHTML : '';
                 rightIcon = 'right' === iconPosition ? iconHTML : '';
             }
@@ -218,7 +218,7 @@ addFilter(
 export function addSaveProps(extraProps, blockType, attributes) {
     if (allowedBlocks.includes(blockType.name)) {
         let value = extraProps.children.props.value ? extraProps.children.props.value : '';
-        value = value.replace(/<span.+class=".+?"><\/span>/g, '');
+        value = value.replace(/<i.+class=".+?">.*?<\/i>/g, '');
         const {
             icon,
             customIcon,
@@ -239,7 +239,7 @@ export function addSaveProps(extraProps, blockType, attributes) {
         }
         const iconStyle = `margin-${('right' === iconPosition ? 'left' : 'right')}:.5rem;`;
         if (iconClass) {
-            const iconHTML = `<i style="${iconStyle}" class="${iconClass}"></i>`;
+            const iconHTML = `<i style="${iconStyle}" class="${iconClass}"> </i>`;
             leftIcon = 'left' === iconPosition ? iconHTML : '';
             rightIcon = 'right' === iconPosition ? iconHTML : '';
         }

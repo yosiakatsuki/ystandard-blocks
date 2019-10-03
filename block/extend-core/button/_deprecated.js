@@ -47,12 +47,14 @@ const deprecated = [
             },
         },
         migrate(attributes) {
-            console.log(attributes);
             const iconStyle = `margin-left:.5rem;`;
-            const iconHTML = `<i style="${iconStyle}" class="${attributes.icon}"></i>`;
-            attributes.text = attributes.text.replace(/<i.*?class=".+?">.*?<\/i>/g, '') + iconHTML;
+            const iconHTML = `<i style="${iconStyle}" class="${attributes.icon}"> </i>`;
+            const newText = attributes.text ? attributes.text.replace(/<i.*?class=".+?">.*?<\/i>/g, '') + iconHTML : '';
+            const newClassName = attributes.className ? attributes.className : undefined;
             return {
                 ...attributes,
+                text: newText,
+                className: newClassName,
                 iconPosition: 'right'
             };
         },
@@ -67,10 +69,10 @@ const deprecated = [
                 customTextColor,
             } = attributes;
 
-            let buttonText = text;//.replace(/<i.*?class=".+?">.*?<\/i>/g, '');
+            let buttonText = text.replace(/<i.*?class=".+?">.*?<\/i>/g, '');
             let icon = '';
             if (attributes.icon) {
-                icon = `<i class="${attributes.icon}"></i>`
+                icon = `<i class="${attributes.icon}"> </i>`
             }
             buttonText = `${buttonText}${icon}`;
 
@@ -90,13 +92,14 @@ const deprecated = [
             };
             return (
                 <div>
-                    <a
-                        style={buttonStyle}
+                    <RichText.Content
+                        tagName="a"
                         className={buttonClasses}
                         href={url}
-                    >
-                        {buttonText}
-                    </a>
+                        title={title}
+                        style={buttonStyle}
+                        value={buttonText}
+                    />
                 </div>
             );
         }
