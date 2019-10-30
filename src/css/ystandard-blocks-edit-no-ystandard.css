@@ -31,6 +31,24 @@
   .ystdb-icon-select__position .components-radio-control__option .components-radio-control__input {
     margin-right: .25rem; }
 
+.ystdb-icon-select__picker .rfip {
+  display: block;
+  margin: .5rem 0 0; }
+
+.ystdb-icon-select__picker .rfipbtn {
+  width: 100%; }
+
+.ystdb-icon-select__picker .rfipdropdown {
+  left: auto !important;
+  right: 0;
+  width: 100%; }
+
+.ystdb-icon-select__picker .rfipicons__icon {
+  height: 40px; }
+
+.ystdb-icon-select__picker .rfipsearch input {
+  border-radius: 0; }
+
 .ystdb-btn-selector__clear {
   margin-top: .5rem; }
 

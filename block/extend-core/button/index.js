@@ -239,7 +239,7 @@ export function addSaveProps(extraProps, blockType, attributes) {
         }
         const iconStyle = `margin-${('right' === iconPosition ? 'left' : 'right')}:.5rem;`;
         if (iconClass) {
-            const iconHTML = `<i style="${iconStyle}" class="${iconClass}"> </i>`;
+            const iconHTML = `<i style="${iconStyle}" class="${iconClass}">&thinsp;</i>`;
             leftIcon = 'left' === iconPosition ? iconHTML : '';
             rightIcon = 'right' === iconPosition ? iconHTML : '';
         }

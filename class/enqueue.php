@@ -84,6 +84,18 @@ class Ystandard_Blocks_Enqueue {
 			[],
 			YSTDB_VERSION
 		);
+		wp_enqueue_style(
+			'fonticonpicker-base-theme',
+			'https://unpkg.com/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css',
+			[],
+			YSTDB_VERSION
+		);
+		wp_enqueue_style(
+			'fonticonpicker-material-theme',
+			'https://unpkg.com/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css',
+			[],
+			YSTDB_VERSION
+		);
 		/**
 		 * エディタ用CSS
 		 */

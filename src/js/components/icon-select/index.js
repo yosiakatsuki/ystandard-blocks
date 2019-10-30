@@ -1,8 +1,11 @@
 import {icons} from "./icons";
+import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
 const {__} = wp.i18n;
 const {Button, BaseControl, PanelBody, ExternalLink, RadioControl} = wp.components;
 const {Component} = wp.element;
+
+const pickerIcons = ['fas fa-angle-right', 'fas fa-angle-double-right'];
 
 class IconSelect extends Component {
     constructor(props) {
@@ -41,6 +44,17 @@ class IconSelect extends Component {
 
         const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
 
+        const pickerProps = {
+            icons: pickerIcons,
+            theme: 'bluegrey',
+            renderUsing: 'class',
+            value: selectedIcon,
+            onChange: (value) => {
+                onClickIcon(value);
+            },
+            isMulti: false,
+        };
+
         return (
             <PanelBody title={controlPanelTitle}>
                 <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
@@ -53,6 +67,11 @@ class IconSelect extends Component {
                             ]}
                             onChange={onChangePosition}
                         />
+                    </div>
+                </BaseControl>
+                <BaseControl label={__('アイコン種類2', 'ystandard-blocks')}>
+                    <div className={'ystdb-icon-select__picker'}>
+                        <FontIconPicker {...pickerProps} />
                     </div>
                 </BaseControl>
                 <BaseControl label={__('アイコン種類', 'ystandard-blocks')}>

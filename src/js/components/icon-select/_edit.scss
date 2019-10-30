@@ -40,3 +40,24 @@
     }
   }
 }
+
+.ystdb-icon-select__picker {
+  .rfip {
+    display: block;
+    margin: .5rem 0 0;
+  }
+  .rfipbtn {
+    width: 100%;
+  }
+  .rfipdropdown {
+    left: auto !important;
+    right: 0;
+    width: 100%;
+  }
+  .rfipicons__icon {
+    height: 40px;
+  }
+  .rfipsearch input {
+    border-radius: 0;
+  }
+}

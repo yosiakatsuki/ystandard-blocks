@@ -64,3 +64,8 @@ Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 License: MIT  
 Source : <https://github.com/YahnisElsts/plugin-update-checker>
+
+### React FontIconPicker
+
+License: MIT  
+Source : <https://github.com/fontIconPicker/react-fonticonpicker>

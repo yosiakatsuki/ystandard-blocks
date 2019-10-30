@@ -9,5 +9,18 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: `${__dirname}/js`
+    },
+    module : {
+        rules: [
+            ...defaultConfig.module.rules,
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)$/,
+                loader: 'file-loader?name=../font/[name].[ext]'
+            }
+        ]
     }
 };
