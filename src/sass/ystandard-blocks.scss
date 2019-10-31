@@ -1,6 +1,4 @@
 @charset "UTF-8";
 @import "foundation/import";
 
-@import "../../block/btn-link/block";
-@import "../../block/section/block";
-@import "../../block/extend-core/button/block";
+@import "../../block/**/_block.scss";
