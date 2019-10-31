@@ -24,16 +24,13 @@ dirList.map((value) => {
     fileList.map((file) => {
         const iconName = file.replace('.svg', '');
         const iconClassName = iconClass[value] + ' fa-' + iconName;
-        icons.push({
-            name: iconName,
-            class: iconClassName
-        });
+        icons.push(iconClassName);
     });
 });
 /**
  * JSONファイルの作成
  */
-fs.writeFile(jsonPath, JSON.stringify(icons), (err, data) => {
+fs.writeFile(jsonPath, JSON.stringify({icons:icons}), (err, data) => {
     if (err) console.log(err);
     else console.log('write end');
 });
