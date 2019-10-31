@@ -12,20 +12,20 @@ const webpackStream = require('webpack-stream');
 
 
 const postcssPlugins = [
-	autoprefixer({overrideBrowserslist: ['last 2 version, not ie < 11']}),
-	mqpacker(),
-	cssnano()
+    autoprefixer({overrideBrowserslist: ['last 2 version, not ie < 11']}),
+    mqpacker(),
+    cssnano()
 ];
 
 /**
  * sass
  */
 gulp.task('sass', () => {
-	return gulp.src('./src/sass/*.scss')
-		.pipe(sassGlob())
-		.pipe(sass())
-		.pipe(postcss(postcssPlugins))
-		.pipe(gulp.dest('./css'));
+    return gulp.src('./src/sass/*.scss')
+        .pipe(sassGlob())
+        .pipe(sass())
+        .pipe(postcss(postcssPlugins))
+        .pipe(gulp.dest('./css'));
 });
 
 //
@@ -38,9 +38,9 @@ gulp.task('sass', () => {
  * watch
  */
 gulp.task('watch', () => {
-	gulp.watch('./src/sass/**/*.scss', gulp.task('sass'));
-	gulp.watch('./block/**/*.scss', gulp.task('sass'));
-	// gulp.watch('./block/**/app*.js', gulp.task('js:block-app'));
+    gulp.watch('./src/sass/**/*.scss', gulp.task('sass'));
+    gulp.watch('./block/**/*.scss', gulp.task('sass'));
+    // gulp.watch('./block/**/app*.js', gulp.task('js:block-app'));
 });
 
 /**

@@ -1,3 +1,5 @@
-@import "ystandard-blocks";
+@charset "UTF-8";
+@import "foundation/import";
 
-@import "../../block/format/inline-style/block-no-ystd";
+@import "../../block/**/_block.scss";
+@import "../../block/**/_block-no-ystd.scss";

@@ -1,1 +1,10 @@
-@import "ystandard-blocks-edit";
+@charset "UTF-8";
+@import "foundation/import";
+
+@import "../js/**/_edit.scss";
+@import "edit/**/*.scss";
+
+.editor-styles-wrapper {
+  @import "../../block/**/_edit.scss";
+  @import "../../block/**/_edit-no-ystd.scss";
+}
