@@ -1,4 +1,6 @@
-import icons from "./icons.json";
+import _ from 'lodash';
+import allIcons from "./icons.json";
+import recommendIcons from './reccomend-icons.json';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
 import {__} from '@wordpress/i18n';
@@ -15,24 +17,6 @@ import {
 class IconSelect extends Component {
     constructor(props) {
         super(props);
-        this.onChangeCustomIcon = this.onChangeCustomIcon.bind(this);
-    }
-
-    /**
-     * カスタムアイコンの変更処理
-     */
-    onChangeCustomIcon(e) {
-        const {onChangeCustomIcon} = this.props;
-        /**
-         * Font AwesomeのHTMLコピーをそのまま貼り付けたときの処理
-         */
-        let iconClass = e.target.value.match(/<i.+?class="(.+)?"><\/i>/);
-        if (iconClass && 1 <= iconClass.length) {
-            iconClass = iconClass[1];
-        } else {
-            iconClass = e.target.value;
-        }
-        onChangeCustomIcon(iconClass);
     }
 
     render() {
@@ -46,8 +30,10 @@ class IconSelect extends Component {
 
         const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
 
+        const icons = _.uniq([...recommendIcons.icons, ...allIcons.icons]);
+
         const pickerProps = {
-            icons: icons.icons,
+            icons: icons,
             theme: 'bluegrey',
             renderUsing: 'class',
             value: selectedIcon,
