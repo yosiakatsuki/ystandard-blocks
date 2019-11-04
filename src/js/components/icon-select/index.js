@@ -1,9 +1,16 @@
 import icons from "./icons.json";
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
-const {__} = wp.i18n;
-const {Button, BaseControl, PanelBody, ExternalLink, RadioControl} = wp.components;
-const {Component} = wp.element;
+import {__} from '@wordpress/i18n';
+import {
+    BaseControl,
+    PanelBody,
+    RadioControl
+} from '@wordpress/components';
+
+import {
+    Component
+} from '@wordpress/element';
 
 class IconSelect extends Component {
     constructor(props) {
@@ -39,7 +46,6 @@ class IconSelect extends Component {
 
         const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
 
-        console.log(icons);
         const pickerProps = {
             icons: icons.icons,
             theme: 'bluegrey',

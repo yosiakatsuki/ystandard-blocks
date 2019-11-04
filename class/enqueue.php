@@ -16,11 +16,20 @@ class Ystandard_Blocks_Enqueue {
 	 */
 	function __construct() {
 		if ( Ystandard_Blocks::is_ystandard() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+			add_action(
+				'wp_enqueue_scripts',
+				[ $this, 'enqueue_scripts' ]
+			);
 		} else {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_no_ystandard' ] );
+			add_action(
+				'wp_enqueue_scripts',
+				[ $this, 'enqueue_scripts_no_ystandard' ]
+			);
 		}
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
+		add_action(
+			'enqueue_block_editor_assets',
+			[ $this, 'enqueue_editor_styles' ]
+		);
 	}
 
 	/**

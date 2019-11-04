@@ -1,38 +1,25 @@
-const {Fragment} = wp.element;
-const {__} = wp.i18n;
-const {registerFormatType, toggleFormat} = wp.richText;
-const {Toolbar, ToolbarButton} = wp.components;
-const {BlockFormatControls} = wp.editor;
+import {inlineStyles} from './config';
+import {registerFormatType,toggleFormat} from '@wordpress/rich-text';
+import {
+    Toolbar,
+    ToolbarButton
+} from '@wordpress/components';
+import {BlockFormatControls} from '@wordpress/block-editor';
+import {
+    Fragment
+} from '@wordpress/element';
 
-const inlineStyleList = [
-    {
-        name: 'ystdb/inline-style-1',
-        title: __('[ys]インラインスタイル 1', 'ystandard-blocks'),
-        class: 'ystdb-inline--1',
-        icon: 'admin-customizer'
-    },
-    {
-        name: 'ystdb/inline-style-2',
-        title: __('[ys]インラインスタイル 2', 'ystandard-blocks'),
-        class: 'ystdb-inline--2',
-        icon: 'admin-customizer'
-    },
-    {
-        name: 'ystdb/inline-style-3',
-        title: __('[ys]インラインスタイル 3', 'ystandard-blocks'),
-        class: 'ystdb-inline--3',
-        icon: 'admin-customizer'
-    }
-];
-
-inlineStyleList.map((list, index) => {
-    registerFormatType(list.name, {
-        title: list.title,
+/**
+ * インラインスタイル追加
+ */
+inlineStyles.map((style, index) => {
+    registerFormatType(style.name, {
+        title: style.title,
         tagName: 'span',
-        className: list.class,
+        className: style.class,
         edit(props) {
             const {value, isActive, onChange} = props;
-            const onToggle = () => onChange(toggleFormat(value, {type: list.name}));
+            const onToggle = () => onChange(toggleFormat(value, {type: style.name}));
             return (
                 <Fragment>
                     <BlockFormatControls>
@@ -40,8 +27,8 @@ inlineStyleList.map((list, index) => {
                             <div className={`ystdb-inline-style-toolbar inline-style-${(index + 1)}`}>
                                 <Toolbar>
                                     <ToolbarButton
-                                        icon={list.icon}
-                                        title={list.title}
+                                        icon={style.icon}
+                                        title={style.title}
                                         onClick={onToggle}
                                         isActive={isActive}
                                     />
@@ -51,6 +38,6 @@ inlineStyleList.map((list, index) => {
                     </BlockFormatControls>
                 </Fragment>
             );
-        },
+        }
     });
 });

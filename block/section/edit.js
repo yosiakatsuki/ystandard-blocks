@@ -1,8 +1,8 @@
 import classnames from 'classnames';
-import {marginType} from "./_margin";
+import {marginType} from "./config";
 import getNum from "../../src/js/util/_getNum"
 
-const {
+import {
     BlockControls,
     InspectorControls,
     PanelColorSettings,
@@ -11,19 +11,26 @@ const {
     withColors,
     InnerBlocks,
     MediaUpload
-} = wp.editor;
-const {
+} from '@wordpress/block-editor';
+import {
     PanelBody,
     BaseControl,
     SelectControl,
     RangeControl,
     Button,
     ToggleControl
-} = wp.components;
-const {Fragment} = wp.element;
-const {__} = wp.i18n;
+} from '@wordpress/components';
 
-export default function (props) {
+import {
+    Fragment
+} from '@wordpress/element';
+import {
+    withState,
+    compose,
+} from '@wordpress/compose';
+import {__} from '@wordpress/i18n';
+
+const sectionEdit = (props) => {
     const {
         attributes,
         setAttributes,
@@ -440,4 +447,8 @@ export default function (props) {
             </div>
         </Fragment>
     );
-}
+};
+
+export default compose([
+    withColors('backgroundColor', {textColor: 'color'}),
+])(sectionEdit);

@@ -1,10 +1,10 @@
 import classnames from "classnames";
 
-const {
+import {
     getColorClassName,
     InnerBlocks
-} = wp.editor;
-const {__} = wp.i18n;
+} from '@wordpress/block-editor';
+import {__} from '@wordpress/i18n';
 
 export default function save(props) {
     const {

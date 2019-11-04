@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import IconSelect, {icons} from '../../src/js/components/icon-select/index';
+import IconSelect from '../../src/js/components/icon-select/index';
 
-const {
+import {
     BlockControls,
     PlainText,
     AlignmentToolbar,
@@ -12,20 +12,29 @@ const {
     withColors,
     FontSizePicker,
     withFontSizes
-} = wp.editor;
-const {Fragment} = wp.element;
-const {
+} from '@wordpress/block-editor';
+
+import {
+    Fragment
+} from '@wordpress/element';
+
+import {
     Disabled,
     PanelBody,
     BaseControl,
     ToggleControl,
     ServerSideRender,
     RadioControl
-} = wp.components;
-const {withState} = wp.compose;
-const {__} = wp.i18n;
+} from '@wordpress/components';
 
-export default function (props) {
+import {
+    withState,
+    compose,
+} from '@wordpress/compose';
+
+import {__} from '@wordpress/i18n';
+
+const btnLinkEdit = (props) => {
     const {
         backgroundColor,
         textColor,
@@ -195,4 +204,10 @@ export default function (props) {
             </Fragment>
         </div>
     );
-}
+};
+
+export default compose([
+    withColors('backgroundColor', {textColor: 'color'}),
+    withState({isPreview: false, styles: ''}),
+    withFontSizes('fontSize'),
+])(btnLinkEdit);

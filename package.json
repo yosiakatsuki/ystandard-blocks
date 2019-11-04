@@ -9,7 +9,7 @@
     "build:icon": "node util/create-icon-list.js",
     "build:css": "gulp sass",
     "build": "npm run build:block & gulp sass & gulp js:block-app",
-    "watch": "npm run start & gulp watch"
+    "watch": "npm run start:block & gulp watch"
   },
   "repository": {
     "type": "git",

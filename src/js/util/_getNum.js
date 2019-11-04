@@ -1,3 +1,6 @@
+/**
+ * 数字変換
+ */
 export default function getNum(value, min = 0, max = null, defaultNum = null) {
     value = Number(value);
 

@@ -1,7 +1,10 @@
 import classnames from 'classnames';
 
-const {RichText, getColorClassName} = wp.editor;
-const {__} = wp.i18n;
+import {
+    RichText,
+    getColorClassName
+} from '@wordpress/block-editor';
+import {__} from '@wordpress/i18n';
 
 const blockAttributes = {
     url: {

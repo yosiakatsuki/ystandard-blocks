@@ -1,11 +1,11 @@
 import classnames from "classnames";
 import getNum from "../../src/js/util/_getNum";
 
-const {
+import {
     getColorClassName,
     InnerBlocks
-} = wp.editor;
-const {__} = wp.i18n;
+} from '@wordpress/block-editor';
+import {__} from '@wordpress/i18n';
 
 export const deprecated = [
     {
@@ -124,4 +124,4 @@ export const deprecated = [
             );
         }
     }
-]
+];
