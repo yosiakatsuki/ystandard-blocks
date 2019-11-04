@@ -71,7 +71,7 @@ class IconSelect extends Component {
                         />
                     </div>
                 </BaseControl>
-                <BaseControl label={__('アイコン種類2', 'ystandard-blocks')}>
+                <BaseControl label={__('表示アイコン', 'ystandard-blocks')}>
                     <div className={'ystdb-icon-select__picker'}>
                         <FontIconPicker {...pickerProps} />
                     </div>

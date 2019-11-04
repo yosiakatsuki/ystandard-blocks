@@ -1,7 +1,4 @@
-/**
- * attributes
- */
-export const attributes = {
+const blockAttributes = {
     content: {
         type: "string"
     },
@@ -26,6 +23,9 @@ export const attributes = {
     buttonType: {
         type: "string"
     },
+    customIcon: {
+        type: "string"
+    },
     iconPosition: {
         type: "string",
         default: "right"
@@ -41,10 +41,23 @@ export const attributes = {
         type: "integer",
     }
 };
-/**
- * supports
- */
-export const supports = {
-    className: false,
-    html: false
-};
+
+const deprecated = [
+    {
+        attributes: {
+            ...blockAttributes,
+        },
+        migrate(attributes) {
+            const newIcon = (!!attributes.customIcon && 'custom' === attributes.icon) ? attributes.customIcon : attributes.icon;
+            return {
+                ...attributes,
+                icon: newIcon,
+            };
+        },
+        save() {
+            return null;
+        }
+    }
+];
+
+export default deprecated;

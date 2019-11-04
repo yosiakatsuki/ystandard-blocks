@@ -157,19 +157,8 @@ const btnLinkEdit = (props) => {
                         selectedIcon={icon}
                         onClickIcon={(value) => {
                             setAttributes({icon: value});
+                            console.log(value);
                         }}
-                        onClickClear={() => {
-                            setAttributes({icon: ''});
-                        }}
-                        onChangeCustomIcon={(content) => {
-                            setAttributes({customIcon: content});
-                            if (content) {
-                                setAttributes({icon: 'custom'});
-                            } else {
-                                setAttributes({icon: ''});
-                            }
-                        }}
-                        customIcon={customIcon}
                     />
                     <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>
                         <BaseControl>

@@ -86,6 +86,82 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./block/btn-link/_deprecated.js":
+/*!***************************************!*\
+  !*** ./block/btn-link/_deprecated.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var blockAttributes = {
+  content: {
+    type: "string"
+  },
+  backgroundColor: {
+    type: "string"
+  },
+  textColor: {
+    type: "string"
+  },
+  customBackgroundColor: {
+    type: "string"
+  },
+  customTextColor: {
+    type: "string"
+  },
+  icon: {
+    type: "string"
+  },
+  align: {
+    type: "string"
+  },
+  buttonType: {
+    type: "string"
+  },
+  customIcon: {
+    type: "string"
+  },
+  iconPosition: {
+    type: "string",
+    default: "right"
+  },
+  buttonSize: {
+    type: "string",
+    default: ""
+  },
+  fontSize: {
+    type: "string"
+  },
+  customFontSize: {
+    type: "integer"
+  }
+};
+var deprecated = [{
+  attributes: _objectSpread({}, blockAttributes),
+  migrate: function migrate(attributes) {
+    var newIcon = !!attributes.customIcon && 'custom' === attributes.icon ? attributes.customIcon : attributes.icon;
+    return _objectSpread({}, attributes, {
+      icon: newIcon
+    });
+  },
+  save: function save() {
+    return null;
+  }
+}];
+/* harmony default export */ __webpack_exports__["default"] = (deprecated);
+
+/***/ }),
+
 /***/ "./block/btn-link/config.js":
 /*!**********************************!*\
   !*** ./block/btn-link/config.js ***!
@@ -123,9 +199,6 @@ var attributes = {
     type: "string"
   },
   buttonType: {
-    type: "string"
-  },
-  customIcon: {
     type: "string"
   },
   iconPosition: {
@@ -292,28 +365,8 @@ var btnLinkEdit = function btnLinkEdit(props) {
       setAttributes({
         icon: value
       });
-    },
-    onClickClear: function onClickClear() {
-      setAttributes({
-        icon: ''
-      });
-    },
-    onChangeCustomIcon: function onChangeCustomIcon(content) {
-      setAttributes({
-        customIcon: content
-      });
-
-      if (content) {
-        setAttributes({
-          icon: 'custom'
-        });
-      } else {
-        setAttributes({
-          icon: ''
-        });
-      }
-    },
-    customIcon: customIcon
+      console.log(value);
+    }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('表示タイプ', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToggleControl"], {
@@ -368,27 +421,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
 /* harmony import */ var _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/js/config/config */ "./src/js/config/config.js");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./block/btn-link/edit.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./block/btn-link/config.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _deprecated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_deprecated */ "./block/btn-link/_deprecated.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./block/btn-link/edit.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ "./block/btn-link/config.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 var name = 'ystdb/btn-link';
 var settings = {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('ボタン型リンク', 'ystandard-blocks'),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('ボタン型リンク', 'ystandard-blocks'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
   icon: 'embed-generic',
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('button'), 'button'],
+  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('button'), 'button'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.common,
-  attributes: _config__WEBPACK_IMPORTED_MODULE_2__["attributes"],
-  supports: _config__WEBPACK_IMPORTED_MODULE_2__["supports"],
-  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  attributes: _config__WEBPACK_IMPORTED_MODULE_3__["attributes"],
+  supports: _config__WEBPACK_IMPORTED_MODULE_3__["supports"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: function save() {
     return null;
-  }
+  },
+  deprecated: _deprecated__WEBPACK_IMPORTED_MODULE_1__["default"]
 };
 
 /***/ }),
@@ -5458,7 +5514,7 @@ function (_Component) {
         }],
         onChange: onChangePosition
       }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_10__["BaseControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('アイコン種類2', 'ystandard-blocks')
+        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('表示アイコン', 'ystandard-blocks')
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'ystdb-icon-select__picker'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_fonticonpicker_react_fonticonpicker__WEBPACK_IMPORTED_MODULE_8___default.a, pickerProps))));

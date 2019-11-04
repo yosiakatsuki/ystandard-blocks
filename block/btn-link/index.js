@@ -1,4 +1,5 @@
 import {ystdbConfig} from '../../src/js/config/config';
+import deprecated from './_deprecated';
 import edit from './edit';
 import {attributes,supports} from './config';
 
@@ -17,5 +18,6 @@ export const settings = {
     edit: edit,
     save() {
         return null;
-    }
+    },
+    deprecated:deprecated,
 };

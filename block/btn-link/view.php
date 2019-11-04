@@ -19,23 +19,18 @@ $attributes = wp_parse_args(
 		'icon'                  => '',
 		'align'                 => '',
 		'buttonType'            => '',
-		'customIcon'            => '',
 		'iconPosition'          => 'right',
 		'buttonSize'            => '',
 		'fontSize'              => '',
 		'customFontSize'        => '',
+		'customIcon'            => '',
 	]
 );
+
 if ( ! $attributes['content'] ) {
 	return;
 }
-if ( 'custom' === $attributes['icon'] ) {
-	if ( ! empty( $attributes['customIcon'] ) ) {
-		$attributes['icon'] = $attributes['customIcon'];
-	} else {
-		$attributes['icon'] = '';
-	}
-}
+
 $wrapClass = [
 	'wp-block-button'
 ];
@@ -51,7 +46,7 @@ if ( $attributes['icon'] ) {
 	$icon_left             = 'left' === $attributes['iconPosition'] ? $icon_html : '';
 	$icon_right            = 'right' === $attributes['iconPosition'] ? $icon_html : '';
 	$attributes['content'] = preg_replace(
-		'/(<a.+?>)(.*)?(<\/a>)/i',
+		'/(<a.*?>)(.*)?(<\/a>)/i',
 		"$1${icon_left}$2${icon_right}$3",
 		$attributes['content']
 	);
