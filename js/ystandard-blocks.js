@@ -703,7 +703,7 @@ var addBtnCustomControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_7_
               iconPosition: option
             });
           },
-          selectedIcon: icon,
+          selectedIcon: iconClass,
           onClickIcon: function onClickIcon(value) {
             setAttributes({
               icon: value
@@ -919,7 +919,7 @@ function addCoreBtnSaveProps(extraProps, blockType, attributes) {
     var iconStyle = "margin-".concat('right' === iconPosition ? 'left' : 'right', ":.5rem;");
 
     if (iconClass) {
-      var iconHTML = "<i style=\"".concat(iconStyle, "\" class=\"").concat(iconClass, "\">&thinsp;</i>");
+      var iconHTML = "<i style=\"".concat(iconStyle, "\" class=\"").concat(iconClass, "\"> </i>");
       leftIcon = 'left' === iconPosition ? iconHTML : '';
       rightIcon = 'right' === iconPosition ? iconHTML : '';
     }

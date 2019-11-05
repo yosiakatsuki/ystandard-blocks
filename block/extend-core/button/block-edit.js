@@ -113,7 +113,7 @@ const addBtnCustomControls = createHigherOrderComponent((BlockEdit) => {
                                 onChangePosition={(option) => {
                                     setAttributes({iconPosition: option});
                                 }}
-                                selectedIcon={icon}
+                                selectedIcon={iconClass}
                                 onClickIcon={(value) => {
                                     setAttributes({icon: value});
                                 }}
