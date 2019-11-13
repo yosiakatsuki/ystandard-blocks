@@ -365,7 +365,6 @@ var btnLinkEdit = function btnLinkEdit(props) {
       setAttributes({
         icon: value
       });
-      console.log(value);
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('表示タイプ', 'ystandard-blocks')
@@ -5534,11 +5533,13 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           panelTitle = _this$props.panelTitle,
+          iconControlTitle = _this$props.iconControlTitle,
           iconPosition = _this$props.iconPosition,
           onChangePosition = _this$props.onChangePosition,
           selectedIcon = _this$props.selectedIcon,
           onClickIcon = _this$props.onClickIcon;
       var controlPanelTitle = panelTitle ? panelTitle : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('[ys]アイコン設定', 'ystandard-blocks');
+      var iconBaseControlTitle = iconControlTitle === undefined ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('表示アイコン', 'ystandard-blocks') : iconControlTitle;
 
       var icons = lodash__WEBPACK_IMPORTED_MODULE_7___default.a.uniq([].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_reccomend_icons_json__WEBPACK_IMPORTED_MODULE_9__.icons), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_icons_json__WEBPACK_IMPORTED_MODULE_8__.icons)));
 
@@ -5554,7 +5555,7 @@ function (_Component) {
       };
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
         title: controlPanelTitle
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["BaseControl"], {
+      }, !!onChangePosition && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["BaseControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('アイコン表示位置', 'ystandard-blocks')
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'ystdb-icon-select__position'
@@ -5569,7 +5570,7 @@ function (_Component) {
         }],
         onChange: onChangePosition
       }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["BaseControl"], {
-        label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('表示アイコン', 'ystandard-blocks')
+        label: iconBaseControlTitle
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'ystdb-icon-select__picker'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_fonticonpicker_react_fonticonpicker__WEBPACK_IMPORTED_MODULE_10___default.a, pickerProps))));

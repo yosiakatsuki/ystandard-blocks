@@ -2,6 +2,7 @@ import {registerBlockType} from '@wordpress/blocks';
 //
 import * as btnLink from "../../block/btn-link/index";
 import * as section from "../../block/section/index";
+import * as faIcon from "../../block/fa-icon/index";
 import "../../block/extend-core/button";
 import "../../block/format/inline-style/index";
 
@@ -11,7 +12,8 @@ import "../../block/format/inline-style/index";
  */
 [
     btnLink,
-    section
+    section,
+    faIcon
 ].forEach((block) => {
     if (!block) {
         return;

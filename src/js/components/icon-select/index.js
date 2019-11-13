@@ -22,6 +22,7 @@ class IconSelect extends Component {
     render() {
         const {
             panelTitle,
+            iconControlTitle,
             iconPosition,
             onChangePosition,
             selectedIcon,
@@ -29,6 +30,7 @@ class IconSelect extends Component {
         } = this.props;
 
         const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
+        const iconBaseControlTitle = iconControlTitle === undefined ? __('表示アイコン', 'ystandard-blocks') : iconControlTitle;
 
         const icons = _.uniq([...recommendIcons.icons, ...allIcons.icons]);
 
@@ -45,19 +47,21 @@ class IconSelect extends Component {
 
         return (
             <PanelBody title={controlPanelTitle}>
-                <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
-                    <div className={'ystdb-icon-select__position'}>
-                        <RadioControl
-                            selected={iconPosition}
-                            options={[
-                                {label: __('右', 'ystandard-blocks'), value: 'right'},
-                                {label: __('左', 'ystandard-blocks'), value: 'left'},
-                            ]}
-                            onChange={onChangePosition}
-                        />
-                    </div>
-                </BaseControl>
-                <BaseControl label={__('表示アイコン', 'ystandard-blocks')}>
+                {(!!onChangePosition &&
+                    <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
+                        <div className={'ystdb-icon-select__position'}>
+                            <RadioControl
+                                selected={iconPosition}
+                                options={[
+                                    {label: __('右', 'ystandard-blocks'), value: 'right'},
+                                    {label: __('左', 'ystandard-blocks'), value: 'left'},
+                                ]}
+                                onChange={onChangePosition}
+                            />
+                        </div>
+                    </BaseControl>
+                )}
+                <BaseControl label={iconBaseControlTitle}>
                     <div className={'ystdb-icon-select__picker'}>
                         <FontIconPicker {...pickerProps} />
                     </div>

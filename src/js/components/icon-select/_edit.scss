@@ -50,9 +50,10 @@
     width: 100%;
   }
   .rfipdropdown {
-    left: auto !important;
-    right: 0;
     width: 100%;
+    min-width: 250px;
+    left: auto;
+    right: 0;
   }
   .rfipicons__icon {
     height: 40px;

@@ -157,7 +157,6 @@ const btnLinkEdit = (props) => {
                         selectedIcon={icon}
                         onClickIcon={(value) => {
                             setAttributes({icon: value});
-                            console.log(value);
                         }}
                     />
                     <PanelBody title={__('表示タイプ', 'ystandard-blocks')}>

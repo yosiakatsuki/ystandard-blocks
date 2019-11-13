@@ -1,0 +1,29 @@
+@import "block";
+
+
+.ystdb-fa-icon__select--no-icon {
+  width: 200px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #eee;
+  text-align: center !important;
+  color: #666 !important;
+}
+.ystdb-fa-icon__select-start {
+  .components-panel__body {
+    border: 0;
+  }
+  .components-panel__body-title {
+    display: none;
+  }
+  .rfipdropdown {
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+  .rfipbtn__icon--empty {
+    white-space: nowrap;
+  }
+}
+
