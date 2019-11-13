@@ -6,7 +6,7 @@
     "start:block": "wp-scripts start --config ystandard-blocks-webpack-config.js",
     "build:block": "wp-scripts build --config ystandard-blocks-webpack-config.js",
     "build:block-app": "gulp js:block-app",
-    "build:icon": "node util/create-icon-list.js",
+    "build:icon": "node src/js/util/create-icon-list.js",
     "build:css": "gulp sass",
     "build": "npm run build:icon && npm run build:block && gulp sass",
     "watch": "npm run start:block & gulp watch"
