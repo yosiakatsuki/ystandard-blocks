@@ -20,12 +20,10 @@
   z-index: 2;
 
   & > * {
+    margin-top: 1.5rem;
+
     &:first-child {
       margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 }
