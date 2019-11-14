@@ -53,8 +53,8 @@ class IconSelect extends Component {
                             <RadioControl
                                 selected={iconPosition}
                                 options={[
-                                    {label: __('右', 'ystandard-blocks'), value: 'right'},
                                     {label: __('左', 'ystandard-blocks'), value: 'left'},
+                                    {label: __('右', 'ystandard-blocks'), value: 'right'},
                                 ]}
                                 onChange={onChangePosition}
                             />

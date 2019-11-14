@@ -194,6 +194,7 @@ const faIcon = (props) => {
                                 }}
                             />
                         </div>
+                        <div className="ystdb-fa-icon__link-label">リンク先URL</div>
                         <URLInput
                             label={ __( 'Link' ) }
                             className="ystdb-fa-icon__link"
