@@ -18,12 +18,14 @@ class Ystandard_Blocks_Enqueue {
 		if ( Ystandard_Blocks::is_ystandard() ) {
 			add_action(
 				'wp_enqueue_scripts',
-				[ $this, 'enqueue_scripts' ]
+				[ $this, 'enqueue_scripts' ],
+				11
 			);
 		} else {
 			add_action(
 				'wp_enqueue_scripts',
-				[ $this, 'enqueue_scripts_no_ystandard' ]
+				[ $this, 'enqueue_scripts_no_ystandard' ],
+				11
 			);
 		}
 		add_action(
@@ -36,26 +38,18 @@ class Ystandard_Blocks_Enqueue {
 	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
-		if ( function_exists( 'ys_enqueue_css' ) ) {
-			ys_enqueue_css(
+		wp_enqueue_style(
+			'ystandard-blocks',
+			YSTDB_URL . 'css/ystandard-blocks.css',
+			[],
+			YSTDB_VERSION
+		);
+		if ( Ystandard_Blocks::is_ystandard() ) {
+			wp_add_inline_style(
 				'ystandard-blocks',
-				YSTDB_URL . 'css/ystandard-blocks.css',
-				true,
-				[],
-				YSTDB_VERSION
-			);
-			ys_enqueue_inline_css(
 				Ystandard_Blocks_Customizer::get_inline_style_css()
 			);
-		} else {
-			wp_enqueue_style(
-				'ystandard-blocks',
-				YSTDB_URL . 'css/ystandard-blocks.css',
-				[],
-				YSTDB_VERSION
-			);
 		}
-
 	}
 
 	/**

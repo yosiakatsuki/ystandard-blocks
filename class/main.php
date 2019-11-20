@@ -109,8 +109,8 @@ class Ystandard_Blocks {
 	public function gutenberg_notice() {
 		?>
 		<div class="notice notice-error is-dismissible">
-			<p>このサイトではGutenbergが使えないためyStandard Blocksが機能しません。</p>
-			<p>クラシックエディター(Classic Editor)を停止するなど、Gutenbergが使える状態にしてください。</p>
+			<p>このサイトではブロックエディターが使えないためyStandard Blocksが機能しません。</p>
+			<p>クラシックエディター(Classic Editor)を停止するなど、ブロックエディターが使える状態にしてください。</p>
 		</div>
 		<?php
 	}
