@@ -11,7 +11,10 @@ export const name = 'ystdb/section';
 export const settings = {
     title: __('[ys]セクション', 'ystandard-blocks'),
     description: __('yStandard Blocks汎用セクションブロック', 'ystandard-blocks'),
-    icon: 'screenoptions',
+    icon:{
+        src: 'screenoptions',
+        foreground: ystdbConfig.color.iconForeground,
+    },
     keywords: [__('section'), __('セクション'), 'section'],
     category: ystdbConfig.category.common,
     attributes: attributes,
