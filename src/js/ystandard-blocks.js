@@ -3,7 +3,7 @@ import {registerBlockType} from '@wordpress/blocks';
 import * as btnLink from "../../block/btn-link/index";
 import * as section from "../../block/section/index";
 import * as faIcon from "../../block/fa-icon/index";
-import * as customButton from "../../block/ys-button/index";
+import * as customButton from "../../block/button/index";
 import "../../block/extend-core/button";
 import "../../block/format/inline-style/index";
 
