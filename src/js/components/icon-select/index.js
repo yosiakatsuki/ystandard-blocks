@@ -27,6 +27,8 @@ class IconSelect extends Component {
             onChangePosition,
             selectedIcon,
             onClickIcon,
+            customInfo,
+            customInfoStyle
         } = this.props;
 
         const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
@@ -47,6 +49,9 @@ class IconSelect extends Component {
 
         return (
             <PanelBody title={controlPanelTitle}>
+                {(customInfo &&
+                    <div style={customInfoStyle}>{customInfo}</div>
+                )}
                 {(!!onChangePosition &&
                     <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
                         <div className={'ystdb-icon-select__position'}>

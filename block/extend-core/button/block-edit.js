@@ -22,6 +22,7 @@ import {select} from '@wordpress/data';
 import {
     allowedBlocks
 } from './config';
+
 /**
  * 設定コントロール追加
  */
@@ -97,6 +98,9 @@ const addBtnCustomControls = createHigherOrderComponent((BlockEdit) => {
                         <BlockEdit {...props} />
                         <InspectorControls>
                             <PanelBody title={__('[ys]テキスト設定', 'ystandard-blocks')}>
+                                <div
+                                    style={{color: '#D53939',marginBottom:'.5rem'}}>※この設定は今後廃止予定です。ボタンの文字サイズを変更したい場合、「[ys]カスタムブロック」をご利用ください。
+                                </div>
                                 <div className={'ystdb-inspectorcontrols__disablecustomfont'}>
                                     <FontSizePicker
                                         label={__('文字サイズ', 'ystandard-blocks')}
@@ -129,14 +133,18 @@ const addBtnCustomControls = createHigherOrderComponent((BlockEdit) => {
                                     }
                                 }}
                                 customIcon={customIcon}
-                                customInfo={`※ボタンテキストを編集する際は一度アイコンをクリアしてください。`}
+                                customInfo={'※この設定は今後廃止予定です。アイコン設定が必要な場合は「[ys]カスタムブロック」をご利用ください。'}
+                                customInfoStyle={{color: '#D53939',marginBottom:'.5rem'}}
                             />
 
                             <PanelBody
                                 title={__('[ys]表示タイプ', 'ystandard-blocks')}
                                 initialOpen={false}
                             >
+                                <div style={{color: '#D53939',marginBottom:'.5rem'}}>※この設定は今後廃止予定です。ボタンの表示を変更したい場合は「[ys]カスタムブロック」をご利用ください。
+                                </div>
                                 <BaseControl>
+
                                     <ToggleControl
                                         label={__('ブロック表示にする', 'ystandard-blocks')}
                                         checked={buttonBlock}

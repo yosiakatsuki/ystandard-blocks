@@ -688,6 +688,11 @@ var addBtnCustomControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_7_
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(BlockEdit, props), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
           title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('[ys]テキスト設定', 'ystandard-blocks')
         }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+          style: {
+            color: '#D53939',
+            marginBottom: '.5rem'
+          }
+        }, "\u203B\u3053\u306E\u8A2D\u5B9A\u306F\u4ECA\u5F8C\u5EC3\u6B62\u4E88\u5B9A\u3067\u3059\u3002\u30DC\u30BF\u30F3\u306E\u6587\u5B57\u30B5\u30A4\u30BA\u3092\u5909\u66F4\u3057\u305F\u3044\u5834\u5408\u3001\u300C[ys]\u30AB\u30B9\u30BF\u30E0\u30D6\u30ED\u30C3\u30AF\u300D\u3092\u3054\u5229\u7528\u304F\u3060\u3055\u3044\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
           className: 'ystdb-inspectorcontrols__disablecustomfont'
         }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["FontSizePicker"], {
           label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('文字サイズ', 'ystandard-blocks'),
@@ -732,11 +737,20 @@ var addBtnCustomControls = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_7_
             }
           },
           customIcon: customIcon,
-          customInfo: "\u203B\u30DC\u30BF\u30F3\u30C6\u30AD\u30B9\u30C8\u3092\u7DE8\u96C6\u3059\u308B\u969B\u306F\u4E00\u5EA6\u30A2\u30A4\u30B3\u30F3\u3092\u30AF\u30EA\u30A2\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+          customInfo: '※この設定は今後廃止予定です。アイコン設定が必要な場合は「[ys]カスタムブロック」をご利用ください。',
+          customInfoStyle: {
+            color: '#D53939',
+            marginBottom: '.5rem'
+          }
         }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
           title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('[ys]表示タイプ', 'ystandard-blocks'),
           initialOpen: false
-        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["ToggleControl"], {
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+          style: {
+            color: '#D53939',
+            marginBottom: '.5rem'
+          }
+        }, "\u203B\u3053\u306E\u8A2D\u5B9A\u306F\u4ECA\u5F8C\u5EC3\u6B62\u4E88\u5B9A\u3067\u3059\u3002\u30DC\u30BF\u30F3\u306E\u8868\u793A\u3092\u5909\u66F4\u3057\u305F\u3044\u5834\u5408\u306F\u300C[ys]\u30AB\u30B9\u30BF\u30E0\u30D6\u30ED\u30C3\u30AF\u300D\u3092\u3054\u5229\u7528\u304F\u3060\u3055\u3044\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["ToggleControl"], {
           label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('ブロック表示にする', 'ystandard-blocks'),
           checked: buttonBlock,
           onChange: function onChange() {
@@ -5543,7 +5557,9 @@ function (_Component) {
           iconPosition = _this$props.iconPosition,
           onChangePosition = _this$props.onChangePosition,
           selectedIcon = _this$props.selectedIcon,
-          onClickIcon = _this$props.onClickIcon;
+          onClickIcon = _this$props.onClickIcon,
+          customInfo = _this$props.customInfo,
+          customInfoStyle = _this$props.customInfoStyle;
       var controlPanelTitle = panelTitle ? panelTitle : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('[ys]アイコン設定', 'ystandard-blocks');
       var iconBaseControlTitle = iconControlTitle === undefined ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('表示アイコン', 'ystandard-blocks') : iconControlTitle;
 
@@ -5561,7 +5577,9 @@ function (_Component) {
       };
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
         title: controlPanelTitle
-      }, !!onChangePosition && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["BaseControl"], {
+      }, customInfo && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
+        style: customInfoStyle
+      }, customInfo), !!onChangePosition && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["BaseControl"], {
         label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('アイコン表示位置', 'ystandard-blocks')
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'ystdb-icon-select__position'

@@ -1,0 +1,72 @@
+.ystdb-button__icon--left {
+  margin-right: .5em;
+}
+
+.ystdb-button__icon--right {
+  margin-left: .5em;
+}
+
+.ystdb-button__link-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ystdb-button__link {
+  &.is-small {
+    padding: .25rem 1rem;
+  }
+
+  &.is-large {
+    padding: 0.75rem 2.5rem;
+  }
+
+  &.is-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  &.has-animation {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      height: 150%;
+      width: 50px;
+      position: absolute;
+      top: -30%;
+      left: 0;
+      background-color: #fff;
+      opacity: 0;
+      transform: rotate(45deg);
+      animation-duration: inherit;
+      animation-iteration-count: infinite;
+    }
+
+    &.has-animation--shine::before {
+      animation-name: shine;
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0.3;
+  }
+  81% {
+    transform: scale(4) rotate(45deg);
+    opacity: .6;
+  }
+  100% {
+    transform: scale(80) rotate(45deg);
+    opacity: 0;
+  }
+}

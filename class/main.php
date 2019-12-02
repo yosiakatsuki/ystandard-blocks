@@ -87,6 +87,14 @@ class Ystandard_Blocks {
 			'slug'  => 'ystdb',
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
 		];
+		$categories[] = [
+			'slug'  => 'ystdb_pro',
+			'title' => __( '[ys]yStandard Blocks Pro', 'ystandard-blocks' ),
+		];
+		$categories[] = [
+			'slug'  => 'ystdb_beta',
+			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
+		];
 
 		return $categories;
 	}
