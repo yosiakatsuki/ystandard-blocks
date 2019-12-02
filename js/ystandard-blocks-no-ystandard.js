@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./block/btn-link/_deprecated.js":
-/*!***************************************!*\
-  !*** ./block/btn-link/_deprecated.js ***!
-  \***************************************/
+/***/ "./block/button-link/_deprecated.js":
+/*!******************************************!*\
+  !*** ./block/button-link/_deprecated.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -162,10 +162,10 @@ var deprecated = [{
 
 /***/ }),
 
-/***/ "./block/btn-link/config.js":
-/*!**********************************!*\
-  !*** ./block/btn-link/config.js ***!
-  \**********************************/
+/***/ "./block/button-link/config.js":
+/*!*************************************!*\
+  !*** ./block/button-link/config.js ***!
+  \*************************************/
 /*! exports provided: attributes, supports */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -227,10 +227,10 @@ var supports = {
 
 /***/ }),
 
-/***/ "./block/btn-link/edit.js":
-/*!********************************!*\
-  !*** ./block/btn-link/edit.js ***!
-  \********************************/
+/***/ "./block/button-link/edit.js":
+/*!***********************************!*\
+  !*** ./block/button-link/edit.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -408,10 +408,10 @@ var btnLinkEdit = function btnLinkEdit(props) {
 
 /***/ }),
 
-/***/ "./block/btn-link/index.js":
-/*!*********************************!*\
-  !*** ./block/btn-link/index.js ***!
-  \*********************************/
+/***/ "./block/button-link/index.js":
+/*!************************************!*\
+  !*** ./block/button-link/index.js ***!
+  \************************************/
 /*! exports provided: name, settings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -420,9 +420,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
 /* harmony import */ var _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/js/config/config */ "./src/js/config/config.js");
-/* harmony import */ var _deprecated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_deprecated */ "./block/btn-link/_deprecated.js");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./block/btn-link/edit.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ "./block/btn-link/config.js");
+/* harmony import */ var _deprecated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_deprecated */ "./block/button-link/_deprecated.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./block/button-link/edit.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ "./block/button-link/config.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -5690,7 +5690,7 @@ function getNum(value) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _block_btn_link_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../block/btn-link/index */ "./block/btn-link/index.js");
+/* harmony import */ var _block_button_link_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../block/button-link/index */ "./block/button-link/index.js");
 /* harmony import */ var _block_section_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../block/section/index */ "./block/section/index.js");
 /* harmony import */ var _block_extend_core_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../block/extend-core/button */ "./block/extend-core/button/index.js");
 /* harmony import */ var _block_format_inline_style_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../block/format/inline-style/index */ "./block/format/inline-style/index.js");

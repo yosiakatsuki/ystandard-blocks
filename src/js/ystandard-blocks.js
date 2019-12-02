@@ -1,6 +1,6 @@
 import {registerBlockType} from '@wordpress/blocks';
 //
-import * as btnLink from "../../block/btn-link/index";
+import * as btnLink from "../../block/button-link/index";
 import * as section from "../../block/section/index";
 import * as faIcon from "../../block/fa-icon/index";
 import * as customButton from "../../block/button/index";
