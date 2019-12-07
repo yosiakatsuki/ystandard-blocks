@@ -46,3 +46,8 @@ $color__sns: (
         'linkedin' : #0e76a8,
         'amazon': #ffa724
 ) !default;
+
+$breakpoints: (
+        md : 600px,
+        lg : 1025px,
+) !default;

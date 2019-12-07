@@ -61,7 +61,7 @@ class Ystandard_Blocks_Afi_button extends Ystandard_Dynamic_block {
 					]
 				],
 				'render_callback' => function ( $attributes ) {
-					return $this->render( 'btn-link', $attributes );
+					return $this->render( 'button-link', $attributes );
 				}
 			]
 		);

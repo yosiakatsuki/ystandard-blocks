@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "yStandard用ブロック追加プラグイン",
   "scripts": {
+    "lint-js": "wp-scripts lint-js ./block ./src/js",
+    "lint-js:fix": "npm run lint-js -- --fix",
     "start:block": "wp-scripts start --config ystandard-blocks-webpack-config.js",
     "build:block": "wp-scripts build --config ystandard-blocks-webpack-config.js",
     "build:block-app": "gulp js:block-app",
