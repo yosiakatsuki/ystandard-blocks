@@ -1,5 +1,4 @@
 
-
-export const editInlineStyle = (props, style, index) => {
+export const editInlineStyle = ( props, style, index ) => {
 
 };

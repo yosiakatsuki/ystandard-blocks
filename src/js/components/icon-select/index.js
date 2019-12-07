@@ -1,79 +1,79 @@
 import _ from 'lodash';
-import allIcons from "./icons.json";
+import allIcons from './icons.json';
 import recommendIcons from './reccomend-icons.json';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
-import {__} from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import {
-    BaseControl,
-    PanelBody,
-    RadioControl
+	BaseControl,
+	PanelBody,
+	RadioControl,
 } from '@wordpress/components';
 
 import {
-    Component
+	Component,
 } from '@wordpress/element';
 
 class IconSelect extends Component {
-    constructor(props) {
-        super(props);
-    }
+	constructor( props ) {
+		super( props );
+	}
 
-    render() {
-        const {
-            panelTitle,
-            iconControlTitle,
-            iconPosition,
-            onChangePosition,
-            selectedIcon,
-            onClickIcon,
-            customInfo,
-            customInfoStyle
-        } = this.props;
+	render() {
+		const {
+			panelTitle,
+			iconControlTitle,
+			iconPosition,
+			onChangePosition,
+			selectedIcon,
+			onClickIcon,
+			customInfo,
+			customInfoStyle,
+		} = this.props;
 
-        const controlPanelTitle = panelTitle ? panelTitle : __('[ys]アイコン設定', 'ystandard-blocks');
-        const iconBaseControlTitle = iconControlTitle === undefined ? __('表示アイコン', 'ystandard-blocks') : iconControlTitle;
+		const controlPanelTitle = panelTitle ? panelTitle : __( '[ys]アイコン設定', 'ystandard-blocks' );
+		const iconBaseControlTitle = iconControlTitle === undefined ? __( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
 
-        const icons = _.uniq([...recommendIcons.icons, ...allIcons.icons]);
+		const icons = _.uniq( [ ...recommendIcons.icons, ...allIcons.icons ] );
 
-        const pickerProps = {
-            icons: icons,
-            theme: 'bluegrey',
-            renderUsing: 'class',
-            value: selectedIcon,
-            onChange: (value) => {
-                onClickIcon(value);
-            },
-            isMulti: false,
-        };
+		const pickerProps = {
+			icons,
+			theme: 'bluegrey',
+			renderUsing: 'class',
+			value: selectedIcon,
+			onChange: ( value ) => {
+				onClickIcon( value );
+			},
+			isMulti: false,
+		};
 
-        return (
-            <PanelBody title={controlPanelTitle}>
-                {(customInfo &&
-                    <div style={customInfoStyle}>{customInfo}</div>
-                )}
-                {(!!onChangePosition &&
-                    <BaseControl label={__('アイコン表示位置', 'ystandard-blocks')}>
-                        <div className={'ystdb-icon-select__position'}>
-                            <RadioControl
-                                selected={iconPosition}
-                                options={[
-                                    {label: __('左', 'ystandard-blocks'), value: 'left'},
-                                    {label: __('右', 'ystandard-blocks'), value: 'right'},
-                                ]}
-                                onChange={onChangePosition}
-                            />
-                        </div>
-                    </BaseControl>
-                )}
-                <BaseControl label={iconBaseControlTitle}>
-                    <div className={'ystdb-icon-select__picker'}>
-                        <FontIconPicker {...pickerProps} />
-                    </div>
-                </BaseControl>
-            </PanelBody>
-        );
-    }
+		return (
+			<PanelBody title={ controlPanelTitle }>
+				{ ( customInfo &&
+				<div style={ customInfoStyle }>{ customInfo }</div>
+				) }
+				{ ( !! onChangePosition &&
+				<BaseControl label={ __( 'アイコン表示位置', 'ystandard-blocks' ) }>
+					<div className={ 'ystdb-icon-select__position' }>
+						<RadioControl
+							selected={ iconPosition }
+							options={ [
+                    				{ label: __( '左', 'ystandard-blocks' ), value: 'left' },
+                    				{ label: __( '右', 'ystandard-blocks' ), value: 'right' },
+                    			] }
+							onChange={ onChangePosition }
+                    		/>
+					</div>
+				</BaseControl>
+				) }
+				<BaseControl label={ iconBaseControlTitle }>
+					<div className={ 'ystdb-icon-select__picker' }>
+						<FontIconPicker { ...pickerProps } />
+					</div>
+				</BaseControl>
+			</PanelBody>
+		);
+	}
 }
 
 export default IconSelect;

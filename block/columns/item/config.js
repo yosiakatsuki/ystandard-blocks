@@ -5,21 +5,19 @@ import { alignTop, alignCenter, alignBottom, alignLastBlockBottom } from './icon
  * attributes
  */
 export const attributes = {
-    backgroundColor: {
-        type: "string"
-    },
-    customBackgroundColor: {
-        type: "string"
-    },
-    shadow: {
-        type: "bool"
-    }
+	backgroundColor: {
+		type: 'string',
+	},
+	customBackgroundColor: {
+		type: 'string',
+	},
+	shadow: {
+		type: 'bool',
+	},
 };
 
 export const supports = {
-    align: false,
-    className: false,
+	align: false,
+	className: false,
 };
-
-
 
