@@ -1,4 +1,4 @@
-import { G, Path, SVG } from '@wordpress/components';
+import { Path, SVG } from '@wordpress/components';
 import { ystdbConfig } from '../../../src/js/config/config';
 
 export default (

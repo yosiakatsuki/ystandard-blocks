@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import IconSelect from '../../src/js/components/icon-select/index';
 
 import {
@@ -8,7 +7,6 @@ import {
 	InspectorControls,
 	PanelColorSettings,
 	ContrastChecker,
-	getColorClassName,
 	withColors,
 	FontSizePicker,
 	withFontSizes,
@@ -44,8 +42,6 @@ const btnLinkEdit = ( props ) => {
 		setAttributes,
 		setState,
 		isPreview,
-		styles,
-		className,
 		fontSize,
 		setFontSize,
 	} = props;
@@ -54,16 +50,9 @@ const btnLinkEdit = ( props ) => {
 		icon,
 		align,
 		buttonType,
-		customIcon,
 		iconPosition,
 		buttonSize,
 	} = attributes;
-
-	/**
-	 * 色設定
-	 */
-	const bgColor = backgroundColor.color ? backgroundColor.color : '#222';
-	const txtColor = textColor.color ? textColor.color : '#fff';
 
 	return (
 		<div className={ 'wp-block-html' }>
@@ -106,7 +95,7 @@ const btnLinkEdit = ( props ) => {
 						) : (
 							<PlainText
 								value={ content }
-								onChange={ ( content ) => setAttributes( { content } ) }
+								onChange={ ( value ) => setAttributes( { content: value } ) }
 								placeholder={ 'HTMLを入力...' }
 								aria-label={ __( 'HTML' ) }
 							/>
@@ -148,17 +137,18 @@ const btnLinkEdit = ( props ) => {
 							} }
 						/>
 					</PanelBody>
-					<IconSelect
-						panelTitle={ __( 'アイコン設定', 'ystandard-blocks' ) }
-						iconPosition={ iconPosition }
-						onChangePosition={ ( option ) => {
-							setAttributes( { iconPosition: option } );
-						} }
-						selectedIcon={ icon }
-						onClickIcon={ ( value ) => {
-							setAttributes( { icon: value } );
-						} }
-					/>
+					<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
+						<IconSelect
+							iconPosition={ iconPosition }
+							onChangePosition={ ( option ) => {
+								setAttributes( { iconPosition: option } );
+							} }
+							selectedIcon={ icon }
+							onClickIcon={ ( value ) => {
+								setAttributes( { icon: value } );
+							} }
+						/>
+					</PanelBody>
 					<PanelBody title={ __( '表示タイプ', 'ystandard-blocks' ) }>
 						<BaseControl>
 							<ToggleControl

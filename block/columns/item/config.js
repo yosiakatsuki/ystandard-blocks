@@ -1,6 +1,3 @@
-import { __, _x } from '@wordpress/i18n';
-import { alignTop, alignCenter, alignBottom, alignLastBlockBottom } from './icons';
-
 /**
  * attributes
  */

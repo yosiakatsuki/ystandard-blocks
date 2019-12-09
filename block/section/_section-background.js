@@ -15,7 +15,7 @@ export const sectionBackgroundParam = {
 /**
  * 背景部分を作成
  *
- * @param background
+ * @param {Object} background
  */
 export const getSectionBackground = ( background ) => {
 	if ( ! background.class && ! background.customColor && ! background.image && ! background.skew ) {

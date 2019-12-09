@@ -3,11 +3,9 @@ import { marginType } from './config';
 import getNum from '../../src/js/util/_getNum';
 
 import {
-	BlockControls,
 	InspectorControls,
 	PanelColorSettings,
 	ContrastChecker,
-	getColorClassName,
 	withColors,
 	InnerBlocks,
 	MediaUpload,
@@ -15,17 +13,14 @@ import {
 import {
 	PanelBody,
 	BaseControl,
-	SelectControl,
 	RangeControl,
 	Button,
-	ToggleControl,
 } from '@wordpress/components';
 
 import {
 	Fragment,
 } from '@wordpress/element';
 import {
-	withState,
 	compose,
 } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -132,7 +127,7 @@ const sectionEdit = ( props ) => {
 	/**
 	 * 画像設定コントロール
 	 *
-	 * @param obj
+	 * @param {Object} obj
 	 */
 	const mediaUploadRender = ( obj ) => {
 		if ( 0 === backgroundImageID ) {
@@ -193,12 +188,14 @@ const sectionEdit = ( props ) => {
 			<InspectorControls>
 				<div className="ystdb-inspectorcontrols">
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
-						<BaseControl label={ __( '余白設定(外側)', 'ystandard-blocks' ) }>
+						<BaseControl>
+							<div className="ystdb-base-control__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.margin.map( ( item ) => {
 									return (
 										<Button
+											key={ item.value }
 											isDefault
 											onClick={ () => {
 												setAttributes( {
@@ -233,12 +230,14 @@ const sectionEdit = ( props ) => {
 								<span className={ `ystdb-info__small` }>※単位はremです。</span>
 							</p>
 						</BaseControl>
-						<BaseControl label={ __( '余白設定(内側)', 'ystandard-blocks' ) }>
+						<BaseControl>
+							<div className="ystdb-base-control__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.padding.map( ( item ) => {
 									return (
 										<Button
+											key={ item.value }
 											isDefault
 											onClick={ () => {
 												setAttributes( {
@@ -300,6 +299,7 @@ const sectionEdit = ( props ) => {
 							{ marginType.innerWidth.map( ( item ) => {
 								return (
 									<Button
+										key={ item.value }
 										isDefault
 										onClick={ () => {
 											setAttributes( {
@@ -336,6 +336,7 @@ const sectionEdit = ( props ) => {
 							{ wrapperTagNames.map( ( item ) => {
 								return (
 									<Button
+										key={ item.tag }
 										isDefault
 										isPrimary={ wrapperTag === item.tag }
 										onClick={ () => {

@@ -25,15 +25,19 @@ dirList.map( ( value ) => {
 		const iconName = file.replace( '.svg', '' );
 		const iconClassName = iconClass[ value ] + ' fa-' + iconName;
 		icons.push( iconClassName );
+		return true;
 	} );
+	return '';
 } );
 /**
  * JSONファイルの作成
  */
-fs.writeFile( jsonPath, JSON.stringify( { icons } ), ( err, data ) => {
+fs.writeFile( jsonPath, JSON.stringify( { icons } ), ( err ) => {
+	/* eslint-disable no-console */
 	if ( err ) {
 		console.log( err );
 	} else {
 		console.log( 'write end' );
 	}
+	/* eslint-enable */
 } );

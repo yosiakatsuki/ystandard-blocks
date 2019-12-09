@@ -5,18 +5,18 @@ import classnames from 'classnames';
 
 export default function( { attributes } ) {
 	const {
-		col_pc,
-		col_tablet,
-		col_mobile,
+		colPc,
+		colTablet,
+		colMobile,
 		verticalAlignment,
 	} = attributes;
 
 	const classes = classnames(
 		'ystdb-columns',
 		{
-			[ `has-${ col_mobile }-columns` ]: col_mobile,
-			[ `has-${ col_tablet }-columns--tablet` ]: col_tablet,
-			[ `has-${ col_pc }-columns--pc` ]: col_pc,
+			[ `has-${ colMobile }-columns` ]: colMobile,
+			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+			[ `has-${ colPc }-columns--pc` ]: colPc,
 			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 		}
 	);

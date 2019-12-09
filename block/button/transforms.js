@@ -1,6 +1,5 @@
 import {
 	createBlock,
-	getBlockAttributes,
 } from '@wordpress/blocks';
 
 const transforms = {

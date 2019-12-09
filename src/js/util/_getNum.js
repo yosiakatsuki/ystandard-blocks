@@ -1,10 +1,10 @@
 /**
  * 数字変換
  *
- * @param value
- * @param min
- * @param max
- * @param defaultNum
+ * @param {string} value
+ * @param {number} min
+ * @param {number} max
+ * @param {number} defaultNum
  */
 export default function getNum( value, min = 0, max = null, defaultNum = null ) {
 	value = Number( value );

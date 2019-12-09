@@ -1,19 +1,19 @@
-import { __, _x } from '@wordpress/i18n';
+import { _x } from '@wordpress/i18n';
 import { alignBottom, alignCenter, alignLastBlockBottom, alignTop } from './icons';
 
 /**
  * attributes
  */
 export const attributes = {
-	col_pc: {
+	colPc: {
 		type: 'number',
 		default: 3,
 	},
-	col_tablet: {
+	colTablet: {
 		type: 'number',
 		default: 3,
 	},
-	col_mobile: {
+	colMobile: {
 		type: 'number',
 		default: 1,
 	},

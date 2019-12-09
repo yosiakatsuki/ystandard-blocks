@@ -40,4 +40,5 @@ inlineStyles.map( ( style, index ) => {
 			);
 		},
 	} );
+	return true;
 } );

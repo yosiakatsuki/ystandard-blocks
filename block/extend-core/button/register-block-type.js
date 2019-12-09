@@ -4,10 +4,11 @@ import {
 	AttributesCoreBtn,
 } from './config';
 import { addFilter } from '@wordpress/hooks';
+
 /**
  * Attribute追加
  *
- * @param settings
+ * @param {Object} settings
  */
 function addCoreBtnAttribute( settings ) {
 	if ( typeof settings.attributes !== 'undefined' && allowedBlocks.includes( settings.name ) ) {

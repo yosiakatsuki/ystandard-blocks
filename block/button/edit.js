@@ -8,7 +8,6 @@ import {
 	AlignmentToolbar,
 	InspectorControls,
 	PanelColorSettings,
-	getColorClassName,
 	withColors,
 	FontSizePicker,
 	withFontSizes,
@@ -34,14 +33,14 @@ import {
 	compose,
 } from '@wordpress/compose';
 
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 const MIN_BORDER_RADIUS_VALUE = 0;
 const MAX_BORDER_RADIUS_VALUE = 50;
 const INITIAL_BORDER_RADIUS_POSITION = 4;
 
-const ysButton = ( props ) => {
+function ysButton( props ) {
 	const {
 		textColor,
 		backgroundColor,
@@ -61,7 +60,6 @@ const ysButton = ( props ) => {
 		iconRight,
 		iconSizeRight,
 		align,
-		animating,
 		url,
 		rel,
 		linkTarget,
@@ -191,11 +189,13 @@ const ysButton = ( props ) => {
 							setAttributes( { iconLeft: value } );
 						} }
 					/>
-					<BaseControl label={ __( '左アイコンサイズ', 'ystandard-blocks' ) }>
+					<BaseControl>
+						<div className="ystdb-base-control__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
 							{ iconSize.map( ( item ) => {
 								return (
 									<Button
+										key={ item.value }
 										isDefault
 										isPrimary={ iconSizeLeft === item.value }
 										onClick={ () => {
@@ -218,11 +218,13 @@ const ysButton = ( props ) => {
 							setAttributes( { iconRight: value } );
 						} }
 					/>
-					<BaseControl label={ __( '左アイコンサイズ', 'ystandard-blocks' ) }>
+					<BaseControl>
+						<div className="ystdb-base-control__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
 							{ iconSize.map( ( item ) => {
 								return (
 									<Button
+										key={ item.value }
 										isDefault
 										isPrimary={ iconSizeRight === item.value }
 										onClick={ () => {
@@ -257,6 +259,7 @@ const ysButton = ( props ) => {
 							{ paddingTypes.map( ( item ) => {
 								return (
 									<Button
+										key={ item.value }
 										isDefault
 										isPrimary={ paddingType === item.value }
 										onClick={ () => {
@@ -347,14 +350,14 @@ const ysButton = ( props ) => {
 				<span className={ linkClasses } style={ linkStyles }>
 					<span className="ystdb-button__link-content">
 						{ ( !! iconLeft &&
-						<span className={ classnames(
-                        	'ystdb-button__icon',
-                        	'ystdb-button__icon--left',
-                        	iconLeft,
-                        	{
-                        		[ iconSizeLeft ]: iconSizeLeft,
-                        	}
-						) }> </span>
+							<span className={ classnames(
+								'ystdb-button__icon',
+								'ystdb-button__icon--left',
+								iconLeft,
+								{
+									[ iconSizeLeft ]: iconSizeLeft,
+								}
+							) }> </span>
 						) }
 						<RichText
 							tagName={ 'span' }
@@ -365,39 +368,39 @@ const ysButton = ( props ) => {
 							className={ 'ystdb-button__text' }
 						/>
 						{ ( !! iconRight &&
-						<span className={ classnames(
-                            	'ystdb-button__icon',
-                            	'ystdb-button__icon--right',
-                            	iconRight,
-                            	{
-                            		[ iconSizeRight ]: iconSizeRight,
-                            	}
-						) }> </span>
+							<span className={ classnames(
+								'ystdb-button__icon',
+								'ystdb-button__icon--right',
+								iconRight,
+								{
+									[ iconSizeRight ]: iconSizeRight,
+								}
+							) }> </span>
 						) }
 					</span>
 				</span>
 			</div>
 
 			{ ( !! isSelected &&
-			<div className={ 'ystdb-button__link-container' }>
-				<div className="ystdb-button__link-label">リンク先URL</div>
-				<URLInput
-					label={ __( 'Link' ) }
-					className="ystdb-button__link"
-					value={ url }
-                		/* eslint-disable jsx-a11y/no-autofocus */
-					autoFocus={ false }
-                		/* eslint-enable jsx-a11y/no-autofocus */
-					onChange={ ( value ) => setAttributes( { url: value } ) }
-					disableSuggestions={ ! isSelected }
-					isFullWidth
-					hasBorder
-                	/>
-			</div>
+				<div className={ 'ystdb-button__link-container' }>
+					<div className="ystdb-button__link-label">リンク先URL</div>
+					<URLInput
+						label={ __( 'Link' ) }
+						className="ystdb-button__link"
+						value={ url }
+						/* eslint-disable jsx-a11y/no-autofocus */
+						autoFocus={ false }
+						/* eslint-enable jsx-a11y/no-autofocus */
+						onChange={ ( value ) => setAttributes( { url: value } ) }
+						disableSuggestions={ ! isSelected }
+						isFullWidth
+						hasBorder
+					/>
+				</div>
 			) }
 		</Fragment>
 	);
-};
+}
 
 export default compose( [
 	withColors( 'backgroundColor', { textColor: 'color' } ),

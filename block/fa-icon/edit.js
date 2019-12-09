@@ -7,7 +7,6 @@ import {
 	AlignmentToolbar,
 	InspectorControls,
 	PanelColorSettings,
-	getColorClassName,
 	withColors,
 	FontSizePicker,
 	withFontSizes,
@@ -35,7 +34,7 @@ import { __ } from '@wordpress/i18n';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
-const faIcon = ( props ) => {
+function faIcon( props ) {
 	const {
 		textColor,
 		setTextColor,
@@ -182,36 +181,36 @@ const faIcon = ( props ) => {
 					</div>
 				) }
 				{ ( !! isSelected &&
-				<div>
-					<div className="ystdb-fa-icon__select-start">
-						<IconSelect
-							panelTitle={ __( 'アイコン選択', 'ystandard-blocks' ) }
-							iconControlTitle={ '' }
-							selectedIcon={ icon }
-							onClickIcon={ ( value ) => {
-                    				setAttributes( { icon: value } );
-                    			} }
-                    		/>
+					<div>
+						<div className="ystdb-fa-icon__select-start">
+							<IconSelect
+								panelTitle={ __( 'アイコン選択', 'ystandard-blocks' ) }
+								iconControlTitle={ '' }
+								selectedIcon={ icon }
+								onClickIcon={ ( value ) => {
+									setAttributes( { icon: value } );
+								} }
+							/>
+						</div>
+						<div className="ystdb-fa-icon__link-label">リンク先URL</div>
+						<URLInput
+							label={ __( 'Link' ) }
+							className="ystdb-fa-icon__link"
+							value={ url }
+							/* eslint-disable jsx-a11y/no-autofocus */
+							autoFocus={ false }
+							/* eslint-enable jsx-a11y/no-autofocus */
+							onChange={ ( value ) => setAttributes( { url: value } ) }
+							disableSuggestions={ ! isSelected }
+							isFullWidth
+							hasBorder
+						/>
 					</div>
-					<div className="ystdb-fa-icon__link-label">リンク先URL</div>
-					<URLInput
-						label={ __( 'Link' ) }
-						className="ystdb-fa-icon__link"
-						value={ url }
-                    		/* eslint-disable jsx-a11y/no-autofocus */
-						autoFocus={ false }
-                    		/* eslint-enable jsx-a11y/no-autofocus */
-						onChange={ ( value ) => setAttributes( { url: value } ) }
-						disableSuggestions={ ! isSelected }
-						isFullWidth
-						hasBorder
-                    	/>
-				</div>
 				) }
 			</div>
 		</Fragment>
 	);
-};
+}
 
 export default compose( [
 	withColors( { textColor: 'color' } ),

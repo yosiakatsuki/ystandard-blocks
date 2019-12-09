@@ -26,18 +26,18 @@ function columns( {
 	setAttributes,
 } ) {
 	const {
-		col_pc,
-		col_tablet,
-		col_mobile,
+		colPc,
+		colTablet,
+		colMobile,
 		verticalAlignment,
 	} = attributes;
 
 	const classes = classnames(
 		'ystdb-columns',
 		{
-			[ `has-${ col_mobile }-columns` ]: col_mobile,
-			[ `has-${ col_tablet }-columns--tablet` ]: col_tablet,
-			[ `has-${ col_pc }-columns--pc` ]: col_pc,
+			[ `has-${ colMobile }-columns` ]: colMobile,
+			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+			[ `has-${ colPc }-columns--pc` ]: colPc,
 			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 		}
 	);
@@ -72,9 +72,9 @@ function columns( {
 						<RangeControl
 							label={ __( 'PC', 'ystandard-blocks' ) }
 							beforeIcon={ 'desktop' }
-							value={ col_pc }
+							value={ colPc }
 							onChange={ ( value ) => {
-								setAttributes( { col_pc: getNum( value, 1, 6, 3 ) } );
+								setAttributes( { colPc: getNum( value, 1, 6, 3 ) } );
 							} }
 							min={ 1 }
 							max={ 6 }
@@ -82,9 +82,9 @@ function columns( {
 						<RangeControl
 							label={ __( 'タブレット', 'ystandard-blocks' ) }
 							beforeIcon={ 'tablet' }
-							value={ col_tablet }
+							value={ colTablet }
 							onChange={ ( value ) => {
-								setAttributes( { col_tablet: getNum( value, 1, 6, 3 ) } );
+								setAttributes( { colTablet: getNum( value, 1, 6, 3 ) } );
 							} }
 							min={ 1 }
 							max={ 6 }
@@ -92,9 +92,9 @@ function columns( {
 						<RangeControl
 							label={ __( 'タブレット', 'ystandard-blocks' ) }
 							beforeIcon={ 'smartphone' }
-							value={ col_mobile }
+							value={ colMobile }
 							onChange={ ( value ) => {
-								setAttributes( { col_mobile: getNum( value, 1, 6, 1 ) } );
+								setAttributes( { colMobile: getNum( value, 1, 6, 1 ) } );
 							} }
 							min={ 1 }
 							max={ 6 }

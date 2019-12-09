@@ -51,7 +51,7 @@ const addBtnCustomControls = createHigherOrderComponent( ( BlockEdit ) => {
 			/**
 			 * クラス初期化
 			 *
-			 * @param className
+			 * @param {string} className
 			 */
 			const initClassName = ( className ) => {
 				return className
@@ -101,7 +101,10 @@ const addBtnCustomControls = createHigherOrderComponent( ( BlockEdit ) => {
 						<InspectorControls>
 							<PanelBody title={ __( '[ys]テキスト設定', 'ystandard-blocks' ) }>
 								<div
-									style={ { color: '#D53939', marginBottom: '.5rem' } }>※この設定は今後廃止予定です。ボタンの文字サイズを変更したい場合、「[ys]カスタムブロック」をご利用ください。
+									style={ {
+										color: '#D53939',
+										marginBottom: '.5rem',
+									} }>※この設定は今後廃止予定です。ボタンの文字サイズを変更したい場合、「[ys]カスタムブロック」をご利用ください。
 								</div>
 								<div className={ 'ystdb-inspectorcontrols__disablecustomfont' }>
 									<FontSizePicker
@@ -114,36 +117,40 @@ const addBtnCustomControls = createHigherOrderComponent( ( BlockEdit ) => {
 									/>
 								</div>
 							</PanelBody>
-							<IconSelect
-								iconPosition={ iconPosition }
-								onChangePosition={ ( option ) => {
-									setAttributes( { iconPosition: option } );
-								} }
-								selectedIcon={ iconClass }
-								onClickIcon={ ( value ) => {
-									setAttributes( { icon: value } );
-								} }
-								onClickClear={ () => {
-									setAttributes( { icon: '' } );
-								} }
-								onChangeCustomIcon={ ( content ) => {
-									setAttributes( { customIcon: content } );
-									if ( content ) {
-										setAttributes( { icon: 'custom' } );
-									} else {
+							<PanelBody title={ __( '[ys]アイコン設定', 'ystandard-blocks' ) }>
+								<IconSelect
+									iconPosition={ iconPosition }
+									onChangePosition={ ( option ) => {
+										setAttributes( { iconPosition: option } );
+									} }
+									selectedIcon={ iconClass }
+									onClickIcon={ ( value ) => {
+										setAttributes( { icon: value } );
+									} }
+									onClickClear={ () => {
 										setAttributes( { icon: '' } );
-									}
-								} }
-								customIcon={ customIcon }
-								customInfo={ '※この設定は今後廃止予定です。アイコン設定が必要な場合は「[ys]カスタムブロック」をご利用ください。' }
-								customInfoStyle={ { color: '#D53939', marginBottom: '.5rem' } }
-							/>
-
+									} }
+									onChangeCustomIcon={ ( content ) => {
+										setAttributes( { customIcon: content } );
+										if ( content ) {
+											setAttributes( { icon: 'custom' } );
+										} else {
+											setAttributes( { icon: '' } );
+										}
+									} }
+									customIcon={ customIcon }
+									customInfo={ '※この設定は今後廃止予定です。アイコン設定が必要な場合は「[ys]カスタムブロック」をご利用ください。' }
+									customInfoStyle={ { color: '#D53939', marginBottom: '.5rem' } }
+								/>
+							</PanelBody>
 							<PanelBody
 								title={ __( '[ys]表示タイプ', 'ystandard-blocks' ) }
 								initialOpen={ false }
 							>
-								<div style={ { color: '#D53939', marginBottom: '.5rem' } }>※この設定は今後廃止予定です。ボタンの表示を変更したい場合は「[ys]カスタムブロック」をご利用ください。
+								<div style={ {
+									color: '#D53939',
+									marginBottom: '.5rem',
+								} }>※この設定は今後廃止予定です。ボタンの表示を変更したい場合は「[ys]カスタムブロック」をご利用ください。
 								</div>
 								<BaseControl>
 

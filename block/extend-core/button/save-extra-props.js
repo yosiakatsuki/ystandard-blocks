@@ -2,12 +2,13 @@ import {
 	allowedBlocks,
 } from './config';
 import { addFilter } from '@wordpress/hooks';
+
 /**
  * 設定保存機能追加
  *
- * @param extraProps
- * @param blockType
- * @param attributes
+ * @param {Object} extraProps
+ * @param {Object} blockType
+ * @param {Object} attributes
  */
 function addCoreBtnSaveProps( extraProps, blockType, attributes ) {
 	if ( allowedBlocks.includes( blockType.name ) ) {

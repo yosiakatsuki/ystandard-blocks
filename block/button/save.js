@@ -5,7 +5,6 @@ import {
 	getColorClassName,
 	getFontSizeClass,
 } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 
 export default function save( props ) {
 	const {
@@ -80,14 +79,14 @@ export default function save( props ) {
 			<a href={ url } className={ linkClasses } style={ linkStyles } target={ linkTarget } rel={ rel }>
 				<span className="ystdb-button__link-content">
 					{ ( !! iconLeft &&
-					<i className={ classnames(
-                        	'ystdb-button__icon',
-                        	'ystdb-button__icon--left',
-                        	iconLeft,
-                        	{
-                        		[ iconSizeLeft ]: iconSizeLeft,
-                        	}
-					) }></i>
+						<i className={ classnames(
+							'ystdb-button__icon',
+							'ystdb-button__icon--left',
+							iconLeft,
+							{
+								[ iconSizeLeft ]: iconSizeLeft,
+							}
+						) }></i>
 					) }
 					<RichText.Content
 						tagName={ 'span' }
@@ -95,14 +94,14 @@ export default function save( props ) {
 						className={ 'ystdb-button__text' }
 					/>
 					{ ( !! iconRight &&
-					<i className={ classnames(
-                            	'ystdb-button__icon',
-                            	'ystdb-button__icon--right',
-                            	iconRight,
-                            	{
-                            		[ iconSizeRight ]: iconSizeRight,
-                            	}
-					) }></i>
+						<i className={ classnames(
+							'ystdb-button__icon',
+							'ystdb-button__icon--right',
+							iconRight,
+							{
+								[ iconSizeRight ]: iconSizeRight,
+							}
+						) }></i>
 					) }
 				</span>
 			</a>

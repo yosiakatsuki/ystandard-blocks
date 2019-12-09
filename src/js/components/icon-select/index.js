@@ -3,10 +3,8 @@ import allIcons from './icons.json';
 import recommendIcons from './reccomend-icons.json';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 import {
-	BaseControl,
-	PanelBody,
 	RadioControl,
 } from '@wordpress/components';
 
@@ -15,13 +13,8 @@ import {
 } from '@wordpress/element';
 
 class IconSelect extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
 	render() {
 		const {
-			panelTitle,
 			iconControlTitle,
 			iconPosition,
 			onChangePosition,
@@ -31,8 +24,7 @@ class IconSelect extends Component {
 			customInfoStyle,
 		} = this.props;
 
-		const controlPanelTitle = panelTitle ? panelTitle : __( '[ys]アイコン設定', 'ystandard-blocks' );
-		const iconBaseControlTitle = iconControlTitle === undefined ? __( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
+		const iconBaseControlTitle = iconControlTitle === undefined ? _x( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
 
 		const icons = _.uniq( [ ...recommendIcons.icons, ...allIcons.icons ] );
 
@@ -48,30 +40,32 @@ class IconSelect extends Component {
 		};
 
 		return (
-			<PanelBody title={ controlPanelTitle }>
+			<div className={ 'ystdb-icon-select' }>
 				{ ( customInfo &&
-				<div style={ customInfoStyle }>{ customInfo }</div>
+					<div style={ customInfoStyle }>{ customInfo }</div>
 				) }
 				{ ( !! onChangePosition &&
-				<BaseControl label={ __( 'アイコン表示位置', 'ystandard-blocks' ) }>
-					<div className={ 'ystdb-icon-select__position' }>
-						<RadioControl
-							selected={ iconPosition }
-							options={ [
-                    				{ label: __( '左', 'ystandard-blocks' ), value: 'left' },
-                    				{ label: __( '右', 'ystandard-blocks' ), value: 'right' },
-                    			] }
-							onChange={ onChangePosition }
-                    		/>
+					<div className={ 'ystdb-base-control' }>
+						<div className="ystdb-base-control__label">{ _x( 'アイコン表示位置', 'ystandard-blocks' ) }</div>
+						<div className={ 'ystdb-icon-select__position' }>
+							<RadioControl
+								selected={ iconPosition }
+								options={ [
+									{ label: __( '左', 'ystandard-blocks' ), value: 'left' },
+									{ label: __( '右', 'ystandard-blocks' ), value: 'right' },
+								] }
+								onChange={ onChangePosition }
+							/>
+						</div>
 					</div>
-				</BaseControl>
 				) }
-				<BaseControl label={ iconBaseControlTitle }>
+				<div className={ 'ystdb-base-control' }>
+					<div className="ystdb-base-control__label">{ iconBaseControlTitle }</div>
 					<div className={ 'ystdb-icon-select__picker' }>
 						<FontIconPicker { ...pickerProps } />
 					</div>
-				</BaseControl>
-			</PanelBody>
+				</div>
+			</div>
 		);
 	}
 }
