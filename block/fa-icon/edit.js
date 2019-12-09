@@ -15,7 +15,6 @@ import {
 
 import {
 	Fragment,
-	useCallback,
 } from '@wordpress/element';
 
 import {
@@ -74,32 +73,6 @@ function faIcon( props ) {
 			[ iconSize ]: iconSize,
 			'fa-spin': animating === 'spin',
 		}
-	);
-
-	const onSetLinkRel = useCallback(
-		( value ) => {
-			setAttributes( { rel: value } );
-		},
-		[ setAttributes ]
-	);
-
-	const onToggleOpenInNewTab = useCallback(
-		( value ) => {
-			const newLinkTarget = value ? '_blank' : undefined;
-
-			let updatedRel = rel;
-			if ( newLinkTarget && ! rel ) {
-				updatedRel = NEW_TAB_REL;
-			} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
-				updatedRel = undefined;
-			}
-
-			setAttributes( {
-				linkTarget: newLinkTarget,
-				rel: updatedRel,
-			} );
-		},
-		[ rel, setAttributes ]
 	);
 
 	return (
@@ -161,13 +134,29 @@ function faIcon( props ) {
 				<PanelBody title={ __( 'Link settings' ) }>
 					<ToggleControl
 						label={ __( 'Open in new tab' ) }
-						onChange={ onToggleOpenInNewTab }
+						onChange={ ( value ) => {
+							const newLinkTarget = value ? '_blank' : undefined;
+
+							let updatedRel = rel;
+							if ( newLinkTarget && ! rel ) {
+								updatedRel = NEW_TAB_REL;
+							} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
+								updatedRel = undefined;
+							}
+
+							setAttributes( {
+								linkTarget: newLinkTarget,
+								rel: updatedRel,
+							} );
+						} }
 						checked={ linkTarget === '_blank' }
 					/>
 					<TextControl
 						label={ __( 'Link rel' ) }
 						value={ rel || '' }
-						onChange={ onSetLinkRel }
+						onChange={ ( value ) => {
+							setAttributes( { rel: value } );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>

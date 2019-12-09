@@ -16,7 +16,6 @@ import {
 
 import {
 	Fragment,
-	useCallback,
 } from '@wordpress/element';
 
 import {
@@ -105,32 +104,6 @@ function ysButton( props ) {
 		animationDuration: 'none' !== animationType && animationInterval ? `${ animationInterval }s` : undefined,
 	};
 
-	const onSetLinkRel = useCallback(
-		( value ) => {
-			setAttributes( { rel: value } );
-		},
-		[ setAttributes ]
-	);
-
-	const onToggleOpenInNewTab = useCallback(
-		( value ) => {
-			const newLinkTarget = value ? '_blank' : undefined;
-
-			let updatedRel = rel;
-			if ( newLinkTarget && ! rel ) {
-				updatedRel = NEW_TAB_REL;
-			} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
-				updatedRel = undefined;
-			}
-
-			setAttributes( {
-				linkTarget: newLinkTarget,
-				rel: updatedRel,
-			} );
-		},
-		[ rel, setAttributes ]
-	);
-
 	const maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
 	const maxWidthValue = '%' === maxUnit && 100 < maxWidth ? 100 : maxWidth;
 
@@ -176,7 +149,9 @@ function ysButton( props ) {
 						initialPosition={ INITIAL_BORDER_RADIUS_POSITION }
 						allowReset
 						onChange={ ( value ) => {
-							setAttributes( { borderRadius: value } );
+							setAttributes( {
+								borderRadius: ! value ? INITIAL_BORDER_RADIUS_POSITION : value,
+							} );
 						} }
 					/>
 				</PanelBody>
@@ -335,13 +310,27 @@ function ysButton( props ) {
 				<PanelBody title={ __( 'Link settings' ) }>
 					<ToggleControl
 						label={ __( 'Open in new tab' ) }
-						onChange={ onToggleOpenInNewTab }
+						onChange={ ( value ) => {
+							const newLinkTarget = value ? '_blank' : undefined;
+							let updatedRel = rel;
+							if ( newLinkTarget && ! rel ) {
+								updatedRel = NEW_TAB_REL;
+							} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
+								updatedRel = undefined;
+							}
+							setAttributes( {
+								linkTarget: newLinkTarget,
+								rel: updatedRel,
+							} );
+						} }
 						checked={ linkTarget === '_blank' }
 					/>
 					<TextControl
 						label={ __( 'Link rel' ) }
 						value={ rel || '' }
-						onChange={ onSetLinkRel }
+						onChange={ ( value ) => {
+							setAttributes( { rel: value } );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>
