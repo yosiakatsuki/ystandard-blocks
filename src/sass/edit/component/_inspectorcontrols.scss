@@ -31,15 +31,11 @@
   }
 }
 
-.ystdb-base-control {
-  margin: .5rem 0;
+.ystdb-inspector-controls__label {
+  margin: .5rem 0 .25rem;
 
-  .ystdb-base-control__dscr {
+  .ystdb-inspector-controls__dscr {
     font-size: .9em;
     color: $color__text-light;
   }
-}
-
-.ystdb-base-control__label {
-
 }
