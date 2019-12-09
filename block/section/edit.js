@@ -189,7 +189,7 @@ const sectionEdit = ( props ) => {
 				<div className="ystdb-inspectorcontrols">
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 						<BaseControl>
-							<div className="ystdb-base-control__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
+							<div className="ystdb-inspector-controls__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.margin.map( ( item ) => {
@@ -231,7 +231,7 @@ const sectionEdit = ( props ) => {
 							</p>
 						</BaseControl>
 						<BaseControl>
-							<div className="ystdb-base-control__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
+							<div className="ystdb-inspector-controls__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.padding.map( ( item ) => {

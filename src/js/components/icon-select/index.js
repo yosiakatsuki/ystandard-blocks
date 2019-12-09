@@ -3,9 +3,10 @@ import allIcons from './icons.json';
 import recommendIcons from './reccomend-icons.json';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
-import { __, _x } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import {
 	RadioControl,
+	BaseControl,
 } from '@wordpress/components';
 
 import {
@@ -24,7 +25,7 @@ class IconSelect extends Component {
 			customInfoStyle,
 		} = this.props;
 
-		const iconBaseControlTitle = iconControlTitle === undefined ? _x( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
+		const iconBaseControlTitle = iconControlTitle === undefined ? __( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
 
 		const icons = _.uniq( [ ...recommendIcons.icons, ...allIcons.icons ] );
 
@@ -45,8 +46,8 @@ class IconSelect extends Component {
 					<div style={ customInfoStyle }>{ customInfo }</div>
 				) }
 				{ ( !! onChangePosition &&
-					<div className={ 'ystdb-base-control' }>
-						<div className="ystdb-base-control__label">{ _x( 'アイコン表示位置', 'ystandard-blocks' ) }</div>
+					<BaseControl>
+						<div className="ystdb-inspector-controls__label">{ __( 'アイコン表示位置', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-icon-select__position' }>
 							<RadioControl
 								selected={ iconPosition }
@@ -57,14 +58,14 @@ class IconSelect extends Component {
 								onChange={ onChangePosition }
 							/>
 						</div>
-					</div>
+					</BaseControl>
 				) }
-				<div className={ 'ystdb-base-control' }>
-					<div className="ystdb-base-control__label">{ iconBaseControlTitle }</div>
+				<BaseControl>
+					<div className="ystdb-inspector-controls__label">{ iconBaseControlTitle }</div>
 					<div className={ 'ystdb-icon-select__picker' }>
 						<FontIconPicker { ...pickerProps } />
 					</div>
-				</div>
+				</BaseControl>
 			</div>
 		);
 	}

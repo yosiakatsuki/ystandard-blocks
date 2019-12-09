@@ -157,15 +157,14 @@ function ysButton( props ) {
 				</PanelBody>
 				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
 					<IconSelect
-						panelTitle={ __( '左アイコン', 'ystandard-blocks' ) }
-						iconControlTitle={ '' }
+						iconControlTitle={ __( '左アイコン', 'ystandard-blocks' ) }
 						selectedIcon={ iconLeft }
 						onClickIcon={ ( value ) => {
 							setAttributes( { iconLeft: value } );
 						} }
 					/>
 					<BaseControl>
-						<div className="ystdb-base-control__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
 							{ iconSize.map( ( item ) => {
 								return (
@@ -186,15 +185,14 @@ function ysButton( props ) {
 						</div>
 					</BaseControl>
 					<IconSelect
-						panelTitle={ __( '右アイコン', 'ystandard-blocks' ) }
-						iconControlTitle={ '' }
+						iconControlTitle={ __( '右アイコン', 'ystandard-blocks' ) }
 						selectedIcon={ iconRight }
 						onClickIcon={ ( value ) => {
 							setAttributes( { iconRight: value } );
 						} }
 					/>
 					<BaseControl>
-						<div className="ystdb-base-control__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
 							{ iconSize.map( ( item ) => {
 								return (
