@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { InnerBlocks, getColorClassName } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { shadow, backgroundColor, customBackgroundColor } = attributes;
+	const { shadow, backgroundColor, customBackgroundColor, paddingType } = attributes;
 
 	const backgroundClass = getColorClassName( 'background-color', backgroundColor );
 
@@ -13,6 +13,7 @@ export default function save( { attributes } ) {
 			'has-background': backgroundClass || customBackgroundColor,
 			[ backgroundClass ]: backgroundClass,
 			'has-shadow': shadow,
+			[ paddingType ]: paddingType,
 		}
 	);
 	const wrapperStyle = {

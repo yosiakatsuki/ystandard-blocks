@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 /**
  * attributes
  */
@@ -11,6 +13,10 @@ export const attributes = {
 	shadow: {
 		type: 'bool',
 	},
+	paddingType: {
+		type: 'string',
+		default: '',
+	},
 };
 
 export const supports = {
@@ -18,3 +24,17 @@ export const supports = {
 	className: false,
 };
 
+export const paddingTypes = [
+	{
+		value: '',
+		label: __( '内側余白なし' ),
+	},
+	{
+		value: 'is-padding-small',
+		label: __( '小' ),
+	},
+	{
+		value: 'is-padding-large',
+		label: __( '大' ),
+	},
+];

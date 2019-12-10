@@ -6,13 +6,14 @@ import {
 	withColors,
 	PanelColorSettings,
 } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { PanelBody, BaseControl, ToggleControl, Button } from '@wordpress/components';
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import {
 	Fragment,
 } from '@wordpress/element';
+import { paddingTypes } from './config';
 
 function ColumnEdit( {
 	attributes,
@@ -23,6 +24,7 @@ function ColumnEdit( {
 } ) {
 	const {
 		shadow,
+		paddingType,
 	} = attributes;
 
 	const classes = classnames(
@@ -31,6 +33,7 @@ function ColumnEdit( {
 			'has-background': backgroundColor.color,
 			[ backgroundColor.class ]: backgroundColor.class,
 			'has-shadow': shadow,
+			[ paddingType ]: paddingType,
 		}
 	);
 
@@ -50,6 +53,29 @@ function ColumnEdit( {
 					] }
 				>
 				</PanelColorSettings>
+				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
+					<BaseControl>
+						<span className={ `ystdb-info__small` }>カラム内側の余白を設定できます。</span>
+						<div className={ 'ystdb-btn-selector components-base-control' }>
+							{ paddingTypes.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isDefault
+										isPrimary={ paddingType === item.value }
+										onClick={ () => {
+											setAttributes( {
+												paddingType: item.value,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
+						</div>
+					</BaseControl>
+				</PanelBody>
 				<PanelBody title={ __( 'ボックス設定', 'ystandard-blocks' ) }>
 					<ToggleControl
 						label={ __( '影をつける', 'ystandard-blocks' ) }
