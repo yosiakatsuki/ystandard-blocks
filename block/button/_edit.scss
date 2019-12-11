@@ -4,6 +4,10 @@
   .ystdb-button__link-label {
     font-size: .8rem;
   }
+  .ystdb-button__icon--left,
+  .ystdb-button__icon--right {
+    line-height: inherit;
+  }
 
   .ystdb-button__link-container {
     margin-top: 1rem;
