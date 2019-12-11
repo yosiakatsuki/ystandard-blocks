@@ -90,7 +90,7 @@ function columns( {
 							max={ 6 }
 						/>
 						<RangeControl
-							label={ __( 'タブレット', 'ystandard-blocks' ) }
+							label={ __( 'モバイル', 'ystandard-blocks' ) }
 							beforeIcon={ 'smartphone' }
 							value={ colMobile }
 							onChange={ ( value ) => {
