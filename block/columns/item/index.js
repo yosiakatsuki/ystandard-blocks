@@ -15,6 +15,7 @@ export const settings = {
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
+	parent: [ 'ystdb/columns' ],
 	edit,
 	save,
 };
