@@ -4,12 +4,10 @@ import save from './save';
 import icon from './icon';
 import transforms from './transforms';
 import { attributes, supports } from './config';
-
+import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-export const name = 'ystdb/ys-btn';
-
-export const settings = {
+registerBlockType( 'ystdb/ys-btn', {
 	title: __( '[ys]カスタムボタン', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カスタムボタン', 'ystandard-blocks' ),
 	icon,
@@ -20,4 +18,4 @@ export const settings = {
 	edit,
 	save,
 	transforms,
-};
+} );

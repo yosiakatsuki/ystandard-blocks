@@ -3,12 +3,10 @@ import edit from './edit';
 import save from './save';
 import icon from './icons';
 import { attributes, supports } from './config';
-
+import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-export const name = 'ystdb/column';
-
-export const settings = {
+registerBlockType( 'ystdb/column', {
 	title: __( 'カラム', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カラムブロック', 'ystandard-blocks' ),
 	icon,
@@ -18,4 +16,4 @@ export const settings = {
 	parent: [ 'ystdb/columns' ],
 	edit,
 	save,
-};
+} );

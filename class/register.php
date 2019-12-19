@@ -13,67 +13,144 @@
 class Ystandard_Blocks_Register {
 
 	/**
+	 * 読み込みブロック一覧
+	 *
+	 * @var array
+	 */
+	private $blocks = [
+		'button'  => [
+			'name'    => 'ystdb/ys-btn',
+			'no-ystd' => true,
+		],
+		'columns' => [
+			'name'    => 'ystdb/columns',
+			'no-ystd' => true,
+		],
+		'column'  => [
+			'name'    => 'ystdb/column',
+			'no-ystd' => true,
+		],
+		'fa-icon' => [
+			'name'    => 'ystdb/fa-icon',
+			'no-ystd' => true,
+		],
+		'section' => [
+			'name'    => 'ystdb/section',
+			'no-ystd' => true,
+		],
+	];
+
+	private $dynamic_block = [
+		'button-link' => [
+			'name'    => 'ystdb/btn-link',
+			'no-ystd' => true,
+		],
+	];
+	/**
+	 * スタイル、フォーマット、コア拡張など
+	 * @var array
+	 */
+	private $block_editor_assets = [
+		'extend-core' => true,
+		'format'      => true,
+	];
+
+	/**
 	 * Ystandard_Blocks_Register constructor.
 	 */
 	function __construct() {
+		if ( is_admin() ) {
+			add_action( 'init', [ $this, 'register_block' ] );
+			add_action( 'init', [ $this, 'register_dynamic_block' ] );
+		}
+		add_action(
+			'enqueue_block_editor_assets',
+			[ $this, 'enqueue_block_editor_assets' ]
+		);
+	}
+
+	/**
+	 * ブロックの登録
+	 */
+	public function register_block() {
+
 		/**
-		 * ブロックの登録・有効化
+		 * 通常ブロック
 		 */
-		if ( Ystandard_Blocks::is_ystandard() ) {
-			add_action(
-				'enqueue_block_editor_assets',
-				[ $this, 'register_script' ]
+		foreach ( $this->blocks as $key => $value ) {
+			/**
+			 * 非yStandardの利用チェック
+			 */
+			if ( ! Ystandard_Blocks::is_ystandard() ) {
+				if ( ! $value['no-ystd'] ) {
+					continue;
+				}
+			}
+			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			$handle     = 'ystandard-blocks-' . $key;
+			wp_register_script(
+				$handle,
+				YSTDB_URL . 'js/' . $key . '.js',
+				$asset_file['dependencies'],
+				$asset_file['version']
 			);
-			add_action(
-				'init',
-				[ $this, 'register_dynamic_block' ]
-			);
-		} else {
-			add_action(
-				'enqueue_block_editor_assets',
-				[ $this, 'register_script_no_ystandard' ]
+			register_block_type(
+				$value['name'],
+				[ 'editor_script' => $handle ]
 			);
 		}
 
 	}
 
 	/**
-	 * ブロック用JS register
+	 * ブロックassets
 	 */
-	public function register_script() {
-		$asset_file = include( YSTDB_PATH . 'js/ystandard-blocks.asset.php' );
-
-		wp_enqueue_script(
-			'ystandard-blocks',
-			YSTDB_URL . 'js/ystandard-blocks.js',
-			$asset_file['dependencies'],
-			$asset_file['version']
-		);
-	}
-
-	/**
-	 * ブロック用JS register(非yStnadard環境)
-	 */
-	public function register_script_no_ystandard() {
-		$asset_file = include( YSTDB_PATH . 'js/ystandard-blocks-no-ystandard.asset.php' );
-
-		wp_enqueue_script(
-			'ystandard-blocks-no-ystandard',
-			YSTDB_URL . 'js/ystandard-blocks-no-ystandard.js',
-			$asset_file['dependencies'],
-			$asset_file['version']
-		);
+	public function enqueue_block_editor_assets() {
+		foreach ( $this->block_editor_assets as $key => $value ) {
+			/**
+			 * 非yStandardの利用チェック
+			 */
+			if ( ! Ystandard_Blocks::is_ystandard() ) {
+				if ( ! $value ) {
+					continue;
+				}
+			}
+			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			wp_enqueue_script(
+				'ystandard-blocks-' . $key,
+				YSTDB_URL . 'js/' . $key . '.js',
+				$asset_file['dependencies'],
+				$asset_file['version']
+			);
+		}
 	}
 
 	/**
 	 * ダイナミックブロック登録
 	 */
 	public function register_dynamic_block() {
-		$files = [
-			YSTDB_PATH . 'block/button-link/block.php',
-		];
-		foreach ( $files as $file ) {
-			require_once( $file );
+
+		/**
+		 * ダイナミックブロック
+		 */
+		foreach ( $this->dynamic_block as $key => $value ) {
+			/**
+			 * 非yStandardの利用チェック
+			 */
+			if ( ! Ystandard_Blocks::is_ystandard() ) {
+				if ( ! $value['no-ystd'] ) {
+					continue;
+				}
+			}
+			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			$handle     = 'ystandard-blocks-' . $key;
+			wp_register_script(
+				$handle,
+				YSTDB_URL . 'js/' . $key . '.js',
+				$asset_file['dependencies'],
+				$asset_file['version']
+			);
+			require_once( YSTDB_PATH . 'block/' . $key . '/block.php' );
 		}
 	}
 }

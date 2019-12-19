@@ -15,7 +15,7 @@ class Ystandard_Blocks_Afi_button extends Ystandard_Dynamic_block {
 		register_block_type(
 			'ystdb/btn-link',
 			[
-				'editor_script'   => 'ystandard-blocks',
+				'editor_script'   => 'ystandard-blocks-button-link',
 				'attributes'      => [
 					'content'               => [
 						'type' => "string"

@@ -32,6 +32,7 @@ class Ystandard_Blocks_Enqueue {
 			'enqueue_block_editor_assets',
 			[ $this, 'enqueue_editor_styles' ]
 		);
+		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 	}
 
 	/**
@@ -44,12 +45,10 @@ class Ystandard_Blocks_Enqueue {
 			[],
 			YSTDB_VERSION
 		);
-		if ( Ystandard_Blocks::is_ystandard() ) {
-			wp_add_inline_style(
-				'ystandard-blocks',
-				Ystandard_Blocks_Customizer::get_inline_style_css()
-			);
-		}
+		wp_add_inline_style(
+			'ystandard-blocks',
+			Ystandard_Blocks_Customizer::get_inline_style_css()
+		);
 	}
 
 	/**
@@ -122,6 +121,32 @@ class Ystandard_Blocks_Enqueue {
 			$inline_css
 		);
 
+	}
+
+	/**
+	 * JavaScript
+	 *
+	 * @param string $tag    The `<script>` tag for the enqueued script.
+	 * @param string $handle The script's registered handle.
+	 * @param string $src    The script's source URL.
+	 *
+	 * @return string
+	 */
+	public function script_loader_tag( $tag, $handle, $src ) {
+		if ( is_admin() ) {
+			return $tag;
+		}
+		foreach ( [ 'async', 'defer' ] as $attr ) {
+			if ( ! wp_scripts()->get_data( $handle, $attr ) ) {
+				continue;
+			}
+			if ( ! preg_match( ":\s$attr(=|>|\s):", $tag ) ) {
+				$tag = preg_replace( ':(?=></script>):', " $attr", $tag, 1 );
+			}
+			break;
+		}
+
+		return $tag;
 	}
 
 }

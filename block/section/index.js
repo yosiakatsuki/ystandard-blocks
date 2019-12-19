@@ -3,12 +3,10 @@ import edit from './edit';
 import save from './save';
 import { attributes, supports } from './config';
 import { deprecated } from './_deprecated';
-
+import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-export const name = 'ystdb/section';
-
-export const settings = {
+registerBlockType( 'ystdb/section', {
 	title: __( '[ys]セクション', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks汎用セクションブロック', 'ystandard-blocks' ),
 	icon: {
@@ -22,4 +20,4 @@ export const settings = {
 	edit,
 	save,
 	deprecated,
-};
+} );
