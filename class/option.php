@@ -12,9 +12,17 @@ class Ystandard_Blocks_Options {
 	const OPTION_PREFIX = 'ystdb_';
 
 	public function __construct() {
-
+		if ( ! Ystandard_Blocks::is_ystandard() ) {
+			add_action( 'admin_menu', [ $this, 'blocks_option' ] );
+			add_action( 'admin_init', [ $this, 'register_option' ] );
+		}
 	}
 
+	/**
+	 * デフォルト設定
+	 *
+	 * @return array
+	 */
 	public static function get_default_options() {
 		return [
 			'inline_style_fz_1'          => 100,
@@ -32,6 +40,8 @@ class Ystandard_Blocks_Options {
 			'inline_style_mark_color_3'  => '#F5EC84',
 			'inline_style_mark_weight_3' => 25,
 			'inline_style_type_3'        => 'normal',
+			'hide_no_ystandard_notice'   => false,
+			'load_font_awesome'          => true,
 		];
 	}
 
@@ -63,6 +73,22 @@ class Ystandard_Blocks_Options {
 	}
 
 	/**
+	 * 設定取得(Bool)
+	 *
+	 * @param string $name 設定名.
+	 *
+	 * @return bool
+	 */
+	public static function get_option_by_bool( $name ) {
+		$option = self::get_option( $name );
+		if ( 1 === $option || '1' === $option || true === $option || 'true' === $option ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * デフォルト値取得
 	 *
 	 * @param string $name 設定名.
@@ -89,4 +115,58 @@ class Ystandard_Blocks_Options {
 			hexdec( substr( $color, 5, 2 ) )
 		];
 	}
+
+	/**
+	 * オプションページ追加
+	 */
+	public function blocks_option() {
+		add_options_page(
+			'yStandard blocks 設定',
+			'yStandard blocks 設定',
+			'manage_options',
+			'ystandard-blocks-option',
+			[ $this, 'options_page' ]
+		);
+	}
+
+	public function register_option() {
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'hide_no_ystandard_notice' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'load_font_awesome' ) );
+	}
+
+	public function options_page() {
+		?>
+		<div class="wrap">
+			<h2>yStandard blocks 設定</h2>
+			<form method="post" action="options.php">
+				<?php
+				settings_fields( 'ystandard-blocks-group' );
+				do_settings_sections( 'ystandard-blocks-group' );
+				?>
+				<table class="form-table">
+					<tr>
+						<th scope="row">警告非表示</th>
+						<td>
+							<label>
+								<input id="hide_no_ystandard_notice" type="checkbox" name="<?php echo self::get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'hide_no_ystandard_notice' ) ) ?>>yStnadard以外のテーマ利用についての警告を非表示にする
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Font Awesome</th>
+						<td>
+							<label>
+								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ) ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
+							</label>
+							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p>
+						</td>
+					</tr>
+				</table>
+				<?php submit_button( '更新' ); ?>
+			</form>
+		</div>
+		<?php
+	}
 }
+
+new Ystandard_Blocks_Options();

@@ -127,11 +127,31 @@ class Ystandard_Blocks {
 	 * テーマ確認案内
 	 */
 	public function ystandard_notice() {
+		if ( Ystandard_Blocks_Options::get_option_by_bool( 'hide_no_ystandard_notice' ) ) {
+			return;
+		}
 		?>
 		<div class="notice notice-warning is-dismissible">
 			<p>このサイトではyStandardが有効化されていません。</p>
 			<p>yStandard Blocksのブロックのデザインが崩れたり、機能によっては正常に動作しない恐れがあります。</p>
+			<p>※この警告の非表示設定などは 「<a href="<?php echo admin_url( 'options-general.php?page=ystandard-blocks-option' ); ?>">yStandard Blocks設定</a>」 ページから設定できます。</p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * アンインストール時の処理
+	 */
+	public static function uninstall_ystandard_blocks() {
+		/**
+		 * 設定削除
+		 */
+		if ( class_exists( 'Ystandard_Blocks_Options' ) ) {
+			require_once YSTDB_PATH . 'class/option.php';
+		}
+		$options = Ystandard_Blocks_Options::get_default_options();
+		foreach ( $options as $key => $value ) {
+			delete_option( Ystandard_Blocks_Options::get_option_name( $key ) );
+		}
 	}
 }

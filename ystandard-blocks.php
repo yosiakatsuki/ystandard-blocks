@@ -31,6 +31,13 @@ defined( 'ABSPATH' ) || die();
 define( 'YSTDB_VERSION', '0.5.2' );
 define( 'YSTDB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'YSTDB_URL', plugin_dir_url( __FILE__ ) );
+/**
+ * アンインストール時の処理
+ */
+register_uninstall_hook(
+	__FILE__,
+	[ 'Ystandard_Blocks', 'uninstall_ystandard_blocks' ]
+);
 
 if ( ! function_exists( 'register_block_type' ) ) {
 	return;
@@ -39,3 +46,5 @@ if ( ! function_exists( 'register_block_type' ) ) {
 require_once YSTDB_PATH . 'class/main.php';
 
 new Ystandard_Blocks();
+
+
