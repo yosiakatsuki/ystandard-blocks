@@ -18,11 +18,6 @@ cache:
     - vendor
     - "$HOME/.composer/cache"
 before_install:
-  - openssl aes-256-cbc -K $encrypted_18a4f32e6c4a_key -iv $encrypted_18a4f32e6c4a_iv
-    -in .travis/github_deploy_key.enc -out .travis/github_deploy_key -d
-  - mv .travis/github_deploy_key ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - nvm install 8
   - nvm use 8
   - node --version
