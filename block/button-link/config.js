@@ -5,40 +5,67 @@ export const attributes = {
 	content: {
 		type: 'string',
 	},
-	backgroundColor: {
+	borderRadius: {
+		type: 'number',
+		default: 4,
+	},
+	iconLeft: {
 		type: 'string',
 	},
-	textColor: {
+	iconSizeLeft: {
+		type: 'string',
+		default: '',
+	},
+	iconRight: {
+		type: 'string',
+	},
+	iconSizeRight: {
+		type: 'string',
+		default: '',
+	},
+	align: {
+		type: 'string',
+	},
+	backgroundColor: {
 		type: 'string',
 	},
 	customBackgroundColor: {
 		type: 'string',
 	},
+	textColor: {
+		type: 'string',
+	},
 	customTextColor: {
 		type: 'string',
-	},
-	icon: {
-		type: 'string',
-	},
-	align: {
-		type: 'string',
-	},
-	buttonType: {
-		type: 'string',
-	},
-	iconPosition: {
-		type: 'string',
-		default: 'right',
-	},
-	buttonSize: {
-		type: 'string',
-		default: '',
 	},
 	fontSize: {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'integer',
+		type: 'string',
+	},
+	paddingType: {
+		type: 'string',
+		default: '',
+	},
+	buttonType: {
+		type: 'string',
+	},
+	maxWidth: {
+		type: 'number',
+		default: 100,
+	},
+	maxUnit: {
+		type: 'string',
+		default: '%',
+	},
+	animationType: {
+		type: 'string',
+		default: 'none',
+	},
+	animationInterval: {
+		type: 'number',
+		default: 5,
 	},
 };
 /**

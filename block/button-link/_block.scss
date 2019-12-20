@@ -1,24 +1,34 @@
-.wp-block-button {
-  &.-full {
-    .ystdb-btn-link {
-      display: block;
-    }
-  }
-
-  .ystdb-btn-link a {
-    display: block;
-    background-color: transparent;
-    border-color: inherit;
-    color: inherit;
-  }
-}
-
 .ystdb-btn-link {
   position: relative;
-  display: inline-block;
-  border-radius: 4px;
+
+  a {
+	display: block;
+	background-color: transparent;
+	color: inherit;
+	text-decoration: none;
+	transition-duration: unset;
+
+	&:hover {
+	  color: inherit;
+	}
+	&::before {
+	  content: "";
+	  width: 100%;
+	  height: 100%;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  z-index: 2;
+	}
+  }
 }
 
-.ystdb-btn-link img {
+.ystdb-btn-link img:not(.is-show-image) {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
 }

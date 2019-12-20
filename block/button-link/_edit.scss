@@ -1,26 +1,7 @@
+@import "block";
+
 .ystdb-btn-link__preview {
   & > div:first-child .wp-block-button {
     margin-top: 0;
-  }
-
-  .wp-block-button {
-    border-radius: 4px;
-
-    .wp-block-button__link {
-      padding: 0;
-      background-color: transparent;
-
-      a {
-        background-color: transparent;
-        color: inherit;
-      }
-    }
-
-    &.-lg,
-    &.-sm {
-      .wp-block-button__link {
-        padding: 0;
-      }
-    }
   }
 }

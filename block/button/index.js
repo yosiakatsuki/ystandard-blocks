@@ -3,6 +3,7 @@ import edit from './edit';
 import save from './save';
 import icon from './icon';
 import transforms from './transforms';
+import deprecated from './deprecated';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
@@ -18,4 +19,5 @@ registerBlockType( 'ystdb/ys-btn', {
 	edit,
 	save,
 	transforms,
+	deprecated,
 } );

@@ -58,7 +58,7 @@ export default function save( props ) {
 			'no-border-radius': borderRadius === 0,
 			[ paddingType ]: paddingType,
 			[ buttonType ]: buttonType,
-			'has-animation': animationType,
+			'has-animation': animationType && 'none' !== animationType,
 			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
 		}
 	);

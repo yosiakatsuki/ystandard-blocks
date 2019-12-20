@@ -1,5 +1,3 @@
-import { __ } from '@wordpress/i18n';
-
 /**
  * attributes
  */
@@ -86,41 +84,3 @@ export const supports = {
 	align: false,
 	className: false,
 };
-
-/**
- * アイコンサイズ
- */
-export const iconSize = [
-	{
-		value: 'fa-xs',
-		label: __( '小' ),
-	},
-	{
-		value: '',
-		label: __( '中' ),
-	},
-	{
-		value: 'fa-2x',
-		label: __( '大' ),
-	},
-];
-
-export const paddingTypes = [
-	{
-		value: 'is-small',
-		label: __( '小' ),
-	},
-	{
-		value: '',
-		label: __( '中' ),
-	},
-	{
-		value: 'is-large',
-		label: __( '大' ),
-	},
-];
-
-export const animationTypes = [
-	{ label: __( 'なし', 'ystandard-blocks' ), value: 'none' },
-	{ label: __( 'キラキラ', 'ystandard-blocks' ), value: 'shine' },
-];

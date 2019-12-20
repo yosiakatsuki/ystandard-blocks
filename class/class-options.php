@@ -50,6 +50,7 @@ class Options {
 			'inline_style_type_3'        => 'normal',
 			'hide_no_ystandard_notice'   => false,
 			'load_font_awesome'          => true,
+			'add_editor_color_and_size'  => true,
 		];
 	}
 
@@ -143,6 +144,7 @@ class Options {
 	public function register_option() {
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'hide_no_ystandard_notice' ) );
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'load_font_awesome' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_editor_color_and_size' ) );
 	}
 
 	/**
@@ -173,6 +175,15 @@ class Options {
 								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
 							</label>
 							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">編集画面カラーパレット・フォントサイズ</th>
+						<td>
+							<label>
+								<input id="add_editor_color_and_size" type="checkbox" name="<?php echo self::get_option_name( 'add_editor_color_and_size' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_editor_color_and_size' ) ); ?>>編集画面にカラーパレット・文字サイズ用CSSを読み込む
+							</label>
+							<p>※yStandard Blocksの一部ブロックで編集画面にカラーパレット・文字サイズ用CSSが必要になります。</p>
 						</td>
 					</tr>
 				</table>

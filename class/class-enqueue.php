@@ -116,6 +116,12 @@ class Enqueue {
 			 * ボタン用CSS追加
 			 */
 			$inline_css .= $customizer->get_editor_button_css();
+		} else {
+			if ( Options::get_option_by_bool( 'add_editor_color_and_size' ) ) {
+				$inline_css .= $this->get_color_css( '#editor' );
+				$inline_css .= $this->get_font_size_css( '#editor' );
+			}
+
 		}
 		wp_enqueue_style(
 			'ystandard-blocks-edit',
@@ -154,6 +160,61 @@ class Enqueue {
 		}
 
 		return $tag;
+	}
+
+	/**
+	 * カラーパレットのCSS取得
+	 *
+	 * @param string $prefix プレフィックス.
+	 *
+	 * @return string
+	 */
+	private function get_color_css( $prefix = '' ) {
+		$palette = get_theme_support( 'editor-color-palette' );
+		$css     = '';
+		foreach ( $palette[0] as $value ) {
+			/**
+			 * Background-color
+			 */
+			$css .= $prefix . '
+			.has-' . $value['slug'] . '-background-color{
+				background-color:' . $value['color'] . ';
+				border-color:' . $value['color'] . ';
+			}';
+			/**
+			 * Text Color
+			 */
+			$css .= $prefix . '
+			.has-' . $value['slug'] . '-color,
+			.has-' . $value['slug'] . '-color:hover{
+				color:' . $value['color'] . ';
+			}';
+		}
+
+		return $css;
+	}
+
+	/**
+	 * フォントサイズ
+	 *
+	 * @param string $prefix プレフィックス.
+	 *
+	 * @return string
+	 */
+	private function get_font_size_css( $prefix = '' ) {
+		$palette = get_theme_support( 'editor-font-sizes' );
+		$css     = '';
+		$default = 16;
+		foreach ( $palette[0] as $value ) {
+			$fz   = ( $value['size'] / $default );
+			$slug = $value['slug'];
+			/**
+			 * CSS作成
+			 */
+			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $fz . 'em;}';
+		}
+
+		return $css;
 	}
 
 }

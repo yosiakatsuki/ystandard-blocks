@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import IconSelect from '../../src/js/components/icon-select/index';
-import { iconSize, paddingTypes, animationTypes } from './config';
+import { ystdbConfig } from '../../src/js/config/config';
 
 import {
 	RichText,
@@ -33,11 +33,6 @@ import {
 } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
-
-const NEW_TAB_REL = 'noreferrer noopener';
-const MIN_BORDER_RADIUS_VALUE = 0;
-const MAX_BORDER_RADIUS_VALUE = 50;
-const INITIAL_BORDER_RADIUS_POSITION = 4;
 
 function ysButton( props ) {
 	const {
@@ -144,13 +139,13 @@ function ysButton( props ) {
 					<RangeControl
 						value={ borderRadius }
 						label={ __( '枠線の角丸', 'ystandard-blocks' ) }
-						min={ MIN_BORDER_RADIUS_VALUE }
-						max={ MAX_BORDER_RADIUS_VALUE }
-						initialPosition={ INITIAL_BORDER_RADIUS_POSITION }
+						min={ ystdbConfig.button.borderRadiusMin }
+						max={ ystdbConfig.button.borderRadiusMax }
+						initialPosition={ ystdbConfig.button.borderRadiusInitialPosition }
 						allowReset
 						onChange={ ( value ) => {
 							setAttributes( {
-								borderRadius: ! value ? INITIAL_BORDER_RADIUS_POSITION : value,
+								borderRadius: ! value ? ystdbConfig.button.borderRadiusInitialPosition : value,
 							} );
 						} }
 					/>
@@ -166,7 +161,7 @@ function ysButton( props ) {
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
-							{ iconSize.map( ( item ) => {
+							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
@@ -194,7 +189,7 @@ function ysButton( props ) {
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
-							{ iconSize.map( ( item ) => {
+							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
@@ -229,7 +224,7 @@ function ysButton( props ) {
 					<BaseControl>
 						<span className={ `ystdb-info__small` }>ボタン内側の余白を設定できます。</span>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
-							{ paddingTypes.map( ( item ) => {
+							{ ystdbConfig.button.paddingTypes.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
@@ -287,7 +282,7 @@ function ysButton( props ) {
 						<RadioControl
 							label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
 							selected={ animationType }
-							options={ animationTypes }
+							options={ ystdbConfig.button.animationTypes }
 							onChange={ ( option ) => {
 								setAttributes( { animationType: option } );
 							} }
@@ -312,8 +307,8 @@ function ysButton( props ) {
 							const newLinkTarget = value ? '_blank' : undefined;
 							let updatedRel = rel;
 							if ( newLinkTarget && ! rel ) {
-								updatedRel = NEW_TAB_REL;
-							} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
+								updatedRel = ystdbConfig.button.newTabRel;
+							} else if ( ! newLinkTarget && rel === ystdbConfig.button.newTabRel ) {
 								updatedRel = undefined;
 							}
 							setAttributes( {
