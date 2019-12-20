@@ -12,4 +12,5 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/tests/*.php</exclude-pattern>
     <exclude-pattern>*/library/*</exclude-pattern>
+    <exclude-pattern>*/js/*</exclude-pattern>
 </ruleset>
