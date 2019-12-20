@@ -7,12 +7,20 @@
  * @license GPL-2.0+
  */
 
-class Ystandard_Blocks_Options {
+namespace ystandard_blocks;
+
+/**
+ * Class Options
+ */
+class Options {
 
 	const OPTION_PREFIX = 'ystdb_';
 
+	/**
+	 * Options constructor.
+	 */
 	public function __construct() {
-		if ( ! Ystandard_Blocks::is_ystandard() ) {
+		if ( ! Main::is_ystandard() ) {
 			add_action( 'admin_menu', [ $this, 'blocks_option' ] );
 			add_action( 'admin_init', [ $this, 'register_option' ] );
 		}
@@ -112,7 +120,7 @@ class Ystandard_Blocks_Options {
 		return [
 			hexdec( substr( $color, 1, 2 ) ),
 			hexdec( substr( $color, 3, 2 ) ),
-			hexdec( substr( $color, 5, 2 ) )
+			hexdec( substr( $color, 5, 2 ) ),
 		];
 	}
 
@@ -129,11 +137,17 @@ class Ystandard_Blocks_Options {
 		);
 	}
 
+	/**
+	 * オプションの準備
+	 */
 	public function register_option() {
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'hide_no_ystandard_notice' ) );
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'load_font_awesome' ) );
 	}
 
+	/**
+	 * 非yStandard用オプションページ作成
+	 */
 	public function options_page() {
 		?>
 		<div class="wrap">
@@ -148,7 +162,7 @@ class Ystandard_Blocks_Options {
 						<th scope="row">警告非表示</th>
 						<td>
 							<label>
-								<input id="hide_no_ystandard_notice" type="checkbox" name="<?php echo self::get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'hide_no_ystandard_notice' ) ) ?>>yStnadard以外のテーマ利用についての警告を非表示にする
+								<input id="hide_no_ystandard_notice" type="checkbox" name="<?php echo self::get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'hide_no_ystandard_notice' ) ); ?>>yStnadard以外のテーマ利用についての警告を非表示にする
 							</label>
 						</td>
 					</tr>
@@ -156,7 +170,7 @@ class Ystandard_Blocks_Options {
 						<th scope="row">Font Awesome</th>
 						<td>
 							<label>
-								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ) ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
+								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
 							</label>
 							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p>
 						</td>
@@ -169,4 +183,4 @@ class Ystandard_Blocks_Options {
 	}
 }
 
-new Ystandard_Blocks_Options();
+new Options();

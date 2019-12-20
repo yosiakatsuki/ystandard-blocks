@@ -10,6 +10,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: ystandard-blocks
  * Domain Path: languages
+ *
+ * @package yStandard_blocks
  */
 
 /*
@@ -36,15 +38,14 @@ define( 'YSTDB_URL', plugin_dir_url( __FILE__ ) );
  */
 register_uninstall_hook(
 	__FILE__,
-	[ 'Ystandard_Blocks', 'uninstall_ystandard_blocks' ]
+	[ 'ystandard_blocks\Main', 'uninstall_ystandard_blocks' ]
 );
 
 if ( ! function_exists( 'register_block_type' ) ) {
 	return;
 }
 
-require_once YSTDB_PATH . 'class/main.php';
+require_once YSTDB_PATH . 'class/class-main.php';
 
-new Ystandard_Blocks();
-
+new ystandard_blocks\Main();
 

@@ -7,15 +7,17 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard_blocks;
+
 /**
  * Class Ystandard_Blocks_Enqueue
  */
-class Ystandard_Blocks_Enqueue {
+class Enqueue {
 	/**
 	 * Ystandard_Blocks_Enqueue constructor.
 	 */
 	function __construct() {
-		if ( Ystandard_Blocks::is_ystandard() ) {
+		if ( Main::is_ystandard() ) {
 			add_action(
 				'wp_enqueue_scripts',
 				[ $this, 'enqueue_scripts' ],
@@ -47,7 +49,7 @@ class Ystandard_Blocks_Enqueue {
 		);
 		wp_add_inline_style(
 			'ystandard-blocks',
-			Ystandard_Blocks_Customizer::get_inline_style_css()
+			Customizer::get_inline_style_css()
 		);
 	}
 
@@ -61,7 +63,7 @@ class Ystandard_Blocks_Enqueue {
 			[],
 			YSTDB_VERSION
 		);
-		if ( Ystandard_Blocks_Options::get_option_by_bool( 'load_font_awesome' ) ) {
+		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
 			wp_enqueue_script(
 				'font-awesome',
 				YSTDB_URL . 'library/fontawesome/js/all.js',
@@ -103,13 +105,16 @@ class Ystandard_Blocks_Enqueue {
 		/**
 		 * エディタ用CSS
 		 */
-		$customizer = new Ystandard_Blocks_Customizer();
+		$customizer = new Customizer();
 		$css_file   = 'css/ystandard-blocks-edit-no-ystandard.css';
 		$inline_css = $customizer->get_inline_style_css(
 			'.editor-styles-wrapper'
 		);
-		if ( Ystandard_Blocks::is_ystandard() ) {
-			$css_file   = 'css/ystandard-blocks-edit.css';
+		if ( Main::is_ystandard() ) {
+			$css_file = 'css/ystandard-blocks-edit.css';
+			/**
+			 * ボタン用CSS追加
+			 */
 			$inline_css .= $customizer->get_editor_button_css();
 		}
 		wp_enqueue_style(
@@ -153,4 +158,4 @@ class Ystandard_Blocks_Enqueue {
 
 }
 
-new Ystandard_Blocks_Enqueue();
+new Enqueue();

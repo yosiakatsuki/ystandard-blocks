@@ -5,12 +5,7 @@ const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
 const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
-const webpack = require( 'webpack' );
-const webpackStream = require( 'webpack-stream' );
 const zip = require( 'gulp-zip' );
-
-// const webpackConfigApp = require("./ystandard-blocks-app-webpack.config.js");
-
 
 const postcssPlugins = [
 	autoprefixer( { overrideBrowserslist: [ 'last 2 version, not ie < 11' ] } ),
@@ -28,12 +23,6 @@ gulp.task( 'sass', () => {
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( gulp.dest( './css' ) );
 } );
-
-//
-// gulp.task('js:block-app', () => {
-// 	return webpackStream(webpackConfigApp, webpack)
-// 		.pipe(gulp.dest('./js'));
-// });
 
 /**
  * Zip
@@ -74,7 +63,6 @@ gulp.task( 'zip', function () {
 gulp.task( 'watch', () => {
 	gulp.watch( './src/sass/**/*.scss', gulp.task( 'sass' ) );
 	gulp.watch( './block/**/*.scss', gulp.task( 'sass' ) );
-	// gulp.watch('./block/**/app*.js', gulp.task('js:block-app'));
 } );
 
 /**

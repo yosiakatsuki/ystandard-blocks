@@ -7,13 +7,15 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard_blocks;
+
 /**
- * Class Ystandard_Blocks_Customizer
+ * Class Customizer
  */
-class Ystandard_Blocks_Customizer {
+class Customizer {
 
 	/**
-	 * Ystandard_Blocks_Customizer constructor.
+	 * Customizer constructor.
 	 */
 	public function __construct() {
 
@@ -48,7 +50,10 @@ class Ystandard_Blocks_Customizer {
 			 */
 			if ( 0 < $option['mark_weight'] ) {
 				$weight = ( 100 - $option['mark_weight'] ) . '%';
-				$style  .= sprintf(
+				/**
+				 * CSS結合
+				 */
+				$style .= sprintf(
 					'background: linear-gradient(transparent %s, rgba(%s, 0.5) %s);background-position-y: -0.2em;',
 					$weight,
 					implode( ',', $option['mark_color'] ),
@@ -115,7 +120,10 @@ class Ystandard_Blocks_Customizer {
 			 */
 			if ( 0 < $option['mark_weight'] ) {
 				$weight = ( 100 - $option['mark_weight'] ) . '%';
-				$style  .= sprintf(
+				/**
+				 * 結合
+				 */
+				$style .= sprintf(
 					'background: linear-gradient(transparent %s, rgba(%s, 0.5) %s);background-position-y: -0.2em;',
 					$weight,
 					implode( ',', $option['mark_color'] ),
@@ -150,27 +158,27 @@ class Ystandard_Blocks_Customizer {
 		/**
 		 * 文字拡大率
 		 */
-		$fz = Ystandard_Blocks_Options::get_option( 'inline_style_fz_' . $index );
+		$fz = Options::get_option( 'inline_style_fz_' . $index );
 		$fz = ( $fz / 100 );
 		/**
 		 * 文字色
 		 */
-		$color   = Ystandard_Blocks_Options::get_option( 'inline_style_color_' . $index );
-		$default = Ystandard_Blocks_Options::get_default_option( 'inline_style_color_' . $index );
+		$color   = Options::get_option( 'inline_style_color_' . $index );
+		$default = Options::get_default_option( 'inline_style_color_' . $index );
 		if ( $default === $color ) {
 			$color = '';
 		}
 		/**
 		 * マーカー
 		 */
-		$mark_weight = Ystandard_Blocks_Options::get_option( 'inline_style_mark_weight_' . $index );
-		$mark_color  = Ystandard_Blocks_Options::hex_2_rgb(
-			Ystandard_Blocks_Options::get_option( 'inline_style_mark_color_' . $index )
+		$mark_weight = Options::get_option( 'inline_style_mark_weight_' . $index );
+		$mark_color  = Options::hex_2_rgb(
+			Options::get_option( 'inline_style_mark_color_' . $index )
 		);
 		/**
 		 * タイプ
 		 */
-		$type = Ystandard_Blocks_Options::get_option( 'inline_style_type_' . $index );
+		$type = Options::get_option( 'inline_style_type_' . $index );
 
 		return [
 			'fz'          => $fz,
@@ -189,7 +197,7 @@ class Ystandard_Blocks_Customizer {
 	 * @return WP_Customize_Manager
 	 */
 	public static function ystdb_customize_register( $wp_customize ) {
-		$ys_customizer = new YS_Customizer( $wp_customize );
+		$ys_customizer = new \YS_Customizer( $wp_customize );
 		/**
 		 * セクション追加
 		 */
@@ -201,7 +209,7 @@ class Ystandard_Blocks_Customizer {
 				'description' => 'yStandard Blocks: インライン装飾の設定<br><br><strong>※設定後再読み込みするとプレビュー画面に反映されます。</strong><br><br>',
 			]
 		);
-		$ystdb_opt = new Ystandard_Blocks_Options();
+		$ystdb_opt = new Options();
 		for ( $i = 1; $i <= 3; $i ++ ) {
 			/**
 			 * ラベル

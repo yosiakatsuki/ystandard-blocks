@@ -7,10 +7,12 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard_blocks;
+
 /**
- * Class Ystandard_Blocks_Register
+ * Class Register
  */
-class Ystandard_Blocks_Register {
+class Register {
 
 	/**
 	 * 読み込みブロック一覧
@@ -40,6 +42,11 @@ class Ystandard_Blocks_Register {
 		],
 	];
 
+	/**
+	 * ダイナミックブロック一覧
+	 *
+	 * @var array
+	 */
 	private $dynamic_block = [
 		'button-link' => [
 			'name'    => 'ystdb/btn-link',
@@ -48,6 +55,7 @@ class Ystandard_Blocks_Register {
 	];
 	/**
 	 * スタイル、フォーマット、コア拡張など
+	 *
 	 * @var array
 	 */
 	private $block_editor_assets = [
@@ -56,13 +64,13 @@ class Ystandard_Blocks_Register {
 	];
 
 	/**
-	 * Ystandard_Blocks_Register constructor.
+	 * Register constructor.
 	 */
 	function __construct() {
 		if ( is_admin() ) {
 			add_action( 'init', [ $this, 'register_block' ] );
-			add_action( 'init', [ $this, 'register_dynamic_block' ] );
 		}
+		add_action( 'init', [ $this, 'register_dynamic_block' ] );
 		add_action(
 			'enqueue_block_editor_assets',
 			[ $this, 'enqueue_block_editor_assets' ]
@@ -81,7 +89,7 @@ class Ystandard_Blocks_Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Ystandard_Blocks::is_ystandard() ) {
+			if ( ! Main::is_ystandard() ) {
 				if ( ! $value['no-ystd'] ) {
 					continue;
 				}
@@ -110,7 +118,7 @@ class Ystandard_Blocks_Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Ystandard_Blocks::is_ystandard() ) {
+			if ( ! Main::is_ystandard() ) {
 				if ( ! $value ) {
 					continue;
 				}
@@ -137,7 +145,7 @@ class Ystandard_Blocks_Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Ystandard_Blocks::is_ystandard() ) {
+			if ( ! Main::is_ystandard() ) {
 				if ( ! $value['no-ystd'] ) {
 					continue;
 				}
@@ -155,4 +163,4 @@ class Ystandard_Blocks_Register {
 	}
 }
 
-new Ystandard_Blocks_Register();
+new Register();

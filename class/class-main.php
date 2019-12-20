@@ -7,10 +7,12 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard_blocks;
+
 /**
- * Class Ystandard_Blocks
+ * Class Main
  */
-class Ystandard_Blocks {
+class Main {
 
 	/**
 	 * 読み込むファイル群
@@ -18,7 +20,7 @@ class Ystandard_Blocks {
 	const YSTDB_CLASS_PATH = YSTDB_PATH . 'class/';
 
 	/**
-	 * Ystandard_Blocks constructor.
+	 * Main constructor.
 	 */
 	public function __construct() {
 		/**
@@ -33,18 +35,19 @@ class Ystandard_Blocks {
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
 
 		if ( is_admin() ) {
-			if ( ! $this->is_ystandard() ) {
+			if ( ! self::is_ystandard() ) {
 				add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 			}
 			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
 		}
+
 		/**
 		 * カスタマイザー追加
 		 */
-		if ( Ystandard_Blocks::is_ystandard() ) {
+		if ( self::is_ystandard() ) {
 			add_filter(
 				'ys_customizer_add_extension',
-				[ 'Ystandard_Blocks_Customizer', 'ystdb_customize_register' ],
+				[ '\ystandard_blocks\Customizer', 'ystdb_customize_register' ],
 				11
 			);
 		}
@@ -64,11 +67,11 @@ class Ystandard_Blocks {
 	 */
 	private function require() {
 		$files = [
-			self::YSTDB_CLASS_PATH . 'dynamic_block.php',
-			self::YSTDB_CLASS_PATH . 'register.php',
-			self::YSTDB_CLASS_PATH . 'enqueue.php',
-			self::YSTDB_CLASS_PATH . 'option.php',
-			self::YSTDB_CLASS_PATH . 'customizer.php',
+			self::YSTDB_CLASS_PATH . 'class-dynamic-block.php',
+			self::YSTDB_CLASS_PATH . 'class-register.php',
+			self::YSTDB_CLASS_PATH . 'class-enqueue.php',
+			self::YSTDB_CLASS_PATH . 'class-options.php',
+			self::YSTDB_CLASS_PATH . 'class-customizer.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );
@@ -104,7 +107,7 @@ class Ystandard_Blocks {
 	 */
 	public function update_check() {
 		require_once YSTDB_PATH . 'library/plugin-update-checker/plugin-update-checker.php';
-		Puc_v4_Factory::buildUpdateChecker(
+		\Puc_v4_Factory::buildUpdateChecker(
 			'https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.json',
 			YSTDB_PATH . 'ystandard-blocks.php',
 			'yStandard Blocks'
@@ -127,7 +130,7 @@ class Ystandard_Blocks {
 	 * テーマ確認案内
 	 */
 	public function ystandard_notice() {
-		if ( Ystandard_Blocks_Options::get_option_by_bool( 'hide_no_ystandard_notice' ) ) {
+		if ( Options::get_option_by_bool( 'hide_no_ystandard_notice' ) ) {
 			return;
 		}
 		?>
@@ -147,11 +150,11 @@ class Ystandard_Blocks {
 		 * 設定削除
 		 */
 		if ( class_exists( 'Ystandard_Blocks_Options' ) ) {
-			require_once YSTDB_PATH . 'class/option.php';
+			require_once YSTDB_PATH . 'class/class-options.php';
 		}
-		$options = Ystandard_Blocks_Options::get_default_options();
+		$options = Options::get_default_options();
 		foreach ( $options as $key => $value ) {
-			delete_option( Ystandard_Blocks_Options::get_option_name( $key ) );
+			delete_option( Options::get_option_name( $key ) );
 		}
 	}
 }
