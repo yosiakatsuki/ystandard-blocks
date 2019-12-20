@@ -31,11 +31,9 @@ if ( ! $attributes['content'] ) {
 	return;
 }
 
-$wrapClass = [
-	'wp-block-button'
-];
-$class     = [ 'ystdb-btn-link', 'wp-block-button__link' ];
-$style     = [];
+$wrap_class = [ 'wp-block-button' ];
+$class      = [ 'ystdb-btn-link', 'wp-block-button__link' ];
+$style      = [];
 /**
  * アイコン
  */
@@ -59,20 +57,20 @@ if ( $attributes['icon'] ) {
  * 色関連
  */
 if ( $attributes['backgroundColor'] || $attributes['customBackgroundColor'] ) {
-	$wrapClass[] = 'has-background';
+	$wrap_class[] = 'has-background';
 } else {
 	$style[] = 'background-color:#222;border-color:#222;';
 }
 if ( $attributes['textColor'] || $attributes['customTextColor'] ) {
-	$wrapClass[] = 'has-text-color';
+	$wrap_class[] = 'has-text-color';
 } else {
 	$style[] = 'color:#fff;';
 }
 if ( $attributes['backgroundColor'] ) {
-	$wrapClass[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
+	$wrap_class[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
 }
 if ( $attributes['textColor'] ) {
-	$wrapClass[] = 'has-' . $attributes['textColor'] . '-color';
+	$wrap_class[] = 'has-' . $attributes['textColor'] . '-color';
 }
 /**
  * フォントサイズ
@@ -80,7 +78,7 @@ if ( $attributes['textColor'] ) {
 if ( $attributes['customFontSize'] ) {
 	$style[] = 'font-size:' . $attributes['customFontSize'] . 'px;';
 } elseif ( $attributes['fontSize'] ) {
-	$wrapClass[] = 'has-' . $attributes['fontSize'] . '-font-size';
+	$wrap_class[] = 'has-' . $attributes['fontSize'] . '-font-size';
 }
 if ( ! empty( $class ) ) {
 	$class = 'class="' . esc_attr( implode( ' ', $class ) ) . '"';
@@ -106,19 +104,19 @@ if ( ! empty( $style ) ) {
  * ラッパークラス
  */
 if ( $attributes['className'] ) {
-	$wrapClass[] = $attributes['className'];
+	$wrap_class[] = $attributes['className'];
 }
 if ( $attributes['buttonType'] ) {
-	$wrapClass[] = '-' . $attributes['buttonType'];
+	$wrap_class[] = '-' . $attributes['buttonType'];
 }
 if ( $attributes['buttonSize'] ) {
-	$wrapClass[] = '-' . $attributes['buttonSize'];
+	$wrap_class[] = '-' . $attributes['buttonSize'];
 }
 if ( $attributes['align'] ) {
-	$wrapClass[] = 'has-text-align-' . $attributes['align'];
+	$wrap_class[] = 'has-text-align-' . $attributes['align'];
 }
 ?>
-<div class="<?php echo esc_attr( implode( ' ', $wrapClass ) ); ?>">
+<div class="<?php echo esc_attr( implode( ' ', $wrap_class ) ); ?>">
 	<div <?php echo $class . $style; ?>>
 		<?php echo $attributes['content']; ?>
 	</div>

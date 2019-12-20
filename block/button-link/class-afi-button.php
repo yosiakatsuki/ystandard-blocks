@@ -12,6 +12,9 @@ namespace ystandard_blocks;
  * Class Afi_Button
  */
 class Afi_Button extends Dynamic_Block {
+	/**
+	 * Afi_Button constructor.
+	 */
 	function __construct() {
 		register_block_type(
 			'ystdb/btn-link',
@@ -19,51 +22,51 @@ class Afi_Button extends Dynamic_Block {
 				'editor_script'   => 'ystandard-blocks-button-link',
 				'attributes'      => [
 					'content'               => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'backgroundColor'       => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'textColor'             => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'customBackgroundColor' => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'customTextColor'       => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'icon'                  => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'align'                 => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'buttonType'            => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'customIcon'            => [
-						'type' => "string"
+						'type' => 'string',
 					],
 					'iconPosition'          => [
-						'type'    => "string",
-						'default' => "right"
+						'type'    => 'string',
+						'default' => 'right',
 					],
-					'buttonSize'          => [
-						'type'    => "string",
-						'default' => ""
+					'buttonSize'            => [
+						'type'    => 'string',
+						'default' => '',
 					],
-					'fontSize'          => [
-						'type'    => "string",
-						'default' => ""
+					'fontSize'              => [
+						'type'    => 'string',
+						'default' => '',
 					],
-					'customFontSize'          => [
-						'type'    => "integer",
-					]
+					'customFontSize'        => [
+						'type' => 'integer',
+					],
 				],
 				'render_callback' => function ( $attributes ) {
 					return $this->render( 'button-link', $attributes );
-				}
+				},
 			]
 		);
 	}

@@ -51,6 +51,7 @@ class Register {
 		'button-link' => [
 			'name'    => 'ystdb/btn-link',
 			'no-ystd' => true,
+			'class'   => 'afi-button',
 		],
 	];
 	/**
@@ -158,7 +159,7 @@ class Register {
 				$asset_file['dependencies'],
 				$asset_file['version']
 			);
-			require_once( YSTDB_PATH . 'block/' . $key . '/block.php' );
+			require_once( YSTDB_PATH . 'block/' . $key . '/' . $value['class'] . '.php' );
 		}
 	}
 }
