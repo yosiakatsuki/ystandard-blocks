@@ -163,6 +163,33 @@ class Enqueue {
 	}
 
 	/**
+	 * 色クラス名を取得
+	 *
+	 * @param string $name 名前.
+	 * @param string $type タイプ.
+	 *
+	 * @return string
+	 */
+	private function get_color_class_name( $name, $type ) {
+		return ".has-${name}-${type}";
+	}
+
+	/**
+	 * CSS minify
+	 *
+	 * @param string $style スタイル.
+	 *
+	 * @return string
+	 */
+	private function minify( $style ) {
+		$style = preg_replace( '#/\*[^*]*\*+([^/][^*]*\*+)*/#', '', $style );
+		$style = str_replace( ': ', ':', $style );
+		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], '', $style );
+
+		return $style;
+	}
+
+	/**
 	 * カラーパレットのCSS取得
 	 *
 	 * @param string $prefix プレフィックス.
@@ -176,22 +203,33 @@ class Enqueue {
 			/**
 			 * Background-color
 			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-background-color{
+			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'background-color' ) . ' {
 				background-color:' . $value['color'] . ';
+			}';
+			/**
+			 * Border-color
+			 */
+			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'border-color' ) . ' {
 				border-color:' . $value['color'] . ';
+			}';
+			/**
+			 * fill-color
+			 */
+			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'fill' ) . ' {
+				fill:' . $value['color'] . ';
 			}';
 			/**
 			 * Text Color
 			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-color,
-			.has-' . $value['slug'] . '-color:hover{
+			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ' {
+				color:' . $value['color'] . ';
+			}';
+			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ':hover{
 				color:' . $value['color'] . ';
 			}';
 		}
 
-		return $css;
+		return $this->minify( $css );
 	}
 
 	/**
@@ -204,17 +242,15 @@ class Enqueue {
 	private function get_font_size_css( $prefix = '' ) {
 		$palette = get_theme_support( 'editor-font-sizes' );
 		$css     = '';
-		$default = 16;
 		foreach ( $palette[0] as $value ) {
-			$fz   = ( $value['size'] / $default );
 			$slug = $value['slug'];
 			/**
 			 * CSS作成
 			 */
-			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $fz . 'em;}';
+			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $value['size'] . 'px;}';
 		}
 
-		return $css;
+		return $this->minify( $css );
 	}
 
 }

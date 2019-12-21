@@ -88,7 +88,7 @@ const deprecated = [
 			className: {
 				type: 'string',
 				default: '',
-			}
+			},
 		},
 		supports: {
 			align: false,

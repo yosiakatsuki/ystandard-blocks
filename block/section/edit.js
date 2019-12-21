@@ -1,6 +1,7 @@
 import classnames from 'classnames';
-import { marginType } from './config';
+import { marginType, wrapperTagNames, dividerTypes, dividerPath } from './config';
 import getNum from '../../src/js/util/_getNum';
+import { select } from '@wordpress/data';
 
 import {
 	InspectorControls,
@@ -15,6 +16,9 @@ import {
 	BaseControl,
 	RangeControl,
 	Button,
+	SVG,
+	Path,
+	ColorPalette,
 } from '@wordpress/components';
 
 import {
@@ -31,8 +35,12 @@ const sectionEdit = ( props ) => {
 		setAttributes,
 		backgroundColor,
 		textColor,
+		dividerColorTop,
+		dividerColorBottom,
 		setBackgroundColor,
 		setTextColor,
+		setDividerColorTop,
+		setDividerColorBottom,
 	} = props;
 	const {
 		wrapperTag,
@@ -46,77 +54,76 @@ const sectionEdit = ( props ) => {
 		backgroundImageAlt,
 		backgroundImageID,
 		backgroundImageOpacity,
-		backgroundSkew,
-		backgroundSkewWidth,
 		innerCustomWidth,
+		dividerTypeTop,
+		dividerLevelTop,
+		dividerTypeBottom,
+		dividerLevelBottom,
+		screenHeightMode,
+		screenHeightModeMinHeight,
 	} = attributes;
+
+	const { colors } = select( 'core/block-editor' ).getSettings();
 
 	const rangeStep = 0.5;
 
-	/**
-	 * HTMLタグ
-	 */
-	const wrapperTagNames = [
-		{
-			tag: 'div',
-		},
-		{
-			tag: 'section',
-		},
-		{
-			tag: 'aside',
-		},
-	];
 	const Wrapper = wrapperTag;
 	/**
 	 * 背景画像関連
 	 */
 	const ALLOWED_MEDIA_TYPES = [ 'image' ];
-	const hasBackgroundImage = backgroundImageURL && ! backgroundSkew;
-	const hasBackgroundDim = backgroundImageURL && ! backgroundSkew;
-	const backgroundDimClass = 'has-background-dim-' + ( 10 * Math.round( backgroundImageOpacity / 10 ) );
+	const showBgMask = backgroundImageURL || backgroundColor.color;
 
 	/**
-	 * メインクラス名
-	 */
-	const classes = classnames(
-		'ystdb-section',
-		{
-			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
-			'has-text-color': textColor.color,
-			[ textColor.class ]: textColor.class,
-			'has-background-image': hasBackgroundImage,
-			'has-background-dim': hasBackgroundDim,
-			[ backgroundDimClass ]: hasBackgroundDim,
-		}
-	);
-	/**
-	 * インナーブロックのクラス名
-	 */
-	const innerClasses = 'ystdb-section__inner';
-	/**
-	 * 編集画面のラッパースタイル
+	 * 編集画面のラッパー
 	 */
 	const editWrapStyle = {
 		paddingTop: 0 === marginTop ? 0 : marginTop + 'rem',
 		paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
 	};
+
+	/**
+	 * セクションクラス名
+	 */
+	const sectionClass = classnames(
+		'ystdb-section',
+		{
+			'has-background-image': backgroundImageURL,
+		}
+	);
 	/**
 	 * セクションスタイル
 	 */
 	const sectionStyles = {
-		backgroundColor: ( backgroundColor.color && ! backgroundSkew ) ? backgroundColor.color : undefined,
 		color: textColor.color,
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-		backgroundImage: hasBackgroundImage ? `url("${ backgroundImageURL }")` : undefined,
-		paddingLeft: '1rem',
-		paddingRight: '1rem',
+		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
 	};
 	/**
-	 * インナーのスタイル
+	 * 背景マスク
 	 */
+	const bgMaskClass = classnames(
+		'ystdb-section__bg',
+		{
+			'has-background': backgroundColor.color,
+			[ backgroundColor.class ]: backgroundColor.class,
+		}
+	);
+	const bgMaskStyle = {
+		backgroundColor: backgroundColor.color ? backgroundColor.color : '#000',
+		opacity: ( backgroundImageOpacity / 100 ),
+	};
+	/**
+	 * インナー
+	 */
+	const innerClasses = classnames(
+		'ystdb-section__inner',
+		{
+			'has-text-color': textColor.color,
+			[ textColor.class ]: textColor.class,
+		}
+	);
 	const innerStyles = {
 		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
 		marginRight: 'auto',
@@ -124,6 +131,7 @@ const sectionEdit = ( props ) => {
 		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
 		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem',
 	};
+
 	/**
 	 * 画像設定コントロール
 	 *
@@ -147,7 +155,7 @@ const sectionEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ backgroundImageURL } alt={ backgroundImageAlt } />
+					<img src={ backgroundImageURL } alt={ backgroundImageAlt }/>
 				</Button>
 				<Button
 					isDefault
@@ -163,33 +171,47 @@ const sectionEdit = ( props ) => {
 			</div>
 		);
 	};
-	/**
-	 * 背景斜めのマスク
-	 */
-	const skewMask = () => {
-		if ( backgroundSkew ) {
-			const backgroundSkewValue = backgroundSkew + 'deg';
-			const skewStyle = {
-				height: backgroundSkewWidth ? backgroundSkewWidth + '%' : undefined,
-				backgroundColor: backgroundColor.color,
-				transform: `skewY(${ backgroundSkewValue }) translateY(-50%)`,
-			};
-			const skewClass = classnames(
-				'ystdb-section__mask'
-			);
-			return (
-				<div className={ skewClass } style={ skewStyle }></div>
-			);
-		}
-	};
 
+	const divider = ( type, position, level, color ) => {
+		const dividerClass = classnames(
+			'ystdb-section__divider',
+			`ystdb-section__divider--${ position }`,
+			`ystdb-section__divider--${ type }`
+		);
+		const path = dividerPath( type, level );
+		return (
+			<div className={ dividerClass }>
+				<SVG viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+					<Path d={ path } strokewidth="0" fill={ color }/>
+				</SVG>
+			</div>
+		);
+	};
 	return (
 		<Fragment>
+			<div className={ 'ystdb-section__edit-wrap' } style={ editWrapStyle }>
+
+				<div className={ sectionClass } style={ sectionStyles }>
+					{ ( showBgMask && <div
+						className={ bgMaskClass }
+						aria-hidden="true"
+						role="img"
+						style={ bgMaskStyle }>&nbsp;</div> ) }
+					{ ( 0 !== dividerLevelTop && dividerColorTop.color && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTop.color ) ) }
+					{ ( 0 !== dividerLevelBottom && dividerColorBottom.color && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottom.color ) ) }
+					<Wrapper className={ innerClasses } style={ innerStyles }>
+						<InnerBlocks/>
+					</Wrapper>
+				</div>
+
+			</div>
+
 			<InspectorControls>
 				<div className="ystdb-inspectorcontrols">
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 						<BaseControl>
-							<div className="ystdb-inspector-controls__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
+							<div
+								className="ystdb-inspector-controls__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.margin.map( ( item ) => {
@@ -231,7 +253,8 @@ const sectionEdit = ( props ) => {
 							</p>
 						</BaseControl>
 						<BaseControl>
-							<div className="ystdb-inspector-controls__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
+							<div
+								className="ystdb-inspector-controls__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
 							<div className={ `ystdb-info__label` }>かんたん設定</div>
 							<div className={ 'ystdb-btn-selector components-base-control' }>
 								{ marginType.padding.map( ( item ) => {
@@ -250,7 +273,7 @@ const sectionEdit = ( props ) => {
 										</Button>
 									);
 								} ) }
-								<br />
+								<br/>
 								<div>
 									<span className={ `ystdb-info__small` }>※上下余白のかんたん設定</span>
 								</div>
@@ -315,15 +338,155 @@ const sectionEdit = ( props ) => {
 						<RangeControl
 							label={ __( 'コンテンツ部分の最大幅', 'ystandard-blocks' ) }
 							value={ innerCustomWidth }
-							onChange={ ( value ) => setAttributes( { innerCustomWidth: getNum( value, 0, 1920, 960 ) } ) }
+							onChange={ ( value ) => setAttributes( { innerCustomWidth: getNum( value, 0, 1920, 0 ) } ) }
 							min={ 0 }
 							max={ 1920 }
 							step={ 16 }
 							allowReset={ true }
 						/>
 						<p>
-							<span className={ `ystdb-info__small` }>※最大幅指定なしにしたい場合0にしてください。</span>
+							<span className={ `ystdb-info__small` }>※最大幅の指定をしない場合は0にしてください。</span>
 						</p>
+					</PanelBody>
+					<PanelBody
+						title={ __( '背景設定', 'ystandard-blocks' ) }
+						initialOpen={ false }
+					>
+						<div className="ystdb-inspector-controls__label">{ __( '背景画像', 'ystandard-blocks' ) }</div>
+						<MediaUpload
+							onSelect={ ( media ) => {
+								setAttributes( {
+									backgroundImageURL: media.url,
+									backgroundImageID: media.id,
+									backgroundImageAlt: media.alt,
+								} );
+							} }
+							type={ ALLOWED_MEDIA_TYPES }
+							value={ backgroundImageID }
+							render={ mediaUploadRender }
+						/>
+						<br/><br/>
+						<RangeControl
+							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
+							value={ backgroundImageOpacity }
+							onChange={ ( value ) => setAttributes( { backgroundImageOpacity: getNum( value, 0, 100 ) } ) }
+							min={ 0 }
+							max={ 100 }
+							step={ 1 }
+						/>
+						<p>
+							<span className={ `ystdb-info__small` }>※数値が大きいほど背景画像が見えづらくなります。</span>
+							<span className={ `ystdb-info__small` }>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
+						</p>
+					</PanelBody>
+					<PanelColorSettings
+						title={ __( 'Color Settings' ) }
+						initialOpen={ false }
+						colorSettings={ [
+							{
+								value: backgroundColor.color,
+								onChange: ( color ) => {
+									setBackgroundColor( color );
+								},
+								label: __( 'Background Color' ),
+							},
+							{
+								value: textColor.color,
+								onChange: ( color ) => {
+									setTextColor( color );
+								},
+								label: __( 'Text Color' ),
+							},
+						] }
+					>
+						<ContrastChecker
+							backgroundColor={ backgroundColor.color }
+							textColor={ textColor.color }
+						/>
+					</PanelColorSettings>
+					<PanelBody
+						title={ __( '区切り線設定', 'ystandard-blocks' ) }
+						initialOpen={ false }
+					>
+						<div className="ystdb-inspector-controls__dscr">タイプ・レベル・色をすべて設定すると表示されます。<br/>上下のブロックの背景色と色を合わせることをオススメします。<br/><br/>
+						</div>
+
+						<div className="ystdb-inspector-controls__label">{ __( '上側の区切り設定', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">{ __( '区切りタイプ', 'ystandard-blocks' ) }</div>
+						<div className={ 'ystdb-btn-selector components-base-control' }>
+							{ dividerTypes.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isDefault
+										isPrimary={ dividerTypeTop === item.value }
+										onClick={ () => {
+											setAttributes( {
+												dividerTypeTop: item.value,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
+						</div>
+						<RangeControl
+							label={ __( 'レベル', 'ystandard-blocks' ) }
+							value={ dividerLevelTop }
+							onChange={ ( value ) => setAttributes( { dividerLevelTop: getNum( value, -100, 100, 0 ) } ) }
+							min={ -100 }
+							max={ 100 }
+							allowReset={ true }
+						/>
+						<div className="ystdb-inspector-controls__label">{ __( '色', 'ystandard-blocks' ) }</div>
+						<ColorPalette
+							colors={ colors }
+							disableCustomColors={ false }
+							onChange={ ( color ) => {
+								setDividerColorTop( color );
+							} }
+							value={ dividerColorTop.color }
+						/>
+						<br/>
+						<div className="ystdb-inspector-controls__label">{ __( '下側の区切り設定', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">{ __( '区切りタイプ', 'ystandard-blocks' ) }</div>
+						<div className={ 'ystdb-btn-selector components-base-control' }>
+							{ dividerTypes.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isDefault
+										isPrimary={ dividerTypeBottom === item.value }
+										onClick={ () => {
+											setAttributes( {
+												dividerTypeBottom: item.value,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
+						</div>
+						<RangeControl
+							label={ __( 'レベル', 'ystandard-blocks' ) }
+							value={ dividerLevelBottom }
+							onChange={ ( value ) => setAttributes( { dividerLevelBottom: getNum( value, -100, 100, 0 ) } ) }
+							min={ -100 }
+							max={ 100 }
+							allowReset={ true }
+						/>
+						<div className="ystdb-inspector-controls__label">{ __( '色', 'ystandard-blocks' ) }</div>
+						<ColorPalette
+							colors={ colors }
+							disableCustomColors={ false }
+							onChange={ ( color ) => {
+								setDividerColorBottom( color );
+							} }
+							value={ dividerColorBottom.color }
+						/>
+
 					</PanelBody>
 					<PanelBody
 						title={ __( 'HTMLタグ設定', 'ystandard-blocks' ) }
@@ -349,108 +512,17 @@ const sectionEdit = ( props ) => {
 							} ) }
 						</div>
 					</PanelBody>
-					<PanelBody
-						title={ __( '背景画像設定', 'ystandard-blocks' ) }
-						initialOpen={ false }
-					>
-						<MediaUpload
-							onSelect={ ( media ) => {
-								setAttributes( {
-									backgroundImageURL: media.url,
-									backgroundImageID: media.id,
-									backgroundImageAlt: media.alt,
-								} );
-							} }
-							type={ ALLOWED_MEDIA_TYPES }
-							value={ backgroundImageID }
-							render={ mediaUploadRender }
-						/>
-						<br /><br />
-						<RangeControl
-							label={ __( '画像の上に重ねる色の濃さ', 'ystandard-blocks' ) }
-							value={ backgroundImageOpacity }
-							onChange={ ( value ) => setAttributes( { backgroundImageOpacity: getNum( value, 0, 100 ) } ) }
-							min={ 0 }
-							max={ 100 }
-							step={ 10 }
-						/>
-						<p>
-							<span className={ `ystdb-info__small` }>※数値が大きいほど背景画像が見えづらくなります。</span>
-							<span className={ `ystdb-info__small` }>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
-						</p>
-					</PanelBody>
-					<PanelBody
-						title={ __( '背景の傾き設定', 'ystandard-blocks' ) }
-						initialOpen={ false }
-					>
-						<p>
-							<span className={ `ystdb-info__small ystdb-info__bold` }>※傾きの設定をする場合、背景画像設定が無視されます。</span>
-						</p>
-						<RangeControl
-							label={ __( '背景の傾き具合', 'ystandard-blocks' ) }
-							value={ backgroundSkew }
-							onChange={ ( value ) => setAttributes( { backgroundSkew: getNum( value, -3, 3, 0 ) } ) }
-							min={ -3 }
-							max={ 3 }
-							step={ 0.5 }
-							allowReset={ true }
-						/>
-						<RangeControl
-							label={ __( '背景の太さ', 'ystandard-blocks' ) }
-							value={ backgroundSkewWidth }
-							onChange={ ( value ) => setAttributes( { backgroundSkewWidth: getNum( value, 70, 100, 90 ) } ) }
-							min={ 70 }
-							max={ 100 }
-							step={ 1 }
-							allowReset={ true }
-						/>
-						<p>
-							<span
-								className={ `ystdb-info__small` }>※コンテンツがはみ出る・余白が少なく感じる場合、「背景の太さ」と「余白設定(内側)」の上下を大きくして調整して下さい。</span>
-							<span className={ `ystdb-info__small` }>※背景色は、色設定の「背景色」で変更できます。</span>
-						</p>
-					</PanelBody>
-					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
-						initialOpen={ true }
-						colorSettings={ [
-							{
-								value: backgroundColor.color,
-								onChange: ( color ) => {
-									setBackgroundColor( color );
-								},
-								label: __( 'Background Color' ),
-							},
-							{
-								value: textColor.color,
-								onChange: ( color ) => {
-									setTextColor( color );
-								},
-								label: __( 'Text Color' ),
-							},
-						] }
-					>
-						<ContrastChecker
-							backgroundColor={ backgroundColor.color }
-							textColor={ textColor.color }
-						/>
-					</PanelColorSettings>
-
 				</div>
 			</InspectorControls>
 
-			<div className={ 'ystdb-section__edit-wrap' } style={ editWrapStyle }>
-				<div className={ classes } style={ sectionStyles }>
-					{ skewMask() }
-					<Wrapper className={ innerClasses } style={ innerStyles }>
-						<InnerBlocks />
-					</Wrapper>
-				</div>
-			</div>
 		</Fragment>
 	);
 };
 
 export default compose( [
-	withColors( 'backgroundColor', { textColor: 'color' } ),
+	withColors( 'backgroundColor', {
+		textColor: 'color',
+		dividerColorTop: 'fill',
+		dividerColorBottom: 'fill',
+	} ),
 ] )( sectionEdit );

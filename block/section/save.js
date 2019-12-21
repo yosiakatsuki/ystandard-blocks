@@ -50,7 +50,7 @@ export default function save( props ) {
 	/**
 	 * メインクラス名
 	 */
-	const classes = classnames(
+	const wrapperClass = classnames(
 		'ystdb-section',
 		{
 			'has-text-color': textColor || customTextColor,
@@ -116,7 +116,7 @@ export default function save( props ) {
 	};
 
 	return (
-		<div className={ classes } style={ sectionStyles }>
+		<div className={ wrapperClass } style={ sectionStyles }>
 			{ skewMask() }
 			<Wrapper className={ innerClasses } style={ innerStyles }>
 				<InnerBlocks.Content />

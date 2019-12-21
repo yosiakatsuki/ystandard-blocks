@@ -33,9 +33,10 @@
 
 .ystdb-inspector-controls__label {
   margin: .5rem 0 .25rem;
-
-  .ystdb-inspector-controls__dscr {
-    font-size: .9em;
-    color: $color__text-light;
-  }
+  font-weight: bold;
+}
+.ystdb-inspector-controls__dscr {
+  font-size: .8em;
+  color: $color__text-light;
+  font-weight: normal;
 }
