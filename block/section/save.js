@@ -28,6 +28,7 @@ export default function save( props ) {
 		paddingRight,
 		backgroundImageURL,
 		backgroundImageOpacity,
+		backgroundImageParallax,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -57,6 +58,11 @@ export default function save( props ) {
 	const dividerColorBottomClass = getColorClassName( 'fill', dividerColorBottom );
 
 	/**
+	 * アニメーション
+	 */
+	const hasAnimation = animationType && 'none' !== animationType;
+
+	/**
 	 * 背景関連
 	 */
 	const showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor;
@@ -69,15 +75,16 @@ export default function save( props ) {
 		{
 			'has-background-image': backgroundImageURL,
 			'is-screen-height': screenHeightMode,
-			'has-animation': 'none' !== animationType,
+			'has-animation': hasAnimation,
+			'has-parallax': backgroundImageParallax,
 		}
 	);
-	const dataAnimation = 'none' !== animationType ? animationType : undefined;
+	const dataAnimation = hasAnimation ? animationType : undefined;
 	/**
 	 * セクションスタイル
 	 */
 	const sectionStyles = {
-		color: textColor.color,
+		color: textColorClass ? undefined : customTextColor,
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
 		marginTop: marginTop + 'rem',
@@ -86,7 +93,7 @@ export default function save( props ) {
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
-		animationDuration: 'none' !== animationType ? `${ animationSpeed }s` : undefined,
+		animationDuration: hasAnimation ? `${ animationSpeed }s` : undefined,
 	};
 
 	/**

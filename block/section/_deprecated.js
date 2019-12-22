@@ -75,7 +75,6 @@ export const deprecated = [
 				type: 'number',
 				default: 90,
 			},
-
 		},
 		supports: {
 			align: [ 'wide', 'full' ],
@@ -87,6 +86,9 @@ export const deprecated = [
 				...attributes,
 				dividerLevelTop: attributes.backgroundSkew,
 				dividerLevelBottom: attributes.backgroundSkew,
+				animationType: 'none',
+				animationSpeed: 3,
+				backgroundImageParallax: false,
 			};
 		},
 		save( { attributes } ) {

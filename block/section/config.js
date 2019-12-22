@@ -63,6 +63,10 @@ export const attributes = {
 		type: 'integer',
 		default: 50,
 	},
+	backgroundImageParallax: {
+		type: 'bool',
+		default: false,
+	},
 	screenHeightMode: {
 		type: 'bool',
 		default: false,

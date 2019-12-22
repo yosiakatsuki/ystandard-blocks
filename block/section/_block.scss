@@ -17,6 +17,15 @@
 	}
   }
 
+  &.has-parallax {
+	background-attachment: fixed;
+  }
+  @supports ( -webkit-overflow-scrolling: touch ) {
+	&.has-parallax {
+	  background-attachment: scroll;
+	}
+  }
+
   &.has-animation {
 	opacity: 0;
 	animation-duration: 1s;

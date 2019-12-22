@@ -56,6 +56,7 @@ const sectionEdit = ( props ) => {
 		backgroundImageAlt,
 		backgroundImageID,
 		backgroundImageOpacity,
+		backgroundImageParallax,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -354,6 +355,16 @@ const sectionEdit = ( props ) => {
 							<span className={ `ystdb-info__small` }>※数値が大きいほど背景画像が見えづらくなります。</span>
 							<span className={ `ystdb-info__small` }>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
 						</p>
+						<div className="ystdb-inspector-controls__label">{ __( '固定背景', 'ystandard-blocks' ) }</div>
+						<ToggleControl
+							label={ __( '背景を固定する', 'ystandard-blocks' ) }
+							checked={ backgroundImageParallax }
+							onChange={ () => {
+								setAttributes( {
+									backgroundImageParallax: ! backgroundImageParallax,
+								} );
+							} }
+						/>
 					</PanelBody>
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
@@ -541,7 +552,7 @@ const sectionEdit = ( props ) => {
 						/>
 						<RangeControl
 							label={ __( 'アニメーション速度', 'ystandard-blocks' ) }
-							value={ animationSpeed }
+							value={ getNum( animationSpeed, 1, 10, 3 ) }
 							onChange={ ( value ) => setAttributes( { animationSpeed: getNum( value, 1, 10, 3 ) } ) }
 							min={ 1 }
 							max={ 10 }
