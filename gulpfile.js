@@ -31,6 +31,8 @@ gulp.task( 'zip', function () {
 	return gulp.src(
 		[
 			'**',
+			'!.gitignore',
+			'!.travis.yml',
 			'!node_modules',
 			'!node_modules/**',
 			'!gulpfile.js',
@@ -49,12 +51,23 @@ gulp.task( 'zip', function () {
 			'!src',
 			'!src/**',
 			'!block/**/*.js',
+			'!block/**/*.scss',
+			'!.github',
+			'!.github/**',
 			'!*.zip',
 		],
 		{ base: './' }
 	)
 		.pipe( zip( 'ystandard-blocks.zip' ) )
-		.pipe( gulp.dest( './' ) );
+		.pipe( gulp.dest( './build/' ) );
+} );
+/**
+ * サーバーにデプロイするファイルを作成
+ */
+gulp.task( 'create-deploy-files', () => {
+	gulp.task( 'zip' )();
+	return gulp.src( './ystandard-blocks.json' )
+		.pipe( gulp.dest( './build/' ) );
 } );
 
 /**
