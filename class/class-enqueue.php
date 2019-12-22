@@ -249,10 +249,10 @@ class Enqueue {
 		$fill_color   = true;
 
 		if ( ! Main::is_ystandard() ) {
-			$bg_color   = Options::get_option_by_bool( 'add_color_palette_css_bg' );
-			$text_color = Options::get_option_by_bool( 'add_color_palette_css_text' );;
-			$border_color = Options::get_option_by_bool( 'add_color_palette_css_border' );;
-			$fill_color = Options::get_option_by_bool( 'add_color_palette_css_fill' );;
+			$bg_color     = Options::get_option_by_bool( 'add_color_palette_css_bg' );
+			$text_color   = Options::get_option_by_bool( 'add_color_palette_css_text' );
+			$border_color = Options::get_option_by_bool( 'add_color_palette_css_border' );
+			$fill_color   = Options::get_option_by_bool( 'add_color_palette_css_fill' );
 		}
 		foreach ( $palette[0] as $value ) {
 			if ( $bg_color ) {
@@ -284,7 +284,7 @@ class Enqueue {
 			}
 			if ( $fill_color ) {
 				/**
-				 * fill-color
+				 * Fill-color
 				 */
 				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'fill' ) . ' {
 					fill:' . $value['color'] . ';

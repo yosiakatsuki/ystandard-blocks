@@ -24,19 +24,19 @@ class Afi_Button extends Dynamic_Block {
 					'content'               => [
 						'type' => 'string',
 					],
-					'borderRadius'               => [
+					'borderRadius'          => [
 						'type' => 'number',
 					],
-					'iconLeft'       => [
+					'iconLeft'              => [
 						'type' => 'string',
 					],
-					'iconSizeLeft'       => [
+					'iconSizeLeft'          => [
 						'type' => 'string',
 					],
-					'iconRight'       => [
+					'iconRight'             => [
 						'type' => 'string',
 					],
-					'iconSizeRight'       => [
+					'iconSizeRight'         => [
 						'type' => 'string',
 					],
 					'align'                 => [
@@ -55,28 +55,28 @@ class Afi_Button extends Dynamic_Block {
 						'type' => 'string',
 					],
 					'fontSize'              => [
-						'type'    => 'string',
+						'type' => 'string',
 					],
 					'customFontSize'        => [
 						'type' => 'integer',
 					],
-					'paddingType'            => [
+					'paddingType'           => [
 						'type' => 'string',
 					],
 					'buttonType'            => [
 						'type' => 'string',
 					],
-					'maxWidth'            => [
-						'type'    => 'number',
+					'maxWidth'              => [
+						'type' => 'number',
 					],
-					'maxUnit'            => [
-						'type'    => 'string',
+					'maxUnit'               => [
+						'type' => 'string',
 					],
-					'animationType'            => [
-						'type'    => 'string',
+					'animationType'         => [
+						'type' => 'string',
 					],
-					'animationInterval'            => [
-						'type'    => 'number',
+					'animationInterval'     => [
+						'type' => 'number',
 					],
 				],
 				'render_callback' => function ( $attributes ) {
