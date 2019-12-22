@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { marginType, wrapperTagNames, dividerTypes, dividerPath } from './config';
+import { marginType, wrapperTagNames, dividerTypes, animationTypes, dividerPath } from './config';
 import getNum from '../../src/js/util/_getNum';
 import { select } from '@wordpress/data';
 
@@ -20,6 +20,7 @@ import {
 	Path,
 	ColorPalette,
 	ToggleControl,
+	SelectControl,
 } from '@wordpress/components';
 
 import {
@@ -62,6 +63,8 @@ const sectionEdit = ( props ) => {
 		dividerLevelBottom,
 		screenHeightMode,
 		sectionMinHeight,
+		animationType,
+		animationSpeed,
 	} = attributes;
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
@@ -158,7 +161,7 @@ const sectionEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ backgroundImageURL } alt={ backgroundImageAlt }/>
+					<img src={ backgroundImageURL } alt={ backgroundImageAlt } />
 				</Button>
 				<Button
 					isDefault
@@ -185,7 +188,7 @@ const sectionEdit = ( props ) => {
 		return (
 			<div className={ dividerClass }>
 				<SVG viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-					<Path d={ path } strokewidth="0" fill={ color }/>
+					<Path d={ path } strokewidth="0" fill={ color } />
 				</SVG>
 			</div>
 		);
@@ -202,9 +205,11 @@ const sectionEdit = ( props ) => {
 						style={ bgMaskStyle }>&nbsp;</div> ) }
 					{ ( 0 !== dividerLevelTop && dividerColorTop.color && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTop.color ) ) }
 					{ ( 0 !== dividerLevelBottom && dividerColorBottom.color && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottom.color ) ) }
-					<Wrapper className={ innerClasses } style={ innerStyles }>
-						<InnerBlocks/>
-					</Wrapper>
+					<div className="ystdb-section__container">
+						<Wrapper className={ innerClasses } style={ innerStyles }>
+							<InnerBlocks />
+						</Wrapper>
+					</div>
 				</div>
 
 			</div>
@@ -276,7 +281,7 @@ const sectionEdit = ( props ) => {
 										</Button>
 									);
 								} ) }
-								<br/>
+								<br />
 								<div>
 									<span className={ `ystdb-info__small` }>※上下余白のかんたん設定</span>
 								</div>
@@ -336,7 +341,7 @@ const sectionEdit = ( props ) => {
 							value={ backgroundImageID }
 							render={ mediaUploadRender }
 						/>
-						<br/><br/>
+						<br /><br />
 						<RangeControl
 							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
 							value={ backgroundImageOpacity }
@@ -379,7 +384,7 @@ const sectionEdit = ( props ) => {
 						title={ __( '区切り線設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
 					>
-						<div className="ystdb-inspector-controls__dscr">タイプ・レベル・色をすべて設定すると表示されます。<br/>上下のブロックの背景色と色を合わせることをオススメします。<br/><br/>
+						<div className="ystdb-inspector-controls__dscr">タイプ・レベル・色をすべて設定すると表示されます。<br />上下のブロックの背景色と色を合わせることをオススメします。<br /><br />
 						</div>
 
 						<div className="ystdb-inspector-controls__label">{ __( '上側の区切り設定', 'ystandard-blocks' ) }</div>
@@ -419,7 +424,7 @@ const sectionEdit = ( props ) => {
 							} }
 							value={ dividerColorTop.color }
 						/>
-						<br/>
+						<br />
 						<div className="ystdb-inspector-controls__label">{ __( '下側の区切り設定', 'ystandard-blocks' ) }</div>
 						<div className="ystdb-inspector-controls__label">{ __( '区切りタイプ', 'ystandard-blocks' ) }</div>
 						<div className={ 'ystdb-btn-selector components-base-control' }>
@@ -516,8 +521,32 @@ const sectionEdit = ( props ) => {
 							max={ 1000 }
 							allowReset={ true }
 						/>
-						<div className="ystdb-inspector-controls__dscr">※「画面と同じ高さにする」をONにした場合、セクション最小高さも合わせて設定してください。（例：500以上）
+						<div
+							className="ystdb-inspector-controls__dscr">※「画面と同じ高さにする」をONにした場合、セクション最小高さも合わせて設定してください。（例：500）
 						</div>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'アニメーション設定', 'ystandard-blocks' ) }
+						initialOpen={ false }
+					>
+						<SelectControl
+							label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
+							value={ animationType }
+							options={ animationTypes }
+							onChange={ ( type ) => {
+								setAttributes( {
+									animationType: type,
+								} );
+							} }
+						/>
+						<RangeControl
+							label={ __( 'アニメーション速度', 'ystandard-blocks' ) }
+							value={ animationSpeed }
+							onChange={ ( value ) => setAttributes( { animationSpeed: getNum( value, 1, 10, 3 ) } ) }
+							min={ 1 }
+							max={ 10 }
+							allowReset={ true }
+						/>
 					</PanelBody>
 					<PanelBody
 						title={ __( 'HTMLタグ設定', 'ystandard-blocks' ) }

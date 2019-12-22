@@ -4,17 +4,22 @@ import {
 	getColorClassName,
 	InnerBlocks,
 } from '@wordpress/block-editor';
+import {
+	SVG,
+	Path,
+} from '@wordpress/components';
+import { dividerPath } from './config';
 
 export default function save( props ) {
 	const {
 		attributes,
 	} = props;
 	const {
-		backgroundColor,
-		textColor,
-		customBackgroundColor,
-		customTextColor,
 		wrapperTag,
+		backgroundColor,
+		customBackgroundColor,
+		textColor,
+		customTextColor,
 		marginTop,
 		marginBottom,
 		paddingTop,
@@ -23,9 +28,19 @@ export default function save( props ) {
 		paddingRight,
 		backgroundImageURL,
 		backgroundImageOpacity,
-		backgroundSkew,
-		backgroundSkewWidth,
 		innerCustomWidth,
+		dividerTypeTop,
+		dividerLevelTop,
+		dividerColorTop,
+		customDividerColorTop,
+		dividerTypeBottom,
+		dividerLevelBottom,
+		dividerColorBottom,
+		customDividerColorBottom,
+		screenHeightMode,
+		sectionMinHeight,
+		animationType,
+		animationSpeed,
 	} = attributes;
 
 	/**
@@ -36,91 +51,126 @@ export default function save( props ) {
 	/**
 	 * 色設定
 	 */
-	const textClass = getColorClassName( 'color', textColor );
+	const textColorClass = getColorClassName( 'color', textColor );
 	const backgroundClass = getColorClassName( 'background-color', backgroundColor );
+	const dividerColorTopClass = getColorClassName( 'fill', dividerColorTop );
+	const dividerColorBottomClass = getColorClassName( 'fill', dividerColorBottom );
+
 	/**
 	 * 背景関連
 	 */
-	const hasBackground = ( backgroundColor || customBackgroundColor ) && ! backgroundSkew;
-	const hasBackgroundClass = backgroundClass && ! backgroundSkew;
-	const hasBackgroundImage = backgroundImageURL && ! backgroundSkew;
-	const hasBackgroundDim = backgroundImageURL && ! backgroundSkew;
-	const backgroundDimClass = 'has-background-dim-' + ( 10 * Math.round( backgroundImageOpacity / 10 ) );
+	const showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor;
 
 	/**
-	 * メインクラス名
+	 * セクションクラス名
 	 */
-	const wrapperClass = classnames(
+	const sectionClass = classnames(
 		'ystdb-section',
 		{
-			'has-text-color': textColor || customTextColor,
-			[ textClass ]: textClass,
-			'has-background': hasBackground,
-			[ backgroundClass ]: hasBackgroundClass,
-			'has-background-image': hasBackgroundImage,
-			'has-background-dim': hasBackgroundDim,
-			[ backgroundDimClass ]: hasBackgroundDim,
-			'has-background-skew': backgroundSkew,
+			'has-background-image': backgroundImageURL,
+			'is-screen-height': screenHeightMode,
+			'has-animation': 'none' !== animationType,
 		}
 	);
-	/**
-	 * インナーブロックのクラス名
-	 */
-	const innerClasses = 'ystdb-section__inner';
+	const dataAnimation = 'none' !== animationType ? animationType : undefined;
 	/**
 	 * セクションスタイル
 	 */
 	const sectionStyles = {
-		backgroundColor: ( backgroundClass || backgroundSkew ) ? undefined : customBackgroundColor,
-		color: textClass ? undefined : customTextColor,
-		marginTop: 0 === marginTop ? 0 : marginTop + 'rem',
-		marginBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
+		color: textColor.color,
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-		backgroundImage: hasBackgroundImage ? `url("${ backgroundImageURL }")` : undefined,
-		paddingLeft: '1rem',
-		paddingRight: '1rem',
+		marginTop: marginTop + 'rem',
+		marginBottom: marginBottom + 'rem',
+		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
+		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
+		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
+		animationDuration: 'none' !== animationType ? `${ animationSpeed }s` : undefined,
 	};
+
 	/**
-	 * インナーのスタイル
+	 * 背景マスク
 	 */
+	const bgMaskClass = classnames(
+		'ystdb-section__bg',
+		{
+			'has-background': backgroundColor || customBackgroundColor,
+			[ backgroundClass ]: backgroundClass,
+		}
+	);
+	const bgMaskStyle = {
+		backgroundColor: ! backgroundClass && ! customBackgroundColor ? '#000' : customBackgroundColor,
+		opacity: ( backgroundImageOpacity / 100 ),
+	};
+
+	/**
+	 * インナー
+	 */
+	const innerClasses = classnames(
+		'ystdb-section__inner',
+		{
+			'has-text-color': textColorClass || customTextColor,
+			[ textColorClass ]: textColorClass,
+		}
+	);
 	const innerStyles = {
-		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
+		maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 		marginRight: 'auto',
 		marginLeft: 'auto',
 		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
 		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem',
 	};
-	/**
-	 * 背景斜めのマスク
-	 */
-	const skewMask = () => {
-		if ( backgroundSkew ) {
-			const backgroundSkewValue = backgroundSkew + 'deg';
-			const skewStyle = {
-				height: backgroundSkewWidth ? backgroundSkewWidth + '%' : undefined,
-				backgroundColor: backgroundClass ? undefined : customBackgroundColor,
-				transform: `skewY(${ backgroundSkewValue }) translateY(-50%)`,
-			};
-			const skewClass = classnames(
-				'ystdb-section__mask',
-				{
-					'has-background': backgroundColor || customBackgroundColor,
-					[ backgroundClass ]: backgroundClass,
-				}
-			);
-			return (
-				<div className={ skewClass } style={ skewStyle }></div>
-			);
-		}
+
+	const divider = ( type, position, level, colorClass, customColor ) => {
+		const dividerClass = classnames(
+			'ystdb-section__divider',
+			`ystdb-section__divider--${ position }`,
+			`ystdb-section__divider--${ type }`
+		);
+		const path = dividerPath( type, level );
+		const svgClass = classnames(
+			'ystdb-section__divider-image',
+			{
+				[ colorClass ]: colorClass,
+			}
+		);
+
+		return (
+			<div className={ dividerClass }>
+				<SVG
+					className={ svgClass }
+					viewBox="0 0 100 100"
+					xmlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="none"
+				>
+					<Path d={ path } strokewidth="0" fill={ customColor } />
+				</SVG>
+			</div>
+		);
 	};
 
+	const dividerTop = 0 !== dividerLevelTop && ( dividerColorTopClass || customDividerColorTop );
+	const dividerBottom = 0 !== dividerLevelBottom && ( dividerColorBottomClass || customDividerColorBottom );
+
 	return (
-		<div className={ wrapperClass } style={ sectionStyles }>
-			{ skewMask() }
-			<Wrapper className={ innerClasses } style={ innerStyles }>
-				<InnerBlocks.Content />
-			</Wrapper>
+		<div
+			className={ sectionClass }
+			style={ sectionStyles }
+			data-animation={ dataAnimation }
+		>
+			{ ( showBgMask && <div
+				className={ bgMaskClass }
+				aria-hidden="true"
+				role="img"
+				style={ bgMaskStyle }>&nbsp;</div> ) }
+			{ ( dividerTop && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTopClass, customDividerColorTop ) ) }
+			{ ( dividerBottom && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottomClass, customDividerColorBottom ) ) }
+			<div className="ystdb-section__container">
+				<Wrapper className={ innerClasses } style={ innerStyles }>
+					<InnerBlocks.Content />
+				</Wrapper>
+			</div>
 		</div>
 	);
 }

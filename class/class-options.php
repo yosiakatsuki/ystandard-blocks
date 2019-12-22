@@ -33,24 +33,28 @@ class Options {
 	 */
 	public static function get_default_options() {
 		return [
-			'inline_style_fz_1'          => 100,
-			'inline_style_color_1'       => '#222222',
-			'inline_style_mark_color_1'  => '#D53939',
-			'inline_style_mark_weight_1' => 25,
-			'inline_style_type_1'        => 'normal',
-			'inline_style_fz_2'          => 100,
-			'inline_style_color_2'       => '#222222',
-			'inline_style_mark_color_2'  => '#82B9E3',
-			'inline_style_mark_weight_2' => 25,
-			'inline_style_type_2'        => 'normal',
-			'inline_style_fz_3'          => 100,
-			'inline_style_color_3'       => '#222222',
-			'inline_style_mark_color_3'  => '#F5EC84',
-			'inline_style_mark_weight_3' => 25,
-			'inline_style_type_3'        => 'normal',
-			'hide_no_ystandard_notice'   => false,
-			'load_font_awesome'          => true,
-			'add_editor_color_and_size'  => true,
+			'inline_style_fz_1'            => 100,
+			'inline_style_color_1'         => '#222222',
+			'inline_style_mark_color_1'    => '#D53939',
+			'inline_style_mark_weight_1'   => 25,
+			'inline_style_type_1'          => 'normal',
+			'inline_style_fz_2'            => 100,
+			'inline_style_color_2'         => '#222222',
+			'inline_style_mark_color_2'    => '#82B9E3',
+			'inline_style_mark_weight_2'   => 25,
+			'inline_style_type_2'          => 'normal',
+			'inline_style_fz_3'            => 100,
+			'inline_style_color_3'         => '#222222',
+			'inline_style_mark_color_3'    => '#F5EC84',
+			'inline_style_mark_weight_3'   => 25,
+			'inline_style_type_3'          => 'normal',
+			'hide_no_ystandard_notice'     => false,
+			'load_font_awesome'            => true,
+			'add_color_palette_css_text'   => true,
+			'add_color_palette_css_bg'     => true,
+			'add_color_palette_css_border' => true,
+			'add_color_palette_css_fill'   => true,
+			'add_font_size_css'            => true,
 		];
 	}
 
@@ -130,8 +134,8 @@ class Options {
 	 */
 	public function blocks_option() {
 		add_options_page(
-			'yStandard blocks 設定',
-			'yStandard blocks 設定',
+			'yStandard Blocks 設定',
+			'yStandard Blocks 設定',
 			'manage_options',
 			'ystandard-blocks-option',
 			[ $this, 'options_page' ]
@@ -153,7 +157,7 @@ class Options {
 	public function options_page() {
 		?>
 		<div class="wrap">
-			<h2>yStandard blocks 設定</h2>
+			<h2>yStandard Blocks 設定</h2>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'ystandard-blocks-group' );
@@ -178,12 +182,38 @@ class Options {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row">編集画面カラーパレット・フォントサイズ</th>
+						<th scope="row">カラーパレットCSS</th>
 						<td>
+							<p>
+								カラーパレット用CSSを読み込む<br>
+								※yStandard Blocksの一部ブロックでカラーパレット用CSSが必要になります。
+							</p>
+							<br>
 							<label>
-								<input id="add_editor_color_and_size" type="checkbox" name="<?php echo self::get_option_name( 'add_editor_color_and_size' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_editor_color_and_size' ) ); ?>>編集画面にカラーパレット・文字サイズ用CSSを読み込む
+								<input id="add_color_palette_css_text" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_text' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_text' ) ); ?>>テキストカラー
+							</label><br>
+							<label>
+								<input id="add_color_palette_css_bg" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_bg' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_bg' ) ); ?>>背景色
+							</label><br>
+							<label>
+								<input id="add_color_palette_css_border" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_border' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_border' ) ); ?>>枠線の色
+							</label><br>
+							<label>
+								<input id="add_color_palette_css_fill" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_fill' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_fill' ) ); ?>>SVG fill
+							</label><br>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">文字サイズCSS</th>
+						<td>
+							<p>
+								文字サイズ用CSSを読み込む<br>
+								※yStandard Blocksの一部ブロックで編集画面に文字サイズ用CSSが必要になります。
+							</p>
+							<br>
+							<label>
+								<input id="add_font_size_css" type="checkbox" name="<?php echo self::get_option_name( 'add_font_size_css' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_font_size_css' ) ); ?>>文字サイズCSS
 							</label>
-							<p>※yStandard Blocksの一部ブロックで編集画面にカラーパレット・文字サイズ用CSSが必要になります。</p>
 						</td>
 					</tr>
 				</table>

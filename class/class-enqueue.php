@@ -17,10 +17,15 @@ class Enqueue {
 	 * Ystandard_Blocks_Enqueue constructor.
 	 */
 	function __construct() {
+		add_action(
+			'wp_enqueue_scripts',
+			[ $this, 'enqueue_scripts' ],
+			11
+		);
 		if ( Main::is_ystandard() ) {
 			add_action(
 				'wp_enqueue_scripts',
-				[ $this, 'enqueue_scripts' ],
+				[ $this, 'enqueue_scripts_ystandard' ],
 				11
 			);
 		} else {
@@ -41,15 +46,47 @@ class Enqueue {
 	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
+		wp_enqueue_script(
+			'ystandard-blocks-app',
+			YSTDB_URL . '/js/app.js',
+			[],
+			YSTDB_VERSION,
+			true
+		);
+		wp_script_add_data( 'ystandard-blocks-app', 'defer', true );
+		/**
+		 * IEポリフィル
+		 */
+		if ( $this->is_ie() ) {
+			wp_enqueue_script(
+				'ystandard-blocks-intersection-observer-polyfill',
+				YSTDB_URL . '/library/IntersectionObserver/polyfill/intersection-observer.js',
+				[],
+				null
+			);
+		}
+	}
+
+	/**
+	 * Enqueue scripts(yStandardのみ)
+	 */
+	public function enqueue_scripts_ystandard() {
 		wp_enqueue_style(
 			'ystandard-blocks',
 			YSTDB_URL . 'css/ystandard-blocks.css',
 			[],
 			YSTDB_VERSION
 		);
+		$inline_css = '';
+		/**
+		 * インラインCSS
+		 */
+		$inline_css .= Customizer::get_inline_style_css();
+		$inline_css .= $this->get_color_css( '' );
+		$inline_css .= $this->get_font_size_css( '' );
 		wp_add_inline_style(
 			'ystandard-blocks',
-			Customizer::get_inline_style_css()
+			$inline_css
 		);
 	}
 
@@ -62,6 +99,16 @@ class Enqueue {
 			YSTDB_URL . 'css/ystandard-blocks-no-ystandard.css',
 			[],
 			YSTDB_VERSION
+		);
+		$inline_css = '';
+		/**
+		 * 色設定用CSS
+		 */
+		$inline_css .= $this->get_color_css( '' );
+		$inline_css .= $this->get_font_size_css( '' );
+		wp_add_inline_style(
+			'ystandard-blocks-no-ystandard',
+			$inline_css
 		);
 		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
 			wp_enqueue_script(
@@ -117,11 +164,8 @@ class Enqueue {
 			 */
 			$inline_css .= $customizer->get_editor_button_css();
 		} else {
-			if ( Options::get_option_by_bool( 'add_editor_color_and_size' ) ) {
-				$inline_css .= $this->get_color_css( '#editor' );
-				$inline_css .= $this->get_font_size_css( '#editor' );
-			}
-
+			$inline_css .= $this->get_color_css( '#editor' );
+			$inline_css .= $this->get_font_size_css( '#editor' );
 		}
 		wp_enqueue_style(
 			'ystandard-blocks-edit',
@@ -197,36 +241,55 @@ class Enqueue {
 	 * @return string
 	 */
 	private function get_color_css( $prefix = '' ) {
-		$palette = get_theme_support( 'editor-color-palette' );
-		$css     = '';
+		$palette      = get_theme_support( 'editor-color-palette' );
+		$css          = '';
+		$bg_color     = false;
+		$text_color   = false;
+		$border_color = true;
+		$fill_color   = true;
+
+		if ( ! Main::is_ystandard() ) {
+			$bg_color   = Options::get_option_by_bool( 'add_color_palette_css_bg' );
+			$text_color = Options::get_option_by_bool( 'add_color_palette_css_text' );;
+			$border_color = Options::get_option_by_bool( 'add_color_palette_css_border' );;
+			$fill_color = Options::get_option_by_bool( 'add_color_palette_css_fill' );;
+		}
 		foreach ( $palette[0] as $value ) {
-			/**
-			 * Background-color
-			 */
-			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'background-color' ) . ' {
-				background-color:' . $value['color'] . ';
-			}';
-			/**
-			 * Border-color
-			 */
-			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'border-color' ) . ' {
-				border-color:' . $value['color'] . ';
-			}';
-			/**
-			 * fill-color
-			 */
-			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'fill' ) . ' {
-				fill:' . $value['color'] . ';
-			}';
-			/**
-			 * Text Color
-			 */
-			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ' {
-				color:' . $value['color'] . ';
-			}';
-			$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ':hover{
-				color:' . $value['color'] . ';
-			}';
+			if ( $bg_color ) {
+				/**
+				 * Background-color
+				 */
+				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'background-color' ) . ' {
+					background-color:' . $value['color'] . ';
+				}';
+			}
+			if ( $text_color ) {
+				/**
+				 * Text Color
+				 */
+				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ' {
+					color:' . $value['color'] . ';
+				}';
+				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ':hover{
+					color:' . $value['color'] . ';
+				}';
+			}
+			if ( $border_color ) {
+				/**
+				 * Border-color
+				 */
+				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'border-color' ) . ' {
+					border-color:' . $value['color'] . ';
+				}';
+			}
+			if ( $fill_color ) {
+				/**
+				 * fill-color
+				 */
+				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'fill' ) . ' {
+					fill:' . $value['color'] . ';
+				}';
+			}
 		}
 
 		return $this->minify( $css );
@@ -251,6 +314,36 @@ class Enqueue {
 		}
 
 		return $this->minify( $css );
+	}
+
+	/**
+	 * IEチェック
+	 *
+	 * @return bool
+	 */
+	private function is_ie() {
+		$ua = [
+			'Trident',
+			'MSIE',
+		];
+
+		return $this->check_user_agent( $ua );
+	}
+
+	/**
+	 * ユーザーエージェントチェック
+	 *
+	 * @param array $ua ユーザーエージェント文字列リスト.
+	 *
+	 * @return bool
+	 */
+	private function check_user_agent( $ua ) {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return false;
+		}
+		$pattern = '/' . implode( '|', $ua ) . '/i';
+
+		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 	}
 
 }

@@ -11,11 +11,30 @@
 	align-items: center;
 	height: 100vh;
 
-	.ystdb-section__inner {
+	.ystdb-section__container {
 	  flex: 0 0 100%;
 	  max-width: 100%;
 	}
   }
+
+  &.has-animation {
+	opacity: 0;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+  }
+
+  &.animation--fadein {
+	animation-name: ystdb-fadein;
+  }
+
+  &.animation--fadein-up {
+	animation-name: ystdb-fadein-up;
+  }
+
+  &.animation--fadein-shrink {
+	animation-name: ystdb-fadein-shrink;
+  }
+
 }
 
 .ystdb-section__bg {
@@ -69,5 +88,39 @@
 	max-width: 250px;
 	margin-right: auto;
 	margin-left: auto;
+  }
+}
+
+@keyframes ystdb-fadein {
+  from {
+	opacity: 0;
+  }
+
+  to {
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-up {
+  from {
+	transform: translateY(5%);
+	opacity: 0;
+  }
+
+  to {
+	transform: translateY(0);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-shrink {
+  from {
+	transform: scale(1.05, 1.05);
+	opacity: 0;
+  }
+
+  to {
+	transform: scale(1, 1);
+	opacity: 1;
   }
 }

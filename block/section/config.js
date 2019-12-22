@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import getNum from "../../src/js/util/_getNum";
+import getNum from '../../src/js/util/_getNum';
 
 /**
  * attributes
@@ -98,6 +98,14 @@ export const attributes = {
 	},
 	customDividerColorBottom: {
 		type: 'string',
+	},
+	animationType: {
+		type: 'string',
+		default: 'none',
+	},
+	animationSpeed: {
+		type: 'number',
+		default: 3,
 	},
 };
 
@@ -203,6 +211,13 @@ export const dividerTypes = [
 	},
 ];
 
+export const animationTypes = [
+	{ label: 'なし', value: 'none' },
+	{ label: 'フェードイン', value: 'fadein' },
+	{ label: '下からフェードイン', value: 'fadein-up' },
+	{ label: '縮小しながらフェードイン', value: 'fadein-shrink' },
+];
+
 export const dividerPath = ( type, level ) => {
 	let level1 = level;
 	let level2 = level;
@@ -230,5 +245,4 @@ export const dividerPath = ( type, level ) => {
 	level1 = 0 > level ? 100 : 0;
 	level2 = 0 > level ? 100 + level : 100 - level;
 	return `m${ level1 },${ level2 } L100,100 L0,100 z`;
-
 };
