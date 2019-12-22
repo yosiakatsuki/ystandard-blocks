@@ -3,6 +3,7 @@ const defaultConfig = require("@wordpress/scripts/config/webpack.config");
 module.exports = {
     ...defaultConfig,
     entry: {
+       'app': './src/js/app/app.js',
        'button': './block/button/index.js',
        'columns': './block/columns/index.js',
        'column': './block/columns/item/index.js',
