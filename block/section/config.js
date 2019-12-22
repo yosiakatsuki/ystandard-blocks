@@ -67,9 +67,9 @@ export const attributes = {
 		type: 'bool',
 		default: false,
 	},
-	screenHeightModeMinHeight: {
+	sectionMinHeight: {
 		type: 'number',
-		default: 500,
+		default: 0,
 	},
 	dividerTypeTop: {
 		type: 'string',

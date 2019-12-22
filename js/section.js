@@ -499,9 +499,9 @@ var attributes = {
     type: 'bool',
     default: false
   },
-  screenHeightModeMinHeight: {
+  sectionMinHeight: {
     type: 'number',
-    default: 500
+    default: 0
   },
   dividerTypeTop: {
     type: 'string',
@@ -716,7 +716,7 @@ var sectionEdit = function sectionEdit(props) {
       dividerTypeBottom = attributes.dividerTypeBottom,
       dividerLevelBottom = attributes.dividerLevelBottom,
       screenHeightMode = attributes.screenHeightMode,
-      screenHeightModeMinHeight = attributes.screenHeightModeMinHeight;
+      sectionMinHeight = attributes.sectionMinHeight;
 
   var _select$getSettings = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__["select"])('core/block-editor').getSettings(),
       colors = _select$getSettings.colors;
@@ -742,7 +742,8 @@ var sectionEdit = function sectionEdit(props) {
    */
 
   var sectionClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section', {
-    'has-background-image': backgroundImageURL
+    'has-background-image': backgroundImageURL,
+    'is-screen-height': screenHeightMode
   });
   /**
    * セクションスタイル
@@ -752,7 +753,8 @@ var sectionEdit = function sectionEdit(props) {
     color: textColor.color,
     paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
     paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-    backgroundImage: backgroundImageURL ? "url(\"".concat(backgroundImageURL, "\")") : undefined
+    backgroundImage: backgroundImageURL ? "url(\"".concat(backgroundImageURL, "\")") : undefined,
+    minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined
   };
   /**
    * 背景マスク
@@ -958,36 +960,6 @@ var sectionEdit = function sectionEdit(props) {
   }, "\u203B\u6570\u5B57\u304C\u5927\u304D\u3044\u307B\u3069\u4F59\u767D\u304C\u5927\u304D\u304F\u306A\u308A\u307E\u3059\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "ystdb-info__small"
   }, "\u203B\u5358\u4F4D\u306Frem\u3067\u3059\u3002")))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('セクションコンテンツ幅設定', 'ystandard-blocks')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-    className: "ystdb-info__label"
-  }, "\u304B\u3093\u305F\u3093\u8A2D\u5B9A"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-    className: 'ystdb-btn-selector components-base-control'
-  }, _config__WEBPACK_IMPORTED_MODULE_3__["marginType"].innerWidth.map(function (item) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-      key: item.value,
-      isDefault: true,
-      onClick: function onClick() {
-        setAttributes({
-          innerCustomWidth: item.num
-        });
-      }
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, item.label));
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["RangeControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('コンテンツ部分の最大幅', 'ystandard-blocks'),
-    value: innerCustomWidth,
-    onChange: function onChange(value) {
-      return setAttributes({
-        innerCustomWidth: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_4__["default"])(value, 0, 1920, 0)
-      });
-    },
-    min: 0,
-    max: 1920,
-    step: 16,
-    allowReset: true
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
-    className: "ystdb-info__small"
-  }, "\u203B\u6700\u5927\u5E45\u306E\u6307\u5B9A\u3092\u3057\u306A\u3044\u5834\u5408\u306F0\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('背景設定', 'ystandard-blocks'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
@@ -1117,6 +1089,63 @@ var sectionEdit = function sectionEdit(props) {
     },
     value: dividerColorBottom.color
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('コンテンツ幅設定', 'ystandard-blocks'),
+    initialOpen: false
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-info__label"
+  }, "\u304B\u3093\u305F\u3093\u8A2D\u5B9A"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: 'ystdb-btn-selector components-base-control'
+  }, _config__WEBPACK_IMPORTED_MODULE_3__["marginType"].innerWidth.map(function (item) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
+      key: item.value,
+      isDefault: true,
+      onClick: function onClick() {
+        setAttributes({
+          innerCustomWidth: item.num
+        });
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, item.label));
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["RangeControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('コンテンツ部分の最大幅', 'ystandard-blocks'),
+    value: innerCustomWidth,
+    onChange: function onChange(value) {
+      return setAttributes({
+        innerCustomWidth: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_4__["default"])(value, 0, 1920, 0)
+      });
+    },
+    min: 0,
+    max: 1920,
+    step: 16,
+    allowReset: true
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+    className: "ystdb-info__small"
+  }, "\u203B\u6700\u5927\u5E45\u306E\u6307\u5B9A\u3092\u3057\u306A\u3044\u5834\u5408\u306F0\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('セクション高さ設定', 'ystandard-blocks'),
+    initialOpen: false
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__label"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('高さ設定', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('画面と同じ高さにする', 'ystandard-blocks'),
+    checked: screenHeightMode,
+    onChange: function onChange() {
+      setAttributes({
+        screenHeightMode: !screenHeightMode
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["RangeControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('セクション最小高さ', 'ystandard-blocks'),
+    value: sectionMinHeight,
+    onChange: function onChange(value) {
+      return setAttributes({
+        sectionMinHeight: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_4__["default"])(value, 0, 1000, 0)
+      });
+    },
+    min: 0,
+    max: 1000,
+    allowReset: true
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__dscr"
+  }, "\u203B\u300C\u753B\u9762\u3068\u540C\u3058\u9AD8\u3055\u306B\u3059\u308B\u300D\u3092ON\u306B\u3057\u305F\u5834\u5408\u3001\u30BB\u30AF\u30B7\u30E7\u30F3\u6700\u5C0F\u9AD8\u3055\u3082\u5408\u308F\u305B\u3066\u8A2D\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002\uFF08\u4F8B\uFF1A500\u4EE5\u4E0A\uFF09")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('HTMLタグ設定', 'ystandard-blocks'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {

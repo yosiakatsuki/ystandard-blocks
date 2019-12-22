@@ -19,6 +19,7 @@ import {
 	SVG,
 	Path,
 	ColorPalette,
+	ToggleControl,
 } from '@wordpress/components';
 
 import {
@@ -60,7 +61,7 @@ const sectionEdit = ( props ) => {
 		dividerTypeBottom,
 		dividerLevelBottom,
 		screenHeightMode,
-		screenHeightModeMinHeight,
+		sectionMinHeight,
 	} = attributes;
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
@@ -89,6 +90,7 @@ const sectionEdit = ( props ) => {
 		'ystdb-section',
 		{
 			'has-background-image': backgroundImageURL,
+			'is-screen-height': screenHeightMode,
 		}
 	);
 	/**
@@ -99,6 +101,7 @@ const sectionEdit = ( props ) => {
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
 		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
+		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 	};
 	/**
 	 * 背景マスク
@@ -316,38 +319,6 @@ const sectionEdit = ( props ) => {
 							</div>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody title={ __( 'セクションコンテンツ幅設定', 'ystandard-blocks' ) }>
-						<div className={ `ystdb-info__label` }>かんたん設定</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
-							{ marginType.innerWidth.map( ( item ) => {
-								return (
-									<Button
-										key={ item.value }
-										isDefault
-										onClick={ () => {
-											setAttributes( {
-												innerCustomWidth: item.num,
-											} );
-										} }
-									>
-										<span>{ item.label }</span>
-									</Button>
-								);
-							} ) }
-						</div>
-						<RangeControl
-							label={ __( 'コンテンツ部分の最大幅', 'ystandard-blocks' ) }
-							value={ innerCustomWidth }
-							onChange={ ( value ) => setAttributes( { innerCustomWidth: getNum( value, 0, 1920, 0 ) } ) }
-							min={ 0 }
-							max={ 1920 }
-							step={ 16 }
-							allowReset={ true }
-						/>
-						<p>
-							<span className={ `ystdb-info__small` }>※最大幅の指定をしない場合は0にしてください。</span>
-						</p>
-					</PanelBody>
 					<PanelBody
 						title={ __( '背景設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
@@ -487,6 +458,66 @@ const sectionEdit = ( props ) => {
 							value={ dividerColorBottom.color }
 						/>
 
+					</PanelBody>
+					<PanelBody
+						title={ __( 'コンテンツ幅設定', 'ystandard-blocks' ) }
+						initialOpen={ false }
+					>
+						<div className={ `ystdb-info__label` }>かんたん設定</div>
+						<div className={ 'ystdb-btn-selector components-base-control' }>
+							{ marginType.innerWidth.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isDefault
+										onClick={ () => {
+											setAttributes( {
+												innerCustomWidth: item.num,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
+						</div>
+						<RangeControl
+							label={ __( 'コンテンツ部分の最大幅', 'ystandard-blocks' ) }
+							value={ innerCustomWidth }
+							onChange={ ( value ) => setAttributes( { innerCustomWidth: getNum( value, 0, 1920, 0 ) } ) }
+							min={ 0 }
+							max={ 1920 }
+							step={ 16 }
+							allowReset={ true }
+						/>
+						<p>
+							<span className={ `ystdb-info__small` }>※最大幅の指定をしない場合は0にしてください。</span>
+						</p>
+					</PanelBody>
+					<PanelBody
+						title={ __( 'セクション高さ設定', 'ystandard-blocks' ) }
+						initialOpen={ false }
+					>
+						<div className="ystdb-inspector-controls__label">{ __( '高さ設定', 'ystandard-blocks' ) }</div>
+						<ToggleControl
+							label={ __( '画面と同じ高さにする', 'ystandard-blocks' ) }
+							checked={ screenHeightMode }
+							onChange={ () => {
+								setAttributes( {
+									screenHeightMode: ! screenHeightMode,
+								} );
+							} }
+						/>
+						<RangeControl
+							label={ __( 'セクション最小高さ', 'ystandard-blocks' ) }
+							value={ sectionMinHeight }
+							onChange={ ( value ) => setAttributes( { sectionMinHeight: getNum( value, 0, 1000, 0 ) } ) }
+							min={ 0 }
+							max={ 1000 }
+							allowReset={ true }
+						/>
+						<div className="ystdb-inspector-controls__dscr">※「画面と同じ高さにする」をONにした場合、セクション最小高さも合わせて設定してください。（例：500以上）
+						</div>
 					</PanelBody>
 					<PanelBody
 						title={ __( 'HTMLタグ設定', 'ystandard-blocks' ) }

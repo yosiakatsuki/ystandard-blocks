@@ -5,6 +5,17 @@
   background-position: center;
   overflow: hidden;
   z-index: 0;
+
+  &.is-screen-height {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+
+	.ystdb-section__inner {
+	  flex: 0 0 100%;
+	  max-width: 100%;
+	}
+  }
 }
 
 .ystdb-section__bg {
