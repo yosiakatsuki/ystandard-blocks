@@ -86,3 +86,8 @@ Source : <https://github.com/YahnisElsts/plugin-update-checker>
 
 License: MIT
 Source : <https://github.com/fontIconPicker/react-fonticonpicker>
+
+### IntersectionObserver
+
+License: W3C Software and Document License
+Source : <https://github.com/w3c/IntersectionObserver>
