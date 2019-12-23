@@ -8,7 +8,7 @@
     &.has-#{$i}-columns {
       .ystdb-column {
         flex: 0 0 calc(#{(100% / $i)} - 1rem);
-        max-width: calc(#{(100% / $i)} - 1rem);
+        width: calc(#{(100% / $i)} - 1rem);
       }
     }
   }
@@ -17,7 +17,7 @@
       &.has-#{$i}-columns--tablet {
         .ystdb-column {
           flex: 0 0 calc(#{(100% / $i)} - 1rem);
-          max-width: calc(#{(100% / $i)} - 1rem);
+          width: calc(#{(100% / $i)} - 1rem);
         }
       }
     }
@@ -27,7 +27,7 @@
       &.has-#{$i}-columns--pc {
         .ystdb-column {
           flex: 0 0 calc(#{(100% / $i)} - 1rem);
-          max-width: calc(#{(100% / $i)} - 1rem);
+          width: calc(#{(100% / $i)} - 1rem);
         }
       }
     }
