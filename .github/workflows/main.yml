@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.14'
-      - name: Build
+      - name: Build Files
         run: |
           npm install
           npm run build:deploy-files
