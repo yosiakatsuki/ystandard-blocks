@@ -11,17 +11,17 @@ jobs:
       - uses: actions/checkout@develop
       - name: Use Node.js 12.14
         uses: actions/setup-node@v1
-          with:
-            node-version: '12.14'
+        with:
+          node-version: '12.14'
       - name: Build
-          run: |
-            npm install
-            npm run build:deploy-files
+        run: |
+          npm install
+          npm run build:deploy-files
       - name: FTP-Deploy-Action
-          uses: SamKirkland/FTP-Deploy-Action@2.0.0
-          env:
-            FTP_SERVER: ${{ secrets.FTP_SERVER }}
-            FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-            FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-            LOCAL_DIR: build
-            REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: build
+          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
