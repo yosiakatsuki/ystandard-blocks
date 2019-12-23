@@ -483,7 +483,7 @@ var attributes = {
   },
   innerCustomWidth: {
     type: 'integer',
-    default: 960
+    default: 0
   },
   backgroundImageURL: {
     type: 'string'
