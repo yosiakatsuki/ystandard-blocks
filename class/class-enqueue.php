@@ -40,6 +40,7 @@ class Enqueue {
 			[ $this, 'enqueue_editor_styles' ]
 		);
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
+		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
 	}
 
 	/**
@@ -88,6 +89,15 @@ class Enqueue {
 			'ystandard-blocks',
 			$inline_css
 		);
+		/**
+		 * AMP対応
+		 */
+		if ( $this->is_amp() ) {
+			wp_add_inline_style(
+				'ystandard-blocks',
+				$this->get_fallback_animation_css()
+			);
+		}
 	}
 
 	/**
@@ -110,6 +120,15 @@ class Enqueue {
 			'ystandard-blocks-no-ystandard',
 			$inline_css
 		);
+		/**
+		 * AMP対応
+		 */
+		if ( $this->is_amp() ) {
+			wp_add_inline_style(
+				'ystandard-blocks-no-ystandard',
+				$this->get_fallback_animation_css()
+			);
+		}
 		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
 			wp_enqueue_script(
 				'font-awesome',
@@ -193,6 +212,9 @@ class Enqueue {
 		if ( is_admin() ) {
 			return $tag;
 		}
+		if ( apply_filters( 'ystdb_disable_script_loader_tag', false ) ) {
+			return $tag;
+		}
 		foreach ( [ 'async', 'defer' ] as $attr ) {
 			if ( ! wp_scripts()->get_data( $handle, $attr ) ) {
 				continue;
@@ -204,6 +226,28 @@ class Enqueue {
 		}
 
 		return $tag;
+	}
+
+	/**
+	 * Noscriptで出力するCSS
+	 */
+	public function noscript_styles() {
+
+		$css = $this->get_fallback_animation_css();
+
+		printf(
+			'<noscript><style>%s</style></noscript>' . PHP_EOL,
+			$this->minify( $css )
+		);
+	}
+
+	/**
+	 * アニメーションできないときのCSS取得
+	 *
+	 * @return string
+	 */
+	private function get_fallback_animation_css() {
+		return '.ystdb-section.has-animation:not(:root) {opacity:1;}';
 	}
 
 	/**
@@ -328,6 +372,17 @@ class Enqueue {
 		];
 
 		return $this->check_user_agent( $ua );
+	}
+
+	/**
+	 * AMPチェック
+	 *
+	 * @return bool
+	 */
+	private function is_amp() {
+		$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+
+		return apply_filters( 'ystdb_is_amp_endpoint', $is_amp_endpoint );
 	}
 
 	/**
