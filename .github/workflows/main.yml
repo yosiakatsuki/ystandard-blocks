@@ -17,9 +17,6 @@ jobs:
         run: |
           npm install
           npm run build:deploy-files
-          echo "SERVER: ${{ secrets.FTP_SERVER }}"
-          echo "USERNAME: ${{ secrets.FTP_USERNAME }}"
-          echo "REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}"
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
