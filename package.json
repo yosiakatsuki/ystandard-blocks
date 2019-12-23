@@ -13,7 +13,7 @@
     "build": "npm run build:icon && npm run build:block && gulp sass",
     "watch": "npm run start:block & gulp watch",
     "zip": "gulp zip",
-    "build:deploy-files": "gulp create-deploy-files"
+    "build:deploy-files": "gulp createDeployFiles"
   },
   "repository": {
     "type": "git",

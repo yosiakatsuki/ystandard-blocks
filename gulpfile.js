@@ -1,11 +1,11 @@
-const gulp = require( 'gulp' );
-const sass = require( 'gulp-sass' );
+const { series, parallel, watch, src, dest } = require( 'gulp' );
+const gulpSass = require( 'gulp-sass' );
 const sassGlob = require( "gulp-sass-glob" );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
 const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
-const zip = require( 'gulp-zip' );
+const gulpZip = require( 'gulp-zip' );
 
 const postcssPlugins = [
 	autoprefixer( { overrideBrowserslist: [ 'last 2 version, not ie < 11' ] } ),
@@ -16,19 +16,19 @@ const postcssPlugins = [
 /**
  * sass
  */
-gulp.task( 'sass', () => {
-	return gulp.src( './src/sass/*.scss' )
+function sass() {
+	return src( './src/sass/*.scss' )
 		.pipe( sassGlob() )
-		.pipe( sass() )
+		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
-		.pipe( gulp.dest( './css' ) );
-} );
+		.pipe( dest( './css' ) );
+}
 
 /**
- * Zip
+ * 必要ファイルのコピー
  */
-gulp.task( 'zip', function () {
-	return gulp.src(
+function copyProductionFiles() {
+	return src(
 		[
 			'**',
 			'!.gitignore',
@@ -54,31 +54,41 @@ gulp.task( 'zip', function () {
 			'!block/**/*.scss',
 			'!.github',
 			'!.github/**',
+			'!build',
+			'!build/**',
 			'!*.zip',
+			'!ystandard-blocks',
+			'!ystandard-blocks/**',
 		],
 		{ base: './' }
 	)
-		.pipe( zip( 'ystandard-blocks.zip' ) )
-		.pipe( gulp.dest( './build/' ) );
-} );
+		.pipe( dest( './ystandard-blocks' ) );
+}
+
+/**
+ * Zip
+ */
+function zip() {
+	return src( 'ystandard-blocks/**', { base: '.' } )
+		.pipe( gulpZip( 'ystandard-blocks.zip' ) )
+		.pipe( dest( 'build' ) );
+}
+
+function copyJson() {
+	return src( 'ystandard-blocks.json' )
+		.pipe( dest( 'build' ) );
+}
+
 /**
  * サーバーにデプロイするファイルを作成
  */
-gulp.task( 'create-deploy-files', () => {
-	gulp.task( 'zip' )();
-	return gulp.src( './ystandard-blocks.json' )
-		.pipe( gulp.dest( './build/' ) );
-} );
 
-/**
- * watch
- */
-gulp.task( 'watch', () => {
-	gulp.watch( './src/sass/**/*.scss', gulp.task( 'sass' ) );
-	gulp.watch( './block/**/*.scss', gulp.task( 'sass' ) );
-} );
+exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
 
 /**
  * default
  */
-gulp.task( 'default', gulp.task( 'watch' ) );
+exports.default = function () {
+	watch( './src/sass/**/*.scss', sass );
+	watch( './block/**/*.scss', sass );
+};
