@@ -9,6 +9,7 @@ module.exports = {
        'column': './block/columns/item/index.js',
        'fa-icon': './block/fa-icon/index.js',
        'section': './block/section/index.js',
+       'heading': './block/heading/index.js',
        'button-link': './block/button-link/index.js',
        'format': './block/format/index.js',
        'extend-core': './block/extend-core/index.js',
