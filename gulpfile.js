@@ -79,16 +79,19 @@ function copyJson() {
 		.pipe( dest( 'build' ) );
 }
 
+function watchFiles() {
+	sass();
+	watch( './src/sass/**/*.scss', sass );
+	watch( './block/**/*.scss', sass );
+}
+
 /**
  * サーバーにデプロイするファイルを作成
  */
 
 exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
-
+exports.watch = series( watchFiles );
 /**
  * default
  */
-exports.default = function () {
-	watch( './src/sass/**/*.scss', sass );
-	watch( './block/**/*.scss', sass );
-};
+exports.default = series( watchFiles );
