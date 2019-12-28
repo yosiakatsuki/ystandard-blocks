@@ -45,6 +45,7 @@ function ysButton( props ) {
 		isSelected,
 		fontSize,
 		setFontSize,
+		className,
 	} = props;
 	const {
 		borderRadius,
@@ -66,6 +67,7 @@ function ysButton( props ) {
 	} = attributes;
 
 	const wrapClasses = classnames(
+		className,
 		'wp-block-button',
 		{
 			[ `has-text-align-${ align }` ]: align,
@@ -83,7 +85,7 @@ function ysButton( props ) {
 			'has-background': backgroundColor.class,
 			[ paddingType ]: paddingType,
 			[ buttonType ]: buttonType,
-			'has-animation': animationType,
+			'has-animation': animationType && 'none' !== animationType,
 			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
 		}
 	);

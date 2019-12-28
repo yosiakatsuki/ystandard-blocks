@@ -407,7 +407,8 @@ function ysButton(props) {
       setAttributes = props.setAttributes,
       isSelected = props.isSelected,
       fontSize = props.fontSize,
-      setFontSize = props.setFontSize;
+      setFontSize = props.setFontSize,
+      className = props.className;
   var borderRadius = attributes.borderRadius,
       text = attributes.text,
       iconLeft = attributes.iconLeft,
@@ -424,8 +425,8 @@ function ysButton(props) {
       maxUnit = attributes.maxUnit,
       animationType = attributes.animationType,
       animationInterval = attributes.animationInterval;
-  var wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _classnames));
-  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, buttonType, buttonType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
+  var wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'wp-block-button', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _classnames));
+  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, buttonType, buttonType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
   var wrapStyles = {
     fontSize: fontSize.size ? fontSize.size + 'px' : undefined
   };
