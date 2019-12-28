@@ -2,7 +2,7 @@ import { range } from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { Component } from '@wordpress/element';
 import { Toolbar, Path, SVG } from '@wordpress/components';
-import { paths } from "./config";
+import { paths } from './config';
 
 class HeadingToolbar extends Component {
 	createLevelControl( targetLevel, selectedLevel, onChange ) {
@@ -24,7 +24,7 @@ class HeadingToolbar extends Component {
 				icon={ this.getIcon( selectedLevel ) }
 				controls={ range( minLevel, maxLevel ).map(
 					( index ) => this.createLevelControl( index, selectedLevel, onChange )
-				) }/>
+				) } />
 		);
 	}
 
@@ -34,7 +34,7 @@ class HeadingToolbar extends Component {
 		}
 		return (
 			<SVG width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" isPressed={ isPressed }>
-				<Path d={ paths[ level ] }/>
+				<Path d={ paths[ level ] } />
 			</SVG>
 		);
 	}

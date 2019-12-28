@@ -8,7 +8,7 @@ import {
 
 import {
 	Path,
-	SVG
+	SVG,
 } from '@wordpress/components';
 
 export default function save( { attributes } ) {
@@ -95,23 +95,20 @@ export default function save( { attributes } ) {
 				xmlns="http://www.w3.org/2000/svg"
 				style={ lineStyle }
 			>
-				<Path d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }/>
+				<Path d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` } />
 			</SVG>
 		);
 	};
 	/**
 	 * サブテキスト
 	 *
-	 * @returns {null|*}
+	 * @return {null|*} サブテキスト.
 	 */
 	const showSubText = () => {
 		if ( ! subText ) {
 			return null;
 		}
-		console.log(`subTextSizeClass: ${subTextSizeClass}`);
-		console.log(`customSubTextSize: ${customSubTextSize}`);
-		console.log(`subTextSize: ${subTextSize}`);
-		const classes = classnames(
+		const subTextClasses = classnames(
 			'ystdb-heading__subtext',
 			{
 				'has-font-size': subTextSizeClass || customSubTextSize,
@@ -125,7 +122,7 @@ export default function save( { attributes } ) {
 			fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
 		};
 		return (
-			<span className={ classes } style={ styles }>{ subText }</span>
+			<span className={ subTextClasses } style={ styles }>{ subText }</span>
 		);
 	};
 

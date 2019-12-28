@@ -25,7 +25,7 @@ import {
 	RangeControl,
 	Button,
 	Path,
-	SVG
+	SVG,
 } from '@wordpress/components';
 
 import {
@@ -33,8 +33,8 @@ import {
 } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
-import { positions } from "./config";
-import getNum from "../../src/js/util/_getNum";
+import { positions } from './config';
+import getNum from '../../src/js/util/_getNum';
 
 function customHeading( props ) {
 	const {
@@ -127,7 +127,7 @@ function customHeading( props ) {
 				viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
 				xmlns="http://www.w3.org/2000/svg"
 				style={ lineStyle }>
-				<Path d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }/>
+				<Path d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` } />
 			</SVG>
 		);
 	};
@@ -135,10 +135,9 @@ function customHeading( props ) {
 	/**
 	 * サブテキスト
 	 *
-	 * @returns {*}
+	 * @return {*} サブテキスト.
 	 */
 	const editSubText = () => {
-
 		const padding = `calc(.25em + ${ subTextBorderHeight }px)`;
 
 		const wrapStyle = {
@@ -165,7 +164,7 @@ function customHeading( props ) {
 						onChange={ ( value ) => {
 							setAttributes( {
 								subText: value,
-							} )
+							} );
 						} }
 						placeholder={ 'サブテキスト...' }
 						aria-label={ __( 'Sub Text' ) }
