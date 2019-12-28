@@ -1,6 +1,9 @@
 @import "block";
 
-
+[data-type="ystdb/heading"] {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
 .ystdb-heading__subtext-edit {
   line-height: 1;
 }
