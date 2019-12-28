@@ -1,0 +1,54 @@
+.ystdb-heading {
+  position: relative;
+
+  &.is-clear-style {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: inherit;
+	font-weight: normal;
+
+	&::before,
+	&::after {
+	  display: none;
+	}
+  }
+
+}
+
+.ystdb-heading__text {
+  display: block;
+}
+
+.ystdb-heading__subtext {
+  display: block;
+  line-height: 1.2;
+
+  &:not(.has-font-size) {
+	font-size: 14px;
+  }
+
+  &:not(.has-color) {
+	color: $color__text-light;
+  }
+}
+
+.ystdb-heading__line {
+  display: block;
+
+  @at-root {
+	.has-text-align-left & {
+	  margin-right: auto;
+	}
+
+	.has-text-align-center & {
+	  margin-right: auto;
+	  margin-left: auto;
+	}
+
+	.has-text-align-right & {
+	  margin-left: auto;
+	}
+  }
+}
+
