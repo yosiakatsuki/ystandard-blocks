@@ -25,7 +25,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'string',
+		type: 'number',
 	},
 	animating: {
 		type: 'string',
