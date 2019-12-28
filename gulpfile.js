@@ -91,6 +91,7 @@ function watchFiles() {
 
 exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
 exports.watch = series( watchFiles );
+exports.sass = series( sass );
 /**
  * default
  */
