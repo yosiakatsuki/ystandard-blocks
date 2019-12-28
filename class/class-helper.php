@@ -6,6 +6,7 @@
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
+
 namespace ystandard_blocks;
 
 /**
