@@ -15,19 +15,22 @@ import {
 } from '@wordpress/element';
 import { paddingTypes } from './config';
 
-function ColumnEdit( {
-	attributes,
-	setAttributes,
-	setBackgroundColor,
-	backgroundColor,
-	hasChildBlocks,
-} ) {
+function ColumnEdit( props ) {
+	const {
+		attributes,
+		setAttributes,
+		setBackgroundColor,
+		backgroundColor,
+		hasChildBlocks,
+		className,
+	} = props;
 	const {
 		shadow,
 		paddingType,
 	} = attributes;
 
 	const classes = classnames(
+		className,
 		'ystdb-column',
 		{
 			'has-background': backgroundColor.color,
@@ -96,7 +99,7 @@ function ColumnEdit( {
 						renderAppender={ (
 							hasChildBlocks ?
 								undefined :
-								() => <InnerBlocks.ButtonBlockAppender />
+								() => <InnerBlocks.ButtonBlockAppender/>
 						) }
 					/>
 				</div>

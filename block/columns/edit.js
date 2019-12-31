@@ -21,10 +21,12 @@ import {
 
 import { __, _x } from '@wordpress/i18n';
 
-function columns( {
-	attributes,
-	setAttributes,
-} ) {
+function columns( props ) {
+	const {
+		attributes,
+		setAttributes,
+		className
+	} = props;
 	const {
 		colPc,
 		colTablet,
@@ -103,12 +105,14 @@ function columns( {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classes }>
-				<InnerBlocks
-					allowedBlocks={ allowedBlocks }
-					template={ template }
-					templateLock={ false }
-				/>
+			<div className={ classnames( className, 'ystdb-columns-wrap' ) }>
+				<div className={ classes }>
+					<InnerBlocks
+						allowedBlocks={ allowedBlocks }
+						template={ template }
+						templateLock={ false }
+					/>
+				</div>
 			</div>
 		</Fragment>
 	);

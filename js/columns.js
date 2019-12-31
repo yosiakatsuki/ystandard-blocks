@@ -192,11 +192,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-function columns(_ref) {
+function columns(props) {
   var _classnames;
 
-  var attributes = _ref.attributes,
-      setAttributes = _ref.setAttributes;
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      className = props.className;
   var colPc = attributes.colPc,
       colTablet = attributes.colTablet,
       colMobile = attributes.colMobile,
@@ -256,12 +257,14 @@ function columns(_ref) {
     min: 1,
     max: 6
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-columns-wrap')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: classes
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InnerBlocks"], {
     allowedBlocks: _config__WEBPACK_IMPORTED_MODULE_4__["allowedBlocks"],
     template: _config__WEBPACK_IMPORTED_MODULE_4__["template"],
     templateLock: false
-  })));
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (columns);

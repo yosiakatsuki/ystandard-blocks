@@ -174,17 +174,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ColumnEdit(_ref) {
+function ColumnEdit(props) {
   var _classnames;
 
-  var attributes = _ref.attributes,
-      setAttributes = _ref.setAttributes,
-      setBackgroundColor = _ref.setBackgroundColor,
-      backgroundColor = _ref.backgroundColor,
-      hasChildBlocks = _ref.hasChildBlocks;
+  var attributes = props.attributes,
+      setAttributes = props.setAttributes,
+      setBackgroundColor = props.setBackgroundColor,
+      backgroundColor = props.backgroundColor,
+      hasChildBlocks = props.hasChildBlocks,
+      className = props.className;
   var shadow = attributes.shadow,
       paddingType = attributes.paddingType;
-  var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-column', (_classnames = {
+  var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-column', (_classnames = {
     'has-background': backgroundColor.color
   }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-shadow', shadow), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, paddingType, paddingType), _classnames));
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PanelColorSettings"], {
