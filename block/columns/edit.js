@@ -25,7 +25,7 @@ function columns( props ) {
 	const {
 		attributes,
 		setAttributes,
-		className
+		className,
 	} = props;
 	const {
 		colPc,

@@ -99,7 +99,7 @@ function ColumnEdit( props ) {
 						renderAppender={ (
 							hasChildBlocks ?
 								undefined :
-								() => <InnerBlocks.ButtonBlockAppender/>
+								() => <InnerBlocks.ButtonBlockAppender />
 						) }
 					/>
 				</div>
