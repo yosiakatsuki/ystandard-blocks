@@ -269,7 +269,8 @@ function customHeading(props) {
       subTextSize = props.subTextSize,
       setSubTextSize = props.setSubTextSize,
       onReplace = props.onReplace,
-      mergeBlocks = props.mergeBlocks;
+      mergeBlocks = props.mergeBlocks,
+      className = props.className;
   var content = attributes.content,
       level = attributes.level,
       align = attributes.align,
@@ -299,7 +300,7 @@ function customHeading(props) {
    * @type {string}
    */
 
-  var headingClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-heading', (_classnames = {
+  var headingClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-heading', (_classnames = {
     'is-clear-style': clearStyle
   }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-border', subTextBorderHeight && subTextBorderWidth), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-sub-text', subText), _classnames));
   var styles = {

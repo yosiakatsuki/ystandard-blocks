@@ -53,6 +53,7 @@ function customHeading( props ) {
 		setSubTextSize,
 		onReplace,
 		mergeBlocks,
+		className,
 	} = props;
 	const {
 		content,
@@ -85,6 +86,7 @@ function customHeading( props ) {
 	 * @type {string}
 	 */
 	const headingClasses = classnames(
+		className,
 		'ystdb-heading',
 		{
 			'is-clear-style': clearStyle,
