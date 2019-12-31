@@ -43,6 +43,7 @@ const sectionEdit = ( props ) => {
 		setTextColor,
 		setDividerColorTop,
 		setDividerColorBottom,
+		className,
 	} = props;
 	const {
 		wrapperTag,
@@ -91,6 +92,7 @@ const sectionEdit = ( props ) => {
 	 * セクションクラス名
 	 */
 	const sectionClass = classnames(
+		className,
 		'ystdb-section',
 		{
 			'has-background-image': backgroundImageURL,

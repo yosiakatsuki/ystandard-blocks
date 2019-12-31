@@ -727,7 +727,8 @@ var sectionEdit = function sectionEdit(props) {
       setBackgroundColor = props.setBackgroundColor,
       setTextColor = props.setTextColor,
       setDividerColorTop = props.setDividerColorTop,
-      setDividerColorBottom = props.setDividerColorBottom;
+      setDividerColorBottom = props.setDividerColorBottom,
+      className = props.className;
   var wrapperTag = attributes.wrapperTag,
       marginTop = attributes.marginTop,
       marginBottom = attributes.marginBottom,
@@ -773,7 +774,7 @@ var sectionEdit = function sectionEdit(props) {
    * セクションクラス名
    */
 
-  var sectionClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section', {
+  var sectionClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-section', {
     'has-background-image': backgroundImageURL,
     'is-screen-height': screenHeightMode
   });
