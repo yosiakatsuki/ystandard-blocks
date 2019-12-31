@@ -218,7 +218,8 @@ function faIcon(props) {
       setAttributes = props.setAttributes,
       isSelected = props.isSelected,
       fontSize = props.fontSize,
-      setFontSize = props.setFontSize;
+      setFontSize = props.setFontSize,
+      className = props.className;
   var icon = attributes.icon,
       iconSize = attributes.iconSize,
       align = attributes.align,
@@ -226,7 +227,7 @@ function faIcon(props) {
       url = attributes.url,
       rel = attributes.rel,
       linkTarget = attributes.linkTarget;
-  var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-fa-icon', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _classnames));
+  var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-fa-icon', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _classnames));
   var styles = {
     color: textColor.color,
     fontSize: fontSize.size ? fontSize.size + 'px' : undefined

@@ -42,6 +42,7 @@ function faIcon( props ) {
 		isSelected,
 		fontSize,
 		setFontSize,
+		className,
 	} = props;
 	const {
 		icon,
@@ -54,6 +55,7 @@ function faIcon( props ) {
 	} = attributes;
 
 	const classes = classnames(
+		className,
 		'ystdb-fa-icon',
 		{
 			[ `has-text-align-${ align }` ]: align,
