@@ -49,6 +49,9 @@ export default function save( props ) {
 	 */
 	const Wrapper = wrapperTag;
 
+	const marginUnit = 'px';
+	const paddingUnit = 'px';
+
 	/**
 	 * 色設定
 	 */
@@ -85,10 +88,10 @@ export default function save( props ) {
 	 */
 	const sectionStyles = {
 		color: textColorClass ? undefined : customTextColor,
-		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
-		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-		marginTop: marginTop + 'rem',
-		marginBottom: marginBottom + 'rem',
+		paddingTop: 0 === paddingTop ? 0 : paddingTop + paddingUnit,
+		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + paddingUnit,
+		marginTop: marginTop + marginUnit,
+		marginBottom: marginBottom + marginUnit,
 		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
@@ -125,8 +128,8 @@ export default function save( props ) {
 		maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 		marginRight: 'auto',
 		marginLeft: 'auto',
-		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
-		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem',
+		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + paddingUnit,
+		paddingRight: 0 === paddingRight ? 0 : paddingRight + paddingUnit,
 	};
 
 	const divider = ( type, position, level, colorClass, customColor ) => {

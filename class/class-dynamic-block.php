@@ -23,7 +23,7 @@ class Dynamic_Block {
 	 */
 	public function render( $slug, $attributes ) {
 		ob_start();
-		include( YSTDB_PATH . 'block/' . $slug . '/view.php' );
+		include( YSTDB_PATH . 'blocks/' . $slug . '/view.php' );
 
 		return ob_get_clean();
 	}

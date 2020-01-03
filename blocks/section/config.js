@@ -23,19 +23,19 @@ export const attributes = {
 	},
 	marginTop: {
 		type: 'number',
-		default: 2,
+		default: 0,
 	},
 	marginBottom: {
 		type: 'number',
-		default: 2,
+		default: 0,
 	},
 	paddingTop: {
 		type: 'number',
-		default: 3,
+		default: 80,
 	},
 	paddingBottom: {
 		type: 'number',
-		default: 3,
+		default: 80,
 	},
 	paddingLeft: {
 		type: 'number',
@@ -61,7 +61,7 @@ export const attributes = {
 	},
 	backgroundImageOpacity: {
 		type: 'integer',
-		default: 50,
+		default: 100,
 	},
 	backgroundImageParallax: {
 		type: 'bool',
@@ -109,7 +109,7 @@ export const attributes = {
 	},
 	animationSpeed: {
 		type: 'number',
-		default: 3,
+		default: 2,
 	},
 };
 
@@ -127,17 +127,17 @@ export const marginType = {
 		{
 			value: 'normal',
 			label: __( 'リセット', 'ystandard-blocks' ),
-			num: 2,
+			num: 0,
 		},
 		{
 			value: 'wide',
 			label: __( '大', 'ystandard-blocks' ),
-			num: 4,
+			num: 80,
 		},
 		{
 			value: 'narrow',
 			label: __( '小', 'ystandard-blocks' ),
-			num: 1,
+			num: 32,
 		},
 		{
 			value: 'none',
@@ -149,17 +149,17 @@ export const marginType = {
 		{
 			value: 'normal',
 			label: __( 'リセット', 'ystandard-blocks' ),
-			num: 3,
+			num: 80,
 		},
 		{
 			value: 'wide',
 			label: __( '大', 'ystandard-blocks' ),
-			num: 5,
+			num: 128,
 		},
 		{
 			value: 'narrow',
 			label: __( '小', 'ystandard-blocks' ),
-			num: 1,
+			num: 40,
 		},
 		{
 			value: 'none',

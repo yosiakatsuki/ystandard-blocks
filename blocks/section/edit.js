@@ -71,7 +71,9 @@ const sectionEdit = ( props ) => {
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
 
-	const rangeStep = 0.5;
+	const rangeStep = 1;
+	const rangeMax = 200;
+	const rangeMin = 0;
 
 	const Wrapper = wrapperTag;
 	/**
@@ -84,8 +86,8 @@ const sectionEdit = ( props ) => {
 	 * 編集画面のラッパー
 	 */
 	const editWrapStyle = {
-		paddingTop: 0 === marginTop ? 0 : marginTop + 'rem',
-		paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
+		paddingTop: 0 === marginTop ? 0 : marginTop + 'px',
+		paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'px',
 	};
 
 	/**
@@ -104,8 +106,8 @@ const sectionEdit = ( props ) => {
 	 */
 	const sectionStyles = {
 		color: textColor.color,
-		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
-		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
+		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
+		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
 		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 	};
@@ -137,8 +139,8 @@ const sectionEdit = ( props ) => {
 		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
 		marginRight: 'auto',
 		marginLeft: 'auto',
-		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'rem',
-		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem',
+		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'px',
+		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'px',
 	};
 
 	/**
@@ -245,22 +247,21 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '上側', 'ystandard-blocks' ) }
 								value={ marginTop }
-								onChange={ ( value ) => setAttributes( { marginTop: getNum( value, -10, 10, 0 ) } ) }
-								min={ -10 }
-								max={ 10 }
+								onChange={ ( value ) => setAttributes( { marginTop: getNum( value, ( -1 * rangeMax ), rangeMax, 0 ) } ) }
+								min={ ( -1 * rangeMax ) }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<RangeControl
 								label={ __( '下側', 'ystandard-blocks' ) }
 								value={ marginBottom }
-								onChange={ ( value ) => setAttributes( { marginBottom: getNum( value, -10, 10, 0 ) } ) }
-								min={ -10 }
-								max={ 10 }
+								onChange={ ( value ) => setAttributes( { marginBottom: getNum( value, ( -1 * rangeMax ), rangeMax, 0 ) } ) }
+								min={ ( -1 * rangeMax ) }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<p>
 								<span className={ `ystdb-info__small` }>※数字が大きいほど余白が大きくなります。</span>
-								<span className={ `ystdb-info__small` }>※単位はremです。</span>
 							</p>
 						</BaseControl>
 						<BaseControl>
@@ -292,38 +293,37 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '上側', 'ystandard-blocks' ) }
 								value={ paddingTop }
-								onChange={ ( value ) => setAttributes( { paddingTop: getNum( value, 0, 10 ) } ) }
-								min={ 0 }
-								max={ 10 }
+								onChange={ ( value ) => setAttributes( { paddingTop: getNum( value, rangeMin, rangeMax ) } ) }
+								min={ rangeMin }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<RangeControl
 								label={ __( '下側', 'ystandard-blocks' ) }
 								value={ paddingBottom }
-								onChange={ ( value ) => setAttributes( { paddingBottom: getNum( value, 0, 10 ) } ) }
-								min={ 0 }
-								max={ 10 }
+								onChange={ ( value ) => setAttributes( { paddingBottom: getNum( value, rangeMin, rangeMax ) } ) }
+								min={ rangeMin }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<RangeControl
 								label={ __( '左側', 'ystandard-blocks' ) }
 								value={ paddingLeft }
-								onChange={ ( value ) => setAttributes( { paddingLeft: getNum( value, 0, 5 ) } ) }
-								min={ 0 }
-								max={ 5 }
+								onChange={ ( value ) => setAttributes( { paddingLeft: getNum( value, rangeMin, rangeMax ) } ) }
+								min={ rangeMin }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<RangeControl
 								label={ __( '右側', 'ystandard-blocks' ) }
 								value={ paddingRight }
-								onChange={ ( value ) => setAttributes( { paddingRight: getNum( value, 0, 5 ) } ) }
-								min={ 0 }
-								max={ 5 }
+								onChange={ ( value ) => setAttributes( { paddingRight: getNum( value, rangeMin, rangeMax ) } ) }
+								min={ rangeMin }
+								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<div>
 								<span className={ `ystdb-info__small` }>※数字が大きいほど余白が大きくなります。</span>
-								<span className={ `ystdb-info__small` }>※単位はremです。</span>
 							</div>
 						</BaseControl>
 					</PanelBody>
@@ -339,6 +339,11 @@ const sectionEdit = ( props ) => {
 									backgroundImageID: media.id,
 									backgroundImageAlt: media.alt,
 								} );
+								if ( 100 === backgroundImageOpacity ) {
+									setAttributes( {
+										backgroundImageOpacity: 50,
+									} );
+								}
 							} }
 							type={ ALLOWED_MEDIA_TYPES }
 							value={ backgroundImageID }

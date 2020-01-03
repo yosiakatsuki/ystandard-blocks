@@ -163,7 +163,7 @@ class Register {
 				$asset_file['dependencies'],
 				$asset_file['version']
 			);
-			require_once( YSTDB_PATH . 'block/' . $key . '/class-' . $value['class'] . '.php' );
+			require_once( YSTDB_PATH . 'blocks/' . $key . '/class-' . $value['class'] . '.php' );
 		}
 	}
 }
