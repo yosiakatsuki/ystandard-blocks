@@ -71,6 +71,14 @@ function customHeading( props ) {
 	const TagName = 'h' + level;
 	const { colors } = select( 'core/block-editor' ).getSettings();
 	const showSubText = isSelected || '' !== subText;
+
+	/**
+	 * 編集画面の余白調整
+	 *
+	 * @type {string}
+	 */
+	const dividerEditorMarginTop = 'bottom' === subTextPosition ? ( dividerMarginTop + 2 ) + 'px' : ( dividerMarginTop - 1 ) + 'px';
+	const dividerEditorMarginBottom = 'bottom' === subTextPosition ? ( dividerMarginBottom ) + 'px' : ( dividerMarginBottom + 2 ) + 'px';
 	/**
 	 * 編集領域
 	 *
@@ -116,8 +124,8 @@ function customHeading( props ) {
 		}
 		const lineStyle = {
 			fill: dividerColor.color ? dividerColor.color : '#222',
-			marginTop: 0 !== dividerMarginTop ? dividerMarginTop : undefined,
-			marginBottom: 0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+			marginTop: 0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
+			marginBottom: 0 !== dividerMarginBottom ? dividerEditorMarginBottom : undefined,
 			marginRight: 'left' === align || 'center' === align ? 'auto' : undefined,
 			marginLeft: 'right' === align || 'center' === align ? 'auto' : undefined,
 		};
