@@ -1,1 +1,1 @@
-import '../../../block/section/app';
+import '../../../blocks/section/app';
