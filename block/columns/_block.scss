@@ -1,14 +1,14 @@
 .ystdb-columns {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -.5rem;
-  margin-left: -.5rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
 
   @for $i from 1 through 6 {
     &.has-#{$i}-columns {
       .ystdb-column {
-        flex: 0 0 calc(#{(100% / $i)} - 1rem);
-        width: calc(#{(100% / $i)} - 1rem);
+        flex: 0 0 calc(#{(100% / $i)} - 2rem);
+        width: calc(#{(100% / $i)} - 2rem);
       }
     }
   }
@@ -16,8 +16,8 @@
     @include media-breakpoint(md) {
       &.has-#{$i}-columns--tablet {
         .ystdb-column {
-          flex: 0 0 calc(#{(100% / $i)} - 1rem);
-          width: calc(#{(100% / $i)} - 1rem);
+          flex: 0 0 calc(#{(100% / $i)} - 2rem);
+          width: calc(#{(100% / $i)} - 2rem);
         }
       }
     }
@@ -26,8 +26,8 @@
     @include media-breakpoint(lg) {
       &.has-#{$i}-columns--pc {
         .ystdb-column {
-          flex: 0 0 calc(#{(100% / $i)} - 1rem);
-          width: calc(#{(100% / $i)} - 1rem);
+          flex: 0 0 calc(#{(100% / $i)} - 2rem);
+          width: calc(#{(100% / $i)} - 2rem);
         }
       }
     }
@@ -55,9 +55,9 @@
 }
 
 .ystdb-column {
-  margin-right: .5rem;
-  margin-left: .5rem;
-  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
 
   &.has-shadow {
     box-shadow: 0 3px 15px rgba(189, 195, 199, .7);
