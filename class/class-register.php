@@ -99,11 +99,11 @@ class Register {
 					continue;
 				}
 			}
-			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
 			$handle     = 'ystandard-blocks-' . $key;
 			wp_register_script(
 				$handle,
-				YSTDB_URL . 'js/' . $key . '.js',
+				YSTDB_URL . '/js/' . $key . '.js',
 				$asset_file['dependencies'],
 				$asset_file['version']
 			);
@@ -119,6 +119,23 @@ class Register {
 	 * ブロックassets
 	 */
 	public function enqueue_block_editor_assets() {
+		/**
+		 * ブロック共通スクリプト
+		 */
+		$asset_file = include( YSTDB_PATH . '/js/block.asset.php' );
+		wp_enqueue_script(
+			'ystandard-blocks-editor',
+			YSTDB_URL . '/js/block.js',
+			$asset_file['dependencies'],
+			$asset_file['version']
+		);
+		wp_localize_script(
+			'ystandard-blocks-editor',
+			'ystdb',
+			[
+				'useAllIcons' => Options::is_use_all_icons(),
+			]
+		);
 		foreach ( $this->block_editor_assets as $key => $value ) {
 			/**
 			 * 非yStandardの利用チェック
@@ -128,10 +145,10 @@ class Register {
 					continue;
 				}
 			}
-			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
 			wp_enqueue_script(
 				'ystandard-blocks-' . $key,
-				YSTDB_URL . 'js/' . $key . '.js',
+				YSTDB_URL . '/js/' . $key . '.js',
 				$asset_file['dependencies'],
 				$asset_file['version']
 			);
@@ -155,15 +172,15 @@ class Register {
 					continue;
 				}
 			}
-			$asset_file = include( YSTDB_PATH . 'js/' . $key . '.asset.php' );
+			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
 			$handle     = 'ystandard-blocks-' . $key;
 			wp_register_script(
 				$handle,
-				YSTDB_URL . 'js/' . $key . '.js',
+				YSTDB_URL . '/js/' . $key . '.js',
 				$asset_file['dependencies'],
 				$asset_file['version']
 			);
-			require_once( YSTDB_PATH . 'blocks/' . $key . '/class-' . $value['class'] . '.php' );
+			require_once( YSTDB_PATH . '/blocks/' . $key . '/class-' . $value['class'] . '.php' );
 		}
 	}
 }

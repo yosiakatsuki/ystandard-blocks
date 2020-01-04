@@ -31,8 +31,8 @@
 defined( 'ABSPATH' ) || die();
 
 define( 'YSTDB_VERSION', '0.7.0-beta-2' );
-define( 'YSTDB_PATH', plugin_dir_path( __FILE__ ) );
-define( 'YSTDB_URL', plugin_dir_url( __FILE__ ) );
+define( 'YSTDB_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'YSTDB_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 /**
  * アンインストール時の処理
  */
@@ -45,7 +45,7 @@ if ( ! function_exists( 'register_block_type' ) ) {
 	return;
 }
 
-require_once YSTDB_PATH . 'class/class-main.php';
+require_once YSTDB_PATH . '/class/class-main.php';
 
 new ystandard_blocks\Main();
 

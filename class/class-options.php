@@ -27,6 +27,21 @@ class Options {
 	}
 
 	/**
+	 * すべてのアイコンを使用するか
+	 * @return bool
+	 */
+	public static function is_use_all_icons() {
+
+		if ( self::get_option_by_bool( 'load_font_awesome' ) ) {
+			$use_all_icons = self::get_option_by_bool( 'use_all_icons' );
+		} else {
+			$use_all_icons = true;
+		}
+
+		return apply_filters( 'ystdb_is_use_all_icons', $use_all_icons );
+	}
+
+	/**
 	 * デフォルト設定
 	 *
 	 * @return array
@@ -55,6 +70,7 @@ class Options {
 			'add_color_palette_css_border' => true,
 			'add_color_palette_css_fill'   => true,
 			'add_font_size_css'            => true,
+			'use_all_icons'                => false,
 		];
 	}
 
@@ -148,7 +164,12 @@ class Options {
 	public function register_option() {
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'hide_no_ystandard_notice' ) );
 		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'load_font_awesome' ) );
-		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_editor_color_and_size' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_color_palette_css_text' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_color_palette_css_bg' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_color_palette_css_border' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_color_palette_css_fill' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'add_font_size_css' ) );
+		register_setting( 'ystandard-blocks-group', $this->get_option_name( 'use_all_icons' ) );
 	}
 
 	/**
@@ -178,7 +199,11 @@ class Options {
 							<label>
 								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
 							</label>
-							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p>
+							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p><br>
+							<label>
+								<input id="use_all_icons" type="checkbox" name="<?php echo self::get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'use_all_icons' ) ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
+							</label>
+							<p>※yStandard BlocksでFont Awesomeを読み込む場合に有効な設定です。<br>※チェックをつけるとすべてのFont Awesomeアイコンを読み込みます。選べるアイコン種類が多くなりますが、読み込み速度が遅くなります。</p><br>
 						</td>
 					</tr>
 					<tr>

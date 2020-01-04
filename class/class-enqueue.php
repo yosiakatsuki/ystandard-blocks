@@ -23,24 +23,17 @@ class Enqueue {
 			11
 		);
 		if ( Main::is_ystandard() ) {
-			add_action(
-				'wp_enqueue_scripts',
-				[ $this, 'enqueue_scripts_ystandard' ],
-				11
-			);
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_ystandard' ], 11 );
 		} else {
-			add_action(
-				'wp_enqueue_scripts',
-				[ $this, 'enqueue_scripts_no_ystandard' ],
-				11
-			);
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_no_ystandard' ], 11 );
 		}
-		add_action(
-			'enqueue_block_editor_assets',
-			[ $this, 'enqueue_editor_styles' ]
-		);
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
+		apply_filters(
+			'ys_get_font_awesome_svg_light_url',
+			YSTDB_URL . '/js/icons.js'
+		);
 	}
 
 	/**
@@ -55,6 +48,7 @@ class Enqueue {
 			true
 		);
 		wp_script_add_data( 'ystandard-blocks-app', 'defer', true );
+
 		/**
 		 * IEポリフィル
 		 */
@@ -74,7 +68,7 @@ class Enqueue {
 	public function enqueue_scripts_ystandard() {
 		wp_enqueue_style(
 			'ystandard-blocks',
-			YSTDB_URL . 'css/ystandard-blocks.css',
+			YSTDB_URL . '/css/ystandard-blocks.css',
 			[],
 			YSTDB_VERSION
 		);
@@ -106,7 +100,7 @@ class Enqueue {
 	public function enqueue_scripts_no_ystandard() {
 		wp_enqueue_style(
 			'ystandard-blocks-no-ystandard',
-			YSTDB_URL . 'css/ystandard-blocks-no-ystandard.css',
+			YSTDB_URL . '/css/ystandard-blocks-no-ystandard.css',
 			[],
 			YSTDB_VERSION
 		);
@@ -130,13 +124,24 @@ class Enqueue {
 			);
 		}
 		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
-			wp_enqueue_script(
-				'font-awesome',
-				YSTDB_URL . 'library/fontawesome/js/all.js',
-				[],
-				YSTDB_VERSION,
-				true
-			);
+			if ( Options::is_use_all_icons() ) {
+				wp_enqueue_script(
+					'font-awesome',
+					YSTDB_URL . '/library/fontawesome/js/all.js',
+					[],
+					YSTDB_VERSION,
+					true
+				);
+			} else {
+				wp_enqueue_script(
+					'font-awesome',
+					YSTDB_URL . '/js/icons.js',
+					[],
+					YSTDB_VERSION,
+					true
+				);
+			}
+
 			wp_add_inline_script(
 				'font-awesome',
 				'FontAwesomeConfig = { searchPseudoElements: true };',
@@ -152,7 +157,7 @@ class Enqueue {
 	public function enqueue_editor_styles() {
 		wp_enqueue_style(
 			'font-awesome',
-			YSTDB_URL . 'library/fontawesome/css/all.css',
+			YSTDB_URL . '/library/fontawesome/css/all.css',
 			[],
 			YSTDB_VERSION
 		);
@@ -188,7 +193,7 @@ class Enqueue {
 		}
 		wp_enqueue_style(
 			'ystandard-blocks-edit',
-			YSTDB_URL . $css_file,
+			YSTDB_URL . '/' . $css_file,
 			[],
 			filemtime( YSTDB_PATH . '/' . $css_file )
 		);

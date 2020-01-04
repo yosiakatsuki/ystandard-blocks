@@ -17,7 +17,7 @@ class Main {
 	/**
 	 * 読み込むファイル群
 	 */
-	const YSTDB_CLASS_PATH = YSTDB_PATH . 'class/';
+	const YSTDB_CLASS_PATH = YSTDB_PATH . '/class/';
 
 	/**
 	 * Main constructor.
@@ -106,10 +106,10 @@ class Main {
 	 * アップデートチェック
 	 */
 	public function update_check() {
-		require_once YSTDB_PATH . 'library/plugin-update-checker/plugin-update-checker.php';
+		require_once YSTDB_PATH . '/library/plugin-update-checker/plugin-update-checker.php';
 		\Puc_v4_Factory::buildUpdateChecker(
 			'https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.json',
-			YSTDB_PATH . 'ystandard-blocks.php',
+			YSTDB_PATH . '/ystandard-blocks.php',
 			'yStandard Blocks'
 		);
 	}
@@ -150,7 +150,7 @@ class Main {
 		 * 設定削除
 		 */
 		if ( class_exists( 'Ystandard_Blocks_Options' ) ) {
-			require_once YSTDB_PATH . 'class/class-options.php';
+			require_once YSTDB_PATH . '/class/class-options.php';
 		}
 		$options = Options::get_default_options();
 		foreach ( $options as $key => $value ) {

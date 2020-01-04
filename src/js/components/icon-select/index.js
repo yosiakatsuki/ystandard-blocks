@@ -26,8 +26,8 @@ class IconSelect extends Component {
 		} = this.props;
 
 		const iconBaseControlTitle = iconControlTitle === undefined ? __( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
-
-		const icons = _.uniq( [ ...recommendIcons.icons, ...allIcons.icons ] );
+		const useIcons = ystdb.useAllIcons ? [ ...recommendIcons.icons, ...allIcons.icons ] : [ ...recommendIcons.icons ];
+		const icons = _.uniq( useIcons );
 
 		const pickerProps = {
 			icons,
