@@ -50,17 +50,20 @@ class Options {
 		return [
 			'inline_style_fz_1'            => 100,
 			'inline_style_color_1'         => '#222222',
-			'inline_style_mark_color_1'    => '#D53939',
+			'inline_style_mark_color_1'    => '#DA6272',
+			'inline_style_mark_opacity_1'  => 30,
 			'inline_style_mark_weight_1'   => 25,
 			'inline_style_type_1'          => 'normal',
 			'inline_style_fz_2'            => 100,
 			'inline_style_color_2'         => '#222222',
-			'inline_style_mark_color_2'    => '#82B9E3',
+			'inline_style_mark_color_2'    => '#45A1CF',
+			'inline_style_mark_opacity_2'  => 30,
 			'inline_style_mark_weight_2'   => 25,
 			'inline_style_type_2'          => 'normal',
 			'inline_style_fz_3'            => 100,
 			'inline_style_color_3'         => '#222222',
-			'inline_style_mark_color_3'    => '#F5EC84',
+			'inline_style_mark_color_3'    => '#FFEE55',
+			'inline_style_mark_opacity_3'  => 30,
 			'inline_style_mark_weight_3'   => 25,
 			'inline_style_type_3'          => 'normal',
 			'hide_no_ystandard_notice'     => false,
@@ -115,6 +118,23 @@ class Options {
 		}
 
 		return false;
+	}
+
+	/**
+	 * 設定を数値として取得
+	 *
+	 * @param string $name    設定名.
+	 * @param int    $default デフォルト.
+	 *
+	 * @return int
+	 */
+	public static function get_option_by_number( $name, $default = 0 ) {
+		$option = self::get_option( $name );
+		if ( is_numeric( $option ) ) {
+			return $option;
+		}
+
+		return $default;
 	}
 
 	/**

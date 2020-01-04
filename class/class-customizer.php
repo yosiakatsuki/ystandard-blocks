@@ -119,14 +119,16 @@ class Customizer {
 			 * マーカー
 			 */
 			if ( 0 < $option['mark_weight'] ) {
-				$weight = ( 100 - $option['mark_weight'] ) . '%';
+				$weight  = ( 100 - $option['mark_weight'] ) . '%';
+				$opacity = $option['mark_opacity'];
 				/**
 				 * 結合
 				 */
 				$style .= sprintf(
-					'background: linear-gradient(transparent %s, rgba(%s, 0.5) %s);background-position-y: -0.2em;',
+					'background: linear-gradient(transparent %s, rgba(%s, %s) %s);background-position-y: -0.2em;',
 					$weight,
 					implode( ',', $option['mark_color'] ),
+					$opacity,
 					$weight
 				);
 			} else {
@@ -171,21 +173,23 @@ class Customizer {
 		/**
 		 * マーカー
 		 */
-		$mark_weight = Options::get_option( 'inline_style_mark_weight_' . $index );
-		$mark_color  = Options::hex_2_rgb(
+		$mark_weight  = Options::get_option( 'inline_style_mark_weight_' . $index );
+		$mark_color   = Options::hex_2_rgb(
 			Options::get_option( 'inline_style_mark_color_' . $index )
 		);
+		$mark_opacity = Options::get_option_by_number( 'inline_style_mark_opacity_' . $index ) / 100;
 		/**
 		 * タイプ
 		 */
 		$type = Options::get_option( 'inline_style_type_' . $index );
 
 		return [
-			'fz'          => $fz,
-			'color'       => $color,
-			'mark_weight' => $mark_weight,
-			'mark_color'  => $mark_color,
-			'type'        => $type,
+			'fz'           => $fz,
+			'color'        => $color,
+			'mark_weight'  => $mark_weight,
+			'mark_color'   => $mark_color,
+			'mark_opacity' => $mark_opacity,
+			'type'         => $type,
 		];
 	}
 
@@ -261,6 +265,23 @@ class Customizer {
 					'label'     => 'マーカー色',
 					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
+				]
+			);
+			/**
+			 * マーカー不透明度
+			 */
+			$ys_customizer->add_number(
+				[
+					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_opacity_' . $i ),
+					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i ),
+					'label'     => 'マーカー色の不透明度',
+					'section'   => 'ystdb_inline_style',
+					'transport' => 'postMessage',
+					'input_attrs' => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 10,
+					],
 				]
 			);
 			/**
