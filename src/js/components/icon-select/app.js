@@ -79,6 +79,8 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import {
 	faTwitter,
+	faTwitterSquare,
+	faFacebookF,
 	faFacebookSquare,
 	faYoutube,
 	faInstagram,
@@ -174,7 +176,9 @@ library.add( faCalendar );
 library.add( icon( faHeart, { prefix: 'far', iconName: 'heart' } ) );
 library.add( icon( faStar, { prefix: 'far', iconName: 'star' } ) );
 library.add( faTwitter );
+library.add( faTwitterSquare );
 library.add( faFacebookSquare );
+library.add( faFacebookF );
 library.add( faYoutube );
 library.add( faInstagram );
 library.add( faGetPocket );
