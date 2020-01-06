@@ -1,4 +1,4 @@
-import { library, dom, icon } from '@fortawesome/fontawesome-svg-core'
+import { library, dom, icon } from '@fortawesome/fontawesome-svg-core';
 import {
 	faAngleRight,
 	faChevronRight,
@@ -76,7 +76,7 @@ import {
 	faFile,
 	faFolder,
 	faCalendar,
-} from '@fortawesome/free-regular-svg-icons'
+} from '@fortawesome/free-regular-svg-icons';
 import {
 	faTwitter,
 	faTwitterSquare,
@@ -97,7 +97,7 @@ import {
 	faFacebookMessenger,
 	faWordpress,
 	faWordpressSimple,
-} from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
 
 library.add( faAngleRight );
 library.add( faChevronRight );
