@@ -6,6 +6,7 @@ const autoprefixer = require( 'autoprefixer' );
 const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
+const del = require( 'del' );
 
 const postcssPlugins = [
 	autoprefixer( { overrideBrowserslist: [ 'last 2 version, not ie < 11' ] } ),
@@ -22,6 +23,15 @@ function sass() {
 		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( dest( './css' ) );
+}
+
+function cleanFiles( cb ) {
+	return del(
+		[
+			'./ystandard-blocks',
+			'./build'
+		],
+		cb );
 }
 
 /**
@@ -80,6 +90,7 @@ function copyJson() {
 }
 
 function watchFiles() {
+	cleanFiles();
 	sass();
 	watch( './src/sass/**/*.scss', sass );
 	watch( './block/**/*.scss', sass );
@@ -89,9 +100,10 @@ function watchFiles() {
  * サーバーにデプロイするファイルを作成
  */
 
-exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
+exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyJson ) );
 exports.watch = series( watchFiles );
 exports.sass = series( sass );
+exports.clean = series( cleanFiles );
 /**
  * default
  */
