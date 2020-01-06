@@ -28,13 +28,14 @@ class Options {
 
 	/**
 	 * すべてのアイコンを使用するか
+	 *
 	 * @return bool
 	 */
 	public static function is_use_all_icons() {
 
 		if ( Main::is_ystandard() ) {
 			/**
-			 * yStandardの場合は本体の設定に従う
+			 * テーマがyStandardの場合は本体の設定に従う
 			 */
 			$use_all_icons = true;
 			if ( function_exists( 'ys_get_option' ) && 'light' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
@@ -50,7 +51,6 @@ class Options {
 				$use_all_icons = true;
 			}
 		}
-
 
 		return apply_filters( 'ystdb_is_use_all_icons', $use_all_icons );
 	}
