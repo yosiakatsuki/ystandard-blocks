@@ -133,7 +133,7 @@ class Register {
 			'ystandard-blocks-editor',
 			'ystdb',
 			[
-				'useAllIcons' => Options::is_use_all_icons(),
+				'useAllIcons' => Options::is_use_all_icons() ? 'all' : '',
 			]
 		);
 		foreach ( $this->block_editor_assets as $key => $value ) {

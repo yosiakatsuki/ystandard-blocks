@@ -32,11 +32,25 @@ class Options {
 	 */
 	public static function is_use_all_icons() {
 
-		if ( self::get_option_by_bool( 'load_font_awesome' ) ) {
-			$use_all_icons = self::get_option_by_bool( 'use_all_icons' );
-		} else {
+		if ( Main::is_ystandard() ) {
+			/**
+			 * yStandardの場合は本体の設定に従う
+			 */
 			$use_all_icons = true;
+			if ( function_exists( 'ys_get_option' ) && 'light' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+				$use_all_icons = false;
+			}
+		} else {
+			/**
+			 * 非yStandardな環境
+			 */
+			if ( self::get_option_by_bool( 'load_font_awesome' ) ) {
+				$use_all_icons = self::get_option_by_bool( 'use_all_icons' );
+			} else {
+				$use_all_icons = true;
+			}
 		}
+
 
 		return apply_filters( 'ystdb_is_use_all_icons', $use_all_icons );
 	}
