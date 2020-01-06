@@ -49,22 +49,17 @@ class Customizer {
 			 * マーカー
 			 */
 			if ( 0 < $option['mark_weight'] ) {
-				$weight = ( 100 - $option['mark_weight'] ) . '%';
-				/**
-				 * CSS結合
-				 */
-				$style .= sprintf(
-					'background: linear-gradient(transparent %s, rgba(%s, 0.5) %s);background-position-y: -0.2em;',
-					$weight,
-					implode( ',', $option['mark_color'] ),
-					$weight
+				$style .= self::get_marker_style(
+					$option['mark_color'],
+					$option['mark_weight'],
+					$option['mark_opacity']
 				);
 			}
 			/**
 			 * 装飾
 			 */
 			if ( 'bold' === $option['type'] ) {
-				$style .= 'font-weight: bold;';
+				$style .= 'font-weight: 600;';
 			}
 			if ( 'italic' === $option['type'] ) {
 				$style .= 'font-style: italic;';
@@ -119,17 +114,10 @@ class Customizer {
 			 * マーカー
 			 */
 			if ( 0 < $option['mark_weight'] ) {
-				$weight  = ( 100 - $option['mark_weight'] ) . '%';
-				$opacity = $option['mark_opacity'];
-				/**
-				 * 結合
-				 */
-				$style .= sprintf(
-					'background: linear-gradient(transparent %s, rgba(%s, %s) %s);background-position-y: -0.2em;',
-					$weight,
-					implode( ',', $option['mark_color'] ),
-					$opacity,
-					$weight
+				$style .= self::get_marker_style(
+					$option['mark_color'],
+					$option['mark_weight'],
+					$option['mark_opacity']
 				);
 			} else {
 				$style .= 'background: none';
@@ -147,6 +135,27 @@ class Customizer {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * マーカー用スタイル作成
+	 *
+	 * @param array $color   色.
+	 * @param int   $weight  太さ.
+	 * @param int   $opacity 不透明度.
+	 *
+	 * @return string
+	 */
+	public static function get_marker_style( $color, $weight, $opacity ) {
+		$weight = ( 100 - $weight ) . '%';
+
+		return sprintf(
+			'background: linear-gradient(transparent %s, rgba(%s, %s) %s);background-position-y: -0.2em;',
+			$weight,
+			implode( ',', $color ),
+			$opacity,
+			$weight
+		);
 	}
 
 	/**
@@ -268,23 +277,6 @@ class Customizer {
 				]
 			);
 			/**
-			 * マーカー不透明度
-			 */
-			$ys_customizer->add_number(
-				[
-					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_opacity_' . $i ),
-					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i ),
-					'label'     => 'マーカー色の不透明度',
-					'section'   => 'ystdb_inline_style',
-					'transport' => 'postMessage',
-					'input_attrs' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 10,
-					],
-				]
-			);
-			/**
 			 * マーカー太さ
 			 */
 			$ys_customizer->add_number(
@@ -298,6 +290,23 @@ class Customizer {
 					'input_attrs' => [
 						'min' => 0,
 						'max' => 100,
+					],
+				]
+			);
+			/**
+			 * マーカー不透明度
+			 */
+			$ys_customizer->add_number(
+				[
+					'id'          => $ystdb_opt->get_option_name( 'inline_style_mark_opacity_' . $i ),
+					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i ),
+					'label'       => 'マーカー色の不透明度',
+					'section'     => 'ystdb_inline_style',
+					'transport'   => 'postMessage',
+					'input_attrs' => [
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 10,
 					],
 				]
 			);
