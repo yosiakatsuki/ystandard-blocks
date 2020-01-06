@@ -4,6 +4,10 @@
   margin-right: -1rem;
   margin-left: -1rem;
 
+  .ystdb-column {
+	min-width: 0;
+  }
+
   @for $i from 1 through 6 {
     &.has-#{$i}-columns {
       .ystdb-column {
