@@ -1,6 +1,6 @@
 {
   "name" : "yStandard Blocks",
-  "version" : "0.7.0-beta-3",
+  "version" : "0.7.0",
   "download_url" : "https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.zip",
   "sections" : {
     "description" : "<h2>無料WordPressテーマ「yStandard」用Gutenbergブロック追加プラグイン</h2><p>「yStandard」用Gutenbergブロック追加・拡張プラグイン</p><h3>追加ブロック</h3><ul><li>セクションブロック<ul><li>ブロックを入れ子にしてひとまとめにするブロック</li></ul></li><li>ボタン型リンク<ul><li>HTML入力欄にアンカー(a)タグを貼り付けるとボタン型に表示するブロック</li></ul></li></ul><h3>標準ブロック拡張</h3><ul><li>ボタンブロック拡張<ul><li>コアのボタンブロックにアイコン表示、ブロック型表示ができるオプションを追加</li></ul></li></ul><h3>インライン装飾</h3><ul><li>3種類のインライン装飾ボタンを追加。カスタマイザーから装飾内容をカスタマイズ可能</li></ul>",
