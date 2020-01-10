@@ -30,9 +30,12 @@ class Enqueue {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
-		apply_filters(
+		add_filter(
 			'ys_get_font_awesome_svg_light_url',
-			YSTDB_URL . '/js/icons.js'
+			function () {
+				return YSTDB_URL . '/js/icons.js';
+			},
+			9
 		);
 	}
 

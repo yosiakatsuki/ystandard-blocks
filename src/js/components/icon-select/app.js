@@ -65,6 +65,10 @@ import {
 	faExclamation,
 	faSearch,
 	faRedoAlt,
+	faHashtag,
+	faPause,
+	faPlay,
+	faPlug,
 } from '@fortawesome/free-solid-svg-icons';
 import {
 	faHandPointRight,
@@ -76,6 +80,8 @@ import {
 	faFile,
 	faFolder,
 	faCalendar,
+	faImage,
+	faThumbsUp,
 } from '@fortawesome/free-regular-svg-icons';
 import {
 	faTwitter,
@@ -97,6 +103,7 @@ import {
 	faFacebookMessenger,
 	faWordpress,
 	faWordpressSimple,
+	faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
 
 library.add( faAngleRight );
@@ -164,6 +171,10 @@ library.add( faExclamationCircle );
 library.add( faExclamation );
 library.add( faSearch );
 library.add( faRedoAlt );
+library.add( faHashtag );
+library.add( faPause );
+library.add( faPlay );
+library.add( faPlug );
 library.add( faHandPointRight );
 library.add( faHandPointLeft );
 library.add( faEnvelope );
@@ -175,6 +186,8 @@ library.add( faFolder );
 library.add( faCalendar );
 library.add( icon( faHeart, { prefix: 'far', iconName: 'heart' } ) );
 library.add( icon( faStar, { prefix: 'far', iconName: 'star' } ) );
+library.add( faImage );
+library.add( faThumbsUp );
 library.add( faTwitter );
 library.add( faTwitterSquare );
 library.add( faFacebookSquare );
@@ -194,5 +207,6 @@ library.add( faDiscord );
 library.add( faFacebookMessenger );
 library.add( faWordpress );
 library.add( faWordpressSimple );
+library.add( faLinkedinIn );
 
 dom.watch();
