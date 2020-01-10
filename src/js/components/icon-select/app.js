@@ -1,4 +1,4 @@
-import { library, dom, icon } from '@fortawesome/fontawesome-svg-core';
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {
 	faAngleRight,
 	faChevronRight,
@@ -184,8 +184,6 @@ library.add( faHandPointDown );
 library.add( faFile );
 library.add( faFolder );
 library.add( faCalendar );
-library.add( icon( faHeart, { prefix: 'far', iconName: 'heart' } ) );
-library.add( icon( faStar, { prefix: 'far', iconName: 'star' } ) );
 library.add( faImage );
 library.add( faThumbsUp );
 library.add( faTwitter );

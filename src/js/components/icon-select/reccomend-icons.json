@@ -11,9 +11,7 @@
     "fas fa-chevron-circle-left",
     "far fa-hand-point-left",
     "fas fa-heart",
-    "far fa-heart",
     "fas fa-star",
-    "far fa-star",
     "fas fa-shopping-cart",
     "fas fa-check",
     "fas fa-external-link-alt",
@@ -94,6 +92,13 @@
     "far fa-folder",
     "fas fa-search",
     "fas fa-redo-alt",
-    "far fa-calendar"
+    "far fa-calendar",
+    "fas fa-hashtag",
+    "fas fa-pause",
+    "fas fa-play",
+    "fas fa-plug",
+    "far fa-image",
+    "far fa-thumbs-up",
+    "fas fa-search"
   ]
 }
