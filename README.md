@@ -24,6 +24,8 @@
 
 
 ## 更新履歴
+- v0.7.2
+  - [修正] Font Awesome 軽量版 アイコン種類調整
 - v0.7.1
   - [修正] Font Awesome 軽量版モードの yStandard連携不具合修正・調整
 - v0.7.0
