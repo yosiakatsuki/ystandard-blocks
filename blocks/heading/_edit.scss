@@ -1,21 +1,27 @@
 @import "block";
 
 [data-type="ystdb/heading"] {
-  padding-top: 28px;
-  padding-bottom: 28px;
+  .ystdb-heading__editor {
+	margin-top: 28px;
+	margin-bottom: 28px;
+  }
 }
+
 .ystdb-heading__subtext-edit {
   line-height: 1;
 }
 
 .ystdb-heading__subtext-textarea {
-  padding-top: .25em;
-  height: 1.4em !important;
+  display: block;
+  width: 100% !important;
   overflow: hidden !important;
   background-color: transparent;
 
   &:focus {
-	padding: .25em;
+	padding: 0;
+	border: 0;
+	box-shadow: none;
+	outline: unset;
   }
 }
 

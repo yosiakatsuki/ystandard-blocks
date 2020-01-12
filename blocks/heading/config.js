@@ -54,11 +54,11 @@ export const attributes = {
 	},
 	dividerMarginTop: {
 		type: 'number',
-		default: 0,
+		default: 4,
 	},
 	dividerMarginBottom: {
 		type: 'number',
-		default: 0,
+		default: 4,
 	},
 	textColor: {
 		type: 'string',

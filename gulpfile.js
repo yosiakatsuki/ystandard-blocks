@@ -93,7 +93,7 @@ function watchFiles() {
 	cleanFiles();
 	sass();
 	watch( './src/sass/**/*.scss', sass );
-	watch( './block/**/*.scss', sass );
+	watch( './blocks/**/*.scss', sass );
 }
 
 /**
