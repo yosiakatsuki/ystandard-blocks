@@ -13,6 +13,7 @@ module.exports = {
 		'section': './blocks/section/index.js',
 		'heading': './blocks/heading/index.js',
 		'button-link': './blocks/button-link/index.js',
+		'card': './blocks/card/index.js',
 		'format': './blocks/format/index.js',
 		'extend-core': './blocks/extend-core/index.js',
 	},

@@ -1,0 +1,27 @@
+@import "block";
+
+.ystdb-card__edit-text {
+  font-size: .8rem;
+}
+
+.ystdb-card__edit {
+  position: relative;
+
+  &.is-rendered {
+	&::after {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: 2;
+	}
+  }
+
+  .ystdb-card__link {
+	&::after {
+	  display: none;
+	}
+  }
+}

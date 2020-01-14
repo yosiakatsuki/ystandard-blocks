@@ -55,7 +55,12 @@ class Register {
 		'button-link' => [
 			'name'    => 'ystdb/btn-link',
 			'no-ystd' => true,
-			'class'   => 'afi-button',
+			'class'   => 'button-link',
+		],
+		'card'        => [
+			'name'    => 'ystdb/card',
+			'no-ystd' => true,
+			'class'   => 'card',
 		],
 	];
 	/**
@@ -134,6 +139,7 @@ class Register {
 			'ystdb',
 			[
 				'useAllIcons' => Options::is_use_all_icons() ? 'all' : '',
+				'homeUrl'     => home_url(),
 			]
 		);
 		foreach ( $this->block_editor_assets as $key => $value ) {

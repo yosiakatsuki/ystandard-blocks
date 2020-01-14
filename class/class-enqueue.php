@@ -191,8 +191,8 @@ class Enqueue {
 			 */
 			$inline_css .= $customizer->get_editor_button_css();
 		} else {
-			$inline_css .= $this->get_color_css( '#editor' );
-			$inline_css .= $this->get_font_size_css( '#editor' );
+			$inline_css .= $this->get_color_css( '.editor-styles-wrapper ' );
+			$inline_css .= $this->get_font_size_css( '.editor-styles-wrapper ' );
 		}
 		wp_enqueue_style(
 			'ystandard-blocks-edit',
@@ -200,6 +200,7 @@ class Enqueue {
 			[],
 			filemtime( YSTDB_PATH . '/' . $css_file )
 		);
+
 		wp_add_inline_style(
 			'ystandard-blocks-edit',
 			$inline_css
@@ -343,7 +344,6 @@ class Enqueue {
 				}';
 			}
 		}
-
 		return $this->minify( $css );
 	}
 

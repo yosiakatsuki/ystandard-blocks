@@ -72,6 +72,7 @@ class Main {
 			self::YSTDB_CLASS_PATH . 'class-enqueue.php',
 			self::YSTDB_CLASS_PATH . 'class-options.php',
 			self::YSTDB_CLASS_PATH . 'class-customizer.php',
+			self::YSTDB_CLASS_PATH . 'class-helper.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );

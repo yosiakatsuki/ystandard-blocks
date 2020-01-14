@@ -127,11 +127,8 @@ class Options {
 	 */
 	public static function get_option_by_bool( $name ) {
 		$option = self::get_option( $name );
-		if ( 1 === $option || '1' === $option || true === $option || 'true' === $option ) {
-			return true;
-		}
 
-		return false;
+		return Helper::to_bool( $option );
 	}
 
 	/**

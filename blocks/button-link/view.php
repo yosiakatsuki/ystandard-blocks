@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+use \ystandard_blocks\Helper;
+
 $attributes = wp_parse_args(
 	$attributes,
 	[
@@ -53,34 +55,34 @@ if ( $attributes['className'] ) {
 	$wrap_class[] = $attributes['className'];
 }
 if ( $attributes['align'] ) {
-	$wrap_class[] = 'has-text-align-' . $attributes['align'];
+	$wrap_class[] = Helper::get_align_class( $attributes['align'] );
 }
 if ( $attributes['customFontSize'] ) {
-	$wrap_style[] = 'font-size:' . $attributes['customFontSize'] . 'px';
+	$wrap_style[] = Helper::get_font_size_style( $attributes['customFontSize'] );
 } elseif ( $attributes['fontSize'] ) {
-	$wrap_class[] = 'has-' . $attributes['fontSize'] . '-font-size';
+	$wrap_class[] = Helper::get_font_size_class( $attributes['fontSize'] );
 }
 
 /**
  * リンク
  */
 if ( $attributes['textColor'] || $attributes['customTextColor'] ) {
-	$link_class[] = 'has-text-color';
+	$link_class[] = Helper::get_has_class( 'text-color', $attributes['textColor'], $attributes['customTextColor'] );
 }
 if ( $attributes['textColor'] ) {
-	$link_class[] = 'has-' . $attributes['textColor'] . '-color';
+	$link_class[] = Helper::get_text_color_class( $attributes['textColor'] );
 }
 if ( $attributes['customTextColor'] ) {
-	$link_style[] = 'color:' . $attributes['customTextColor'] . '';
+	$link_style[] = Helper::get_text_color_style( $attributes['customTextColor'] );
 }
 if ( $attributes['backgroundColor'] || $attributes['customBackgroundColor'] ) {
-	$link_class[] = 'has-background';
+	$link_class[] = Helper::get_has_class( 'background', $attributes['backgroundColor'], $attributes['customBackgroundColor'] );
 }
 if ( $attributes['backgroundColor'] ) {
-	$link_class[] = 'has-' . $attributes['backgroundColor'] . '-background-color';
+	$link_class[] = Helper::get_background_color_class( $attributes['backgroundColor'] );
 }
 if ( $attributes['customBackgroundColor'] ) {
-	$link_style[] = 'background-color:' . $attributes['customBackgroundColor'];
+	$link_style[] = Helper::get_background_color_style( $attributes['customBackgroundColor'] );
 }
 if ( 0 === $attributes['borderRadius'] ) {
 	$link_class[] = 'no-border-radius';
@@ -136,12 +138,12 @@ if ( $attributes['iconRight'] ) {
 /**
  * スタイル作成
  */
-$wrap_style = ! empty( $wrap_style ) ? ' style="' . esc_attr( implode( ';', $wrap_style ) ) . ';"' : '';
-$link_style = ! empty( $link_style ) ? ' style="' . esc_attr( implode( ';', $link_style ) ) . ';"' : '';
+$wrap_style = Helper::get_style_attr( $wrap_style );
+$link_style = Helper::get_style_attr( $link_style );
 
 ?>
-<div class="<?php echo esc_attr( implode( ' ', $wrap_class ) ); ?>"<?php echo $wrap_style; ?>>
-	<span class="<?php echo esc_attr( implode( ' ', $link_class ) ); ?>"<?php echo $link_style; ?>>
+<div class="<?php echo Helper::get_class_names( $wrap_class ); ?>"<?php echo $wrap_style; ?>>
+	<span class="<?php echo Helper::get_class_names( $link_class ); ?>"<?php echo $link_style; ?>>
 		<span class="ystdb-button__link-content">
 		<?php
 		echo $icon_left;
