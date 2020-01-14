@@ -12,8 +12,23 @@ namespace ystandard_blocks;
  * Class Card
  */
 class Card extends Dynamic_Block {
+	/**
+	 * Block Name.
+	 *
+	 * @var string
+	 */
 	protected $block_name = 'card';
+	/**
+	 * Script Handle.
+	 *
+	 * @var string
+	 */
 	protected $script_name = 'ystandard-blocks-card';
+	/**
+	 * Block Attributes.
+	 *
+	 * @var array
+	 */
 	protected $block_attributes = [
 		'className'             => [
 			'type' => 'string',
@@ -229,7 +244,6 @@ class Card extends Dynamic_Block {
 			}
 		}
 
-
 		return $this->get_card_link( $this->params );
 	}
 
@@ -251,6 +265,8 @@ class Card extends Dynamic_Block {
 
 	/**
 	 * ショートコード用にパラメーターを変換
+	 *
+	 * @param array $attributes attributes.
 	 */
 	private function convert_attributes( $attributes ) {
 		$new_attributes = [];
@@ -441,7 +457,7 @@ class Card extends Dynamic_Block {
 		if ( Helper::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
 				$this->params['dscr'] = wp_trim_words(
-					html_entity_decode( $post->post_excerpt ),
+					html_entity_decode( $this->get_post_excerpt( $post_id ) ),
 					$this->params['dscr_char_count']
 				);
 			}
@@ -457,6 +473,23 @@ class Card extends Dynamic_Block {
 		if ( Helper::to_bool( $this->params['show_domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
 		}
+	}
+
+	/**
+	 * 概要文取得
+	 *
+	 * @param int $post_id post.
+	 *
+	 * @return string.
+	 */
+	private function get_post_excerpt( $post_id ) {
+		$post = get_post( $post_id );
+		if ( $post->post_excerpt ) {
+			return $post->post_excerpt;
+		}
+		$content = get_extended( $post->post_content );
+
+		return $content['main'];
 	}
 
 	/**
@@ -498,7 +531,7 @@ class Card extends Dynamic_Block {
 		$this->params['post_id'] = 0;
 
 		/**
-		 * wp_remote_getする内容をキャッシュから取得
+		 * 外部サイトから取得する内容をキャッシュから取得
 		 */
 		$this->get_cache( [ 'url' => $url ] );
 		$site_data = [];

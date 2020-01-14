@@ -13,8 +13,23 @@ namespace ystandard_blocks;
  */
 class Button_Link extends Dynamic_Block {
 
+	/**
+	 * Block Name.
+	 *
+	 * @var string
+	 */
 	protected $block_name = 'btn-link';
+	/**
+	 * Script Handle.
+	 *
+	 * @var string
+	 */
 	protected $script_name = 'ystandard-blocks-button-link';
+	/**
+	 * Block Attributes.
+	 *
+	 * @var array
+	 */
 	protected $block_attributes = [
 		'content'               => [
 			'type' => 'string',
