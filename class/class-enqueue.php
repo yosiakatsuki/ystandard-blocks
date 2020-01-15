@@ -43,6 +43,9 @@ class Enqueue {
 	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
+		if ( Main::is_amp() ) {
+			return;
+		}
 		wp_enqueue_script(
 			'ystandard-blocks-app',
 			YSTDB_URL . '/js/app.js',
@@ -89,7 +92,7 @@ class Enqueue {
 		/**
 		 * AMP対応
 		 */
-		if ( $this->is_amp() ) {
+		if ( Main::is_amp() ) {
 			wp_add_inline_style(
 				'ystandard-blocks',
 				$this->get_fallback_animation_css()
@@ -120,11 +123,16 @@ class Enqueue {
 		/**
 		 * AMP対応
 		 */
-		if ( $this->is_amp() ) {
+		if ( Main::is_amp() ) {
 			wp_add_inline_style(
 				'ystandard-blocks-no-ystandard',
 				$this->get_fallback_animation_css()
 			);
+
+			/**
+			 * AMPの場合ここまで
+			 */
+			return;
 		}
 		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
 			if ( Options::is_use_all_icons() ) {
@@ -344,6 +352,7 @@ class Enqueue {
 				}';
 			}
 		}
+
 		return $this->minify( $css );
 	}
 
@@ -380,17 +389,6 @@ class Enqueue {
 		];
 
 		return $this->check_user_agent( $ua );
-	}
-
-	/**
-	 * AMPチェック
-	 *
-	 * @return bool
-	 */
-	private function is_amp() {
-		$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
-
-		return apply_filters( 'ystdb_is_amp_endpoint', $is_amp_endpoint );
 	}
 
 	/**
