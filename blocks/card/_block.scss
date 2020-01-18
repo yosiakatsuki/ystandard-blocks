@@ -1,12 +1,14 @@
 .ystdb-card {
   position: relative;
+  border-width: 1px;
+  border-style: solid;
 
   &:not(.has-background) {
     background-color: #ffffff;
   }
 
   &:not(.has-border) {
-    border: 1px solid $color__border-gray-light;
+    border-color: $color__border-gray-light;
   }
 
 
