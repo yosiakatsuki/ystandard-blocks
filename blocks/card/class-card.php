@@ -634,12 +634,14 @@ class Card extends Dynamic_Block {
 		if ( 1 === preg_match( '/<meta.+?property=["\']og:image["\'][^\/>]*?content=["\']([^"\']+?)["\'].*?\/?>/is', $body, $matches ) ) {
 			$image = $matches[1];
 			if ( wp_http_validate_url( $image ) ) {
-				return sprintf(
-					'<img src="%s" width="%s" height="%s" alt="%s">',
-					$image,
-					500,
-					500,
-					$this->params['title']
+				return apply_filters(
+					'ystdb_card_site_thumbnail',
+					sprintf(
+						'<img src="%s" alt="%s">',
+						$image,
+						$this->params['title']
+					),
+					$this->params
 				);
 			}
 		}
