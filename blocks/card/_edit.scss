@@ -4,24 +4,27 @@
   font-size: .8rem;
 }
 
-.ystdb-card__edit {
+.ystdb-card__url-input {
+  margin-bottom: 1rem;
+}
+.ystdb-card__preview {
   position: relative;
 
   &.is-rendered {
-	&::after {
-	  content: "";
-	  position: absolute;
-	  top: 0;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: 2;
-	}
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+    }
   }
 
   .ystdb-card__link {
-	&::after {
-	  display: none;
-	}
+    &::after {
+      display: none;
+    }
   }
 }

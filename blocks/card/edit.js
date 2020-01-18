@@ -83,6 +83,11 @@ const cardEdit = ( props ) => {
 				linkTarget: '_blank',
 				rel: ystdbConfig.button.newTabRel,
 			} );
+		} else {
+			setAttributes( {
+				linkTarget: undefined,
+				rel: undefined,
+			} );
 		}
 	};
 
@@ -94,7 +99,7 @@ const cardEdit = ( props ) => {
 						<BaseControl>
 							<URLInput
 								label={ __( 'Link' ) }
-								className="ystdb-button__link"
+								className="ystdb-card__url-input"
 								value={ url }
 								/* eslint-disable jsx-a11y/no-autofocus */
 								autoFocus={ false }
@@ -332,31 +337,31 @@ const cardEdit = ( props ) => {
 					</PanelBody>
 				</InspectorControls>
 
-				<div className={ classnames( 'ystdb-card__edit', { 'is-rendered': url } ) }>
-					{ ( url ) ? (
+				<div className={ classnames( 'ystdb-card__edit' ) }>
+
+					{ ( ( isSelected || ! url ) && <Fragment>
+						<div className={ 'ystdb-card__edit-text' }>リンクを作成するURLを入力</div>
+						<URLInput
+							label={ __( 'Link' ) }
+							className="ystdb-card__url-input"
+							value={ url }
+							/* eslint-disable jsx-a11y/no-autofocus */
+							autoFocus={ false }
+							/* eslint-enable jsx-a11y/no-autofocus */
+							onChange={ ( value ) => {
+								updateUrl( value );
+							} }
+							disableSuggestions={ ! isSelected }
+							isFullWidth
+							hasBorder
+						/>
+					</Fragment> ) }
+					{ ( !! url && <div className={ classnames( 'ystdb-card__preview', { 'is-rendered': url } ) }>
 						<ServerSideRender
 							block="ystdb/card"
 							attributes={ attributes }
 						/>
-					) : (
-						<Fragment>
-							<div className={ 'ystdb-card__edit-text' }>リンクを作成するURLを入力</div>
-							<URLInput
-								label={ __( 'Link' ) }
-								className="ystdb-button__link"
-								value={ url }
-								/* eslint-disable jsx-a11y/no-autofocus */
-								autoFocus={ false }
-								/* eslint-enable jsx-a11y/no-autofocus */
-								onChange={ ( value ) => {
-									updateUrl( value );
-								} }
-								disableSuggestions={ ! isSelected }
-								isFullWidth
-								hasBorder
-							/>
-						</Fragment>
-					) }
+					</div> ) }
 				</div>
 			</Fragment>
 		</div>

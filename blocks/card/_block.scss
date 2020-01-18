@@ -1,7 +1,14 @@
 .ystdb-card {
   position: relative;
-  border: 1px solid $color__border-gray-light;
-  background-color: #ffffff;
+
+  &:not(.has-background) {
+    background-color: #ffffff;
+  }
+
+  &:not(.has-border) {
+    border: 1px solid $color__border-gray-light;
+  }
+
 
   &.is-horizon,
   &.is-fixed-horizon {
@@ -116,15 +123,21 @@
 .ystdb-card__dscr {
   font-size: .8em;
   margin-top: 1em;
-  color: $color__text-light;
+
+  &:not(.has-text-color) {
+    color: $color__text-light;
+  }
 }
 
 .ystdb-card__link {
   text-decoration: none;
-  color: $color__text-main;
 
-  &:hover {
+  &:not(.has-text-color) {
     color: $color__text-main;
+
+    &:hover {
+      color: $color__text-main;
+    }
   }
 
   &::after {
@@ -141,5 +154,8 @@
 .ystdb-card__domain {
   margin-top: 1em;
   font-size: .5em;
-  color: $color__text-light;
+
+  &:not(.has-text-color) {
+    color: $color__text-light;
+  }
 }
