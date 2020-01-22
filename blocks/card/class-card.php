@@ -561,7 +561,9 @@ class Card extends Dynamic_Block {
 			$this->create_cache( $site_data );
 		}
 		// タイトル.
-		$this->params['title'] = $site_data['title'];
+		if ( empty( $this->params['title'] ) ) {
+			$this->params['title'] = $site_data['title'];
+		}
 		// 概要.
 		if ( Helper::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
