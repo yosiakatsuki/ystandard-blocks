@@ -206,7 +206,9 @@ class Card extends Dynamic_Block {
 	 * Card constructor.
 	 */
 	function __construct() {
-		add_shortcode( 'ystdb_card', [ $this, 'do_shortcode' ] );
+		if ( ! shortcode_exists( 'ystdb_card' ) ) {
+			add_shortcode( 'ystdb_card', [ $this, 'do_shortcode' ] );
+		}
 	}
 
 	/**
