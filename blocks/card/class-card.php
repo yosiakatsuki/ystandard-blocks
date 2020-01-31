@@ -506,11 +506,14 @@ class Card extends Dynamic_Block {
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			return '';
 		}
-		$sizes = [
-			'medium',
-			'large',
-			'full',
-		];
+		$sizes = apply_filters(
+			'ystdb_card_thumbnail_size',
+			[
+				'large',
+				'full',
+				'medium',
+			]
+		);
 		foreach ( $sizes as $size ) {
 			$image = get_the_post_thumbnail( $post_id, $size, [ 'alt' => $alt ] );
 			if ( ! empty( $image ) ) {
