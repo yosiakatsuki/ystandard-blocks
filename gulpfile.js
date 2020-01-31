@@ -9,7 +9,9 @@ const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
 
 const postcssPlugins = [
-	autoprefixer( { overrideBrowserslist: [ 'last 2 version, not ie < 11' ] } ),
+	autoprefixer( {
+		grid: 'autoplace'
+	} ),
 	mqpacker(),
 	cssnano()
 ];
