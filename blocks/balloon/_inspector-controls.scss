@@ -1,0 +1,150 @@
+/**
+ * InspectorControls
+ */
+.ystdb-balloon-selector {
+  .components-button {
+    display: block;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+
+    &.is-primary {
+      .ystdb-balloon-selector__container {
+        border-color: #007cba;
+      }
+
+      .ystdb-balloon-selector__image,
+      .ystdb-balloon-selector__body {
+        background-color: #007cba;
+        border-color: #007cba;
+        color: #007cba;
+      }
+    }
+  }
+}
+
+.ystdb-balloon-selector__container {
+  display: flex;
+  padding: .5em;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 2px solid $color__border-gray;
+
+  &.is-serif {
+    .ystdb-balloon-selector__body {
+      &::after {
+        content: "";
+        position: absolute;
+        top: .5em;
+        border: .5em solid transparent;
+      }
+    }
+  }
+
+  &.is-think {
+    .ystdb-balloon-selector__body {
+      border-radius: 20px;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background-color: inherit;
+      }
+
+      &::before {
+        width: 5px;
+        height: 5px;
+        top: 10px;
+      }
+
+      &::after {
+        width: 7px;
+        height: 7px;
+        top: 5px;
+      }
+    }
+  }
+
+  &.is-right {
+    .ystdb-balloon-selector__body {
+      margin-left: 1em;
+    }
+
+    &.is-serif {
+      .ystdb-balloon-selector__body {
+        &::after {
+          right: 100%;
+          border-right-color: inherit;
+        }
+      }
+    }
+
+    &.is-think {
+      .ystdb-balloon-selector__body {
+        &::before {
+          right: calc(100% + .5em);
+        }
+
+        &::after {
+          right: calc(99%);
+        }
+      }
+    }
+  }
+
+  &.is-left {
+    flex-direction: row-reverse;
+
+    .ystdb-balloon-selector__body {
+      margin-right: 1em;
+    }
+
+    &.is-serif {
+      .ystdb-balloon-selector__body {
+        &::after {
+          left: 100%;
+          border-left-color: inherit;
+        }
+      }
+    }
+
+    &.is-think {
+      .ystdb-balloon-selector__body {
+        &::before {
+          left: calc(100% + .5em);
+        }
+
+        &::after {
+          left: calc(99%);
+        }
+      }
+    }
+  }
+}
+
+
+.ystdb-balloon-selector__image,
+.ystdb-balloon-selector__body {
+  display: block;
+  background-color: $color__border-gray;
+  color: $color__border-gray;
+}
+
+.ystdb-balloon-selector__image {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.ystdb-balloon-selector__body {
+  height: 40px;
+  flex-grow: 1;
+  position: relative;
+  border-radius: 4px;
+}

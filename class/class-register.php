@@ -44,6 +44,10 @@ class Register {
 			'name'    => 'ystdb/heading',
 			'no-ystd' => true,
 		],
+		'balloon' => [
+			'name'    => 'ystdb/balloon',
+			'no-ystd' => true,
+		],
 	];
 
 	/**

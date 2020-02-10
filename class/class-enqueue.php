@@ -320,28 +320,33 @@ class Enqueue {
 				/**
 				 * Background-color
 				 */
-				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'background-color' ) . ' {
-					background-color:' . $value['color'] . ';
-				}';
+				$class_name = $this->get_color_class_name( $value['slug'], 'color' );
+				$css        .= "${prefix} ${class_name}, 
+				${prefix} .has-background${class_name}{
+					background-color:${value['color']};
+				}";
 			}
 			if ( $text_color ) {
 				/**
 				 * Text Color
 				 */
-				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ' {
-					color:' . $value['color'] . ';
-				}';
-				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'color' ) . ':hover{
-					color:' . $value['color'] . ';
-				}';
+				$class_name = $this->get_color_class_name( $value['slug'], 'color' );
+				$css        .= "${prefix} ${class_name}, 
+				${prefix} .has-text-color${class_name},
+				${prefix} ${class_name}:hover,
+				${prefix} .has-text-color${class_name}:hover {
+					color:${value['color']};
+				}";
 			}
 			if ( $border_color ) {
 				/**
 				 * Border-color
 				 */
-				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'border-color' ) . ' {
-					border-color:' . $value['color'] . ';
-				}';
+				$class_name = $this->get_color_class_name( $value['slug'], 'border-color' );
+				$css        .= "${prefix} ${class_name}, 
+				${prefix} .has-border${class_name}{
+					border-color:${value['color']};
+				}";
 			}
 			if ( $fill_color ) {
 				/**

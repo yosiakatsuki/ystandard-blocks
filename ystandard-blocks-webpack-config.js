@@ -12,6 +12,7 @@ module.exports = {
 		'fa-icon': './blocks/fa-icon/index.js',
 		'section': './blocks/section/index.js',
 		'heading': './blocks/heading/index.js',
+		'balloon': './blocks/balloon/index.js',
 		'button-link': './blocks/button-link/index.js',
 		'card': './blocks/card/index.js',
 		'format': './blocks/format/index.js',
