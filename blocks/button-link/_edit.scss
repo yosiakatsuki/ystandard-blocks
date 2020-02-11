@@ -1,7 +1,8 @@
 @import "block";
 
 .ystdb-btn-link__preview {
-  & > div:first-child .wp-block-button {
-    margin-top: 0;
-  }
+
+	> div:first-child .wp-block-button {
+		margin-top: 0;
+	}
 }

@@ -1,28 +1,30 @@
 .ystdb-inline-style-toolbar {
-  position: relative;
+	position: relative;
 
-  &::before,
-  &::after {
-    display: block;
-    position: absolute;
-  }
+	&::before,
+	&::after {
+		display: block;
+		position: absolute;
+	}
 
-  &::before {
-    top: 0;
-    left: 0;
-    padding: 0.1rem 0.2rem;
-    font-size: 0.6rem;
-    line-height: 1;
-    color: #222;
-  }
+	&::before {
+		top: 0;
+		left: 0;
+		padding: 0.1rem 0.2rem;
+		font-size: 0.6rem;
+		line-height: 1;
+		color: #222;
+	}
 
-  &.inline-style-1::before {
-    content: '1';
-  }
-  &.inline-style-2::before {
-    content: '2';
-  }
-  &.inline-style-3::before {
-    content: '3';
-  }
+	&.inline-style-1::before {
+		content: "1";
+	}
+
+	&.inline-style-2::before {
+		content: "2";
+	}
+
+	&.inline-style-3::before {
+		content: "3";
+	}
 }

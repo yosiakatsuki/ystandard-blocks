@@ -2,151 +2,165 @@
  * InspectorControls
  */
 .ystdb-balloon-selector {
-  .components-button {
-    display: block;
-    height: auto;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    outline: none;
-    box-shadow: none;
 
-    &.is-primary {
-      .ystdb-balloon-selector__container {
-        border-color: #007cba;
-      }
+	.components-button {
+		display: block;
+		height: auto;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		outline: none;
+		box-shadow: none;
 
-      .ystdb-balloon-selector__image,
-      .ystdb-balloon-selector__body {
-        background-color: #007cba;
-        border-color: #007cba;
-        color: #007cba;
-      }
-    }
-  }
+		&.is-primary {
+
+			.ystdb-balloon-selector__container {
+				border-color: #007cba;
+			}
+
+			.ystdb-balloon-selector__image,
+			.ystdb-balloon-selector__body {
+				background-color: #007cba;
+				border-color: #007cba;
+				color: #007cba;
+			}
+		}
+	}
 }
 
 .ystdb-balloon-selector__container {
-  display: flex;
-  padding: .5em;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 2px solid $color__border-gray;
+	display: flex;
+	padding: 0.5em;
+	background-color: #fff;
+	border-radius: 3px;
+	border: 2px solid $color__border-gray;
 
-  &.is-serif {
-    .ystdb-balloon-selector__body {
-      &::after {
-        content: "";
-        position: absolute;
-        top: .5em;
-        border: .5em solid transparent;
-      }
-    }
-  }
+	&.is-serif {
 
-  &.is-think {
-    .ystdb-balloon-selector__body {
-      border-radius: 20px;
+		.ystdb-balloon-selector__body {
 
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        background-color: inherit;
-      }
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0.5em;
+				border: 0.5em solid transparent;
+			}
+		}
+	}
 
-      &::before {
-        width: 5px;
-        height: 5px;
-        top: 10px;
-      }
+	&.is-think {
 
-      &::after {
-        width: 7px;
-        height: 7px;
-        top: 5px;
-      }
-    }
-  }
+		.ystdb-balloon-selector__body {
+			border-radius: 20px;
 
-  &.is-right {
-    .ystdb-balloon-selector__body {
-      margin-left: 1em;
-    }
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				border-radius: 50%;
+				background-color: inherit;
+			}
 
-    &.is-serif {
-      .ystdb-balloon-selector__body {
-        &::after {
-          right: 100%;
-          border-right-color: inherit;
-        }
-      }
-    }
+			&::before {
+				width: 5px;
+				height: 5px;
+				top: 10px;
+			}
 
-    &.is-think {
-      .ystdb-balloon-selector__body {
-        &::before {
-          right: calc(100% + .5em);
-        }
+			&::after {
+				width: 7px;
+				height: 7px;
+				top: 5px;
+			}
+		}
+	}
 
-        &::after {
-          right: calc(99%);
-        }
-      }
-    }
-  }
+	&.is-right {
 
-  &.is-left {
-    flex-direction: row-reverse;
+		.ystdb-balloon-selector__body {
+			margin-left: 1em;
+		}
 
-    .ystdb-balloon-selector__body {
-      margin-right: 1em;
-    }
+		&.is-serif {
 
-    &.is-serif {
-      .ystdb-balloon-selector__body {
-        &::after {
-          left: 100%;
-          border-left-color: inherit;
-        }
-      }
-    }
+			.ystdb-balloon-selector__body {
 
-    &.is-think {
-      .ystdb-balloon-selector__body {
-        &::before {
-          left: calc(100% + .5em);
-        }
+				&::after {
+					right: 100%;
+					border-right-color: inherit;
+				}
+			}
+		}
 
-        &::after {
-          left: calc(99%);
-        }
-      }
-    }
-  }
+		&.is-think {
+
+			.ystdb-balloon-selector__body {
+
+				&::before {
+					right: calc(100% + 0.5em);
+				}
+
+				&::after {
+					right: calc(99%);
+				}
+			}
+		}
+	}
+
+	&.is-left {
+		flex-direction: row-reverse;
+
+		.ystdb-balloon-selector__body {
+			margin-right: 1em;
+		}
+
+		&.is-serif {
+
+			.ystdb-balloon-selector__body {
+
+				&::after {
+					left: 100%;
+					border-left-color: inherit;
+				}
+			}
+		}
+
+		&.is-think {
+
+			.ystdb-balloon-selector__body {
+
+				&::before {
+					left: calc(100% + 0.5em);
+				}
+
+				&::after {
+					left: calc(99%);
+				}
+			}
+		}
+	}
 }
 
 
 .ystdb-balloon-selector__image,
 .ystdb-balloon-selector__body {
-  display: block;
-  background-color: $color__border-gray;
-  color: $color__border-gray;
+	display: block;
+	background-color: $color__border-gray;
+	color: $color__border-gray;
 }
 
 .ystdb-balloon-selector__image {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+	flex: 0 0 32px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
 }
 
 .ystdb-balloon-selector__body {
-  height: 40px;
-  flex-grow: 1;
-  position: relative;
-  border-radius: 4px;
+	height: 40px;
+	flex-grow: 1;
+	position: relative;
+	border-radius: 4px;
 }
 
 
@@ -154,36 +168,36 @@
  * 登録済みアバター
  */
 .ystdb-avatar-list {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 
-  .components-button {
-    flex: 0 0 50%;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    min-width: 0;
-    padding: 0;
-    height: auto;
-    border-width: 2px;
+	.components-button {
+		flex: 0 0 50%;
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+		min-width: 0;
+		padding: 0;
+		height: auto;
+		border-width: 2px;
 
-    & > span {
-      display: block;
-      width: 100%;
-      height: 100%;
-      padding: .5em;
-      background-color: #fff;
-      color: #222;
-    }
-  }
+		> span {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 0.5em;
+			background-color: #fff;
+			color: #222;
+		}
+	}
 
-  img {
-    display: block;
-    width: 100%;
-    border-radius: 50%;
-  }
+	img {
+		display: block;
+		width: 100%;
+		border-radius: 50%;
+	}
 
-  .ystdb-avatar-list__name {
-    font-size: .9em;
-  }
+	.ystdb-avatar-list__name {
+		font-size: 0.9em;
+	}
 }

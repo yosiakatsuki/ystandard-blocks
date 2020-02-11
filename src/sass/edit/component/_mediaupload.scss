@@ -1,48 +1,52 @@
 .ystdb-mediaupload__preview {
-  @at-root {
-    & {
-      position: relative;
-      margin-bottom: .5rem;
+	position: relative;
+	margin-bottom: 0.5rem;
 
-      img {
-        max-width: 100%;
-        height: auto;
-        border: 2px solid $color__border-gray;
-      }
-    }
+	img {
+		max-width: 100%;
+		height: auto;
+		border: 2px solid $color__border-gray;
+	}
 
-    button#{&} {
-      &::before,
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        transition: opacity .3s;
-        opacity: 0;
-      }
-      &::before {
-        bottom: 0;
-        background-color: rgba(#000,.8);
-        z-index: 2;
-      }
-      &::after {
-        content: "画像を変更";
-        top: 50%;
-        transform: translateY(-50%);
-        color: #fff;
-        font-size: .8rem;
-        text-align: center;
-        z-index: 3;
-      }
-      &:hover {
-        &::before,
-        &::after {
-          opacity: 1;
-        }
-      }
-    }
-  }
+	@at-root {
+
+		button#{&} {
+
+			&::before,
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				transition: opacity 0.3s;
+				opacity: 0;
+			}
+
+			&::before {
+				bottom: 0;
+				background-color: rgba(#000, 0.8);
+				z-index: 2;
+			}
+
+			&::after {
+				content: "画像を変更";
+				top: 50%;
+				transform: translateY(-50%);
+				color: #fff;
+				font-size: 0.8rem;
+				text-align: center;
+				z-index: 3;
+			}
+
+			&:hover {
+
+				&::before,
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }

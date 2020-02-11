@@ -2,24 +2,25 @@
 
 
 [data-type="ystdb/balloon"] {
-  .ystdb-balloon__avatar-image {
-    overflow: hidden;
 
-    button,
-    img {
-      display: block;
-      margin: 0;
-      padding: 0;
-    }
-  }
+	.ystdb-balloon__avatar-image {
+		overflow: hidden;
 
-  .ystdb-balloon__name--edit {
-    text-align: center;
+		button,
+		img {
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
+	}
 
-    &:focus {
-      border: 0;
-      outline: none;
-      box-shadow: none;
-    }
-  }
+	.ystdb-balloon__name--edit {
+		text-align: center;
+
+		&:focus {
+			border: 0;
+			outline: none;
+			box-shadow: none;
+		}
+	}
 }

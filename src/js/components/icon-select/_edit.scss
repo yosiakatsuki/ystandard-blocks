@@ -1,68 +1,75 @@
-.ystdb-icon-select {
-
-}
-
 .ystdb-icon-select__btn-list {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 
-  button {
-    display: block;
-    flex: 1 1 20%;
-    max-width: 20%;
-    margin-right: 0;
-    margin-bottom: .25em;
-    text-align: center;
-  }
-  .ystdb-icon-select__custom {
-    flex: 1 1 100%;
-    max-width: 100%;
+	button {
+		display: block;
+		flex: 1 1 20%;
+		max-width: 20%;
+		margin-right: 0;
+		margin-bottom: 0.25em;
+		text-align: center;
+	}
 
-    margin-top: .5rem;
-  }
+	.ystdb-icon-select__custom {
+		flex: 1 1 100%;
+		max-width: 100%;
+
+		margin-top: 0.5rem;
+	}
 }
+
 .ystdb-icon-select__label {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .ystdb-icon-select__sub {
-  font-size: .9em;
+	font-size: 0.9em;
 }
+
 .ystdb-icon-select__clear {
-  margin-top: .5rem;
+	margin-top: 0.5rem;
 }
 
 .ystdb-icon-select__position {
-  .components-radio-control__option {
-    display: inline-block;
-    margin-right: 1rem;
-    &:last-child {
-      margin-right: 0;
-    }
-    .components-radio-control__input {
-      margin-right: .25rem;
-    }
-  }
+
+	.components-radio-control__option {
+		display: inline-block;
+		margin-right: 1rem;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		.components-radio-control__input {
+			margin-right: 0.25rem;
+		}
+	}
 }
 
 .ystdb-icon-select__picker {
-  .rfip {
-    display: block;
-    margin: .5rem 0 0;
-  }
-  .rfipbtn {
-    width: 100%;
-  }
-  .rfipdropdown {
-    width: 100%;
-    min-width: 250px;
-    left: auto;
-    right: 0;
-  }
-  .rfipicons__icon {
-    height: 40px;
-  }
-  .rfipsearch input {
-    border-radius: 0;
-  }
+
+	.rfip {
+		display: block;
+		margin: 0.5rem 0 0;
+	}
+
+	.rfipbtn {
+		width: 100%;
+	}
+
+	.rfipdropdown {
+		width: 100%;
+		min-width: 250px;
+		left: auto;
+		right: 0;
+	}
+
+	.rfipicons__icon {
+		height: 40px;
+	}
+
+	.rfipsearch input {
+		border-radius: 0;
+	}
 }

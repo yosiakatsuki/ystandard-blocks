@@ -1,17 +1,19 @@
 @import "block";
+
 [data-type="ystdb/ys-btn"] {
 
-  .ystdb-button__link-label {
-    font-size: .8rem;
-  }
-  .ystdb-button__icon--left,
-  .ystdb-button__icon--right {
-    line-height: inherit;
-  }
+	.ystdb-button__link-label {
+		font-size: 0.8rem;
+	}
 
-  .ystdb-button__link-container {
-    margin-top: 1rem;
-    text-align: left;
-  }
+	.ystdb-button__icon--left,
+	.ystdb-button__icon--right {
+		line-height: inherit;
+	}
+
+	.ystdb-button__link-container {
+		margin-top: 1rem;
+		text-align: left;
+	}
 }
 

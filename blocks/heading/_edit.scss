@@ -1,27 +1,28 @@
 @import "block";
 
 [data-type="ystdb/heading"] {
-  .ystdb-heading__editor {
-	margin-top: 28px;
-	margin-bottom: 28px;
-  }
+
+	.ystdb-heading__editor {
+		margin-top: 28px;
+		margin-bottom: 28px;
+	}
 }
 
 .ystdb-heading__subtext-edit {
-  line-height: 1;
+	line-height: 1;
 }
 
 .ystdb-heading__subtext-textarea {
-  display: block;
-  width: 100% !important;
-  overflow: hidden !important;
-  background-color: transparent;
+	display: block;
+	width: 100% !important;
+	overflow: hidden !important;
+	background-color: transparent;
 
-  &:focus {
-	padding: 0;
-	border: 0;
-	box-shadow: none;
-	outline: unset;
-  }
+	&:focus {
+		padding: 0;
+		border: 0;
+		box-shadow: none;
+		outline: unset;
+	}
 }
 
