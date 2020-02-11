@@ -1,4 +1,4 @@
-@mixin highlight($color,$weight:75%,$opacity:0.3,$pos:-0.2rem) {
+@mixin highlight($color,$weight: 75%,$opacity: 0.3,$pos: -0.2rem) {
 	background: linear-gradient(transparent $weight, rgba($color, $opacity) $weight);
 	background-position-y: $pos;
 }

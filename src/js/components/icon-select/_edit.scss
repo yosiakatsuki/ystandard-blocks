@@ -14,7 +14,6 @@
 	.ystdb-icon-select__custom {
 		flex: 1 1 100%;
 		max-width: 100%;
-
 		margin-top: 0.5rem;
 	}
 }
@@ -59,10 +58,10 @@
 	}
 
 	.rfipdropdown {
+		right: 0;
+		left: auto;
 		width: 100%;
 		min-width: 250px;
-		left: auto;
-		right: 0;
 	}
 
 	.rfipicons__icon {

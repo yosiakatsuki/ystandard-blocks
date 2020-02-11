@@ -1,5 +1,4 @@
 .ystdb-balloon {
-
 	display: flex;
 	align-items: flex-start;
 
@@ -41,8 +40,8 @@
 .ystdb-balloon__name {
 	padding: 0;
 	font-size: 0.7em;
-	text-align: center;
 	font-style: normal;
+	text-align: center;
 
 	@include media-breakpoint(md) {
 		font-size: 0.8em;
@@ -54,9 +53,9 @@
 	flex-grow: 1;
 	position: relative;
 	padding: 1em;
-	border-radius: 4px;
 	background-color: $color__bg-gray-dark;
 	border-color: $color__bg-gray-dark;
+	border-radius: 4px;
 
 	&::after {
 		content: "";
@@ -67,17 +66,17 @@
 		margin-left: 1.5em;
 
 		&::after {
+			top: 1em;
 			width: 0;
 			height: 0;
-			top: 1em;
 			border: 0.75em solid transparent;
 		}
 
 		&.is-right {
 
 			&::after {
-				border-right-color: inherit;
 				right: 100%;
+				border-right-color: inherit;
 			}
 		}
 
@@ -85,8 +84,8 @@
 			margin-right: 1.5em;
 
 			&::after {
-				border-left-color: inherit;
 				left: 100%;
+				border-left-color: inherit;
 			}
 		}
 
@@ -111,27 +110,27 @@
    *  考え中
    */
 	&.is-think {
-		border-radius: 3em;
 		padding: 1.5em;
+		border-radius: 3em;
 
 		&::before,
 		&::after {
-			border-radius: 50%;
 			background-color: inherit;
+			border-radius: 50%;
 		}
 
 		&::before {
 			content: "";
 			position: absolute;
+			top: 2em;
 			width: 15px;
 			height: 15px;
-			top: 2em;
 		}
 
 		&::after {
+			top: 1em;
 			width: 20px;
 			height: 20px;
-			top: 1em;
 		}
 
 		&.is-right {
@@ -189,7 +188,6 @@
 				bottom: 6em;
 			}
 		}
-
 	}
 
 	p {

@@ -26,18 +26,18 @@
 
 			&::before {
 				bottom: 0;
-				background-color: rgba(#000, 0.8);
 				z-index: 2;
+				background-color: rgba(#000, 0.8);
 			}
 
 			&::after {
 				content: "画像を変更";
 				top: 50%;
-				transform: translateY(-50%);
+				z-index: 3;
 				color: #fff;
 				font-size: 0.8rem;
 				text-align: center;
-				z-index: 3;
+				transform: translateY(-50%);
 			}
 
 			&:hover {

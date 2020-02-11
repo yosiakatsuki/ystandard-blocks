@@ -1,11 +1,11 @@
 @mixin controlsLabel($i) {
+	padding: 0.25em 0.5em;
+	background-color: #07689f;
+	color: #fff;
 
 	@if $i != 1 {
 		margin-top: 3em;
 	}
-	padding: 0.25em 0.5em;
-	background-color: #07689f;
-	color: #fff;
 }
 
 

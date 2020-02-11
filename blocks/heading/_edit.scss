@@ -15,14 +15,13 @@
 .ystdb-heading__subtext-textarea {
 	display: block;
 	width: 100% !important;
-	overflow: hidden !important;
 	background-color: transparent;
+	overflow: hidden !important;
 
 	&:focus {
 		padding: 0;
 		border: 0;
-		box-shadow: none;
 		outline: unset;
+		box-shadow: none;
 	}
 }
-

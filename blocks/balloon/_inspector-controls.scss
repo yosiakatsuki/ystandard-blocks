@@ -5,8 +5,8 @@
 
 	.components-button {
 		display: block;
-		height: auto;
 		width: 100%;
+		height: auto;
 		padding: 0;
 		border: 0;
 		outline: none;
@@ -32,8 +32,8 @@
 	display: flex;
 	padding: 0.5em;
 	background-color: #fff;
-	border-radius: 3px;
 	border: 2px solid $color__border-gray;
+	border-radius: 3px;
 
 	&.is-serif {
 
@@ -57,20 +57,20 @@
 			&::after {
 				content: "";
 				position: absolute;
-				border-radius: 50%;
 				background-color: inherit;
+				border-radius: 50%;
 			}
 
 			&::before {
+				top: 10px;
 				width: 5px;
 				height: 5px;
-				top: 10px;
 			}
 
 			&::after {
+				top: 5px;
 				width: 7px;
 				height: 7px;
-				top: 5px;
 			}
 		}
 	}
@@ -157,9 +157,9 @@
 }
 
 .ystdb-balloon-selector__body {
-	height: 40px;
 	flex-grow: 1;
 	position: relative;
+	height: 40px;
 	border-radius: 4px;
 }
 
@@ -172,13 +172,13 @@
 	flex-wrap: wrap;
 
 	.components-button {
-		flex: 0 0 50%;
 		display: flex;
+		flex: 0 0 50%;
 		flex-direction: column;
 		width: 50%;
 		min-width: 0;
-		padding: 0;
 		height: auto;
+		padding: 0;
 		border-width: 2px;
 
 		> span {

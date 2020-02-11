@@ -63,8 +63,8 @@
 
 .ystdb-card__image {
 	min-width: 100px;
-	text-align: center;
 	margin: 0;
+	text-align: center;
 
 	&.is-size--small--fixed {
 
@@ -114,22 +114,23 @@
 			amp-img {
 				width: 100%;
 				height: 100%;
-				object-fit: cover;
 
 				@include media-breakpoint(md) {
 					position: absolute;
-					left: 0;
 					top: 0;
+					left: 0;
 				}
+
+				object-fit: cover;
 			}
 		}
 	}
 }
 
 .ystdb-card__text {
+	align-self: center;
 	flex-grow: 1;
 	padding: 1.5rem 1rem;
-	align-self: center;
 }
 
 .ystdb-card__title {
@@ -139,8 +140,8 @@
 }
 
 .ystdb-card__dscr {
-	font-size: 0.8em;
 	margin-top: 1em;
+	font-size: 0.8em;
 
 	&:not(.has-text-color) {
 		color: $color__text-light;

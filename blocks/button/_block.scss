@@ -25,16 +25,16 @@
 
 		&::before {
 			content: "";
-			height: 150%;
-			width: 50px;
 			position: absolute;
 			top: -50%;
 			left: 0;
+			width: 50px;
+			height: 150%;
 			background-color: #fff;
-			opacity: 0;
 			transform: rotate(45deg);
 			animation-duration: inherit;
 			animation-iteration-count: infinite;
+			opacity: 0;
 		}
 
 		&.has-animation--shine::before {
