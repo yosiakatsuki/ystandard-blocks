@@ -159,6 +159,27 @@ class Customizer {
 	}
 
 	/**
+	 * 吹き出し用設定取得
+	 */
+	public static function get_balloon_images() {
+		$result = [];
+		for ( $i = 1; $i <= 5; $i ++ ) {
+			$image = Options::get_option( 'balloon_image_' . $i );
+			$name  = Options::get_option( 'balloon_name_' . $i );
+			if ( ! empty( $image ) ) {
+				$id       = attachment_url_to_postid( $image );
+				$result[] = [
+					'url'  => $image,
+					'id'   => $id,
+					'name' => $name,
+				];
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * インラインスタイル設定取得
 	 *
 	 * @param int $index 番号(1~3).
@@ -211,6 +232,26 @@ class Customizer {
 	 */
 	public static function ystdb_customize_register( $wp_customize ) {
 		$ys_customizer = new \YS_Customizer( $wp_customize );
+
+		/**
+		 * インライン装飾設定追加
+		 */
+		self::add_inline_style_settings( $ys_customizer );
+
+		/**
+		 * 吹き出し画像登録
+		 */
+		self::add_balloon_images( $ys_customizer );
+
+		return $wp_customize;
+	}
+
+	/**
+	 * インライン装飾設定追加
+	 *
+	 * @param \YS_Customizer $ys_customizer カスタマイザー.
+	 */
+	public static function add_inline_style_settings( $ys_customizer ) {
 		/**
 		 * セクション追加
 		 */
@@ -230,7 +271,7 @@ class Customizer {
 			$ys_customizer->add_label(
 				[
 					'id'      => $ystdb_opt->get_option_name( 'inline_style_label_' . $i ),
-					'label'   => '■「[ys]インラインスタイル ' . $i . '」の設定',
+					'label'   => '[ys]インラインスタイル ' . $i,
 					'section' => 'ystdb_inline_style',
 				]
 			);
@@ -328,7 +369,59 @@ class Customizer {
 				]
 			);
 		}
+	}
 
-		return $wp_customize;
+	/**
+	 * 吹き出しで使用する画像の設定追加
+	 *
+	 * @param \YS_Customizer $ys_customizer カスタマイザー.
+	 */
+	public static function add_balloon_images( $ys_customizer ) {
+		/**
+		 * セクション追加
+		 */
+		$ys_customizer->add_section(
+			[
+				'section'     => 'ystdb_balloon_images',
+				'title'       => '[ys blocks]吹き出しブロック画像設定',
+				'panel'       => 'ys_customizer_panel_extension',
+				'description' => 'yStandard Blocks: 吹き出しブロックでよく使う画像を登録して簡単に使えるようにします。',
+			]
+		);
+		$ystdb_opt = new Options();
+		for ( $i = 1; $i <= 5; $i ++ ) {
+			/**
+			 * ラベル
+			 */
+			$ys_customizer->add_label(
+				[
+					'id'      => $ystdb_opt->get_option_name( 'balloon_image_label' . $i ),
+					'label'   => '吹き出しブロック画像 ' . $i,
+					'section' => 'ystdb_balloon_images',
+				]
+			);
+			/**
+			 * 画像
+			 */
+			$ys_customizer->add_image(
+				[
+					'id'      => $ystdb_opt->get_option_name( 'balloon_image_' . $i ),
+					'label'   => '画像',
+					'section' => 'ystdb_balloon_images',
+					'default' => Options::get_default_option( 'balloon_image_' . $i ),
+				]
+			);
+			/**
+			 * 名前
+			 */
+			$ys_customizer->add_text(
+				[
+					'id'      => $ystdb_opt->get_option_name( 'balloon_name_' . $i ),
+					'label'   => '名前',
+					'section' => 'ystdb_balloon_images',
+					'default' => Options::get_default_option( 'balloon_name_' . $i ),
+				]
+			);
+		}
 	}
 }

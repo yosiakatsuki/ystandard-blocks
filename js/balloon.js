@@ -506,6 +506,29 @@ function ysBalloon(props) {
     }, " "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
       className: 'ystdb-balloon-selector__body'
     }, item.label)));
+  })))), '1' === ystdb.yStandard && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('登録済みアバター画像', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["BaseControl"], null, 0 >= ystdb.balloonImages.length ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "\u767B\u9332\u6E08\u307F\u306E\u30A2\u30D0\u30BF\u30FC\u753B\u50CF\u306F\u3042\u308A\u307E\u305B\u3093\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "\u30AB\u30B9\u30BF\u30DE\u30A4\u30B6\u30FC\u306E\u300C[ys]\u62E1\u5F35\u6A5F\u80FD\u8A2D\u5B9A\u300D\u2192\u300C[ys blocks]\u5439\u304D\u51FA\u3057\u30D6\u30ED\u30C3\u30AF\u753B\u50CF\u8A2D\u5B9A\u300D\u304B\u3089\u767B\u9332\u3057\u3066\u304F\u3060\u3055\u3044\u3002")) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: 'ystdb-avatar-list'
+  }, ystdb.balloonImages.map(function (item) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+      key: item.id,
+      isPrimary: avatarID === item.id,
+      onClick: function onClick() {
+        setAttributes({
+          avatarID: item.id,
+          avatarName: item.name,
+          avatarURL: item.url,
+          avatarAlt: item.name
+        });
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+      className: 'ystdb-avatar-list__image',
+      src: item.url,
+      alt: item.name
+    }), !!item.name && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+      className: 'ystdb-avatar-list__name'
+    }, item.name)));
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('アバター設定', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["RangeControl"], {

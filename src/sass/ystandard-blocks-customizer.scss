@@ -1,0 +1,37 @@
+@mixin controlsLabel($i) {
+  @if $i != 1 {
+    margin-top: 3em;
+  }
+  padding: .25em .5em;
+  background-color: #07689f;
+  color: #fff;
+}
+
+
+/**
+ * インラインスタイル
+ */
+@for $i from 1 through 3 {
+  #customize-control-ystdb_inline_style_label_#{$i} {
+    label {
+      @include controlsLabel($i);
+    }
+  }
+}
+
+/**
+ * 吹き出し画像用
+ */
+@for $i from 1 through 5 {
+  #customize-control-ystdb_balloon_image_label#{$i} {
+    label {
+      @include controlsLabel($i);
+    }
+  }
+  #customize-control-ystdb_balloon_image_#{$i} {
+    img {
+      max-width: 100px;
+      border-radius: 50%;
+    }
+  }
+}

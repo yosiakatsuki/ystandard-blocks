@@ -206,7 +206,7 @@ function ysBalloon( props ) {
 					className={ 'ystdb-mediaupload__preview is-show-text' }
 					style={ { padding: 0 } }
 				>
-					<img src={ avatarURL } alt={ avatarAlt }/>
+					<img src={ avatarURL } alt={ avatarAlt } />
 				</Button>
 			</div>
 		);
@@ -283,6 +283,47 @@ function ysBalloon( props ) {
 						</div>
 					</BaseControl>
 				</PanelBody>
+				{ ( '1' === ystdb.yStandard &&
+					<PanelBody title={ __( '登録済みアバター画像', 'ystandard-blocks' ) }>
+						<BaseControl>
+							{ ( 0 >= ystdb.balloonImages.length ) ? (
+								<div>
+									<p>登録済みのアバター画像はありません。</p>
+									<p>カスタマイザーの「[ys]拡張機能設定」→「[ys blocks]吹き出しブロック画像設定」から登録してください。</p>
+								</div>
+							) : (
+								<div className={ 'ystdb-avatar-list' }>
+									{ ystdb.balloonImages.map( ( item ) => {
+										return (
+											<Button
+												key={ item.id }
+												isPrimary={ avatarID === item.id }
+												onClick={ () => {
+													setAttributes( {
+														avatarID: item.id,
+														avatarName: item.name,
+														avatarURL: item.url,
+														avatarAlt: item.name,
+													} );
+												} }
+											>
+												<span>
+													<img
+														className={ 'ystdb-avatar-list__image' }
+														src={ item.url }
+														alt={ item.name }
+													/>
+													{ ( !! item.name && <span
+														className={ 'ystdb-avatar-list__name' }>{ item.name }</span> ) }
+												</span>
+											</Button>
+										);
+									} ) }
+								</div>
+							) }
+						</BaseControl>
+					</PanelBody>
+				) }
 				<PanelBody title={ __( 'アバター設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<RangeControl

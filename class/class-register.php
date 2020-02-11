@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use Cassandra\Custom;
+
 /**
  * Class Register
  */
@@ -141,10 +143,7 @@ class Register {
 		wp_localize_script(
 			'ystandard-blocks-editor',
 			'ystdb',
-			[
-				'useAllIcons' => Options::is_use_all_icons() ? 'all' : '',
-				'homeUrl'     => home_url(),
-			]
+			$this->create_block_config()
 		);
 		foreach ( $this->block_editor_assets as $key => $value ) {
 			/**
@@ -193,6 +192,22 @@ class Register {
 			require_once( YSTDB_PATH . '/blocks/' . $key . '/class-' . $value['class'] . '.php' );
 		}
 	}
+
+	/**
+	 * ブロックエディターにわたすパラメーターを作成
+	 *
+	 * @return array
+	 */
+	private function create_block_config() {
+		return [
+			'yStandard'     => Main::is_ystandard() ? '1' : '',
+			'useAllIcons'   => Options::is_use_all_icons() ? 'all' : '',
+			'homeUrl'       => home_url(),
+			'pluginUrl'     => YSTDB_URL,
+			'balloonImages' => Customizer::get_balloon_images(),
+		];
+	}
+
 }
 
 new Register();

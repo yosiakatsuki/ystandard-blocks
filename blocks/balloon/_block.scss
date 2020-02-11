@@ -19,6 +19,7 @@
 .ystdb-balloon__avatar {
   flex: 0 0 48px;
   width: 48px;
+  min-width: 0;
   margin: 0;
 
   @include media-breakpoint(md) {

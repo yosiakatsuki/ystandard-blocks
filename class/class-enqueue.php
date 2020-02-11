@@ -17,19 +17,42 @@ class Enqueue {
 	 * Ystandard_Blocks_Enqueue constructor.
 	 */
 	function __construct() {
+		/**
+		 * 基本
+		 */
 		add_action(
 			'wp_enqueue_scripts',
 			[ $this, 'enqueue_scripts' ],
 			11
 		);
+		/**
+		 * テーマによって分ける
+		 */
 		if ( Main::is_ystandard() ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_ystandard' ], 11 );
+			/**
+			 * カスタマイザー用のCSS
+			 */
+			add_action( 'customize_controls_print_styles', [ $this, 'customize_controls_print_styles' ] );
 		} else {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts_no_ystandard' ], 11 );
 		}
+
+		/**
+		 * ブロックエディター用
+		 */
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_styles' ] );
+		/**
+		 * Scriptタグ編集
+		 */
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
+		/**
+		 * Noscript関連
+		 */
 		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
+		/**
+		 * 軽量版FontAwesomeのURL書き換え
+		 */
 		add_filter(
 			'ys_get_font_awesome_svg_light_url',
 			function () {
@@ -259,6 +282,18 @@ class Enqueue {
 	}
 
 	/**
+	 * カスタマイザー用のCSS読み込み
+	 */
+	public function customize_controls_print_styles() {
+		wp_enqueue_style(
+			'ystdb-customize-controls',
+			YSTDB_URL . '/css/ystandard-blocks-customizer.css',
+			[],
+			YSTDB_VERSION
+		);
+	}
+
+	/**
 	 * アニメーションできないときのCSS取得
 	 *
 	 * @return string
@@ -321,7 +356,10 @@ class Enqueue {
 				 * Background-color
 				 */
 				$class_name = $this->get_color_class_name( $value['slug'], 'color' );
-				$css        .= "${prefix} ${class_name}, 
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} ${class_name}, 
 				${prefix} .has-background${class_name}{
 					background-color:${value['color']};
 				}";
@@ -331,7 +369,10 @@ class Enqueue {
 				 * Text Color
 				 */
 				$class_name = $this->get_color_class_name( $value['slug'], 'color' );
-				$css        .= "${prefix} ${class_name}, 
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} ${class_name}, 
 				${prefix} .has-text-color${class_name},
 				${prefix} ${class_name}:hover,
 				${prefix} .has-text-color${class_name}:hover {
@@ -343,7 +384,10 @@ class Enqueue {
 				 * Border-color
 				 */
 				$class_name = $this->get_color_class_name( $value['slug'], 'border-color' );
-				$css        .= "${prefix} ${class_name}, 
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} ${class_name}, 
 				${prefix} .has-border${class_name}{
 					border-color:${value['color']};
 				}";
@@ -353,7 +397,10 @@ class Enqueue {
 				 * Fill-color
 				 */
 				$class_name = $this->get_color_class_name( $value['slug'], 'fill' );
-				$css        .= "${prefix} ${class_name}, 
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} ${class_name}, 
 				${prefix} .has-fill-color${class_name}{
 					fill:${value['color']};
 				}";
