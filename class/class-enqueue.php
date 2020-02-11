@@ -352,9 +352,11 @@ class Enqueue {
 				/**
 				 * Fill-color
 				 */
-				$css .= $prefix . $this->get_color_class_name( $value['slug'], 'fill' ) . ' {
-					fill:' . $value['color'] . ';
-				}';
+				$class_name = $this->get_color_class_name( $value['slug'], 'fill' );
+				$css        .= "${prefix} ${class_name}, 
+				${prefix} .has-fill-color${class_name}{
+					fill:${value['color']};
+				}";
 			}
 		}
 
