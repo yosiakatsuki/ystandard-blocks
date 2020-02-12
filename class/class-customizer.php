@@ -163,7 +163,7 @@ class Customizer {
 	 */
 	public static function get_balloon_images() {
 		$result = [];
-		for ( $i = 1; $i <= 5; $i ++ ) {
+		for ( $i = 1; $i <= 6; $i ++ ) {
 			$image = Options::get_option( 'balloon_image_' . $i );
 			$name  = Options::get_option( 'balloon_name_' . $i );
 			if ( ! empty( $image ) ) {
@@ -389,7 +389,7 @@ class Customizer {
 			]
 		);
 		$ystdb_opt = new Options();
-		for ( $i = 1; $i <= 5; $i ++ ) {
+		for ( $i = 1; $i <= 6; $i ++ ) {
 			/**
 			 * ラベル
 			 */
@@ -405,10 +405,11 @@ class Customizer {
 			 */
 			$ys_customizer->add_image(
 				[
-					'id'      => $ystdb_opt->get_option_name( 'balloon_image_' . $i ),
-					'label'   => '画像',
-					'section' => 'ystdb_balloon_images',
-					'default' => Options::get_default_option( 'balloon_image_' . $i ),
+					'id'        => $ystdb_opt->get_option_name( 'balloon_image_' . $i ),
+					'label'     => '画像',
+					'section'   => 'ystdb_balloon_images',
+					'default'   => Options::get_default_option( 'balloon_image_' . $i ),
+					'transport' => 'postMessage',
 				]
 			);
 			/**
@@ -416,10 +417,11 @@ class Customizer {
 			 */
 			$ys_customizer->add_text(
 				[
-					'id'      => $ystdb_opt->get_option_name( 'balloon_name_' . $i ),
-					'label'   => '名前',
-					'section' => 'ystdb_balloon_images',
-					'default' => Options::get_default_option( 'balloon_name_' . $i ),
+					'id'        => $ystdb_opt->get_option_name( 'balloon_name_' . $i ),
+					'label'     => '名前',
+					'section'   => 'ystdb_balloon_images',
+					'default'   => Options::get_default_option( 'balloon_name_' . $i ),
+					'transport' => 'postMessage',
 				]
 			);
 		}

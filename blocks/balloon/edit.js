@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { alignmentsControls, balloonTypes, balloonPositions } from './config';
+import { alignmentsControls, balloonTypes, balloonPositions, avatarSizes } from './config';
 
 import {
 	RichText,
@@ -57,6 +57,7 @@ function ysBalloon( props ) {
 		avatarURL,
 		avatarAlt,
 		avatarID,
+		avatarSize,
 		avatarBorderWidth,
 		avatarBorderRadius,
 		text,
@@ -80,6 +81,18 @@ function ysBalloon( props ) {
 		{
 			[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
 			[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
+		}
+	);
+
+	/**
+	 * アバター画像カラムクラス
+	 *
+	 * @type {string}
+	 */
+	const avatarWrapClasses = classnames(
+		'ystdb-balloon__avatar',
+		{
+			[ `is-size-${ avatarSize }` ]: avatarSize,
 		}
 	);
 
@@ -297,7 +310,7 @@ function ysBalloon( props ) {
 										return (
 											<Button
 												key={ item.id }
-												isPrimary={ avatarID === item.id }
+												isPrimary={ avatarID === item.id && avatarName === item.name }
 												onClick={ () => {
 													setAttributes( {
 														avatarID: item.id,
@@ -325,6 +338,27 @@ function ysBalloon( props ) {
 					</PanelBody>
 				) }
 				<PanelBody title={ __( 'アバター設定', 'ystandard-blocks' ) }>
+					<BaseControl>
+						<div className="ystdb-inspector-controls__label">{ __( 'アバターサイズ', 'ystandard-blocks' ) }</div>
+						<div className={ 'ystdb-btn-selector components-base-control' }>
+							{ avatarSizes.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isDefault
+										isPrimary={ avatarSize === item.value }
+										onClick={ () => {
+											setAttributes( {
+												avatarSize: item.value,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
+						</div>
+					</BaseControl>
 					<BaseControl>
 						<RangeControl
 							value={ avatarBorderRadius }
@@ -417,7 +451,7 @@ function ysBalloon( props ) {
 			</InspectorControls>
 
 			<div className={ wrapClasses }>
-				<figure className={ 'ystdb-balloon__avatar' }>
+				<figure className={ avatarWrapClasses }>
 					<MediaUpload
 						onSelect={ ( media ) => {
 							setAttributes( {

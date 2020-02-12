@@ -90,6 +90,8 @@ class Options {
 			'balloon_name_4'               => '',
 			'balloon_image_5'              => '',
 			'balloon_name_5'               => '',
+			'balloon_image_6'              => '',
+			'balloon_name_6'               => '',
 			'hide_no_ystandard_notice'     => false,
 			'load_font_awesome'            => true,
 			'add_color_palette_css_text'   => true,

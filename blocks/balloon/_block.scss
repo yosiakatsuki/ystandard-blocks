@@ -16,14 +16,21 @@
 }
 
 .ystdb-balloon__avatar {
-	flex: 0 0 48px;
-	width: 48px;
+	flex: 0 0 64px;
+	width: 64px;
 	min-width: 0;
 	margin: 0;
 
-	@include media-breakpoint(md) {
-		flex: 0 0 80px;
-		width: 80px;
+	&.is-size-large {
+
+		@include media-breakpoint(md) {
+			flex: 0 0 80px;
+			width: 80px;
+
+			.ystdb-balloon__name {
+				font-size: 0.8em;
+			}
+		}
 	}
 }
 
@@ -38,14 +45,12 @@
 }
 
 .ystdb-balloon__name {
+	margin-top: 0.25em;
 	padding: 0;
-	font-size: 0.7em;
+	font-size: 0.6em;
 	font-style: normal;
+	line-height: 1.2;
 	text-align: center;
-
-	@include media-breakpoint(md) {
-		font-size: 0.8em;
-	}
 }
 
 
@@ -107,8 +112,8 @@
 	}
 
 	/**
-   *  考え中
-   */
+ *  考え中
+ */
 	&.is-think {
 		padding: 1.5em;
 		border-radius: 3em;

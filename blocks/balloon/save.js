@@ -24,6 +24,7 @@ export default function save( { attributes } ) {
 		avatarName,
 		avatarURL,
 		avatarAlt,
+		avatarSize,
 		avatarBorderWidth,
 		avatarBorderRadius,
 		text,
@@ -51,6 +52,18 @@ export default function save( { attributes } ) {
 		{
 			[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
 			[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
+		}
+	);
+
+	/**
+	 * アバター画像カラムクラス
+	 *
+	 * @type {string}
+	 */
+	const avatarWrapClasses = classnames(
+		'ystdb-balloon__avatar',
+		{
+			[ `is-size-${ avatarSize }` ]: avatarSize,
 		}
 	);
 
@@ -157,7 +170,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div className={ wrapClasses }>
-			<figure className={ 'ystdb-balloon__avatar' }>
+			<figure className={ avatarWrapClasses }>
 				<img
 					className={ avatarClasses }
 					style={ avatarStyle }

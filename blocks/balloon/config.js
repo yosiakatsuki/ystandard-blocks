@@ -33,6 +33,10 @@ export const attributes = {
 		type: 'integer',
 		default: 0,
 	},
+	avatarSize: {
+		type: 'string',
+		default: 'large',
+	},
 	avatarBorderColor: {
 		type: 'string',
 	},
@@ -107,6 +111,17 @@ export const balloonPositions = [
 	{
 		label: __( '左', 'ystandard-blocks' ),
 		value: 'left',
+	},
+];
+
+export const avatarSizes = [
+	{
+		label: __( '小', 'ystandard-blocks' ),
+		value: 'small',
+	},
+	{
+		label: __( '大', 'ystandard-blocks' ),
+		value: 'large',
 	},
 ];
 
