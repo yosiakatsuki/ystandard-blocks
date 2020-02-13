@@ -65,6 +65,12 @@ export const attributes = {
 	customBackgroundColor: {
 		type: 'string',
 	},
+	balloonBorderColor: {
+		type: 'string',
+	},
+	customBalloonBorderColor: {
+		type: 'string',
+	},
 	textColor: {
 		type: 'string',
 	},
