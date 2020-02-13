@@ -75,7 +75,6 @@ class Register {
 	 * @var array
 	 */
 	private $block_editor_assets = [
-		'extend-core' => true,
 		'format'      => true,
 	];
 

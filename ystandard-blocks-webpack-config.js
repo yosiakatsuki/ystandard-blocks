@@ -15,8 +15,7 @@ module.exports = {
 		'balloon': './blocks/balloon/index.js',
 		'button-link': './blocks/button-link/index.js',
 		'card': './blocks/card/index.js',
-		'format': './blocks/format/index.js',
-		'extend-core': './blocks/extend-core/index.js',
+		'format': './blocks/format/index.js'
 	},
 	output: {
 		filename: '[name].js',
