@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { alignmentsControls, balloonTypes, balloonPositions, avatarSizes } from './config';
+import { alignmentsControls, balloonTypes, balloonPositions, avatarSizes, defaultAvatar } from './config';
 
 import {
 	RichText,
@@ -199,15 +199,14 @@ function ysBalloon( props ) {
 	 * @param {Object} obj
 	 */
 	const mediaUploadRender = ( obj ) => {
-		if ( ! avatarURL ) {
+		if ( ! avatarURL || defaultAvatar === avatarURL ) {
 			return (
 				<div className={ avatarClasses } style={ avatarStyle }>
 					<Button
-						isDefault
 						onClick={ obj.open }
 						className={ 'ystdb-mediaupload__preview is-no-image' }
 					>
-						{ __( '画像を選択', 'ystandard-blocks' ) }
+						<img src={ defaultAvatar } alt={ '' } />
 					</Button>
 				</div>
 			);
@@ -215,7 +214,13 @@ function ysBalloon( props ) {
 		return (
 			<div className={ avatarClasses } style={ avatarStyle }>
 				<Button
-					onClick={ obj.open }
+					onClick={ () => {
+						setAttributes( {
+							avatarID: 0,
+							avatarURL: '',
+							avatarAlt: '',
+						} );
+					} }
 					className={ 'ystdb-mediaupload__preview is-show-text' }
 					style={ { padding: 0 } }
 				>

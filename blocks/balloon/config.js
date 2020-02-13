@@ -1,6 +1,8 @@
 import { __, _x } from '@wordpress/i18n';
 import { Path, SVG } from '@wordpress/components';
 
+export const defaultAvatar = 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp';
+
 /**
  * attributes
  */
@@ -21,7 +23,7 @@ export const attributes = {
 		source: 'attribute',
 		selector: '.ystdb-balloon__avatar-image',
 		attribute: 'src',
-		default: 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp',
+		default: defaultAvatar,
 	},
 	avatarAlt: {
 		type: 'string',
