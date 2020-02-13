@@ -75,7 +75,7 @@ class Register {
 	 * @var array
 	 */
 	private $block_editor_assets = [
-		'format'      => true,
+		'format' => true,
 	];
 
 	/**
