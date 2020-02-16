@@ -355,11 +355,11 @@ class Enqueue {
 				/**
 				 * Background-color
 				 */
-				$class_name = $this->get_color_class_name( $value['slug'], 'color' );
+				$class_name = $this->get_color_class_name( $value['slug'], 'background-color' );
 				/**
 				 * 結合
 				 */
-				$css .= "${prefix} ${class_name}, 
+				$css .= "${prefix} ${class_name},
 				${prefix} .has-background${class_name}{
 					background-color:${value['color']};
 				}";
@@ -372,7 +372,7 @@ class Enqueue {
 				/**
 				 * 結合
 				 */
-				$css .= "${prefix} ${class_name}, 
+				$css .= "${prefix} ${class_name},
 				${prefix} .has-text-color${class_name},
 				${prefix} ${class_name}:hover,
 				${prefix} .has-text-color${class_name}:hover {
@@ -387,7 +387,7 @@ class Enqueue {
 				/**
 				 * 結合
 				 */
-				$css .= "${prefix} ${class_name}, 
+				$css .= "${prefix} ${class_name},
 				${prefix} .has-border${class_name}{
 					border-color:${value['color']};
 				}";
@@ -400,7 +400,7 @@ class Enqueue {
 				/**
 				 * 結合
 				 */
-				$css .= "${prefix} ${class_name}, 
+				$css .= "${prefix} ${class_name},
 				${prefix} .has-fill-color${class_name}{
 					fill:${value['color']};
 				}";
