@@ -1,7 +1,7 @@
 .ystdb-inspectorcontrols {
 
 	.components-base-control__label {
-		font-weight: 600;
+		font-weight: $font__weight_bold;
 	}
 
 	.components-base-control__field .components-base-control__field {
@@ -37,7 +37,7 @@
 
 .ystdb-inspector-controls__label {
 	margin: 0.5rem 0 0.25rem;
-	font-weight: 600;
+	font-weight: $font__weight_bold;
 }
 
 .ystdb-inspector-controls__dscr {
