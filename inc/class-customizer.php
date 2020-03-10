@@ -81,6 +81,20 @@ class Customizer {
 			);
 		}
 
+		/**
+		 * 少し大きく・少し小さく
+		 */
+		$css .= sprintf(
+			'%s .ystdb-inline--larger {font-size:%sem;}',
+			$wrap,
+			( Options::get_option( 'inline_style_larger' ) / 100 )
+		);
+		$css .= sprintf(
+			'%s .ystdb-inline--smaller {font-size:%sem;}',
+			$wrap,
+			( Options::get_option( 'inline_style_smaller' ) / 100 )
+		);
+
 		return $css;
 	}
 
@@ -369,6 +383,54 @@ class Customizer {
 				]
 			);
 		}
+
+		/**
+		 * 少し大きく・少し小さく
+		 */
+		$ys_customizer->add_label(
+			[
+				'id'      => $ystdb_opt->get_option_name( 'inline_style_larger_label' ),
+				'label'   => '[ys]少し大きく',
+				'section' => 'ystdb_inline_style',
+			]
+		);
+		$ys_customizer->add_number(
+			[
+				'id'          => $ystdb_opt->get_option_name( 'inline_style_larger' ),
+				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger' ),
+				'label'       => '文字サイズ(%)',
+				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
+				'section'     => 'ystdb_inline_style',
+				'transport'   => 'postMessage',
+				'input_attrs' => [
+					'min'  => 60,
+					'max'  => 200,
+					'step' => 10,
+				],
+			]
+		);
+		$ys_customizer->add_label(
+			[
+				'id'      => $ystdb_opt->get_option_name( 'inline_style_smaller_label' ),
+				'label'   => '[ys]少し小さく',
+				'section' => 'ystdb_inline_style',
+			]
+		);
+		$ys_customizer->add_number(
+			[
+				'id'          => $ystdb_opt->get_option_name( 'inline_style_smaller' ),
+				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller' ),
+				'label'       => '文字サイズ(%)',
+				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
+				'section'     => 'ystdb_inline_style',
+				'transport'   => 'postMessage',
+				'input_attrs' => [
+					'min'  => 60,
+					'max'  => 200,
+					'step' => 10,
+				],
+			]
+		);
 	}
 
 	/**

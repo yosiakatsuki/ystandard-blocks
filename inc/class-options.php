@@ -80,6 +80,8 @@ class Options {
 			'inline_style_mark_opacity_3'  => 30,
 			'inline_style_mark_weight_3'   => 25,
 			'inline_style_type_3'          => 'normal',
+			'inline_style_larger'          => 120,
+			'inline_style_smaller'         => 80,
 			'balloon_image_1'              => '',
 			'balloon_name_1'               => '',
 			'balloon_image_2'              => '',
