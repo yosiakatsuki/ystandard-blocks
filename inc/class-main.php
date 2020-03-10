@@ -17,18 +17,16 @@ class Main {
 	/**
 	 * 読み込むファイル群
 	 */
-	const YSTDB_CLASS_PATH = YSTDB_PATH . '/class/';
+	const YSTDB_INC_PATH = YSTDB_PATH . '/inc/';
 
 	/**
 	 * Main constructor.
 	 */
 	public function __construct() {
 		/**
-		 * Gutenbergチェック
+		 * 機能チェック
 		 */
-		if ( ! function_exists( 'register_block_type' ) ) {
-			add_action( 'admin_notices', [ $this, 'gutenberg_notice' ] );
-
+		if ( ! $this->check_plugin_activatable() ) {
 			return;
 		}
 		$this->require();
@@ -51,6 +49,30 @@ class Main {
 				11
 			);
 		}
+	}
+
+	/**
+	 * プラグインの有効化チェック
+	 */
+	private function check_plugin_activatable() {
+		/**
+		 * PHPバージョンチェック
+		 */
+		if ( version_compare( phpversion(), '7.0.0', '<' ) ) {
+			add_action( 'admin_notices', [ $this, 'phpversion_notice' ] );
+
+			return false;
+		}
+		/**
+		 * Gutenbergチェック
+		 */
+		if ( ! function_exists( 'register_block_type' ) ) {
+			add_action( 'admin_notices', [ $this, 'gutenberg_notice' ] );
+
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -80,12 +102,12 @@ class Main {
 	 */
 	private function require() {
 		$files = [
-			self::YSTDB_CLASS_PATH . 'class-dynamic-block.php',
-			self::YSTDB_CLASS_PATH . 'class-register.php',
-			self::YSTDB_CLASS_PATH . 'class-enqueue.php',
-			self::YSTDB_CLASS_PATH . 'class-options.php',
-			self::YSTDB_CLASS_PATH . 'class-customizer.php',
-			self::YSTDB_CLASS_PATH . 'class-helper.php',
+			self::YSTDB_INC_PATH . 'class-dynamic-block.php',
+			self::YSTDB_INC_PATH . 'class-register.php',
+			self::YSTDB_INC_PATH . 'class-enqueue.php',
+			self::YSTDB_INC_PATH . 'class-options.php',
+			self::YSTDB_INC_PATH . 'class-customizer.php',
+			self::YSTDB_INC_PATH . 'class-helper.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );
@@ -126,6 +148,19 @@ class Main {
 			YSTDB_PATH . '/ystandard-blocks.php',
 			'yStandard Blocks'
 		);
+	}
+
+	/**
+	 * PHPバージョン不足案内
+	 */
+	public function phpversion_notice() {
+		?>
+		<div class="notice notice-error is-dismissible">
+			<p>PHPバージョンが古いためyStandard Blocksが機能しません。</p>
+			<p>yStandard BlocksはPHP 7.3以上での利用を推奨しています。</p>
+			<p>お使いのサーバーのPHPバージョンをご確認ください。（このサイトで有効になっているPHPバージョン：<?php echo phpversion(); ?>）</p>
+		</div>
+		<?php
 	}
 
 	/**

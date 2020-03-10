@@ -41,11 +41,7 @@ register_uninstall_hook(
 	[ 'ystandard_blocks\Main', 'uninstall_ystandard_blocks' ]
 );
 
-if ( ! function_exists( 'register_block_type' ) ) {
-	return;
-}
-
-require_once YSTDB_PATH . '/class/class-main.php';
+require_once YSTDB_PATH . '/inc/class-main.php';
 
 new ystandard_blocks\Main();
 
