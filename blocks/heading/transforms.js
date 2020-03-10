@@ -1,6 +1,4 @@
-import {
-	createBlock,
-} from '@wordpress/blocks';
+import { createBlock } from '@wordpress/blocks';
 
 const transforms = {
 	from: [

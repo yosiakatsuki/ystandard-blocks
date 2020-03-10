@@ -16,15 +16,22 @@ class HeadingToolbar extends Component {
 	}
 
 	render() {
-		const { isCollapsed = true, minLevel, maxLevel, selectedLevel, onChange } = this.props;
+		const {
+			isCollapsed = true,
+			minLevel,
+			maxLevel,
+			selectedLevel,
+			onChange,
+		} = this.props;
 
 		return (
 			<Toolbar
 				isCollapsed={ isCollapsed }
 				icon={ this.getIcon( selectedLevel ) }
-				controls={ range( minLevel, maxLevel ).map(
-					( index ) => this.createLevelControl( index, selectedLevel, onChange )
-				) } />
+				controls={ range( minLevel, maxLevel ).map( ( index ) =>
+					this.createLevelControl( index, selectedLevel, onChange )
+				) }
+			/>
 		);
 	}
 
@@ -33,7 +40,13 @@ class HeadingToolbar extends Component {
 			return null;
 		}
 		return (
-			<SVG width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" isPressed={ isPressed }>
+			<SVG
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				xmlns="http://www.w3.org/2000/svg"
+				isPressed={ isPressed }
+			>
 				<Path d={ paths[ level ] } />
 			</SVG>
 		);

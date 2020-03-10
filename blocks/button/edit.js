@@ -14,9 +14,7 @@ import {
 	URLInput,
 } from '@wordpress/block-editor';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
@@ -28,9 +26,7 @@ import {
 	RadioControl,
 } from '@wordpress/components';
 
-import {
-	compose,
-} from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 
@@ -66,14 +62,10 @@ function ysButton( props ) {
 		animationInterval,
 	} = attributes;
 
-	const wrapClasses = classnames(
-		className,
-		'wp-block-button',
-		{
-			[ `has-text-align-${ align }` ]: align,
-			[ fontSize.class ]: fontSize.class,
-		}
-	);
+	const wrapClasses = classnames( className, 'wp-block-button', {
+		[ `has-text-align-${ align }` ]: align,
+		[ fontSize.class ]: fontSize.class,
+	} );
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
@@ -97,8 +89,12 @@ function ysButton( props ) {
 		color: textColor.color,
 		backgroundColor: backgroundColor.color,
 		borderRadius,
-		maxWidth: buttonType && maxWidth ? `${ maxWidth }${ maxUnit }` : undefined,
-		animationDuration: 'none' !== animationType && animationInterval ? `${ animationInterval }s` : undefined,
+		maxWidth:
+			buttonType && maxWidth ? `${ maxWidth }${ maxUnit }` : undefined,
+		animationDuration:
+			'none' !== animationType && animationInterval
+				? `${ animationInterval }s`
+				: undefined,
 	};
 
 	const maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
@@ -135,40 +131,55 @@ function ysButton( props ) {
 							label: __( 'Text Color' ),
 						},
 					] }
-				>
-				</PanelColorSettings>
+				></PanelColorSettings>
 				<PanelBody title={ __( '枠線設定', 'ystandard-blocks' ) }>
 					<RangeControl
 						value={ borderRadius }
 						label={ __( '枠線の角丸', 'ystandard-blocks' ) }
 						min={ ystdbConfig.button.borderRadiusMin }
 						max={ ystdbConfig.button.borderRadiusMax }
-						initialPosition={ ystdbConfig.button.borderRadiusInitialPosition }
+						initialPosition={
+							ystdbConfig.button.borderRadiusInitialPosition
+						}
 						allowReset
 						onChange={ ( value ) => {
 							setAttributes( {
-								borderRadius: ! value ? ystdbConfig.button.borderRadiusInitialPosition : value,
+								borderRadius: ! value
+									? ystdbConfig.button
+											.borderRadiusInitialPosition
+									: value,
 							} );
 						} }
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
 					<IconSelect
-						iconControlTitle={ __( '左アイコン', 'ystandard-blocks' ) }
+						iconControlTitle={ __(
+							'左アイコン',
+							'ystandard-blocks'
+						) }
 						selectedIcon={ iconLeft }
 						onClickIcon={ ( value ) => {
 							setAttributes( { iconLeft: value } );
 						} }
 					/>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className="ystdb-inspector-controls__label">
+							{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
 										isDefault
-										isPrimary={ iconSizeLeft === item.value }
+										isPrimary={
+											iconSizeLeft === item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												iconSizeLeft: item.value,
@@ -182,21 +193,32 @@ function ysButton( props ) {
 						</div>
 					</BaseControl>
 					<IconSelect
-						iconControlTitle={ __( '右アイコン', 'ystandard-blocks' ) }
+						iconControlTitle={ __(
+							'右アイコン',
+							'ystandard-blocks'
+						) }
 						selectedIcon={ iconRight }
 						onClickIcon={ ( value ) => {
 							setAttributes( { iconRight: value } );
 						} }
 					/>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className="ystdb-inspector-controls__label">
+							{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
 										isDefault
-										isPrimary={ iconSizeRight === item.value }
+										isPrimary={
+											iconSizeRight === item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												iconSizeRight: item.value,
@@ -224,8 +246,14 @@ function ysButton( props ) {
 				</PanelBody>
 				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 					<BaseControl>
-						<span className={ `ystdb-info__small` }>ボタン内側の余白を設定できます。</span>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<span className={ `ystdb-info__small` }>
+							ボタン内側の余白を設定できます。
+						</span>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ ystdbConfig.button.paddingTypes.map( ( item ) => {
 								return (
 									<Button
@@ -245,12 +273,18 @@ function ysButton( props ) {
 						</div>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={ __( 'ブロックボタン設定', 'ystandard-blocks' ) }>
+				<PanelBody
+					title={ __( 'ブロックボタン設定', 'ystandard-blocks' ) }
+				>
 					<BaseControl>
 						<ToggleControl
-							label={ __( 'ボタンをブロック型にする', 'ystandard-blocks' ) }
+							label={ __(
+								'ボタンをブロック型にする',
+								'ystandard-blocks'
+							) }
 							onChange={ () => {
-								const value = 'is-block' === buttonType ? '' : 'is-block';
+								const value =
+									'is-block' === buttonType ? '' : 'is-block';
 								setAttributes( { buttonType: value } );
 							} }
 							checked={ buttonType === 'is-block' }
@@ -270,8 +304,14 @@ function ysButton( props ) {
 							label={ __( '最大幅単位', 'ystandard-blocks' ) }
 							selected={ maxUnit }
 							options={ [
-								{ label: __( '%', 'ystandard-blocks' ), value: '%' },
-								{ label: __( 'px', 'ystandard-blocks' ), value: 'px' },
+								{
+									label: __( '%', 'ystandard-blocks' ),
+									value: '%',
+								},
+								{
+									label: __( 'px', 'ystandard-blocks' ),
+									value: 'px',
+								},
 							] }
 							onChange={ ( option ) => {
 								setAttributes( { maxUnit: option } );
@@ -279,10 +319,15 @@ function ysButton( props ) {
 						/>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={ __( 'アニメーション設定', 'ystandard-blocks' ) }>
+				<PanelBody
+					title={ __( 'アニメーション設定', 'ystandard-blocks' ) }
+				>
 					<BaseControl>
 						<RadioControl
-							label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
+							label={ __(
+								'アニメーション種類',
+								'ystandard-blocks'
+							) }
 							selected={ animationType }
 							options={ ystdbConfig.button.animationTypes }
 							onChange={ ( option ) => {
@@ -291,7 +336,10 @@ function ysButton( props ) {
 						/>
 						<RangeControl
 							value={ animationInterval }
-							label={ __( 'アニメーションの速さ(秒)', 'ystandard-blocks' ) }
+							label={ __(
+								'アニメーションの速さ(秒)',
+								'ystandard-blocks'
+							) }
 							min={ 1 }
 							max={ 10 }
 							initialPosition={ 5 }
@@ -310,7 +358,10 @@ function ysButton( props ) {
 							let updatedRel = rel;
 							if ( newLinkTarget && ! rel ) {
 								updatedRel = ystdbConfig.button.newTabRel;
-							} else if ( ! newLinkTarget && rel === ystdbConfig.button.newTabRel ) {
+							} else if (
+								! newLinkTarget &&
+								rel === ystdbConfig.button.newTabRel
+							) {
 								updatedRel = undefined;
 							}
 							setAttributes( {
@@ -333,39 +384,49 @@ function ysButton( props ) {
 			<div className={ wrapClasses } style={ wrapStyles }>
 				<span className={ linkClasses } style={ linkStyles }>
 					<span className="ystdb-button__link-content">
-						{ ( !! iconLeft &&
-							<span className={ classnames(
-								'ystdb-button__icon',
-								'ystdb-button__icon--left',
-								iconLeft,
-								{
-									[ iconSizeLeft ]: iconSizeLeft,
-								}
-							) }> </span>
+						{ !! iconLeft && (
+							<span
+								className={ classnames(
+									'ystdb-button__icon',
+									'ystdb-button__icon--left',
+									iconLeft,
+									{
+										[ iconSizeLeft ]: iconSizeLeft,
+									}
+								) }
+							>
+								{ ' ' }
+							</span>
 						) }
 						<RichText
 							tagName={ 'span' }
 							placeholder={ __( 'Add text…' ) }
 							value={ text }
-							onChange={ ( value ) => setAttributes( { text: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { text: value } )
+							}
 							withoutInteractiveFormatting
 							className={ 'ystdb-button__text' }
 						/>
-						{ ( !! iconRight &&
-							<span className={ classnames(
-								'ystdb-button__icon',
-								'ystdb-button__icon--right',
-								iconRight,
-								{
-									[ iconSizeRight ]: iconSizeRight,
-								}
-							) }> </span>
+						{ !! iconRight && (
+							<span
+								className={ classnames(
+									'ystdb-button__icon',
+									'ystdb-button__icon--right',
+									iconRight,
+									{
+										[ iconSizeRight ]: iconSizeRight,
+									}
+								) }
+							>
+								{ ' ' }
+							</span>
 						) }
 					</span>
 				</span>
 			</div>
 
-			{ ( !! isSelected &&
+			{ !! isSelected && (
 				<div className={ 'ystdb-button__link-container' }>
 					<div className="ystdb-button__link-label">リンク先URL</div>
 					<URLInput
@@ -375,7 +436,9 @@ function ysButton( props ) {
 						/* eslint-disable jsx-a11y/no-autofocus */
 						autoFocus={ false }
 						/* eslint-enable jsx-a11y/no-autofocus */
-						onChange={ ( value ) => setAttributes( { url: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { url: value } )
+						}
 						disableSuggestions={ ! isSelected }
 						isFullWidth
 						hasBorder

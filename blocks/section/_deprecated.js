@@ -1,14 +1,8 @@
 import classnames from 'classnames';
 import getNum from '../../src/js/util/_getNum';
 
-import {
-	getColorClassName,
-	InnerBlocks,
-} from '@wordpress/block-editor';
-import {
-	SVG,
-	Path,
-} from '@wordpress/components';
+import { getColorClassName, InnerBlocks } from '@wordpress/block-editor';
+import { SVG, Path } from '@wordpress/components';
 import { dividerPath } from './config';
 
 const blockAttributes = {
@@ -209,9 +203,18 @@ export const deprecated = [
 			 * 色設定
 			 */
 			const textColorClass = getColorClassName( 'color', textColor );
-			const backgroundClass = getColorClassName( 'background-color', backgroundColor );
-			const dividerColorTopClass = getColorClassName( 'fill', dividerColorTop );
-			const dividerColorBottomClass = getColorClassName( 'fill', dividerColorBottom );
+			const backgroundClass = getColorClassName(
+				'background-color',
+				backgroundColor
+			);
+			const dividerColorTopClass = getColorClassName(
+				'fill',
+				dividerColorTop
+			);
+			const dividerColorBottomClass = getColorClassName(
+				'fill',
+				dividerColorBottom
+			);
 
 			/**
 			 * アニメーション
@@ -221,20 +224,18 @@ export const deprecated = [
 			/**
 			 * 背景関連
 			 */
-			const showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor;
+			const showBgMask =
+				backgroundImageURL || backgroundColor || customBackgroundColor;
 
 			/**
 			 * セクションクラス名
 			 */
-			const sectionClass = classnames(
-				'ystdb-section',
-				{
-					'has-background-image': backgroundImageURL,
-					'is-screen-height': screenHeightMode,
-					'has-animation': hasAnimation,
-					'has-parallax': backgroundImageParallax,
-				}
-			);
+			const sectionClass = classnames( 'ystdb-section', {
+				'has-background-image': backgroundImageURL,
+				'is-screen-height': screenHeightMode,
+				'has-animation': hasAnimation,
+				'has-parallax': backgroundImageParallax,
+			} );
 			const dataAnimation = hasAnimation ? animationType : undefined;
 			/**
 			 * セクションスタイル
@@ -245,38 +246,41 @@ export const deprecated = [
 				paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
 				marginTop: marginTop + 'rem',
 				marginBottom: marginBottom + 'rem',
-				backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
-				minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+				backgroundImage: backgroundImageURL
+					? `url("${ backgroundImageURL }")`
+					: undefined,
+				minHeight: sectionMinHeight
+					? sectionMinHeight + 'px'
+					: undefined,
 				paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 				paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
-				animationDuration: hasAnimation ? `${ animationSpeed }s` : undefined,
+				animationDuration: hasAnimation
+					? `${ animationSpeed }s`
+					: undefined,
 			};
 
 			/**
 			 * 背景マスク
 			 */
-			const bgMaskClass = classnames(
-				'ystdb-section__bg',
-				{
-					'has-background': backgroundColor || customBackgroundColor,
-					[ backgroundClass ]: backgroundClass,
-				}
-			);
+			const bgMaskClass = classnames( 'ystdb-section__bg', {
+				'has-background': backgroundColor || customBackgroundColor,
+				[ backgroundClass ]: backgroundClass,
+			} );
 			const bgMaskStyle = {
-				backgroundColor: ! backgroundClass && ! customBackgroundColor ? '#000' : customBackgroundColor,
-				opacity: ( backgroundImageOpacity / 100 ),
+				backgroundColor:
+					! backgroundClass && ! customBackgroundColor
+						? '#000'
+						: customBackgroundColor,
+				opacity: backgroundImageOpacity / 100,
 			};
 
 			/**
 			 * インナー
 			 */
-			const innerClasses = classnames(
-				'ystdb-section__inner',
-				{
-					'has-text-color': textColorClass || customTextColor,
-					[ textColorClass ]: textColorClass,
-				}
-			);
+			const innerClasses = classnames( 'ystdb-section__inner', {
+				'has-text-color': textColorClass || customTextColor,
+				[ textColorClass ]: textColorClass,
+			} );
 			const innerStyles = {
 				maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 				marginRight: 'auto',
@@ -285,19 +289,22 @@ export const deprecated = [
 				paddingRight: 0 === paddingRight ? 0 : paddingRight + 'rem',
 			};
 
-			const divider = ( type, position, level, colorClass, customColor ) => {
+			const divider = (
+				type,
+				position,
+				level,
+				colorClass,
+				customColor
+			) => {
 				const dividerClass = classnames(
 					'ystdb-section__divider',
 					`ystdb-section__divider--${ position }`,
 					`ystdb-section__divider--${ type }`
 				);
 				const path = dividerPath( type, level );
-				const svgClass = classnames(
-					'ystdb-section__divider-image',
-					{
-						[ colorClass ]: colorClass,
-					}
-				);
+				const svgClass = classnames( 'ystdb-section__divider-image', {
+					[ colorClass ]: colorClass,
+				} );
 
 				return (
 					<div className={ dividerClass }>
@@ -307,14 +314,22 @@ export const deprecated = [
 							xmlns="http://www.w3.org/2000/svg"
 							preserveAspectRatio="none"
 						>
-							<Path d={ path } strokewidth="0" fill={ customColor } />
+							<Path
+								d={ path }
+								strokewidth="0"
+								fill={ customColor }
+							/>
 						</SVG>
 					</div>
 				);
 			};
 
-			const dividerTop = 0 !== dividerLevelTop && ( dividerColorTopClass || customDividerColorTop );
-			const dividerBottom = 0 !== dividerLevelBottom && ( dividerColorBottomClass || customDividerColorBottom );
+			const dividerTop =
+				0 !== dividerLevelTop &&
+				( dividerColorTopClass || customDividerColorTop );
+			const dividerBottom =
+				0 !== dividerLevelBottom &&
+				( dividerColorBottomClass || customDividerColorBottom );
 
 			return (
 				<div
@@ -322,15 +337,37 @@ export const deprecated = [
 					style={ sectionStyles }
 					data-animation={ dataAnimation }
 				>
-					{ ( showBgMask && <div
-						className={ bgMaskClass }
-						aria-hidden="true"
-						role="img"
-						style={ bgMaskStyle }>&nbsp;</div> ) }
-					{ ( dividerTop && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTopClass, customDividerColorTop ) ) }
-					{ ( dividerBottom && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottomClass, customDividerColorBottom ) ) }
+					{ showBgMask && (
+						<div
+							className={ bgMaskClass }
+							aria-hidden="true"
+							role="img"
+							style={ bgMaskStyle }
+						>
+							&nbsp;
+						</div>
+					) }
+					{ dividerTop &&
+						divider(
+							dividerTypeTop,
+							'top',
+							dividerLevelTop,
+							dividerColorTopClass,
+							customDividerColorTop
+						) }
+					{ dividerBottom &&
+						divider(
+							dividerTypeBottom,
+							'bottom',
+							dividerLevelBottom,
+							dividerColorBottomClass,
+							customDividerColorBottom
+						) }
 					<div className="ystdb-section__container">
-						<Wrapper className={ innerClasses } style={ innerStyles }>
+						<Wrapper
+							className={ innerClasses }
+							style={ innerStyles }
+						>
 							<InnerBlocks.Content />
 						</Wrapper>
 					</div>
@@ -419,32 +456,36 @@ export const deprecated = [
 			 * 色設定
 			 */
 			const textClass = getColorClassName( 'color', textColor );
-			const backgroundClass = getColorClassName( 'background-color', backgroundColor );
+			const backgroundClass = getColorClassName(
+				'background-color',
+				backgroundColor
+			);
 			/**
 			 * 背景関連
 			 */
-			const hasBackground = ( backgroundColor || customBackgroundColor ) && ! backgroundSkew;
+			const hasBackground =
+				( backgroundColor || customBackgroundColor ) &&
+				! backgroundSkew;
 			const hasBackgroundClass = backgroundClass && ! backgroundSkew;
 			const hasBackgroundImage = backgroundImageURL && ! backgroundSkew;
 			const hasBackgroundDim = backgroundImageURL && ! backgroundSkew;
-			const backgroundDimClass = 'has-background-dim-' + ( 10 * Math.round( backgroundImageOpacity / 10 ) );
+			const backgroundDimClass =
+				'has-background-dim-' +
+				10 * Math.round( backgroundImageOpacity / 10 );
 
 			/**
 			 * メインクラス名
 			 */
-			const classes = classnames(
-				'ystdb-section',
-				{
-					'has-text-color': textColor || customTextColor,
-					[ textClass ]: textClass,
-					'has-background': hasBackground,
-					[ backgroundClass ]: hasBackgroundClass,
-					'has-background-image': hasBackgroundImage,
-					'has-background-dim': hasBackgroundDim,
-					[ backgroundDimClass ]: hasBackgroundDim,
-					'has-background-skew': backgroundSkew,
-				}
-			);
+			const classes = classnames( 'ystdb-section', {
+				'has-text-color': textColor || customTextColor,
+				[ textClass ]: textClass,
+				'has-background': hasBackground,
+				[ backgroundClass ]: hasBackgroundClass,
+				'has-background-image': hasBackgroundImage,
+				'has-background-dim': hasBackgroundDim,
+				[ backgroundDimClass ]: hasBackgroundDim,
+				'has-background-skew': backgroundSkew,
+			} );
 			/**
 			 * インナーブロックのクラス名
 			 */
@@ -453,13 +494,18 @@ export const deprecated = [
 			 * セクションスタイル
 			 */
 			const sectionStyles = {
-				backgroundColor: ( backgroundClass || backgroundSkew ) ? undefined : customBackgroundColor,
+				backgroundColor:
+					backgroundClass || backgroundSkew
+						? undefined
+						: customBackgroundColor,
 				color: textClass ? undefined : customTextColor,
 				marginTop: 0 === marginTop ? 0 : marginTop + 'rem',
 				marginBottom: 0 === marginBottom ? 0 : marginBottom + 'rem',
 				paddingTop: 0 === paddingTop ? 0 : paddingTop + 'rem',
 				paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'rem',
-				backgroundImage: hasBackgroundImage ? `url("${ backgroundImageURL }")` : undefined,
+				backgroundImage: hasBackgroundImage
+					? `url("${ backgroundImageURL }")`
+					: undefined,
 				paddingLeft: '1rem',
 				paddingRight: '1rem',
 			};
@@ -480,17 +526,19 @@ export const deprecated = [
 				if ( backgroundSkew ) {
 					const backgroundSkewValue = backgroundSkew + 'deg';
 					const skewStyle = {
-						height: backgroundSkewWidth ? backgroundSkewWidth + '%' : undefined,
-						backgroundColor: backgroundClass ? undefined : customBackgroundColor,
+						height: backgroundSkewWidth
+							? backgroundSkewWidth + '%'
+							: undefined,
+						backgroundColor: backgroundClass
+							? undefined
+							: customBackgroundColor,
 						transform: `skewY(${ backgroundSkewValue }) translateY(-50%)`,
 					};
-					const skewClass = classnames(
-						'ystdb-section__mask',
-						{
-							'has-background': backgroundColor || customBackgroundColor,
-							[ backgroundClass ]: backgroundClass,
-						}
-					);
+					const skewClass = classnames( 'ystdb-section__mask', {
+						'has-background':
+							backgroundColor || customBackgroundColor,
+						[ backgroundClass ]: backgroundClass,
+					} );
 					return (
 						<div className={ skewClass } style={ skewStyle }></div>
 					);
@@ -518,9 +566,7 @@ export const deprecated = [
 			};
 		},
 		save( props ) {
-			const {
-				attributes,
-			} = props;
+			const { attributes } = props;
 			const {
 				backgroundColor,
 				textColor,
@@ -537,21 +583,23 @@ export const deprecated = [
 			const Wrapper = wrapperTag;
 
 			const textClass = getColorClassName( 'color', textColor );
-			const backgroundClass = getColorClassName( 'background-color', backgroundColor );
-
-			const classes = classnames(
-				'ystdb-section',
-				{
-					'has-text-color': textColor || customTextColor,
-					[ textClass ]: textClass,
-					'has-background': backgroundColor || customBackgroundColor,
-					[ backgroundClass ]: backgroundClass,
-				}
+			const backgroundClass = getColorClassName(
+				'background-color',
+				backgroundColor
 			);
+
+			const classes = classnames( 'ystdb-section', {
+				'has-text-color': textColor || customTextColor,
+				[ textClass ]: textClass,
+				'has-background': backgroundColor || customBackgroundColor,
+				[ backgroundClass ]: backgroundClass,
+			} );
 			const innerClasses = 'ystdb-section__inner';
 
 			const sectionStyles = {
-				backgroundColor: backgroundClass ? undefined : customBackgroundColor,
+				backgroundColor: backgroundClass
+					? undefined
+					: customBackgroundColor,
 				color: textClass ? undefined : customTextColor,
 				'margin-top': marginTop,
 				'margin-bottom': marginBottom,
@@ -559,7 +607,8 @@ export const deprecated = [
 				'padding-bottom': paddingBottom,
 			};
 			const innerStyles = {
-				'max-width': innerCustomWidth !== 0 ? innerCustomWidth : undefined,
+				'max-width':
+					innerCustomWidth !== 0 ? innerCustomWidth : undefined,
 				'margin-right': 'auto',
 				'margin-left': 'auto',
 			};

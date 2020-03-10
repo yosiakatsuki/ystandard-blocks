@@ -2,6 +2,7 @@ import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
 import save from './save';
 import { attributes, supports } from './config';
+import { deprecated } from './_deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
@@ -18,4 +19,5 @@ registerBlockType( 'ystdb/balloon', {
 	supports,
 	edit,
 	save,
+	deprecated,
 } );

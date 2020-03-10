@@ -8,7 +8,10 @@ import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/section', {
 	title: __( '[ys]セクション', 'ystandard-blocks' ),
-	description: __( 'yStandard Blocks汎用セクションブロック', 'ystandard-blocks' ),
+	description: __(
+		'yStandard Blocks汎用セクションブロック',
+		'ystandard-blocks'
+	),
 	icon: {
 		src: 'screenoptions',
 		foreground: ystdbConfig.color.iconForeground,

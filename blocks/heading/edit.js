@@ -14,9 +14,7 @@ import { createBlock } from '@wordpress/blocks';
 import HeadingToolbar from './heading-toolbar';
 import { select } from '@wordpress/data';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
@@ -28,9 +26,7 @@ import {
 	SVG,
 } from '@wordpress/components';
 
-import {
-	compose,
-} from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
 import { positions } from './config';
@@ -77,43 +73,41 @@ function customHeading( props ) {
 	 *
 	 * @type {string}
 	 */
-	const dividerEditorMarginTop = 'bottom' === subTextPosition ? ( dividerMarginTop + 2 ) + 'px' : ( dividerMarginTop - 1 ) + 'px';
-	const dividerEditorMarginBottom = 'bottom' === subTextPosition ? ( dividerMarginBottom ) + 'px' : ( dividerMarginBottom + 2 ) + 'px';
+	const dividerEditorMarginTop =
+		'bottom' === subTextPosition
+			? dividerMarginTop + 2 + 'px'
+			: dividerMarginTop - 1 + 'px';
+	const dividerEditorMarginBottom =
+		'bottom' === subTextPosition
+			? dividerMarginBottom + 'px'
+			: dividerMarginBottom + 2 + 'px';
 	/**
 	 * 編集領域
 	 *
 	 * @type {string}
 	 */
-	const editorClasses = classnames(
-		'ystdb-heading__editor'
-	);
+	const editorClasses = classnames( 'ystdb-heading__editor' );
 
 	/**
 	 * 見出し
 	 *
 	 * @type {string}
 	 */
-	const headingClasses = classnames(
-		className,
-		'ystdb-heading',
-		{
-			'is-clear-style': clearStyle,
-			[ `has-text-align-${ align }` ]: align,
-			[ textColor.class ]: textColor.class,
-			[ fontSize.class ]: fontSize.class,
-			'has-border': subTextBorderHeight && subTextBorderWidth,
-			'has-sub-text': subText,
-		}
-	);
+	const headingClasses = classnames( className, 'ystdb-heading', {
+		'is-clear-style': clearStyle,
+		[ `has-text-align-${ align }` ]: align,
+		[ textColor.class ]: textColor.class,
+		[ fontSize.class ]: fontSize.class,
+		'has-border': subTextBorderHeight && subTextBorderWidth,
+		'has-sub-text': subText,
+	} );
 
 	const styles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
 	};
 
-	const textClass = classnames(
-		'ystdb-heading__text'
-	);
+	const textClass = classnames( 'ystdb-heading__text' );
 
 	/**
 	 * 線
@@ -124,10 +118,16 @@ function customHeading( props ) {
 		}
 		const lineStyle = {
 			fill: dividerColor.color ? dividerColor.color : '#222',
-			marginTop: 0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
-			marginBottom: 0 !== dividerMarginBottom ? dividerEditorMarginBottom : undefined,
-			marginRight: 'left' === align || 'center' === align ? 'auto' : undefined,
-			marginLeft: 'right' === align || 'center' === align ? 'auto' : undefined,
+			marginTop:
+				0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
+			marginBottom:
+				0 !== dividerMarginBottom
+					? dividerEditorMarginBottom
+					: undefined,
+			marginRight:
+				'left' === align || 'center' === align ? 'auto' : undefined,
+			marginLeft:
+				'right' === align || 'center' === align ? 'auto' : undefined,
 		};
 		return (
 			<SVG
@@ -136,8 +136,11 @@ function customHeading( props ) {
 				height={ subTextBorderHeight }
 				viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
 				xmlns="http://www.w3.org/2000/svg"
-				style={ lineStyle }>
-				<Path d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` } />
+				style={ lineStyle }
+			>
+				<Path
+					d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }
+				/>
 			</SVG>
 		);
 	};
@@ -151,8 +154,14 @@ function customHeading( props ) {
 		const padding = `calc(.25em + ${ subTextBorderHeight }px)`;
 
 		const wrapStyle = {
-			marginBottom: 'top' === subTextPosition && subTextBorderHeight ? padding : undefined,
-			marginTop: 'bottom' === subTextPosition && subTextBorderHeight ? padding : undefined,
+			marginBottom:
+				'top' === subTextPosition && subTextBorderHeight
+					? padding
+					: undefined,
+			marginTop:
+				'bottom' === subTextPosition && subTextBorderHeight
+					? padding
+					: undefined,
 			marginRight: 'center' === align ? 'auto' : undefined,
 			marginLeft: 'center' === align ? 'auto' : undefined,
 		};
@@ -166,19 +175,26 @@ function customHeading( props ) {
 
 		return (
 			<Fragment>
-				<div className={ 'ystdb-heading__subtext ystdb-heading__subtext-edit' } style={ wrapStyle }>
-					{ ( showSubText && <PlainText
-						value={ subText }
-						className={ 'ystdb-heading__subtext-textarea' }
-						style={ textStyle }
-						onChange={ ( value ) => {
-							setAttributes( {
-								subText: value,
-							} );
-						} }
-						placeholder={ 'サブテキスト...' }
-						aria-label={ __( 'Sub Text' ) }
-					/> ) }
+				<div
+					className={
+						'ystdb-heading__subtext ystdb-heading__subtext-edit'
+					}
+					style={ wrapStyle }
+				>
+					{ showSubText && (
+						<PlainText
+							value={ subText }
+							className={ 'ystdb-heading__subtext-textarea' }
+							style={ textStyle }
+							onChange={ ( value ) => {
+								setAttributes( {
+									subText: value,
+								} );
+							} }
+							placeholder={ 'サブテキスト...' }
+							aria-label={ __( 'Sub Text' ) }
+						/>
+					) }
 				</div>
 			</Fragment>
 		);
@@ -191,7 +207,9 @@ function customHeading( props ) {
 					minLevel={ 2 }
 					maxLevel={ 5 }
 					selectedLevel={ level }
-					onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
+					onChange={ ( newLevel ) =>
+						setAttributes( { level: newLevel } )
+					}
 				/>
 				<AlignmentToolbar
 					value={ align }
@@ -211,7 +229,9 @@ function customHeading( props ) {
 						minLevel={ 1 }
 						maxLevel={ 7 }
 						selectedLevel={ level }
-						onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
+						onChange={ ( newLevel ) =>
+							setAttributes( { level: newLevel } )
+						}
 					/>
 				</PanelBody>
 
@@ -219,7 +239,9 @@ function customHeading( props ) {
 					title={ __( '見出しテキスト設定', 'ystandard-blocks' ) }
 					initialOpen={ true }
 				>
-					<div className="ystdb-inspector-controls__label">{ __( 'Text Color' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( 'Text Color' ) }
+					</div>
 					<ColorPalette
 						colors={ colors }
 						disableCustomColors={ false }
@@ -228,7 +250,9 @@ function customHeading( props ) {
 						} }
 						value={ textColor.color }
 					/>
-					<div className="ystdb-inspector-controls__label">{ __( '文字サイズ', 'ystandard-blocks' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( '文字サイズ', 'ystandard-blocks' ) }
+					</div>
 					<FontSizePicker
 						label={ __( '文字サイズ', 'ystandard-blocks' ) }
 						value={ fontSize.size }
@@ -242,8 +266,14 @@ function customHeading( props ) {
 					title={ __( 'サブテキスト設定', 'ystandard-blocks' ) }
 					initialOpen={ false }
 				>
-					<div className="ystdb-inspector-controls__label">{ __( 'サブテキストの位置', 'ystandard-blocks' ) }</div>
-					<div className={ 'ystdb-btn-selector components-base-control' }>
+					<div className="ystdb-inspector-controls__label">
+						{ __( 'サブテキストの位置', 'ystandard-blocks' ) }
+					</div>
+					<div
+						className={
+							'ystdb-btn-selector components-base-control'
+						}
+					>
 						{ positions.map( ( item ) => {
 							return (
 								<Button
@@ -261,7 +291,9 @@ function customHeading( props ) {
 							);
 						} ) }
 					</div>
-					<div className="ystdb-inspector-controls__label">{ __( 'サブテキスト文字の色', 'ystandard-blocks' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( 'サブテキスト文字の色', 'ystandard-blocks' ) }
+					</div>
 					<ColorPalette
 						colors={ colors }
 						disableCustomColors={ false }
@@ -270,7 +302,9 @@ function customHeading( props ) {
 						} }
 						value={ subTextColor.color }
 					/>
-					<div className="ystdb-inspector-controls__label">{ __( 'サブテキスト文字サイズ', 'ystandard-blocks' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( 'サブテキスト文字サイズ', 'ystandard-blocks' ) }
+					</div>
 					<FontSizePicker
 						label={ __( '文字サイズ', 'ystandard-blocks' ) }
 						value={ subTextSize.size }
@@ -286,7 +320,11 @@ function customHeading( props ) {
 					<RangeControl
 						label={ __( '線の長さ(px)', 'ystandard-blocks' ) }
 						value={ subTextBorderWidth }
-						onChange={ ( value ) => setAttributes( { subTextBorderWidth: getNum( value, 0, 1000, 0 ) } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								subTextBorderWidth: getNum( value, 0, 1000, 0 ),
+							} )
+						}
 						min={ 0 }
 						max={ 1000 }
 						step={ 1 }
@@ -294,12 +332,18 @@ function customHeading( props ) {
 					<RangeControl
 						label={ __( '線の太さ(px)', 'ystandard-blocks' ) }
 						value={ subTextBorderHeight }
-						onChange={ ( value ) => setAttributes( { subTextBorderHeight: getNum( value, 0, 10, 0 ) } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								subTextBorderHeight: getNum( value, 0, 10, 0 ),
+							} )
+						}
 						min={ 0 }
 						max={ 10 }
 						step={ 1 }
 					/>
-					<div className="ystdb-inspector-controls__label">{ __( '区切り線の色', 'ystandard-blocks' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( '区切り線の色', 'ystandard-blocks' ) }
+					</div>
 					<ColorPalette
 						colors={ colors }
 						disableCustomColors={ false }
@@ -308,11 +352,17 @@ function customHeading( props ) {
 						} }
 						value={ dividerColor.color }
 					/>
-					<div className="ystdb-inspector-controls__label">{ __( '区切り線の上下余白', 'ystandard-blocks' ) }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ __( '区切り線の上下余白', 'ystandard-blocks' ) }
+					</div>
 					<RangeControl
 						label={ __( '上側の余白(px)', 'ystandard-blocks' ) }
 						value={ dividerMarginTop }
-						onChange={ ( value ) => setAttributes( { dividerMarginTop: getNum( value, 0, 100, 0 ) } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								dividerMarginTop: getNum( value, 0, 100, 0 ),
+							} )
+						}
 						min={ 0 }
 						max={ 100 }
 						step={ 1 }
@@ -321,7 +371,11 @@ function customHeading( props ) {
 					<RangeControl
 						label={ __( '下側の余白(px)', 'ystandard-blocks' ) }
 						value={ dividerMarginBottom }
-						onChange={ ( value ) => setAttributes( { dividerMarginBottom: getNum( value, 0, 100, 0 ) } ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								dividerMarginBottom: getNum( value, 0, 100, 0 ),
+							} )
+						}
 						min={ 0 }
 						max={ 100 }
 						step={ 1 }
@@ -333,7 +387,10 @@ function customHeading( props ) {
 					initialOpen={ false }
 				>
 					<ToggleControl
-						label={ __( 'テーマの見出しスタイルをクリアする', 'ystandard-blocks' ) }
+						label={ __(
+							'テーマの見出しスタイルをクリアする',
+							'ystandard-blocks'
+						) }
 						checked={ clearStyle }
 						onChange={ () => {
 							setAttributes( {
@@ -346,8 +403,8 @@ function customHeading( props ) {
 
 			<div className={ editorClasses }>
 				<TagName className={ headingClasses } style={ styles }>
-					{ ( 'top' === subTextPosition && editSubText() ) }
-					{ ( 'top' === subTextPosition && divider() ) }
+					{ 'top' === subTextPosition && editSubText() }
+					{ 'top' === subTextPosition && divider() }
 					<RichText
 						identifier="content"
 						tagName={ 'span' }
@@ -373,8 +430,8 @@ function customHeading( props ) {
 						onReplace={ onReplace }
 						onRemove={ () => onReplace( [] ) }
 					/>
-					{ ( 'bottom' === subTextPosition && divider() ) }
-					{ ( 'bottom' === subTextPosition && editSubText() ) }
+					{ 'bottom' === subTextPosition && divider() }
+					{ 'bottom' === subTextPosition && editSubText() }
 				</TagName>
 			</div>
 		</Fragment>

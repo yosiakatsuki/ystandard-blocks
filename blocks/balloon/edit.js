@@ -1,5 +1,11 @@
 import classnames from 'classnames';
-import { alignmentsControls, balloonTypes, balloonPositions, avatarSizes, defaultAvatar } from './config';
+import {
+	alignmentsControls,
+	balloonTypes,
+	balloonPositions,
+	avatarSizes,
+	defaultAvatar,
+} from './config';
 
 import {
 	RichText,
@@ -14,9 +20,7 @@ import {
 } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
@@ -27,9 +31,7 @@ import {
 	ColorPalette,
 } from '@wordpress/components';
 
-import {
-	compose,
-} from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 
@@ -75,39 +77,29 @@ function ysBalloon( props ) {
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
 
-	const wrapClasses = classnames(
-		className,
-		'ystdb-balloon',
-		{
-			[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
-			[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
-		}
-	);
+	const wrapClasses = classnames( className, 'ystdb-balloon', {
+		[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
+		[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
+	} );
 
 	/**
 	 * アバター画像カラムクラス
 	 *
 	 * @type {string}
 	 */
-	const avatarWrapClasses = classnames(
-		'ystdb-balloon__avatar',
-		{
-			[ `is-size-${ avatarSize }` ]: avatarSize,
-		}
-	);
+	const avatarWrapClasses = classnames( 'ystdb-balloon__avatar', {
+		[ `is-size-${ avatarSize }` ]: avatarSize,
+	} );
 
 	/**
 	 * アバター名クラス
 	 *
 	 * @type {string}
 	 */
-	const avatarNameClass = classnames(
-		'ystdb-balloon__name',
-		{
-			'has-text-color': avatarNameColor.color,
-			[ avatarNameColor.class ]: avatarNameColor.class,
-		}
-	);
+	const avatarNameClass = classnames( 'ystdb-balloon__name', {
+		'has-text-color': avatarNameColor.color,
+		[ avatarNameColor.class ]: avatarNameColor.class,
+	} );
 	/**
 	 * アバター名スタイル
 	 *
@@ -122,14 +114,11 @@ function ysBalloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const avatarClasses = classnames(
-		'ystdb-balloon__avatar-image',
-		{
-			'has-border-color': avatarBorderColor.color,
-			[ avatarBorderColor.class ]: avatarBorderColor.class,
-			'has-border': 0 < avatarBorderWidth,
-		}
-	);
+	const avatarClasses = classnames( 'ystdb-balloon__avatar-image', {
+		'has-border-color': avatarBorderColor.color,
+		[ avatarBorderColor.class ]: avatarBorderColor.class,
+		'has-border': 0 < avatarBorderWidth,
+	} );
 
 	/**
 	 * アバター画像スタイル
@@ -147,17 +136,14 @@ function ysBalloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const balloonBodyClass = classnames(
-		'ystdb-balloon__body',
-		{
-			[ backgroundColor.class ]: backgroundColor.class,
-			[ balloonBorderColor.class ]: balloonBorderColor.class,
-			'has-background': backgroundColor.color,
-			[ `is-${ verticalAlign }` ]: verticalAlign,
-			[ `is-${ balloonPosition }` ]: balloonPosition,
-			[ `is-${ balloonType }` ]: balloonType,
-		}
-	);
+	const balloonBodyClass = classnames( 'ystdb-balloon__body', {
+		[ backgroundColor.class ]: backgroundColor.class,
+		[ balloonBorderColor.class ]: balloonBorderColor.class,
+		'has-background': backgroundColor.color,
+		[ `is-${ verticalAlign }` ]: verticalAlign,
+		[ `is-${ balloonPosition }` ]: balloonPosition,
+		[ `is-${ balloonType }` ]: balloonType,
+	} );
 
 	/**
 	 * 吹き出しスタイル
@@ -174,14 +160,11 @@ function ysBalloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const textClasses = classnames(
-		'ystdb-ystdb-balloon__text',
-		{
-			[ textColor.class ]: textColor.class,
-			'has-text-color': textColor.color,
-			[ fontSize.class ]: fontSize.class,
-		}
-	);
+	const textClasses = classnames( 'ystdb-ystdb-balloon__text', {
+		[ textColor.class ]: textColor.class,
+		'has-text-color': textColor.color,
+		[ fontSize.class ]: fontSize.class,
+	} );
 
 	/**
 	 * 吹き出しテキストスタイル
@@ -235,30 +218,45 @@ function ysBalloon( props ) {
 			<BlockControls>
 				<Toolbar
 					isCollapsed={ true }
-					icon={ activeAlignment ? activeAlignment.icon : defaultAlignmentControl.icon }
-					label={ _x( 'Change vertical alignment', 'Block vertical alignment setting label' ) }
-					controls={
-						DEFAULT_CONTROLS.map( ( control ) => {
-							return {
-								...alignmentsControls[ control ],
-								isActive: verticalAlign === control,
-								onClick: () => setAttributes( { verticalAlign: verticalAlign === control ? undefined : control } ),
-							};
-						} )
+					icon={
+						activeAlignment
+							? activeAlignment.icon
+							: defaultAlignmentControl.icon
 					}
+					label={ _x(
+						'Change vertical alignment',
+						'Block vertical alignment setting label'
+					) }
+					controls={ DEFAULT_CONTROLS.map( ( control ) => {
+						return {
+							...alignmentsControls[ control ],
+							isActive: verticalAlign === control,
+							onClick: () =>
+								setAttributes( {
+									verticalAlign:
+										verticalAlign === control
+											? undefined
+											: control,
+								} ),
+						};
+					} ) }
 				/>
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( '吹き出し設定', 'ystandard-blocks' ) }>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( '吹き出しの位置', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '吹き出しの位置', 'ystandard-blocks' ) }
+						</div>
 						<div className={ 'ystdb-balloon-selector' }>
 							{ balloonPositions.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
 										isDefault
-										isPrimary={ balloonPosition === item.value }
+										isPrimary={
+											balloonPosition === item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												balloonPosition: item.value,
@@ -266,9 +264,22 @@ function ysBalloon( props ) {
 										} }
 									>
 										<span
-											className={ `ystdb-balloon-selector__container is-${ item.value } is-${ balloonType }` }>
-											<span className={ 'ystdb-balloon-selector__image' }> </span>
-											<span className={ 'ystdb-balloon-selector__body' }>{ item.label }</span>
+											className={ `ystdb-balloon-selector__container is-${ item.value } is-${ balloonType }` }
+										>
+											<span
+												className={
+													'ystdb-balloon-selector__image'
+												}
+											>
+												{ ' ' }
+											</span>
+											<span
+												className={
+													'ystdb-balloon-selector__body'
+												}
+											>
+												{ item.label }
+											</span>
 										</span>
 									</Button>
 								);
@@ -276,7 +287,9 @@ function ysBalloon( props ) {
 						</div>
 					</BaseControl>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( '吹き出しタイプ', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '吹き出しタイプ', 'ystandard-blocks' ) }
+						</div>
 						<div className={ 'ystdb-balloon-selector' }>
 							{ balloonTypes.map( ( item ) => {
 								return (
@@ -291,9 +304,22 @@ function ysBalloon( props ) {
 										} }
 									>
 										<span
-											className={ `ystdb-balloon-selector__container is-${ item.value } is-${ balloonPosition }` }>
-											<span className={ 'ystdb-balloon-selector__image' }> </span>
-											<span className={ 'ystdb-balloon-selector__body' }>{ item.label }</span>
+											className={ `ystdb-balloon-selector__container is-${ item.value } is-${ balloonPosition }` }
+										>
+											<span
+												className={
+													'ystdb-balloon-selector__image'
+												}
+											>
+												{ ' ' }
+											</span>
+											<span
+												className={
+													'ystdb-balloon-selector__body'
+												}
+											>
+												{ item.label }
+											</span>
 										</span>
 									</Button>
 								);
@@ -301,13 +327,21 @@ function ysBalloon( props ) {
 						</div>
 					</BaseControl>
 				</PanelBody>
-				{ ( '1' === ystdb.yStandard &&
-					<PanelBody title={ __( '登録済みアバター画像', 'ystandard-blocks' ) }>
+				{ '1' === ystdb.yStandard && (
+					<PanelBody
+						title={ __(
+							'登録済みアバター画像',
+							'ystandard-blocks'
+						) }
+					>
 						<BaseControl>
-							{ ( 0 >= ystdb.balloonImages.length ) ? (
+							{ 0 >= ystdb.balloonImages.length ? (
 								<div>
 									<p>登録済みのアバター画像はありません。</p>
-									<p>カスタマイザーの「[ys]拡張機能設定」→「[ys blocks]吹き出しブロック画像設定」から登録してください。</p>
+									<p>
+										カスタマイザーの「[ys]拡張機能設定」→「[ys
+										blocks]吹き出しブロック画像設定」から登録してください。
+									</p>
 								</div>
 							) : (
 								<div className={ 'ystdb-avatar-list' }>
@@ -315,7 +349,10 @@ function ysBalloon( props ) {
 										return (
 											<Button
 												key={ item.id }
-												isPrimary={ avatarID === item.id && avatarName === item.name }
+												isPrimary={
+													avatarID === item.id &&
+													avatarName === item.name
+												}
 												onClick={ () => {
 													setAttributes( {
 														avatarID: item.id,
@@ -327,12 +364,21 @@ function ysBalloon( props ) {
 											>
 												<span>
 													<img
-														className={ 'ystdb-avatar-list__image' }
+														className={
+															'ystdb-avatar-list__image'
+														}
 														src={ item.url }
 														alt={ item.name }
 													/>
-													{ ( !! item.name && <span
-														className={ 'ystdb-avatar-list__name' }>{ item.name }</span> ) }
+													{ !! item.name && (
+														<span
+															className={
+																'ystdb-avatar-list__name'
+															}
+														>
+															{ item.name }
+														</span>
+													) }
 												</span>
 											</Button>
 										);
@@ -344,8 +390,14 @@ function ysBalloon( props ) {
 				) }
 				<PanelBody title={ __( 'アバター設定', 'ystandard-blocks' ) }>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( 'アバターサイズ', 'ystandard-blocks' ) }</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className="ystdb-inspector-controls__label">
+							{ __( 'アバターサイズ', 'ystandard-blocks' ) }
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ avatarSizes.map( ( item ) => {
 								return (
 									<Button
@@ -367,7 +419,10 @@ function ysBalloon( props ) {
 					<BaseControl>
 						<RangeControl
 							value={ avatarBorderRadius }
-							label={ __( 'アバター画像の角丸', 'ystandard-blocks' ) }
+							label={ __(
+								'アバター画像の角丸',
+								'ystandard-blocks'
+							) }
 							min={ 0 }
 							max={ 40 }
 							initialPosition={ 40 }
@@ -382,7 +437,10 @@ function ysBalloon( props ) {
 					<BaseControl>
 						<RangeControl
 							value={ avatarBorderWidth }
-							label={ __( 'アバター画像の枠線太さ', 'ystandard-blocks' ) }
+							label={ __(
+								'アバター画像の枠線太さ',
+								'ystandard-blocks'
+							) }
 							min={ 0 }
 							max={ 10 }
 							initialPosition={ 0 }
@@ -395,7 +453,9 @@ function ysBalloon( props ) {
 						/>
 					</BaseControl>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( 'アバター画像枠色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( 'アバター画像枠色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -406,7 +466,9 @@ function ysBalloon( props ) {
 						/>
 					</BaseControl>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( 'アバター名文字色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( 'アバター名文字色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -428,7 +490,9 @@ function ysBalloon( props ) {
 						/>
 					</BaseControl>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( '吹き出し背景色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '吹き出し背景色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -438,7 +502,9 @@ function ysBalloon( props ) {
 							} }
 							value={ backgroundColor.color }
 						/>
-						<div className="ystdb-inspector-controls__label">{ __( '吹き出し文字色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '吹き出し文字色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -469,7 +535,7 @@ function ysBalloon( props ) {
 						value={ avatarID }
 						render={ mediaUploadRender }
 					/>
-					{ ( ( isSelected || avatarName ) &&
+					{ ( isSelected || avatarName ) && (
 						<figcaption className={ avatarNameClass }>
 							<PlainText
 								value={ avatarName }
@@ -485,34 +551,31 @@ function ysBalloon( props ) {
 							/>
 						</figcaption>
 					) }
-
 				</figure>
 				<div className={ balloonBodyClass } style={ balloonBodyStyles }>
 					<RichText
 						tagName={ 'p' }
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
-						onChange={ ( value ) => setAttributes( { text: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { text: value } )
+						}
 						withoutInteractiveFormatting
 						className={ textClasses }
 						style={ textStyles }
 					/>
 				</div>
 			</div>
-
 		</Fragment>
 	);
 }
 
 export default compose( [
-	withColors(
-		'backgroundColor',
-		{
-			textColor: 'color',
-			avatarNameColor: 'color',
-			avatarBorderColor: 'borderColor',
-			balloonBorderColor: 'borderColor',
-		}
-	),
+	withColors( 'backgroundColor', {
+		textColor: 'color',
+		avatarNameColor: 'color',
+		avatarBorderColor: 'borderColor',
+		balloonBorderColor: 'borderColor',
+	} ),
 	withFontSizes( 'fontSize' ),
 ] )( ysBalloon );

@@ -22,6 +22,9 @@ function doWhenIntersect( entries ) {
 function runAnimation( element ) {
 	const animationAttr = element.getAttribute( 'data-animation' );
 	if ( animationAttr ) {
-		element.classList.add( `animation--${ animationAttr }`, 'do-animation' );
+		element.classList.add(
+			`animation--${ animationAttr }`,
+			'do-animation'
+		);
 	}
 }

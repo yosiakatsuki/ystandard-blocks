@@ -13,9 +13,7 @@ import {
 	URLInput,
 } from '@wordpress/block-editor';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
@@ -25,9 +23,7 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 
-import {
-	compose,
-} from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
 
@@ -54,28 +50,22 @@ function faIcon( props ) {
 		linkTarget,
 	} = attributes;
 
-	const classes = classnames(
-		className,
-		'ystdb-fa-icon',
-		{
-			[ `has-text-align-${ align }` ]: align,
-			[ textColor.class ]: textColor.class,
-			[ fontSize.class ]: fontSize.class,
-		}
-	);
+	const classes = classnames( className, 'ystdb-fa-icon', {
+		[ `has-text-align-${ align }` ]: align,
+		[ textColor.class ]: textColor.class,
+		[ fontSize.class ]: fontSize.class,
+	} );
 
 	const styles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
 	};
 
-	const iconClass = classnames(
-		{
-			[ icon ]: icon,
-			[ iconSize ]: iconSize,
-			'fa-spin': animating === 'spin',
-		}
-	);
+	const iconClass = classnames( {
+		[ icon ]: icon,
+		[ iconSize ]: iconSize,
+		'fa-spin': animating === 'spin',
+	} );
 
 	return (
 		<Fragment>
@@ -100,8 +90,7 @@ function faIcon( props ) {
 							label: __( 'Text Color' ),
 						},
 					] }
-				>
-				</PanelColorSettings>
+				></PanelColorSettings>
 				<PanelBody title={ __( 'サイズ設定', 'ystandard-blocks' ) }>
 					<FontSizePicker
 						label={ __( 'アイコンサイズ', 'ystandard-blocks' ) }
@@ -123,11 +112,15 @@ function faIcon( props ) {
 				<PanelBody title={ __( 'アイコン装飾', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<ToggleControl
-							label={ __( 'アイコンを回転する', 'ystandard-blocks' ) }
-							checked={ ( animating === 'spin' ) }
+							label={ __(
+								'アイコンを回転する',
+								'ystandard-blocks'
+							) }
+							checked={ animating === 'spin' }
 							onChange={ () => {
 								setAttributes( {
-									animating: animating === 'spin' ? '' : 'spin',
+									animating:
+										animating === 'spin' ? '' : 'spin',
 								} );
 							} }
 						/>
@@ -142,7 +135,10 @@ function faIcon( props ) {
 							let updatedRel = rel;
 							if ( newLinkTarget && ! rel ) {
 								updatedRel = NEW_TAB_REL;
-							} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
+							} else if (
+								! newLinkTarget &&
+								rel === NEW_TAB_REL
+							) {
 								updatedRel = undefined;
 							}
 
@@ -164,18 +160,22 @@ function faIcon( props ) {
 			</InspectorControls>
 
 			<div className={ classes } style={ styles }>
-				{ ( !! icon ) ? (
+				{ !! icon ? (
 					<span className={ iconClass }></span>
 				) : (
-					<div className={ 'ystdb-fa-icon__select--no-icon' }><i className="fas fa-info-circle"></i>
+					<div className={ 'ystdb-fa-icon__select--no-icon' }>
+						<i className="fas fa-info-circle"></i>
 						<div>アイコンを選択</div>
 					</div>
 				) }
-				{ ( !! isSelected &&
+				{ !! isSelected && (
 					<div>
 						<div className="ystdb-fa-icon__select-start">
 							<IconSelect
-								panelTitle={ __( 'アイコン選択', 'ystandard-blocks' ) }
+								panelTitle={ __(
+									'アイコン選択',
+									'ystandard-blocks'
+								) }
 								iconControlTitle={ '' }
 								selectedIcon={ icon }
 								onClickIcon={ ( value ) => {
@@ -183,7 +183,9 @@ function faIcon( props ) {
 								} }
 							/>
 						</div>
-						<div className="ystdb-fa-icon__link-label">リンク先URL</div>
+						<div className="ystdb-fa-icon__link-label">
+							リンク先URL
+						</div>
 						<URLInput
 							label={ __( 'Link' ) }
 							className="ystdb-fa-icon__link"
@@ -191,7 +193,9 @@ function faIcon( props ) {
 							/* eslint-disable jsx-a11y/no-autofocus */
 							autoFocus={ false }
 							/* eslint-enable jsx-a11y/no-autofocus */
-							onChange={ ( value ) => setAttributes( { url: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { url: value } )
+							}
 							disableSuggestions={ ! isSelected }
 							isFullWidth
 							hasBorder

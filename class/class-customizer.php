@@ -59,7 +59,7 @@ class Customizer {
 			 * 装飾
 			 */
 			if ( 'bold' === $option['type'] ) {
-				$style .= 'font-weight: 600;';
+				$style .= 'font-weight: 700;';
 			}
 			if ( 'italic' === $option['type'] ) {
 				$style .= 'font-style: italic;';

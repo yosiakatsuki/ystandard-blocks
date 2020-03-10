@@ -8,9 +8,7 @@ import {
 	InnerBlocks,
 } from '@wordpress/block-editor';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
@@ -22,27 +20,15 @@ import {
 import { __, _x } from '@wordpress/i18n';
 
 function columns( props ) {
-	const {
-		attributes,
-		setAttributes,
-		className,
-	} = props;
-	const {
-		colPc,
-		colTablet,
-		colMobile,
-		verticalAlignment,
-	} = attributes;
+	const { attributes, setAttributes, className } = props;
+	const { colPc, colTablet, colMobile, verticalAlignment } = attributes;
 
-	const classes = classnames(
-		'ystdb-columns',
-		{
-			[ `has-${ colMobile }-columns` ]: colMobile,
-			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
-			[ `has-${ colPc }-columns--pc` ]: colPc,
-			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-		}
-	);
+	const classes = classnames( 'ystdb-columns', {
+		[ `has-${ colMobile }-columns` ]: colMobile,
+		[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+		[ `has-${ colPc }-columns--pc` ]: colPc,
+		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
+	} );
 
 	const DEFAULT_CONTROLS = [ 'top', 'center', 'bottom', 'last' ];
 	const DEFAULT_CONTROL = 'top';
@@ -55,17 +41,28 @@ function columns( props ) {
 			<BlockControls>
 				<Toolbar
 					isCollapsed={ true }
-					icon={ activeAlignment ? activeAlignment.icon : defaultAlignmentControl.icon }
-					label={ _x( 'Change vertical alignment', 'Block vertical alignment setting label' ) }
-					controls={
-						DEFAULT_CONTROLS.map( ( control ) => {
-							return {
-								...alignmentsControls[ control ],
-								isActive: verticalAlignment === control,
-								onClick: () => setAttributes( { verticalAlignment: verticalAlignment === control ? undefined : control } ),
-							};
-						} )
+					icon={
+						activeAlignment
+							? activeAlignment.icon
+							: defaultAlignmentControl.icon
 					}
+					label={ _x(
+						'Change vertical alignment',
+						'Block vertical alignment setting label'
+					) }
+					controls={ DEFAULT_CONTROLS.map( ( control ) => {
+						return {
+							...alignmentsControls[ control ],
+							isActive: verticalAlignment === control,
+							onClick: () =>
+								setAttributes( {
+									verticalAlignment:
+										verticalAlignment === control
+											? undefined
+											: control,
+								} ),
+						};
+					} ) }
 				/>
 			</BlockControls>
 			<InspectorControls>
@@ -76,7 +73,9 @@ function columns( props ) {
 							beforeIcon={ 'desktop' }
 							value={ colPc }
 							onChange={ ( value ) => {
-								setAttributes( { colPc: getNum( value, 1, 6, 3 ) } );
+								setAttributes( {
+									colPc: getNum( value, 1, 6, 3 ),
+								} );
 							} }
 							min={ 1 }
 							max={ 6 }
@@ -86,7 +85,9 @@ function columns( props ) {
 							beforeIcon={ 'tablet' }
 							value={ colTablet }
 							onChange={ ( value ) => {
-								setAttributes( { colTablet: getNum( value, 1, 6, 3 ) } );
+								setAttributes( {
+									colTablet: getNum( value, 1, 6, 3 ),
+								} );
 							} }
 							min={ 1 }
 							max={ 6 }
@@ -96,7 +97,9 @@ function columns( props ) {
 							beforeIcon={ 'smartphone' }
 							value={ colMobile }
 							onChange={ ( value ) => {
-								setAttributes( { colMobile: getNum( value, 1, 6, 1 ) } );
+								setAttributes( {
+									colMobile: getNum( value, 1, 6, 1 ),
+								} );
 							} }
 							min={ 1 }
 							max={ 6 }

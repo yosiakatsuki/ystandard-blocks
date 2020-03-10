@@ -3,50 +3,51 @@
 
 [data-type="ystdb/balloon"] {
 
-	.ystdb-balloon__avatar-image {
-		overflow: hidden;
+  .ystdb-balloon__avatar-image {
+	overflow: hidden;
 
-		button,
-		img {
-			display: block;
-			margin: 0;
-			padding: 0;
-		}
-
-		button.ystdb-mediaupload__preview {
-
-			&.is-no-image {
-
-				&::after,
-				&::before {
-					opacity: 1;
-				}
-
-				&::before {
-					background-color: rgba(0, 0, 0, 0.5);
-				}
-			}
-
-			&.is-show-text {
-
-				&::after {
-					content: "画像を削除";
-				}
-			}
-		}
+	button,
+	img {
+	  display: block;
+	  margin: 0;
+	  padding: 0;
+	  height: auto;
 	}
 
-	.ystdb-balloon__name--edit {
-		text-align: center;
+	button.ystdb-mediaupload__preview {
 
-		&:focus {
-			border: 0;
-			outline: none;
-			box-shadow: none;
+	  &.is-no-image {
+
+		&::after,
+		&::before {
+		  opacity: 1;
 		}
-	}
 
-	.ystdb-ystdb-balloon__text {
-		min-width: 140px;
+		&::before {
+		  background-color: rgba(0, 0, 0, 0.5);
+		}
+	  }
+
+	  &.is-show-text {
+
+		&::after {
+		  content: "画像を削除";
+		}
+	  }
 	}
+  }
+
+  .ystdb-balloon__name--edit {
+	text-align: center;
+
+	&:focus {
+	  border: 0;
+	  outline: none;
+	  box-shadow: none;
+	}
+  }
+
+  .ystdb-ystdb-balloon__text {
+	min-width: 140px;
+  }
 }

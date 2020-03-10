@@ -1,6 +1,4 @@
-import {
-	createBlock,
-} from '@wordpress/blocks';
+import { createBlock } from '@wordpress/blocks';
 
 const transforms = {
 	from: [
@@ -8,15 +6,24 @@ const transforms = {
 			type: 'block',
 			blocks: [ 'core/button' ],
 			transform: ( attributes ) => {
-				const newIconLeft = attributes.iconPosition === 'left' && !! attributes.icon ? attributes.icon : undefined;
-				const newIconRight = attributes.iconPosition === 'right' && !! attributes.icon ? attributes.icon : undefined;
+				const newIconLeft =
+					attributes.iconPosition === 'left' && !! attributes.icon
+						? attributes.icon
+						: undefined;
+				const newIconRight =
+					attributes.iconPosition === 'right' && !! attributes.icon
+						? attributes.icon
+						: undefined;
 				const size = {
 					lg: 'is-large',
 					sm: 'is-small',
 				};
 
 				return createBlock( 'ystdb/ys-btn', {
-					text: attributes.text.replace( /<i.+class=".+?">.*?<\/i>/g, '' ),
+					text: attributes.text.replace(
+						/<i.+class=".+?">.*?<\/i>/g,
+						''
+					),
 					borderRadius: attributes.borderRadius,
 					align: attributes.align,
 					backgroundColor: attributes.backgroundColor,
@@ -29,8 +36,13 @@ const transforms = {
 					iconLeft: newIconLeft,
 					iconRight: newIconRight,
 					fontSize: attributes.fontSize,
-					buttonType: attributes.buttonBlock === true ? 'is-block' : undefined,
-					paddingType: !! attributes.buttonSize ? size[ attributes.buttonSize ] : undefined,
+					buttonType:
+						attributes.buttonBlock === true
+							? 'is-block'
+							: undefined,
+					paddingType: !! attributes.buttonSize
+						? size[ attributes.buttonSize ]
+						: undefined,
 				} );
 			},
 		},

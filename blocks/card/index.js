@@ -1,6 +1,4 @@
-import {
-	ystdbConfig,
-} from '../../src/js/config/config';
+import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';

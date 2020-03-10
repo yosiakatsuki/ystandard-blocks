@@ -6,13 +6,16 @@ import {
 	withColors,
 	PanelColorSettings,
 } from '@wordpress/block-editor';
-import { PanelBody, BaseControl, ToggleControl, Button } from '@wordpress/components';
+import {
+	PanelBody,
+	BaseControl,
+	ToggleControl,
+	Button,
+} from '@wordpress/components';
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 import { paddingTypes } from './config';
 
 function ColumnEdit( props ) {
@@ -24,21 +27,14 @@ function ColumnEdit( props ) {
 		hasChildBlocks,
 		className,
 	} = props;
-	const {
-		shadow,
-		paddingType,
-	} = attributes;
+	const { shadow, paddingType } = attributes;
 
-	const classes = classnames(
-		className,
-		'ystdb-column',
-		{
-			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
-			'has-shadow': shadow,
-			[ paddingType ]: paddingType,
-		}
-	);
+	const classes = classnames( className, 'ystdb-column', {
+		'has-background': backgroundColor.color,
+		[ backgroundColor.class ]: backgroundColor.class,
+		'has-shadow': shadow,
+		[ paddingType ]: paddingType,
+	} );
 
 	return (
 		<Fragment>
@@ -54,12 +50,17 @@ function ColumnEdit( props ) {
 							label: __( 'Background Color' ),
 						},
 					] }
-				>
-				</PanelColorSettings>
+				></PanelColorSettings>
 				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 					<BaseControl>
-						<span className={ `ystdb-info__small` }>カラム内側の余白を設定できます。</span>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<span className={ `ystdb-info__small` }>
+							カラム内側の余白を設定できます。
+						</span>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ paddingTypes.map( ( item ) => {
 								return (
 									<Button
@@ -96,11 +97,11 @@ function ColumnEdit( props ) {
 				<div className="ystdb-column-block-container">
 					<InnerBlocks
 						templateLock={ false }
-						renderAppender={ (
-							hasChildBlocks ?
-								undefined :
-								() => <InnerBlocks.ButtonBlockAppender />
-						) }
+						renderAppender={
+							hasChildBlocks
+								? undefined
+								: () => <InnerBlocks.ButtonBlockAppender />
+						}
 					/>
 				</div>
 			</div>

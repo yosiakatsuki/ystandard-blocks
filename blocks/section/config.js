@@ -229,16 +229,19 @@ export const dividerPath = ( type, level ) => {
 	/**
 	 * 波線
 	 */
-	level1 = 0 > level ? getNum( `${ 90 + ( level / 2 ) }`, 50, 90 ) : getNum( `${ 90 - ( level / 2 ) }`, 50, 90 );
-	level2 = level * 3 / 4;
+	level1 =
+		0 > level
+			? getNum( `${ 90 + level / 2 }`, 50, 90 )
+			: getNum( `${ 90 - level / 2 }`, 50, 90 );
+	level2 = ( level * 3 ) / 4;
 	if ( 'wave' === type ) {
 		return `m0,${ level1 } q20,${ level2 } 40,0 t50,0 t50,0 t50,0 t50,0 V100 L0,100 z`;
 	}
 	/**
 	 * 三角形
 	 */
-	level1 = 10 + ( Math.abs( level ) * 0.4 );
-	level2 = 10 + ( Math.abs( level ) * 0.9 );
+	level1 = 10 + Math.abs( level ) * 0.4;
+	level2 = 10 + Math.abs( level ) * 0.9;
 	level3 = 50 - level1;
 	if ( 'triangle' === type ) {
 		return `m${ level3 },100 l${ level1 },-${ level2 } l${ level1 },${ level2 } z`;

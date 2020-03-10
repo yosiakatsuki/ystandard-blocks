@@ -19,7 +19,9 @@ dirList.map( ( value ) => {
 	const dir = faIconDir + value;
 	const files = fs.readdirSync( dir );
 	const fileList = files.filter( function( file ) {
-		return fs.statSync( dir + '/' + file ).isFile() && /.*\.svg$/.test( file );
+		return (
+			fs.statSync( dir + '/' + file ).isFile() && /.*\.svg$/.test( file )
+		);
 	} );
 	fileList.map( ( file ) => {
 		const iconName = file.replace( '.svg', '' );

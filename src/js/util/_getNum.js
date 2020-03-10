@@ -6,7 +6,12 @@
  * @param {number} max
  * @param {number} defaultNum
  */
-export default function getNum( value, min = 0, max = null, defaultNum = null ) {
+export default function getNum(
+	value,
+	min = 0,
+	max = null,
+	defaultNum = null
+) {
 	value = Number( value );
 
 	if ( isNaN( value ) || value < min ) {

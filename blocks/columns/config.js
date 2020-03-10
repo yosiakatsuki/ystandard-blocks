@@ -1,5 +1,10 @@
 import { _x } from '@wordpress/i18n';
-import { alignBottom, alignCenter, alignLastBlockBottom, alignTop } from './icons';
+import {
+	alignBottom,
+	alignCenter,
+	alignLastBlockBottom,
+	alignTop,
+} from './icons';
 
 /**
  * attributes
@@ -43,11 +48,17 @@ export const alignmentsControls = {
 	},
 	center: {
 		icon: alignCenter,
-		title: _x( 'Vertically Align Middle', 'Block vertical alignment setting' ),
+		title: _x(
+			'Vertically Align Middle',
+			'Block vertical alignment setting'
+		),
 	},
 	bottom: {
 		icon: alignBottom,
-		title: _x( 'Vertically Align Bottom', 'Block vertical alignment setting' ),
+		title: _x(
+			'Vertically Align Bottom',
+			'Block vertical alignment setting'
+		),
 	},
 	last: {
 		icon: alignLastBlockBottom,

@@ -12,9 +12,7 @@ import {
 	withFontSizes,
 } from '@wordpress/block-editor';
 
-import {
-	Fragment,
-} from '@wordpress/element';
+import { Fragment } from '@wordpress/element';
 
 import {
 	Disabled,
@@ -27,10 +25,7 @@ import {
 	Button,
 } from '@wordpress/components';
 
-import {
-	withState,
-	compose,
-} from '@wordpress/compose';
+import { withState, compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 
@@ -78,7 +73,9 @@ const btnLinkEdit = ( props ) => {
 					/>
 					<div className="components-toolbar">
 						<button
-							className={ `components-tab-button ${ ! isPreview ? 'is-active' : '' }` }
+							className={ `components-tab-button ${
+								! isPreview ? 'is-active' : ''
+							}` }
 							onClick={ () => {
 								setState( { isPreview: false } );
 							} }
@@ -86,7 +83,9 @@ const btnLinkEdit = ( props ) => {
 							<span>HTML</span>
 						</button>
 						<button
-							className={ `components-tab-button ${ isPreview ? 'is-active' : '' }` }
+							className={ `components-tab-button ${
+								isPreview ? 'is-active' : ''
+							}` }
 							onClick={ () => {
 								setState( { isPreview: true } );
 							} }
@@ -96,8 +95,8 @@ const btnLinkEdit = ( props ) => {
 					</div>
 				</BlockControls>
 				<Disabled.Consumer>
-					{ () => (
-						( isPreview ) ? (
+					{ () =>
+						isPreview ? (
 							<div className={ 'ystdb-btn-link__preview' }>
 								<ServerSideRender
 									block="ystdb/btn-link"
@@ -107,12 +106,14 @@ const btnLinkEdit = ( props ) => {
 						) : (
 							<PlainText
 								value={ content }
-								onChange={ ( value ) => setAttributes( { content: value } ) }
+								onChange={ ( value ) =>
+									setAttributes( { content: value } )
+								}
 								placeholder={ 'HTMLを入力...' }
 								aria-label={ __( 'HTML' ) }
 							/>
 						)
-					) }
+					}
 				</Disabled.Consumer>
 				<InspectorControls>
 					<PanelColorSettings
@@ -122,7 +123,9 @@ const btnLinkEdit = ( props ) => {
 							{
 								value: backgroundColor.color,
 								onChange: ( newColor ) => {
-									setAttributes( { customGradient: undefined } );
+									setAttributes( {
+										customGradient: undefined,
+									} );
 									setBackgroundColor( newColor );
 								},
 								label: __( 'Background Color' ),
@@ -135,40 +138,57 @@ const btnLinkEdit = ( props ) => {
 								label: __( 'Text Color' ),
 							},
 						] }
-					>
-					</PanelColorSettings>
+					></PanelColorSettings>
 					<PanelBody title={ __( '枠線設定', 'ystandard-blocks' ) }>
 						<RangeControl
 							value={ borderRadius }
 							label={ __( '枠線の角丸', 'ystandard-blocks' ) }
 							min={ ystdbConfig.button.borderRadiusMin }
 							max={ ystdbConfig.button.borderRadiusMax }
-							initialPosition={ ystdbConfig.button.borderRadiusInitialPosition }
+							initialPosition={
+								ystdbConfig.button.borderRadiusInitialPosition
+							}
 							allowReset
 							onChange={ ( value ) => {
 								setAttributes( {
-									borderRadius: ! value ? ystdbConfig.button.borderRadiusInitialPosition : value,
+									borderRadius: ! value
+										? ystdbConfig.button
+												.borderRadiusInitialPosition
+										: value,
 								} );
 							} }
 						/>
 					</PanelBody>
-					<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
+					<PanelBody
+						title={ __( 'アイコン設定', 'ystandard-blocks' ) }
+					>
 						<IconSelect
-							iconControlTitle={ __( '左アイコン', 'ystandard-blocks' ) }
+							iconControlTitle={ __(
+								'左アイコン',
+								'ystandard-blocks'
+							) }
 							selectedIcon={ iconLeft }
 							onClickIcon={ ( value ) => {
 								setAttributes( { iconLeft: value } );
 							} }
 						/>
 						<BaseControl>
-							<div className="ystdb-inspector-controls__label">{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }</div>
-							<div className={ 'ystdb-btn-selector components-base-control' }>
+							<div className="ystdb-inspector-controls__label">
+								{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }
+							</div>
+							<div
+								className={
+									'ystdb-btn-selector components-base-control'
+								}
+							>
 								{ ystdbConfig.icon.size.map( ( item ) => {
 									return (
 										<Button
 											key={ item.value }
 											isDefault
-											isPrimary={ iconSizeLeft === item.value }
+											isPrimary={
+												iconSizeLeft === item.value
+											}
 											onClick={ () => {
 												setAttributes( {
 													iconSizeLeft: item.value,
@@ -182,21 +202,32 @@ const btnLinkEdit = ( props ) => {
 							</div>
 						</BaseControl>
 						<IconSelect
-							iconControlTitle={ __( '右アイコン', 'ystandard-blocks' ) }
+							iconControlTitle={ __(
+								'右アイコン',
+								'ystandard-blocks'
+							) }
 							selectedIcon={ iconRight }
 							onClickIcon={ ( value ) => {
 								setAttributes( { iconRight: value } );
 							} }
 						/>
 						<BaseControl>
-							<div className="ystdb-inspector-controls__label">{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }</div>
-							<div className={ 'ystdb-btn-selector components-base-control' }>
+							<div className="ystdb-inspector-controls__label">
+								{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }
+							</div>
+							<div
+								className={
+									'ystdb-btn-selector components-base-control'
+								}
+							>
 								{ ystdbConfig.icon.size.map( ( item ) => {
 									return (
 										<Button
 											key={ item.value }
 											isDefault
-											isPrimary={ iconSizeRight === item.value }
+											isPrimary={
+												iconSizeRight === item.value
+											}
 											onClick={ () => {
 												setAttributes( {
 													iconSizeRight: item.value,
@@ -224,40 +255,61 @@ const btnLinkEdit = ( props ) => {
 					</PanelBody>
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 						<BaseControl>
-							<span className={ `ystdb-info__small` }>ボタン内側の余白を設定できます。</span>
-							<div className={ 'ystdb-btn-selector components-base-control' }>
-								{ ystdbConfig.button.paddingTypes.map( ( item ) => {
-									return (
-										<Button
-											key={ item.value }
-											isDefault
-											isPrimary={ paddingType === item.value }
-											onClick={ () => {
-												setAttributes( {
-													paddingType: item.value,
-												} );
-											} }
-										>
-											<span>{ item.label }</span>
-										</Button>
-									);
-								} ) }
+							<span className={ `ystdb-info__small` }>
+								ボタン内側の余白を設定できます。
+							</span>
+							<div
+								className={
+									'ystdb-btn-selector components-base-control'
+								}
+							>
+								{ ystdbConfig.button.paddingTypes.map(
+									( item ) => {
+										return (
+											<Button
+												key={ item.value }
+												isDefault
+												isPrimary={
+													paddingType === item.value
+												}
+												onClick={ () => {
+													setAttributes( {
+														paddingType: item.value,
+													} );
+												} }
+											>
+												<span>{ item.label }</span>
+											</Button>
+										);
+									}
+								) }
 							</div>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody title={ __( 'ブロックボタン設定', 'ystandard-blocks' ) }>
+					<PanelBody
+						title={ __( 'ブロックボタン設定', 'ystandard-blocks' ) }
+					>
 						<BaseControl>
 							<ToggleControl
-								label={ __( 'ボタンをブロック型にする', 'ystandard-blocks' ) }
+								label={ __(
+									'ボタンをブロック型にする',
+									'ystandard-blocks'
+								) }
 								onChange={ () => {
-									const value = 'is-block' === buttonType ? '' : 'is-block';
+									const value =
+										'is-block' === buttonType
+											? ''
+											: 'is-block';
 									setAttributes( { buttonType: value } );
 								} }
 								checked={ buttonType === 'is-block' }
 							/>
 							<RangeControl
 								value={ maxWidthValue }
-								label={ __( 'ボタン最大幅', 'ystandard-blocks' ) }
+								label={ __(
+									'ボタン最大幅',
+									'ystandard-blocks'
+								) }
 								min={ 0 }
 								max={ maxWidthUnitMaximum }
 								initialPosition={ 100 }
@@ -270,8 +322,14 @@ const btnLinkEdit = ( props ) => {
 								label={ __( '最大幅単位', 'ystandard-blocks' ) }
 								selected={ maxUnit }
 								options={ [
-									{ label: __( '%', 'ystandard-blocks' ), value: '%' },
-									{ label: __( 'px', 'ystandard-blocks' ), value: 'px' },
+									{
+										label: __( '%', 'ystandard-blocks' ),
+										value: '%',
+									},
+									{
+										label: __( 'px', 'ystandard-blocks' ),
+										value: 'px',
+									},
 								] }
 								onChange={ ( option ) => {
 									setAttributes( { maxUnit: option } );
@@ -279,10 +337,15 @@ const btnLinkEdit = ( props ) => {
 							/>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody title={ __( 'アニメーション設定', 'ystandard-blocks' ) }>
+					<PanelBody
+						title={ __( 'アニメーション設定', 'ystandard-blocks' ) }
+					>
 						<BaseControl>
 							<RadioControl
-								label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
+								label={ __(
+									'アニメーション種類',
+									'ystandard-blocks'
+								) }
 								selected={ animationType }
 								options={ ystdbConfig.button.animationTypes }
 								onChange={ ( option ) => {
@@ -291,13 +354,18 @@ const btnLinkEdit = ( props ) => {
 							/>
 							<RangeControl
 								value={ animationInterval }
-								label={ __( 'アニメーションの速さ(秒)', 'ystandard-blocks' ) }
+								label={ __(
+									'アニメーションの速さ(秒)',
+									'ystandard-blocks'
+								) }
 								min={ 1 }
 								max={ 10 }
 								initialPosition={ 5 }
 								allowReset
 								onChange={ ( value ) => {
-									setAttributes( { animationInterval: value } );
+									setAttributes( {
+										animationInterval: value,
+									} );
 								} }
 							/>
 						</BaseControl>

@@ -4,14 +4,9 @@ import recommendIcons from './reccomend-icons.json';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 
 import { __ } from '@wordpress/i18n';
-import {
-	RadioControl,
-	BaseControl,
-} from '@wordpress/components';
+import { RadioControl, BaseControl } from '@wordpress/components';
 
-import {
-	Component,
-} from '@wordpress/element';
+import { Component } from '@wordpress/element';
 
 class IconSelect extends Component {
 	render() {
@@ -25,8 +20,14 @@ class IconSelect extends Component {
 			customInfoStyle,
 		} = this.props;
 
-		const iconBaseControlTitle = iconControlTitle === undefined ? __( '表示アイコン', 'ystandard-blocks' ) : iconControlTitle;
-		const useIcons = 'all' === ystdb.useAllIcons ? [ ...recommendIcons.icons, ...allIcons.icons ] : [ ...recommendIcons.icons ];
+		const iconBaseControlTitle =
+			iconControlTitle === undefined
+				? __( '表示アイコン', 'ystandard-blocks' )
+				: iconControlTitle;
+		const useIcons =
+			'all' === ystdb.useAllIcons
+				? [ ...recommendIcons.icons, ...allIcons.icons ]
+				: [ ...recommendIcons.icons ];
 		const icons = _.uniq( useIcons );
 
 		const pickerProps = {
@@ -42,18 +43,26 @@ class IconSelect extends Component {
 
 		return (
 			<div className={ 'ystdb-icon-select' }>
-				{ ( customInfo &&
+				{ customInfo && (
 					<div style={ customInfoStyle }>{ customInfo }</div>
 				) }
-				{ ( !! onChangePosition &&
+				{ !! onChangePosition && (
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">{ __( 'アイコン表示位置', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
+						</div>
 						<div className={ 'ystdb-icon-select__position' }>
 							<RadioControl
 								selected={ iconPosition }
 								options={ [
-									{ label: __( '左', 'ystandard-blocks' ), value: 'left' },
-									{ label: __( '右', 'ystandard-blocks' ), value: 'right' },
+									{
+										label: __( '左', 'ystandard-blocks' ),
+										value: 'left',
+									},
+									{
+										label: __( '右', 'ystandard-blocks' ),
+										value: 'right',
+									},
 								] }
 								onChange={ onChangePosition }
 							/>
@@ -61,7 +70,9 @@ class IconSelect extends Component {
 					</BaseControl>
 				) }
 				<BaseControl>
-					<div className="ystdb-inspector-controls__label">{ iconBaseControlTitle }</div>
+					<div className="ystdb-inspector-controls__label">
+						{ iconBaseControlTitle }
+					</div>
 					<div className={ 'ystdb-icon-select__picker' }>
 						<FontIconPicker { ...pickerProps } />
 					</div>

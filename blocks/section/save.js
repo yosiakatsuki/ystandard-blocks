@@ -1,19 +1,11 @@
 import classnames from 'classnames';
 
-import {
-	getColorClassName,
-	InnerBlocks,
-} from '@wordpress/block-editor';
-import {
-	SVG,
-	Path,
-} from '@wordpress/components';
+import { getColorClassName, InnerBlocks } from '@wordpress/block-editor';
+import { SVG, Path } from '@wordpress/components';
 import { dividerPath } from './config';
 
 export default function save( props ) {
-	const {
-		attributes,
-	} = props;
+	const { attributes } = props;
 	const {
 		wrapperTag,
 		backgroundColor,
@@ -56,9 +48,15 @@ export default function save( props ) {
 	 * 色設定
 	 */
 	const textColorClass = getColorClassName( 'color', textColor );
-	const backgroundClass = getColorClassName( 'background-color', backgroundColor );
+	const backgroundClass = getColorClassName(
+		'background-color',
+		backgroundColor
+	);
 	const dividerColorTopClass = getColorClassName( 'fill', dividerColorTop );
-	const dividerColorBottomClass = getColorClassName( 'fill', dividerColorBottom );
+	const dividerColorBottomClass = getColorClassName(
+		'fill',
+		dividerColorBottom
+	);
 
 	/**
 	 * アニメーション
@@ -68,20 +66,18 @@ export default function save( props ) {
 	/**
 	 * 背景関連
 	 */
-	const showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor;
+	const showBgMask =
+		backgroundImageURL || backgroundColor || customBackgroundColor;
 
 	/**
 	 * セクションクラス名
 	 */
-	const sectionClass = classnames(
-		'ystdb-section',
-		{
-			'has-background-image': backgroundImageURL,
-			'is-screen-height': screenHeightMode,
-			'has-animation': hasAnimation,
-			'has-parallax': backgroundImageParallax,
-		}
-	);
+	const sectionClass = classnames( 'ystdb-section', {
+		'has-background-image': backgroundImageURL,
+		'is-screen-height': screenHeightMode,
+		'has-animation': hasAnimation,
+		'has-parallax': backgroundImageParallax,
+	} );
 	const dataAnimation = hasAnimation ? animationType : undefined;
 	/**
 	 * セクションスタイル
@@ -92,7 +88,9 @@ export default function save( props ) {
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + paddingUnit,
 		marginTop: marginTop + marginUnit,
 		marginBottom: marginBottom + marginUnit,
-		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
+		backgroundImage: backgroundImageURL
+			? `url("${ backgroundImageURL }")`
+			: undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
@@ -102,28 +100,25 @@ export default function save( props ) {
 	/**
 	 * 背景マスク
 	 */
-	const bgMaskClass = classnames(
-		'ystdb-section__bg',
-		{
-			'has-background': backgroundColor || customBackgroundColor,
-			[ backgroundClass ]: backgroundClass,
-		}
-	);
+	const bgMaskClass = classnames( 'ystdb-section__bg', {
+		'has-background': backgroundColor || customBackgroundColor,
+		[ backgroundClass ]: backgroundClass,
+	} );
 	const bgMaskStyle = {
-		backgroundColor: ! backgroundClass && ! customBackgroundColor ? '#000' : customBackgroundColor,
-		opacity: ( backgroundImageOpacity / 100 ),
+		backgroundColor:
+			! backgroundClass && ! customBackgroundColor
+				? '#000'
+				: customBackgroundColor,
+		opacity: backgroundImageOpacity / 100,
 	};
 
 	/**
 	 * インナー
 	 */
-	const innerClasses = classnames(
-		'ystdb-section__inner',
-		{
-			'has-text-color': textColorClass || customTextColor,
-			[ textColorClass ]: textColorClass,
-		}
-	);
+	const innerClasses = classnames( 'ystdb-section__inner', {
+		'has-text-color': textColorClass || customTextColor,
+		[ textColorClass ]: textColorClass,
+	} );
 	const innerStyles = {
 		maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 		marginRight: 'auto',
@@ -139,12 +134,9 @@ export default function save( props ) {
 			`ystdb-section__divider--${ type }`
 		);
 		const path = dividerPath( type, level );
-		const svgClass = classnames(
-			'ystdb-section__divider-image',
-			{
-				[ colorClass ]: colorClass,
-			}
-		);
+		const svgClass = classnames( 'ystdb-section__divider-image', {
+			[ colorClass ]: colorClass,
+		} );
 
 		return (
 			<div className={ dividerClass }>
@@ -160,8 +152,12 @@ export default function save( props ) {
 		);
 	};
 
-	const dividerTop = 0 !== dividerLevelTop && ( dividerColorTopClass || customDividerColorTop );
-	const dividerBottom = 0 !== dividerLevelBottom && ( dividerColorBottomClass || customDividerColorBottom );
+	const dividerTop =
+		0 !== dividerLevelTop &&
+		( dividerColorTopClass || customDividerColorTop );
+	const dividerBottom =
+		0 !== dividerLevelBottom &&
+		( dividerColorBottomClass || customDividerColorBottom );
 
 	return (
 		<div
@@ -169,13 +165,32 @@ export default function save( props ) {
 			style={ sectionStyles }
 			data-animation={ dataAnimation }
 		>
-			{ ( showBgMask && <div
-				className={ bgMaskClass }
-				aria-hidden="true"
-				role="img"
-				style={ bgMaskStyle }>&nbsp;</div> ) }
-			{ ( dividerTop && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTopClass, customDividerColorTop ) ) }
-			{ ( dividerBottom && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottomClass, customDividerColorBottom ) ) }
+			{ showBgMask && (
+				<div
+					className={ bgMaskClass }
+					aria-hidden="true"
+					role="img"
+					style={ bgMaskStyle }
+				>
+					&nbsp;
+				</div>
+			) }
+			{ dividerTop &&
+				divider(
+					dividerTypeTop,
+					'top',
+					dividerLevelTop,
+					dividerColorTopClass,
+					customDividerColorTop
+				) }
+			{ dividerBottom &&
+				divider(
+					dividerTypeBottom,
+					'bottom',
+					dividerLevelBottom,
+					dividerColorBottomClass,
+					customDividerColorBottom
+				) }
 			<div className="ystdb-section__container">
 				<Wrapper className={ innerClasses } style={ innerStyles }>
 					<InnerBlocks.Content />

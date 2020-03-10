@@ -34,52 +34,51 @@ export default function save( { attributes } ) {
 	} = attributes;
 
 	const avatarNameColorClass = getColorClassName( 'color', avatarNameColor );
-	const avatarBorderColorClass = getColorClassName( 'border-color', avatarBorderColor );
+	const avatarBorderColorClass = getColorClassName(
+		'border-color',
+		avatarBorderColor
+	);
 
 	const textClass = getColorClassName( 'color', textColor );
 	const fontSizeClass = getFontSizeClass( fontSize );
-	const backgroundColorClass = getColorClassName( 'background-color', backgroundColor );
-	const balloonBorderColorClass = getColorClassName( 'border-color', balloonBorderColor );
+	const backgroundColorClass = getColorClassName(
+		'background-color',
+		backgroundColor
+	);
+	const balloonBorderColorClass = getColorClassName(
+		'border-color',
+		balloonBorderColor
+	);
 
 	/**
 	 * 大枠
 	 *
 	 * @type {string}
 	 */
-	const wrapClasses = classnames(
-		className,
-		'ystdb-balloon',
-		{
-			[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
-			[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
-		}
-	);
+	const wrapClasses = classnames( className, 'ystdb-balloon', {
+		[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
+		[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
+	} );
 
 	/**
 	 * アバター画像カラムクラス
 	 *
 	 * @type {string}
 	 */
-	const avatarWrapClasses = classnames(
-		'ystdb-balloon__avatar',
-		{
-			[ `is-size-${ avatarSize }` ]: avatarSize,
-		}
-	);
+	const avatarWrapClasses = classnames( 'ystdb-balloon__avatar', {
+		[ `is-size-${ avatarSize }` ]: avatarSize,
+	} );
 
 	/**
 	 * アバター画像クラス
 	 *
 	 * @type {string}
 	 */
-	const avatarClasses = classnames(
-		'ystdb-balloon__avatar-image',
-		{
-			'has-border-color': avatarBorderColorClass || customAvatarBorderColor,
-			[ avatarBorderColorClass ]: avatarBorderColorClass,
-			'has-border': 0 < avatarBorderWidth,
-		}
-	);
+	const avatarClasses = classnames( 'ystdb-balloon__avatar-image', {
+		'has-border-color': avatarBorderColorClass || customAvatarBorderColor,
+		[ avatarBorderColorClass ]: avatarBorderColorClass,
+		'has-border': 0 < avatarBorderWidth,
+	} );
 
 	/**
 	 * アバター画像スタイル
@@ -101,13 +100,10 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const avatarNameClass = classnames(
-		'ystdb-balloon__name',
-		{
-			[ avatarNameColorClass ]: avatarNameColorClass,
-			'has-text-color': customAvatarNameColor || avatarNameColorClass,
-		}
-	);
+	const avatarNameClass = classnames( 'ystdb-balloon__name', {
+		[ avatarNameColorClass ]: avatarNameColorClass,
+		'has-text-color': customAvatarNameColor || avatarNameColorClass,
+	} );
 	/**
 	 * アバター名スタイル
 	 *
@@ -122,17 +118,15 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const balloonBodyClass = classnames(
-		'ystdb-balloon__body',
-		{
-			[ backgroundColorClass ]: backgroundColorClass,
-			'has-background': backgroundColorClass || customBackgroundColor,
-			'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
-			[ `is-${ verticalAlign }` ]: verticalAlign,
-			[ `is-${ balloonPosition }` ]: balloonPosition,
-			[ `is-${ balloonType }` ]: balloonType,
-		}
-	);
+	const balloonBodyClass = classnames( 'ystdb-balloon__body', {
+		[ backgroundColorClass ]: backgroundColorClass,
+		'has-background': backgroundColorClass || customBackgroundColor,
+		[ balloonBorderColorClass ]: balloonBorderColorClass,
+		'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
+		[ `is-${ verticalAlign }` ]: verticalAlign,
+		[ `is-${ balloonPosition }` ]: balloonPosition,
+		[ `is-${ balloonType }` ]: balloonType,
+	} );
 
 	/**
 	 * 吹き出しスタイル
@@ -149,14 +143,11 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const textClasses = classnames(
-		'ystdb-balloon__text',
-		{
-			[ textClass ]: textClass,
-			'has-text-color': textColor || customTextColor,
-			[ fontSizeClass ]: fontSizeClass,
-		}
-	);
+	const textClasses = classnames( 'ystdb-balloon__text', {
+		[ textClass ]: textClass,
+		'has-text-color': textColor || customTextColor,
+		[ fontSizeClass ]: fontSizeClass,
+	} );
 
 	/**
 	 * 吹き出しテキストスタイル
@@ -165,7 +156,10 @@ export default function save( { attributes } ) {
 	 */
 	const textStyles = {
 		color: textClass ? undefined : customTextColor,
-		fontSize: ! fontSizeClass && customFontSize ? customFontSize + 'px' : undefined,
+		fontSize:
+			! fontSizeClass && customFontSize
+				? customFontSize + 'px'
+				: undefined,
 	};
 
 	return (
@@ -177,10 +171,14 @@ export default function save( { attributes } ) {
 					src={ avatarURL }
 					alt={ avatarAltText }
 				/>
-				{ ( avatarName && <figcaption
-					className={ avatarNameClass } style={ avatarNameStyles }>
-					{ avatarName }
-				</figcaption> ) }
+				{ avatarName && (
+					<figcaption
+						className={ avatarNameClass }
+						style={ avatarNameStyles }
+					>
+						{ avatarName }
+					</figcaption>
+				) }
 			</figure>
 			<div className={ balloonBodyClass } style={ balloonBodyStyles }>
 				<RichText.Content

@@ -1,5 +1,11 @@
 import classnames from 'classnames';
-import { marginType, wrapperTagNames, dividerTypes, animationTypes, dividerPath } from './config';
+import {
+	marginType,
+	wrapperTagNames,
+	dividerTypes,
+	animationTypes,
+	dividerPath,
+} from './config';
 import getNum from '../../src/js/util/_getNum';
 import { select } from '@wordpress/data';
 
@@ -23,12 +29,8 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 
-import {
-	Fragment,
-} from '@wordpress/element';
-import {
-	compose,
-} from '@wordpress/compose';
+import { Fragment } from '@wordpress/element';
+import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
 const sectionEdit = ( props ) => {
@@ -93,14 +95,10 @@ const sectionEdit = ( props ) => {
 	/**
 	 * セクションクラス名
 	 */
-	const sectionClass = classnames(
-		className,
-		'ystdb-section',
-		{
-			'has-background-image': backgroundImageURL,
-			'is-screen-height': screenHeightMode,
-		}
-	);
+	const sectionClass = classnames( className, 'ystdb-section', {
+		'has-background-image': backgroundImageURL,
+		'is-screen-height': screenHeightMode,
+	} );
 	/**
 	 * セクションスタイル
 	 */
@@ -108,33 +106,29 @@ const sectionEdit = ( props ) => {
 		color: textColor.color,
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
-		backgroundImage: backgroundImageURL ? `url("${ backgroundImageURL }")` : undefined,
+		backgroundImage: backgroundImageURL
+			? `url("${ backgroundImageURL }")`
+			: undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 	};
 	/**
 	 * 背景マスク
 	 */
-	const bgMaskClass = classnames(
-		'ystdb-section__bg',
-		{
-			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
-		}
-	);
+	const bgMaskClass = classnames( 'ystdb-section__bg', {
+		'has-background': backgroundColor.color,
+		[ backgroundColor.class ]: backgroundColor.class,
+	} );
 	const bgMaskStyle = {
 		backgroundColor: backgroundColor.color ? backgroundColor.color : '#000',
-		opacity: ( backgroundImageOpacity / 100 ),
+		opacity: backgroundImageOpacity / 100,
 	};
 	/**
 	 * インナー
 	 */
-	const innerClasses = classnames(
-		'ystdb-section__inner',
-		{
-			'has-text-color': textColor.color,
-			[ textColor.class ]: textColor.class,
-		}
-	);
+	const innerClasses = classnames( 'ystdb-section__inner', {
+		'has-text-color': textColor.color,
+		[ textColor.class ]: textColor.class,
+	} );
 	const innerStyles = {
 		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
 		marginRight: 'auto',
@@ -151,10 +145,7 @@ const sectionEdit = ( props ) => {
 	const mediaUploadRender = ( obj ) => {
 		if ( 0 === backgroundImageID ) {
 			return (
-				<Button
-					isDefault
-					onClick={ obj.open }
-				>
+				<Button isDefault onClick={ obj.open }>
 					{ __( '背景画像を選択', 'ystandard-blocks' ) }
 				</Button>
 			);
@@ -166,7 +157,10 @@ const sectionEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ backgroundImageURL } alt={ backgroundImageAlt } />
+					<img
+						src={ backgroundImageURL }
+						alt={ backgroundImageAlt }
+					/>
 				</Button>
 				<Button
 					isDefault
@@ -192,7 +186,11 @@ const sectionEdit = ( props ) => {
 		const path = dividerPath( type, level );
 		return (
 			<div className={ dividerClass }>
-				<SVG viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+				<SVG
+					viewBox="0 0 100 100"
+					xmlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="none"
+				>
 					<Path d={ path } strokewidth="0" fill={ color } />
 				</SVG>
 			</div>
@@ -200,33 +198,63 @@ const sectionEdit = ( props ) => {
 	};
 	return (
 		<Fragment>
-			<div className={ 'ystdb-section__edit-wrap' } style={ editWrapStyle }>
-
+			<div
+				className={ 'ystdb-section__edit-wrap' }
+				style={ editWrapStyle }
+			>
 				<div className={ sectionClass } style={ sectionStyles }>
-					{ ( showBgMask && <div
-						className={ bgMaskClass }
-						aria-hidden="true"
-						role="img"
-						style={ bgMaskStyle }>&nbsp;</div> ) }
-					{ ( 0 !== dividerLevelTop && dividerColorTop.color && divider( dividerTypeTop, 'top', dividerLevelTop, dividerColorTop.color ) ) }
-					{ ( 0 !== dividerLevelBottom && dividerColorBottom.color && divider( dividerTypeBottom, 'bottom', dividerLevelBottom, dividerColorBottom.color ) ) }
+					{ showBgMask && (
+						<div
+							className={ bgMaskClass }
+							aria-hidden="true"
+							role="img"
+							style={ bgMaskStyle }
+						>
+							&nbsp;
+						</div>
+					) }
+					{ 0 !== dividerLevelTop &&
+						dividerColorTop.color &&
+						divider(
+							dividerTypeTop,
+							'top',
+							dividerLevelTop,
+							dividerColorTop.color
+						) }
+					{ 0 !== dividerLevelBottom &&
+						dividerColorBottom.color &&
+						divider(
+							dividerTypeBottom,
+							'bottom',
+							dividerLevelBottom,
+							dividerColorBottom.color
+						) }
 					<div className="ystdb-section__container">
-						<Wrapper className={ innerClasses } style={ innerStyles }>
+						<Wrapper
+							className={ innerClasses }
+							style={ innerStyles }
+						>
 							<InnerBlocks />
 						</Wrapper>
 					</div>
 				</div>
-
 			</div>
 
 			<InspectorControls>
 				<div className="ystdb-inspectorcontrols">
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 						<BaseControl>
+							<div className="ystdb-inspector-controls__label">
+								{ __( '余白設定(外側)', 'ystandard-blocks' ) }
+							</div>
+							<div className={ `ystdb-info__label` }>
+								かんたん設定
+							</div>
 							<div
-								className="ystdb-inspector-controls__label">{ __( '余白設定(外側)', 'ystandard-blocks' ) }</div>
-							<div className={ `ystdb-info__label` }>かんたん設定</div>
-							<div className={ 'ystdb-btn-selector components-base-control' }>
+								className={
+									'ystdb-btn-selector components-base-control'
+								}
+							>
 								{ marginType.margin.map( ( item ) => {
 									return (
 										<Button
@@ -247,28 +275,55 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '上側', 'ystandard-blocks' ) }
 								value={ marginTop }
-								onChange={ ( value ) => setAttributes( { marginTop: getNum( value, ( -1 * rangeMax ), rangeMax, 0 ) } ) }
-								min={ ( -1 * rangeMax ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										marginTop: getNum(
+											value,
+											-1 * rangeMax,
+											rangeMax,
+											0
+										),
+									} )
+								}
+								min={ -1 * rangeMax }
 								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<RangeControl
 								label={ __( '下側', 'ystandard-blocks' ) }
 								value={ marginBottom }
-								onChange={ ( value ) => setAttributes( { marginBottom: getNum( value, ( -1 * rangeMax ), rangeMax, 0 ) } ) }
-								min={ ( -1 * rangeMax ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										marginBottom: getNum(
+											value,
+											-1 * rangeMax,
+											rangeMax,
+											0
+										),
+									} )
+								}
+								min={ -1 * rangeMax }
 								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<p>
-								<span className={ `ystdb-info__small` }>※数字が大きいほど余白が大きくなります。</span>
+								<span className={ `ystdb-info__small` }>
+									※数字が大きいほど余白が大きくなります。
+								</span>
 							</p>
 						</BaseControl>
 						<BaseControl>
+							<div className="ystdb-inspector-controls__label">
+								{ __( '余白設定(内側)', 'ystandard-blocks' ) }
+							</div>
+							<div className={ `ystdb-info__label` }>
+								かんたん設定
+							</div>
 							<div
-								className="ystdb-inspector-controls__label">{ __( '余白設定(内側)', 'ystandard-blocks' ) }</div>
-							<div className={ `ystdb-info__label` }>かんたん設定</div>
-							<div className={ 'ystdb-btn-selector components-base-control' }>
+								className={
+									'ystdb-btn-selector components-base-control'
+								}
+							>
 								{ marginType.padding.map( ( item ) => {
 									return (
 										<Button
@@ -287,13 +342,23 @@ const sectionEdit = ( props ) => {
 								} ) }
 								<br />
 								<div>
-									<span className={ `ystdb-info__small` }>※上下余白のかんたん設定</span>
+									<span className={ `ystdb-info__small` }>
+										※上下余白のかんたん設定
+									</span>
 								</div>
 							</div>
 							<RangeControl
 								label={ __( '上側', 'ystandard-blocks' ) }
 								value={ paddingTop }
-								onChange={ ( value ) => setAttributes( { paddingTop: getNum( value, rangeMin, rangeMax ) } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										paddingTop: getNum(
+											value,
+											rangeMin,
+											rangeMax
+										),
+									} )
+								}
 								min={ rangeMin }
 								max={ rangeMax }
 								step={ rangeStep }
@@ -301,7 +366,15 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '下側', 'ystandard-blocks' ) }
 								value={ paddingBottom }
-								onChange={ ( value ) => setAttributes( { paddingBottom: getNum( value, rangeMin, rangeMax ) } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										paddingBottom: getNum(
+											value,
+											rangeMin,
+											rangeMax
+										),
+									} )
+								}
 								min={ rangeMin }
 								max={ rangeMax }
 								step={ rangeStep }
@@ -309,7 +382,15 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '左側', 'ystandard-blocks' ) }
 								value={ paddingLeft }
-								onChange={ ( value ) => setAttributes( { paddingLeft: getNum( value, rangeMin, rangeMax ) } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										paddingLeft: getNum(
+											value,
+											rangeMin,
+											rangeMax
+										),
+									} )
+								}
 								min={ rangeMin }
 								max={ rangeMax }
 								step={ rangeStep }
@@ -317,13 +398,23 @@ const sectionEdit = ( props ) => {
 							<RangeControl
 								label={ __( '右側', 'ystandard-blocks' ) }
 								value={ paddingRight }
-								onChange={ ( value ) => setAttributes( { paddingRight: getNum( value, rangeMin, rangeMax ) } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										paddingRight: getNum(
+											value,
+											rangeMin,
+											rangeMax
+										),
+									} )
+								}
 								min={ rangeMin }
 								max={ rangeMax }
 								step={ rangeStep }
 							/>
 							<div>
-								<span className={ `ystdb-info__small` }>※数字が大きいほど余白が大きくなります。</span>
+								<span className={ `ystdb-info__small` }>
+									※数字が大きいほど余白が大きくなります。
+								</span>
 							</div>
 						</BaseControl>
 					</PanelBody>
@@ -331,7 +422,9 @@ const sectionEdit = ( props ) => {
 						title={ __( '背景設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
 					>
-						<div className="ystdb-inspector-controls__label">{ __( '背景画像', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '背景画像', 'ystandard-blocks' ) }
+						</div>
 						<MediaUpload
 							onSelect={ ( media ) => {
 								setAttributes( {
@@ -349,20 +442,35 @@ const sectionEdit = ( props ) => {
 							value={ backgroundImageID }
 							render={ mediaUploadRender }
 						/>
-						<br /><br />
+						<br />
+						<br />
 						<RangeControl
 							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
 							value={ backgroundImageOpacity }
-							onChange={ ( value ) => setAttributes( { backgroundImageOpacity: getNum( value, 0, 100 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									backgroundImageOpacity: getNum(
+										value,
+										0,
+										100
+									),
+								} )
+							}
 							min={ 0 }
 							max={ 100 }
 							step={ 1 }
 						/>
 						<p>
-							<span className={ `ystdb-info__small` }>※数値が大きいほど背景画像が見えづらくなります。</span>
-							<span className={ `ystdb-info__small` }>※画像の上に重ねる色は、色設定の「背景色」で変更できます。</span>
+							<span className={ `ystdb-info__small` }>
+								※数値が大きいほど背景画像が見えづらくなります。
+							</span>
+							<span className={ `ystdb-info__small` }>
+								※画像の上に重ねる色は、色設定の「背景色」で変更できます。
+							</span>
 						</p>
-						<div className="ystdb-inspector-controls__label">{ __( '固定背景', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '固定背景', 'ystandard-blocks' ) }
+						</div>
 						<ToggleControl
 							label={ __( '背景を固定する', 'ystandard-blocks' ) }
 							checked={ backgroundImageParallax }
@@ -402,18 +510,33 @@ const sectionEdit = ( props ) => {
 						title={ __( '区切り線設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
 					>
-						<div className="ystdb-inspector-controls__dscr">タイプ・レベル・色をすべて設定すると表示されます。<br />上下のブロックの背景色と色を合わせることをオススメします。<br /><br />
+						<div className="ystdb-inspector-controls__dscr">
+							タイプ・レベル・色をすべて設定すると表示されます。
+							<br />
+							上下のブロックの背景色と色を合わせることをオススメします。
+							<br />
+							<br />
 						</div>
 
-						<div className="ystdb-inspector-controls__label">{ __( '上側の区切り設定', 'ystandard-blocks' ) }</div>
-						<div className="ystdb-inspector-controls__label">{ __( '区切りタイプ', 'ystandard-blocks' ) }</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '上側の区切り設定', 'ystandard-blocks' ) }
+						</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '区切りタイプ', 'ystandard-blocks' ) }
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ dividerTypes.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
 										isDefault
-										isPrimary={ dividerTypeTop === item.value }
+										isPrimary={
+											dividerTypeTop === item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												dividerTypeTop: item.value,
@@ -428,12 +551,23 @@ const sectionEdit = ( props ) => {
 						<RangeControl
 							label={ __( 'レベル', 'ystandard-blocks' ) }
 							value={ dividerLevelTop }
-							onChange={ ( value ) => setAttributes( { dividerLevelTop: getNum( value, -100, 100, 0 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									dividerLevelTop: getNum(
+										value,
+										-100,
+										100,
+										0
+									),
+								} )
+							}
 							min={ -100 }
 							max={ 100 }
 							allowReset={ true }
 						/>
-						<div className="ystdb-inspector-controls__label">{ __( '色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -443,15 +577,25 @@ const sectionEdit = ( props ) => {
 							value={ dividerColorTop.color }
 						/>
 						<br />
-						<div className="ystdb-inspector-controls__label">{ __( '下側の区切り設定', 'ystandard-blocks' ) }</div>
-						<div className="ystdb-inspector-controls__label">{ __( '区切りタイプ', 'ystandard-blocks' ) }</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '下側の区切り設定', 'ystandard-blocks' ) }
+						</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '区切りタイプ', 'ystandard-blocks' ) }
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ dividerTypes.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
 										isDefault
-										isPrimary={ dividerTypeBottom === item.value }
+										isPrimary={
+											dividerTypeBottom === item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												dividerTypeBottom: item.value,
@@ -466,12 +610,23 @@ const sectionEdit = ( props ) => {
 						<RangeControl
 							label={ __( 'レベル', 'ystandard-blocks' ) }
 							value={ dividerLevelBottom }
-							onChange={ ( value ) => setAttributes( { dividerLevelBottom: getNum( value, -100, 100, 0 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									dividerLevelBottom: getNum(
+										value,
+										-100,
+										100,
+										0
+									),
+								} )
+							}
 							min={ -100 }
 							max={ 100 }
 							allowReset={ true }
 						/>
-						<div className="ystdb-inspector-controls__label">{ __( '色', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '色', 'ystandard-blocks' ) }
+						</div>
 						<ColorPalette
 							colors={ colors }
 							disableCustomColors={ false }
@@ -480,14 +635,19 @@ const sectionEdit = ( props ) => {
 							} }
 							value={ dividerColorBottom.color }
 						/>
-
 					</PanelBody>
 					<PanelBody
 						title={ __( 'コンテンツ幅設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
 					>
-						<div className={ `ystdb-info__label` }>かんたん設定</div>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div className={ `ystdb-info__label` }>
+							かんたん設定
+						</div>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ marginType.innerWidth.map( ( item ) => {
 								return (
 									<Button
@@ -505,25 +665,44 @@ const sectionEdit = ( props ) => {
 							} ) }
 						</div>
 						<RangeControl
-							label={ __( 'コンテンツ部分の最大幅', 'ystandard-blocks' ) }
+							label={ __(
+								'コンテンツ部分の最大幅',
+								'ystandard-blocks'
+							) }
 							value={ innerCustomWidth }
-							onChange={ ( value ) => setAttributes( { innerCustomWidth: getNum( value, 0, 1920, 0 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									innerCustomWidth: getNum(
+										value,
+										0,
+										1920,
+										0
+									),
+								} )
+							}
 							min={ 0 }
 							max={ 1920 }
 							step={ 16 }
 							allowReset={ true }
 						/>
 						<p>
-							<span className={ `ystdb-info__small` }>※最大幅の指定をしない場合は0にしてください。</span>
+							<span className={ `ystdb-info__small` }>
+								※最大幅の指定をしない場合は0にしてください。
+							</span>
 						</p>
 					</PanelBody>
 					<PanelBody
 						title={ __( 'セクション高さ設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
 					>
-						<div className="ystdb-inspector-controls__label">{ __( '高さ設定', 'ystandard-blocks' ) }</div>
+						<div className="ystdb-inspector-controls__label">
+							{ __( '高さ設定', 'ystandard-blocks' ) }
+						</div>
 						<ToggleControl
-							label={ __( '画面と同じ高さにする', 'ystandard-blocks' ) }
+							label={ __(
+								'画面と同じ高さにする',
+								'ystandard-blocks'
+							) }
 							checked={ screenHeightMode }
 							onChange={ () => {
 								setAttributes( {
@@ -532,15 +711,27 @@ const sectionEdit = ( props ) => {
 							} }
 						/>
 						<RangeControl
-							label={ __( 'セクション最小高さ', 'ystandard-blocks' ) }
+							label={ __(
+								'セクション最小高さ',
+								'ystandard-blocks'
+							) }
 							value={ sectionMinHeight }
-							onChange={ ( value ) => setAttributes( { sectionMinHeight: getNum( value, 0, 1000, 0 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									sectionMinHeight: getNum(
+										value,
+										0,
+										1000,
+										0
+									),
+								} )
+							}
 							min={ 0 }
 							max={ 1000 }
 							allowReset={ true }
 						/>
-						<div
-							className="ystdb-inspector-controls__dscr">※「画面と同じ高さにする」をONにした場合、セクション最小高さも合わせて設定してください。（例：500）
+						<div className="ystdb-inspector-controls__dscr">
+							※「画面と同じ高さにする」をONにした場合、セクション最小高さも合わせて設定してください。（例：500）
 						</div>
 					</PanelBody>
 					<PanelBody
@@ -548,7 +739,10 @@ const sectionEdit = ( props ) => {
 						initialOpen={ false }
 					>
 						<SelectControl
-							label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
+							label={ __(
+								'アニメーション種類',
+								'ystandard-blocks'
+							) }
 							value={ animationType }
 							options={ animationTypes }
 							onChange={ ( type ) => {
@@ -558,9 +752,16 @@ const sectionEdit = ( props ) => {
 							} }
 						/>
 						<RangeControl
-							label={ __( 'アニメーション速度', 'ystandard-blocks' ) }
+							label={ __(
+								'アニメーション速度',
+								'ystandard-blocks'
+							) }
 							value={ getNum( animationSpeed, 1, 10, 3 ) }
-							onChange={ ( value ) => setAttributes( { animationSpeed: getNum( value, 1, 10, 3 ) } ) }
+							onChange={ ( value ) =>
+								setAttributes( {
+									animationSpeed: getNum( value, 1, 10, 3 ),
+								} )
+							}
 							min={ 1 }
 							max={ 10 }
 							allowReset={ true }
@@ -571,9 +772,15 @@ const sectionEdit = ( props ) => {
 						initialOpen={ false }
 					>
 						<p>
-							<span className={ `ystdb-info__small` }>コンテンツを囲むHTMLタグを選択できます。</span>
+							<span className={ `ystdb-info__small` }>
+								コンテンツを囲むHTMLタグを選択できます。
+							</span>
 						</p>
-						<div className={ 'ystdb-btn-selector components-base-control' }>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
 							{ wrapperTagNames.map( ( item ) => {
 								return (
 									<Button
@@ -581,7 +788,9 @@ const sectionEdit = ( props ) => {
 										isDefault
 										isPrimary={ wrapperTag === item.tag }
 										onClick={ () => {
-											setAttributes( { wrapperTag: item.tag } );
+											setAttributes( {
+												wrapperTag: item.tag,
+											} );
 										} }
 									>
 										<span>{ item.tag }</span>
@@ -592,7 +801,6 @@ const sectionEdit = ( props ) => {
 					</PanelBody>
 				</div>
 			</InspectorControls>
-
 		</Fragment>
 	);
 };
