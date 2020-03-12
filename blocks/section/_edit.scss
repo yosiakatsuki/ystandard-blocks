@@ -1,20 +1,17 @@
 @import "block";
 
 [data-type="ystdb/section"] {
-
 	.ystdb-section {
 		overflow: unset;
 	}
 
 	&[data-align="full"] {
-
 		.ystdb-section {
 			padding-right: 64px;
 			padding-left: 64px;
 		}
 
 		.ystdb-section__inner {
-
 			.wp-block {
 				max-width: 100%;
 			}

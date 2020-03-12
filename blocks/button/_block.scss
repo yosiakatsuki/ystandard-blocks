@@ -30,7 +30,7 @@
 			left: 0;
 			width: 50px;
 			height: 150%;
-			background-color: #fff;
+			background-color: #ffffff;
 			transform: rotate(45deg);
 			animation-duration: inherit;
 			animation-iteration-count: infinite;
@@ -44,9 +44,7 @@
 }
 
 .wp-block-button {
-
 	.ystdb-button__link {
-
 		&.is-small {
 			padding: 0.25rem 1rem;
 		}
@@ -65,7 +63,6 @@
 }
 
 @keyframes shine {
-
 	0% {
 		transform: scale(0) rotate(45deg);
 		opacity: 0;

@@ -72,9 +72,7 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
 
 	@for $i from 1 through 6 {
-
 		&.has-#{$i}-columns {
-
 			.ystdb-column {
 				flex: 0 0 calc(#{(100% / $i)} - 2rem);
 				width: calc(#{(100% / $i)} - 2rem);
@@ -83,11 +81,8 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
 
 	@for $i from 1 through 6 {
-
 		@include media-breakpoint(md) {
-
 			&.has-#{$i}-columns--tablet {
-
 				.ystdb-column {
 					flex: 0 0 calc(#{(100% / $i)} - 2rem);
 					width: calc(#{(100% / $i)} - 2rem);
@@ -97,11 +92,8 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
 
 	@for $i from 1 through 6 {
-
 		@include media-breakpoint(lg) {
-
 			&.has-#{$i}-columns--pc {
-
 				.ystdb-column {
 					flex: 0 0 calc(#{(100% / $i)} - 2rem);
 					width: calc(#{(100% / $i)} - 2rem);
@@ -111,23 +103,19 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
 
 	&.is-vertically-aligned-center {
-
 		.ystdb-column-block-container {
 			justify-content: center;
 		}
 	}
 
 	&.is-vertically-aligned-bottom {
-
 		.ystdb-column-block-container {
 			justify-content: flex-end;
 		}
 	}
 
 	&.is-vertically-aligned-last {
-
 		.ystdb-column-block-container {
-
 			> *:nth-last-child(2) {
 				flex-grow: 1;
 			}

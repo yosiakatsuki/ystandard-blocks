@@ -2,7 +2,6 @@
  * InspectorControls
  */
 .ystdb-balloon-selector {
-
 	.components-button {
 		display: block;
 		width: 100%;
@@ -13,7 +12,6 @@
 		box-shadow: none;
 
 		&.is-primary {
-
 			.ystdb-balloon-selector__container {
 				border-color: #007cba;
 			}
@@ -31,14 +29,12 @@
 .ystdb-balloon-selector__container {
 	display: flex;
 	padding: 0.5em;
-	background-color: #fff;
+	background-color: #ffffff;
 	border: 2px solid $color__border-gray;
 	border-radius: 3px;
 
 	&.is-serif {
-
 		.ystdb-balloon-selector__body {
-
 			&::after {
 				content: "";
 				position: absolute;
@@ -49,7 +45,6 @@
 	}
 
 	&.is-think {
-
 		.ystdb-balloon-selector__body {
 			border-radius: 20px;
 
@@ -76,15 +71,12 @@
 	}
 
 	&.is-right {
-
 		.ystdb-balloon-selector__body {
 			margin-left: 1em;
 		}
 
 		&.is-serif {
-
 			.ystdb-balloon-selector__body {
-
 				&::after {
 					right: 100%;
 					border-right-color: inherit;
@@ -93,9 +85,7 @@
 		}
 
 		&.is-think {
-
 			.ystdb-balloon-selector__body {
-
 				&::before {
 					right: calc(100% + 0.5em);
 				}
@@ -115,9 +105,7 @@
 		}
 
 		&.is-serif {
-
 			.ystdb-balloon-selector__body {
-
 				&::after {
 					left: 100%;
 					border-left-color: inherit;
@@ -126,9 +114,7 @@
 		}
 
 		&.is-think {
-
 			.ystdb-balloon-selector__body {
-
 				&::before {
 					left: calc(100% + 0.5em);
 				}
@@ -186,8 +172,8 @@
 			width: 100%;
 			height: 100%;
 			padding: 0.5em;
-			background-color: #fff;
-			color: #222;
+			background-color: #ffffff;
+			color: #222222;
 		}
 
 		&:not(.is-primary) img {

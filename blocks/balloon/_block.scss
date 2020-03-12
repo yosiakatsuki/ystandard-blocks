@@ -22,7 +22,6 @@
 	margin: 0;
 
 	&.is-size-large {
-
 		@include media-breakpoint(md) {
 			flex: 0 0 80px;
 			width: 80px;
@@ -77,7 +76,6 @@
 		}
 
 		&.is-right {
-
 			&::after {
 				right: 100%;
 				border-right-color: inherit;
@@ -94,7 +92,6 @@
 		}
 
 		&.is-center {
-
 			&::after {
 				top: 50%;
 				transform: translateY(-50%);
@@ -102,7 +99,6 @@
 		}
 
 		&.is-bottom {
-
 			&::after {
 				top: auto;
 				bottom: 3em;
@@ -162,7 +158,6 @@
 		}
 
 		&.is-center {
-
 			&::before,
 			&::after {
 				transform: translateY(-50%);
@@ -178,7 +173,6 @@
 		}
 
 		&.is-bottom {
-
 			&::before,
 			&::after {
 				top: auto;

@@ -1,11 +1,9 @@
 .ystdb-inspectorcontrols {
-
 	.components-base-control__label {
 		font-weight: $font__weight_bold;
 	}
 
 	.components-base-control__field .components-base-control__field {
-
 		.components-base-control__label {
 			font-weight: 400;
 		}
@@ -13,7 +11,6 @@
 }
 
 .ystdb-inspectorcontrols__horizontal-radio {
-
 	.components-radio-control__option {
 		display: inline-block;
 		margin-right: 1rem;
@@ -29,7 +26,6 @@
 }
 
 .ystdb-inspectorcontrols__disablecustomfont {
-
 	.components-range-control__number {
 		display: none;
 	}

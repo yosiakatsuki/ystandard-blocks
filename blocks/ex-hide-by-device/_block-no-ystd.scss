@@ -1,17 +1,17 @@
 @include media-breakpoint-down(md) {
-  .ystdb-hide--sp {
-	display: none !important;
-  }
+	.ystdb-hide--sp {
+		display: none !important;
+	}
 }
 
 @include media-breakpoint-between(md, lg) {
-  .ystdb-hide--md {
-	display: none !important;
-  }
+	.ystdb-hide--md {
+		display: none !important;
+	}
 }
 
 @include media-breakpoint(lg) {
-  .ystdb-hide--lg {
-	display: none !important;
-  }
+	.ystdb-hide--lg {
+		display: none !important;
+	}
 }

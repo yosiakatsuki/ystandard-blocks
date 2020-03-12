@@ -1,16 +1,16 @@
 .ystdb-inline--larger {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 .ystdb-inline--smaller {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 
 @include media-breakpoint-down(md) {
-  .ystdb-inline--larger-sp {
-	font-size: 1.2em;
-  }
-  .ystdb-inline--smaller-sp {
-	font-size: 0.8em;
-  }
+	.ystdb-inline--larger-sp {
+		font-size: 1.2em;
+	}
+	.ystdb-inline--smaller-sp {
+		font-size: 0.8em;
+	}
 }

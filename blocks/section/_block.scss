@@ -22,7 +22,6 @@
 	}
 
 	@supports ( -webkit-overflow-scrolling: touch ) {
-
 		&.has-parallax {
 			background-attachment: scroll;
 		}
@@ -95,7 +94,6 @@
 }
 
 .ystdb-section__divider--triangle {
-
 	svg {
 		max-width: 250px;
 		margin-right: auto;
@@ -104,7 +102,6 @@
 }
 
 @keyframes ystdb-fadein {
-
 	from {
 		opacity: 0;
 	}
@@ -115,7 +112,6 @@
 }
 
 @keyframes ystdb-fadein-up {
-
 	from {
 		transform: translateY(5%);
 		opacity: 0;
@@ -128,7 +124,6 @@
 }
 
 @keyframes ystdb-fadein-shrink {
-
 	from {
 		transform: scale(1.05, 1.05);
 		opacity: 0;

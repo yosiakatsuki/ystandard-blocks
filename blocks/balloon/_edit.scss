@@ -2,52 +2,48 @@
 
 
 [data-type="ystdb/balloon"] {
+	.ystdb-balloon__avatar-image {
+		overflow: hidden;
 
-  .ystdb-balloon__avatar-image {
-	overflow: hidden;
-
-	button,
-	img {
-	  display: block;
-	  margin: 0;
-	  padding: 0;
-	  height: auto;
-	}
-
-	button.ystdb-mediaupload__preview {
-
-	  &.is-no-image {
-
-		&::after,
-		&::before {
-		  opacity: 1;
+		button,
+		img {
+			display: block;
+			height: auto;
+			margin: 0;
+			padding: 0;
 		}
 
-		&::before {
-		  background-color: rgba(0, 0, 0, 0.5);
+		button.ystdb-mediaupload__preview {
+			&.is-no-image {
+				&::after,
+				&::before {
+					opacity: 1;
+				}
+
+				&::before {
+					background-color: rgba(0, 0, 0, 0.5);
+				}
+			}
+
+			&.is-show-text {
+				&::after {
+					content: "画像を削除";
+				}
+			}
 		}
-	  }
+	}
 
-	  &.is-show-text {
+	.ystdb-balloon__name--edit {
+		text-align: center;
 
-		&::after {
-		  content: "画像を削除";
+		&:focus {
+			border: 0;
+			outline: none;
+			box-shadow: none;
 		}
-	  }
 	}
-  }
 
-  .ystdb-balloon__name--edit {
-	text-align: center;
-
-	&:focus {
-	  border: 0;
-	  outline: none;
-	  box-shadow: none;
+	.ystdb-ystdb-balloon__text {
+		min-width: 140px;
 	}
-  }
-
-  .ystdb-ystdb-balloon__text {
-	min-width: 140px;
-  }
 }

@@ -4,7 +4,7 @@
 	border-style: solid;
 
 	&:not(.has-background) {
-		background-color: #fff;
+		background-color: #ffffff;
 	}
 
 	&:not(.has-border) {
@@ -23,9 +23,7 @@
 }
 
 .ystdb-card__container {
-
 	&.is-horizon {
-
 		@include media-breakpoint(md) {
 			display: flex;
 		}
@@ -41,7 +39,6 @@
 }
 
 @mixin get_card_image_size($size) {
-
 	@if $size == small {
 		flex: 0 0 20%;
 		width: 20%;
@@ -67,40 +64,31 @@
 	text-align: center;
 
 	&.is-size--small--fixed {
-
 		@include get_card_image_size(small);
 	}
 
 	&.is-size--normal--fixed {
-
 		@include get_card_image_size(normal);
 	}
 
 	&.is-size--large--fixed {
-
 		@include get_card_image_size(large);
 	}
 
 	&.is-size--small {
-
 		@include media-breakpoint(md) {
-
 			@include get_card_image_size(small);
 		}
 	}
 
 	&.is-size--normal {
-
 		@include media-breakpoint(md) {
-
 			@include get_card_image_size(normal);
 		}
 	}
 
 	&.is-size--large {
-
 		@include media-breakpoint(md) {
-
 			@include get_card_image_size(large);
 		}
 	}
@@ -109,7 +97,6 @@
 		position: relative;
 
 		@supports ( object-fit: cover ) {
-
 			img,
 			amp-img {
 				width: 100%;
