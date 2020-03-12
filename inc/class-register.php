@@ -68,6 +68,11 @@ class Register {
 			'no-ystd' => true,
 			'class'   => 'card',
 		],
+		'conditional-group-block'        => [
+			'name'    => 'ystdb/conditional-group-block',
+			'no-ystd' => true,
+			'class'   => 'conditional-group-block',
+		],
 	];
 	/**
 	 * スタイル、フォーマット、コア拡張など
@@ -76,7 +81,6 @@ class Register {
 	 */
 	private $block_editor_assets = [
 		'format'            => true,
-		'ex-hide-by-device' => true,
 	];
 
 	/**
@@ -87,7 +91,6 @@ class Register {
 			add_action( 'init', [ $this, 'register_block' ] );
 		}
 		add_action( 'init', [ $this, 'register_dynamic_block' ] );
-		add_action( 'init', [ $this, 'add_extension_attributes' ], PHP_INT_MAX );
 		add_action(
 			'enqueue_block_editor_assets',
 			[ $this, 'enqueue_block_editor_assets' ]
@@ -191,36 +194,6 @@ class Register {
 				$asset_file['version']
 			);
 			require_once( YSTDB_PATH . '/blocks/' . $key . '/class-' . $value['class'] . '.php' );
-		}
-	}
-
-	/**
-	 * ダイナミックブロックに attributes 追加
-	 */
-	public function add_extension_attributes() {
-		$extension_attributes       = [];
-		$extension_attributes_files = [
-			'ex-hide-by-device',
-		];
-		/**
-		 * 追加するパラメーターをまとめる
-		 */
-		foreach ( $extension_attributes_files as $item ) {
-			$extension_attributes = array_merge(
-				$extension_attributes,
-				include( YSTDB_PATH . '/blocks/' . $item . '/attributes.php' )
-			);
-		}
-		/**
-		 * 既存ブロックにパラメーター追加
-		 */
-		if ( class_exists( 'WP_Block_Type_Registry' ) ) {
-			$dynamic_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
-			foreach ( $dynamic_blocks as $name => $args ) {
-				foreach ( $extension_attributes as $attr_name => $attr ) {
-					$args->attributes[ $attr_name ] = $attr;
-				}
-			}
 		}
 	}
 

@@ -15,8 +15,8 @@ module.exports = {
 		'balloon': './blocks/balloon/index.js',
 		'button-link': './blocks/button-link/index.js',
 		'card': './blocks/card/index.js',
+		'conditional-group-block': './blocks/conditional-group-block/index.js',
 		'format': './blocks/format/index.js',
-		'ex-hide-by-device': './blocks/ex-hide-by-device/index.js'
 	},
 	output: {
 		filename: '[name].js',

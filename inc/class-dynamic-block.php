@@ -42,7 +42,7 @@ abstract class Dynamic_Block {
 	 *
 	 * @return false|string
 	 */
-	abstract public function render( $attributes );
+	abstract public function render( $attributes, $content = null );
 
 	/**
 	 * Render

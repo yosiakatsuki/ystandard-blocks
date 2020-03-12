@@ -218,7 +218,7 @@ class Card extends Dynamic_Block {
 	 *
 	 * @return false|string
 	 */
-	public function render( $attributes ) {
+	public function render( $attributes, $content = null ) {
 
 		$this->convert_attributes( $attributes );
 

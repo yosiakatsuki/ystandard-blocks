@@ -94,10 +94,11 @@ class Button_Link extends Dynamic_Block {
 	 * Render
 	 *
 	 * @param array $attributes block attributes.
+	 * @param string $content innerBlocks content.
 	 *
 	 * @return string
 	 */
-	public function render( $attributes ) {
+	public function render( $attributes, $content = null ) {
 		return $this->render_by_view( 'button-link', $attributes );
 	}
 }
