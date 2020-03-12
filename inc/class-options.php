@@ -82,6 +82,8 @@ class Options {
 			'inline_style_type_3'          => 'normal',
 			'inline_style_larger'          => 120,
 			'inline_style_smaller'         => 80,
+			'inline_style_larger_sp'       => 120,
+			'inline_style_smaller_sp'      => 80,
 			'balloon_image_1'              => '',
 			'balloon_name_1'               => '',
 			'balloon_image_2'              => '',

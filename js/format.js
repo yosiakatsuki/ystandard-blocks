@@ -120,14 +120,24 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 var inlineStyles = [{
-  name: 'ystdb/inline-lager',
+  name: 'ystdb/inline-larger',
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('[ys]少し大きく', 'ystandard-blocks'),
-  class: 'ystdb-inline--lager',
+  class: 'ystdb-inline--larger',
   icon: 'edit'
 }, {
   name: 'ystdb/inline-smaller',
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('[ys]少し小さく', 'ystandard-blocks'),
   class: 'ystdb-inline--smaller',
+  icon: 'edit'
+}, {
+  name: 'ystdb/inline-larger-sp',
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('[ys]少し大きく(SP)', 'ystandard-blocks'),
+  class: 'ystdb-inline--larger-sp',
+  icon: 'edit'
+}, {
+  name: 'ystdb/inline-smaller-sp',
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('[ys]少し小さく(SP)', 'ystandard-blocks'),
+  class: 'ystdb-inline--smaller-sp',
   icon: 'edit'
 }];
 
