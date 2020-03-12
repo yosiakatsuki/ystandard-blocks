@@ -200,7 +200,7 @@ class Register {
 	public function add_extension_attributes() {
 		$extension_attributes       = [];
 		$extension_attributes_files = [
-			'ex-hide-by-device'
+			'ex-hide-by-device',
 		];
 		/**
 		 * 追加するパラメーターをまとめる

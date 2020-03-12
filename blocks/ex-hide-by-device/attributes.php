@@ -1,5 +1,13 @@
 <?php
 /**
+ * Ystandard_Blocks
+ *
+ * @package yStandard_blocks
+ * @author  yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+/**
  * 追加する attributes
  */
 return [
