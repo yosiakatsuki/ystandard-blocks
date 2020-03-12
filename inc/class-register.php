@@ -75,7 +75,8 @@ class Register {
 	 * @var array
 	 */
 	private $block_editor_assets = [
-		'format' => true,
+		'format'            => true,
+		'ex-hide-by-device' => true,
 	];
 
 	/**
@@ -86,6 +87,7 @@ class Register {
 			add_action( 'init', [ $this, 'register_block' ] );
 		}
 		add_action( 'init', [ $this, 'register_dynamic_block' ] );
+		add_action( 'init', [ $this, 'add_extension_attributes' ], PHP_INT_MAX );
 		add_action(
 			'enqueue_block_editor_assets',
 			[ $this, 'enqueue_block_editor_assets' ]
@@ -193,6 +195,36 @@ class Register {
 	}
 
 	/**
+	 * ダイナミックブロックに attributes 追加
+	 */
+	public function add_extension_attributes() {
+		$extension_attributes       = [];
+		$extension_attributes_files = [
+			'ex-hide-by-device'
+		];
+		/**
+		 * 追加するパラメーターをまとめる
+		 */
+		foreach ( $extension_attributes_files as $item ) {
+			$extension_attributes = array_merge(
+				$extension_attributes,
+				include( YSTDB_PATH . '/blocks/' . $item . '/attributes.php' )
+			);
+		}
+		/**
+		 * 既存ブロックにパラメーター追加
+		 */
+		if ( class_exists( 'WP_Block_Type_Registry' ) ) {
+			$dynamic_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
+			foreach ( $dynamic_blocks as $name => $args ) {
+				foreach ( $extension_attributes as $attr_name => $attr ) {
+					$args->attributes[ $attr_name ] = $attr;
+				}
+			}
+		}
+	}
+
+	/**
 	 * ブロックエディターにわたすパラメーターを作成
 	 *
 	 * @return array
@@ -206,7 +238,6 @@ class Register {
 			'balloonImages' => Customizer::get_balloon_images(),
 		];
 	}
-
 }
 
 new Register();
