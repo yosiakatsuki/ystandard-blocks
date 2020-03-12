@@ -109,10 +109,7 @@ const cardEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img
-						src={ imageURL }
-						alt={ imageAlt }
-					/>
+					<img src={ imageURL } alt={ imageAlt } />
 				</Button>
 				<Button
 					isDefault

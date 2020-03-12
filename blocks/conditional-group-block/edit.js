@@ -3,20 +3,9 @@ import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-
 const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
-	const {
-		hideSp,
-		hideMd,
-		hideLg,
-		hideAMP,
-		onlyAMP,
-	} = attributes;
-	const classes = classnames(
-		className,
-		'ystdb-conditional-group',
-		{}
-	);
+	const { hideSp, hideMd, hideLg, hideAMP, onlyAMP } = attributes;
+	const classes = classnames( className, 'ystdb-conditional-group', {} );
 	const innerClasses = classnames(
 		'wp-block-group__inner-container',
 		'ystdb-conditional-group__inner',
@@ -27,10 +16,7 @@ const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ __(
-						'画面サイズ別非表示設定',
-						'ystandard-blocks'
-					) }
+					title={ __( '画面サイズ別非表示設定', 'ystandard-blocks' ) }
 					initialOpen={ true }
 				>
 					<div className={ `ystdb-info__label` }>
@@ -72,10 +58,7 @@ const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
 					</div>
 				</PanelBody>
 				<PanelBody
-					title={ __(
-						'AMP 表示・非表示 設定',
-						'ystandard-blocks'
-					) }
+					title={ __( 'AMP 表示・非表示 設定', 'ystandard-blocks' ) }
 					initialOpen={ true }
 				>
 					<div className={ `ystdb-info__label` }>
@@ -108,7 +91,7 @@ const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
 
 			<div className={ classes }>
 				<div className={ innerClasses }>
-					<InnerBlocks/>
+					<InnerBlocks />
 				</div>
 			</div>
 		</>

@@ -1,7 +1,7 @@
 [data-type="ystdb/conditional-group-block"].block-editor-block-list__block:not(.is-selected) {
-  &::before {
-	border-color: rgba($color__ystd_blue, 0.1);
-	border-left-width: 1px;
-	border-left-style: solid;
-  }
+	&::before {
+		border-color: rgba($color__ystd_blue, 0.1);
+		border-left-width: 1px;
+		border-left-style: solid;
+	}
 }

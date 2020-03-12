@@ -6,7 +6,11 @@ const transforms = {
 			type: 'block',
 			blocks: [ 'core/group' ],
 			transform: ( attributes, innerBlocks ) => {
-				return createBlock( 'ystdb/conditional-group-block', {}, innerBlocks );
+				return createBlock(
+					'ystdb/conditional-group-block',
+					{},
+					innerBlocks
+				);
 			},
 		},
 	],
