@@ -38,7 +38,8 @@ abstract class Dynamic_Block {
 	/**
 	 * Render
 	 *
-	 * @param array $attributes block attributes.
+	 * @param array  $attributes block attributes.
+	 * @param string $content    innerBlocks.
 	 *
 	 * @return false|string
 	 */

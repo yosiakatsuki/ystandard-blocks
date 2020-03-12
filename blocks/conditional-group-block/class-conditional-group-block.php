@@ -9,6 +9,11 @@
 
 namespace ystandard_blocks;
 
+/**
+ * Class Conditional_Group_Block
+ *
+ * @package ystandard_blocks
+ */
 class Conditional_Group_Block extends Dynamic_Block {
 	/**
 	 * Block Name.
@@ -66,7 +71,8 @@ class Conditional_Group_Block extends Dynamic_Block {
 	/**
 	 * Render
 	 *
-	 * @param array $attributes block attributes.
+	 * @param array  $attributes block attributes.
+	 * @param string $content    innerBlocks.
 	 *
 	 * @return false|string
 	 */
@@ -76,7 +82,7 @@ class Conditional_Group_Block extends Dynamic_Block {
 		 */
 		$class   = [
 			'ystdb-conditional-group',
-			$attributes['className']
+			$attributes['className'],
 		];
 		$class[] = $attributes['hideSp'] ? 'ystdb-hide--sp' : '';
 		$class[] = $attributes['hideMd'] ? 'ystdb-hide--md' : '';
@@ -102,7 +108,8 @@ class Conditional_Group_Block extends Dynamic_Block {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $args パラメーター.
+	 * @param array  $args    パラメーター.
+	 * @param string $content コンテンツ.
 	 *
 	 * @return string
 	 */

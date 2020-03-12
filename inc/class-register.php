@@ -58,17 +58,17 @@ class Register {
 	 * @var array
 	 */
 	private $dynamic_block = [
-		'button-link' => [
+		'button-link'             => [
 			'name'    => 'ystdb/btn-link',
 			'no-ystd' => true,
 			'class'   => 'button-link',
 		],
-		'card'        => [
+		'card'                    => [
 			'name'    => 'ystdb/card',
 			'no-ystd' => true,
 			'class'   => 'card',
 		],
-		'conditional-group-block'        => [
+		'conditional-group-block' => [
 			'name'    => 'ystdb/conditional-group-block',
 			'no-ystd' => true,
 			'class'   => 'conditional-group-block',
@@ -80,7 +80,7 @@ class Register {
 	 * @var array
 	 */
 	private $block_editor_assets = [
-		'format'            => true,
+		'format' => true,
 	];
 
 	/**

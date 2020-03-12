@@ -93,8 +93,8 @@ class Button_Link extends Dynamic_Block {
 	/**
 	 * Render
 	 *
-	 * @param array $attributes block attributes.
-	 * @param string $content innerBlocks content.
+	 * @param array  $attributes block attributes.
+	 * @param string $content    innerBlocks content.
 	 *
 	 * @return string
 	 */

@@ -135,6 +135,16 @@ var attributes = {
     type: 'string',
     default: 'left'
   },
+  imageURL: {
+    type: 'string'
+  },
+  imageAlt: {
+    type: 'string'
+  },
+  imageID: {
+    type: 'integer',
+    default: 0
+  },
   showDscr: {
     type: 'bool',
     default: true
@@ -286,10 +296,14 @@ var cardEdit = function cardEdit(props) {
       imageSize = attributes.imageSize,
       imageType = attributes.imageType,
       imageAlign = attributes.imageAlign,
+      imageURL = attributes.imageURL,
+      imageAlt = attributes.imageAlt,
+      imageID = attributes.imageID,
       showDscr = attributes.showDscr,
       dscrCharCount = attributes.dscrCharCount,
       dscr = attributes.dscr,
       showDomain = attributes.showDomain;
+  var ALLOWED_MEDIA_TYPES = ['image'];
 
   var _select$getSettings = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__["select"])('core/block-editor').getSettings(),
       colors = _select$getSettings.colors;
@@ -314,6 +328,40 @@ var cardEdit = function cardEdit(props) {
         rel: undefined
       });
     }
+  };
+  /**
+   * 画像設定コントロール
+   *
+   * @param {Object} obj
+   */
+
+
+  var mediaUploadRender = function mediaUploadRender(obj) {
+    if (0 === imageID) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        isDefault: true,
+        onClick: obj.open
+      }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('画像を選択', 'ystandard-blocks'));
+    }
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+      onClick: obj.open,
+      className: 'ystdb-mediaupload__preview',
+      style: {
+        padding: 0
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: imageURL,
+      alt: imageAlt
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+      isDefault: true,
+      onClick: function onClick() {
+        setAttributes({
+          imageURL: '',
+          imageID: 0
+        });
+      }
+    }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('画像をクリア', 'ystandard-blocks')));
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -424,6 +472,19 @@ var cardEdit = function cardEdit(props) {
       });
     },
     checked: showImage
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "ystdb-inspector-controls__label"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('カスタム画像', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUpload"], {
+    onSelect: function onSelect(media) {
+      setAttributes({
+        imageURL: media.url,
+        imageID: media.id,
+        imageAlt: media.alt
+      });
+    },
+    type: ALLOWED_MEDIA_TYPES,
+    value: imageID,
+    render: mediaUploadRender
   })), isCardHorizon && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-info__small"
   }, "\u300C\u30AB\u30FC\u30C9\u8868\u793A\u30BF\u30A4\u30D7\u300D\u304C\u300C\u6A2A\u578B\u300D\u306E\u3068\u304D\u306B\u6709\u52B9\u306A\u8A2D\u5B9A\u3067\u3059\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
