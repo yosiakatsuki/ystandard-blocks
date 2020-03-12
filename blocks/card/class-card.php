@@ -336,21 +336,23 @@ class Card extends Dynamic_Block {
 		 * 画像の再取得
 		 */
 		if ( $args['post_id'] && Helper::to_bool( $args['show_image'] ) ) {
-			if ( ! empty( $args['image_id'] ) ) {
-				$alt = $args['title'];
-				if ( ! empty( $args['image_alt'] ) ) {
-					$alt = $args['image_alt'];
-				}
-				$args['image'] = $this->get_custom_image(
-					$args['image_id'],
-					$alt
-				);
-			} else {
-				$args['image'] = $this->get_thumbnail(
-					$args['post_id'],
-					$args['title']
-				);
+			$args['image'] = $this->get_thumbnail(
+				$args['post_id'],
+				$args['title']
+			);
+		}
+		/**
+		 * カスタム画像設定
+		 */
+		if ( ! empty( $args['image_id'] ) && Helper::to_bool( $args['show_image'] ) ) {
+			$alt = $args['title'];
+			if ( ! empty( $args['image_alt'] ) ) {
+				$alt = $args['image_alt'];
 			}
+			$args['image'] = $this->get_custom_image(
+				$args['image_id'],
+				$alt
+			);
 		}
 
 		/**
@@ -619,16 +621,15 @@ class Card extends Dynamic_Block {
 			 * 情報取得
 			 */
 			$response = wp_remote_get( $url );
-			if ( ! is_array( $response ) || 200 !== $response['response']['code'] ) {
-				return false;
+			if ( is_array( $response ) && 200 === $response['response']['code'] ) {
+				$site_data['title'] = $this->get_site_title( $response['body'] );
+				$site_data['dscr']  = $this->get_site_description( $response['body'] );
+				$site_data['image'] = $this->get_site_thumbnail( $response['body'] );
+				/**
+				 * キャッシュ作成
+				 */
+				$this->create_cache( $site_data );
 			}
-			$site_data['title'] = $this->get_site_title( $response['body'] );
-			$site_data['dscr']  = $this->get_site_description( $response['body'] );
-			$site_data['image'] = $this->get_site_thumbnail( $response['body'] );
-			/**
-			 * キャッシュ作成
-			 */
-			$this->create_cache( $site_data );
 		}
 		// タイトル.
 		if ( empty( $this->params['title'] ) ) {
@@ -654,6 +655,10 @@ class Card extends Dynamic_Block {
 		// ドメイン.
 		if ( Helper::to_bool( $this->params['show_domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
+		}
+
+		if ( empty( $this->params['title'] ) ) {
+			return false;
 		}
 
 		return true;
