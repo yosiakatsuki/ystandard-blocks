@@ -60,6 +60,16 @@ class Card extends Dynamic_Block {
 		'imageAlign'            => [
 			'type' => 'string',
 		],
+		'imageURL'              => [
+			'type' => 'string',
+		],
+		'imageAlt'              => [
+			'type' => 'string',
+		],
+		'imageID'               => [
+			'type'    => 'number',
+			'default' => 0,
+		],
 		'showDscr'              => [
 			'type' => 'bool',
 		],
@@ -129,6 +139,9 @@ class Card extends Dynamic_Block {
 		'image_type'              => 'fitText',
 		'image_align'             => '',
 		'image_class'             => '',
+		'image_url'               => '',
+		'image_alt'               => '',
+		'image_id'                => 0,
 		'show_dscr'               => true,
 		'dscr_char_count'         => 80,
 		'dscr'                    => '',
@@ -165,6 +178,9 @@ class Card extends Dynamic_Block {
 		'imageSize'             => 'image_size',
 		'imageType'             => 'image_type',
 		'imageAlign'            => 'image_align',
+		'imageURL'              => 'image_url',
+		'imageAlt'              => 'image_alt',
+		'imageID'               => 'image_id',
 		'showDscr'              => 'show_dscr',
 		'dscrCharCount'         => 'dscr_char_count',
 		'dscr'                  => 'dscr',
@@ -214,7 +230,8 @@ class Card extends Dynamic_Block {
 	/**
 	 * Render
 	 *
-	 * @param array $attributes block attributes.
+	 * @param array  $attributes block attributes.
+	 * @param string $content    innerBlocks.
 	 *
 	 * @return false|string
 	 */
@@ -319,10 +336,21 @@ class Card extends Dynamic_Block {
 		 * 画像の再取得
 		 */
 		if ( $args['post_id'] && Helper::to_bool( $args['show_image'] ) ) {
-			$args['image'] = $this->get_thumbnail(
-				$args['post_id'],
-				$args['title']
-			);
+			if ( ! empty( $args['image_id'] ) ) {
+				$alt = $args['title'];
+				if ( ! empty( $args['image_alt'] ) ) {
+					$alt = $args['image_alt'];
+				}
+				$args['image'] = $this->get_custom_image(
+					$args['image_id'],
+					$alt
+				);
+			} else {
+				$args['image'] = $this->get_thumbnail(
+					$args['post_id'],
+					$args['title']
+				);
+			}
 		}
 
 		/**
@@ -506,14 +534,7 @@ class Card extends Dynamic_Block {
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			return '';
 		}
-		$sizes = apply_filters(
-			'ystdb_card_thumbnail_size',
-			[
-				'large',
-				'full',
-				'medium',
-			]
-		);
+		$sizes = $this->get_image_sizes();
 		foreach ( $sizes as $size ) {
 			$image = get_the_post_thumbnail( $post_id, $size, [ 'alt' => $alt ] );
 			if ( ! empty( $image ) ) {
@@ -522,6 +543,50 @@ class Card extends Dynamic_Block {
 		}
 
 		return '';
+	}
+
+	/**
+	 * カスタム設定された画像を取得
+	 *
+	 * @param int    $image_id 画像ID.
+	 * @param string $alt      alt.
+	 *
+	 * @return string
+	 */
+	private function get_custom_image( $image_id, $alt = '' ) {
+		if ( empty( $image_id ) ) {
+			return '';
+		}
+		$sizes = $this->get_image_sizes();
+		foreach ( $sizes as $size ) {
+			$image = wp_get_attachment_image(
+				$image_id,
+				$size,
+				[ 'alt' => $alt ]
+			);
+			if ( ! empty( $image ) ) {
+				return $image;
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * 使用する画像サイズリスト
+	 *
+	 * @return array
+	 */
+	private function get_image_sizes() {
+
+		return apply_filters(
+			'ystdb_card_thumbnail_size',
+			[
+				'large',
+				'full',
+				'medium',
+			]
+		);
 	}
 
 

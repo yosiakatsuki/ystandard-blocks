@@ -32,6 +32,16 @@ export const attributes = {
 		type: 'string',
 		default: 'left',
 	},
+	imageURL: {
+		type: 'string',
+	},
+	imageAlt: {
+		type: 'string',
+	},
+	imageID: {
+		type: 'integer',
+		default: 0,
+	},
 	showDscr: {
 		type: 'bool',
 		default: true,

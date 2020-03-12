@@ -5,6 +5,7 @@ import {
 	URLInput,
 	InspectorControls,
 	withColors,
+	MediaUpload,
 } from '@wordpress/block-editor';
 
 import { Fragment } from '@wordpress/element';
@@ -55,11 +56,16 @@ const cardEdit = ( props ) => {
 		imageSize,
 		imageType,
 		imageAlign,
+		imageURL,
+		imageAlt,
+		imageID,
 		showDscr,
 		dscrCharCount,
 		dscr,
 		showDomain,
 	} = attributes;
+
+	const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
 
@@ -81,6 +87,46 @@ const cardEdit = ( props ) => {
 				rel: undefined,
 			} );
 		}
+	};
+
+	/**
+	 * 画像設定コントロール
+	 *
+	 * @param {Object} obj
+	 */
+	const mediaUploadRender = ( obj ) => {
+		if ( 0 === imageID ) {
+			return (
+				<Button isDefault onClick={ obj.open }>
+					{ __( '画像を選択', 'ystandard-blocks' ) }
+				</Button>
+			);
+		}
+		return (
+			<div>
+				<Button
+					onClick={ obj.open }
+					className={ 'ystdb-mediaupload__preview' }
+					style={ { padding: 0 } }
+				>
+					<img
+						src={ imageURL }
+						alt={ imageAlt }
+					/>
+				</Button>
+				<Button
+					isDefault
+					onClick={ () => {
+						setAttributes( {
+							imageURL: '',
+							imageID: 0,
+						} );
+					} }
+				>
+					{ __( '画像をクリア', 'ystandard-blocks' ) }
+				</Button>
+			</div>
+		);
 	};
 
 	return (
@@ -224,6 +270,23 @@ const cardEdit = ( props ) => {
 									} );
 								} }
 								checked={ showImage }
+							/>
+						</BaseControl>
+						<BaseControl>
+							<div className="ystdb-inspector-controls__label">
+								{ __( 'カスタム画像', 'ystandard-blocks' ) }
+							</div>
+							<MediaUpload
+								onSelect={ ( media ) => {
+									setAttributes( {
+										imageURL: media.url,
+										imageID: media.id,
+										imageAlt: media.alt,
+									} );
+								} }
+								type={ ALLOWED_MEDIA_TYPES }
+								value={ imageID }
+								render={ mediaUploadRender }
 							/>
 						</BaseControl>
 						{ isCardHorizon && (
