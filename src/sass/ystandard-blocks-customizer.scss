@@ -22,7 +22,9 @@
 	}
 }
 #customize-control-ystdb_inline_style_larger_label,
-#customize-control-ystdb_inline_style_smaller_label {
+#customize-control-ystdb_inline_style_smaller_label,
+#customize-control-ystdb_inline_style_larger_sp_label,
+#customize-control-ystdb_inline_style_smaller_sp_label {
 	label {
 		@include controlsLabel(2);
 	}
