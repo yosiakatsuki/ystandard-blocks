@@ -253,11 +253,14 @@ class Customizer {
 	/**
 	 * カスタマイザー追加
 	 *
-	 * @param WP_Customize_Manager $wp_customize wp_customize.
+	 * @param \WP_Customize_Manager $wp_customize wp_customize.
 	 *
-	 * @return WP_Customize_Manager
+	 * @return \WP_Customize_Manager
 	 */
 	public static function ystdb_customize_register( $wp_customize ) {
+		if ( ! class_exists( '\YS_Customizer' ) ) {
+			return $wp_customize;
+		}
 		$ys_customizer = new \YS_Customizer( $wp_customize );
 
 		/**
