@@ -23,6 +23,7 @@ import {
 	RadioControl,
 	RangeControl,
 	Button,
+	ToolbarGroup,
 } from '@wordpress/components';
 
 import { withState, compose } from '@wordpress/compose';
@@ -71,28 +72,26 @@ const btnLinkEdit = ( props ) => {
 							setAttributes( { align: nextAlign } );
 						} }
 					/>
-					<div className="components-toolbar">
-						<button
-							className={ `components-tab-button ${
-								! isPreview ? 'is-active' : ''
-							}` }
+					<ToolbarGroup>
+						<Button
+							className={ `components-tab-button` }
+							isPressed={ ! isPreview }
 							onClick={ () => {
 								setState( { isPreview: false } );
 							} }
 						>
 							<span>HTML</span>
-						</button>
-						<button
-							className={ `components-tab-button ${
-								isPreview ? 'is-active' : ''
-							}` }
+						</Button>
+						<Button
+							className={ `components-tab-button` }
+							isPressed={ isPreview }
 							onClick={ () => {
 								setState( { isPreview: true } );
 							} }
 						>
 							<span>{ __( 'Preview' ) }</span>
-						</button>
-					</div>
+						</Button>
+					</ToolbarGroup>
 				</BlockControls>
 				<Disabled.Consumer>
 					{ () =>
