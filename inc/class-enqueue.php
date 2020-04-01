@@ -157,7 +157,7 @@ class Enqueue {
 			 */
 			return;
 		}
-		if ( Options::get_option_by_bool( 'load_font_awesome' ) ) {
+		if ( Options::get_option_by_bool( 'load_font_awesome', true ) ) {
 			if ( Options::is_use_all_icons() ) {
 				wp_enqueue_script(
 					'font-awesome',
@@ -345,10 +345,10 @@ class Enqueue {
 		$fill_color   = true;
 
 		if ( ! Main::is_ystandard() ) {
-			$bg_color     = Options::get_option_by_bool( 'add_color_palette_css_bg' );
-			$text_color   = Options::get_option_by_bool( 'add_color_palette_css_text' );
-			$border_color = Options::get_option_by_bool( 'add_color_palette_css_border' );
-			$fill_color   = Options::get_option_by_bool( 'add_color_palette_css_fill' );
+			$bg_color     = Options::get_option_by_bool( 'add_color_palette_css_bg', true );
+			$text_color   = Options::get_option_by_bool( 'add_color_palette_css_text', true );
+			$border_color = Options::get_option_by_bool( 'add_color_palette_css_border', true );
+			$fill_color   = Options::get_option_by_bool( 'add_color_palette_css_fill', true );
 		}
 		foreach ( $palette[0] as $value ) {
 			if ( $bg_color ) {

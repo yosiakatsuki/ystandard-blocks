@@ -45,66 +45,14 @@ class Options {
 			/**
 			 * 非yStandardな環境
 			 */
-			if ( self::get_option_by_bool( 'load_font_awesome' ) ) {
-				$use_all_icons = self::get_option_by_bool( 'use_all_icons' );
+			if ( self::get_option_by_bool( 'load_font_awesome', true ) ) {
+				$use_all_icons = self::get_option_by_bool( 'use_all_icons', false );
 			} else {
 				$use_all_icons = true;
 			}
 		}
 
 		return apply_filters( 'ystdb_is_use_all_icons', $use_all_icons );
-	}
-
-	/**
-	 * デフォルト設定
-	 *
-	 * @return array
-	 */
-	public static function get_default_options() {
-		return [
-			'inline_style_fz_1'            => 100,
-			'inline_style_color_1'         => '#222222',
-			'inline_style_mark_color_1'    => '#DA6272',
-			'inline_style_mark_opacity_1'  => 30,
-			'inline_style_mark_weight_1'   => 25,
-			'inline_style_type_1'          => 'normal',
-			'inline_style_fz_2'            => 100,
-			'inline_style_color_2'         => '#222222',
-			'inline_style_mark_color_2'    => '#45A1CF',
-			'inline_style_mark_opacity_2'  => 30,
-			'inline_style_mark_weight_2'   => 25,
-			'inline_style_type_2'          => 'normal',
-			'inline_style_fz_3'            => 100,
-			'inline_style_color_3'         => '#222222',
-			'inline_style_mark_color_3'    => '#FFEE55',
-			'inline_style_mark_opacity_3'  => 30,
-			'inline_style_mark_weight_3'   => 25,
-			'inline_style_type_3'          => 'normal',
-			'inline_style_larger'          => 120,
-			'inline_style_smaller'         => 80,
-			'inline_style_larger_sp'       => 120,
-			'inline_style_smaller_sp'      => 80,
-			'balloon_image_1'              => '',
-			'balloon_name_1'               => '',
-			'balloon_image_2'              => '',
-			'balloon_name_2'               => '',
-			'balloon_image_3'              => '',
-			'balloon_name_3'               => '',
-			'balloon_image_4'              => '',
-			'balloon_name_4'               => '',
-			'balloon_image_5'              => '',
-			'balloon_name_5'               => '',
-			'balloon_image_6'              => '',
-			'balloon_name_6'               => '',
-			'hide_no_ystandard_notice'     => false,
-			'load_font_awesome'            => true,
-			'add_color_palette_css_text'   => true,
-			'add_color_palette_css_bg'     => true,
-			'add_color_palette_css_border' => true,
-			'add_color_palette_css_fill'   => true,
-			'add_font_size_css'            => true,
-			'use_all_icons'                => false,
-		];
 	}
 
 	/**
@@ -121,28 +69,44 @@ class Options {
 	/**
 	 * 設定取得
 	 *
-	 * @param string $name 設定名.
+	 * @param string $name    設定名.
+	 * @param mixed  $default デフォルト.
 	 *
 	 * @return mixed
 	 */
-	public static function get_option( $name ) {
+	public static function get_option( $name, $default ) {
 		$option = get_option(
 			self::get_option_name( $name ),
-			self::get_default_option( $name )
+			self::get_default_option( $name, $default )
 		);
 
 		return $option;
 	}
 
 	/**
+	 * デフォルト値取得
+	 *
+	 * @param string $name    設定名.
+	 * @param mixed  $default デフォルト.
+	 *
+	 * @return mixed
+	 */
+	public static function get_default_option( $name, $default ) {
+		$name = self::get_option_name( $name );
+
+		return apply_filters( "ystdb_get_default_${name}", $default, $name );
+	}
+
+	/**
 	 * 設定取得(Bool)
 	 *
-	 * @param string $name 設定名.
+	 * @param string $name    設定名.
+	 * @param mixed  $default デフォルト.
 	 *
 	 * @return bool
 	 */
-	public static function get_option_by_bool( $name ) {
-		$option = self::get_option( $name );
+	public static function get_option_by_bool( $name, $default ) {
+		$option = self::get_option( $name, $default );
 
 		return Helper::to_bool( $option );
 	}
@@ -156,25 +120,12 @@ class Options {
 	 * @return int
 	 */
 	public static function get_option_by_number( $name, $default = 0 ) {
-		$option = self::get_option( $name );
+		$option = self::get_option( $name, $default );
 		if ( is_numeric( $option ) ) {
 			return $option;
 		}
 
 		return $default;
-	}
-
-	/**
-	 * デフォルト値取得
-	 *
-	 * @param string $name 設定名.
-	 *
-	 * @return bool|mixed
-	 */
-	public static function get_default_option( $name ) {
-		$defaults = self::get_default_options();
-
-		return isset( $defaults[ $name ] ) ? $defaults[ $name ] : false;
 	}
 
 	/**
@@ -236,7 +187,7 @@ class Options {
 						<th scope="row">警告非表示</th>
 						<td>
 							<label>
-								<input id="hide_no_ystandard_notice" type="checkbox" name="<?php echo self::get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'hide_no_ystandard_notice' ) ); ?>>yStnadard以外のテーマ利用についての警告を非表示にする
+								<input id="hide_no_ystandard_notice" type="checkbox" name="<?php echo self::get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'hide_no_ystandard_notice', false ) ); ?>>yStnadard以外のテーマ利用についての警告を非表示にする
 							</label>
 						</td>
 					</tr>
@@ -244,11 +195,11 @@ class Options {
 						<th scope="row">Font Awesome</th>
 						<td>
 							<label>
-								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome' ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
+								<input id="load_font_awesome" type="checkbox" name="<?php echo self::get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'load_font_awesome', true ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
 							</label>
 							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p><br>
 							<label>
-								<input id="use_all_icons" type="checkbox" name="<?php echo self::get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'use_all_icons' ) ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
+								<input id="use_all_icons" type="checkbox" name="<?php echo self::get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'use_all_icons', false ) ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
 							</label>
 							<p>※yStandard BlocksでFont Awesomeを読み込む場合に有効な設定です。<br>※チェックをつけるとすべてのFont Awesomeアイコンを読み込みます。選べるアイコン種類が多くなりますが、読み込み速度が遅くなります。</p><br>
 						</td>
@@ -262,16 +213,16 @@ class Options {
 							</p>
 							<br>
 							<label>
-								<input id="add_color_palette_css_text" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_text' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_text' ) ); ?>>テキストカラー
+								<input id="add_color_palette_css_text" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_text' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_text', true ) ); ?>>テキストカラー
 							</label><br>
 							<label>
-								<input id="add_color_palette_css_bg" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_bg' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_bg' ) ); ?>>背景色
+								<input id="add_color_palette_css_bg" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_bg' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_bg', true ) ); ?>>背景色
 							</label><br>
 							<label>
-								<input id="add_color_palette_css_border" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_border' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_border' ) ); ?>>枠線の色
+								<input id="add_color_palette_css_border" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_border' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_border', true ) ); ?>>枠線の色
 							</label><br>
 							<label>
-								<input id="add_color_palette_css_fill" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_fill' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_fill' ) ); ?>>SVG fill
+								<input id="add_color_palette_css_fill" type="checkbox" name="<?php echo self::get_option_name( 'add_color_palette_css_fill' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_color_palette_css_fill', true ) ); ?>>SVG fill
 							</label><br>
 						</td>
 					</tr>
@@ -284,7 +235,7 @@ class Options {
 							</p>
 							<br>
 							<label>
-								<input id="add_font_size_css" type="checkbox" name="<?php echo self::get_option_name( 'add_font_size_css' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_font_size_css' ) ); ?>>文字サイズCSS
+								<input id="add_font_size_css" type="checkbox" name="<?php echo self::get_option_name( 'add_font_size_css' ); ?>" value="1" <?php checked( self::get_option_by_bool( 'add_font_size_css', true ) ); ?>>文字サイズCSS
 							</label>
 						</td>
 					</tr>
