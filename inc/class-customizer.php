@@ -23,9 +23,9 @@ class Customizer {
 	 * 蛍光マーカーデフォルトカラー
 	 */
 	const MARKER_DEFAULT_COLOR = [
-		1 => 'DA6272',
-		2 => '45A1CF',
-		3 => 'FFEE55',
+		1 => '#DA6272',
+		2 => '#45A1CF',
+		3 => '#FFEE55',
 	];
 
 	/**
