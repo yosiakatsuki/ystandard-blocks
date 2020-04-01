@@ -33,7 +33,7 @@
 /**
  * 吹き出し画像用
  */
-@for $i from 1 through 6 {
+@for $i from 1 through 30 {
 	#customize-control-ystdb_balloon_image_label#{$i} {
 		label {
 			@include controlsLabel($i);
