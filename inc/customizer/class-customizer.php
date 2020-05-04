@@ -32,7 +32,12 @@ class Customizer {
 	 * Customizer constructor.
 	 */
 	public function __construct() {
-
+		/**
+		 * カスタマイザー追加
+		 */
+		if ( Main::is_ystandard() ) {
+			add_action( 'customize_register', [ $this, 'customize_register' ], 11 );
+		}
 	}
 
 	/**
@@ -271,58 +276,66 @@ class Customizer {
 	 *
 	 * @return \WP_Customize_Manager
 	 */
-	public static function ystdb_customize_register( $wp_customize ) {
-		if ( ! class_exists( '\YS_Customizer' ) ) {
-			return $wp_customize;
-		}
-		$ys_customizer = new \YS_Customizer( $wp_customize );
-
+	public function customize_register( $wp_customize ) {
+		require_once __DIR__ . '/class-section-label-control.php';
+		require_once __DIR__ . '/class-customize-control.php';
+		$customizer = new Customize_Control( $wp_customize );
 		/**
 		 * インライン装飾設定追加
 		 */
-		self::add_inline_style_settings( $ys_customizer );
+		$this->add_inline_style_settings( $customizer );
 
 		/**
 		 * 吹き出し画像登録
 		 */
-		self::add_balloon_images( $ys_customizer );
+		$this->add_balloon_images( $customizer );
+
+		/**
+		 * パネルの位置調整
+		 */
+		$wp_customize->get_panel( $this->get_panel_name() )->priority = 9999;
 
 		return $wp_customize;
 	}
 
 	/**
+	 * セクションを追加するパネル名を取得
+	 *
+	 * @return string
+	 */
+	private function get_panel_name() {
+		$theme_version = Utility::get_theme_version( true );
+		if ( version_compare( '4.0.0-alpha-1', $theme_version, '>' ) ) {
+			return 'ys_customizer_panel_extension';
+		}
+
+		return 'ys_extension';
+	}
+
+	/**
 	 * インライン装飾設定追加
 	 *
-	 * @param \YS_Customizer $ys_customizer カスタマイザー.
+	 * @param Customize_Control $customizer カスタマイザー.
 	 */
-	public static function add_inline_style_settings( $ys_customizer ) {
+	public function add_inline_style_settings( $customizer ) {
 		/**
 		 * セクション追加
 		 */
-		$ys_customizer->add_section(
+		$customizer->add_section(
 			[
 				'section'     => 'ystdb_inline_style',
 				'title'       => '[ys blocks]インラインスタイル設定',
-				'panel'       => 'ys_customizer_panel_extension',
+				'panel'       => $this->get_panel_name(),
 				'description' => 'yStandard Blocks: インライン装飾の設定<br><br><strong>※設定後再読み込みするとプレビュー画面に反映されます。</strong><br><br>',
 			]
 		);
 		$ystdb_opt = new Options();
 		for ( $i = 1; $i <= 3; $i ++ ) {
-			/**
-			 * ラベル
-			 */
-			$ys_customizer->add_label(
-				[
-					'id'      => $ystdb_opt->get_option_name( 'inline_style_label_' . $i ),
-					'label'   => '[ys]インラインスタイル ' . $i,
-					'section' => 'ystdb_inline_style',
-				]
-			);
+			$customizer->add_section_label( '[ys]インラインスタイル ' . $i );
 			/**
 			 * 文字サイズ（相対）
 			 */
-			$ys_customizer->add_number(
+			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_option_name( 'inline_style_fz_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_fz_' . $i, 100 ),
@@ -340,7 +353,7 @@ class Customizer {
 			/**
 			 * 文字色
 			 */
-			$ys_customizer->add_color(
+			$customizer->add_color(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_color_' . $i, '#222222' ),
@@ -352,7 +365,7 @@ class Customizer {
 			/**
 			 * マーカー色
 			 */
-			$ys_customizer->add_color(
+			$customizer->add_color(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i, self::MARKER_DEFAULT_COLOR[ $i ] ),
@@ -364,7 +377,7 @@ class Customizer {
 			/**
 			 * マーカー太さ
 			 */
-			$ys_customizer->add_number(
+			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_option_name( 'inline_style_mark_weight_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_weight_' . $i, 25 ),
@@ -381,7 +394,7 @@ class Customizer {
 			/**
 			 * マーカー不透明度
 			 */
-			$ys_customizer->add_number(
+			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_option_name( 'inline_style_mark_opacity_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i, 30 ),
@@ -398,7 +411,7 @@ class Customizer {
 			/**
 			 * スタイル
 			 */
-			$ys_customizer->add_radio(
+			$customizer->add_radio(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_type_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_type_' . $i, 'normal' ),
@@ -413,18 +426,11 @@ class Customizer {
 				]
 			);
 		}
-
 		/**
 		 * 少し大きく・少し小さく
 		 */
-		$ys_customizer->add_label(
-			[
-				'id'      => $ystdb_opt->get_option_name( 'inline_style_larger_label' ),
-				'label'   => '[ys]少し大きく',
-				'section' => 'ystdb_inline_style',
-			]
-		);
-		$ys_customizer->add_number(
+		$customizer->add_section_label( '[ys]少し大きく' );
+		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_option_name( 'inline_style_larger' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger', 120 ),
@@ -439,14 +445,8 @@ class Customizer {
 				],
 			]
 		);
-		$ys_customizer->add_label(
-			[
-				'id'      => $ystdb_opt->get_option_name( 'inline_style_smaller_label' ),
-				'label'   => '[ys]少し小さく',
-				'section' => 'ystdb_inline_style',
-			]
-		);
-		$ys_customizer->add_number(
+		$customizer->add_section_label( '[ys]少し小さく' );
+		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_option_name( 'inline_style_smaller' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller', 80 ),
@@ -465,14 +465,8 @@ class Customizer {
 		/**
 		 * スマートフォンで少し大きく・少し小さく
 		 */
-		$ys_customizer->add_label(
-			[
-				'id'      => $ystdb_opt->get_option_name( 'inline_style_larger_sp_label' ),
-				'label'   => '[ys]少し大きく(SP)',
-				'section' => 'ystdb_inline_style',
-			]
-		);
-		$ys_customizer->add_number(
+		$customizer->add_section_label( '[ys]少し大きく(SP)' );
+		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_option_name( 'inline_style_larger_sp' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger_sp', 120 ),
@@ -487,14 +481,8 @@ class Customizer {
 				],
 			]
 		);
-		$ys_customizer->add_label(
-			[
-				'id'      => $ystdb_opt->get_option_name( 'inline_style_smaller_sp_label' ),
-				'label'   => '[ys]少し小さく(SP)',
-				'section' => 'ystdb_inline_style',
-			]
-		);
-		$ys_customizer->add_number(
+		$customizer->add_section_label( '[ys]少し小さく(SP)' );
+		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_option_name( 'inline_style_smaller_sp' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller_sp', 80 ),
@@ -514,17 +502,17 @@ class Customizer {
 	/**
 	 * 吹き出しで使用する画像の設定追加
 	 *
-	 * @param \YS_Customizer $ys_customizer カスタマイザー.
+	 * @param Customize_Control $customizer カスタマイザー.
 	 */
-	public static function add_balloon_images( $ys_customizer ) {
+	public function add_balloon_images( $customizer ) {
 		/**
 		 * セクション追加
 		 */
-		$ys_customizer->add_section(
+		$customizer->add_section(
 			[
 				'section'     => 'ystdb_balloon_images',
 				'title'       => '[ys blocks]吹き出しブロック画像設定',
-				'panel'       => 'ys_customizer_panel_extension',
+				'panel'       => $this->get_panel_name(),
 				'description' => 'yStandard Blocks: 吹き出しブロックでよく使う画像を登録して簡単に使えるようにします。',
 			]
 		);
@@ -533,17 +521,11 @@ class Customizer {
 			/**
 			 * ラベル
 			 */
-			$ys_customizer->add_label(
-				[
-					'id'      => $ystdb_opt->get_option_name( 'balloon_image_label' . $i ),
-					'label'   => '吹き出しブロック画像 ' . $i,
-					'section' => 'ystdb_balloon_images',
-				]
-			);
+			$customizer->add_section_label( '吹き出しブロック画像 ' . $i );
 			/**
 			 * 画像
 			 */
-			$ys_customizer->add_image(
+			$customizer->add_image(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'balloon_image_' . $i ),
 					'label'     => '画像',
@@ -555,7 +537,7 @@ class Customizer {
 			/**
 			 * 名前
 			 */
-			$ys_customizer->add_text(
+			$customizer->add_text(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'balloon_name_' . $i ),
 					'label'     => '名前',
@@ -567,3 +549,5 @@ class Customizer {
 		}
 	}
 }
+
+new Customizer();

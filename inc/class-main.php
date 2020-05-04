@@ -17,7 +17,7 @@ class Main {
 	/**
 	 * 読み込むファイル群
 	 */
-	const YSTDB_INC_PATH = YSTDB_PATH . '/inc/';
+	const YSTDB_INC_PATH = YSTDB_PATH . '/inc';
 
 	/**
 	 * Main constructor.
@@ -37,17 +37,6 @@ class Main {
 				add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 			}
 			add_action( 'after_setup_theme', [ $this, 'update_check' ] );
-		}
-
-		/**
-		 * カスタマイザー追加
-		 */
-		if ( self::is_ystandard() ) {
-			add_filter(
-				'ys_customizer_add_extension',
-				[ '\ystandard_blocks\Customizer', 'ystdb_customize_register' ],
-				11
-			);
 		}
 	}
 
@@ -102,12 +91,13 @@ class Main {
 	 */
 	private function require() {
 		$files = [
-			self::YSTDB_INC_PATH . 'class-dynamic-block.php',
-			self::YSTDB_INC_PATH . 'class-register.php',
-			self::YSTDB_INC_PATH . 'class-enqueue.php',
-			self::YSTDB_INC_PATH . 'class-options.php',
-			self::YSTDB_INC_PATH . 'class-customizer.php',
-			self::YSTDB_INC_PATH . 'class-helper.php',
+			self::YSTDB_INC_PATH . '/utility/class-utility.php',
+			self::YSTDB_INC_PATH . '/class-dynamic-block.php',
+			self::YSTDB_INC_PATH . '/class-register.php',
+			self::YSTDB_INC_PATH . '/class-enqueue.php',
+			self::YSTDB_INC_PATH . '/class-options.php',
+			self::YSTDB_INC_PATH . '/customizer/class-customizer.php',
+			self::YSTDB_INC_PATH . '/class-helper.php',
 		];
 		foreach ( $files as $file ) {
 			require_once( $file );
