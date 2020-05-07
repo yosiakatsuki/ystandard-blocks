@@ -1,6 +1,8 @@
 import classnames from 'classnames';
-import IconSelect from '../../src/js/components/icon-select/index';
+import SVGIconSelect from '../../src/js/components/svg-icon-select/index';
+import SVGIcon from "../../src/js/components/svg-icon";
 import { ystdbConfig } from '../../src/js/config/config';
+
 
 import {
 	RichText,
@@ -30,7 +32,7 @@ import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 
-function ysButton( props ) {
+function svgButton( props ) {
 	const {
 		textColor,
 		backgroundColor,
@@ -111,17 +113,6 @@ function ysButton( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<BaseControl>
-					<div
-						style={
-							{
-								color: ystdbConfig.color.iconDeprecatedForeground,
-								padding : '0 16px'
-							}
-						}>
-						※このブロックは非推奨になりました。<br/>アイコンが青色の「[ys]カスタムボタン」に変換してください。
-					</div>
-				</BaseControl>
 				<PanelColorSettings
 					title={ __( 'Color Settings' ) }
 					initialOpen={ true }
@@ -164,7 +155,7 @@ function ysButton( props ) {
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
-					<IconSelect
+					<SVGIconSelect
 						iconControlTitle={ __(
 							'左アイコン',
 							'ystandard-blocks'
@@ -187,7 +178,7 @@ function ysButton( props ) {
 								return (
 									<Button
 										key={ item.value }
-										isDefault
+										isSecondary
 										isPrimary={
 											iconSizeLeft === item.value
 										}
@@ -203,7 +194,7 @@ function ysButton( props ) {
 							} ) }
 						</div>
 					</BaseControl>
-					<IconSelect
+					<SVGIconSelect
 						iconControlTitle={ __(
 							'右アイコン',
 							'ystandard-blocks'
@@ -226,7 +217,7 @@ function ysButton( props ) {
 								return (
 									<Button
 										key={ item.value }
-										isDefault
+										isSecondary
 										isPrimary={
 											iconSizeRight === item.value
 										}
@@ -269,7 +260,7 @@ function ysButton( props ) {
 								return (
 									<Button
 										key={ item.value }
-										isDefault
+										isSecondary
 										isPrimary={ paddingType === item.value }
 										onClick={ () => {
 											setAttributes( {
@@ -400,13 +391,12 @@ function ysButton( props ) {
 								className={ classnames(
 									'ystdb-button__icon',
 									'ystdb-button__icon--left',
-									iconLeft,
 									{
 										[ iconSizeLeft ]: iconSizeLeft,
 									}
 								) }
 							>
-								{ ' ' }
+								<SVGIcon name={ iconLeft }/>
 							</span>
 						) }
 						<RichText
@@ -424,13 +414,12 @@ function ysButton( props ) {
 								className={ classnames(
 									'ystdb-button__icon',
 									'ystdb-button__icon--right',
-									iconRight,
 									{
 										[ iconSizeRight ]: iconSizeRight,
 									}
 								) }
 							>
-								{ ' ' }
+								<SVGIcon name={ iconRight }/>
 							</span>
 						) }
 					</span>
@@ -462,4 +451,4 @@ function ysButton( props ) {
 export default compose( [
 	withColors( 'backgroundColor', { textColor: 'color' } ),
 	withFontSizes( 'fontSize' ),
-] )( ysButton );
+] )( svgButton );

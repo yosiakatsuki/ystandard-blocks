@@ -174,3 +174,13 @@ Source : <https://github.com/fontIconPicker/react-fonticonpicker>
 
 License: W3C Software and Document License
 Source : <https://github.com/w3c/IntersectionObserver>
+
+### Feather
+
+License: MIT  
+Source : <https://github.com/feathericons/feather>
+
+### Simple Icons
+
+License: CC0 - 1.0  
+Source : <https://github.com/simple-icons/simple-icons>

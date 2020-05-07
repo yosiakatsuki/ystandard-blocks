@@ -24,6 +24,10 @@ class Register {
 	 * @var array
 	 */
 	private $blocks = [
+		'svg-button'  => [
+			'name'    => 'ystdb/svg-button',
+			'no-ystd' => true,
+		],
 		'columns' => [
 			'name'    => 'ystdb/columns',
 			'no-ystd' => true,

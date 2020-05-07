@@ -671,9 +671,7 @@ function ysButton(props) {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-button__icon', 'ystdb-button__icon--right', iconRight, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, iconSizeRight, iconSizeRight))
   }, ' ')))), !!isSelected && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: 'ystdb-button__link-container'
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-    className: "ystdb-button__link-label"
-  }, "\u30EA\u30F3\u30AF\u5148URL"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["URLInput"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["URLInput"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('Link'),
     className: "ystdb-button__link",
     value: url
@@ -762,7 +760,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["registerBlockType"])('yst
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('[ys]カスタムボタン', 'ystandard-blocks'),
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('yStandard Blocks カスタムボタン', 'ystandard-blocks'),
   icon: _icon__WEBPACK_IMPORTED_MODULE_3__["default"],
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('button'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('ボタン'), 'btn', 'button'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.deprecated,
   attributes: _config__WEBPACK_IMPORTED_MODULE_6__["attributes"],
   supports: _config__WEBPACK_IMPORTED_MODULE_6__["supports"],

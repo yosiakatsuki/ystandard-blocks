@@ -103,6 +103,7 @@ function watchFiles() {
 	cleanFiles();
 	sass();
 	watch( './src/sass/**/*.scss', sass );
+	watch( './src/js/**/*.scss', sass );
 	watch( './blocks/**/*.scss', sass );
 }
 
