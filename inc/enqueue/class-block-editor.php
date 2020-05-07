@@ -34,13 +34,13 @@ class Block_Editor {
 	public function block_editor_assets() {
 		wp_enqueue_style(
 			'fonticonpicker-base-theme',
-			'https://unpkg.com/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css',
+			YSTDB_URL . '/library/react-fonticonpicker/fonticonpicker.base-theme.react.css',
 			[],
 			YSTDB_VERSION
 		);
 		wp_enqueue_style(
 			'fonticonpicker-material-theme',
-			'https://unpkg.com/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css',
+			YSTDB_URL . '/library/react-fonticonpicker/fonticonpicker.material-theme.react.css',
 			[],
 			YSTDB_VERSION
 		);

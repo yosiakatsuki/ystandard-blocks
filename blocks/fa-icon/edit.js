@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import IconSelect from '../../src/js/components/icon-select/index';
 import { sizing } from './config';
+import { ystdbConfig } from '../../src/js/config/config';
 
 import {
 	BlockControls,
@@ -78,6 +79,17 @@ function faIcon( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<BaseControl>
+					<div
+						style={
+							{
+								color: ystdbConfig.color.iconDeprecatedForeground,
+								padding : '0 16px'
+							}
+						}>
+						※このブロックは非推奨になりました。<br/>アイコンが青色の「[ys]カスタムボタン」に変換してください。
+					</div>
+				</BaseControl>
 				<PanelColorSettings
 					title={ __( 'Color Settings' ) }
 					initialOpen={ true }
@@ -90,7 +102,7 @@ function faIcon( props ) {
 							label: __( 'Text Color' ),
 						},
 					] }
-				></PanelColorSettings>
+				/>
 				<PanelBody title={ __( 'サイズ設定', 'ystandard-blocks' ) }>
 					<FontSizePicker
 						label={ __( 'アイコンサイズ', 'ystandard-blocks' ) }

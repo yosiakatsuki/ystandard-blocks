@@ -13,7 +13,7 @@ registerBlockType( 'ystdb/ys-btn', {
 	description: __( 'yStandard Blocks カスタムボタン', 'ystandard-blocks' ),
 	icon,
 	keywords: [ __( 'button' ), __( 'ボタン' ), 'btn', 'button' ],
-	category: ystdbConfig.category.common,
+	category: ystdbConfig.category.deprecated,
 	attributes,
 	supports,
 	edit,

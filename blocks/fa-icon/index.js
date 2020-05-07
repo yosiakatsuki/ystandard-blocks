@@ -10,10 +10,10 @@ registerBlockType( 'ystdb/fa-icon', {
 	description: __( 'Font Awesomeアイコン表示ブロック', 'ystandard-blocks' ),
 	icon: {
 		src: 'info',
-		foreground: ystdbConfig.color.iconForeground,
+		foreground: ystdbConfig.color.iconDeprecatedForeground,
 	},
 	keywords: [ __( 'icon' ), __( 'アイコン' ), 'icon', 'fa' ],
-	category: ystdbConfig.category.common,
+	category: ystdbConfig.category.deprecated,
 	attributes,
 	supports,
 	edit,
