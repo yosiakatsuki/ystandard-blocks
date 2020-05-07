@@ -18,6 +18,23 @@ defined( 'ABSPATH' ) || die();
  */
 class Utility {
 	/**
+	 * HTML・改行・ショートコードなしのテキストを取得
+	 *
+	 * @param string $content content.
+	 *
+	 * @return string
+	 */
+	public static function get_plain_text( $text ) {
+		$text = html_entity_decode( $text );
+		// ショートコード削除.
+		$text = strip_shortcodes( $text );
+		// HTMLタグ削除.
+		$text = wp_strip_all_tags( $text, true );
+
+		return $text;
+	}
+
+	/**
 	 * テーマバージョン取得
 	 *
 	 * @param boolean $parent 親テーマ情報かどうか.

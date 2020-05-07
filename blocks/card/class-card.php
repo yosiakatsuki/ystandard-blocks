@@ -489,7 +489,7 @@ class Card extends Dynamic_Block {
 		if ( Utility::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
 				$this->params['dscr'] = wp_trim_words(
-					html_entity_decode( $this->get_post_excerpt( $post_id ) ),
+					Utility::get_plain_text( $this->get_post_excerpt( $post_id ) ),
 					$this->params['dscr_char_count']
 				);
 			}
@@ -640,7 +640,7 @@ class Card extends Dynamic_Block {
 			if ( empty( $this->params['dscr'] ) ) {
 				if ( $site_data['dscr'] ) {
 					$this->params['dscr'] = wp_trim_words(
-						html_entity_decode( $site_data['dscr'] ),
+						Utility::get_plain_text( $site_data['dscr'] ),
 						$this->params['dscr_char_count']
 					);
 				}
@@ -725,7 +725,6 @@ class Card extends Dynamic_Block {
 
 		return '';
 	}
-
 
 	/**
 	 * キャッシュからデータ取得
