@@ -1,6 +1,6 @@
 <?php
 /**
- * Ystandard_Blocks
+ * Register Blocks
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
@@ -9,10 +9,12 @@
 
 namespace ystandard_blocks;
 
-use Cassandra\Custom;
+defined( 'ABSPATH' ) || die();
 
 /**
  * Class Register
+ *
+ * @package ystandard_blocks
  */
 class Register {
 
@@ -22,20 +24,12 @@ class Register {
 	 * @var array
 	 */
 	private $blocks = [
-		'button'  => [
-			'name'    => 'ystdb/ys-btn',
-			'no-ystd' => true,
-		],
 		'columns' => [
 			'name'    => 'ystdb/columns',
 			'no-ystd' => true,
 		],
 		'column'  => [
 			'name'    => 'ystdb/column',
-			'no-ystd' => true,
-		],
-		'fa-icon' => [
-			'name'    => 'ystdb/fa-icon',
 			'no-ystd' => true,
 		],
 		'section' => [
@@ -48,6 +42,14 @@ class Register {
 		],
 		'balloon' => [
 			'name'    => 'ystdb/balloon',
+			'no-ystd' => true,
+		],
+		'fa-icon' => [
+			'name'    => 'ystdb/fa-icon',
+			'no-ystd' => true,
+		],
+		'button'  => [
+			'name'    => 'ystdb/ys-btn',
 			'no-ystd' => true,
 		],
 	];
@@ -87,9 +89,8 @@ class Register {
 	 * Register constructor.
 	 */
 	function __construct() {
-		if ( is_admin() ) {
-			add_action( 'init', [ $this, 'register_block' ] );
-		}
+
+		add_action( 'init', [ $this, 'register_block' ] );
 		add_action( 'init', [ $this, 'register_dynamic_block' ] );
 		add_action(
 			'enqueue_block_editor_assets',
@@ -101,7 +102,9 @@ class Register {
 	 * ブロックの登録
 	 */
 	public function register_block() {
-
+		if ( ! is_admin() ) {
+			return;
+		}
 		/**
 		 * 通常ブロック
 		 */
@@ -109,7 +112,7 @@ class Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Main::is_ystandard() ) {
+			if ( ! Utility::is_ystandard() ) {
 				if ( ! $value['no-ystd'] ) {
 					continue;
 				}
@@ -153,7 +156,7 @@ class Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Main::is_ystandard() ) {
+			if ( ! Utility::is_ystandard() ) {
 				if ( ! $value ) {
 					continue;
 				}
@@ -180,7 +183,7 @@ class Register {
 			/**
 			 * 非yStandardの利用チェック
 			 */
-			if ( ! Main::is_ystandard() ) {
+			if ( ! Utility::is_ystandard() ) {
 				if ( ! $value['no-ystd'] ) {
 					continue;
 				}
@@ -204,11 +207,11 @@ class Register {
 	 */
 	private function create_block_config() {
 		return [
-			'yStandard'     => Main::is_ystandard() ? '1' : '',
-			'useAllIcons'   => Options::is_use_all_icons() ? 'all' : '',
+			'yStandard'     => Utility::is_ystandard() ? '1' : '',
+			'useAllIcons'   => Font_Awesome::is_use_all_icons() ? 'all' : '',
 			'homeUrl'       => home_url(),
 			'pluginUrl'     => YSTDB_URL,
-			'balloonImages' => Customizer::get_balloon_images(),
+			'balloonImages' => Balloon::get_balloon_images(),
 		];
 	}
 }

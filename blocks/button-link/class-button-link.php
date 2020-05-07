@@ -8,8 +8,13 @@
  */
 
 namespace ystandard_blocks;
+
+defined( 'ABSPATH' ) || die();
+
 /**
- * Class Afi_Button
+ * Class Button_Link
+ *
+ * @package ystandard_blocks
  */
 class Button_Link extends Dynamic_Block {
 

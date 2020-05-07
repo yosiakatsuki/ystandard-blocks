@@ -1,0 +1,35 @@
+<?php
+/**
+ * Config
+ *
+ * @package yStandard_blocks
+ * @author  yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+namespace ystandard_blocks;
+
+defined( 'ABSPATH' ) || die();
+
+/**
+ * Class Config
+ *
+ * @package ystandard_blocks
+ */
+class Config {
+
+	/**
+	 * 設定名
+	 */
+	const OPTION_NAME = 'ystdb_options';
+
+	/**
+	 * CSS Handle.
+	 */
+	const CSS_HANDLE = 'ystdb-css';
+
+	/**
+	 * JS App Handle.
+	 */
+	const JS_APP_HANDLE = 'ystdb-js-app';
+}

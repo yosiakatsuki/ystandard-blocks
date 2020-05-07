@@ -1,6 +1,6 @@
 <?php
 /**
- * Ystandard_Blocks
+ * Option
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
@@ -9,50 +9,25 @@
 
 namespace ystandard_blocks;
 
+defined( 'ABSPATH' ) || die();
+
 /**
- * Class Options
+ * Class Option
+ *
+ * @package ystandard_blocks
  */
-class Options {
+class Option {
 
 	const OPTION_PREFIX = 'ystdb_';
 
 	/**
-	 * Options constructor.
+	 * Option constructor.
 	 */
 	public function __construct() {
-		if ( ! Main::is_ystandard() ) {
+		if ( ! Utility::is_ystandard() ) {
 			add_action( 'admin_menu', [ $this, 'blocks_option' ] );
 			add_action( 'admin_init', [ $this, 'register_option' ] );
 		}
-	}
-
-	/**
-	 * すべてのアイコンを使用するか
-	 *
-	 * @return bool
-	 */
-	public static function is_use_all_icons() {
-
-		if ( Main::is_ystandard() ) {
-			/**
-			 * テーマがyStandardの場合は本体の設定に従う
-			 */
-			$use_all_icons = true;
-			if ( function_exists( 'ys_get_option' ) && 'light' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
-				$use_all_icons = false;
-			}
-		} else {
-			/**
-			 * 非yStandardな環境
-			 */
-			if ( self::get_option_by_bool( 'load_font_awesome', true ) ) {
-				$use_all_icons = self::get_option_by_bool( 'use_all_icons', false );
-			} else {
-				$use_all_icons = true;
-			}
-		}
-
-		return apply_filters( 'ystdb_is_use_all_icons', $use_all_icons );
 	}
 
 	/**
@@ -108,7 +83,7 @@ class Options {
 	public static function get_option_by_bool( $name, $default ) {
 		$option = self::get_option( $name, $default );
 
-		return Helper::to_bool( $option );
+		return Utility::to_bool( $option );
 	}
 
 	/**
@@ -126,21 +101,6 @@ class Options {
 		}
 
 		return $default;
-	}
-
-	/**
-	 * カラーコードをrgbに変換
-	 *
-	 * @param string $color カラーコード.
-	 *
-	 * @return array
-	 */
-	public static function hex_2_rgb( $color ) {
-		return [
-			hexdec( substr( $color, 1, 2 ) ),
-			hexdec( substr( $color, 3, 2 ) ),
-			hexdec( substr( $color, 5, 2 ) ),
-		];
 	}
 
 	/**
@@ -247,4 +207,4 @@ class Options {
 	}
 }
 
-new Options();
+new Option();

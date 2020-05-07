@@ -33,15 +33,25 @@ defined( 'ABSPATH' ) || die();
 define( 'YSTDB_VERSION', '1.1.3' );
 define( 'YSTDB_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'YSTDB_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+
+/**
+ * Init.
+ */
+require_once __DIR__ . '/inc/init/class-init.php';
+
+
 /**
  * アンインストール時の処理
  */
 register_uninstall_hook(
 	__FILE__,
-	[ '\ystandard_blocks\Main', 'uninstall_ystandard_blocks' ]
+	'uninstall_ystandard_blocks'
 );
 
-require_once YSTDB_PATH . '/inc/class-main.php';
-
-new ystandard_blocks\Main();
-
+/**
+ * アンインストール時の処理
+ */
+function uninstall_ystandard_blocks() {
+	// 設定削除.
+	delete_option( 'ystdb_options' );
+}

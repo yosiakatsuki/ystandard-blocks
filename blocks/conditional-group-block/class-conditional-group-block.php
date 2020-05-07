@@ -90,10 +90,10 @@ class Conditional_Group_Block extends Dynamic_Block {
 		/**
 		 * AMP判定
 		 */
-		if ( Main::is_amp() && $attributes['hideAMP'] ) {
+		if ( Utility::is_amp() && $attributes['hideAMP'] ) {
 			return '';
 		}
-		if ( ! Main::is_amp() && $attributes['onlyAMP'] ) {
+		if ( ! Utility::is_amp() && $attributes['onlyAMP'] ) {
 			return '';
 		}
 

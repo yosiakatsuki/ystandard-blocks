@@ -1,13 +1,13 @@
 <?php
 /**
- * Ystandard_Blocks
+ * Button Link View.
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-use \ystandard_blocks\Helper;
+use \ystandard_blocks\Utility;
 
 $attributes = wp_parse_args(
 	$attributes,
@@ -55,34 +55,34 @@ if ( $attributes['className'] ) {
 	$wrap_class[] = $attributes['className'];
 }
 if ( $attributes['align'] ) {
-	$wrap_class[] = Helper::get_align_class( $attributes['align'] );
+	$wrap_class[] = Utility::get_align_class( $attributes['align'] );
 }
 if ( $attributes['customFontSize'] ) {
-	$wrap_style[] = Helper::get_font_size_style( $attributes['customFontSize'] );
+	$wrap_style[] = Utility::get_font_size_style( $attributes['customFontSize'] );
 } elseif ( $attributes['fontSize'] ) {
-	$wrap_class[] = Helper::get_font_size_class( $attributes['fontSize'] );
+	$wrap_class[] = Utility::get_font_size_class( $attributes['fontSize'] );
 }
 
 /**
  * リンク
  */
 if ( $attributes['textColor'] || $attributes['customTextColor'] ) {
-	$link_class[] = Helper::get_has_class( 'text-color', $attributes['textColor'], $attributes['customTextColor'] );
+	$link_class[] = Utility::get_has_class( 'text-color', $attributes['textColor'], $attributes['customTextColor'] );
 }
 if ( $attributes['textColor'] ) {
-	$link_class[] = Helper::get_text_color_class( $attributes['textColor'] );
+	$link_class[] = Utility::get_text_color_class( $attributes['textColor'] );
 }
 if ( $attributes['customTextColor'] ) {
-	$link_style[] = Helper::get_text_color_style( $attributes['customTextColor'] );
+	$link_style[] = Utility::get_text_color_style( $attributes['customTextColor'] );
 }
 if ( $attributes['backgroundColor'] || $attributes['customBackgroundColor'] ) {
-	$link_class[] = Helper::get_has_class( 'background', $attributes['backgroundColor'], $attributes['customBackgroundColor'] );
+	$link_class[] = Utility::get_has_class( 'background', $attributes['backgroundColor'], $attributes['customBackgroundColor'] );
 }
 if ( $attributes['backgroundColor'] ) {
-	$link_class[] = Helper::get_background_color_class( $attributes['backgroundColor'] );
+	$link_class[] = Utility::get_background_color_class( $attributes['backgroundColor'] );
 }
 if ( $attributes['customBackgroundColor'] ) {
-	$link_style[] = Helper::get_background_color_style( $attributes['customBackgroundColor'] );
+	$link_style[] = Utility::get_background_color_style( $attributes['customBackgroundColor'] );
 }
 if ( 0 === $attributes['borderRadius'] ) {
 	$link_class[] = 'no-border-radius';
@@ -138,12 +138,12 @@ if ( $attributes['iconRight'] ) {
 /**
  * スタイル作成
  */
-$wrap_style = Helper::get_style_attr( $wrap_style );
-$link_style = Helper::get_style_attr( $link_style );
+$wrap_style = Utility::get_style_attr( $wrap_style );
+$link_style = Utility::get_style_attr( $link_style );
 
 ?>
-<div class="<?php echo Helper::get_class_names( $wrap_class ); ?>"<?php echo $wrap_style; ?>>
-	<span class="<?php echo Helper::get_class_names( $link_class ); ?>"<?php echo $link_style; ?>>
+<div class="<?php echo Utility::get_class_names( $wrap_class ); ?>"<?php echo $wrap_style; ?>>
+	<span class="<?php echo Utility::get_class_names( $link_class ); ?>"<?php echo $link_style; ?>>
 		<span class="ystdb-button__link-content">
 		<?php
 		echo $icon_left;

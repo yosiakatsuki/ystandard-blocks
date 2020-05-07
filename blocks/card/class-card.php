@@ -335,7 +335,7 @@ class Card extends Dynamic_Block {
 		/**
 		 * 画像の再取得
 		 */
-		if ( $args['post_id'] && Helper::to_bool( $args['show_image'] ) ) {
+		if ( $args['post_id'] && Utility::to_bool( $args['show_image'] ) ) {
 			$args['image'] = $this->get_thumbnail(
 				$args['post_id'],
 				$args['title']
@@ -344,7 +344,7 @@ class Card extends Dynamic_Block {
 		/**
 		 * カスタム画像設定
 		 */
-		if ( ! empty( $args['image_id'] ) && Helper::to_bool( $args['show_image'] ) ) {
+		if ( ! empty( $args['image_id'] ) && Utility::to_bool( $args['show_image'] ) ) {
 			$alt = $args['title'];
 			if ( ! empty( $args['image_alt'] ) ) {
 				$alt = $args['image_alt'];
@@ -360,18 +360,18 @@ class Card extends Dynamic_Block {
 		 */
 		$class[] = 'ystdb-card';
 		$class[] = 'is-' . $args['card_type'];
-		$class[] = Helper::get_has_class( 'background', $args['background_color'], $args['custom_background_color'] );
-		$class[] = Helper::get_has_class( 'border', $args['border_color'], $args['custom_border_color'] );
-		$class[] = Helper::get_background_color_class( $args['background_color'] );
-		$class[] = Helper::get_border_color_class( $args['border_color'] );
+		$class[] = Utility::get_has_class( 'background', $args['background_color'], $args['custom_background_color'] );
+		$class[] = Utility::get_has_class( 'border', $args['border_color'], $args['custom_border_color'] );
+		$class[] = Utility::get_background_color_class( $args['background_color'] );
+		$class[] = Utility::get_border_color_class( $args['border_color'] );
 		if ( ! empty( $args['class'] ) ) {
 			$class[] = $args['class'];
 		}
-		$args['class']      = Helper::get_class_names( $class );
+		$args['class']      = Utility::get_class_names( $class );
 		$style              = [];
-		$style[]            = Helper::get_background_color_style( $args['custom_background_color'] );
-		$style[]            = Helper::get_border_color_style( $args['custom_border_color'] );
-		$args['warp_style'] = Helper::get_style_attr( $style );
+		$style[]            = Utility::get_background_color_style( $args['custom_background_color'] );
+		$style[]            = Utility::get_border_color_style( $args['custom_border_color'] );
+		$args['warp_style'] = Utility::get_style_attr( $style );
 
 		/**
 		 * コンテナ
@@ -380,7 +380,7 @@ class Card extends Dynamic_Block {
 		$class[]                 = 'ystdb-card__container';
 		$class[]                 = 'is-' . $args['card_type'];
 		$class[]                 = $this->is_horizon( $args['card_type'] ) ? 'has-image-align-' . $args['image_align'] : '';
-		$args['container_class'] = Helper::get_class_names( $class );
+		$args['container_class'] = Utility::get_class_names( $class );
 
 		/**
 		 * 画像
@@ -403,9 +403,9 @@ class Card extends Dynamic_Block {
 		 */
 		$class              = [];
 		$class[]            = 'ystdb-card__link';
-		$class[]            = Helper::get_has_class( 'text-color', $args['title_color'], $args['custom_title_color'] );
-		$class[]            = Helper::get_text_color_class( $args['title_color'] );
-		$args['link_class'] = Helper::get_class_names( $class );
+		$class[]            = Utility::get_has_class( 'text-color', $args['title_color'], $args['custom_title_color'] );
+		$class[]            = Utility::get_text_color_class( $args['title_color'] );
+		$args['link_class'] = Utility::get_class_names( $class );
 
 		if ( ! empty( $args['link_target'] ) ) {
 			$args['link_target'] = ' target="' . $args['link_target'] . '"';
@@ -414,8 +414,8 @@ class Card extends Dynamic_Block {
 			$args['rel'] = ' rel="' . $args['rel'] . '"';
 		}
 		$style             = [];
-		$style[]           = Helper::get_text_color_style( $args['custom_title_color'] );
-		$style             = Helper::get_style_attr( $style );
+		$style[]           = Utility::get_text_color_style( $args['custom_title_color'] );
+		$style             = Utility::get_style_attr( $style );
 		$args['link_attr'] = $args['link_target'] . $args['rel'] . $style;
 
 		/**
@@ -423,24 +423,24 @@ class Card extends Dynamic_Block {
 		 */
 		$class              = [];
 		$class[]            = 'ystdb-card__dscr';
-		$class[]            = Helper::get_has_class( 'text-color', $args['dscr_color'], $args['custom_dscr_color'] );
-		$class[]            = Helper::get_text_color_class( $args['dscr_color'] );
-		$args['dscr_class'] = Helper::get_class_names( $class );
+		$class[]            = Utility::get_has_class( 'text-color', $args['dscr_color'], $args['custom_dscr_color'] );
+		$class[]            = Utility::get_text_color_class( $args['dscr_color'] );
+		$args['dscr_class'] = Utility::get_class_names( $class );
 		$style              = [];
-		$style[]            = Helper::get_text_color_style( $args['custom_dscr_color'] );
-		$args['dscr_style'] = Helper::get_style_attr( $style );
+		$style[]            = Utility::get_text_color_style( $args['custom_dscr_color'] );
+		$args['dscr_style'] = Utility::get_style_attr( $style );
 
 		/**
 		 * ドメイン
 		 */
 		$class                = [];
 		$class[]              = 'ystdb-card__domain';
-		$class[]              = Helper::get_has_class( 'text-color', $args['domain_color'], $args['custom_domain_color'] );
-		$class[]              = Helper::get_text_color_class( $args['domain_color'] );
-		$args['domain_class'] = Helper::get_class_names( $class );
+		$class[]              = Utility::get_has_class( 'text-color', $args['domain_color'], $args['custom_domain_color'] );
+		$class[]              = Utility::get_text_color_class( $args['domain_color'] );
+		$args['domain_class'] = Utility::get_class_names( $class );
 		$style                = [];
-		$style[]              = Helper::get_text_color_style( $args['custom_domain_color'] );
-		$args['domain_style'] = Helper::get_style_attr( $style );
+		$style[]              = Utility::get_text_color_style( $args['custom_domain_color'] );
+		$args['domain_style'] = Utility::get_style_attr( $style );
 
 		/**
 		 * HTML作成
@@ -474,7 +474,7 @@ class Card extends Dynamic_Block {
 			$post_id
 		);
 		// 画像.
-		if ( Helper::to_bool( $this->params['show_image'] ) ) {
+		if ( Utility::to_bool( $this->params['show_image'] ) ) {
 			$this->params['image'] = $this->get_thumbnail(
 				$post_id,
 				$post->post_title
@@ -486,7 +486,7 @@ class Card extends Dynamic_Block {
 			$post_id
 		);
 		// 概要文.
-		if ( Helper::to_bool( $this->params['show_dscr'] ) ) {
+		if ( Utility::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
 				$this->params['dscr'] = wp_trim_words(
 					html_entity_decode( $this->get_post_excerpt( $post_id ) ),
@@ -502,7 +502,7 @@ class Card extends Dynamic_Block {
 			$post_id
 		);
 		// ドメイン.
-		if ( Helper::to_bool( $this->params['show_domain'] ) ) {
+		if ( Utility::to_bool( $this->params['show_domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
 		}
 	}
@@ -636,7 +636,7 @@ class Card extends Dynamic_Block {
 			$this->params['title'] = $site_data['title'];
 		}
 		// 概要.
-		if ( Helper::to_bool( $this->params['show_dscr'] ) ) {
+		if ( Utility::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
 				if ( $site_data['dscr'] ) {
 					$this->params['dscr'] = wp_trim_words(
@@ -649,11 +649,11 @@ class Card extends Dynamic_Block {
 			$this->params['dscr'] = '';
 		}
 		// 画像.
-		if ( Helper::to_bool( $this->params['show_image'] ) ) {
+		if ( Utility::to_bool( $this->params['show_image'] ) ) {
 			$this->params['image'] = $site_data['image'];
 		}
 		// ドメイン.
-		if ( Helper::to_bool( $this->params['show_domain'] ) ) {
+		if ( Utility::to_bool( $this->params['show_domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
 		}
 

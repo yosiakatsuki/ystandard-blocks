@@ -1,6 +1,6 @@
 <?php
 /**
- * Ystandard_Blocks
+ * Customizer
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
@@ -9,24 +9,12 @@
 
 namespace ystandard_blocks;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Customizer
  */
 class Customizer {
-
-	/**
-	 * 吹き出し画像登録数
-	 */
-	const BALLOON_OPTION = 30;
-
-	/**
-	 * 蛍光マーカーデフォルトカラー
-	 */
-	const MARKER_DEFAULT_COLOR = [
-		1 => '#DA6272',
-		2 => '#45A1CF',
-		3 => '#FFEE55',
-	];
 
 	/**
 	 * Customizer constructor.
@@ -35,239 +23,11 @@ class Customizer {
 		/**
 		 * カスタマイザー追加
 		 */
-		if ( Main::is_ystandard() ) {
+		if ( Utility::is_ystandard() ) {
 			add_action( 'customize_register', [ $this, 'customize_register' ], 11 );
 		}
 	}
 
-	/**
-	 * 設定反映CSS作成
-	 *
-	 * @param string $wrap ラッパーセレクター.
-	 *
-	 * @return string
-	 */
-	public static function get_inline_style_css( $wrap = '' ) {
-		$css = '';
-		for ( $i = 1; $i <= 3; $i ++ ) {
-			$style  = '';
-			$option = self::get_inline_style_option( $i );
-			/**
-			 * 文字サイズ
-			 */
-			if ( 1.0 !== $option['fz'] && 1 !== $option['fz'] ) {
-				$style .= sprintf( 'font-size:%sem;', $option['fz'] );
-			}
-			/**
-			 * 文字色
-			 */
-			if ( $option['color'] ) {
-				$style .= sprintf( 'color:%s;', $option['color'] );
-			}
-			/**
-			 * マーカー
-			 */
-			if ( 0 < $option['mark_weight'] ) {
-				$style .= self::get_marker_style(
-					$option['mark_color'],
-					$option['mark_weight'],
-					$option['mark_opacity']
-				);
-			}
-			/**
-			 * 装飾
-			 */
-			if ( 'bold' === $option['type'] ) {
-				$style .= 'font-weight: 700;';
-			}
-			if ( 'italic' === $option['type'] ) {
-				$style .= 'font-style: italic;';
-			}
-			/**
-			 * セレクタ
-			 */
-			$selector = '.ystdb-inline--' . $i;
-			if ( $wrap ) {
-				$selector = $wrap . ' ' . $selector;
-			}
-			/**
-			 * CSS作成
-			 */
-			$css .= sprintf(
-				'%s{%s}',
-				$selector,
-				$style
-			);
-		}
-
-		/**
-		 * 少し大きく・少し小さく
-		 */
-		$css .= sprintf(
-			'%s .ystdb-inline--larger {font-size:%sem;}',
-			$wrap,
-			( Options::get_option( 'inline_style_larger', 120 ) / 100 )
-		);
-		$css .= sprintf(
-			'%s .ystdb-inline--smaller {font-size:%sem;}',
-			$wrap,
-			( Options::get_option( 'inline_style_smaller', 80 ) / 100 )
-		);
-		/**
-		 * スマートフォンで少し大きく・少し小さく
-		 */
-		$css .= sprintf(
-			'@media (max-width:599px) { %s .ystdb-inline--larger-sp {font-size:%sem;}}',
-			$wrap,
-			( Options::get_option( 'inline_style_larger_sp', 120 ) / 100 )
-		);
-		$css .= sprintf(
-			'@media (max-width:599px) { %s .ystdb-inline--smaller-sp {font-size:%sem;}}',
-			$wrap,
-			( Options::get_option( 'inline_style_smaller_sp', 80 ) / 100 )
-		);
-
-		return $css;
-	}
-
-	/**
-	 * 編集画面用CSS
-	 *
-	 * @return string
-	 */
-	public static function get_editor_button_css() {
-		$css = '';
-		for ( $i = 1; $i <= 3; $i ++ ) {
-			$style  = '';
-			$option = self::get_inline_style_option( $i );
-			/**
-			 * 文字サイズ
-			 */
-			if ( 1.5 < $option['fz'] ) {
-				$option['fz'] = 1.5;
-			}
-			$style .= sprintf(
-				'transform: scale(%s);',
-				$option['fz']
-			);
-			/**
-			 * 文字色
-			 */
-			if ( $option['color'] ) {
-				$style .= sprintf( 'fill:%s;', $option['color'] );
-			}
-			/**
-			 * マーカー
-			 */
-			if ( 0 < $option['mark_weight'] ) {
-				$style .= self::get_marker_style(
-					$option['mark_color'],
-					$option['mark_weight'],
-					$option['mark_opacity']
-				);
-			} else {
-				$style .= 'background: none';
-			}
-			$selector = '.editor-styles-wrapper .ystdb-inline-style-toolbar.inline-style-' . $i . ' svg';
-
-			/**
-			 * CSS作成
-			 */
-			$css .= sprintf(
-				'%s{%s}',
-				$selector,
-				$style
-			);
-		}
-
-		return $css;
-	}
-
-	/**
-	 * マーカー用スタイル作成
-	 *
-	 * @param array $color   色.
-	 * @param int   $weight  太さ.
-	 * @param int   $opacity 不透明度.
-	 *
-	 * @return string
-	 */
-	public static function get_marker_style( $color, $weight, $opacity ) {
-		$weight = ( 100 - $weight ) . '%';
-
-		return sprintf(
-			'background: linear-gradient(transparent %s, rgba(%s, %s) %s);background-position-y: -0.2em;',
-			$weight,
-			implode( ',', $color ),
-			$opacity,
-			$weight
-		);
-	}
-
-	/**
-	 * 吹き出し用設定取得
-	 */
-	public static function get_balloon_images() {
-		$result = [];
-		for ( $i = 1; $i <= self::BALLOON_OPTION; $i ++ ) {
-			$image = Options::get_option( 'balloon_image_' . $i, '' );
-			$name  = Options::get_option( 'balloon_name_' . $i, '' );
-			if ( ! empty( $image ) ) {
-				$id       = attachment_url_to_postid( $image );
-				$result[] = [
-					'url'  => $image,
-					'id'   => $id,
-					'name' => $name,
-				];
-			}
-		}
-
-		return $result;
-	}
-
-	/**
-	 * インラインスタイル設定取得
-	 *
-	 * @param int $index 番号(1~3).
-	 *
-	 * @return array
-	 */
-	public static function get_inline_style_option( $index ) {
-		/**
-		 * 文字拡大率
-		 */
-		$fz = Options::get_option( 'inline_style_fz_' . $index, 100 );
-		$fz = ( $fz / 100 );
-		/**
-		 * 文字色
-		 */
-		$color   = Options::get_option( 'inline_style_color_' . $index, '#222222' );
-		$default = Options::get_default_option( 'inline_style_color_' . $index, '#222222' );
-		if ( $default === $color ) {
-			$color = '';
-		}
-		/**
-		 * マーカー
-		 */
-		$mark_weight  = Options::get_option( 'inline_style_mark_weight_' . $index, 25 );
-		$mark_color   = Options::hex_2_rgb(
-			Options::get_option( 'inline_style_mark_color_' . $index, self::MARKER_DEFAULT_COLOR[ $index ] )
-		);
-		$mark_opacity = Options::get_option_by_number( 'inline_style_mark_opacity_' . $index, 30 ) / 100;
-		/**
-		 * タイプ
-		 */
-		$type = Options::get_option( 'inline_style_type_' . $index, 'normal' );
-
-		return [
-			'fz'           => $fz,
-			'color'        => $color,
-			'mark_weight'  => $mark_weight,
-			'mark_color'   => $mark_color,
-			'mark_opacity' => $mark_opacity,
-			'type'         => $type,
-		];
-	}
 
 	/**
 	 * カスタマイザー追加
@@ -329,7 +89,7 @@ class Customizer {
 				'description' => 'yStandard Blocks: インライン装飾の設定<br><br><strong>※設定後再読み込みするとプレビュー画面に反映されます。</strong><br><br>',
 			]
 		);
-		$ystdb_opt = new Options();
+		$ystdb_opt = new Option();
 		for ( $i = 1; $i <= 3; $i ++ ) {
 			$customizer->add_section_label( '[ys]インラインスタイル ' . $i );
 			/**
@@ -368,7 +128,7 @@ class Customizer {
 			$customizer->add_color(
 				[
 					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_color_' . $i ),
-					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i, self::MARKER_DEFAULT_COLOR[ $i ] ),
+					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i, Format::MARKER_DEFAULT_COLOR[ $i ] ),
 					'label'     => 'マーカー色',
 					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
@@ -516,8 +276,8 @@ class Customizer {
 				'description' => 'yStandard Blocks: 吹き出しブロックでよく使う画像を登録して簡単に使えるようにします。',
 			]
 		);
-		$ystdb_opt = new Options();
-		for ( $i = 1; $i <= self::BALLOON_OPTION; $i ++ ) {
+		$ystdb_opt = new Option();
+		for ( $i = 1; $i <= Balloon::BALLOON_OPTION; $i ++ ) {
 			/**
 			 * ラベル
 			 */

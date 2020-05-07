@@ -54,8 +54,13 @@ abstract class Dynamic_Block {
 	 * @return false|string
 	 */
 	public function render_by_view( $slug, $attributes ) {
+		$view = apply_filters(
+			'ystdb_dynamic_block_view_path',
+			YSTDB_PATH . '/blocks/' . $slug . '/view.php',
+			$slug
+		);
 		ob_start();
-		include( YSTDB_PATH . '/blocks/' . $slug . '/view.php' );
+		include( $view );
 
 		return ob_get_clean();
 	}
@@ -86,7 +91,7 @@ abstract class Dynamic_Block {
 	protected function get_template_part( $attributes, $slug, $name = null ) {
 		$located = '';
 
-		if ( '' !== $name ) {
+		if ( ! empty( $name ) ) {
 			$templates[] = "{$slug}-{$name}.php";
 		}
 
