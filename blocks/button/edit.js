@@ -113,13 +113,14 @@ function ysButton( props ) {
 			<InspectorControls>
 				<BaseControl>
 					<div
-						style={
-							{
-								color: ystdbConfig.color.iconDeprecatedForeground,
-								padding : '0 16px'
-							}
-						}>
-						※このブロックは非推奨になりました。<br/>アイコンが青色の「[ys]カスタムボタン」に変換してください。
+						style={ {
+							color: ystdbConfig.color.iconDeprecatedForeground,
+							padding: '0 16px',
+						} }
+					>
+						※このブロックは非推奨になりました。
+						<br />
+						アイコンが青色の「[ys]カスタムボタン」に変換してください。
 					</div>
 				</BaseControl>
 				<PanelColorSettings
@@ -157,7 +158,7 @@ function ysButton( props ) {
 							setAttributes( {
 								borderRadius: ! value
 									? ystdbConfig.button
-										.borderRadiusInitialPosition
+											.borderRadiusInitialPosition
 									: value,
 							} );
 						} }

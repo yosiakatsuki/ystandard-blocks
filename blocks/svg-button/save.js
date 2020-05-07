@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import SVGIcon from "../../src/js/components/svg-icon";
+import SVGIcon from '../../src/js/components/svg-icon';
 
 import {
 	RichText,
@@ -100,7 +100,7 @@ export default function save( props ) {
 								}
 							) }
 						>
-							<SVGIcon name={ iconLeft }/>
+							<SVGIcon name={ iconLeft } />
 						</span>
 					) }
 					<RichText.Content
@@ -118,7 +118,7 @@ export default function save( props ) {
 								}
 							) }
 						>
-							<SVGIcon name={ iconRight }/>
+							<SVGIcon name={ iconRight } />
 						</span>
 					) }
 				</span>

@@ -24,35 +24,39 @@ class Register {
 	 * @var array
 	 */
 	private $blocks = [
-		'svg-button'  => [
+		'svg-button' => [
 			'name'    => 'ystdb/svg-button',
 			'no-ystd' => true,
 		],
-		'columns' => [
+		'svg-icon'   => [
+			'name'    => 'ystdb/svg-icon',
+			'no-ystd' => true,
+		],
+		'columns'    => [
 			'name'    => 'ystdb/columns',
 			'no-ystd' => true,
 		],
-		'column'  => [
+		'column'     => [
 			'name'    => 'ystdb/column',
 			'no-ystd' => true,
 		],
-		'section' => [
+		'section'    => [
 			'name'    => 'ystdb/section',
 			'no-ystd' => true,
 		],
-		'heading' => [
+		'heading'    => [
 			'name'    => 'ystdb/heading',
 			'no-ystd' => true,
 		],
-		'balloon' => [
+		'balloon'    => [
 			'name'    => 'ystdb/balloon',
 			'no-ystd' => true,
 		],
-		'fa-icon' => [
+		'fa-icon'    => [
 			'name'    => 'ystdb/fa-icon',
 			'no-ystd' => true,
 		],
-		'button'  => [
+		'button'     => [
 			'name'    => 'ystdb/ys-btn',
 			'no-ystd' => true,
 		],

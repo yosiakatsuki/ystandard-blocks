@@ -247,7 +247,7 @@ function faIcon(props) {
       color: _src_js_config_config__WEBPACK_IMPORTED_MODULE_5__["ystdbConfig"].color.iconDeprecatedForeground,
       padding: '0 16px'
     }
-  }, "\u203B\u3053\u306E\u30D6\u30ED\u30C3\u30AF\u306F\u975E\u63A8\u5968\u306B\u306A\u308A\u307E\u3057\u305F\u3002", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), "\u30A2\u30A4\u30B3\u30F3\u304C\u9752\u8272\u306E\u300C[ys]\u30AB\u30B9\u30BF\u30E0\u30DC\u30BF\u30F3\u300D\u306B\u5909\u63DB\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["PanelColorSettings"], {
+  }, "\u203B\u3053\u306E\u30D6\u30ED\u30C3\u30AF\u306F\u975E\u63A8\u5968\u306B\u306A\u308A\u307E\u3057\u305F\u3002", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), "\u30A2\u30A4\u30B3\u30F3\u304C\u9752\u8272\u306E\u300C[ys]\u30A2\u30A4\u30B3\u30F3\u300D\u306B\u5909\u63DB\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["PanelColorSettings"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Color Settings'),
     initialOpen: true,
     colorSettings: [{
@@ -332,9 +332,7 @@ function faIcon(props) {
         icon: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-    className: "ystdb-fa-icon__link-label"
-  }, "\u30EA\u30F3\u30AF\u5148URL"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["URLInput"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["URLInput"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Link'),
     className: "ystdb-fa-icon__link",
     value: url
@@ -390,7 +388,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__["registerBlockType"])('yst
     src: 'info',
     foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconDeprecatedForeground
   },
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('icon'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('アイコン'), 'icon', 'fa'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.deprecated,
   attributes: _config__WEBPACK_IMPORTED_MODULE_3__["attributes"],
   supports: _config__WEBPACK_IMPORTED_MODULE_3__["supports"],

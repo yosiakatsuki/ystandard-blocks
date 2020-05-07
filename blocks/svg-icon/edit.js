@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import IconSelect from '../../src/js/components/icon-select/index';
+import SVGIconSelect from '../../src/js/components/svg-icon-select/index';
+import SVGIcon from '../../src/js/components/svg-icon';
 import { sizing } from './config';
-import { ystdbConfig } from '../../src/js/config/config';
 
 import {
 	BlockControls,
@@ -18,7 +18,6 @@ import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
-	BaseControl,
 	ToggleControl,
 	TextControl,
 	SelectControl,
@@ -30,7 +29,7 @@ import { __ } from '@wordpress/i18n';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
-function faIcon( props ) {
+function svgIcon( props ) {
 	const {
 		textColor,
 		setTextColor,
@@ -41,32 +40,19 @@ function faIcon( props ) {
 		setFontSize,
 		className,
 	} = props;
-	const {
-		icon,
-		iconSize,
-		align,
-		animating,
-		url,
-		rel,
-		linkTarget,
-	} = attributes;
+	const { icon, iconSize, align, url, rel, linkTarget } = attributes;
 
-	const classes = classnames( className, 'ystdb-fa-icon', {
+	const classes = classnames( className, 'ystdb-icon', {
 		[ `has-text-align-${ align }` ]: align,
 		[ textColor.class ]: textColor.class,
 		[ fontSize.class ]: fontSize.class,
+		[ `is-size--${ iconSize }` ]: iconSize,
 	} );
 
 	const styles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
 	};
-
-	const iconClass = classnames( {
-		[ icon ]: icon,
-		[ iconSize ]: iconSize,
-		'fa-spin': animating === 'spin',
-	} );
 
 	return (
 		<Fragment>
@@ -79,18 +65,6 @@ function faIcon( props ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<BaseControl>
-					<div
-						style={ {
-							color: ystdbConfig.color.iconDeprecatedForeground,
-							padding: '0 16px',
-						} }
-					>
-						※このブロックは非推奨になりました。
-						<br />
-						アイコンが青色の「[ys]アイコン」に変換してください。
-					</div>
-				</BaseControl>
 				<PanelColorSettings
 					title={ __( 'Color Settings' ) }
 					initialOpen={ true }
@@ -120,24 +94,6 @@ function faIcon( props ) {
 							setAttributes( { iconSize: size } );
 						} }
 					/>
-				</PanelBody>
-
-				<PanelBody title={ __( 'アイコン装飾', 'ystandard-blocks' ) }>
-					<BaseControl>
-						<ToggleControl
-							label={ __(
-								'アイコンを回転する',
-								'ystandard-blocks'
-							) }
-							checked={ animating === 'spin' }
-							onChange={ () => {
-								setAttributes( {
-									animating:
-										animating === 'spin' ? '' : 'spin',
-								} );
-							} }
-						/>
-					</BaseControl>
 				</PanelBody>
 				<PanelBody title={ __( 'Link settings' ) }>
 					<ToggleControl
@@ -174,45 +130,46 @@ function faIcon( props ) {
 
 			<div className={ classes } style={ styles }>
 				{ !! icon ? (
-					<span className={ iconClass }></span>
+					<SVGIcon name={ icon } />
 				) : (
-					<div className={ 'ystdb-fa-icon__select--no-icon' }>
-						<i className="fas fa-info-circle"></i>
+					<div className={ 'ystdb-icon__select--no-icon' }>
+						<SVGIcon name={ 'info' } />
 						<div>アイコンを選択</div>
 					</div>
 				) }
-				{ !! isSelected && (
-					<div>
-						<div className="ystdb-fa-icon__select-start">
-							<IconSelect
-								panelTitle={ __(
-									'アイコン選択',
-									'ystandard-blocks'
-								) }
-								iconControlTitle={ '' }
-								selectedIcon={ icon }
-								onClickIcon={ ( value ) => {
-									setAttributes( { icon: value } );
-								} }
-							/>
-						</div>
-						<URLInput
-							label={ __( 'Link' ) }
-							className="ystdb-fa-icon__link"
-							value={ url }
-							/* eslint-disable jsx-a11y/no-autofocus */
-							autoFocus={ false }
-							/* eslint-enable jsx-a11y/no-autofocus */
-							onChange={ ( value ) =>
-								setAttributes( { url: value } )
-							}
-							disableSuggestions={ ! isSelected }
-							isFullWidth
-							hasBorder
+			</div>
+
+			{ !! isSelected && (
+				<div>
+					<div className="ystdb-icon__select-start">
+						<SVGIconSelect
+							panelTitle={ __(
+								'アイコン選択',
+								'ystandard-blocks'
+							) }
+							iconControlTitle={ '' }
+							selectedIcon={ icon }
+							onClickIcon={ ( value ) => {
+								setAttributes( { icon: value } );
+							} }
 						/>
 					</div>
-				) }
-			</div>
+					<URLInput
+						label={ __( 'Link' ) }
+						className="ystdb-icon__link"
+						value={ url }
+						/* eslint-disable jsx-a11y/no-autofocus */
+						autoFocus={ false }
+						/* eslint-enable jsx-a11y/no-autofocus */
+						onChange={ ( value ) =>
+							setAttributes( { url: value } )
+						}
+						disableSuggestions={ ! isSelected }
+						isFullWidth
+						hasBorder
+					/>
+				</div>
+			) }
 		</Fragment>
 	);
 }
@@ -220,4 +177,4 @@ function faIcon( props ) {
 export default compose( [
 	withColors( { textColor: 'color' } ),
 	withFontSizes( 'fontSize' ),
-] )( faIcon );
+] )( svgIcon );

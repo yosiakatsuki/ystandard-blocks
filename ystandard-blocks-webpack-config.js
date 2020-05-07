@@ -7,6 +7,7 @@ module.exports = {
 		'block': './src/js/block/block.js',
 		'icons': './src/js/components/icon-select/app.js',
 		'svg-button': './blocks/svg-button/index.js',
+		'svg-icon': './blocks/svg-icon/index.js',
 		'columns': './blocks/columns/index.js',
 		'column': './blocks/columns/item/index.js',
 		'section': './blocks/section/index.js',

@@ -1,8 +1,7 @@
 import classnames from 'classnames';
 import SVGIconSelect from '../../src/js/components/svg-icon-select/index';
-import SVGIcon from "../../src/js/components/svg-icon";
+import SVGIcon from '../../src/js/components/svg-icon';
 import { ystdbConfig } from '../../src/js/config/config';
-
 
 import {
 	RichText,
@@ -148,7 +147,7 @@ function svgButton( props ) {
 							setAttributes( {
 								borderRadius: ! value
 									? ystdbConfig.button
-										.borderRadiusInitialPosition
+											.borderRadiusInitialPosition
 									: value,
 							} );
 						} }
@@ -396,7 +395,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconLeft }/>
+								<SVGIcon name={ iconLeft } />
 							</span>
 						) }
 						<RichText
@@ -419,7 +418,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconRight }/>
+								<SVGIcon name={ iconRight } />
 							</span>
 						) }
 					</span>

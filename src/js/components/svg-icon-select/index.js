@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import { RadioControl, BaseControl } from '@wordpress/components';
 
 import { Component } from '@wordpress/element';
-import classnames from "classnames";
+import classnames from 'classnames';
 
 class SVGIconSelect extends Component {
 	render() {
@@ -34,25 +34,24 @@ class SVGIconSelect extends Component {
 				onClickIcon( value );
 			},
 			renderFunc: ( name ) => {
-				console.log( name );
 				let svg = '';
 				const isSNSIcon = -1 !== name.indexOf( 'sns-' );
 
 				if ( isSNSIcon ) {
-					const snsIcon = simpleIcons.get( name.replace( 'sns-', '' ) );
+					const snsIcon = simpleIcons.get(
+						name.replace( 'sns-', '' )
+					);
 					svg = snsIcon.svg;
 				} else {
 					svg = feather.icons[ name ].toSvg();
 				}
 				return (
 					<div
-						className={ classnames(
-							{
-								'sns-icon': isSNSIcon
-							}
-						) }
+						className={ classnames( {
+							'sns-icon': isSNSIcon,
+						} ) }
 						dangerouslySetInnerHTML={ {
-							__html: svg
+							__html: svg,
 						} }
 					/>
 				);

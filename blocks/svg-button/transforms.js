@@ -6,6 +6,10 @@ const transforms = {
 			type: 'block',
 			blocks: [ 'core/button' ],
 			transform: ( attributes ) => {
+				const size = {
+					lg: 'is-large',
+					sm: 'is-small',
+				};
 				return createBlock( 'ystdb/svg-button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
@@ -17,8 +21,6 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-					iconLeft: newIconLeft,
-					iconRight: newIconRight,
 					fontSize: attributes.fontSize,
 					buttonType:
 						attributes.buttonBlock === true
@@ -45,16 +47,9 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-					iconLeft: newIconLeft,
-					iconRight: newIconRight,
 					fontSize: attributes.fontSize,
-					buttonType:
-						attributes.buttonBlock === true
-							? 'is-block'
-							: undefined,
-					paddingType: !! attributes.buttonSize
-						? size[ attributes.buttonSize ]
-						: undefined,
+					buttonType: attributes.buttonType,
+					paddingType: attributes.paddingType,
 				} );
 			},
 		},

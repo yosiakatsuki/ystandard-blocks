@@ -5,7 +5,7 @@ const fs = require( 'fs' );
 const feather = require( 'feather-icons' );
 const jsonPath = './src/js/components/svg-icon-select/icons-sample.json';
 const featherIcons = [];
-for ( let iconName in feather.icons ) {
+for ( const iconName in feather.icons ) {
 	featherIcons.push( iconName );
 }
 const snsIcons = [

@@ -1,0 +1,25 @@
+.ystdb-icon {
+  padding: 1rem;
+
+  &.is-size--2 {
+	svg {
+	  width: 2em;
+	  height: 2em;
+	}
+  }
+  &.is-size--5 {
+	svg {
+	  width: 5em;
+	  height: 5em;
+	}
+  }
+}
+
+.ystdb-icon__link {
+  color: currentColor;
+  text-decoration: none;
+
+  &:hover {
+	color: currentColor;
+  }
+}

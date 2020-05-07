@@ -1,7 +1,7 @@
 @import "block";
 
 
-.ystdb-fa-icon__select--no-icon {
+.ystdb-icon__select--no-icon {
   width: 200px;
   max-width: 100%;
   margin: 0 auto;
@@ -11,7 +11,7 @@
   text-align: center !important;
 }
 
-.ystdb-fa-icon__select-start {
+.ystdb-icon__select-start {
   .components-panel__body {
 	border: 0;
   }
@@ -29,14 +29,15 @@
 	white-space: nowrap;
   }
 }
+.ystdb-icon-select__picker {
 
-.ystdb-fa-icon__link .components-base-control__label {
-  color: #666666 !important;
-  font-size: 0.8em;
-  text-align: left !important;
-  display: block;
 }
 
-.block-editor-block-list__block[data-type="ystdb/fa-icon"] {
-  @include deprecated();
+.ystdb-icon__link {
+  .components-base-control__label {
+	display: block;
+	color: #666666 !important;
+	font-size: 0.8em;
+	text-align: left !important;
+  }
 }
