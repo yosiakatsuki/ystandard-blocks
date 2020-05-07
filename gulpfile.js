@@ -4,6 +4,7 @@ const sassGlob = require( "gulp-sass-glob" );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
 const mqpacker = require( 'css-mqpacker' );
+const cssdeclsort = require( 'css-declaration-sorter' );
 const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
@@ -13,7 +14,14 @@ const postcssPlugins = [
 		grid: 'autoplace'
 	} ),
 	mqpacker(),
-	cssnano()
+	cssnano( {
+			preset: [
+				'default',
+				{ minifyFontValues: { removeQuotes: false } }
+			]
+		}
+	),
+	cssdeclsort( { order: 'smacss' } )
 ];
 
 /**
