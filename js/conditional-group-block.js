@@ -129,7 +129,8 @@ var attributes = {
 var supports = {
   className: false,
   html: false,
-  align: false
+  align: false,
+  lightBlockWrapper: true
 };
 
 /***/ }),
@@ -153,6 +154,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -162,7 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 var conditionalGroupEdit = function conditionalGroupEdit(_ref) {
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes,
-      className = _ref.className;
+      className = _ref.className,
+      clientId = _ref.clientId;
   var hideSp = attributes.hideSp,
       hideMd = attributes.hideMd,
       hideLg = attributes.hideLg,
@@ -170,6 +175,13 @@ var conditionalGroupEdit = function conditionalGroupEdit(_ref) {
       onlyAMP = attributes.onlyAMP;
   var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'ystdb-conditional-group', {});
   var innerClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('wp-block-group__inner-container', 'ystdb-conditional-group__inner', {});
+  var hasInnerBlocks = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__["useSelect"])(function (select) {
+    var _select = select('core/block-editor'),
+        getBlock = _select.getBlock;
+
+    var block = getBlock(clientId);
+    return !!(block && block.innerBlocks.length);
+  }, [clientId]);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('画面サイズ別非表示設定', 'ystandard-blocks'),
     initialOpen: true
@@ -232,7 +244,11 @@ var conditionalGroupEdit = function conditionalGroupEdit(_ref) {
     className: classes
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: innerClasses
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"], null))));
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"], {
+    renderAppender: hasInnerBlocks ? undefined : function () {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"].ButtonBlockAppender, null);
+    }
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (conditionalGroupEdit);
@@ -284,12 +300,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./blocks/conditional-group-block/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./save */ "./blocks/conditional-group-block/save.js");
 /* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon */ "./blocks/conditional-group-block/icon.js");
-/* harmony import */ var _transforms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./transforms */ "./blocks/conditional-group-block/transforms.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config */ "./blocks/conditional-group-block/config.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ "./blocks/conditional-group-block/config.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -297,21 +312,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__["registerBlockType"])('ystdb/conditional-group-block', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('[ys]条件付きグループブロック', 'ystandard-blocks'),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('条件により表示・非表示を切り替えできるグループブロック', 'ystandard-blocks'),
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__["registerBlockType"])('ystdb/conditional-group-block', {
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('[ys]条件付きグループブロック', 'ystandard-blocks'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('条件により表示・非表示を切り替えできるグループブロック', 'ystandard-blocks'),
   icon: {
     src: _icon__WEBPACK_IMPORTED_MODULE_3__["default"],
     foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconForeground
   },
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('cgb', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('条件付きグループブロック', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('conditional group block', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('グループブロック', 'ystandard-blocks'), 'cgb', 'conditional group block'],
+  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('cgb', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('条件付きグループブロック', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('conditional group block', 'ystandard-blocks'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('グループブロック', 'ystandard-blocks'), 'cgb', 'conditional group block'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.common,
-  attributes: _config__WEBPACK_IMPORTED_MODULE_5__["attributes"],
-  supports: _config__WEBPACK_IMPORTED_MODULE_5__["supports"],
+  attributes: _config__WEBPACK_IMPORTED_MODULE_4__["attributes"],
+  supports: _config__WEBPACK_IMPORTED_MODULE_4__["supports"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
-  transforms: _transforms__WEBPACK_IMPORTED_MODULE_4__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 
 /***/ }),
@@ -334,31 +347,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InnerBlocks"].Content, null);
 });
-
-/***/ }),
-
-/***/ "./blocks/conditional-group-block/transforms.js":
-/*!******************************************************!*\
-  !*** ./blocks/conditional-group-block/transforms.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-
-var transforms = {
-  from: [{
-    type: 'block',
-    blocks: ['core/group'],
-    transform: function transform(attributes, innerBlocks) {
-      return Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["createBlock"])('ystdb/conditional-group-block', {}, innerBlocks);
-    }
-  }]
-};
-/* harmony default export */ __webpack_exports__["default"] = (transforms);
 
 /***/ }),
 
@@ -520,6 +508,17 @@ var ystdbConfig = {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!***************************************!*\
+  !*** external {"this":["wp","data"]} ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["data"]; }());
 
 /***/ }),
 

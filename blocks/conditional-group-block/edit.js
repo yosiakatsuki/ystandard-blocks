@@ -2,14 +2,23 @@ import classnames from 'classnames';
 import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
 
-const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
+const conditionalGroupEdit = ( { attributes, setAttributes, className, clientId } ) => {
 	const { hideSp, hideMd, hideLg, hideAMP, onlyAMP } = attributes;
 	const classes = classnames( className, 'ystdb-conditional-group', {} );
 	const innerClasses = classnames(
 		'wp-block-group__inner-container',
 		'ystdb-conditional-group__inner',
 		{}
+	);
+	const hasInnerBlocks = useSelect(
+		( select ) => {
+			const { getBlock } = select( 'core/block-editor' );
+			const block = getBlock( clientId );
+			return !! ( block && block.innerBlocks.length );
+		},
+		[ clientId ]
 	);
 
 	return (
@@ -91,7 +100,13 @@ const conditionalGroupEdit = ( { attributes, setAttributes, className } ) => {
 
 			<div className={ classes }>
 				<div className={ innerClasses }>
-					<InnerBlocks />
+					<InnerBlocks
+						renderAppender={
+							hasInnerBlocks
+								? undefined
+								: () => <InnerBlocks.ButtonBlockAppender />
+						}
+					/>
 				</div>
 			</div>
 		</>

@@ -30,4 +30,5 @@ export const supports = {
 	className: false,
 	html: false,
 	align: false,
+	lightBlockWrapper: true
 };

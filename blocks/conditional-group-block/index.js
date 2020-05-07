@@ -2,7 +2,6 @@ import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
 import save from './save';
 import icon from './icon';
-import transforms from './transforms';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
@@ -30,5 +29,4 @@ registerBlockType( 'ystdb/conditional-group-block', {
 	supports,
 	edit,
 	save,
-	transforms,
 } );

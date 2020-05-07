@@ -6415,7 +6415,6 @@ var SVGIconSelect = /*#__PURE__*/function (_Component) {
           onClickIcon(value);
         },
         renderFunc: function renderFunc(name) {
-          console.log(name);
           var svg = '';
           var isSNSIcon = -1 !== name.indexOf('sns-');
 
@@ -6542,10 +6541,8 @@ var SVGIcon = /*#__PURE__*/function (_Component) {
       if (isSNSIcon) {
         var snsIcon = simple_icons__WEBPACK_IMPORTED_MODULE_7___default.a.get(name.replace('sns-', ''));
         svg = snsIcon.svg;
-      } else {
-        if (feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name]) {
-          svg = feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name].toSvg();
-        }
+      } else if (feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name]) {
+        svg = feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name].toSvg();
       }
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {

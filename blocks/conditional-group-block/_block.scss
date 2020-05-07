@@ -1,17 +1,17 @@
 @include media-breakpoint-down(md) {
-	:root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--sp {
-		display: none;
-	}
+  :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--sp {
+	display: none;
+  }
 }
 
 @include media-breakpoint-between(md, lg) {
-	:root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--md {
-		display: none;
-	}
+  :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--md {
+	display: none;
+  }
 }
 
 @include media-breakpoint(lg) {
-	:root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--lg {
-		display: none;
-	}
+  :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--lg {
+	display: none;
+  }
 }
