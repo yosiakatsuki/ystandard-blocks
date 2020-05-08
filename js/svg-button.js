@@ -449,7 +449,7 @@ function svgButton(props) {
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["PanelColorSettings"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Color Settings'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Background & Text Color'),
     initialOpen: true,
     colorSettings: [{
       value: backgroundColor.color,
@@ -765,6 +765,14 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["registerBlockType"])('yst
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.common,
   attributes: _config__WEBPACK_IMPORTED_MODULE_6__["attributes"],
   supports: _config__WEBPACK_IMPORTED_MODULE_6__["supports"],
+  styles: [{
+    name: 'fill',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('塗りつぶし'),
+    isDefault: true
+  }, {
+    name: 'outline',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('アウトライン')
+  }],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"],
   transforms: _transforms__WEBPACK_IMPORTED_MODULE_4__["default"],

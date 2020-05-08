@@ -118,7 +118,7 @@ const SVGButtonLinkEdit = ( props ) => {
 				</Disabled.Consumer>
 				<InspectorControls>
 					<PanelColorSettings
-						title={ __( 'Color Settings' ) }
+						title={ __( 'Background & Text Color' ) }
 						initialOpen={ true }
 						colorSettings={ [
 							{

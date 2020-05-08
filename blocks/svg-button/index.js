@@ -16,6 +16,10 @@ registerBlockType( 'ystdb/svg-button', {
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
+	styles: [
+		{ name: 'fill', label: __( '塗りつぶし' ), isDefault: true },
+		{ name: 'outline', label: __( 'アウトライン' ) },
+	],
 	edit,
 	save,
 	transforms,

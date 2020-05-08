@@ -452,7 +452,7 @@ function ysButton(props) {
       padding: '0 16px'
     }
   }, "\u203B\u3053\u306E\u30D6\u30ED\u30C3\u30AF\u306F\u975E\u63A8\u5968\u306B\u306A\u308A\u307E\u3057\u305F\u3002", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("br", null), "\u30A2\u30A4\u30B3\u30F3\u304C\u9752\u8272\u306E\u300C[ys]\u30AB\u30B9\u30BF\u30E0\u30DC\u30BF\u30F3\u300D\u306B\u5909\u63DB\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["PanelColorSettings"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('Color Settings'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('Background & Text Color'),
     initialOpen: true,
     colorSettings: [{
       value: backgroundColor.color,

@@ -229,7 +229,7 @@ function svgIcon(props) {
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["PanelColorSettings"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Color Settings'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Background & Text Color'),
     initialOpen: true,
     colorSettings: [{
       value: textColor.color,

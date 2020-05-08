@@ -1259,7 +1259,7 @@ var sectionEdit = function sectionEdit(props) {
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__["PanelColorSettings"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Color Settings'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Background & Text Color'),
     initialOpen: false,
     colorSettings: [{
       value: backgroundColor.color,

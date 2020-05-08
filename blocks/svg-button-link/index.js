@@ -23,7 +23,7 @@ registerBlockType( 'ystdb/svg-button-link', {
 		return null;
 	},
 	styles: [
-		{ name: 'fill', label: __( 'Fill' ), isDefault: true },
-		{ name: 'outline', label: __( 'Outline' ) },
+		{ name: 'fill', label: __( '塗りつぶし' ), isDefault: true },
+		{ name: 'outline', label: __( 'アウトライン' ) },
 	],
 } );

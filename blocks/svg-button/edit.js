@@ -113,7 +113,7 @@ function svgButton( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Color Settings' ) }
+					title={ __( 'Background & Text Color' ) }
 					initialOpen={ true }
 					colorSettings={ [
 						{
