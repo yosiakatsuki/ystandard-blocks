@@ -19,5 +19,5 @@ registerBlockType( 'ystdb/svg-icon', {
 	supports,
 	edit,
 	save,
-	transforms
+	transforms,
 } );

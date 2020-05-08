@@ -130,10 +130,10 @@ function svgIcon( props ) {
 
 			<div className={ classes } style={ styles }>
 				{ !! icon ? (
-					<SVGIcon name={ icon }/>
+					<SVGIcon name={ icon } />
 				) : (
 					<div className={ 'ystdb-icon__select--no-icon' }>
-						<SVGIcon name={ 'info' }/>
+						<SVGIcon name={ 'info' } />
 						<div>アイコンを選択</div>
 					</div>
 				) }

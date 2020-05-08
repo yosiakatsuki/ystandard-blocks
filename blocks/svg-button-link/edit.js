@@ -1,4 +1,6 @@
-import SVGIconSelect, { getSVGIconTag } from '../../src/js/components/svg-icon-select/index';
+import SVGIconSelect, {
+	getSVGIconTag,
+} from '../../src/js/components/svg-icon-select/index';
 import { ystdbConfig } from '../../src/js/config/config';
 
 import {
@@ -47,10 +49,8 @@ const SVGButtonLinkEdit = ( props ) => {
 		content,
 		borderRadius,
 		iconLeft,
-		iconLeftSVG,
 		iconSizeLeft,
 		iconRight,
-		iconRightSVG,
 		iconSizeRight,
 		align,
 		paddingType,
@@ -166,7 +166,9 @@ const SVGButtonLinkEdit = ( props ) => {
 							selectedIcon={ iconLeft }
 							onClickIcon={ ( value ) => {
 								setAttributes( { iconLeft: value } );
-								setAttributes( { iconLeftSVG: getSVGIconTag( value ) } );
+								setAttributes( {
+									iconLeftSVG: getSVGIconTag( value ),
+								} );
 							} }
 						/>
 						<BaseControl>
@@ -206,7 +208,9 @@ const SVGButtonLinkEdit = ( props ) => {
 							selectedIcon={ iconRight }
 							onClickIcon={ ( value ) => {
 								setAttributes( { iconRight: value } );
-								setAttributes( { iconRightSVG: getSVGIconTag( value ) } );
+								setAttributes( {
+									iconRightSVG: getSVGIconTag( value ),
+								} );
 							} }
 						/>
 						<BaseControl>

@@ -1,13 +1,12 @@
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
-import feather from 'feather-icons';
-import simpleIcons from 'simple-icons';
 import icons from './icons.json';
-
 import { __ } from '@wordpress/i18n';
 import { RadioControl, BaseControl } from '@wordpress/components';
 
 import { Component } from '@wordpress/element';
 import classnames from 'classnames';
+import { getFeatherIcon } from "../../util/_getFeatherIcon";
+import { getSimpleIcons } from "../../util/_getSimpleIcons";
 
 export const getSVGIconTag = ( name ) => {
 	if ( ! name ) {
@@ -17,15 +16,9 @@ export const getSVGIconTag = ( name ) => {
 	const isSNSIcon = -1 !== name.indexOf( 'sns-' );
 
 	if ( isSNSIcon ) {
-		const snsIcon = simpleIcons.get(
-			name.replace( 'sns-', '' )
-		);
-		svg = snsIcon.svg;
+		svg = getSimpleIcons( name );
 	} else {
-		if ( ! feather.icons[ name ] ) {
-			return '';
-		}
-		svg = feather.icons[ name ].toSvg();
+		svg = getFeatherIcon( name );
 	}
 
 	return svg;
@@ -59,7 +52,7 @@ class SVGIconSelect extends Component {
 				return (
 					<div
 						className={ classnames( {
-							'sns-icon': ( -1 !== name.indexOf( 'sns-' ) ),
+							'sns-icon': -1 !== name.indexOf( 'sns-' ),
 						} ) }
 						dangerouslySetInnerHTML={ {
 							__html: getSVGIconTag( name ),

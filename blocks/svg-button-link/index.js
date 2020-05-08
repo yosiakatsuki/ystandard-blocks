@@ -27,5 +27,5 @@ registerBlockType( 'ystdb/svg-button-link', {
 		{ name: 'fill', label: __( '塗りつぶし' ), isDefault: true },
 		{ name: 'outline', label: __( 'アウトライン' ) },
 	],
-	transforms
+	transforms,
 } );

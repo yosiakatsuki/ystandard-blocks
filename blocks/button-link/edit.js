@@ -118,12 +118,13 @@ const btnLinkEdit = ( props ) => {
 					<BaseControl>
 						<div
 							style={ {
-								color: ystdbConfig.color.iconDeprecatedForeground,
+								color:
+									ystdbConfig.color.iconDeprecatedForeground,
 								padding: '0 16px',
 							} }
 						>
 							※このブロックは非推奨になりました。
-							<br/>
+							<br />
 							アイコンが青色の「[ys]ボタン型リンク」に変換してください。
 						</div>
 					</BaseControl>
@@ -164,7 +165,7 @@ const btnLinkEdit = ( props ) => {
 								setAttributes( {
 									borderRadius: ! value
 										? ystdbConfig.button
-											.borderRadiusInitialPosition
+												.borderRadiusInitialPosition
 										: value,
 								} );
 							} }
