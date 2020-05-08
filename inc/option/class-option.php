@@ -18,8 +18,6 @@ defined( 'ABSPATH' ) || die();
  */
 class Option {
 
-	const OPTION_PREFIX = 'ystdb_';
-
 	/**
 	 * Option constructor.
 	 */
@@ -38,7 +36,7 @@ class Option {
 	 * @return string
 	 */
 	public static function get_option_name( $name ) {
-		return self::OPTION_PREFIX . $name;
+		return Config::OPTION_PREFIX . $name;
 	}
 
 	/**
@@ -50,12 +48,20 @@ class Option {
 	 * @return mixed
 	 */
 	public static function get_option( $name, $default ) {
-		$option = get_option(
-			self::get_option_name( $name ),
-			self::get_default_option( $name, $default )
-		);
+		global $ystd_Options;
+		if ( ! is_array( $ystd_Options ) ) {
+			// グローバルに作成していなければ設定取得.
+			$ystd_Options = get_option( Config::OPTION_NAME, null );
+			// 設定がなければ旧オプションから作成.
+			if ( is_null( $ystd_Options ) ) {
+				$ystd_Options = Migration::convert_new_options();
+			}
+		}
+		if ( isset( $ystd_Options[ $name ] ) ) {
+			return $ystd_Options[ $name ];
+		}
 
-		return $option;
+		return self::get_default_option( $name, $default );
 	}
 
 	/**
@@ -67,7 +73,6 @@ class Option {
 	 * @return mixed
 	 */
 	public static function get_default_option( $name, $default ) {
-		$name = self::get_option_name( $name );
 
 		return apply_filters( "ystdb_get_default_${name}", $default, $name );
 	}

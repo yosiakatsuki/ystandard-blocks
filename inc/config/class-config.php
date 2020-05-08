@@ -32,4 +32,9 @@ class Config {
 	 * JS App Handle.
 	 */
 	const JS_APP_HANDLE = 'ystdb-js-app';
+
+	/**
+	 * 旧設定プレフィックス
+	 */
+	const OPTION_PREFIX = 'ystdb_';
 }

@@ -19,6 +19,40 @@ defined( 'ABSPATH' ) || die();
 class Migration {
 
 	/**
+	 * 旧オプションを新オプション形式にする
+	 */
+	public static function convert_new_options() {
+		$result  = [];
+		$options = self::get_old_option_list();
+		// 吹き出し設定以外.
+		foreach ( $options as $key ) {
+			if ( false === strpos( $key, 'balloon' ) ) {
+				$option = get_option( Config::OPTION_PREFIX . $key, null );
+				if ( ! is_null( $option ) ) {
+					$result[ $key ] = $option;
+				}
+			}
+		}
+		/**
+		 * 吹き出し系
+		 */
+		$balloon = [];
+		for ( $i = 1; $i <= 30; $i ++ ) {
+			$image = get_option( Config::OPTION_PREFIX . 'balloon_image_' . $i, null );
+			$name  = get_option( Config::OPTION_PREFIX . 'balloon_name_' . $i, null );
+			if ( ! is_null( $image ) || ! is_null( $name ) ) {
+				$balloon[] = [
+					'image' => is_null( $image ) ? '' : $image,
+					'name'  => is_null( $name ) ? '' : $name,
+				];
+			}
+		}
+		$result['balloon'] = $balloon;
+
+		return $result;
+	}
+
+	/**
 	 * 設定変換リスト
 	 *
 	 * @return array
@@ -36,6 +70,19 @@ class Migration {
 		/**
 		 * 設定削除
 		 */
+		$options = self::get_old_option_list();
+		// 削除.
+		foreach ( $options as $key ) {
+			delete_option( Config::OPTION_PREFIX . $key );
+		}
+	}
+
+	/**
+	 * 旧オプションリストを取得
+	 *
+	 * @return array
+	 */
+	public static function get_old_option_list() {
 		$options = [];
 		/**
 		 * インライン系
@@ -70,10 +117,8 @@ class Migration {
 		$options[] = 'add_color_palette_css_fill';
 		$options[] = 'add_font_size_css';
 		$options[] = 'use_all_icons';
-		// 削除.
-		foreach ( $options as $key ) {
-			delete_option( 'ystdb_' . $key );
-		}
+
+		return $options;
 	}
 
 }
