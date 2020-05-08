@@ -6,10 +6,6 @@ const transforms = {
 			type: 'block',
 			blocks: [ 'core/button' ],
 			transform: ( attributes ) => {
-				const size = {
-					lg: 'is-large',
-					sm: 'is-small',
-				};
 				return createBlock( 'ystdb/svg-button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
@@ -22,13 +18,7 @@ const transforms = {
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
 					fontSize: attributes.fontSize,
-					buttonType:
-						attributes.buttonBlock === true
-							? 'is-block'
-							: undefined,
-					paddingType: !! attributes.buttonSize
-						? size[ attributes.buttonSize ]
-						: undefined,
+					customFontSize: attributes.customFontSize,
 				} );
 			},
 		},
@@ -39,17 +29,24 @@ const transforms = {
 				return createBlock( 'ystdb/svg-button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
+					iconSizeLeft: attributes.iconSizeLeft,
+					iconSizeRight: attributes.iconSizeRight,
 					align: attributes.align,
 					backgroundColor: attributes.backgroundColor,
 					customBackgroundColor: attributes.customBackgroundColor,
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
+					fontSize: attributes.fontSize,
+					customFontSize: attributes.customFontSize,
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-					fontSize: attributes.fontSize,
-					buttonType: attributes.buttonType,
 					paddingType: attributes.paddingType,
+					buttonType: attributes.buttonType,
+					maxWidth: attributes.maxWidth,
+					maxUnit: attributes.maxUnit,
+					animationType: attributes.animationType,
+					animationInterval: attributes.animationInterval,
 				} );
 			},
 		},

@@ -144,12 +144,7 @@ function svgButton( props ) {
 						}
 						allowReset
 						onChange={ ( value ) => {
-							setAttributes( {
-								borderRadius: ! value
-									? ystdbConfig.button
-											.borderRadiusInitialPosition
-									: value,
-							} );
+							setAttributes( { borderRadius: value } );
 						} }
 					/>
 				</PanelBody>
@@ -395,7 +390,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconLeft } />
+								<SVGIcon name={ iconLeft }/>
 							</span>
 						) }
 						<RichText
@@ -418,7 +413,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconRight } />
+								<SVGIcon name={ iconRight }/>
 							</span>
 						) }
 					</span>

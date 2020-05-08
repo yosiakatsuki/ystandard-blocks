@@ -382,7 +382,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__["registerBlockType"])('ystdb/fa-icon', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('[ys]アイコン', 'ystandard-blocks'),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('[ys]アイコン(非推奨)', 'ystandard-blocks'),
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Font Awesomeアイコン表示ブロック', 'ystandard-blocks'),
   icon: {
     src: 'info',

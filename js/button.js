@@ -757,7 +757,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["registerBlockType"])('ystdb/ys-btn', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('[ys]カスタムボタン', 'ystandard-blocks'),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('[ys]カスタムボタン(非推奨)', 'ystandard-blocks'),
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('yStandard Blocks カスタムボタン', 'ystandard-blocks'),
   icon: _icon__WEBPACK_IMPORTED_MODULE_3__["default"],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.deprecated,

@@ -1,5 +1,6 @@
 import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
+import transforms from './transforms';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
@@ -26,4 +27,5 @@ registerBlockType( 'ystdb/svg-button-link', {
 		{ name: 'fill', label: __( '塗りつぶし' ), isDefault: true },
 		{ name: 'outline', label: __( 'アウトライン' ) },
 	],
+	transforms
 } );

@@ -478,7 +478,7 @@ function svgButton(props) {
     allowReset: true,
     onChange: function onChange(value) {
       setAttributes({
-        borderRadius: !value ? _src_js_config_config__WEBPACK_IMPORTED_MODULE_5__["ystdbConfig"].button.borderRadiusInitialPosition : value
+        borderRadius: value
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
@@ -891,10 +891,6 @@ var transforms = {
     type: 'block',
     blocks: ['core/button'],
     transform: function transform(attributes) {
-      var size = {
-        lg: 'is-large',
-        sm: 'is-small'
-      };
       return Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["createBlock"])('ystdb/svg-button', {
         text: attributes.text,
         borderRadius: attributes.borderRadius,
@@ -907,8 +903,7 @@ var transforms = {
         linkTarget: attributes.linkTarget,
         rel: attributes.rel,
         fontSize: attributes.fontSize,
-        buttonType: attributes.buttonBlock === true ? 'is-block' : undefined,
-        paddingType: !!attributes.buttonSize ? size[attributes.buttonSize] : undefined
+        customFontSize: attributes.customFontSize
       });
     }
   }, {
@@ -918,17 +913,24 @@ var transforms = {
       return Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["createBlock"])('ystdb/svg-button', {
         text: attributes.text,
         borderRadius: attributes.borderRadius,
+        iconSizeLeft: attributes.iconSizeLeft,
+        iconSizeRight: attributes.iconSizeRight,
         align: attributes.align,
         backgroundColor: attributes.backgroundColor,
         customBackgroundColor: attributes.customBackgroundColor,
         textColor: attributes.textColor,
         customTextColor: attributes.customTextColor,
+        fontSize: attributes.fontSize,
+        customFontSize: attributes.customFontSize,
         url: attributes.url,
         linkTarget: attributes.linkTarget,
         rel: attributes.rel,
-        fontSize: attributes.fontSize,
+        paddingType: attributes.paddingType,
         buttonType: attributes.buttonType,
-        paddingType: attributes.paddingType
+        maxWidth: attributes.maxWidth,
+        maxUnit: attributes.maxUnit,
+        animationType: attributes.animationType,
+        animationInterval: attributes.animationInterval
       });
     }
   }],

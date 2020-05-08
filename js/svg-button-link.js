@@ -479,40 +479,87 @@ var SVGButtonLinkEdit = function SVGButtonLinkEdit(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/js/config/config */ "./src/js/config/config.js");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./blocks/svg-button-link/edit.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./blocks/svg-button-link/config.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _transforms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transforms */ "./blocks/svg-button-link/transforms.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ "./blocks/svg-button-link/config.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__["registerBlockType"])('ystdb/svg-button-link', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('[ys]ボタン型リンク', 'ystandard-blocks'),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
+
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__["registerBlockType"])('ystdb/svg-button-link', {
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('[ys]ボタン型リンク', 'ystandard-blocks'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
   icon: {
     src: 'embed-generic',
     foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconForeground
   },
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('button'), 'button'],
+  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('button'), 'button'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.common,
-  attributes: _config__WEBPACK_IMPORTED_MODULE_2__["attributes"],
-  supports: _config__WEBPACK_IMPORTED_MODULE_2__["supports"],
+  attributes: _config__WEBPACK_IMPORTED_MODULE_3__["attributes"],
+  supports: _config__WEBPACK_IMPORTED_MODULE_3__["supports"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save: function save() {
     return null;
   },
   styles: [{
     name: 'fill',
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('塗りつぶし'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('塗りつぶし'),
     isDefault: true
   }, {
     name: 'outline',
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('アウトライン')
-  }]
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('アウトライン')
+  }],
+  transforms: _transforms__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
+
+/***/ }),
+
+/***/ "./blocks/svg-button-link/transforms.js":
+/*!**********************************************!*\
+  !*** ./blocks/svg-button-link/transforms.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+
+var transforms = {
+  from: [{
+    type: 'block',
+    blocks: ['ystdb/btn-link'],
+    transform: function transform(attributes) {
+      return Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["createBlock"])('ystdb/svg-button-link', {
+        className: attributes.className,
+        content: attributes.content,
+        borderRadius: attributes.borderRadius,
+        iconSizeLeft: attributes.iconSizeLeft,
+        iconSizeRight: attributes.iconSizeRight,
+        align: attributes.align,
+        backgroundColor: attributes.backgroundColor,
+        customBackgroundColor: attributes.customBackgroundColor,
+        textColor: attributes.textColor,
+        customTextColor: attributes.customTextColor,
+        fontSize: attributes.fontSize,
+        customFontSize: attributes.customFontSize,
+        paddingType: attributes.paddingType,
+        buttonType: attributes.buttonType,
+        maxWidth: attributes.maxWidth,
+        maxUnit: attributes.maxUnit,
+        animationType: attributes.animationType,
+        animationInterval: attributes.animationInterval
+      });
+    }
+  }]
+};
+/* harmony default export */ __webpack_exports__["default"] = (transforms);
 
 /***/ }),
 
