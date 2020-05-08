@@ -415,7 +415,12 @@ var btnLinkEdit = function btnLinkEdit(props) {
       placeholder: 'HTMLを入力...',
       "aria-label": Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('HTML')
     });
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PanelColorSettings"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    style: {
+      color: _src_js_config_config__WEBPACK_IMPORTED_MODULE_2__["ystdbConfig"].color.iconDeprecatedForeground,
+      padding: '0 16px'
+    }
+  }, "\u203B\u3053\u306E\u30D6\u30ED\u30C3\u30AF\u306F\u975E\u63A8\u5968\u306B\u306A\u308A\u307E\u3057\u305F\u3002", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("br", null), "\u30A2\u30A4\u30B3\u30F3\u304C\u9752\u8272\u306E\u300C[ys]\u30DC\u30BF\u30F3\u578B\u30EA\u30F3\u30AF\u300D\u306B\u5909\u63DB\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PanelColorSettings"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Color Settings'),
     initialOpen: true,
     colorSettings: [{
@@ -618,14 +623,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__["registerBlockType"])('ystdb/btn-link', {
-  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('[ys]ボタン型リンク', 'ystandard-blocks'),
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('[ys]ボタン型リンク(非推奨)', 'ystandard-blocks'),
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('入力したリンク(a)タグをボタン形式で表示するブロック', 'ystandard-blocks'),
   icon: {
     src: 'embed-generic',
-    foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconForeground
+    foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconDeprecatedForeground
   },
   keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('button'), 'button'],
-  category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.common,
+  category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.deprecated,
   attributes: _config__WEBPACK_IMPORTED_MODULE_3__["attributes"],
   supports: _config__WEBPACK_IMPORTED_MODULE_3__["supports"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],

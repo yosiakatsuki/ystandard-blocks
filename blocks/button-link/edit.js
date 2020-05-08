@@ -115,6 +115,18 @@ const btnLinkEdit = ( props ) => {
 					}
 				</Disabled.Consumer>
 				<InspectorControls>
+					<BaseControl>
+						<div
+							style={ {
+								color: ystdbConfig.color.iconDeprecatedForeground,
+								padding: '0 16px',
+							} }
+						>
+							※このブロックは非推奨になりました。
+							<br/>
+							アイコンが青色の「[ys]ボタン型リンク」に変換してください。
+						</div>
+					</BaseControl>
 					<PanelColorSettings
 						title={ __( 'Color Settings' ) }
 						initialOpen={ true }
@@ -137,7 +149,7 @@ const btnLinkEdit = ( props ) => {
 								label: __( 'Text Color' ),
 							},
 						] }
-					></PanelColorSettings>
+					/>
 					<PanelBody title={ __( '枠線設定', 'ystandard-blocks' ) }>
 						<RangeControl
 							value={ borderRadius }
@@ -152,7 +164,7 @@ const btnLinkEdit = ( props ) => {
 								setAttributes( {
 									borderRadius: ! value
 										? ystdbConfig.button
-												.borderRadiusInitialPosition
+											.borderRadiusInitialPosition
 										: value,
 								} );
 							} }

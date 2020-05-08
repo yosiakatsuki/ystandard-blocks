@@ -6,17 +6,17 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/btn-link', {
-	title: __( '[ys]ボタン型リンク', 'ystandard-blocks' ),
+	title: __( '[ys]ボタン型リンク(非推奨)', 'ystandard-blocks' ),
 	description: __(
 		'入力したリンク(a)タグをボタン形式で表示するブロック',
 		'ystandard-blocks'
 	),
 	icon: {
 		src: 'embed-generic',
-		foreground: ystdbConfig.color.iconForeground,
+		foreground: ystdbConfig.color.iconDeprecatedForeground,
 	},
 	keywords: [ __( 'link' ), __( 'button' ), 'button' ],
-	category: ystdbConfig.category.common,
+	category: ystdbConfig.category.deprecated,
 	attributes,
 	supports,
 	edit,
