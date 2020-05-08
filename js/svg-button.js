@@ -6846,11 +6846,12 @@ module.exports = JSON.parse("{\"icons\":[\"activity\",\"airplay\",\"alert-circle
 /*!****************************************************!*\
   !*** ./src/js/components/svg-icon-select/index.js ***!
   \****************************************************/
-/*! exports provided: default */
+/*! exports provided: getSVGIconTag, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSVGIconTag", function() { return getSVGIconTag; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
@@ -6896,6 +6897,27 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+var getSVGIconTag = function getSVGIconTag(name) {
+  if (!name) {
+    return '';
+  }
+
+  var svg = '';
+  var isSNSIcon = -1 !== name.indexOf('sns-');
+
+  if (isSNSIcon) {
+    var snsIcon = simple_icons__WEBPACK_IMPORTED_MODULE_8___default.a.get(name.replace('sns-', ''));
+    svg = snsIcon.svg;
+  } else {
+    if (!feather_icons__WEBPACK_IMPORTED_MODULE_7___default.a.icons[name]) {
+      return '';
+    }
+
+    svg = feather_icons__WEBPACK_IMPORTED_MODULE_7___default.a.icons[name].toSvg();
+  }
+
+  return svg;
+};
 
 var SVGIconSelect = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(SVGIconSelect, _Component);
@@ -6929,22 +6951,12 @@ var SVGIconSelect = /*#__PURE__*/function (_Component) {
           onClickIcon(value);
         },
         renderFunc: function renderFunc(name) {
-          var svg = '';
-          var isSNSIcon = -1 !== name.indexOf('sns-');
-
-          if (isSNSIcon) {
-            var snsIcon = simple_icons__WEBPACK_IMPORTED_MODULE_8___default.a.get(name.replace('sns-', ''));
-            svg = snsIcon.svg;
-          } else {
-            svg = feather_icons__WEBPACK_IMPORTED_MODULE_7___default.a.icons[name].toSvg();
-          }
-
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             className: classnames__WEBPACK_IMPORTED_MODULE_12___default()({
-              'sns-icon': isSNSIcon
+              'sns-icon': -1 !== name.indexOf('sns-')
             }),
             dangerouslySetInnerHTML: {
-              __html: svg
+              __html: getSVGIconTag(name)
             }
           });
         },
@@ -7004,12 +7016,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! feather-icons */ "./node_modules/feather-icons/dist/feather.js");
-/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var simple_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! simple-icons */ "./node_modules/simple-icons/index.js");
-/* harmony import */ var simple_icons__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(simple_icons__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _svg_icon_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../svg-icon-select */ "./src/js/components/svg-icon-select/index.js");
 
 
 
@@ -7020,7 +7029,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { return function () { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
 
 
 
@@ -7049,22 +7057,12 @@ var SVGIcon = /*#__PURE__*/function (_Component) {
         return '';
       }
 
-      var svg = '';
-      var isSNSIcon = -1 !== name.indexOf('sns-');
-
-      if (isSNSIcon) {
-        var snsIcon = simple_icons__WEBPACK_IMPORTED_MODULE_7___default.a.get(name.replace('sns-', ''));
-        svg = snsIcon.svg;
-      } else if (feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name]) {
-        svg = feather_icons__WEBPACK_IMPORTED_MODULE_6___default.a.icons[name].toSvg();
-      }
-
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", {
-        className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('ys-icon', {
-          'sns-icon': isSNSIcon
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('ys-icon', {
+          'sns-icon': -1 !== name.indexOf('sns-')
         }),
         dangerouslySetInnerHTML: {
-          __html: svg
+          __html: Object(_svg_icon_select__WEBPACK_IMPORTED_MODULE_7__["getSVGIconTag"])(name)
         }
       });
     }

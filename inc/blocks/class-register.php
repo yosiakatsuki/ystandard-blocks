@@ -68,10 +68,10 @@ class Register {
 	 * @var array
 	 */
 	private $dynamic_block = [
-		'button-link'             => [
-			'name'    => 'ystdb/btn-link',
+		'svg-button-link'             => [
+			'name'    => 'ystdb/svg-button-link',
 			'no-ystd' => true,
-			'class'   => 'button-link',
+			'class'   => 'svg-button-link',
 		],
 		'card'                    => [
 			'name'    => 'ystdb/card',
@@ -82,6 +82,11 @@ class Register {
 			'name'    => 'ystdb/conditional-group-block',
 			'no-ystd' => true,
 			'class'   => 'conditional-group-block',
+		],
+		'button-link'             => [
+			'name'    => 'ystdb/btn-link',
+			'no-ystd' => true,
+			'class'   => 'button-link',
 		],
 	];
 	/**

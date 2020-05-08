@@ -9,6 +9,28 @@ import { RadioControl, BaseControl } from '@wordpress/components';
 import { Component } from '@wordpress/element';
 import classnames from 'classnames';
 
+export const getSVGIconTag = ( name ) => {
+	if ( ! name ) {
+		return '';
+	}
+	let svg = '';
+	const isSNSIcon = -1 !== name.indexOf( 'sns-' );
+
+	if ( isSNSIcon ) {
+		const snsIcon = simpleIcons.get(
+			name.replace( 'sns-', '' )
+		);
+		svg = snsIcon.svg;
+	} else {
+		if ( ! feather.icons[ name ] ) {
+			return '';
+		}
+		svg = feather.icons[ name ].toSvg();
+	}
+
+	return svg;
+};
+
 class SVGIconSelect extends Component {
 	render() {
 		const {
@@ -34,24 +56,13 @@ class SVGIconSelect extends Component {
 				onClickIcon( value );
 			},
 			renderFunc: ( name ) => {
-				let svg = '';
-				const isSNSIcon = -1 !== name.indexOf( 'sns-' );
-
-				if ( isSNSIcon ) {
-					const snsIcon = simpleIcons.get(
-						name.replace( 'sns-', '' )
-					);
-					svg = snsIcon.svg;
-				} else {
-					svg = feather.icons[ name ].toSvg();
-				}
 				return (
 					<div
 						className={ classnames( {
-							'sns-icon': isSNSIcon,
+							'sns-icon': ( -1 !== name.indexOf( 'sns-' ) ),
 						} ) }
 						dangerouslySetInnerHTML={ {
-							__html: svg,
+							__html: getSVGIconTag( name ),
 						} }
 					/>
 				);

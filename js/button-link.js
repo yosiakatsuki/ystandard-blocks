@@ -629,7 +629,6 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__["registerBlockType"])('yst
     src: 'embed-generic',
     foreground: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].color.iconDeprecatedForeground
   },
-  keywords: [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('link'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('button'), 'button'],
   category: _src_js_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].category.deprecated,
   attributes: _config__WEBPACK_IMPORTED_MODULE_3__["attributes"],
   supports: _config__WEBPACK_IMPORTED_MODULE_3__["supports"],

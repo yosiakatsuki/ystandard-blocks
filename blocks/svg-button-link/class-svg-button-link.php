@@ -12,24 +12,24 @@ namespace ystandard_blocks;
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class Button_Link
+ * Class SVG_Button_Link
  *
  * @package ystandard_blocks
  */
-class Button_Link extends Dynamic_Block {
+class SVG_Button_Link extends Dynamic_Block {
 
 	/**
 	 * Block Name.
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'btn-link';
+	protected $block_name = 'svg-button-link';
 	/**
 	 * Script Handle.
 	 *
 	 * @var string
 	 */
-	protected $script_name = 'ystandard-blocks-button-link';
+	protected $script_name = 'ystandard-blocks-svg-button-link';
 	/**
 	 * Block Attributes.
 	 *
@@ -48,10 +48,16 @@ class Button_Link extends Dynamic_Block {
 		'iconLeft'              => [
 			'type' => 'string',
 		],
+		'iconLeftSVG'           => [
+			'type' => 'string',
+		],
 		'iconSizeLeft'          => [
 			'type' => 'string',
 		],
 		'iconRight'             => [
+			'type' => 'string',
+		],
+		'iconRightSVG'          => [
 			'type' => 'string',
 		],
 		'iconSizeRight'         => [
@@ -107,9 +113,9 @@ class Button_Link extends Dynamic_Block {
 	 * @return string
 	 */
 	public function render( $attributes, $content = null ) {
-		return $this->render_by_view( 'button-link', $attributes );
+		return $this->render_by_view( 'svg-button-link', $attributes );
 	}
 }
 
-$button_link = new Button_Link();
-$button_link->register_block();
+$svg_button_link = new SVG_Button_Link();
+$svg_button_link->register_block();
