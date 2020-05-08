@@ -52,11 +52,19 @@ class Register {
 			'name'    => 'ystdb/balloon',
 			'no-ystd' => true,
 		],
-		'fa-icon'    => [
+	];
+
+	/**
+	 * 非推奨ブロック
+	 *
+	 * @var array
+	 */
+	private $deprecated_blocks = [
+		'fa-icon' => [
 			'name'    => 'ystdb/fa-icon',
 			'no-ystd' => true,
 		],
-		'button'     => [
+		'button'  => [
 			'name'    => 'ystdb/ys-btn',
 			'no-ystd' => true,
 		],
@@ -68,7 +76,7 @@ class Register {
 	 * @var array
 	 */
 	private $dynamic_block = [
-		'svg-button-link'             => [
+		'svg-button-link'         => [
 			'name'    => 'ystdb/svg-button-link',
 			'no-ystd' => true,
 			'class'   => 'svg-button-link',
@@ -83,12 +91,21 @@ class Register {
 			'no-ystd' => true,
 			'class'   => 'conditional-group-block',
 		],
-		'button-link'             => [
+	];
+
+	/**
+	 * 非推奨ダイナミックブロック
+	 *
+	 * @var array
+	 */
+	private $deprecated_dynamic_blocks = [
+		'button-link' => [
 			'name'    => 'ystdb/btn-link',
 			'no-ystd' => true,
 			'class'   => 'button-link',
 		],
 	];
+
 	/**
 	 * スタイル、フォーマット、コア拡張など
 	 *
@@ -99,10 +116,9 @@ class Register {
 	];
 
 	/**
-	 * Register constructor.
+	 * フックの登録など
 	 */
-	function __construct() {
-
+	public function register() {
 		add_action( 'init', [ $this, 'register_block' ] );
 		add_action( 'init', [ $this, 'register_dynamic_block' ] );
 		add_action(
@@ -118,10 +134,16 @@ class Register {
 		if ( ! is_admin() ) {
 			return;
 		}
-		/**
-		 * 通常ブロック
-		 */
-		foreach ( $this->blocks as $key => $value ) {
+		$blocks = $this->blocks;
+		// 非推奨ブロックのチェック
+		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_blocks );
+		if ( ! empty( $deprecated_blocks ) ) {
+			$blocks = array_merge(
+				$blocks,
+				$deprecated_blocks
+			);
+		}
+		foreach ( $blocks as $key => $value ) {
 			/**
 			 * 非yStandardの利用チェック
 			 */
@@ -189,10 +211,19 @@ class Register {
 	 */
 	public function register_dynamic_block() {
 
+		$blocks = $this->dynamic_block;
+		// 非推奨ブロックのチェック
+		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_dynamic_blocks );
+		if ( ! empty( $deprecated_blocks ) ) {
+			$blocks = array_merge(
+				$blocks,
+				$deprecated_blocks
+			);
+		}
 		/**
 		 * ダイナミックブロック
 		 */
-		foreach ( $this->dynamic_block as $key => $value ) {
+		foreach ( $blocks as $key => $value ) {
 			/**
 			 * 非yStandardの利用チェック
 			 */
@@ -227,6 +258,52 @@ class Register {
 			'balloonImages' => Balloon::get_balloon_images(),
 		];
 	}
+
+	/**
+	 * 非推奨ブロックの利用チェック
+	 *
+	 * @return array
+	 */
+	private function check_deprecated_blocks( $blocks ) {
+		$result = [];
+
+		// TODO: 非推奨ブロックのチェックスキップオプションの追加.
+
+		foreach ( $blocks as $key => $value ) {
+			if ( $this->is_use_block( $value['name'] ) ) {
+				$result[ $key ] = $value;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * ブロックが使われているかの確認.
+	 *
+	 * @param string $name Name.
+	 *
+	 * @return bool
+	 */
+	private function is_use_block( $name ) {
+		// フロント側ではチェックしない.
+		if ( ! is_admin() ) {
+			return true;
+		}
+		$types = get_post_types( [ 'public' => true ] );
+		if ( in_array( 'ys-parts', $types, true ) ) {
+			$types[] = 'ys-parts';
+		}
+		$result = get_posts(
+			[
+				'post_type' => $types,
+				's'         => $name,
+			]
+		);
+
+		return ! empty( $result );
+	}
 }
 
-new Register();
+$block_register = new Register();
+$block_register->register();
