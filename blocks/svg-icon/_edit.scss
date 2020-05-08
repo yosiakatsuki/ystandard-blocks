@@ -9,6 +9,11 @@
   background-color: #eeeeee;
   color: #666666 !important;
   text-align: center !important;
+
+  svg {
+	width: 32px !important;
+	height: 32px !important;
+  }
 }
 
 .ystdb-icon__select-start {
@@ -28,9 +33,6 @@
   .rfipbtn__icon--empty {
 	white-space: nowrap;
   }
-}
-.ystdb-icon-select__picker {
-
 }
 
 .ystdb-icon__link {
