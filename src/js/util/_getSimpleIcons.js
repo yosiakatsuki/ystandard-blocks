@@ -20,37 +20,37 @@ export const getSimpleIcons = ( name ) => {
 	switch ( name ) {
 		case 'sns-Twitter':
 			return twitter.svg;
-		case    'sns-Facebook':
+		case 'sns-Facebook':
 			return facebook.svg;
-		case        'sns-Hatena Bookmark':
+		case 'sns-Hatena Bookmark':
 			return hatenabookmark.svg;
-		case        'sns-Pocket':
+		case 'sns-Pocket':
 			return pocket.svg;
-		case        'sns-Line':
+		case 'sns-Line':
 			return line.svg;
-		case        'sns-Feedly':
+		case 'sns-Feedly':
 			return feedly.svg;
-		case        'sns-RSS':
+		case 'sns-RSS':
 			return rss.svg;
-		case        'sns-WordPress':
+		case 'sns-WordPress':
 			return wordpress.svg;
-		case        'sns-Pinterest':
+		case 'sns-Pinterest':
 			return pinterest.svg;
-		case        'sns-Instagram':
+		case 'sns-Instagram':
 			return instagram.svg;
-		case        'sns-linkedIn':
+		case 'sns-linkedIn':
 			return linkedin.svg;
-		case        'sns-YouTube':
+		case 'sns-YouTube':
 			return youtube.svg;
-		case        'sns-Twitch':
+		case 'sns-Twitch':
 			return twitch.svg;
-		case        'sns-Dribbble':
+		case 'sns-Dribbble':
 			return dribbble.svg;
-		case        'sns-GitHub':
+		case 'sns-GitHub':
 			return github.svg;
-		case        'sns-Tumblr':
+		case 'sns-Tumblr':
 			return tumblr.svg;
-		case        'sns-Amazon':
+		case 'sns-Amazon':
 			return amazon.svg;
 		default:
 			return '';

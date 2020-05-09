@@ -5,8 +5,8 @@ import { RadioControl, BaseControl } from '@wordpress/components';
 
 import { Component } from '@wordpress/element';
 import classnames from 'classnames';
-import { getFeatherIcon } from "../../util/_getFeatherIcon";
-import { getSimpleIcons } from "../../util/_getSimpleIcons";
+import { getFeatherIcon } from '../../util/_getFeatherIcon';
+import { getSimpleIcons } from '../../util/_getSimpleIcons';
 
 export const getSVGIconTag = ( name ) => {
 	if ( ! name ) {
