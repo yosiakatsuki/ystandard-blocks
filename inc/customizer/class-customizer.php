@@ -277,7 +277,7 @@ class Customizer {
 			]
 		);
 		$ystdb_opt = new Option();
-		for ( $i = 1; $i <= Balloon::BALLOON_OPTION; $i ++ ) {
+		for ( $i = 1; $i <= 30; $i ++ ) {
 			/**
 			 * ラベル
 			 */

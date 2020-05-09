@@ -11,17 +11,12 @@ namespace ystandard_blocks;
 
 defined( 'ABSPATH' ) || die();
 
-
 /**
  * Class Balloon
  *
  * @package ystandard_blocks
  */
 class Balloon {
-	/**
-	 * 吹き出し画像登録数
-	 */
-	const BALLOON_OPTION = 30;
 
 	/**
 	 * 吹き出し用設定取得
