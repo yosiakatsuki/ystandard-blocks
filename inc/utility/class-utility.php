@@ -383,4 +383,21 @@ class Utility {
 		return $style;
 	}
 
+	/**
+	 * Nonceチェック
+	 *
+	 * @param string $name   Name.
+	 * @param string $action Action.
+	 *
+	 * @return bool|int
+	 */
+	public static function verify_nonce( $name, $action ) {
+		// nonceがセットされているかどうか確認.
+		if ( ! isset( $_POST[ $name ] ) ) {
+			return false;
+		}
+
+		return wp_verify_nonce( $_POST[ $name ], $action );
+	}
+
 }

@@ -97,7 +97,7 @@ class Customizer {
 			 */
 			$customizer->add_number(
 				[
-					'id'          => $ystdb_opt->get_option_name( 'inline_style_fz_' . $i ),
+					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_fz_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_fz_' . $i, 100 ),
 					'label'       => '文字サイズ(%)',
 					'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
@@ -115,7 +115,7 @@ class Customizer {
 			 */
 			$customizer->add_color(
 				[
-					'id'        => $ystdb_opt->get_option_name( 'inline_style_color_' . $i ),
+					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_color_' . $i, '#222222' ),
 					'label'     => '文字色',
 					'section'   => 'ystdb_inline_style',
@@ -127,7 +127,7 @@ class Customizer {
 			 */
 			$customizer->add_color(
 				[
-					'id'        => $ystdb_opt->get_option_name( 'inline_style_mark_color_' . $i ),
+					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_mark_color_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i, Format::MARKER_DEFAULT_COLOR[ $i ] ),
 					'label'     => 'マーカー色',
 					'section'   => 'ystdb_inline_style',
@@ -139,7 +139,7 @@ class Customizer {
 			 */
 			$customizer->add_number(
 				[
-					'id'          => $ystdb_opt->get_option_name( 'inline_style_mark_weight_' . $i ),
+					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_mark_weight_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_weight_' . $i, 25 ),
 					'label'       => 'マーカー太さ(%)',
 					'description' => 'マーカー（蛍光ペン風）の太さ設定。0~100の間で設定してください。<br>0にするとマーカー表示がOFFになります。',
@@ -156,7 +156,7 @@ class Customizer {
 			 */
 			$customizer->add_number(
 				[
-					'id'          => $ystdb_opt->get_option_name( 'inline_style_mark_opacity_' . $i ),
+					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_mark_opacity_' . $i ),
 					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i, 30 ),
 					'label'       => 'マーカー色の不透明度',
 					'section'     => 'ystdb_inline_style',
@@ -173,7 +173,7 @@ class Customizer {
 			 */
 			$customizer->add_radio(
 				[
-					'id'        => $ystdb_opt->get_option_name( 'inline_style_type_' . $i ),
+					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_type_' . $i ),
 					'default'   => $ystdb_opt->get_default_option( 'inline_style_type_' . $i, 'normal' ),
 					'label'     => '装飾タイプ',
 					'section'   => 'ystdb_inline_style',
@@ -192,7 +192,7 @@ class Customizer {
 		$customizer->add_section_label( '[ys]少し大きく' );
 		$customizer->add_number(
 			[
-				'id'          => $ystdb_opt->get_option_name( 'inline_style_larger' ),
+				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_larger' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger', 120 ),
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
@@ -208,7 +208,7 @@ class Customizer {
 		$customizer->add_section_label( '[ys]少し小さく' );
 		$customizer->add_number(
 			[
-				'id'          => $ystdb_opt->get_option_name( 'inline_style_smaller' ),
+				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_smaller' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller', 80 ),
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
@@ -228,7 +228,7 @@ class Customizer {
 		$customizer->add_section_label( '[ys]少し大きく(SP)' );
 		$customizer->add_number(
 			[
-				'id'          => $ystdb_opt->get_option_name( 'inline_style_larger_sp' ),
+				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_larger_sp' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger_sp', 120 ),
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
@@ -244,7 +244,7 @@ class Customizer {
 		$customizer->add_section_label( '[ys]少し小さく(SP)' );
 		$customizer->add_number(
 			[
-				'id'          => $ystdb_opt->get_option_name( 'inline_style_smaller_sp' ),
+				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_smaller_sp' ),
 				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller_sp', 80 ),
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
@@ -287,7 +287,7 @@ class Customizer {
 			 */
 			$customizer->add_image(
 				[
-					'id'        => $ystdb_opt->get_option_name( 'balloon_image_' . $i ),
+					'id'        => $ystdb_opt->get_old_option_name( 'balloon_image_' . $i ),
 					'label'     => '画像',
 					'section'   => 'ystdb_balloon_images',
 					'default'   => $ystdb_opt->get_default_option( 'balloon_image_' . $i, '' ),
@@ -299,7 +299,7 @@ class Customizer {
 			 */
 			$customizer->add_text(
 				[
-					'id'        => $ystdb_opt->get_option_name( 'balloon_name_' . $i ),
+					'id'        => $ystdb_opt->get_old_option_name( 'balloon_name_' . $i ),
 					'label'     => '名前',
 					'section'   => 'ystdb_balloon_images',
 					'default'   => $ystdb_opt->get_default_option( 'balloon_name_' . $i, '' ),
