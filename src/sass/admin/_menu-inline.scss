@@ -1,0 +1,42 @@
+.color-picker-button {
+  line-height: 2;
+  background-color: transparent;
+  color: #222;
+  border: 1px solid #e5e5e5;
+
+  &:hover,
+  &:focus {
+	background-color: transparent;
+  }
+}
+
+.color-picker-preview {
+  line-height: 2;
+  width: 34px;
+  padding: 0;
+  margin-right: -.3em;
+}
+
+.vc-chrome-alpha-wrap {
+  display: none;
+}
+.vc-chrome-controls {
+  align-items: center;
+}
+
+.vc-chrome-fields-wrap {
+  .vc-chrome-fields:not(:first-child) {
+	.vc-chrome-field:last-child {
+	  display: none;
+	}
+  }
+}
+
+@media (min-width: 960px) {
+  .uk-form-horizontal .uk-form-label {
+	width: 120px;
+  }
+  .uk-form-horizontal .uk-form-controls {
+	margin-left: 135px;
+  }
+}

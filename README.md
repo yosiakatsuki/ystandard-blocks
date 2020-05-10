@@ -184,3 +184,23 @@ Source : <https://github.com/feathericons/feather>
 
 License: CC0 - 1.0  
 Source : <https://github.com/simple-icons/simple-icons>
+
+### UIkit
+
+License: MIT  
+Source : <https://github.com/uikit/uikit>
+
+### Vue.js
+
+License: MIT  
+Source : <https://github.com/vuejs/vue>
+
+### vue-color
+
+License: MIT  
+Source : <https://github.com/xiaokaike/vue-color>
+
+### Lato
+
+License: Open Font License.  
+Source : <https://fonts.google.com/specimen/Lato>

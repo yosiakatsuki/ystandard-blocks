@@ -22,9 +22,6 @@ class Option_No_YSTD {
 	 * Option_No_YSTD constructor.
 	 */
 	public function __construct() {
-		if ( ! Utility::is_ystandard() ) {
-			return;
-		}
 		add_action( 'admin_menu', [ $this, 'add_options_other' ] );
 	}
 
@@ -32,6 +29,9 @@ class Option_No_YSTD {
 	 * 非 yStandard オプションページ追加.
 	 */
 	public function add_options_other() {
+		if ( Utility::is_ystandard() ) {
+			return;
+		}
 		add_options_page(
 			'yStandard Blocks 設定',
 			'yStandard Blocks 設定',

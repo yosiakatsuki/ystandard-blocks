@@ -1,0 +1,37 @@
+#ystdb-option {
+  animation: show 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes show {
+  0% {
+	opacity: 0;
+  }
+  100% {
+	opacity: 1;
+  }
+}
+
+.uk-tab-left {
+  font-size: 14px;
+
+  > * {
+	> a {
+	  text-align: left;
+	  border-right: 2px solid transparent;
+	  border-bottom: none;
+	}
+  }
+}
+
+.uk-tab {
+  > .uk-active {
+	> a {
+	  border-color: $color__ystd_blue;
+	}
+  }
+}
+
+.uk-radio:checked::before {
+  background-color: #fff;
+}

@@ -52,7 +52,7 @@ class Option {
 		global $ystd_Options;
 		if ( ! is_array( $ystd_Options ) ) {
 			// グローバルに作成していなければ設定取得.
-			$ystd_Options = get_option( Config::OPTION_NAME, null );
+			$ystd_Options = self::get_option_all( null );
 			// 設定がなければ旧オプションから作成.
 			if ( is_null( $ystd_Options ) ) {
 				$ystd_Options = Migration::convert_new_options();
@@ -63,6 +63,17 @@ class Option {
 		}
 
 		return self::get_default_option( $name, $default );
+	}
+
+	/**
+	 * 全ての設定取得.
+	 *
+	 * @param mixed $default Default.
+	 *
+	 * @return mixed
+	 */
+	public static function get_option_all( $default = [] ) {
+		return get_option( Config::OPTION_NAME, $default );
 	}
 
 	/**

@@ -60,6 +60,11 @@
     "lodash": "^4.17.15",
     "simple-icons": "^2.11.0",
     "style-loader": "^1.1.3",
+    "uikit": "^3.4.4",
+    "vue": "^2.6.11",
+    "vue-color": "^2.7.1",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
     "watch": "^1.0.2",
     "webpack": "^4.41.5",
     "webpack-stream": "^5.2.1"

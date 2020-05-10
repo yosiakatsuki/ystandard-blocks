@@ -52,6 +52,7 @@ class Init {
 		require_once $inc . '/enqueue/class-block-editor.php';
 		require_once $inc . '/admin/class-notice.php';
 		require_once $inc . '/admin/class-admin.php';
+		require_once $inc . '/menu-page/class-menu.php';
 		require_once $inc . '/menu-page/option-no-ystd.php';
 		require_once $inc . '/customizer/class-customizer.php';
 	}
