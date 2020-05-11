@@ -122,7 +122,7 @@ if ( $attributes['iconLeftSVG'] ) {
 			$attributes['iconSizeLeft'] ? $attributes['iconSizeLeft'] : '',
 		]
 	);
-	// アイコン用クラス作成
+	// アイコン用クラス作成.
 	$icon_class = array_merge(
 		[ 'ys-icon' ],
 		[ strpos( $attributes['iconLeft'], 'sns-' ) ? 'sns-icon' : '' ]
@@ -143,7 +143,7 @@ if ( $attributes['iconRightSVG'] ) {
 			$attributes['iconSizeRight'] ? $attributes['iconSizeRight'] : '',
 		]
 	);
-	// アイコン用クラス作成
+	// アイコン用クラス作成.
 	$icon_class = array_merge(
 		[ 'ys-icon' ],
 		[ strpos( $attributes['iconRight'], 'sns-' ) ? 'sns-icon' : '' ]

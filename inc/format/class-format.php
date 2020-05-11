@@ -247,17 +247,17 @@ class Format {
 		$options = [];
 		for ( $i = 1; $i <= 3; $i ++ ) {
 
-			$options["fontSize${i}"] = Option::get_option( 'inline_style_fz_' . $i, 100 );;
-			$options["color${i}"]       = Option::get_option( 'inline_style_color_' . $i, '#222222' );
-			$options["type${i}"]        = Option::get_option( 'inline_style_type_' . $i, 'normal' );
-			$options["markWeight${i}"]  = Option::get_option( 'inline_style_mark_weight_' . $i, 25 );
-			$options["markColor${i}"]   = Option::get_option( 'inline_style_mark_color_' . $i, self::MARKER_DEFAULT_COLOR[ $i ] );
-			$options["markOpacity${i}"] = Option::get_option_by_number( 'inline_style_mark_opacity_' . $i, 30 );
+			$options[ 'fontSize' . $i ]    = Option::get_option( 'inline_style_fz_' . $i, 100 );
+			$options[ 'color' . $i ]       = Option::get_option( 'inline_style_color_' . $i, '#222222' );
+			$options[ 'type' . $i ]        = Option::get_option( 'inline_style_type_' . $i, 'normal' );
+			$options[ 'markWeight' . $i ]  = Option::get_option( 'inline_style_mark_weight_' . $i, 25 );
+			$options[ 'markColor' . $i ]   = Option::get_option( 'inline_style_mark_color_' . $i, self::MARKER_DEFAULT_COLOR[ $i ] );
+			$options[ 'markOpacity' . $i ] = Option::get_option_by_number( 'inline_style_mark_opacity_' . $i, 30 );
 		}
-		$options["larger"]    = Option::get_option( 'inline_style_larger', 120 );
-		$options["smaller"]   = Option::get_option( 'inline_style_smaller', 80 );
-		$options["largerSP"]  = Option::get_option( 'inline_style_larger_sp', 120 );
-		$options["smallerSP"] = Option::get_option( 'inline_style_smaller_sp', 80 );
+		$options['larger']    = Option::get_option( 'inline_style_larger', 120 );
+		$options['smaller']   = Option::get_option( 'inline_style_smaller', 80 );
+		$options['largerSP']  = Option::get_option( 'inline_style_larger_sp', 120 );
+		$options['smallerSP'] = Option::get_option( 'inline_style_smaller_sp', 80 );
 
 		return $options;
 	}

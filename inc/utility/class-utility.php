@@ -20,7 +20,7 @@ class Utility {
 	/**
 	 * HTML・改行・ショートコードなしのテキストを取得
 	 *
-	 * @param string $content content.
+	 * @param string $text content.
 	 *
 	 * @return string
 	 */

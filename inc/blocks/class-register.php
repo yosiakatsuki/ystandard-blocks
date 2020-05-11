@@ -135,7 +135,7 @@ class Register {
 			return;
 		}
 		$blocks = $this->blocks;
-		// 非推奨ブロックのチェック
+		// 非推奨ブロックのチェック.
 		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_blocks );
 		if ( ! empty( $deprecated_blocks ) ) {
 			$blocks = array_merge(
@@ -212,7 +212,7 @@ class Register {
 	public function register_dynamic_block() {
 
 		$blocks = $this->dynamic_block;
-		// 非推奨ブロックのチェック
+		// 非推奨ブロックのチェック.
 		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_dynamic_blocks );
 		if ( ! empty( $deprecated_blocks ) ) {
 			$blocks = array_merge(
@@ -261,6 +261,8 @@ class Register {
 
 	/**
 	 * 非推奨ブロックの利用チェック
+	 *
+	 * @param array $blocks 非推奨ブロックのリスト.
 	 *
 	 * @return array
 	 */

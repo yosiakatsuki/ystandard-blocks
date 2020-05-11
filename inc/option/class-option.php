@@ -49,17 +49,17 @@ class Option {
 	 * @return mixed
 	 */
 	public static function get_option( $name, $default ) {
-		global $ystd_Options;
-		if ( ! is_array( $ystd_Options ) ) {
+		global $ystd_options;
+		if ( ! is_array( $ystd_options ) ) {
 			// グローバルに作成していなければ設定取得.
-			$ystd_Options = self::get_option_all( null );
+			$ystd_options = self::get_option_all( null );
 			// 設定がなければ旧オプションから作成.
-			if ( is_null( $ystd_Options ) ) {
-				$ystd_Options = Migration::convert_new_options();
+			if ( is_null( $ystd_options ) ) {
+				$ystd_options = Migration::convert_new_options();
 			}
 		}
-		if ( isset( $ystd_Options[ $name ] ) ) {
-			return $ystd_Options[ $name ];
+		if ( isset( $ystd_options[ $name ] ) ) {
+			return $ystd_options[ $name ];
 		}
 
 		return self::get_default_option( $name, $default );

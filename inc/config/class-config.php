@@ -43,12 +43,12 @@ class Config {
 	const JS_APP_HANDLE = 'ystdb-js-app';
 
 	/**
-	 * 旧設定プレフィックス
-	 */
-	const OPTION_PREFIX = 'ystdb_';
-
-	/**
 	 * メニューページ用 body class.
 	 */
 	const ADMIN_MENU_BODY_CLASS = 'ystd-blocks-menu';
+
+	/**
+	 * 旧設定プレフィックス
+	 */
+	const OPTION_PREFIX = 'ystdb_';
 }

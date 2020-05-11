@@ -45,13 +45,18 @@ class Menu {
 	 * JSにわたすパラメーターのフック名.
 	 */
 	const LOCALIZE_SCRIPT_PARAM = 'ystdb_option_localize_script_param';
+	/**
+	 * Hook Suffix.
+	 */
+	const HOOK_SUFFIX = 'ystandard_page_ystd-blocks-menu';
 
 	/**
 	 * Menu constructor.
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 100 );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 11 );
+		add_action( 'admin_init', [ $this, 'save_option' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 50 );
 		add_filter( 'admin_body_class', [ $this, 'admin_body_class' ] );
 	}
 
@@ -86,7 +91,7 @@ class Menu {
 	 * @return void
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
-		if ( 'ystandard_page_ystd-blocks-menu' !== $hook_suffix ) {
+		if ( self::HOOK_SUFFIX !== $hook_suffix ) {
 			return;
 		}
 		wp_enqueue_style(
@@ -139,7 +144,6 @@ class Menu {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
-		$result = $this->save();
 		?>
 		<div class="wrap ystdb-option-page">
 			<h1 class="uk-text-large uk-heading-divider"><span class="orbitron">yStandard Blocks</span>設定</h1>
@@ -159,7 +163,7 @@ class Menu {
 						</div>
 					</div>
 					<div class="uk-margin-medium-top">
-						<button type="submit" class="uk-button uk-button-default uk-button-primary">更新</button>
+						<button type="button" class="uk-button uk-button-default uk-button-primary" onclick="submit();">更新</button>
 					</div>
 				</form>
 			</div>
@@ -170,11 +174,11 @@ class Menu {
 	/**
 	 * Save.
 	 */
-	private function save() {
+	public function save_option() {
 		if ( ! Utility::verify_nonce( Config::NONCE_NAME, Config::NONCE_ACTION ) ) {
-			return true;
+			return false;
 		}
-		$options = get_option( Config::OPTION_NAME, null );
+		$options = get_option( Config::OPTION_NAME, [] );
 
 		// 各設定のサニタイズ等、それぞれのファイル側で定義.
 		$save_options = apply_filters( self::SAVE_FILTER, $options );
@@ -182,7 +186,16 @@ class Menu {
 			return false;
 		}
 
-		return update_option( Config::OPTION_NAME, $save_options );
+		$update = update_option( Config::OPTION_NAME, $save_options );
+		if ( $update ) {
+			Notice::set_notice(
+				function () {
+					Notice::success( '設定を更新しました。' );
+				}
+			);
+		}
+
+		return $update;
 	}
 }
 
