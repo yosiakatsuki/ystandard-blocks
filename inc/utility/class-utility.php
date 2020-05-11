@@ -400,4 +400,40 @@ class Utility {
 		return wp_verify_nonce( $_POST[ $name ], $action );
 	}
 
+	/**
+	 * サイズ関連のサニタイズ
+	 *
+	 * @param string $number  数値.
+	 * @param int    $default 初期値.
+	 * @param int    $max     最大.
+	 * @param int    $min     最小.
+	 */
+	public static function sanitize_size( $number, $default, $max = 200, $min = 60 ) {
+
+		if ( ! is_numeric( $number ) ) {
+			return $default;
+		}
+		if ( $number < $min || $number > $max ) {
+			return $default;
+		}
+
+		return $number;
+	}
+
+	/**
+	 * 色コードのサニタイズ.
+	 *
+	 * @param string $color   Color.
+	 * @param string $default Default.
+	 *
+	 * @return string
+	 */
+	public static function sanitize_hex( $color, $default ) {
+		if ( ! preg_match( "/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/", $color ) ) {
+			return $default;
+		}
+
+		return $color;
+	}
+
 }

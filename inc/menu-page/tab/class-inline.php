@@ -7,12 +7,13 @@
  * @license GPL-2.0+
  */
 
-namespace ystandard_blocks\tab;
+namespace ystandard_blocks\menu_page;
 
 use ystandard_blocks\Config;
 use ystandard_blocks\Format;
 use ystandard_blocks\Menu;
 use ystandard_blocks\Option;
+use ystandard_blocks\Utility;
 
 defined( 'ABSPATH' ) || die();
 
@@ -171,15 +172,15 @@ class Inline {
 							<div class="uk-card uk-card-default uk-card-body" style="flex-grow: 1;">
 								<div>
 									<span class="uk-text-small uk-text-meta">標準サイズ</span><br>
-									<span style="font-size: 1rem;">テキストを少し大きくする</span>
+									<span style="font-size: 1rem;">テキストを少し小さくする</span>
 								</div>
 								<div class="uk-margin-small-top">
-									<span class="uk-text-small uk-text-meta">少し大きく</span><br>
-									<span v-bind:style="previewTextSize('smaller')">テキストを少し大きくする</span>
+									<span class="uk-text-small uk-text-meta">少し小さく</span><br>
+									<span v-bind:style="previewTextSize('smaller')">テキストを少し小さくする</span>
 								</div>
 								<div class="uk-margin-small-top">
-									<span class="uk-text-small uk-text-meta">少し大きく(SP)</span><br>
-									<span v-bind:style="previewTextSize('smallerSP')">テキストを少し大きくする</span>
+									<span class="uk-text-small uk-text-meta">少し小さく(SP)</span><br>
+									<span v-bind:style="previewTextSize('smallerSP')">テキストを少し小さくする</span>
 								</div>
 							</div>
 						</div>
@@ -358,7 +359,7 @@ class Inline {
 					</div>
 				</div>
 			</div>
-			<?php
+		<?php
 		endfor;
 	}
 
@@ -372,14 +373,91 @@ class Inline {
 	public function save( $options ) {
 
 		if ( isset( $_POST[ Config::OPTION_NAME ] ) ) {
+			$new = $_POST[ Config::OPTION_NAME ];
+
+			// サニタイズ.
+			for ( $i = 1; $i <= 3; $i ++ ) {
+				// サイズ.
+				if ( ! isset( $new[ 'inline_style_fz_' . $i ] ) ) {
+					$new[ 'inline_style_fz_' . $i ] = 100;
+				}
+				$new[ 'inline_style_fz_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_fz_' . $i ], 100, 200, 60 );
+				// 文字色.
+				if ( ! isset( $new[ 'inline_style_color_' . $i ] ) ) {
+					$new[ 'inline_style_color_' . $i ] = '#222222';
+				}
+				$new[ 'inline_style_color_' . $i ] = Utility::sanitize_hex( $new[ 'inline_style_color_' . $i ], '#222222' );
+				// タイプ.
+				if ( ! isset( $new[ 'inline_style_type_' . $i ] ) ) {
+					$new[ 'inline_style_type_' . $i ] = 'normal';
+				}
+				$new[ 'inline_style_type_' . $i ] = $this->sanitize_type( $new[ 'inline_style_type_' . $i ] );
+				// マーカー色.
+				if ( ! isset( $new[ 'inline_style_mark_color_' . $i ] ) ) {
+					$new[ 'inline_style_mark_color_' . $i ] = Format::MARKER_DEFAULT_COLOR[ $i ];
+				}
+				$new[ 'inline_style_mark_color_' . $i ] = Utility::sanitize_hex( $new[ 'inline_style_mark_color_' . $i ], Format::MARKER_DEFAULT_COLOR[ $i ] );
+				// マーカー濃さ.
+				if ( ! isset( $new[ 'inline_style_mark_opacity_' . $i ] ) ) {
+					$new[ 'inline_style_mark_opacity_' . $i ] = 30;
+				}
+				$new[ 'inline_style_mark_opacity_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_mark_opacity_' . $i ], 30, 100, 0 );
+				// マーカー太さ.
+				if ( ! isset( $new[ 'inline_style_mark_weight_' . $i ] ) ) {
+					$new[ 'inline_style_mark_weight_' . $i ] = 25;
+				}
+				$new[ 'inline_style_mark_weight_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_mark_weight_' . $i ], 25, 100, 0 );
+			}
+
+			// サイズ.
+			if ( ! isset( $new['inline_style_larger'] ) ) {
+				$new['inline_style_larger'] = 100;
+			}
+			$new['inline_style_larger'] = Utility::sanitize_size( $new['inline_style_larger'], 100, 200, 60 );
+			if ( ! isset( $new['inline_style_larger_sp'] ) ) {
+				$new['inline_style_larger_sp'] = 100;
+			}
+			$new['inline_style_larger_sp'] = Utility::sanitize_size( $new['inline_style_larger_sp'], 100, 200, 60 );
+			if ( ! isset( $new['inline_style_smaller'] ) ) {
+				$new['inline_style_smaller'] = 100;
+			}
+			$new['inline_style_smaller'] = Utility::sanitize_size( $new['inline_style_smaller'], 100, 200, 60 );
+			if ( ! isset( $new['inline_style_smaller_sp'] ) ) {
+				$new['inline_style_smaller_sp'] = 100;
+			}
+			$new['inline_style_smaller_sp'] = Utility::sanitize_size( $new['inline_style_smaller_sp'], 100, 200, 60 );
+
+
 			$options = array_merge(
 				$options,
-				$_POST[ Config::OPTION_NAME ]
+				$new
 			);
 		}
 
 		return $options;
 	}
+
+	/**
+	 * 装飾タイプのサニタイズ
+	 *
+	 * @param string $type タイプ.
+	 *
+	 * @return string
+	 */
+	private function sanitize_type( $type ) {
+		$list = [
+			'normal',
+			'bold',
+			'italic',
+		];
+
+		if ( ! in_array( $type, $list, true ) ) {
+			return 'normal';
+		}
+
+		return $type;
+	}
+
 }
 
 new Inline();
