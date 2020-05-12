@@ -1,9 +1,9 @@
 #ystdb-option {
-  animation: show 1s;
+  animation: ystdbMenuShow 1.5s;
   animation-fill-mode: both;
 }
 
-@keyframes show {
+@keyframes ystdbMenuShow {
   0% {
 	opacity: 0;
   }
@@ -38,4 +38,13 @@
 
 .notice p {
   margin: .5em 0;
+}
+
+.uk-card-default {
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+.uk-card-body {
+  padding: 40px 40px;
 }

@@ -1,0 +1,12 @@
+.ystdb-balloon__image {
+  text-align: center;
+
+  img {
+	display: block;
+	width: 96px;
+	height: 96px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin: auto;
+  }
+}

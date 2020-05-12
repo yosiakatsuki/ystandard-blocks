@@ -81,6 +81,7 @@ class Menu {
 	 */
 	private function load_tab() {
 		require_once __DIR__ . '/tab/class-inline.php';
+		require_once __DIR__ . '/tab/class-balloon.php';
 	}
 
 	/**
@@ -144,6 +145,10 @@ class Menu {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
+		$active = '0';
+		if ( isset( $_GET['tab'] ) ) {
+			$active = $_GET['tab'];
+		}
 		?>
 		<div class="wrap ystdb-option-page">
 			<h1 class="uk-text-large uk-heading-divider"><span class="orbitron">yStandard Blocks</span>設定</h1>
@@ -152,7 +157,7 @@ class Menu {
 					<?php wp_nonce_field( Config::NONCE_ACTION, Config::NONCE_NAME ); ?>
 					<div uk-grid>
 						<div class="uk-width-small@m">
-							<ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+							<ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade; active:<?php echo $active; ?>">
 								<?php do_action( self::MENU_ADD_ACTION ); ?>
 							</ul>
 						</div>
@@ -179,7 +184,6 @@ class Menu {
 			return false;
 		}
 		$options = get_option( Config::OPTION_NAME, [] );
-
 		// 各設定のサニタイズ等、それぞれのファイル側で定義.
 		$save_options = apply_filters( self::SAVE_FILTER, $options );
 		if ( is_null( $save_options ) || ! is_array( $save_options ) ) {
