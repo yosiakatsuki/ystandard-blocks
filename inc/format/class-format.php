@@ -255,8 +255,8 @@ class Format {
 			$options[ 'markOpacity' . $i ] = Option::get_option_by_number( 'inline_style_mark_opacity_' . $i, 30 );
 		}
 		$options['larger']    = Option::get_option( 'inline_style_larger', 120 );
-		$options['smaller']   = Option::get_option( 'inline_style_smaller', 80 );
 		$options['largerSP']  = Option::get_option( 'inline_style_larger_sp', 120 );
+		$options['smaller']   = Option::get_option( 'inline_style_smaller', 80 );
 		$options['smallerSP'] = Option::get_option( 'inline_style_smaller_sp', 80 );
 
 		return $options;

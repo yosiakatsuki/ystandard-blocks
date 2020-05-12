@@ -195,12 +195,12 @@ Source : <https://github.com/uikit/uikit>
 License: MIT  
 Source : <https://github.com/vuejs/vue>
 
-### vue-color
+### Vuetify
 
 License: MIT  
-Source : <https://github.com/xiaokaike/vue-color>
+Source : <https://github.com/vuetifyjs/vuetify>
 
-### Lato
+### Vue.Draggable
 
-License: Open Font License.  
-Source : <https://fonts.google.com/specimen/Lato>
+License: MIT  
+Source : <https://github.com/SortableJS/Vue.Draggable>

@@ -58,6 +58,7 @@ class Option {
 				$ystd_options = Migration::convert_new_options();
 			}
 		}
+
 		if ( isset( $ystd_options[ $name ] ) ) {
 			return $ystd_options[ $name ];
 		}
@@ -73,7 +74,7 @@ class Option {
 	 * @return mixed
 	 */
 	public static function get_option_all( $default = [] ) {
-		delete_option(Config::OPTION_NAME);
+
 		return get_option( Config::OPTION_NAME, $default );
 	}
 

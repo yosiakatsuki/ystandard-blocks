@@ -17,17 +17,6 @@ defined( 'ABSPATH' ) || die();
  * @package ystandard_blocks
  */
 class Menu {
-
-	/**
-	 * メニュー追加用フック名
-	 */
-	const MENU_ADD_ACTION = 'ystdb_options_tab_menu';
-
-	/**
-	 * パネル部分追加用フック名
-	 */
-	const PANEL_ADD_ACTION = 'ystdb_options_tab_panel';
-
 	/**
 	 * 設定保存用フック名
 	 */
@@ -46,9 +35,9 @@ class Menu {
 	 */
 	const LOCALIZE_SCRIPT_PARAM = 'ystdb_option_localize_script_param';
 	/**
-	 * Hook Suffix.
+	 * メニュースラッグ.
 	 */
-	const HOOK_SUFFIX = 'ystandard_page_ystd-blocks-menu';
+	const MENU_SLUG = 'ystdb-menu';
 
 	/**
 	 * Menu constructor.
@@ -64,14 +53,14 @@ class Menu {
 	 * Add Menu.
 	 */
 	public function add_menu_page() {
-		add_submenu_page(
-			'ystandard-start-page',
-			'Blocks 設定',
-			'Blocks 設定',
+		add_menu_page(
+			'yStandard Blocks',
+			'yStandard Blocks',
 			'manage_options',
-			'ystd-blocks-menu',
-			[ $this, 'blocks_menu' ],
-			5
+			self::MENU_SLUG,
+			'',
+			$this->menu_icon(),
+			59
 		);
 		$this->load_tab();
 	}
@@ -85,6 +74,17 @@ class Menu {
 	}
 
 	/**
+	 * メニューアイコン
+	 *
+	 * @return string
+	 */
+	private function menu_icon() {
+		$icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>';
+
+		return 'data:image/svg+xml;base64,' . base64_encode( $icon );
+	}
+
+	/**
 	 * 管理画面-JavaScriptの読み込み
 	 *
 	 * @param string $hook_suffix suffix.
@@ -92,7 +92,7 @@ class Menu {
 	 * @return void
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
-		if ( self::HOOK_SUFFIX !== $hook_suffix ) {
+		if ( false === strpos( $hook_suffix, 'ystdb-' ) ) {
 			return;
 		}
 		wp_enqueue_style(
@@ -102,14 +102,14 @@ class Menu {
 			YSTDB_VERSION
 		);
 		wp_enqueue_style(
-			'uikit',
-			YSTDB_URL . '/css/ystandard-blocks-option-page.css',
+			'ystdb-menu-page',
+			YSTDB_URL . '/css/ystandard-blocks-menu-page.css',
 			[],
 			YSTDB_VERSION
 		);
 		$deps = apply_filters( self::SCRIPT_ENQUEUE_DEPS, [] );
 		wp_enqueue_script(
-			'ystdb-option-page',
+			'ystdb-menu-page',
 			YSTDB_URL . '/js/menu-page.js',
 			$deps,
 			YSTDB_VERSION,
@@ -117,7 +117,7 @@ class Menu {
 		);
 		$param = apply_filters( self::LOCALIZE_SCRIPT_PARAM, [] );
 		wp_localize_script(
-			'ystdb-option-page',
+			'ystdb-menu-page',
 			'ystdbOption',
 			$param
 		);
@@ -140,31 +140,29 @@ class Menu {
 
 	/**
 	 * メニューページ追加
+	 *
+	 * @param string $content 設定部分.
+	 * @param string $active  Active.
 	 */
-	public function blocks_menu() {
+	public static function blocks_menu_content( $content, $active ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
-		$active = '0';
-		if ( isset( $_GET['tab'] ) ) {
-			$active = $_GET['tab'];
-		}
 		?>
-		<div class="wrap ystdb-option-page">
-			<h1 class="uk-text-large uk-heading-divider"><span class="orbitron">yStandard Blocks</span>設定</h1>
-			<div id="ystdb-option">
+		<div class="wrap ystdb-menu-page">
+			<h1 class="ystdb-menu__title"><span class="orbitron">yStandard Blocks</span>設定</h1>
+			<div id="ystdb-menu">
 				<form method="post" action="">
 					<?php wp_nonce_field( Config::NONCE_ACTION, Config::NONCE_NAME ); ?>
-					<div uk-grid>
-						<div class="uk-width-small@m">
-							<ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade; active:<?php echo $active; ?>">
-								<?php do_action( self::MENU_ADD_ACTION ); ?>
-							</ul>
+					<div class="ystdb-menu__container">
+						<div class="ystdb-menu__nav">
+							<div class="ystdb-menu__nav-list">
+								<a class="ystdb-menu__nav-link<?php echo 'inline' === $active ? ' is-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=ystdb-menu' ); ?>">インライン</a>
+								<a class="ystdb-menu__nav-link<?php echo 'balloon' === $active ? ' is-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=ystdb-balloon' ); ?>">吹き出し</a>
+							</div>
 						</div>
-						<div class="uk-width-expand@m">
-							<ul id="component-tab-left" class="uk-switcher">
-								<?php do_action( self::PANEL_ADD_ACTION ); ?>
-							</ul>
+						<div class="ystdb-menu__content">
+							<?php echo $content; ?>
 						</div>
 					</div>
 					<div class="uk-margin-medium-top">
@@ -181,6 +179,9 @@ class Menu {
 	 */
 	public function save_option() {
 		if ( ! Utility::verify_nonce( Config::NONCE_NAME, Config::NONCE_ACTION ) ) {
+			return false;
+		}
+		if ( ! isset( $_POST['ystdb-menu'] ) ) {
 			return false;
 		}
 		$options = get_option( Config::OPTION_NAME, [] );

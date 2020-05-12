@@ -8,6 +8,10 @@ const cssdeclsort = require( 'css-declaration-sorter' );
 const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
+const webpackStream = require( 'webpack-stream' );
+const webpack = require( 'webpack' );
+
+const webpackConfig = require( './webpack.menu.config.js' );
 
 const postcssPlugins = [
 	autoprefixer( {
@@ -33,6 +37,11 @@ function sass() {
 		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( dest( './css' ) );
+}
+
+function buildWebpack() {
+	return webpackStream( webpackConfig, webpack )
+		.pipe( dest( 'js/' ) )
 }
 
 function cleanFiles( cb ) {
@@ -102,9 +111,11 @@ function copyJson() {
 function watchFiles() {
 	cleanFiles();
 	sass();
+	buildWebpack();
 	watch( './src/sass/**/*.scss', sass );
 	watch( './src/js/**/*.scss', sass );
 	watch( './blocks/**/*.scss', sass );
+	watch( [ './src/js/admin/**/*.js' ], buildWebpack );
 }
 
 /**
@@ -115,6 +126,7 @@ exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( z
 exports.watch = series( watchFiles );
 exports.sass = series( sass );
 exports.clean = series( cleanFiles );
+exports.webpack = series( buildWebpack );
 /**
  * default
  */

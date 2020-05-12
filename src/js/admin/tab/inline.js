@@ -7,58 +7,76 @@ export const inlineStyle = () => {
 		el: '#inline-style',
 		data: {
 			inline: ystdbOption.inline,
-			preview: {
-				1: {},
-				2: {},
-				3: {},
-			},
 		},
 		components: {
 			'chrome-picker': Chrome,
 		},
-		mounted() {
-			this.refreshPreview( 1 );
-			this.refreshPreview( 2 );
-			this.refreshPreview( 3 );
+		computed: {
+			previewMaker() {
+				self = this;
+				return function( index ) {
+					return {
+						background: self.getMarker( index ),
+						backgroundPositionY: self.getMarkerPositionY( index ),
+						color: self.inline[ `color${ index }` ],
+						fontSize:
+							self.inline[ `fontSize${ index }` ] / 100 + 'em',
+						fontWeight:
+							'bold' === self.inline[ `type${ index }` ]
+								? 700
+								: undefined,
+						fontStyle:
+							'italic' === self.inline[ `type${ index }` ]
+								? 'italic !important'
+								: undefined,
+					};
+				};
+			},
+			previewLager() {
+				return {
+					fontSize: this.inline.larger / 100 + 'em',
+				};
+			},
+			previewLagerSP() {
+				return {
+					fontSize: this.inline.largerSP / 100 + 'em',
+				};
+			},
+			previewSmaller() {
+				return {
+					fontSize: this.inline.smaller / 100 + 'em',
+				};
+			},
+			previewSmallerSP() {
+				return {
+					fontSize: this.inline.smallerSP / 100 + 'em',
+				};
+			},
 		},
 		methods: {
-			changeInlineStyle( option, data, index ) {
-				this.inline[ option ] = data;
-				this.refreshPreview( index );
-			},
-			refreshPreview( index ) {
-				const markColorRgb = hex2rgb(
-					this.inline[ `markColor${ index }` ]
-				);
+			getMarker( index ) {
 				const markWeight = 100 - this.inline[ `markWeight${ index }` ];
 				const markOpacity =
 					this.inline[ `markOpacity${ index }` ] / 100;
+				const markColorRgb = hex2rgb(
+					this.inline[ `markColor${ index }` ]
+				);
 				const mark = `linear-gradient(transparent ${ markWeight }%, rgba(${ markColorRgb[ 0 ] },${ markColorRgb[ 1 ] },${ markColorRgb[ 2 ] }, ${ markOpacity }) ${ markWeight }%)`;
-				// style属性作成
-				this.preview[ index ] = {
-					background: 100 !== markWeight ? mark : undefined,
-					backgroundPositionY:
-						100 !== markWeight ? '-0.2em' : undefined,
-					color: this.inline[ `color${ index }` ],
-					fontSize: this.inline[ `fontSize${ index }` ] / 100 + 'em',
-					fontWeight:
-						'bold' === this.inline[ `type${ index }` ]
-							? 700
-							: undefined,
-					fontStyle:
-						'italic' === this.inline[ `type${ index }` ]
-							? 'italic !important'
-							: undefined,
-				};
+				return 100 !== markWeight ? mark : undefined;
 			},
-			changeTextSize( option, data ) {
-				this.inline[ option ] = data;
-				this.previewLarger( option );
+			getMarkerPositionY( index ) {
+				const markWeight = 100 - this.inline[ `markWeight${ index }` ];
+				return 100 !== markWeight ? '-0.2em' : undefined;
 			},
-			previewTextSize( option ) {
-				return {
-					fontSize: this.inline[ option ] / 100 + 'em',
-				};
+			updateColor( index ) {
+				this.inline[ `color${ index }` ] = this.inline[
+					`color${ index }`
+				].hex;
+			},
+			updateMakerColor( index ) {
+				this.inline[ `markColor${ index }` ] = this.inline[
+					`markColor${ index }`
+				].hex;
 			},
 		},
 	} );

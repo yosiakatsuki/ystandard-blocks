@@ -20,7 +20,6 @@ module.exports = {
 		'format': './blocks/format/index.js',
 		'fa-icon': './blocks/fa-icon/index.js',
 		'button': './blocks/button/index.js',
-		'menu-page': './src/js/admin/menu-page.js',
 	},
 	output: {
 		filename: '[name].js',
@@ -36,16 +35,7 @@ module.exports = {
 			{
 				test: /\.(woff|woff2|eot|ttf|svg)$/,
 				loader: 'file-loader?name=../font/[name].[ext]'
-			},
-			{
-				test: /\.vue$/,
-				loader: "vue-loader",
-			},
+			}
 		]
-	},
-	resolve: {
-		alias: {
-			'vue$': 'vue/dist/vue.esm.js'
-		}
 	}
 };

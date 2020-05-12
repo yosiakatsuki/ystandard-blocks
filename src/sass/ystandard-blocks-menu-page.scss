@@ -1,12 +1,13 @@
 @import "foundation/variable";
 
 .ystd-blocks-menu {
+  background-color: #fff;
   #wpcontent {
 	background-color: #fff;
   }
 }
 
-.ystdb-option-page {
+.ystdb-menu-page {
   @import "../../node_modules/uikit/src/scss/variables";
   @import "../../node_modules/uikit/src/scss/variables-theme";
   @import "../../node_modules/uikit/src/scss/mixins";
