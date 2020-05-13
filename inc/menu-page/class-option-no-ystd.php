@@ -66,7 +66,7 @@ class Option_No_YSTD {
 						<td>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'hide_no_ystandard_notice' ); ?>" value="0">
-								<input id="hide_notice" type="checkbox" name="<?php echo $this->get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( $this->get_option( 'hide_no_ystandard_notice', '1' ) ); ?>>yStnadard以外のテーマ利用についての警告を非表示にする
+								<input id="hide_notice" type="checkbox" name="<?php echo $this->get_option_name( 'hide_no_ystandard_notice' ); ?>" value="1" <?php checked( $this->get_option( 'hide_no_ystandard_notice', '0' ), '1' ); ?>>yStnadard以外のテーマ利用についての警告を非表示にする
 							</label>
 						</td>
 					</tr>
@@ -75,12 +75,12 @@ class Option_No_YSTD {
 						<td>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'load_font_awesome' ); ?>" value="0">
-								<input id="load_font_awesome" type="checkbox" name="<?php echo $this->get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( $this->get_option( 'load_font_awesome', '1' ) ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
+								<input id="load_font_awesome" type="checkbox" name="<?php echo $this->get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( $this->get_option( 'load_font_awesome', '1' ), '1' ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
 							</label>
 							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p><br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'use_all_icons' ); ?>" value="0">
-								<input id="use_all_icons" type="checkbox" name="<?php echo $this->get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( $this->get_option( 'use_all_icons', '0' ) ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
+								<input id="use_all_icons" type="checkbox" name="<?php echo $this->get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( $this->get_option( 'use_all_icons', '0' ), '1' ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
 							</label>
 							<p>※yStandard BlocksでFont Awesomeを読み込む場合に有効な設定です。<br>※チェックをつけるとすべてのFont Awesomeアイコンを読み込みます。選べるアイコン種類が多くなりますが、読み込み速度が遅くなります。</p><br>
 						</td>
@@ -95,19 +95,19 @@ class Option_No_YSTD {
 							<br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'add_color_palette_css_text' ); ?>" value="0">
-								<input id="add_color_palette_css_text" type="checkbox" name="<?php $this->get_option_name( 'add_color_palette_css_text' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_text', '1' ) ); ?>>テキストカラー
+								<input id="add_color_palette_css_text" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_text' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_text', '1' ), '1' ); ?>>テキストカラー
 							</label><br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'add_color_palette_css_bg' ); ?>" value="0">
-								<input id="add_color_palette_css_bg" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_bg' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_bg', '1' ) ); ?>>背景色
+								<input id="add_color_palette_css_bg" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_bg' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_bg', '1' ), '1' ); ?>>背景色
 							</label><br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'add_color_palette_css_border' ); ?>" value="0">
-								<input id="add_color_palette_css_border" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_border' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_border', '1' ) ); ?>>枠線の色
+								<input id="add_color_palette_css_border" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_border' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_border', '1' ), '1' ); ?>>枠線の色
 							</label><br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'add_color_palette_css_fill' ); ?>" value="0">
-								<input id="add_color_palette_css_fill" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_fill' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_fill', '1' ) ); ?>>SVG fill
+								<input id="add_color_palette_css_fill" type="checkbox" name="<?php echo $this->get_option_name( 'add_color_palette_css_fill' ); ?>" value="1" <?php checked( $this->get_option( 'add_color_palette_css_fill', '1' ), '1' ); ?>>SVG fill
 							</label><br>
 						</td>
 					</tr>
@@ -121,7 +121,7 @@ class Option_No_YSTD {
 							<br>
 							<label>
 								<input type="hidden" name="<?php echo $this->get_option_name( 'add_font_size_css' ); ?>" value="0">
-								<input id="add_font_size_css" type="checkbox" name="<?php echo $this->get_option_name( 'add_font_size_css' ); ?>" value="1" <?php checked( $this->get_option( 'add_font_size_css', '1' ) ); ?>>文字サイズCSS
+								<input id="add_font_size_css" type="checkbox" name="<?php echo $this->get_option_name( 'add_font_size_css' ); ?>" value="1" <?php checked( $this->get_option( 'add_font_size_css', '1' ), '1' ); ?>>文字サイズCSS
 							</label>
 						</td>
 					</tr>
@@ -152,6 +152,7 @@ class Option_No_YSTD {
 	 * @return mixed
 	 */
 	private function get_option( $name, $default ) {
+
 		return get_option( $this->get_option_name( $name ), $default );
 	}
 
@@ -165,17 +166,26 @@ class Option_No_YSTD {
 		if ( ! Utility::verify_nonce( Config::NONCE_NAME, Config::NONCE_ACTION ) ) {
 			return false;
 		}
+		$options   = [];
+		$options[] = 'hide_no_ystandard_notice';
+		$options[] = 'load_font_awesome';
+		$options[] = 'add_color_palette_css_text';
+		$options[] = 'add_color_palette_css_bg';
+		$options[] = 'add_color_palette_css_border';
+		$options[] = 'add_color_palette_css_fill';
+		$options[] = 'add_font_size_css';
+		$options[] = 'use_all_icons';
 
-		if ( ! isset( $_POST[ Config::OPTION_NAME ] ) ) {
-			return false;
+		foreach ( $options as $key ) {
+			if ( isset( $_POST[ $this->get_option_name( $key ) ] ) ) {
+				update_option(
+					$this->get_option_name( $key ),
+					$_POST[ $this->get_option_name( $key ) ]
+				);
+			}
 		}
 
-		$options = [];
-		foreach ( $_POST[ Config::OPTION_NAME ] as $key => $value ) {
-			$options[ $key ] = Utility::to_bool( $value );
-		}
-
-		return update_option( Config::OPTION_NAME, $options );
+		return true;
 	}
 }
 
