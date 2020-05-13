@@ -40,6 +40,7 @@ class Init {
 		$inc = YSTDB_PATH . '/inc';
 		require_once $inc . '/config/class-config.php';
 		require_once $inc . '/utility/class-utility.php';
+		require_once $inc . '/admin/class-notice.php';
 		require_once $inc . '/migration/class-migration.php';
 		require_once $inc . '/option/class-option.php';
 		require_once $inc . '/icon/class-font-awesome.php';
@@ -50,7 +51,6 @@ class Init {
 		require_once $inc . '/enqueue/class-enqueue.php';
 		require_once $inc . '/enqueue/class-polyfill.php';
 		require_once $inc . '/enqueue/class-block-editor.php';
-		require_once $inc . '/admin/class-notice.php';
 		require_once $inc . '/admin/class-admin.php';
 		require_once $inc . '/menu-page/class-menu.php';
 		require_once $inc . '/menu-page/class-option-no-ystd.php';

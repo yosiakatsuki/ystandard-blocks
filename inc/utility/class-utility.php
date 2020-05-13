@@ -436,4 +436,34 @@ class Utility {
 		return $color;
 	}
 
+	/**
+	 * 投稿タイプ取得
+	 *
+	 * @param array $args    args.
+	 * @param bool  $exclude 除外.
+	 *
+	 * @return array
+	 */
+	public static function get_post_types( $args = [], $exclude = true ) {
+		$args = array_merge(
+			[ 'public' => true ],
+			$args
+		);
+
+		$types = get_post_types( $args );
+
+		if ( $exclude ) {
+			unset( $types['attachment'] );
+		}
+
+		foreach ( $types as $key => $value ) {
+			$post_type = get_post_type_object( $key );
+			if ( $post_type ) {
+				$types[ $key ] = $post_type->labels->singular_name;
+			}
+		}
+
+		return $types;
+	}
+
 }

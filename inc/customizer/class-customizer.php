@@ -37,6 +37,10 @@ class Customizer {
 	 * @return \WP_Customize_Manager
 	 */
 	public function customize_register( $wp_customize ) {
+
+		if ( ! Migration::exist_old_option() ) {
+			return $wp_customize;
+		}
 		require_once __DIR__ . '/class-section-label-control.php';
 		require_once __DIR__ . '/class-customize-control.php';
 		$customizer = new Customize_Control( $wp_customize );
@@ -98,15 +102,14 @@ class Customizer {
 			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_fz_' . $i ),
-					'default'     => $ystdb_opt->get_default_option( 'inline_style_fz_' . $i, 100 ),
+					'default'     => 100,
 					'label'       => '文字サイズ(%)',
 					'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
 					'section'     => 'ystdb_inline_style',
 					'transport'   => 'postMessage',
 					'input_attrs' => [
-						'min'  => 60,
-						'max'  => 200,
-						'step' => 10,
+						'min' => 60,
+						'max' => 200,
 					],
 				]
 			);
@@ -116,7 +119,7 @@ class Customizer {
 			$customizer->add_color(
 				[
 					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_color_' . $i ),
-					'default'   => $ystdb_opt->get_default_option( 'inline_style_color_' . $i, '#222222' ),
+					'default'   => '#222222',
 					'label'     => '文字色',
 					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
@@ -128,7 +131,7 @@ class Customizer {
 			$customizer->add_color(
 				[
 					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_mark_color_' . $i ),
-					'default'   => $ystdb_opt->get_default_option( 'inline_style_mark_color_' . $i, Format::MARKER_DEFAULT_COLOR[ $i ] ),
+					'default'   => Format::MARKER_DEFAULT_COLOR[ $i ],
 					'label'     => 'マーカー色',
 					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
@@ -140,7 +143,7 @@ class Customizer {
 			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_mark_weight_' . $i ),
-					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_weight_' . $i, 25 ),
+					'default'     => 25,
 					'label'       => 'マーカー太さ(%)',
 					'description' => 'マーカー（蛍光ペン風）の太さ設定。0~100の間で設定してください。<br>0にするとマーカー表示がOFFになります。',
 					'section'     => 'ystdb_inline_style',
@@ -157,14 +160,13 @@ class Customizer {
 			$customizer->add_number(
 				[
 					'id'          => $ystdb_opt->get_old_option_name( 'inline_style_mark_opacity_' . $i ),
-					'default'     => $ystdb_opt->get_default_option( 'inline_style_mark_opacity_' . $i, 30 ),
+					'default'     => 30,
 					'label'       => 'マーカー色の不透明度',
 					'section'     => 'ystdb_inline_style',
 					'transport'   => 'postMessage',
 					'input_attrs' => [
-						'min'  => 0,
-						'max'  => 100,
-						'step' => 10,
+						'min' => 0,
+						'max' => 100,
 					],
 				]
 			);
@@ -174,7 +176,7 @@ class Customizer {
 			$customizer->add_radio(
 				[
 					'id'        => $ystdb_opt->get_old_option_name( 'inline_style_type_' . $i ),
-					'default'   => $ystdb_opt->get_default_option( 'inline_style_type_' . $i, 'normal' ),
+					'default'   => 'normal',
 					'label'     => '装飾タイプ',
 					'section'   => 'ystdb_inline_style',
 					'transport' => 'postMessage',
@@ -193,15 +195,14 @@ class Customizer {
 		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_larger' ),
-				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger', 120 ),
+				'default'     => 120,
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
 				'section'     => 'ystdb_inline_style',
 				'transport'   => 'postMessage',
 				'input_attrs' => [
-					'min'  => 60,
-					'max'  => 200,
-					'step' => 10,
+					'min' => 60,
+					'max' => 200,
 				],
 			]
 		);
@@ -209,15 +210,14 @@ class Customizer {
 		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_smaller' ),
-				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller', 80 ),
+				'default'     => 80,
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
 				'section'     => 'ystdb_inline_style',
 				'transport'   => 'postMessage',
 				'input_attrs' => [
-					'min'  => 60,
-					'max'  => 200,
-					'step' => 10,
+					'min' => 60,
+					'max' => 200,
 				],
 			]
 		);
@@ -229,15 +229,14 @@ class Customizer {
 		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_larger_sp' ),
-				'default'     => $ystdb_opt->get_default_option( 'inline_style_larger_sp', 120 ),
+				'default'     => 120,
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
 				'section'     => 'ystdb_inline_style',
 				'transport'   => 'postMessage',
 				'input_attrs' => [
-					'min'  => 60,
-					'max'  => 200,
-					'step' => 10,
+					'min' => 60,
+					'max' => 200,
 				],
 			]
 		);
@@ -245,15 +244,14 @@ class Customizer {
 		$customizer->add_number(
 			[
 				'id'          => $ystdb_opt->get_old_option_name( 'inline_style_smaller_sp' ),
-				'default'     => $ystdb_opt->get_default_option( 'inline_style_smaller_sp', 80 ),
+				'default'     => 80,
 				'label'       => '文字サイズ(%)',
 				'description' => '文字サイズ設定。拡大・縮小率を60~200の間で設定してください。',
 				'section'     => 'ystdb_inline_style',
 				'transport'   => 'postMessage',
 				'input_attrs' => [
-					'min'  => 60,
-					'max'  => 200,
-					'step' => 10,
+					'min' => 60,
+					'max' => 200,
 				],
 			]
 		);
@@ -290,7 +288,7 @@ class Customizer {
 					'id'        => $ystdb_opt->get_old_option_name( 'balloon_image_' . $i ),
 					'label'     => '画像',
 					'section'   => 'ystdb_balloon_images',
-					'default'   => $ystdb_opt->get_default_option( 'balloon_image_' . $i, '' ),
+					'default'   => '',
 					'transport' => 'postMessage',
 				]
 			);
@@ -302,7 +300,7 @@ class Customizer {
 					'id'        => $ystdb_opt->get_old_option_name( 'balloon_name_' . $i ),
 					'label'     => '名前',
 					'section'   => 'ystdb_balloon_images',
-					'default'   => $ystdb_opt->get_default_option( 'balloon_name_' . $i, '' ),
+					'default'   => '',
 					'transport' => 'postMessage',
 				]
 			);

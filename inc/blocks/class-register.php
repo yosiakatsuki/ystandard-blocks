@@ -269,8 +269,6 @@ class Register {
 	private function check_deprecated_blocks( $blocks ) {
 		$result = [];
 
-		// TODO: 非推奨ブロックのチェックスキップオプションの追加.
-
 		foreach ( $blocks as $key => $value ) {
 			if ( $this->is_use_block( $value['name'] ) ) {
 				$result[ $key ] = $value;
@@ -292,18 +290,58 @@ class Register {
 		if ( ! is_admin() ) {
 			return true;
 		}
+
+		$result = $this->get_posts_with_blocks( $name );
+
+		return ! empty( $result );
+	}
+
+	/**
+	 * ブロックが使われている投稿の取得.
+	 *
+	 * @param string $name Block Name.
+	 *
+	 * @return \WP_Post[]
+	 */
+	private function get_posts_with_blocks( $name ) {
 		$types = get_post_types( [ 'public' => true ] );
 		if ( in_array( 'ys-parts', $types, true ) ) {
 			$types[] = 'ys-parts';
 		}
-		$result = get_posts(
+
+		return get_posts(
 			[
 				'post_type' => $types,
 				's'         => $name,
 			]
 		);
+	}
 
-		return ! empty( $result );
+	/**
+	 * 非推奨ブロックが使われている投稿の取得.
+	 *
+	 * @return \WP_Post[]
+	 */
+	public function get_posts_with_deprecated_blocks() {
+		$blocks = array_merge(
+			$this->deprecated_blocks,
+			$this->deprecated_dynamic_blocks
+		);
+		$result = [];
+		foreach ( $blocks as $key => $value ) {
+			$posts = $this->get_posts_with_blocks( $value['name'] );
+			foreach ( $posts as $post ) {
+				if ( ! array_key_exists( $post->post_name, $result ) ) {
+					$result[ $post->post_name ] = [
+						'title' => $post->post_title,
+						'url'   => get_permalink( $post ),
+						'edit'  => get_edit_post_link( $post ),
+					];
+				}
+			}
+		}
+
+		return $result;
 	}
 }
 
