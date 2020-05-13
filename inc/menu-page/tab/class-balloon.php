@@ -1,6 +1,6 @@
 <?php
 /**
- * インライン装飾設定
+ * 吹き出し
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || die();
 class Balloon {
 
 	/**
-	 * Inline constructor.
+	 * Balloon constructor.
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 101 );
@@ -115,6 +115,9 @@ class Balloon {
 				<button type="button" class="uk-button uk-button-secondary" @click="addImage()">画像を追加</button>
 			</div>
 			<input type="hidden" name="ystdb-menu" value="balloon">
+		</div>
+		<div class="uk-margin-medium-top">
+			<button type="button" class="uk-button uk-button-default uk-button-primary" onclick="submit();">更新</button>
 		</div>
 		<?php
 		$content = ob_get_clean();

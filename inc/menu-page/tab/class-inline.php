@@ -71,6 +71,9 @@ class Inline {
 			</div>
 			<input type="hidden" name="ystdb-menu" value="inline">
 		</div>
+		<div class="uk-margin-medium-top">
+			<button type="button" class="uk-button uk-button-default uk-button-primary" onclick="submit();">更新</button>
+		</div>
 		<?php
 		$content = ob_get_clean();
 		Menu::blocks_menu_content( $content, 'inline' );

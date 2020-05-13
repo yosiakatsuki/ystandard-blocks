@@ -39,3 +39,9 @@
 	margin-left: 145px;
   }
 }
+
+input[type=radio]:checked::before {
+  width: .5rem;
+  height: .5rem;
+  margin: .1875rem;
+}

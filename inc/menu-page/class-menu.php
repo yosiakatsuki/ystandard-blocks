@@ -71,6 +71,7 @@ class Menu {
 	private function load_tab() {
 		require_once __DIR__ . '/tab/class-inline.php';
 		require_once __DIR__ . '/tab/class-balloon.php';
+		require_once __DIR__ . '/tab/class-reset.php';
 	}
 
 	/**
@@ -159,14 +160,12 @@ class Menu {
 							<div class="ystdb-menu__nav-list">
 								<a class="ystdb-menu__nav-link<?php echo 'inline' === $active ? ' is-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=ystdb-menu' ); ?>">インライン</a>
 								<a class="ystdb-menu__nav-link<?php echo 'balloon' === $active ? ' is-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=ystdb-balloon' ); ?>">吹き出し</a>
+								<a class="ystdb-menu__nav-link<?php echo 'reset' === $active ? ' is-active' : ''; ?>" href="<?php echo admin_url( 'admin.php?page=ystdb-reset' ); ?>">初期化</a>
 							</div>
 						</div>
 						<div class="ystdb-menu__content">
 							<?php echo $content; ?>
 						</div>
-					</div>
-					<div class="uk-margin-medium-top">
-						<button type="button" class="uk-button uk-button-default uk-button-primary" onclick="submit();">更新</button>
 					</div>
 				</form>
 			</div>
