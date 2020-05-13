@@ -163,28 +163,32 @@ class Enqueue {
 					color:${value['color']};
 				}";
 			}
-			/**
-			 * Border-color
-			 */
-			$class_name = Utility::get_border_color_class( $value['slug'] );
-			/**
-			 * 結合
-			 */
-			$css .= "${prefix} .${class_name},
+			if ( self::is_enqueue_inline_style( 'border-color' ) ) {
+				/**
+				 * Border-color
+				 */
+				$class_name = Utility::get_border_color_class( $value['slug'] );
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} .${class_name},
 				${prefix} .has-border.${class_name}{
 					border-color:${value['color']};
 				}";
-			/**
-			 * Fill-color
-			 */
-			$class_name = Utility::get_fill_color_class( $value['slug'] );
-			/**
-			 * 結合
-			 */
-			$css .= "${prefix} ${class_name},
+			}
+			if ( self::is_enqueue_inline_style( 'fill' ) ) {
+				/**
+				 * Fill-color
+				 */
+				$class_name = Utility::get_fill_color_class( $value['slug'] );
+				/**
+				 * 結合
+				 */
+				$css .= "${prefix} ${class_name},
 				${prefix} .has-fill-color${class_name}{
 					fill:${value['color']};
 				}";
+			}
 		}
 
 		return Utility::minify( $css );
@@ -199,10 +203,16 @@ class Enqueue {
 		$list = [
 			'background-color' => false,
 			'color'            => false,
+			'border-color'     => true,
+			'fill'             => true,
+			'font-size'        => false,
 		];
 		if ( ! Utility::is_ystandard() ) {
-			$list['background-color'] = Option::get_option_by_bool( 'add_color_palette_css_bg', true );
-			$list['color']            = Option::get_option_by_bool( 'add_color_palette_css_text', true );
+			$list['background-color'] = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_bg', true );
+			$list['color']            = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_text', true );
+			$list['border-color']     = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_border', true );
+			$list['fill']             = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_fill', true );
+			$list['font-size']        = get_option( Config::OPTION_PREFIX . 'add_font_size_css', true );
 		}
 		if ( ! isset( $list[ $type ] ) ) {
 			return true;
@@ -225,12 +235,14 @@ class Enqueue {
 			return '';
 		}
 		$css = '';
-		foreach ( $palette[0] as $value ) {
-			$slug = $value['slug'];
-			/**
-			 * CSS作成
-			 */
-			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $value['size'] . 'px;}';
+		if ( self::is_enqueue_inline_style( 'font-size' ) ) {
+			foreach ( $palette[0] as $value ) {
+				$slug = $value['slug'];
+				/**
+				 * CSS作成
+				 */
+				$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $value['size'] . 'px;}';
+			}
 		}
 
 		return Utility::minify( $css );

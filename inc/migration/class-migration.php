@@ -194,6 +194,9 @@ class Migration {
 	 * @return bool
 	 */
 	public static function exist_old_option() {
+		if ( ! Utility::is_ystandard() ) {
+			return false;
+		}
 		$options = self::get_old_option_list();
 		foreach ( $options as $key ) {
 			$option = get_option( Config::OPTION_PREFIX . $key, null );
@@ -269,17 +272,6 @@ class Migration {
 		$result['balloon'] = $balloon;
 
 		return $result;
-	}
-
-	/**
-	 * 設定変換リスト
-	 *
-	 * @return array
-	 */
-	public function get_migration_list() {
-		return [
-			'hide_no_ystandard_notice' => 'hide_notice',
-		];
 	}
 
 	/**

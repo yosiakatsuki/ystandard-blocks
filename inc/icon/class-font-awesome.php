@@ -87,7 +87,7 @@ class Font_Awesome {
 			return function_exists( 'ys_get_option' ) && 'none' !== ys_get_option( 'ys_enqueue_icon_font_type' );
 		}
 
-		return Option::get_option_by_bool( 'load_font_awesome', false );
+		return get_option( Config::OPTION_PREFIX . 'load_font_awesome', false );
 	}
 
 	/**
@@ -110,8 +110,8 @@ class Font_Awesome {
 			 * 非yStandardな環境
 			 */
 			$use_all_icons = true;
-			if ( Option::get_option_by_bool( 'load_font_awesome', true ) ) {
-				$use_all_icons = Option::get_option_by_bool( 'use_all_icons', false );
+			if ( get_option( Config::OPTION_PREFIX . 'load_font_awesome', true ) ) {
+				$use_all_icons = get_option( Config::OPTION_PREFIX . 'use_all_icons', false );
 			}
 		}
 

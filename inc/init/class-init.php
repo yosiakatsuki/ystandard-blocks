@@ -88,14 +88,18 @@ class Init {
 		if ( Utility::is_ystandard() ) {
 			return;
 		}
-		if ( Option::get_option_by_bool( 'hide_notice', false ) ) {
+		if ( get_option( Config::OPTION_PREFIX . 'hide_no_ystandard_notice', false ) ) {
+			return;
+		}
+		global $hook_suffix;
+		if ( false !== strpos( $hook_suffix, 'ystandard-blocks' ) ) {
 			return;
 		}
 		?>
 		<div class="notice notice-warning is-dismissible">
 			<p>このサイトではyStandardが有効化されていません。</p>
 			<p>yStandard Blocksのブロックのデザインが崩れたり、機能によっては正常に動作しない恐れがあります。</p>
-			<p>※この警告の非表示設定などは 「<a href="<?php echo admin_url( 'options-general.php?page=ystandard-blocks-option' ); ?>">yStandard Blocks設定</a>」 ページから設定できます。</p>
+			<p>※この警告の非表示設定などは 「<a href="<?php echo admin_url( 'options-general.php?page=ystandard-blocks' ); ?>">yStandard Blocks設定</a>」 ページから設定できます。</p>
 		</div>
 		<?php
 	}
