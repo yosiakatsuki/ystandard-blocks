@@ -104,8 +104,8 @@ class Balloon {
 										</span>
 								</button>
 							</div>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'balloon' ) . '[image][]'; ?>" :value="item.url">
-							<input type="hidden" name="<?php echo Option::get_option_name( 'balloon' ) . '[name][]'; ?>" :value="item.name">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'balloon', 'image' ) . '[]'; ?>" :value="item.url">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'balloon', 'name' ) . '[]'; ?>" :value="item.name">
 						</div>
 					</div>
 				</div>

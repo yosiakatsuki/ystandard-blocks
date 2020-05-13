@@ -429,7 +429,7 @@ class Utility {
 	 * @return string
 	 */
 	public static function sanitize_hex( $color, $default ) {
-		if ( ! preg_match( "/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/", $color ) ) {
+		if ( ! preg_match( '/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/', $color ) ) {
 			return $default;
 		}
 

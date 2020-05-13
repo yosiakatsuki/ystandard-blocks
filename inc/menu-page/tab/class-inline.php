@@ -89,7 +89,7 @@ class Inline {
 				<p class="uk-text-small uk-text-meta">標準サイズからの相対サイズ(%)を設定してください。</p>
 				<div class="uk-form-horizontal">
 					<div class="uk-margin-small">
-						<label class="uk-form-label uk-text-small">文字サイズ</label>
+						<label class="uk-form-label uk-text-small">文字サイズ<small class="ystdb-menu__range-info">60~200</small></label>
 						<div class="uk-form-controls">
 							<input
 								type="number"
@@ -98,11 +98,11 @@ class Inline {
 								max="200"
 								v-model="inline.larger"
 							>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_larger' ); ?>" :value="inline.larger">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'larger' ); ?>" :value="inline.larger">
 						</div>
 					</div>
 					<div class="uk-margin-small">
-						<label class="uk-form-label uk-text-small">文字サイズ(SP)</label>
+						<label class="uk-form-label uk-text-small">文字サイズ(SP)<small class="ystdb-menu__range-info">60~200</small></label>
 						<div class="uk-form-controls">
 							<input
 								type="number"
@@ -111,7 +111,7 @@ class Inline {
 								max="200"
 								v-model="inline.largerSP"
 							>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_larger_sp' ); ?>" :value="inline.largerSP">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'larger_sp' ); ?>" :value="inline.largerSP">
 						</div>
 					</div>
 				</div>
@@ -142,7 +142,7 @@ class Inline {
 				<p class="uk-text-small uk-text-meta">標準サイズからの相対サイズ(%)を設定してください。</p>
 				<div class="uk-form-horizontal">
 					<div class="uk-margin-small">
-						<label class="uk-form-label uk-text-small">文字サイズ</label>
+						<label class="uk-form-label uk-text-small">文字サイズ<small class="ystdb-menu__range-info">60~200</small></label>
 						<div class="uk-form-controls">
 							<input
 								type="number"
@@ -151,11 +151,11 @@ class Inline {
 								max="200"
 								v-model="inline.smaller"
 							>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_smaller' ); ?>" :value="inline.smaller">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'smaller' ); ?>" :value="inline.smaller">
 						</div>
 					</div>
 					<div class="uk-margin-small">
-						<label class="uk-form-label uk-text-small">文字サイズ(SP)</label>
+						<label class="uk-form-label uk-text-small">文字サイズ(SP)<small class="ystdb-menu__range-info">60~200</small></label>
 						<div class="uk-form-controls">
 							<input
 								type="number"
@@ -164,7 +164,7 @@ class Inline {
 								max="200"
 								v-model="inline.smallerSP"
 							>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_smaller_sp' ); ?>" :value="inline.smallerSP">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'smaller_sp' ); ?>" :value="inline.smallerSP">
 						</div>
 					</div>
 				</div>
@@ -205,7 +205,7 @@ class Inline {
 					<div class="ystdb-menu__inline-form"></div>
 					<div class="uk-form-horizontal">
 						<div class="uk-margin-small">
-							<label class="uk-form-label uk-text-small">文字サイズ(%)</label>
+							<label class="uk-form-label uk-text-small">文字サイズ(%)<small class="ystdb-menu__range-info">60~200</small></label>
 							<div class="uk-form-controls">
 								<input
 									type="number"
@@ -215,7 +215,7 @@ class Inline {
 									v-model="inline.fontSize<?php echo $i; ?>"
 								>
 							</div>
-							<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_fz_' . $i ); ?>" :value="inline.fontSize<?php echo $i; ?>">
+							<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'font_size_' . $i ); ?>" :value="inline.fontSize<?php echo $i; ?>">
 						</div>
 
 						<div class="uk-margin-small">
@@ -228,7 +228,7 @@ class Inline {
 										<button class="uk-button uk-button-default color-picker-button uk-text-small" type="button">変更</button>
 										<div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
 											<chrome-picker v-model="inline.color<?php echo $i; ?>" @input="updateColor(<?php echo $i; ?>)"></chrome-picker>
-											<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_color_' . $i ); ?>" :value="inline.color<?php echo $i; ?>">
+											<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'color_' . $i ); ?>" :value="inline.color<?php echo $i; ?>">
 										</div>
 									</div>
 								</div>
@@ -238,7 +238,7 @@ class Inline {
 						<div class="uk-margin-small">
 							<label class="uk-form-label uk-text-small">装飾タイプ</label>
 							<div class="uk-form-controls uk-form-controls-text uk-text-small">
-								<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_type_' . $i ); ?>" :value="inline.type<?php echo $i; ?>">
+								<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'type_' . $i ); ?>" :value="inline.type<?php echo $i; ?>">
 								<label class="uk-margin-small-right">
 									<input
 										class="uk-radio"
@@ -279,7 +279,7 @@ class Inline {
 										<button class="uk-button uk-button-default color-picker-button uk-text-small" type="button">変更</button>
 										<div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
 											<chrome-picker v-model="inline.markColor<?php echo $i; ?>" @input="updateMakerColor(<?php echo $i; ?>)"></chrome-picker>
-											<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_mark_color_' . $i ); ?>" :value="inline.markColor<?php echo $i; ?>">
+											<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'mark_color_' . $i ); ?>" :value="inline.markColor<?php echo $i; ?>">
 										</div>
 									</div>
 								</div>
@@ -287,7 +287,7 @@ class Inline {
 						</div>
 
 						<div class="uk-margin-small">
-							<label class="uk-form-label uk-text-small">マーカーの濃さ(%)</label>
+							<label class="uk-form-label uk-text-small">マーカーの濃さ(%)<small class="ystdb-menu__range-info">0~100</small></label>
 
 							<div class="uk-form-controls">
 								<input
@@ -298,12 +298,12 @@ class Inline {
 									max="100"
 									v-model="inline.markOpacity<?php echo $i; ?>"
 								>
-								<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_mark_opacity_' . $i ); ?>" :value="inline.markOpacity<?php echo $i; ?>">
+								<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'mark_opacity_' . $i ); ?>" :value="inline.markOpacity<?php echo $i; ?>">
 							</div>
 						</div>
 
 						<div class="uk-margin-small">
-							<label class="uk-form-label uk-text-small">マーカー太さ(%)</label>
+							<label class="uk-form-label uk-text-small">マーカー太さ(%)<small class="ystdb-menu__range-info">0~100</small></label>
 
 							<div class="uk-form-controls">
 								<input
@@ -313,7 +313,7 @@ class Inline {
 									max="100"
 									v-model="inline.markWeight<?php echo $i; ?>"
 								>
-								<input type="hidden" name="<?php echo Option::get_option_name( 'inline_style_mark_weight_' . $i ); ?>" :value="inline.markWeight<?php echo $i; ?>">
+								<input type="hidden" name="<?php echo Option::get_option_name( 'inline', 'mark_weight_' . $i ); ?>" :value="inline.markWeight<?php echo $i; ?>">
 							</div>
 						</div>
 					</div>
@@ -345,64 +345,65 @@ class Inline {
 			return $options;
 		}
 
-		if ( isset( $_POST[ Config::OPTION_NAME ] ) ) {
-			$new = $_POST[ Config::OPTION_NAME ];
+		if ( isset( $_POST[ Config::OPTION_NAME ] ) && isset( $_POST[ Config::OPTION_NAME ]['inline'] ) ) {
+			$new = $_POST[ Config::OPTION_NAME ]['inline'];
 
 			// サニタイズ.
 			for ( $i = 1; $i <= 3; $i ++ ) {
 				// サイズ.
-				if ( ! isset( $new[ 'inline_style_fz_' . $i ] ) ) {
-					$new[ 'inline_style_fz_' . $i ] = 100;
+				if ( ! isset( $new[ 'font_size_' . $i ] ) ) {
+					$new[ 'font_size_' . $i ] = 100;
 				}
-				$new[ 'inline_style_fz_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_fz_' . $i ], 100, 200, 60 );
+				$new[ 'font_size_' . $i ] = Utility::sanitize_size( $new[ 'font_size_' . $i ], 100, 200, 60 );
 				// 文字色.
-				if ( ! isset( $new[ 'inline_style_color_' . $i ] ) ) {
-					$new[ 'inline_style_color_' . $i ] = '#222222';
+				if ( ! isset( $new[ 'color_' . $i ] ) ) {
+					$new[ 'color_' . $i ] = '#222222';
 				}
-				$new[ 'inline_style_color_' . $i ] = Utility::sanitize_hex( $new[ 'inline_style_color_' . $i ], '#222222' );
+				$new[ 'color_' . $i ] = Utility::sanitize_hex( $new[ 'color_' . $i ], '#222222' );
 				// タイプ.
-				if ( ! isset( $new[ 'inline_style_type_' . $i ] ) ) {
-					$new[ 'inline_style_type_' . $i ] = 'normal';
+				if ( ! isset( $new[ 'type_' . $i ] ) ) {
+					$new[ 'type_' . $i ] = 'normal';
 				}
-				$new[ 'inline_style_type_' . $i ] = $this->sanitize_type( $new[ 'inline_style_type_' . $i ] );
+				$new[ 'type_' . $i ] = $this->sanitize_type( $new[ 'type_' . $i ] );
 				// マーカー色.
-				if ( ! isset( $new[ 'inline_style_mark_color_' . $i ] ) ) {
-					$new[ 'inline_style_mark_color_' . $i ] = Format::MARKER_DEFAULT_COLOR[ $i ];
+				if ( ! isset( $new[ 'mark_color_' . $i ] ) ) {
+					$new[ 'mark_color_' . $i ] = Format::MARKER_DEFAULT_COLOR[ $i ];
 				}
-				$new[ 'inline_style_mark_color_' . $i ] = Utility::sanitize_hex( $new[ 'inline_style_mark_color_' . $i ], Format::MARKER_DEFAULT_COLOR[ $i ] );
+				$new[ 'mark_color_' . $i ] = Utility::sanitize_hex( $new[ 'mark_color_' . $i ], Format::MARKER_DEFAULT_COLOR[ $i ] );
 				// マーカー濃さ.
-				if ( ! isset( $new[ 'inline_style_mark_opacity_' . $i ] ) ) {
-					$new[ 'inline_style_mark_opacity_' . $i ] = 30;
+				if ( ! isset( $new[ 'mark_opacity_' . $i ] ) ) {
+					$new[ 'mark_opacity_' . $i ] = 30;
 				}
-				$new[ 'inline_style_mark_opacity_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_mark_opacity_' . $i ], 30, 100, 0 );
+				$new[ 'mark_opacity_' . $i ] = Utility::sanitize_size( $new[ 'mark_opacity_' . $i ], 30, 100, 0 );
 				// マーカー太さ.
-				if ( ! isset( $new[ 'inline_style_mark_weight_' . $i ] ) ) {
-					$new[ 'inline_style_mark_weight_' . $i ] = 25;
+				if ( ! isset( $new[ 'mark_weight_' . $i ] ) ) {
+					$new[ 'mark_weight_' . $i ] = 25;
 				}
-				$new[ 'inline_style_mark_weight_' . $i ] = Utility::sanitize_size( $new[ 'inline_style_mark_weight_' . $i ], 25, 100, 0 );
+				$new[ 'mark_weight_' . $i ] = Utility::sanitize_size( $new[ 'mark_weight_' . $i ], 25, 100, 0 );
 			}
 
 			// サイズ.
-			if ( ! isset( $new['inline_style_larger'] ) ) {
-				$new['inline_style_larger'] = 120;
+			if ( ! isset( $new['larger'] ) ) {
+				$new['larger'] = 120;
 			}
-			$new['inline_style_larger'] = Utility::sanitize_size( $new['inline_style_larger'], 120, 200, 60 );
-			if ( ! isset( $new['inline_style_larger_sp'] ) ) {
-				$new['inline_style_larger_sp'] = 120;
+			$new['larger'] = Utility::sanitize_size( $new['larger'], 120, 200, 60 );
+			if ( ! isset( $new['larger_sp'] ) ) {
+				$new['larger_sp'] = 120;
 			}
-			$new['inline_style_larger_sp'] = Utility::sanitize_size( $new['inline_style_larger_sp'], 120, 200, 60 );
-			if ( ! isset( $new['inline_style_smaller'] ) ) {
-				$new['inline_style_smaller'] = 80;
+			$new['larger_sp'] = Utility::sanitize_size( $new['larger_sp'], 120, 200, 60 );
+			if ( ! isset( $new['smaller'] ) ) {
+				$new['smaller'] = 80;
 			}
-			$new['inline_style_smaller'] = Utility::sanitize_size( $new['inline_style_smaller'], 80, 200, 60 );
-			if ( ! isset( $new['inline_style_smaller_sp'] ) ) {
-				$new['inline_style_smaller_sp'] = 80;
+			$new['smaller'] = Utility::sanitize_size( $new['smaller'], 80, 200, 60 );
+			if ( ! isset( $new['smaller_sp'] ) ) {
+				$new['smaller_sp'] = 80;
 			}
-			$new['inline_style_smaller_sp'] = Utility::sanitize_size( $new['inline_style_smaller_sp'], 80, 200, 60 );
+			$new['smaller_sp'] = Utility::sanitize_size( $new['smaller_sp'], 80, 200, 60 );
 
-			$options = array_merge(
+			$save['inline'] = $new;
+			$options        = array_merge(
 				$options,
-				$new
+				$save
 			);
 		}
 

@@ -23,7 +23,7 @@ class Balloon {
 	 */
 	public static function get_balloon_images() {
 		$result         = [];
-		$balloon_option = Option::get_option( 'balloon', [] );
+		$balloon_option = Option::get_option( 'balloon', '', [] );
 
 		foreach ( $balloon_option as $item ) {
 			$image = $item['image'];
@@ -37,7 +37,6 @@ class Balloon {
 				];
 			}
 		}
-
 
 		return $result;
 	}

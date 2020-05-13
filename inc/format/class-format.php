@@ -27,6 +27,11 @@ class Format {
 		3 => '#FFEE55',
 	];
 
+	/**
+	 * 設定セクション名.
+	 */
+	const OPTION_SECTION = 'inline';
+
 
 	/**
 	 * 設定反映CSS作成
@@ -56,6 +61,15 @@ class Format {
 				$style .= sprintf( 'color:%s;', $option['color'] );
 			}
 			/**
+			 * 装飾
+			 */
+			if ( 'bold' === $option['type'] ) {
+				$style .= 'font-weight: 700;';
+			}
+			if ( 'italic' === $option['type'] ) {
+				$style .= 'font-style: italic;';
+			}
+			/**
 			 * マーカー
 			 */
 			if ( 0 < $option['mark_weight'] ) {
@@ -64,15 +78,6 @@ class Format {
 					$option['mark_weight'],
 					$option['mark_opacity']
 				);
-			}
-			/**
-			 * 装飾
-			 */
-			if ( 'bold' === $option['type'] ) {
-				$style .= 'font-weight: 700;';
-			}
-			if ( 'italic' === $option['type'] ) {
-				$style .= 'font-style: italic;';
 			}
 			/**
 			 * セレクタ
@@ -97,12 +102,12 @@ class Format {
 		$css .= sprintf(
 			'%s .ystdb-inline--larger {font-size:%sem;}',
 			$wrap,
-			( Option::get_option( 'inline_style_larger', 120 ) / 100 )
+			( Option::get_option_by_number( self::OPTION_SECTION, 'larger', 120 ) / 100 )
 		);
 		$css .= sprintf(
 			'%s .ystdb-inline--smaller {font-size:%sem;}',
 			$wrap,
-			( Option::get_option( 'inline_style_smaller', 80 ) / 100 )
+			( Option::get_option_by_number( self::OPTION_SECTION, 'smaller', 80 ) / 100 )
 		);
 		/**
 		 * スマートフォンで少し大きく・少し小さく
@@ -110,12 +115,12 @@ class Format {
 		$css .= sprintf(
 			'@media (max-width:599px) { %s .ystdb-inline--larger-sp {font-size:%sem;}}',
 			$wrap,
-			( Option::get_option( 'inline_style_larger_sp', 120 ) / 100 )
+			( Option::get_option_by_number( self::OPTION_SECTION, 'larger_sp', 120 ) / 100 )
 		);
 		$css .= sprintf(
 			'@media (max-width:599px) { %s .ystdb-inline--smaller-sp {font-size:%sem;}}',
 			$wrap,
-			( Option::get_option( 'inline_style_smaller_sp', 80 ) / 100 )
+			( Option::get_option_by_number( self::OPTION_SECTION, 'smaller_sp', 80 ) / 100 )
 		);
 
 		return $css;
@@ -130,38 +135,38 @@ class Format {
 	 */
 	public static function get_format_styles_option( $index ) {
 		/**
-		 * 文字拡大率
+		 * 文字サイズ
 		 */
-		$fz = Option::get_option( 'inline_style_fz_' . $index, 100 );
+		$fz = Option::get_option_by_number( self::OPTION_SECTION, 'font_size_' . $index, 100 );
 		$fz = ( $fz / 100 );
 		/**
 		 * 文字色
 		 */
-		$color   = Option::get_option( 'inline_style_color_' . $index, '#222222' );
-		$default = Option::get_default_option( 'inline_style_color_' . $index, '#222222' );
+		$color   = Option::get_option( self::OPTION_SECTION, 'color_' . $index, '#222222' );
+		$default = Option::get_default_option( self::OPTION_SECTION, 'color_' . $index, '#222222' );
 		if ( $default === $color ) {
 			$color = '';
 		}
 		/**
-		 * マーカー
-		 */
-		$mark_weight  = Option::get_option( 'inline_style_mark_weight_' . $index, 25 );
-		$mark_color   = Utility::hex_2_rgb(
-			Option::get_option( 'inline_style_mark_color_' . $index, self::MARKER_DEFAULT_COLOR[ $index ] )
-		);
-		$mark_opacity = Option::get_option_by_number( 'inline_style_mark_opacity_' . $index, 30 ) / 100;
-		/**
 		 * タイプ
 		 */
-		$type = Option::get_option( 'inline_style_type_' . $index, 'normal' );
+		$type = Option::get_option( self::OPTION_SECTION, 'type_' . $index, 'normal' );
+		/**
+		 * マーカー
+		 */
+		$mark_weight  = Option::get_option_by_number( self::OPTION_SECTION, 'mark_weight_' . $index, 25 );
+		$mark_color   = Utility::hex_2_rgb(
+			Option::get_option( self::OPTION_SECTION, 'mark_color_' . $index, self::MARKER_DEFAULT_COLOR[ $index ] )
+		);
+		$mark_opacity = Option::get_option_by_number( self::OPTION_SECTION, 'mark_opacity_' . $index, 30 ) / 100;
 
 		return [
 			'fz'           => $fz,
 			'color'        => $color,
+			'type'         => $type,
 			'mark_weight'  => $mark_weight,
 			'mark_color'   => $mark_color,
 			'mark_opacity' => $mark_opacity,
-			'type'         => $type,
 		];
 	}
 
@@ -247,17 +252,59 @@ class Format {
 		$options = [];
 		for ( $i = 1; $i <= 3; $i ++ ) {
 
-			$options[ 'fontSize' . $i ]    = Option::get_option( 'inline_style_fz_' . $i, 100 );
-			$options[ 'color' . $i ]       = Option::get_option( 'inline_style_color_' . $i, '#222222' );
-			$options[ 'type' . $i ]        = Option::get_option( 'inline_style_type_' . $i, 'normal' );
-			$options[ 'markWeight' . $i ]  = Option::get_option( 'inline_style_mark_weight_' . $i, 25 );
-			$options[ 'markColor' . $i ]   = Option::get_option( 'inline_style_mark_color_' . $i, self::MARKER_DEFAULT_COLOR[ $i ] );
-			$options[ 'markOpacity' . $i ] = Option::get_option_by_number( 'inline_style_mark_opacity_' . $i, 30 );
+			$options[ 'fontSize' . $i ] = Option::get_option_by_number(
+				'inline',
+				'font_size_' . $i,
+				100
+			);
+			$options[ 'color' . $i ]    = Option::get_option(
+				'inline',
+				'color_' . $i,
+				'#222222'
+			);
+			$options[ 'type' . $i ]     = Option::get_option(
+				'inline',
+				'type_' . $i,
+				'normal'
+			);
+			// マーカー.
+			$options[ 'markWeight' . $i ]  = Option::get_option_by_number(
+				'inline',
+				'mark_weight_' . $i,
+				25
+			);
+			$options[ 'markColor' . $i ]   = Option::get_option(
+				'inline',
+				'mark_color_' . $i,
+				self::MARKER_DEFAULT_COLOR[ $i ]
+			);
+			$options[ 'markOpacity' . $i ] = Option::get_option_by_number(
+				'inline',
+				'mark_opacity_' . $i,
+				30
+			);
 		}
-		$options['larger']    = Option::get_option( 'inline_style_larger', 120 );
-		$options['largerSP']  = Option::get_option( 'inline_style_larger_sp', 120 );
-		$options['smaller']   = Option::get_option( 'inline_style_smaller', 80 );
-		$options['smallerSP'] = Option::get_option( 'inline_style_smaller_sp', 80 );
+		// 大きく・小さく.
+		$options['larger']    = Option::get_option_by_number(
+			'inline',
+			'larger',
+			120
+		);
+		$options['largerSP']  = Option::get_option_by_number(
+			'inline',
+			'larger_sp',
+			120
+		);
+		$options['smaller']   = Option::get_option_by_number(
+			'inline',
+			'smaller',
+			80
+		);
+		$options['smallerSP'] = Option::get_option_by_number(
+			'inline',
+			'smaller_sp',
+			80
+		);
 
 		return $options;
 	}

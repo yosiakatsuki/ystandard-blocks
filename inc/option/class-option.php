@@ -21,12 +21,13 @@ class Option {
 	/**
 	 * 設定名を作成
 	 *
-	 * @param string $name 設定名.
+	 * @param string $section セクション.
+	 * @param string $name    設定名.
 	 *
 	 * @return string
 	 */
-	public static function get_option_name( $name ) {
-		return Config::OPTION_NAME . "[${name}]";
+	public static function get_option_name( $section, $name ) {
+		return Config::OPTION_NAME . "[${section}][${name}]";
 	}
 
 	/**
@@ -43,12 +44,13 @@ class Option {
 	/**
 	 * 設定取得
 	 *
+	 * @param string $section セクション.
 	 * @param string $name    設定名.
 	 * @param mixed  $default デフォルト.
 	 *
 	 * @return mixed
 	 */
-	public static function get_option( $name, $default ) {
+	public static function get_option( $section, $name, $default ) {
 		global $ystd_options;
 		if ( ! is_array( $ystd_options ) ) {
 			// グローバルに作成していなければ設定取得.
@@ -59,11 +61,19 @@ class Option {
 			}
 		}
 
-		if ( isset( $ystd_options[ $name ] ) ) {
-			return $ystd_options[ $name ];
+		if ( ! isset( $ystd_options[ $section ] ) ) {
+			return self::get_default_option( '', $name, $default );
 		}
 
-		return self::get_default_option( $name, $default );
+		if ( empty( $name ) ) {
+			return $ystd_options[ $section ];
+		}
+
+		if ( ! isset( $ystd_options[ $section ][ $name ] ) ) {
+			return self::get_default_option( $section, $name, $default );
+		}
+
+		return $ystd_options[ $section ][ $name ];
 	}
 
 	/**
@@ -81,26 +91,30 @@ class Option {
 	/**
 	 * デフォルト値取得
 	 *
+	 * @param string $section セクション.
 	 * @param string $name    設定名.
 	 * @param mixed  $default デフォルト.
 	 *
 	 * @return mixed
 	 */
-	public static function get_default_option( $name, $default ) {
+	public static function get_default_option( $section, $name, $default ) {
 
-		return apply_filters( "ystdb_get_default_${name}", $default, $name );
+		$section = empty( $section ) ? '' : $section . '_';
+
+		return apply_filters( "ystdb_get_default_${section}${name}", $default, $name, $section );
 	}
 
 	/**
 	 * 設定取得(Bool)
 	 *
+	 * @param string $section セクション.
 	 * @param string $name    設定名.
 	 * @param mixed  $default デフォルト.
 	 *
 	 * @return bool
 	 */
-	public static function get_option_by_bool( $name, $default ) {
-		$option = self::get_option( $name, $default );
+	public static function get_option_by_bool( $section, $name, $default ) {
+		$option = self::get_option( $section, $name, $default );
 
 		return Utility::to_bool( $option );
 	}
@@ -108,13 +122,14 @@ class Option {
 	/**
 	 * 設定を数値として取得
 	 *
+	 * @param string $section セクション.
 	 * @param string $name    設定名.
 	 * @param int    $default デフォルト.
 	 *
 	 * @return int
 	 */
-	public static function get_option_by_number( $name, $default = 0 ) {
-		$option = self::get_option( $name, $default );
+	public static function get_option_by_number( $section, $name, $default = 0 ) {
+		$option = self::get_option( $section, $name, $default );
 		if ( is_numeric( $option ) ) {
 			return $option;
 		}

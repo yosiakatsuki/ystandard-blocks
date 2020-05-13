@@ -24,15 +24,19 @@ class Migration {
 	public static function convert_new_options() {
 		$result  = [];
 		$options = self::get_old_option_list();
-		// 吹き出し設定以外.
+		// インライン.
+		$inline = [];
 		foreach ( $options as $key ) {
-			if ( false === strpos( $key, 'balloon' ) ) {
+			if ( false !== strpos( $key, 'inline_style' ) ) {
 				$option = get_option( Config::OPTION_PREFIX . $key, null );
 				if ( ! is_null( $option ) ) {
-					$result[ $key ] = $option;
+					$key            = str_replace( 'inline_style_', '', $key );
+					$key            = str_replace( 'fz_', 'font_size_', $key );
+					$inline[ $key ] = $option;
 				}
 			}
 		}
+		$result['inline'] = $inline;
 		/**
 		 * 吹き出し系
 		 */
