@@ -62,6 +62,7 @@
     "gulp-sass-glob": "^1.1.0",
     "gulp-zip": "^5.0.1",
     "lodash": "^4.17.15",
+    "react-feather": "^2.0.8",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "simple-icons": "^2.11.0",

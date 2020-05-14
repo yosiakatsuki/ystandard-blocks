@@ -27,7 +27,7 @@ export const supports = {
 export const paddingTypes = [
 	{
 		value: '',
-		label: __( '内側余白なし' ),
+		label: __( 'なし' ),
 	},
 	{
 		value: 'is-padding-small',

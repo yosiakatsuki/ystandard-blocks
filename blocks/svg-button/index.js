@@ -1,7 +1,7 @@
 import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
 import save from './save';
-import icon from './icon';
+import { Link2 } from 'react-feather';
 import transforms from './transforms';
 import deprecated from './deprecated';
 import { attributes, supports } from './config';
@@ -11,7 +11,12 @@ import { __ } from '@wordpress/i18n';
 registerBlockType( 'ystdb/svg-button', {
 	title: __( '[ys]カスタムボタン', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カスタムボタン', 'ystandard-blocks' ),
-	icon,
+	icon: (
+		<Link2
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
+		/>
+	),
 	keywords: [ __( 'button' ), __( 'ボタン' ), 'btn', 'button' ],
 	category: ystdbConfig.category.common,
 	attributes,

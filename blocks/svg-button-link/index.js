@@ -1,5 +1,6 @@
 import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
+import { Code } from 'react-feather';
 import transforms from './transforms';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
@@ -11,10 +12,12 @@ registerBlockType( 'ystdb/svg-button-link', {
 		'入力したリンク(a)タグをボタン形式で表示するブロック',
 		'ystandard-blocks'
 	),
-	icon: {
-		src: 'embed-generic',
-		foreground: ystdbConfig.color.iconForeground,
-	},
+	icon: (
+		<Code
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
+		/>
+	),
 	keywords: [ __( 'link' ), __( 'button' ), 'button' ],
 	category: ystdbConfig.category.common,
 	attributes,

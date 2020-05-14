@@ -1,5 +1,6 @@
 import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
+import { CreditCard } from 'react-feather';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
@@ -7,10 +8,12 @@ import { __ } from '@wordpress/i18n';
 registerBlockType( 'ystdb/card', {
 	title: __( '[ys]カード', 'ystandard-blocks' ),
 	description: __( 'カード型リンクを作成するブロック', 'ystandard-blocks' ),
-	icon: {
-		src: 'share-alt2',
-		foreground: ystdbConfig.color.iconForeground,
-	},
+	icon: (
+		<CreditCard
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
+		/>
+	),
 	keywords: [
 		__( 'card' ),
 		__( 'カード' ),

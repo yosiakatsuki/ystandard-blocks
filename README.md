@@ -186,6 +186,11 @@ Source : <https://github.com/w3c/IntersectionObserver>
 License: MIT  
 Source : <https://github.com/feathericons/feather>
 
+### React Feather Icons
+
+License: MIT  
+Source : <https://github.com/feathericons/react-feather>
+
 ### Simple Icons
 
 License: CC0 - 1.0  

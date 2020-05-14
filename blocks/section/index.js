@@ -1,6 +1,7 @@
 import { ystdbConfig } from '../../src/js/config/config';
 import edit from './edit';
 import save from './save';
+import { Layers } from 'react-feather';
 import { attributes, supports } from './config';
 import { deprecated } from './_deprecated';
 import { registerBlockType } from '@wordpress/blocks';
@@ -12,10 +13,12 @@ registerBlockType( 'ystdb/section', {
 		'yStandard Blocks汎用セクションブロック',
 		'ystandard-blocks'
 	),
-	icon: {
-		src: 'screenoptions',
-		foreground: ystdbConfig.color.iconForeground,
-	},
+	icon: (
+		<Layers
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
+		/>
+	),
 	keywords: [ __( 'section' ), __( 'セクション' ), 'section' ],
 	category: ystdbConfig.category.common,
 	attributes,

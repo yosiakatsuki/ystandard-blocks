@@ -50,7 +50,7 @@ function ColumnEdit( props ) {
 							label: __( 'Background Color' ),
 						},
 					] }
-				></PanelColorSettings>
+				/>
 				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<span className={ `ystdb-info__small` }>
