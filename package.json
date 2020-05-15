@@ -20,7 +20,8 @@
     "build": "npm run build:block && gulp sass",
     "watch": "npm run start:block & gulp watch",
     "zip": "gulp zip",
-    "build:deploy-files": "gulp createDeployFiles"
+    "build:deploy-files": "gulp createDeployFiles",
+	"rename:beta-json": "rename -f build/ystandard-blocks-beta.json ystandard-blocks.json"
   },
   "repository": {
     "type": "git",
@@ -63,6 +64,7 @@
     "gulp-zip": "^5.0.1",
     "lodash": "^4.17.15",
     "react-feather": "^2.0.8",
+    "rename-cli": "^6.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "simple-icons": "^2.11.0",

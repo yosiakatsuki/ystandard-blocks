@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           npm run build:deploy-files
+          npm run rename:beta-json
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:

@@ -104,7 +104,7 @@ function zip() {
 }
 
 function copyJson() {
-	return src( 'ystandard-blocks.json' )
+	return src( [ 'ystandard-blocks.json', 'ystandard-blocks-beta.json' ] )
 		.pipe( dest( 'build' ) );
 }
 
