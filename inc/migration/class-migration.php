@@ -127,6 +127,7 @@ class Migration {
 			}
 			?>
 			<p>旧設定から新設定への変換、非推奨ブロックの存在チェックが出来るページです。</p>
+			<p><a href="https://wp-ystandard.com/blocks-v1-v2-migration/" target="_blank" rel="noreferrer noopener">» マニュアルを見る</a></p>
 			<form method="post" action="" id="ystdb-migration">
 				<?php wp_nonce_field( self::ACTION, self::NONCE ); ?>
 				<hr>
