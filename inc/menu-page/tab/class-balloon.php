@@ -135,8 +135,8 @@ class Balloon {
 		if ( 'balloon' !== $_POST['ystdb-menu'] ) {
 			return $options;
 		}
+		$new['balloon'] = [];
 		if ( isset( $_POST[ Config::OPTION_NAME ] ) ) {
-			$new['balloon'] = [];
 			// 取得.
 			$image = $_POST[ Config::OPTION_NAME ]['balloon']['image'];
 			$name  = $_POST[ Config::OPTION_NAME ]['balloon']['name'];
@@ -150,12 +150,12 @@ class Balloon {
 					}
 				}
 			}
-
-			$options = array_merge(
-				$options,
-				$new
-			);
 		}
+
+		$options = array_merge(
+			$options,
+			$new
+		);
 
 		return $options;
 	}
