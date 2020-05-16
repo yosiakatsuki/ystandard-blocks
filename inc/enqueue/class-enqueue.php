@@ -184,7 +184,7 @@ class Enqueue {
 				/**
 				 * 結合
 				 */
-				$css .= "${prefix} ${class_name},
+				$css .= "${prefix} .${class_name},
 				${prefix} .has-fill-color.${class_name}{
 					fill:${value['color']};
 				}";
