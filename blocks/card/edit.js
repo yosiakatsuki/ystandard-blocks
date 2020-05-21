@@ -109,7 +109,7 @@ const cardEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ imageURL } alt={ imageAlt } />
+					<img src={ imageURL } alt={ imageAlt }/>
 				</Button>
 				<Button
 					isDefault
@@ -233,7 +233,7 @@ const cardEdit = ( props ) => {
 								help={
 									<div className={ `ystdb-info__small` }>
 										表示されるタイトルを指定できます。
-										<br />
+										<br/>
 										何も入力しなければ自動で取得されます。
 									</div>
 								}
@@ -318,7 +318,7 @@ const cardEdit = ( props ) => {
 													onClick={ () => {
 														setAttributes( {
 															imageSize:
-																item.value,
+															item.value,
 														} );
 													} }
 												>
@@ -403,7 +403,7 @@ const cardEdit = ( props ) => {
 								help={
 									<div className={ `ystdb-info__small` }>
 										表示される概要文を指定できます。
-										<br />
+										<br/>
 										何も入力しなければ自動で取得されます。
 									</div>
 								}
@@ -456,11 +456,8 @@ const cardEdit = ( props ) => {
 				<div className={ classnames( 'ystdb-card__edit' ) }>
 					{ ( isSelected || ! url ) && (
 						<Fragment>
-							<div className={ 'ystdb-card__edit-text' }>
-								リンクを作成するURLを入力
-							</div>
 							<URLInput
-								label={ __( 'Link' ) }
+								label={ __( 'リンクを作成するURLを入力', 'ystandard-blocks' ) }
 								className="ystdb-card__url-input"
 								value={ url }
 								/* eslint-disable jsx-a11y/no-autofocus */
