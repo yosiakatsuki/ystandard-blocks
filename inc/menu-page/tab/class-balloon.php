@@ -79,6 +79,7 @@ class Balloon {
 				<div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-4@m uk-text-center" uk-sortable="handle: .uk-card" uk-grid>
 					<div v-for="(item,index) in balloon">
 						<div class="uk-card uk-card-default uk-card-body uk-margin-small-bottom">
+							<div class="uk-text-center uk-text-meta uk-margin-small-bottom">{{(index + 1)}}</div>
 							<div class="ystdb-balloon__image-option">
 								<div class="ystdb-balloon__image" v-if="item.url">
 									<img :src="item.url" :alt="item.name">
