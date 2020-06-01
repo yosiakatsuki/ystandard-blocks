@@ -28,7 +28,7 @@
 	}
 
 	&:not(.has-color) {
-		color: $color__text-light;
+		color: var(--font-gray);
 	}
 }
 

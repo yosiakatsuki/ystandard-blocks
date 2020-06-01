@@ -378,7 +378,8 @@ class Utility {
 	public static function minify( $style ) {
 		$style = preg_replace( '#/\*[^*]*\*+([^/][^*]*\*+)*/#', '', $style );
 		$style = str_replace( ': ', ':', $style );
-		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], '', $style );
+		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], ' ', $style );
+		$style = str_replace( [ '  ', '    ' ], ' ', $style );
 
 		return $style;
 	}

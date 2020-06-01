@@ -52,11 +52,12 @@ class Block_Editor {
 		// インラインCSS.
 		$inline_css .= Format::get_format_styles( '.editor-styles-wrapper' );
 		$inline_css .= Format::get_format_button_css();
+		$inline_css .= Enqueue::get_color_css( '.editor-styles-wrapper ' );
+
 		// [yStandard]以外.
 		if ( ! Utility::is_ystandard() ) {
 			$css_file = '/ystandard-blocks-edit-no-ystandard.css';
 			// インライン.
-			$inline_css .= Enqueue::get_color_css( '.editor-styles-wrapper ' );
 			$inline_css .= Enqueue::get_font_size_css( '.editor-styles-wrapper ' );
 		}
 		wp_enqueue_style(
