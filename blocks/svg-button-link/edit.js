@@ -185,9 +185,18 @@ const SVGButtonLinkEdit = ( props ) => {
 										<Button
 											key={ item.value }
 											isDefault
-											isPrimary={
-												iconSizeLeft === item.value
-											}
+											isPrimary={ () => {
+												let select = iconSizeLeft;
+												if ( 'fa-xs' === select ) {
+													select = 'is-small';
+												}
+												if ( 'fa-2x' === select ) {
+													select = 'is-large';
+												}
+												if ( select === item.value ) {
+													return true;
+												}
+											} }
 											onClick={ () => {
 												setAttributes( {
 													iconSizeLeft: item.value,
@@ -227,9 +236,18 @@ const SVGButtonLinkEdit = ( props ) => {
 										<Button
 											key={ item.value }
 											isDefault
-											isPrimary={
-												iconSizeRight === item.value
-											}
+											isPrimary={ () => {
+												let select = iconSizeRight;
+												if ( 'fa-xs' === select ) {
+													select = 'is-small';
+												}
+												if ( 'fa-2x' === select ) {
+													select = 'is-large';
+												}
+												if ( select === item.value ) {
+													return true;
+												}
+											} }
 											onClick={ () => {
 												setAttributes( {
 													iconSizeRight: item.value,

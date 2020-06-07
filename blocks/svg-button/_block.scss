@@ -49,6 +49,29 @@
 	  animation-name: shine;
 	}
   }
+
+  .fa-xs {
+	font-size: .75em;
+  }
+
+  .fa-2x {
+	font-size: 2em;
+  }
+  .fa-xs,
+  .is-small {
+	svg {
+	  width: .75em;
+	  height: .75em;
+	}
+  }
+
+  .fa-2x,
+  .is-large {
+	svg {
+	  width: 2em;
+	  height: 2em;
+	}
+  }
 }
 
 .wp-block-button {

@@ -173,9 +173,18 @@ function svgButton( props ) {
 									<Button
 										key={ item.value }
 										isSecondary
-										isPrimary={
-											iconSizeLeft === item.value
-										}
+										isPrimary={ () => {
+											let select = iconSizeLeft;
+											if ( 'fa-xs' === select ) {
+												select = 'is-small';
+											}
+											if ( 'fa-2x' === select ) {
+												select = 'is-large';
+											}
+											if ( select === item.value ) {
+												return true;
+											}
+										} }
 										onClick={ () => {
 											setAttributes( {
 												iconSizeLeft: item.value,
@@ -212,9 +221,18 @@ function svgButton( props ) {
 									<Button
 										key={ item.value }
 										isSecondary
-										isPrimary={
-											iconSizeRight === item.value
-										}
+										isPrimary={ () => {
+											let select = iconSizeRight;
+											if ( 'fa-xs' === select ) {
+												select = 'is-small';
+											}
+											if ( 'fa-2x' === select ) {
+												select = 'is-large';
+											}
+											if ( select === item.value ) {
+												return true;
+											}
+										} }
 										onClick={ () => {
 											setAttributes( {
 												iconSizeRight: item.value,
@@ -390,7 +408,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconLeft } />
+								<SVGIcon name={ iconLeft }/>
 							</span>
 						) }
 						<RichText
@@ -413,7 +431,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconRight } />
+								<SVGIcon name={ iconRight }/>
 							</span>
 						) }
 					</span>

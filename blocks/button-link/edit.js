@@ -1,5 +1,6 @@
 import IconSelect from '../../src/js/components/icon-select/index';
 import { ystdbConfig } from '../../src/js/config/config';
+import { iconSize } from './config';
 
 import {
 	BlockControls,
@@ -193,7 +194,7 @@ const btnLinkEdit = ( props ) => {
 									'ystdb-btn-selector components-base-control'
 								}
 							>
-								{ ystdbConfig.icon.size.map( ( item ) => {
+								{ iconSize.map( ( item ) => {
 									return (
 										<Button
 											key={ item.value }
@@ -232,7 +233,7 @@ const btnLinkEdit = ( props ) => {
 									'ystdb-btn-selector components-base-control'
 								}
 							>
-								{ ystdbConfig.icon.size.map( ( item ) => {
+								{ iconSize.map( ( item ) => {
 									return (
 										<Button
 											key={ item.value }

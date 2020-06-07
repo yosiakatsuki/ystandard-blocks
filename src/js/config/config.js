@@ -40,7 +40,7 @@ export const ystdbConfig = {
 	icon: {
 		size: [
 			{
-				value: 'fa-xs',
+				value: 'is-small',
 				label: __( '小' ),
 			},
 			{
@@ -48,7 +48,7 @@ export const ystdbConfig = {
 				label: __( '中' ),
 			},
 			{
-				value: 'fa-2x',
+				value: 'is-large',
 				label: __( '大' ),
 			},
 		],

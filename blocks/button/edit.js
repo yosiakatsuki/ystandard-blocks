@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import IconSelect from '../../src/js/components/icon-select/index';
 import { ystdbConfig } from '../../src/js/config/config';
+import { iconSize } from './config';
 
 import {
 	RichText,
@@ -119,7 +120,7 @@ function ysButton( props ) {
 						} }
 					>
 						※このブロックは非推奨になりました。
-						<br />
+						<br/>
 						アイコンが青色の「[ys]カスタムボタン」に変換してください。
 					</div>
 				</BaseControl>
@@ -158,7 +159,7 @@ function ysButton( props ) {
 							setAttributes( {
 								borderRadius: ! value
 									? ystdbConfig.button
-											.borderRadiusInitialPosition
+										.borderRadiusInitialPosition
 									: value,
 							} );
 						} }
@@ -184,7 +185,7 @@ function ysButton( props ) {
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ ystdbConfig.icon.size.map( ( item ) => {
+							{ iconSize.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
@@ -223,7 +224,7 @@ function ysButton( props ) {
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ ystdbConfig.icon.size.map( ( item ) => {
+							{ iconSize.map( ( item ) => {
 								return (
 									<Button
 										key={ item.value }
