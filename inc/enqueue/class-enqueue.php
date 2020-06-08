@@ -55,6 +55,7 @@ class Enqueue {
 		$inline_css .= Format::get_format_styles();
 		$inline_css .= self::get_color_css( '' );
 		$inline_css .= self::get_font_size_css( '' );
+		$inline_css .= self::get_icon_font_css( '' );
 		wp_add_inline_style(
 			Config::CSS_HANDLE,
 			$inline_css
@@ -243,6 +244,23 @@ class Enqueue {
 				 */
 				$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $value['size'] . 'px;}';
 			}
+		}
+
+		return Utility::minify( $css );
+	}
+
+	/**
+	 * アイコンフォント用CSS
+	 *
+	 * @param string $prefix prefix.
+	 *
+	 * @return string
+	 */
+	public static function get_icon_font_css( $prefix = '' ) {
+		$css = '';
+		if ( 'none' !== get_option( 'ys_enqueue_icon_font_type', 'none' ) ) {
+			$css .= $prefix . '.ystdb-button__link .fa-xs svg {width: 1em;height: 1em}';
+			$css .= $prefix . '.ystdb-button__link .fa-2x svg {width: 1em;height: 1em}';
 		}
 
 		return Utility::minify( $css );

@@ -101,6 +101,16 @@ function svgButton( props ) {
 	const maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
 	const maxWidthValue = '%' === maxUnit && 100 < maxWidth ? 100 : maxWidth;
 
+	const convertIconSize = ( size ) => {
+		if ( 'fa-xs' === size ) {
+			return 'is-small';
+		}
+		if ( 'fa-2x' === size ) {
+			return 'is-large';
+		}
+		return size;
+	};
+
 	return (
 		<Fragment>
 			<BlockControls>
@@ -173,18 +183,10 @@ function svgButton( props ) {
 									<Button
 										key={ item.value }
 										isSecondary
-										isPrimary={ () => {
-											let select = iconSizeLeft;
-											if ( 'fa-xs' === select ) {
-												select = 'is-small';
-											}
-											if ( 'fa-2x' === select ) {
-												select = 'is-large';
-											}
-											if ( select === item.value ) {
-												return true;
-											}
-										} }
+										isPrimary={
+											convertIconSize( iconSizeLeft ) ===
+											item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												iconSizeLeft: item.value,
@@ -221,18 +223,10 @@ function svgButton( props ) {
 									<Button
 										key={ item.value }
 										isSecondary
-										isPrimary={ () => {
-											let select = iconSizeRight;
-											if ( 'fa-xs' === select ) {
-												select = 'is-small';
-											}
-											if ( 'fa-2x' === select ) {
-												select = 'is-large';
-											}
-											if ( select === item.value ) {
-												return true;
-											}
-										} }
+										isPrimary={
+											convertIconSize( iconSizeRight ) ===
+											item.value
+										}
 										onClick={ () => {
 											setAttributes( {
 												iconSizeRight: item.value,
@@ -408,7 +402,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconLeft }/>
+								<SVGIcon name={ iconLeft } />
 							</span>
 						) }
 						<RichText
@@ -431,7 +425,7 @@ function svgButton( props ) {
 									}
 								) }
 							>
-								<SVGIcon name={ iconRight }/>
+								<SVGIcon name={ iconRight } />
 							</span>
 						) }
 					</span>

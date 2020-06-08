@@ -120,7 +120,7 @@ function ysButton( props ) {
 						} }
 					>
 						※このブロックは非推奨になりました。
-						<br/>
+						<br />
 						アイコンが青色の「[ys]カスタムボタン」に変換してください。
 					</div>
 				</BaseControl>
@@ -159,7 +159,7 @@ function ysButton( props ) {
 							setAttributes( {
 								borderRadius: ! value
 									? ystdbConfig.button
-										.borderRadiusInitialPosition
+											.borderRadiusInitialPosition
 									: value,
 							} );
 						} }

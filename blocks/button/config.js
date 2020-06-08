@@ -87,7 +87,6 @@ export const supports = {
 	className: false,
 };
 
-
 export const iconSize = [
 	{
 		value: 'fa-xs',
