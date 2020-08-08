@@ -83,7 +83,7 @@ class Menu {
 	 * @return string
 	 */
 	private function menu_icon() {
-		$icon = '<svg id="blocks" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 22"><polygon points="10 1 19 6 19 16 10 21 1 16 1 6 10 1" fill="none" stroke="#e1e1e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><polyline points="1 6 10 11 19 6" fill="none" stroke="#e1e1e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><line x1="10" y1="11" x2="10" y2="21" fill="none" stroke="#e1e1e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>';
+		$icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 21.9"><g id="ystdb-menu-icon" data-name="ystdb-menu-icon"><g id="blocks"><g><path d="M10,21.75a1.9,1.9,0,0,1-.92-.22L1,17A1.91,1.91,0,0,1,0,15.4v-9A1.93,1.93,0,0,1,1,4.78L9.08.23a2,2,0,0,1,1.85,0l8.12,4.55A1.93,1.93,0,0,1,20,6.4v9A1.91,1.91,0,0,1,19.05,17l-8.13,4.52A1.9,1.9,0,0,1,10,21.75ZM2,15.31l8.05,4.47,8-4.47V6.48L10,2,2,6.48ZM9.56,1.1h0Z" fill="#e1e1e1"/><path d="M10,11.9a1.09,1.09,0,0,1-.49-.13l-9-5A1,1,0,0,1,1.49,5L10,9.75,18.23,5a1,1,0,0,1,1.36.36,1,1,0,0,1-.36,1.37L10.5,11.76A1,1,0,0,1,10,11.9Z" fill="#e1e1e1"/><path d="M10,21.9a1,1,0,0,1-1-1v-10a1,1,0,1,1,2,0v10A1,1,0,0,1,10,21.9Z" fill="#e1e1e1"/></g></g></g></svg>';
 
 		return 'data:image/svg+xml;base64,' . base64_encode( $icon );
 	}
