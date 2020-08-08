@@ -13,8 +13,8 @@ export const inlineStyle = () => {
 		},
 		computed: {
 			previewMaker() {
-				self = this;
-				return function( index ) {
+				const self = this;
+				return function ( index ) {
 					return {
 						background: self.getMarker( index ),
 						backgroundPositionY: self.getMarkerPositionY( index ),

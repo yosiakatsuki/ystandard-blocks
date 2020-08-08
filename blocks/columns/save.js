@@ -1,7 +1,7 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
-export default function( { attributes } ) {
+export default function ( { attributes } ) {
 	const { colPc, colTablet, colMobile, verticalAlignment } = attributes;
 
 	const classes = classnames( 'ystdb-columns', {

@@ -119,7 +119,10 @@ const deprecated = [
 			const textClass = getColorClassName( 'color', textColor );
 			const fontSizeClass = getFontSizeClass( fontSize );
 			const subTextSizeClass = getFontSizeClass( subTextSize );
-			const subTextColorClass = getColorClassName( 'color', subTextColor );
+			const subTextColorClass = getColorClassName(
+				'color',
+				subTextColor
+			);
 			const dividerColorClass = getColorClassName( 'fill', dividerColor );
 
 			const classes = classnames( 'ystdb-heading', {
@@ -128,7 +131,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {
@@ -152,12 +155,17 @@ const deprecated = [
 				if ( 0 === subTextBorderHeight || 0 === subTextBorderWidth ) {
 					return null;
 				}
-				const borderColor = customDividerColor ? customDividerColor : '#222';
+				const borderColor = customDividerColor
+					? customDividerColor
+					: '#222';
 				const lineStyle = {
 					fill: dividerColorClass ? undefined : borderColor,
-					marginTop: 0 !== dividerMarginTop ? dividerMarginTop : undefined,
+					marginTop:
+						0 !== dividerMarginTop ? dividerMarginTop : undefined,
 					marginBottom:
-						0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+						0 !== dividerMarginBottom
+							? dividerMarginBottom
+							: undefined,
 				};
 				const lineClass = classnames( 'ystdb-heading__line', {
 					[ dividerColorClass ]: dividerColorClass,
@@ -194,12 +202,14 @@ const deprecated = [
 				} );
 				const styles = {
 					color: subTextColorClass ? undefined : customSubTextColor,
-					fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
+					fontSize: customSubTextSize
+						? customSubTextSize + 'px'
+						: undefined,
 				};
 				return (
 					<span className={ subTextClasses } style={ styles }>
-				{ subText }
-			</span>
+						{ subText }
+					</span>
 				);
 			};
 
@@ -256,7 +266,10 @@ const deprecated = [
 			const textClass = getColorClassName( 'color', textColor );
 			const fontSizeClass = getFontSizeClass( fontSize );
 			const subTextSizeClass = getFontSizeClass( subTextSize );
-			const subTextColorClass = getColorClassName( 'color', subTextColor );
+			const subTextColorClass = getColorClassName(
+				'color',
+				subTextColor
+			);
 			const dividerColorClass = getColorClassName( 'fill', dividerColor );
 
 			const classes = classnames( 'ystdb-heading', {
@@ -265,7 +278,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {
@@ -289,12 +302,17 @@ const deprecated = [
 				if ( 0 === subTextBorderHeight || 0 === subTextBorderWidth ) {
 					return null;
 				}
-				const borderColor = customDividerColor ? customDividerColor : '#222';
+				const borderColor = customDividerColor
+					? customDividerColor
+					: '#222';
 				const lineStyle = {
 					fill: dividerColorClass ? undefined : borderColor,
-					marginTop: 0 !== dividerMarginTop ? dividerMarginTop : undefined,
+					marginTop:
+						0 !== dividerMarginTop ? dividerMarginTop : undefined,
 					marginBottom:
-						0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+						0 !== dividerMarginBottom
+							? dividerMarginBottom
+							: undefined,
 				};
 				const lineClass = classnames( 'ystdb-heading__line', {
 					[ dividerColorClass ]: dividerColorClass,
@@ -331,12 +349,14 @@ const deprecated = [
 				} );
 				const styles = {
 					color: subTextColorClass ? undefined : customSubTextColor,
-					fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
+					fontSize: customSubTextSize
+						? customSubTextSize + 'px'
+						: undefined,
 				};
 				return (
 					<span className={ subTextClasses } style={ styles }>
-				{ subText }
-			</span>
+						{ subText }
+					</span>
 				);
 			};
 

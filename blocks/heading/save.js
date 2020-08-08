@@ -46,7 +46,7 @@ export default function save( { attributes } ) {
 		'has-divider': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
 		[ `has-subtext--${ subTextPosition }` ]:
-		subText || ( subTextBorderHeight && subTextBorderWidth ),
+			subText || ( subTextBorderHeight && subTextBorderWidth ),
 	} );
 
 	const textClasses = classnames( 'ystdb-heading__text', {
@@ -75,10 +75,13 @@ export default function save( { attributes } ) {
 			[ dividerColorClass ]: dividerColorClass,
 		} );
 		const svg = () => {
-			const borderColor = customDividerColor ? customDividerColor : '#222';
+			const borderColor = customDividerColor
+				? customDividerColor
+				: '#222';
 			const lineStyle = {
 				fill: dividerColorClass ? undefined : borderColor,
-				marginTop: 0 !== dividerMarginTop ? dividerMarginTop : undefined,
+				marginTop:
+					0 !== dividerMarginTop ? dividerMarginTop : undefined,
 				marginBottom:
 					0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
 			};
@@ -102,13 +105,16 @@ export default function save( { attributes } ) {
 				display: 'block',
 				width: subTextBorderWidth,
 				height: subTextBorderHeight,
-				marginTop: 0 !== dividerMarginTop ? dividerMarginTop : undefined,
+				marginTop:
+					0 !== dividerMarginTop ? dividerMarginTop : undefined,
 				marginBottom:
 					0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
 				marginRight:
 					'left' === align || 'center' === align ? 'auto' : undefined,
 				marginLeft:
-					'right' === align || 'center' === align ? 'auto' : undefined,
+					'right' === align || 'center' === align
+						? 'auto'
+						: undefined,
 			};
 			return (
 				<img
@@ -148,8 +154,7 @@ export default function save( { attributes } ) {
 				area-hidden={ 'true' }
 				style={ styles }
 				data-text={ subText }
-			>
-			</span>
+			></span>
 		);
 	};
 

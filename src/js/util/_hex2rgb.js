@@ -10,7 +10,7 @@ export default function hex2rgb( hex ) {
 			hex.slice( 2, 3 );
 
 	return [ hex.slice( 0, 2 ), hex.slice( 2, 4 ), hex.slice( 4, 6 ) ].map(
-		function( str ) {
+		function ( str ) {
 			return parseInt( str, 16 );
 		}
 	);

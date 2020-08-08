@@ -1,9 +1,10 @@
-addEventListener( 'DOMContentLoaded', () => {
+document.addEventListener( 'DOMContentLoaded', () => {
 	const animateSection = document.querySelectorAll( '.has-animation' );
 	const options = {
 		rootMargin: '-10% 0px',
 		threshold: 0,
 	};
+	/* globals IntersectionObserver */
 	const observer = new IntersectionObserver( doWhenIntersect, options );
 	const node = Array.prototype.slice.call( animateSection, 0 );
 	node.forEach( ( section ) => {

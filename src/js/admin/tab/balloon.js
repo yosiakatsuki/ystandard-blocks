@@ -38,7 +38,7 @@ export const balloon = () => {
 				} );
 				customUploader.on( 'select', () => {
 					const image = customUploader.state().get( 'selection' );
-					image.each( function( file ) {
+					image.each( function ( file ) {
 						const imageUrl = file.toJSON().url;
 						if ( imageUrl ) {
 							self.balloon[ index ].url = imageUrl;

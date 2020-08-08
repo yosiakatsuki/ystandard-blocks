@@ -97,17 +97,13 @@ function customHeading( props ) {
 	 *
 	 * @type {string}
 	 */
-	const headingClasses = classnames(
-		className,
-		'ystdb-heading',
-		{
-			[ `has-text-align-${ align }` ]: align,
-			[ textColor.class ]: textColor.class,
-			[ fontSize.class ]: fontSize.class,
-			'has-border': subTextBorderHeight && subTextBorderWidth,
-			'has-sub-text': subText,
-		}
-	);
+	const headingClasses = classnames( className, 'ystdb-heading', {
+		[ `has-text-align-${ align }` ]: align,
+		[ textColor.class ]: textColor.class,
+		[ fontSize.class ]: fontSize.class,
+		'has-border': subTextBorderHeight && subTextBorderWidth,
+		'has-sub-text': subText,
+	} );
 
 	const styles = {
 		color: textColor.color,
@@ -137,7 +133,9 @@ function customHeading( props ) {
 				marginRight:
 					'left' === align || 'center' === align ? 'auto' : undefined,
 				marginLeft:
-					'right' === align || 'center' === align ? 'auto' : undefined,
+					'right' === align || 'center' === align
+						? 'auto'
+						: undefined,
 			};
 			return (
 				<SVG
@@ -168,7 +166,9 @@ function customHeading( props ) {
 				marginRight:
 					'left' === align || 'center' === align ? 'auto' : undefined,
 				marginLeft:
-					'right' === align || 'center' === align ? 'auto' : undefined,
+					'right' === align || 'center' === align
+						? 'auto'
+						: undefined,
 			};
 			return (
 				<img
@@ -182,7 +182,6 @@ function customHeading( props ) {
 			);
 		};
 		return !! dividerImageURL ? image() : svg();
-
 	};
 
 	/**
@@ -260,7 +259,7 @@ function customHeading( props ) {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ dividerImageURL } alt={ dividerImageAlt }/>
+					<img src={ dividerImageURL } alt={ dividerImageAlt } />
 				</Button>
 				<Button
 					isDefault
@@ -444,8 +443,12 @@ function customHeading( props ) {
 						value={ dividerImageID }
 						render={ mediaUploadRender }
 					/>
-					<span
-						className={ `ystdb-info__small` }>{ __( '※画像を指定した場合、区切り線の色設定は無視されます。', 'ystandard-blocks' ) }</span>
+					<span className={ `ystdb-info__small` }>
+						{ __(
+							'※画像を指定した場合、区切り線の色設定は無視されます。',
+							'ystandard-blocks'
+						) }
+					</span>
 					<div className="ystdb-inspector-controls__label">
 						{ __( '区切り線の上下余白', 'ystandard-blocks' ) }
 					</div>

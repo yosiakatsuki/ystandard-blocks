@@ -21,8 +21,9 @@ inlineStyles.map( ( style, index ) => {
 					<BlockFormatControls>
 						<div className="editor-format-toolbar block-editor-format-toolbar">
 							<div
-								className={ `ystdb-inline-style-toolbar inline-style-${ index +
-									1 }` }
+								className={ `ystdb-inline-style-toolbar inline-style-${
+									index + 1
+								}` }
 							>
 								<Toolbar>
 									<ToolbarButton
