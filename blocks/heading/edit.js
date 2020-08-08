@@ -211,6 +211,7 @@ function customHeading( props ) {
 			color: subTextColor.color,
 			textAlign: align,
 			width: 'auto',
+			height: 'auto',
 		};
 
 		return (

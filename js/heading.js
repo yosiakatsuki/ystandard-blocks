@@ -829,7 +829,8 @@ function customHeading(props) {
       fontSize: subTextSize.size ? subTextSize.size + 'px' : '16px',
       color: subTextColor.color,
       textAlign: align,
-      width: 'auto'
+      width: 'auto',
+      height: 'auto'
     };
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: 'ystdb-heading__subtext ystdb-heading__subtext-edit',
