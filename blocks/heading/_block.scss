@@ -2,22 +2,20 @@
   position: relative;
 }
 
-.ystdb {
-  .ystdb-heading {
-	.is-clear-style:not([class*="is-style-ystdtb"]) {
-	  position: relative;
-	  margin: 0;
-	  padding: 0;
-	  border: 0;
-	  background: none;
-	  color: inherit;
-	  font-weight: 400;
-	  box-shadow: none;
+.ystdb-heading {
+  .ystdb-heading__text.is-clear-style:not([class*="is-style-ystdtb"]) {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font-weight: 400;
+	box-shadow: none;
 
-	  &::before,
-	  &::after {
-		display: none;
-	  }
+	&::before,
+	&::after {
+	  display: none;
 	}
   }
 }
