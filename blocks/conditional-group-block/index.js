@@ -7,7 +7,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/conditional-group-block', {
-	title: __( '[ys]条件付きグループブロック', 'ystandard-blocks' ),
+	title: __( '条件付きグループブロック', 'ystandard-blocks' ),
 	description: __(
 		'条件により表示・非表示を切り替えできるグループブロック',
 		'ystandard-blocks'

@@ -37,6 +37,20 @@ class Init {
 		$this->load_files();
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
+		add_filter( 'body_class', [ $this, 'body_class' ] );
+	}
+
+	/**
+	 * Body Class.
+	 *
+	 * @param array $classes classes.
+	 *
+	 * @return array
+	 */
+	public function body_class( $classes ) {
+		$classes[] = Config::BODY_CLASS;
+
+		return $classes;
 	}
 
 	/**

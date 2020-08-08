@@ -6,7 +6,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/btn-link', {
-	title: __( '[ys]ボタン型リンク(非推奨)', 'ystandard-blocks' ),
+	title: __( 'ボタン型リンク(非推奨)', 'ystandard-blocks' ),
 	description: __(
 		'入力したリンク(a)タグをボタン形式で表示するブロック',
 		'ystandard-blocks'

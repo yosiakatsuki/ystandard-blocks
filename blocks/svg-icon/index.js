@@ -8,7 +8,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/svg-icon', {
-	title: __( '[ys]アイコン', 'ystandard-blocks' ),
+	title: __( 'アイコン', 'ystandard-blocks' ),
 	description: __( 'アイコン表示ブロック', 'ystandard-blocks' ),
 	icon: (
 		<Info

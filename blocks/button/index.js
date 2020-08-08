@@ -9,7 +9,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/ys-btn', {
-	title: __( '[ys]カスタムボタン(非推奨)', 'ystandard-blocks' ),
+	title: __( 'カスタムボタン(非推奨)', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カスタムボタン', 'ystandard-blocks' ),
 	icon,
 	category: ystdbConfig.category.deprecated,

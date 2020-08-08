@@ -7,7 +7,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/columns', {
-	title: __( '[ys]カスタムカラム', 'ystandard-blocks' ),
+	title: __( 'カスタムカラム', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カラムブロック', 'ystandard-blocks' ),
 	icon: (
 		<Grid

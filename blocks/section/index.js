@@ -8,7 +8,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/section', {
-	title: __( '[ys]セクション', 'ystandard-blocks' ),
+	title: __( 'セクション', 'ystandard-blocks' ),
 	description: __(
 		'yStandard Blocks汎用セクションブロック',
 		'ystandard-blocks'

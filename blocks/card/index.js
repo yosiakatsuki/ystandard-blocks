@@ -6,7 +6,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/card', {
-	title: __( '[ys]カード', 'ystandard-blocks' ),
+	title: __( 'カード', 'ystandard-blocks' ),
 	description: __( 'カード型リンクを作成するブロック', 'ystandard-blocks' ),
 	icon: (
 		<CreditCard

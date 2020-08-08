@@ -43,6 +43,11 @@ class Config {
 	const JS_APP_HANDLE = 'ystdb-js-app';
 
 	/**
+	 * Body Class.
+	 */
+	const BODY_CLASS = 'ystdb';
+
+	/**
 	 * メニューページ用 body class.
 	 */
 	const ADMIN_MENU_BODY_CLASS = 'ystd-blocks-menu';

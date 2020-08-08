@@ -9,7 +9,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/svg-button', {
-	title: __( '[ys]カスタムボタン', 'ystandard-blocks' ),
+	title: __( 'カスタムボタン', 'ystandard-blocks' ),
 	description: __( 'yStandard Blocks カスタムボタン', 'ystandard-blocks' ),
 	icon: (
 		<Link2

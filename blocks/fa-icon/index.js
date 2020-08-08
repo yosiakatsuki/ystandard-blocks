@@ -6,7 +6,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/fa-icon', {
-	title: __( '[ys]アイコン(非推奨)', 'ystandard-blocks' ),
+	title: __( 'アイコン(非推奨)', 'ystandard-blocks' ),
 	description: __( 'Font Awesomeアイコン表示ブロック', 'ystandard-blocks' ),
 	icon: {
 		src: 'info',

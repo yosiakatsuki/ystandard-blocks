@@ -7,7 +7,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'ystdb/svg-button-link', {
-	title: __( '[ys]ボタン型リンク', 'ystandard-blocks' ),
+	title: __( 'ボタン型リンク', 'ystandard-blocks' ),
 	description: __(
 		'入力したリンク(a)タグをボタン形式で表示するブロック',
 		'ystandard-blocks'
