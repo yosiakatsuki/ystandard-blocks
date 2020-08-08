@@ -76,6 +76,16 @@ export const attributes = {
 		type: 'bool',
 		default: true,
 	},
+	dividerImageURL: {
+		type: 'string',
+	},
+	dividerImageAlt: {
+		type: 'string',
+	},
+	dividerImageID: {
+		type: 'integer',
+		default: 0,
+	},
 };
 
 export const supports = {

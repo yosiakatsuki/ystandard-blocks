@@ -22,6 +22,9 @@ class Init {
 	 * Init constructor.
 	 */
 	public function __construct() {
+		add_filter( 'ystdb_get_version', function ( $ver ) {
+			return YSTDB_VERSION;
+		} );
 		/**
 		 * 必要バージョンのチェック
 		 */

@@ -6,9 +6,10 @@ import transforms from './transforms';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import deprecated from "./deprecated";
 
 registerBlockType( 'ystdb/heading', {
-	title: __( '[ys]カスタム見出し', 'ystandard-blocks' ),
+	title: __( 'カスタム見出し', 'ystandard-blocks' ),
 	description: __( 'カスタム見出しブロック', 'ystandard-blocks' ),
 	icon: (
 		<Bookmark
@@ -16,11 +17,12 @@ registerBlockType( 'ystdb/heading', {
 			style={ { fill: 'none' } }
 		/>
 	),
-	keywords: [ __( 'heading' ), __( '見出し' ), 'head', 'fa' ],
+	keywords: [ __( 'heading' ), __( '見出し' ), 'head' ],
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
 	edit,
 	save,
 	transforms,
+	deprecated,
 } );

@@ -6,6 +6,7 @@ import {
 	AlignmentToolbar,
 	InspectorControls,
 	PlainText,
+	MediaUpload,
 	withColors,
 	FontSizePicker,
 	withFontSizes,
@@ -62,6 +63,9 @@ function customHeading( props ) {
 		dividerMarginTop,
 		dividerMarginBottom,
 		clearStyle,
+		dividerImageURL,
+		dividerImageAlt,
+		dividerImageID,
 	} = attributes;
 
 	const TagName = 'h' + level;
@@ -93,21 +97,26 @@ function customHeading( props ) {
 	 *
 	 * @type {string}
 	 */
-	const headingClasses = classnames( className, 'ystdb-heading', {
-		'is-clear-style': clearStyle,
-		[ `has-text-align-${ align }` ]: align,
-		[ textColor.class ]: textColor.class,
-		[ fontSize.class ]: fontSize.class,
-		'has-border': subTextBorderHeight && subTextBorderWidth,
-		'has-sub-text': subText,
-	} );
+	const headingClasses = classnames(
+		className,
+		'ystdb-heading',
+		{
+			[ `has-text-align-${ align }` ]: align,
+			[ textColor.class ]: textColor.class,
+			[ fontSize.class ]: fontSize.class,
+			'has-border': subTextBorderHeight && subTextBorderWidth,
+			'has-sub-text': subText,
+		}
+	);
 
 	const styles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
 	};
 
-	const textClass = classnames( 'ystdb-heading__text' );
+	const textClass = classnames( 'ystdb-heading__text', {
+		'is-clear-style': clearStyle,
+	} );
 
 	/**
 	 * 線
@@ -116,33 +125,64 @@ function customHeading( props ) {
 		if ( 0 === subTextBorderHeight || 0 === subTextBorderWidth ) {
 			return null;
 		}
-		const lineStyle = {
-			fill: dividerColor.color ? dividerColor.color : '#222',
-			marginTop:
-				0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
-			marginBottom:
-				0 !== dividerMarginBottom
-					? dividerEditorMarginBottom
-					: undefined,
-			marginRight:
-				'left' === align || 'center' === align ? 'auto' : undefined,
-			marginLeft:
-				'right' === align || 'center' === align ? 'auto' : undefined,
+		const svg = () => {
+			const lineStyle = {
+				fill: dividerColor.color ? dividerColor.color : '#222',
+				marginTop:
+					0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
+				marginBottom:
+					0 !== dividerMarginBottom
+						? dividerEditorMarginBottom
+						: undefined,
+				marginRight:
+					'left' === align || 'center' === align ? 'auto' : undefined,
+				marginLeft:
+					'right' === align || 'center' === align ? 'auto' : undefined,
+			};
+			return (
+				<SVG
+					className={ 'ystdb-heading__line' }
+					width={ subTextBorderWidth }
+					height={ subTextBorderHeight }
+					viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
+					xmlns="http://www.w3.org/2000/svg"
+					style={ lineStyle }
+				>
+					<Path
+						d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }
+					/>
+				</SVG>
+			);
 		};
-		return (
-			<SVG
-				className={ 'ystdb-heading__line' }
-				width={ subTextBorderWidth }
-				height={ subTextBorderHeight }
-				viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
-				xmlns="http://www.w3.org/2000/svg"
-				style={ lineStyle }
-			>
-				<Path
-					d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }
+		const image = () => {
+			const lineStyle = {
+				display: 'block',
+				width: subTextBorderWidth,
+				height: subTextBorderHeight,
+				marginTop:
+					0 !== dividerMarginTop ? dividerEditorMarginTop : undefined,
+				marginBottom:
+					0 !== dividerMarginBottom
+						? dividerEditorMarginBottom
+						: undefined,
+				marginRight:
+					'left' === align || 'center' === align ? 'auto' : undefined,
+				marginLeft:
+					'right' === align || 'center' === align ? 'auto' : undefined,
+			};
+			return (
+				<img
+					className={ 'ystdb-heading__line' }
+					src={ dividerImageURL }
+					width={ subTextBorderWidth }
+					height={ subTextBorderHeight }
+					alt={ dividerImageAlt }
+					style={ lineStyle }
 				/>
-			</SVG>
-		);
+			);
+		};
+		return !! dividerImageURL ? image() : svg();
+
 	};
 
 	/**
@@ -199,6 +239,42 @@ function customHeading( props ) {
 			</Fragment>
 		);
 	};
+	/**
+	 * 画像設定コントロール
+	 *
+	 * @param {Object} obj
+	 */
+	const mediaUploadRender = ( obj ) => {
+		if ( 0 === dividerImageID ) {
+			return (
+				<Button isDefault onClick={ obj.open }>
+					{ __( '画像を選択', 'ystandard-blocks' ) }
+				</Button>
+			);
+		}
+		return (
+			<div>
+				<Button
+					onClick={ obj.open }
+					className={ 'ystdb-mediaupload__preview' }
+					style={ { padding: 0 } }
+				>
+					<img src={ dividerImageURL } alt={ dividerImageAlt }/>
+				</Button>
+				<Button
+					isDefault
+					onClick={ () => {
+						setAttributes( {
+							dividerImageURL: '',
+							dividerImageID: 0,
+						} );
+					} }
+				>
+					{ __( '画像をクリア', 'ystandard-blocks' ) }
+				</Button>
+			</div>
+		);
+	};
 
 	return (
 		<Fragment>
@@ -236,7 +312,7 @@ function customHeading( props ) {
 				</PanelBody>
 
 				<PanelBody
-					title={ __( '見出しテキスト設定', 'ystandard-blocks' ) }
+					title={ __( '色・サイズ', 'ystandard-blocks' ) }
 					initialOpen={ true }
 				>
 					<div className="ystdb-inspector-controls__label">
@@ -353,6 +429,23 @@ function customHeading( props ) {
 						value={ dividerColor.color }
 					/>
 					<div className="ystdb-inspector-controls__label">
+						{ __( '区切り線用画像', 'ystandard-blocks' ) }
+					</div>
+					<MediaUpload
+						onSelect={ ( media ) => {
+							setAttributes( {
+								dividerImageURL: media.url,
+								dividerImageID: media.id,
+								dividerImageAlt: media.alt,
+							} );
+						} }
+						type={ [ 'image' ] }
+						value={ dividerImageID }
+						render={ mediaUploadRender }
+					/>
+					<span
+						className={ `ystdb-info__small` }>{ __( '※画像を指定した場合、区切り線の色設定は無視されます。', 'ystandard-blocks' ) }</span>
+					<div className="ystdb-inspector-controls__label">
 						{ __( '区切り線の上下余白', 'ystandard-blocks' ) }
 					</div>
 					<RangeControl
@@ -402,15 +495,16 @@ function customHeading( props ) {
 			</InspectorControls>
 
 			<div className={ editorClasses }>
-				<TagName className={ headingClasses } style={ styles }>
+				<div className={ headingClasses }>
 					{ 'top' === subTextPosition && editSubText() }
 					{ 'top' === subTextPosition && divider() }
 					<RichText
 						identifier="content"
-						tagName={ 'span' }
+						tagName={ TagName }
 						className={ textClass }
 						placeholder={ __( 'Write heading…' ) }
 						value={ content }
+						style={ styles }
 						onChange={ ( value ) => {
 							setAttributes( {
 								content: value,
@@ -432,7 +526,7 @@ function customHeading( props ) {
 					/>
 					{ 'bottom' === subTextPosition && divider() }
 					{ 'bottom' === subTextPosition && editSubText() }
-				</TagName>
+				</div>
 			</div>
 		</Fragment>
 	);

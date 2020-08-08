@@ -1,43 +1,47 @@
 .ystdb-inspectorcontrols {
-	.components-base-control__label {
-		font-weight: $font__weight_bold;
-	}
+  .components-base-control__label {
+	font-weight: $font__weight_bold;
+  }
 
-	.components-base-control__field .components-base-control__field {
-		.components-base-control__label {
-			font-weight: 400;
-		}
+  .components-base-control__field .components-base-control__field {
+	.components-base-control__label {
+	  font-weight: 400;
 	}
+  }
 }
 
 .ystdb-inspectorcontrols__horizontal-radio {
-	.components-radio-control__option {
-		display: inline-block;
-		margin-right: 1rem;
+  .components-radio-control__option {
+	display: inline-block;
+	margin-right: 1rem;
 
-		&:last-child {
-			margin-right: 0;
-		}
-
-		.components-radio-control__input {
-			margin-right: 0.25rem;
-		}
+	&:last-child {
+	  margin-right: 0;
 	}
+
+	.components-radio-control__input {
+	  margin-right: 0.25rem;
+	}
+  }
 }
 
 .ystdb-inspectorcontrols__disablecustomfont {
-	.components-range-control__number {
-		display: none;
-	}
+  .components-range-control__number {
+	display: none;
+  }
 }
 
 .ystdb-inspector-controls__label {
-	margin: 0.5rem 0 0.25rem;
-	font-weight: $font__weight_bold;
+  margin: 2rem 0 0.25rem;
+  font-weight: $font__weight_bold;
+
+  &:first-of-type {
+	margin-top: .5rem;
+  }
 }
 
 .ystdb-inspector-controls__dscr {
-	color: $color__text-light;
-	font-size: 0.8em;
-	font-weight: 400;
+  color: $color__text-light;
+  font-size: 0.8em;
+  font-weight: 400;
 }
