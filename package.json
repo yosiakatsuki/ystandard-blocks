@@ -17,7 +17,7 @@
     "build:icon": "node src/js/util/create-icon-list.js",
     "build:svg-icon": "node src/js/util/create-svg-icon-list.js",
     "build:css": "gulp sass",
-    "build": "npm run build:block && gulp sass",
+    "build": "npm run build:block && gulp sass && gulp webpack",
     "watch": "npm run start:block & gulp watch",
     "zip": "gulp zip",
     "build:deploy-files": "gulp createDeployFiles",
