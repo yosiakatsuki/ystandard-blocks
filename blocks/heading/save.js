@@ -151,7 +151,7 @@ export default function save( { attributes } ) {
 		return (
 			<div
 				className={ subTextClasses }
-				area-hidden={ 'true' }
+				aria-hidden={ 'true' }
 				style={ styles }
 				data-text={ subText }
 			></div>
