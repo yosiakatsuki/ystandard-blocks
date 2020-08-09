@@ -70,6 +70,7 @@ function copyProductionFiles() {
 			'!webpack.config.js',
 			'!ystandard-blocks-webpack-config.js',
 			'!ystandard-blocks.json',
+			'!ystandard-blocks-beta.json',
 			'!phpcs.ruleset.dist',
 			'!phpcs.ruleset.xml',
 			'!phpunit.xml.dist',
