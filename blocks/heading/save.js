@@ -149,12 +149,12 @@ export default function save( { attributes } ) {
 			fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
 		};
 		return (
-			<span
+			<div
 				className={ subTextClasses }
 				area-hidden={ 'true' }
 				style={ styles }
 				data-text={ subText }
-			></span>
+			></div>
 		);
 	};
 
