@@ -117,6 +117,7 @@ export const supports = {
 	align: [ 'wide', 'full' ],
 	anchor: true,
 	className: false,
+	lightBlockWrapper: true,
 };
 
 /**

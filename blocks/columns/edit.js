@@ -6,6 +6,7 @@ import {
 	BlockControls,
 	InspectorControls,
 	InnerBlocks,
+	__experimentalBlock as Block,
 } from '@wordpress/block-editor';
 
 import { Fragment } from '@wordpress/element';
@@ -108,7 +109,7 @@ function columns( props ) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classnames( className, 'ystdb-columns-wrap' ) }>
+			<Block.div className={ classnames( className, 'ystdb-columns-wrap' ) }>
 				<div className={ classes }>
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks }
@@ -116,7 +117,7 @@ function columns( props ) {
 						templateLock={ false }
 					/>
 				</div>
-			</div>
+			</Block.div>
 		</Fragment>
 	);
 }

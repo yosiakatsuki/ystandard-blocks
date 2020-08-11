@@ -31,6 +31,7 @@ export const attributes = {
 export const supports = {
 	align: [ 'wide', 'full' ],
 	className: false,
+	lightBlockWrapper: true,
 };
 
 export const allowedBlocks = [ 'ystdb/column' ];
