@@ -192,7 +192,7 @@ const sectionEdit = ( props ) => {
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio="none"
 				>
-					<Path d={ path } strokewidth="0" fill={ color }/>
+					<Path d={ path } strokewidth="0" fill={ color } />
 				</SVG>
 			</div>
 		);
@@ -299,7 +299,7 @@ const sectionEdit = ( props ) => {
 										</Button>
 									);
 								} ) }
-								<br/>
+								<br />
 								<div>
 									<span className={ `ystdb-info__small` }>
 										※上下余白のかんたん設定
@@ -401,8 +401,8 @@ const sectionEdit = ( props ) => {
 							value={ backgroundImageID }
 							render={ mediaUploadRender }
 						/>
-						<br/>
-						<br/>
+						<br />
+						<br />
 						<RangeControl
 							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
 							value={ backgroundImageOpacity }
@@ -471,10 +471,10 @@ const sectionEdit = ( props ) => {
 					>
 						<div className="ystdb-inspector-controls__dscr">
 							タイプ・レベル・色をすべて設定すると表示されます。
-							<br/>
+							<br />
 							上下のブロックの背景色と色を合わせることをオススメします。
-							<br/>
-							<br/>
+							<br />
+							<br />
 						</div>
 
 						<div className="ystdb-inspector-controls__label">
@@ -535,7 +535,7 @@ const sectionEdit = ( props ) => {
 							} }
 							value={ dividerColorTop.color }
 						/>
-						<br/>
+						<br />
 						<div className="ystdb-inspector-controls__label">
 							{ __( '下側の区切り設定', 'ystandard-blocks' ) }
 						</div>
@@ -761,7 +761,10 @@ const sectionEdit = ( props ) => {
 				</div>
 			</InspectorControls>
 
-			<Block.div className={ 'ystdb-section__edit-wrap' } style={ editWrapStyle }>
+			<Block.div
+				className={ 'ystdb-section__edit-wrap' }
+				style={ editWrapStyle }
+			>
 				<div className={ sectionClass } style={ sectionStyles }>
 					{ showBgMask && (
 						<div
@@ -774,27 +777,27 @@ const sectionEdit = ( props ) => {
 						</div>
 					) }
 					{ 0 !== dividerLevelTop &&
-					dividerColorTop.color &&
-					divider(
-						dividerTypeTop,
-						'top',
-						dividerLevelTop,
-						dividerColorTop.color
-					) }
+						dividerColorTop.color &&
+						divider(
+							dividerTypeTop,
+							'top',
+							dividerLevelTop,
+							dividerColorTop.color
+						) }
 					{ 0 !== dividerLevelBottom &&
-					dividerColorBottom.color &&
-					divider(
-						dividerTypeBottom,
-						'bottom',
-						dividerLevelBottom,
-						dividerColorBottom.color
-					) }
+						dividerColorBottom.color &&
+						divider(
+							dividerTypeBottom,
+							'bottom',
+							dividerLevelBottom,
+							dividerColorBottom.color
+						) }
 					<div className="ystdb-section__container">
 						<Wrapper
 							className={ innerClasses }
 							style={ innerStyles }
 						>
-							<InnerBlocks/>
+							<InnerBlocks />
 						</Wrapper>
 					</div>
 				</div>

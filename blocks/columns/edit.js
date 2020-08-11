@@ -109,7 +109,9 @@ function columns( props ) {
 				</PanelBody>
 			</InspectorControls>
 
-			<Block.div className={ classnames( className, 'ystdb-columns-wrap' ) }>
+			<Block.div
+				className={ classnames( className, 'ystdb-columns-wrap' ) }
+			>
 				<div className={ classes }>
 					<InnerBlocks
 						allowedBlocks={ allowedBlocks }
