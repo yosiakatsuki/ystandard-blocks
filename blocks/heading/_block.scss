@@ -9,13 +9,16 @@
 	padding: 0;
 	border: 0;
 	background: none;
-	color: inherit;
 	font-weight: 400;
 	box-shadow: none;
 
 	&::before,
 	&::after {
 	  display: none;
+	}
+
+	&:not(.has-text-color) {
+	  color: inherit;
 	}
   }
 }
