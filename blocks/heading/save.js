@@ -46,7 +46,7 @@ export default function save( { attributes } ) {
 		'has-divider': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
 		[ `has-subtext--${ subTextPosition }` ]:
-			subText || ( subTextBorderHeight && subTextBorderWidth ),
+		subText || ( subTextBorderHeight && subTextBorderWidth ),
 	} );
 
 	const textClasses = classnames( 'ystdb-heading__text', {
@@ -160,16 +160,18 @@ export default function save( { attributes } ) {
 
 	return (
 		<div className={ classes }>
-			{ 'top' === subTextPosition && showSubText() }
-			{ 'top' === subTextPosition && divider() }
-			<RichText.Content
-				tagName={ TagName }
-				className={ textClasses }
-				style={ textStyles }
-				value={ content }
-			/>
-			{ 'bottom' === subTextPosition && divider() }
-			{ 'bottom' === subTextPosition && showSubText() }
+			<div className={ `ystdb-heading__container` }>
+				{ 'top' === subTextPosition && showSubText() }
+				{ 'top' === subTextPosition && divider() }
+				<RichText.Content
+					tagName={ TagName }
+					className={ textClasses }
+					style={ textStyles }
+					value={ content }
+				/>
+				{ 'bottom' === subTextPosition && divider() }
+				{ 'bottom' === subTextPosition && showSubText() }
+			</div>
 		</div>
 	);
 }

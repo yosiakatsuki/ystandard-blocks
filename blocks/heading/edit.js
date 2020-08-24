@@ -259,7 +259,7 @@ function customHeading( props ) {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ dividerImageURL } alt={ dividerImageAlt } />
+					<img src={ dividerImageURL } alt={ dividerImageAlt }/>
 				</Button>
 				<Button
 					isDefault
@@ -500,36 +500,38 @@ function customHeading( props ) {
 
 			<div className={ editorClasses }>
 				<div className={ headingClasses }>
-					{ 'top' === subTextPosition && editSubText() }
-					{ 'top' === subTextPosition && divider() }
-					<RichText
-						identifier="content"
-						tagName={ TagName }
-						className={ textClass }
-						placeholder={ __( 'Write heading…' ) }
-						value={ content }
-						style={ styles }
-						onChange={ ( value ) => {
-							setAttributes( {
-								content: value,
-							} );
-						} }
-						onMerge={ mergeBlocks }
-						onSplit={ ( value ) => {
-							if ( ! value ) {
-								return createBlock( 'core/paragraph' );
-							}
+					<div className={ `ystdb-heading__container` }>
+						{ 'top' === subTextPosition && editSubText() }
+						{ 'top' === subTextPosition && divider() }
+						<RichText
+							identifier="content"
+							tagName={ TagName }
+							className={ textClass }
+							placeholder={ __( 'Write heading…' ) }
+							value={ content }
+							style={ styles }
+							onChange={ ( value ) => {
+								setAttributes( {
+									content: value,
+								} );
+							} }
+							onMerge={ mergeBlocks }
+							onSplit={ ( value ) => {
+								if ( ! value ) {
+									return createBlock( 'core/paragraph' );
+								}
 
-							return createBlock( 'ystdb/heading', {
-								...attributes,
-								content: value,
-							} );
-						} }
-						onReplace={ onReplace }
-						onRemove={ () => onReplace( [] ) }
-					/>
-					{ 'bottom' === subTextPosition && divider() }
-					{ 'bottom' === subTextPosition && editSubText() }
+								return createBlock( 'ystdb/heading', {
+									...attributes,
+									content: value,
+								} );
+							} }
+							onReplace={ onReplace }
+							onRemove={ () => onReplace( [] ) }
+						/>
+						{ 'bottom' === subTextPosition && divider() }
+						{ 'bottom' === subTextPosition && editSubText() }
+					</div>
 				</div>
 			</div>
 		</Fragment>
