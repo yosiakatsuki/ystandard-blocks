@@ -32,6 +32,14 @@ export default function save( { attributes } ) {
 		subTextPosition,
 		dividerImageURL,
 		dividerImageAlt,
+		marginTop,
+		marginTopUnit,
+		marginRight,
+		marginRightUnit,
+		marginBottom,
+		marginBottomUnit,
+		marginLeft,
+		marginLeftUnit,
 	} = attributes;
 	const TagName = 'h' + level;
 
@@ -46,8 +54,17 @@ export default function save( { attributes } ) {
 		'has-divider': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
 		[ `has-subtext--${ subTextPosition }` ]:
-		subText || ( subTextBorderHeight && subTextBorderWidth ),
+			subText || ( subTextBorderHeight && subTextBorderWidth ),
 	} );
+
+	const headingStyles = {
+		marginTop: '' !== marginTop ? marginTop + marginTopUnit : undefined,
+		marginRight:
+			'' !== marginRight ? marginRight + marginRightUnit : undefined,
+		marginBottom:
+			'' !== marginBottom ? marginBottom + marginBottomUnit : undefined,
+		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
+	};
 
 	const textClasses = classnames( 'ystdb-heading__text', {
 		'is-clear-style': clearStyle,
@@ -159,7 +176,7 @@ export default function save( { attributes } ) {
 	};
 
 	return (
-		<div className={ classes }>
+		<div className={ classes } style={ headingStyles }>
 			<div className={ `ystdb-heading__container` }>
 				{ 'top' === subTextPosition && showSubText() }
 				{ 'top' === subTextPosition && divider() }

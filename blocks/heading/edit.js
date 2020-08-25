@@ -22,15 +22,17 @@ import {
 	ToggleControl,
 	ColorPalette,
 	RangeControl,
+	SelectControl,
 	Button,
 	Path,
 	SVG,
+	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
 import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
-import { positions } from './config';
+import { positions, cssUnit } from './config';
 import getNum from '../../src/js/util/_getNum';
 
 function customHeading( props ) {
@@ -66,11 +68,21 @@ function customHeading( props ) {
 		dividerImageURL,
 		dividerImageAlt,
 		dividerImageID,
+		marginTop,
+		marginTopUnit,
+		marginRight,
+		marginRightUnit,
+		marginBottom,
+		marginBottomUnit,
+		marginLeft,
+		marginLeftUnit,
 	} = attributes;
 
 	const TagName = 'h' + level;
 	const { colors } = select( 'core/block-editor' ).getSettings();
 	const showSubText = isSelected || '' !== subText;
+
+	const MARGIN_MIN_SIZE = -120;
 
 	/**
 	 * 編集画面の余白調整
@@ -104,6 +116,15 @@ function customHeading( props ) {
 		'has-border': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
 	} );
+
+	const headingStyles = {
+		marginTop: '' !== marginTop ? marginTop + marginTopUnit : undefined,
+		marginRight:
+			'' !== marginRight ? marginRight + marginRightUnit : undefined,
+		marginBottom:
+			'' !== marginBottom ? marginBottom + marginBottomUnit : undefined,
+		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
+	};
 
 	const styles = {
 		color: textColor.color,
@@ -259,7 +280,7 @@ function customHeading( props ) {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ dividerImageURL } alt={ dividerImageAlt }/>
+					<img src={ dividerImageURL } alt={ dividerImageAlt } />
 				</Button>
 				<Button
 					isDefault
@@ -274,6 +295,13 @@ function customHeading( props ) {
 				</Button>
 			</div>
 		);
+	};
+
+	const getMarginStep = ( unit ) => {
+		if ( 'em' === unit || 'rem' === unit ) {
+			return 0.1;
+		}
+		return 1;
 	};
 
 	return (
@@ -337,9 +365,126 @@ function customHeading( props ) {
 						} }
 					/>
 				</PanelBody>
+				<PanelBody
+					title={ __( '余白', 'ystandard-blocks' ) }
+					initialOpen={ false }
+				>
+					<div className="ystdb-inspector-controls__columns">
+						<span>{ __( '上', 'ystandard-blocks' ) }</span>
+						<NumberControl
+							value={ marginTop }
+							onChange={ ( value ) => {
+								const newValue =
+									'' === value
+										? ''
+										: getNum( value, -120, 120, 0 );
+								setAttributes( {
+									marginTop: newValue.toString(),
+								} );
+							} }
+							min={ MARGIN_MIN_SIZE }
+							max={ 120 }
+							step={ getMarginStep( marginTopUnit ) }
+							style={ { flexGrow: 1 } }
+						/>
+						<SelectControl
+							value={ marginTopUnit }
+							options={ cssUnit }
+							onChange={ ( type ) => {
+								setAttributes( {
+									marginTopUnit: type,
+								} );
+							} }
+						/>
+					</div>
+					<div className="ystdb-inspector-controls__columns">
+						<span>{ __( '右', 'ystandard-blocks' ) }</span>
+						<NumberControl
+							value={ marginRight }
+							onChange={ ( value ) => {
+								const newValue =
+									'' === value
+										? ''
+										: getNum( value, -120, 120, 0 );
+								setAttributes( {
+									marginRight: newValue.toString(),
+								} );
+							} }
+							min={ MARGIN_MIN_SIZE }
+							max={ 120 }
+							step={ getMarginStep( marginRightUnit ) }
+							style={ { flexGrow: 1 } }
+						/>
+						<SelectControl
+							value={ marginRightUnit }
+							options={ cssUnit }
+							onChange={ ( type ) => {
+								setAttributes( {
+									marginRightUnit: type,
+								} );
+							} }
+						/>
+					</div>
+					<div className="ystdb-inspector-controls__columns">
+						<span>{ __( '下', 'ystandard-blocks' ) }</span>
+						<NumberControl
+							value={ marginBottom }
+							onChange={ ( value ) => {
+								const newValue =
+									'' === value
+										? ''
+										: getNum( value, -120, 120, 0 );
+								setAttributes( {
+									marginBottom: newValue.toString(),
+								} );
+							} }
+							min={ MARGIN_MIN_SIZE }
+							max={ 120 }
+							step={ getMarginStep( marginBottomUnit ) }
+							style={ { flexGrow: 1 } }
+						/>
+						<SelectControl
+							value={ marginBottomUnit }
+							options={ cssUnit }
+							onChange={ ( type ) => {
+								setAttributes( {
+									marginBottomUnit: type,
+								} );
+							} }
+						/>
+					</div>
+					<div className="ystdb-inspector-controls__columns">
+						<span>{ __( '左', 'ystandard-blocks' ) }</span>
+						<NumberControl
+							value={ marginLeft }
+							onChange={ ( value ) => {
+								const newValue =
+									'' === value
+										? ''
+										: getNum( value, -120, 120, 0 );
+								setAttributes( {
+									marginLeft: newValue.toString(),
+								} );
+							} }
+							min={ MARGIN_MIN_SIZE }
+							max={ 120 }
+							step={ getMarginStep( marginLeftUnit ) }
+							style={ { flexGrow: 1 } }
+						/>
+						<SelectControl
+							value={ marginLeftUnit }
+							options={ cssUnit }
+							onChange={ ( type ) => {
+								setAttributes( {
+									marginLeftUnit: type,
+								} );
+							} }
+						/>
+					</div>
+				</PanelBody>
 
 				<PanelBody
-					title={ __( 'サブテキスト設定', 'ystandard-blocks' ) }
+					title={ __( 'サブテキスト', 'ystandard-blocks' ) }
 					initialOpen={ false }
 				>
 					<div className="ystdb-inspector-controls__label">
@@ -390,7 +535,7 @@ function customHeading( props ) {
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( '区切り線設定', 'ystandard-blocks' ) }
+					title={ __( '区切り線', 'ystandard-blocks' ) }
 					initialOpen={ false }
 				>
 					<RangeControl
@@ -499,7 +644,7 @@ function customHeading( props ) {
 			</InspectorControls>
 
 			<div className={ editorClasses }>
-				<div className={ headingClasses }>
+				<div className={ headingClasses } style={ headingStyles }>
 					<div className={ `ystdb-heading__container` }>
 						{ 'top' === subTextPosition && editSubText() }
 						{ 'top' === subTextPosition && divider() }

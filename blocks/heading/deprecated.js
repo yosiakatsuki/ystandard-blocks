@@ -96,7 +96,7 @@ const deprecated = [
 					type: 'integer',
 					default: 0,
 				},
-			}
+			},
 		},
 		supports: {
 			className: false,
@@ -133,7 +133,10 @@ const deprecated = [
 			const textClass = getColorClassName( 'color', textColor );
 			const fontSizeClass = getFontSizeClass( fontSize );
 			const subTextSizeClass = getFontSizeClass( subTextSize );
-			const subTextColorClass = getColorClassName( 'color', subTextColor );
+			const subTextColorClass = getColorClassName(
+				'color',
+				subTextColor
+			);
 			const dividerColorClass = getColorClassName( 'fill', dividerColor );
 
 			const classes = classnames( 'ystdb-heading', {
@@ -141,7 +144,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {
@@ -176,9 +179,13 @@ const deprecated = [
 					const lineStyle = {
 						fill: dividerColorClass ? undefined : borderColor,
 						marginTop:
-							0 !== dividerMarginTop ? dividerMarginTop : undefined,
+							0 !== dividerMarginTop
+								? dividerMarginTop
+								: undefined,
 						marginBottom:
-							0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+							0 !== dividerMarginBottom
+								? dividerMarginBottom
+								: undefined,
 					};
 					return (
 						<SVG
@@ -201,11 +208,17 @@ const deprecated = [
 						width: subTextBorderWidth,
 						height: subTextBorderHeight,
 						marginTop:
-							0 !== dividerMarginTop ? dividerMarginTop : undefined,
+							0 !== dividerMarginTop
+								? dividerMarginTop
+								: undefined,
 						marginBottom:
-							0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+							0 !== dividerMarginBottom
+								? dividerMarginBottom
+								: undefined,
 						marginRight:
-							'left' === align || 'center' === align ? 'auto' : undefined,
+							'left' === align || 'center' === align
+								? 'auto'
+								: undefined,
 						marginLeft:
 							'right' === align || 'center' === align
 								? 'auto'
@@ -241,7 +254,9 @@ const deprecated = [
 				} );
 				const styles = {
 					color: subTextColorClass ? undefined : customSubTextColor,
-					fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
+					fontSize: customSubTextSize
+						? customSubTextSize + 'px'
+						: undefined,
 				};
 				return (
 					<div
@@ -318,7 +333,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {
@@ -465,7 +480,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {
@@ -607,7 +622,7 @@ const deprecated = [
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
 				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+					subText || ( subTextBorderHeight && subTextBorderWidth ),
 			} );
 
 			const textClasses = classnames( 'ystdb-heading__text', {

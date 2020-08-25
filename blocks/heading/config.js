@@ -86,6 +86,38 @@ export const attributes = {
 		type: 'integer',
 		default: 0,
 	},
+	marginTop: {
+		type: 'string',
+		default: '',
+	},
+	marginTopUnit: {
+		type: 'string',
+		default: 'px',
+	},
+	marginRight: {
+		type: 'string',
+		default: '',
+	},
+	marginRightUnit: {
+		type: 'string',
+		default: 'px',
+	},
+	marginBottom: {
+		type: 'string',
+		default: '',
+	},
+	marginBottomUnit: {
+		type: 'string',
+		default: 'px',
+	},
+	marginLeft: {
+		type: 'string',
+		default: '',
+	},
+	marginLeftUnit: {
+		type: 'string',
+		default: 'px',
+	},
 };
 
 export const supports = {
@@ -103,6 +135,14 @@ export const positions = [
 		label: __( '上', 'ystandard-blocks' ),
 		value: 'top',
 	},
+];
+
+export const cssUnit = [
+	{ value: 'px', label: 'px' },
+	{ value: 'em', label: 'em' },
+	{ value: 'rem', label: 'rem' },
+	{ value: 'vw', label: 'vw' },
+	{ value: 'vh', label: 'vh' },
 ];
 
 export const paths = {
