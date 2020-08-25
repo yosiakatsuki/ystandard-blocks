@@ -61,22 +61,28 @@ function ColumnEdit( props ) {
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ paddingTypes.map( ( item ) => {
-								return (
-									<Button
-										key={ item.value }
-										isDefault
-										isPrimary={ paddingType === item.value }
-										onClick={ () => {
-											setAttributes( {
-												paddingType: item.value,
-											} );
-										} }
-									>
-										<span>{ item.label }</span>
-									</Button>
-								);
-							} ) }
+							<div className="ystdb-inspector-controls__horizon-buttons">
+								{ paddingTypes.map( ( item ) => {
+									return (
+										<Button
+											key={ item.value }
+											isSecondary={
+												paddingType !== item.value
+											}
+											isPrimary={
+												paddingType === item.value
+											}
+											onClick={ () => {
+												setAttributes( {
+													paddingType: item.value,
+												} );
+											} }
+										>
+											<span>{ item.label }</span>
+										</Button>
+									);
+								} ) }
+							</div>
 						</div>
 					</BaseControl>
 				</PanelBody>

@@ -6,7 +6,7 @@ import {
 	alignmentsControls,
 	horizonAlignmentsControls,
 } from './config';
-
+import { withDispatch } from '@wordpress/data';
 import {
 	BlockControls,
 	InspectorControls,
@@ -21,12 +21,20 @@ import {
 	BaseControl,
 	RangeControl,
 	Toolbar,
+	Button,
 } from '@wordpress/components';
 
 import { __, _x } from '@wordpress/i18n';
+import { paddingTypes } from './item/config';
 
 function columns( props ) {
-	const { attributes, setAttributes, className } = props;
+	const {
+		attributes,
+		setAttributes,
+		className,
+		updatePadding,
+		updateBoxShadow,
+	} = props;
 	const {
 		colPc,
 		colTablet,
@@ -148,6 +156,61 @@ function columns( props ) {
 						/>
 					</BaseControl>
 				</PanelBody>
+				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
+					<BaseControl>
+						<span className={ `ystdb-info__small` }>
+							カラム内側の余白を設定できます。
+						</span>
+						<div
+							className={
+								'ystdb-btn-selector components-base-control'
+							}
+						>
+							<div className="ystdb-inspector-controls__horizon-buttons">
+								{ paddingTypes.map( ( item ) => {
+									return (
+										<Button
+											key={ item.value }
+											isSecondary
+											onClick={ () => {
+												updatePadding( {
+													paddingType: item.value,
+												} );
+											} }
+										>
+											<span>{ item.label }</span>
+										</Button>
+									);
+								} ) }
+							</div>
+						</div>
+					</BaseControl>
+				</PanelBody>
+				<PanelBody title={ __( 'ボックス設定', 'ystandard-blocks' ) }>
+					<span className={ `ystdb-inspector-controls__label` }>
+						影設定
+					</span>
+					<div className="ystdb-inspector-controls__horizon-buttons">
+						<Button
+							key={ 'shadow-on' }
+							isSecondary
+							onClick={ () => {
+								updateBoxShadow( true );
+							} }
+						>
+							{ __( 'ON', 'ystandard-blocks' ) }
+						</Button>
+						<Button
+							key={ 'shadow-off' }
+							isSecondary
+							onClick={ () => {
+								updateBoxShadow( false );
+							} }
+						>
+							{ __( 'OFF', 'ystandard-blocks' ) }
+						</Button>
+					</div>
+				</PanelBody>
 			</InspectorControls>
 
 			<Block.div
@@ -165,4 +228,25 @@ function columns( props ) {
 	);
 }
 
-export default columns;
+const columnsEdit = withDispatch( ( dispatch, ownProps, registry ) => ( {
+	updatePadding( paddingType ) {
+		const { clientId } = ownProps;
+		const { updateBlockAttributes } = dispatch( 'core/block-editor' );
+		const { getBlockOrder } = registry.select( 'core/block-editor' );
+		const innerBlockClientIds = getBlockOrder( clientId );
+		innerBlockClientIds.forEach( ( innerBlockClientId ) => {
+			updateBlockAttributes( innerBlockClientId, paddingType );
+		} );
+	},
+	updateBoxShadow( shadow ) {
+		const { clientId } = ownProps;
+		const { updateBlockAttributes } = dispatch( 'core/block-editor' );
+		const { getBlockOrder } = registry.select( 'core/block-editor' );
+		const innerBlockClientIds = getBlockOrder( clientId );
+		innerBlockClientIds.forEach( ( innerBlockClientId ) => {
+			updateBlockAttributes( innerBlockClientId, { shadow } );
+		} );
+	},
+} ) )( columns );
+
+export default columnsEdit;
