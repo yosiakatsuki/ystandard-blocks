@@ -441,7 +441,7 @@ const sectionEdit = ( props ) => {
 						/>
 					</PanelBody>
 					<PanelColorSettings
-						title={ __( 'Background & Text Color' ) }
+						title={ __( 'Color settings' ) }
 						initialOpen={ false }
 						colorSettings={ [
 							{

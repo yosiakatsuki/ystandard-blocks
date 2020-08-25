@@ -40,7 +40,7 @@ function ColumnEdit( props ) {
 		<Fragment>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Background & Text Color' ) }
+					title={ __( 'Color settings' ) }
 					colorSettings={ [
 						{
 							value: backgroundColor.color,

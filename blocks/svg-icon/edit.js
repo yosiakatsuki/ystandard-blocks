@@ -66,7 +66,7 @@ function svgIcon( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Background & Text Color' ) }
+					title={ __( 'Color settings' ) }
 					initialOpen={ true }
 					colorSettings={ [
 						{

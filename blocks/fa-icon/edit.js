@@ -92,7 +92,7 @@ function faIcon( props ) {
 					</div>
 				</BaseControl>
 				<PanelColorSettings
-					title={ __( 'Background & Text Color' ) }
+					title={ __( 'Color settings' ) }
 					initialOpen={ true }
 					colorSettings={ [
 						{
