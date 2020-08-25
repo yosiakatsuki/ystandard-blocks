@@ -51,51 +51,46 @@ function ColumnEdit( props ) {
 						},
 					] }
 				/>
-				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
-					<BaseControl>
-						<span className={ `ystdb-info__small` }>
-							カラム内側の余白を設定できます。
-						</span>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
-							<div className="ystdb-inspector-controls__horizon-buttons">
-								{ paddingTypes.map( ( item ) => {
-									return (
-										<Button
-											key={ item.value }
-											isSecondary={
-												paddingType !== item.value
-											}
-											isPrimary={
-												paddingType === item.value
-											}
-											onClick={ () => {
-												setAttributes( {
-													paddingType: item.value,
-												} );
-											} }
-										>
-											<span>{ item.label }</span>
-										</Button>
-									);
-								} ) }
-							</div>
+				<PanelBody title={ __( 'デザイン', 'ystandard-blocks' ) }>
+					<BaseControl
+						id={ 'padding' }
+						label={ __( '余白', 'ystandard-blocks' ) }
+					>
+						<div className="ystdb-inspector-controls__horizon-buttons">
+							{ paddingTypes.map( ( item ) => {
+								return (
+									<Button
+										key={ item.value }
+										isSecondary={
+											paddingType !== item.value
+										}
+										isPrimary={ paddingType === item.value }
+										onClick={ () => {
+											setAttributes( {
+												paddingType: item.value,
+											} );
+										} }
+									>
+										<span>{ item.label }</span>
+									</Button>
+								);
+							} ) }
 						</div>
 					</BaseControl>
-				</PanelBody>
-				<PanelBody title={ __( 'ボックス設定', 'ystandard-blocks' ) }>
-					<ToggleControl
-						label={ __( '影をつける', 'ystandard-blocks' ) }
-						checked={ shadow }
-						onChange={ () => {
-							setAttributes( {
-								shadow: ! shadow,
-							} );
-						} }
-					/>
+					<BaseControl
+						id={ 'shadow' }
+						label={ __( '影', 'ystandard-blocks' ) }
+					>
+						<ToggleControl
+							label={ __( '影をつける', 'ystandard-blocks' ) }
+							checked={ shadow }
+							onChange={ () => {
+								setAttributes( {
+									shadow: ! shadow,
+								} );
+							} }
+						/>
+					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 

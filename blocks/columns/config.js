@@ -31,6 +31,10 @@ export const attributes = {
 		type: 'string',
 		default: undefined,
 	},
+	columnDirection: {
+		type: 'string',
+		default: '',
+	},
 };
 
 export const supports = {

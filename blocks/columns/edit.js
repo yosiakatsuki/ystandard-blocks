@@ -22,6 +22,7 @@ import {
 	RangeControl,
 	Toolbar,
 	Button,
+	ToggleControl,
 } from '@wordpress/components';
 
 import { __, _x } from '@wordpress/i18n';
@@ -41,6 +42,7 @@ function columns( props ) {
 		colMobile,
 		verticalAlignment,
 		horizonAlignment,
+		columnDirection,
 	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
@@ -117,7 +119,10 @@ function columns( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'カラム設定', 'ystandard-blocks' ) }>
-					<BaseControl>
+					<BaseControl
+						id={ 'column-count' }
+						label={ __( 'カラム数', 'ystandard-blocks' ) }
+					>
 						<RangeControl
 							label={ __( 'デスクトップ', 'ystandard-blocks' ) }
 							beforeIcon={ 'desktop' }
@@ -155,12 +160,34 @@ function columns( props ) {
 							max={ 6 }
 						/>
 					</BaseControl>
+					<BaseControl
+						id={ 'column-reverse' }
+						label={ __( '表示順序', 'ystandard-blocks' ) }
+					>
+						<ToggleControl
+							label={ __(
+								'表示順序を逆にする',
+								'ystandard-blocks'
+							) }
+							checked={ 'row-reverse' === columnDirection }
+							onChange={ () => {
+								setAttributes( {
+									columnDirection:
+										'' === columnDirection
+											? 'row-reverse'
+											: '',
+								} );
+							} }
+						/>
+					</BaseControl>
 				</PanelBody>
-				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
-					<BaseControl>
-						<span className={ `ystdb-info__small` }>
-							カラム内側の余白を設定できます。
-						</span>
+				<PanelBody
+					title={ __( 'デザイン 一括設定', 'ystandard-blocks' ) }
+				>
+					<BaseControl
+						id={ 'padding' }
+						label={ __( '余白', 'ystandard-blocks' ) }
+					>
 						<div
 							className={
 								'ystdb-btn-selector components-base-control'
@@ -185,31 +212,31 @@ function columns( props ) {
 							</div>
 						</div>
 					</BaseControl>
-				</PanelBody>
-				<PanelBody title={ __( 'ボックス設定', 'ystandard-blocks' ) }>
-					<span className={ `ystdb-inspector-controls__label` }>
-						影設定
-					</span>
-					<div className="ystdb-inspector-controls__horizon-buttons">
-						<Button
-							key={ 'shadow-on' }
-							isSecondary
-							onClick={ () => {
-								updateBoxShadow( true );
-							} }
-						>
-							{ __( 'ON', 'ystandard-blocks' ) }
-						</Button>
-						<Button
-							key={ 'shadow-off' }
-							isSecondary
-							onClick={ () => {
-								updateBoxShadow( false );
-							} }
-						>
-							{ __( 'OFF', 'ystandard-blocks' ) }
-						</Button>
-					</div>
+					<BaseControl
+						id={ 'shadow' }
+						label={ __( '影', 'ystandard-blocks' ) }
+					>
+						<div className="ystdb-inspector-controls__horizon-buttons">
+							<Button
+								key={ 'shadow-on' }
+								isSecondary
+								onClick={ () => {
+									updateBoxShadow( true );
+								} }
+							>
+								{ __( 'ON', 'ystandard-blocks' ) }
+							</Button>
+							<Button
+								key={ 'shadow-off' }
+								isSecondary
+								onClick={ () => {
+									updateBoxShadow( false );
+								} }
+							>
+								{ __( 'OFF', 'ystandard-blocks' ) }
+							</Button>
+						</div>
+					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 
