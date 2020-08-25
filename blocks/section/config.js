@@ -138,7 +138,7 @@ export const marginType = {
 		{
 			value: 'narrow',
 			label: __( '小', 'ystandard-blocks' ),
-			num: 32,
+			num: 40,
 		},
 		{
 			value: 'none',
@@ -155,7 +155,7 @@ export const marginType = {
 		{
 			value: 'wide',
 			label: __( '大', 'ystandard-blocks' ),
-			num: 128,
+			num: 120,
 		},
 		{
 			value: 'narrow',
