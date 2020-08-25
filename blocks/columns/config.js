@@ -1,4 +1,5 @@
-import { _x } from '@wordpress/i18n';
+import { _x, __ } from '@wordpress/i18n';
+import { Dashicon } from '@wordpress/components';
 import {
 	alignBottom,
 	alignCenter,
@@ -23,6 +24,10 @@ export const attributes = {
 		default: 1,
 	},
 	verticalAlignment: {
+		type: 'string',
+		default: undefined,
+	},
+	horizonAlignment: {
 		type: 'string',
 		default: undefined,
 	},
@@ -64,5 +69,24 @@ export const alignmentsControls = {
 	last: {
 		icon: alignLastBlockBottom,
 		title: _x( '最後のブロックを下に揃える', 'ystandard-blocks' ),
+	},
+};
+
+export const horizonAlignmentsControls = {
+	left: {
+		icon: <Dashicon icon={ 'align-left' } />,
+		title: __( '左寄せ', 'ystandard-blocks' ),
+	},
+	center: {
+		icon: <Dashicon icon={ 'align-center' } />,
+		title: __( '中央', 'ystandard-blocks' ),
+	},
+	right: {
+		icon: <Dashicon icon={ 'align-right' } />,
+		title: __( '右寄せ', 'ystandard-blocks' ),
+	},
+	between: {
+		icon: <Dashicon icon={ 'align-wide' } />,
+		title: __( '両端に揃える', 'ystandard-blocks' ),
 	},
 };

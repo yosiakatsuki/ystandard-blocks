@@ -1,6 +1,11 @@
 import classnames from 'classnames';
 import getNum from '../../src/js/util/_getNum';
-import { allowedBlocks, template, alignmentsControls } from './config';
+import {
+	allowedBlocks,
+	template,
+	alignmentsControls,
+	horizonAlignmentsControls,
+} from './config';
 
 import {
 	BlockControls,
@@ -22,20 +27,34 @@ import { __, _x } from '@wordpress/i18n';
 
 function columns( props ) {
 	const { attributes, setAttributes, className } = props;
-	const { colPc, colTablet, colMobile, verticalAlignment } = attributes;
+	const {
+		colPc,
+		colTablet,
+		colMobile,
+		verticalAlignment,
+		horizonAlignment,
+	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
 		[ `has-${ colMobile }-columns` ]: colMobile,
 		[ `has-${ colTablet }-columns--tablet` ]: colTablet,
 		[ `has-${ colPc }-columns--pc` ]: colPc,
 		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
+		[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
 	} );
 
 	const DEFAULT_CONTROLS = [ 'top', 'center', 'bottom', 'last' ];
 	const DEFAULT_CONTROL = 'top';
+	const DEFAULT_HORIZON_CONTROLS = [ 'left', 'center', 'right', 'between' ];
+	const DEFAULT_HORIZON_CONTROL = 'left';
 
 	const activeAlignment = alignmentsControls[ verticalAlignment ];
 	const defaultAlignmentControl = alignmentsControls[ DEFAULT_CONTROL ];
+
+	const activeHorizonAlignment =
+		horizonAlignmentsControls[ horizonAlignment ];
+	const defaultHorizonAlignment =
+		horizonAlignmentsControls[ DEFAULT_HORIZON_CONTROL ];
 
 	return (
 		<Fragment>
@@ -65,12 +84,34 @@ function columns( props ) {
 						};
 					} ) }
 				/>
+				<Toolbar
+					isCollapsed={ true }
+					icon={
+						activeHorizonAlignment
+							? activeHorizonAlignment.icon
+							: defaultHorizonAlignment.icon
+					}
+					label={ __( '横位置', 'ystandard-blocks' ) }
+					controls={ DEFAULT_HORIZON_CONTROLS.map( ( control ) => {
+						return {
+							...horizonAlignmentsControls[ control ],
+							isActive: horizonAlignment === control,
+							onClick: () =>
+								setAttributes( {
+									horizonAlignment:
+										horizonAlignment === control
+											? undefined
+											: control,
+								} ),
+						};
+					} ) }
+				/>
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'カラム設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<RangeControl
-							label={ __( 'PC', 'ystandard-blocks' ) }
+							label={ __( 'デスクトップ', 'ystandard-blocks' ) }
 							beforeIcon={ 'desktop' }
 							value={ colPc }
 							onChange={ ( value ) => {
