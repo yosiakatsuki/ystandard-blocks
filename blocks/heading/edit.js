@@ -83,6 +83,7 @@ function customHeading( props ) {
 	const showSubText = isSelected || '' !== subText;
 
 	const MARGIN_MIN_SIZE = -120;
+	const MARGIN_NEGATIVE_ADD = '28px';
 
 	/**
 	 * 編集画面の余白調整
@@ -117,12 +118,21 @@ function customHeading( props ) {
 		'has-sub-text': subText,
 	} );
 
+	const getVerticalMargin = ( margin, unit ) => {
+		if ( '' === margin || ! parseFloat( margin ) ) {
+			return undefined;
+		}
+		if ( 0 > parseFloat( margin ) ) {
+			return `calc(${ margin }${ unit } - ${ MARGIN_NEGATIVE_ADD })`;
+		}
+		return `${ margin }${ unit }`;
+	};
+
 	const headingStyles = {
-		marginTop: '' !== marginTop ? marginTop + marginTopUnit : undefined,
+		marginTop: getVerticalMargin( marginTop, marginTopUnit ),
 		marginRight:
 			'' !== marginRight ? marginRight + marginRightUnit : undefined,
-		marginBottom:
-			'' !== marginBottom ? marginBottom + marginBottomUnit : undefined,
+		marginBottom: getVerticalMargin( marginBottom, marginBottomUnit ),
 		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
 	};
 
