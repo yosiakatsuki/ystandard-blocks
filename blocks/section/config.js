@@ -172,7 +172,7 @@ export const marginType = {
 		{
 			value: 'wide',
 			label: __( 'ワイド', 'ystandard-blocks' ),
-			num: 1232,
+			num: 800,
 		},
 		{
 			value: 'narrow',
