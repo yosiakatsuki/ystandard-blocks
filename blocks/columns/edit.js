@@ -22,7 +22,6 @@ import {
 	RangeControl,
 	Toolbar,
 	Button,
-	ToggleControl,
 } from '@wordpress/components';
 
 import { __, _x } from '@wordpress/i18n';
@@ -42,7 +41,6 @@ function columns( props ) {
 		colMobile,
 		verticalAlignment,
 		horizonAlignment,
-		columnDirection,
 	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
@@ -163,23 +161,7 @@ function columns( props ) {
 					<BaseControl
 						id={ 'column-reverse' }
 						label={ __( '表示順序', 'ystandard-blocks' ) }
-					>
-						<ToggleControl
-							label={ __(
-								'表示順序を逆にする',
-								'ystandard-blocks'
-							) }
-							checked={ 'row-reverse' === columnDirection }
-							onChange={ () => {
-								setAttributes( {
-									columnDirection:
-										'' === columnDirection
-											? 'row-reverse'
-											: '',
-								} );
-							} }
-						/>
-					</BaseControl>
+					></BaseControl>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'デザイン 一括設定', 'ystandard-blocks' ) }

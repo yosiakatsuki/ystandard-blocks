@@ -8,7 +8,6 @@ export default function ( { attributes } ) {
 		colMobile,
 		verticalAlignment,
 		horizonAlignment,
-		columnDirection,
 	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
@@ -19,12 +18,9 @@ export default function ( { attributes } ) {
 		[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
 	} );
 
-	const style = {
-		flexDirection: '' !== columnDirection ? columnDirection : undefined,
-	};
 	return (
 		<div className="ystdb-columns-wrap">
-			<div className={ classes } style={ style }>
+			<div className={ classes }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
