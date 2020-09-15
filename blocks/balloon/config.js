@@ -103,33 +103,33 @@ export const supports = {
 
 export const balloonTypes = [
 	{
-		label: __( '会話', 'ystandard-blocks' ),
+		label: __('会話', 'ystandard-blocks'),
 		value: 'serif',
 	},
 	{
-		label: __( '考え中', 'ystandard-blocks' ),
+		label: __('考え中', 'ystandard-blocks'),
 		value: 'think',
 	},
 ];
 
 export const balloonPositions = [
 	{
-		label: __( '右', 'ystandard-blocks' ),
+		label: __('右', 'ystandard-blocks'),
 		value: 'right',
 	},
 	{
-		label: __( '左', 'ystandard-blocks' ),
+		label: __('左', 'ystandard-blocks'),
 		value: 'left',
 	},
 ];
 
 export const avatarSizes = [
 	{
-		label: __( '小', 'ystandard-blocks' ),
+		label: __('小', 'ystandard-blocks'),
 		value: 'small',
 	},
 	{
-		label: __( '大', 'ystandard-blocks' ),
+		label: __('大', 'ystandard-blocks'),
 		value: 'large',
 	},
 ];
@@ -173,7 +173,7 @@ export const alignTop = (
 export const alignmentsControls = {
 	top: {
 		icon: alignTop,
-		title: _x( 'Vertically Align Top', 'Block vertical alignment setting' ),
+		title: _x('Vertically Align Top', 'Block vertical alignment setting'),
 	},
 	center: {
 		icon: alignCenter,

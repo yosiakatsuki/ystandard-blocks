@@ -7,23 +7,23 @@ import { deprecated } from './_deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-registerBlockType( 'ystdb/section', {
-	title: __( 'セクション', 'ystandard-blocks' ),
+registerBlockType('ystdb/section', {
+	title: __('セクション', 'ystandard-blocks'),
 	description: __(
 		'yStandard Blocks汎用セクションブロック',
 		'ystandard-blocks'
 	),
 	icon: (
 		<Layers
-			stroke={ ystdbConfig.color.iconForeground }
-			style={ { fill: 'none' } }
+			stroke={ystdbConfig.color.iconForeground}
+			style={{ fill: 'none' }}
 		/>
 	),
-	keywords: [ __( 'section' ), __( 'セクション' ), 'section' ],
+	keywords: [__('section'), __('セクション'), 'section'],
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
 	edit,
 	save,
 	deprecated,
-} );
+});

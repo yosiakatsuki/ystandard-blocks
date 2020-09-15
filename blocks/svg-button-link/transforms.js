@@ -4,9 +4,9 @@ const transforms = {
 	from: [
 		{
 			type: 'block',
-			blocks: [ 'ystdb/btn-link' ],
-			transform: ( attributes ) => {
-				return createBlock( 'ystdb/svg-button-link', {
+			blocks: ['ystdb/btn-link'],
+			transform: (attributes) => {
+				return createBlock('ystdb/svg-button-link', {
 					className: attributes.className,
 					content: attributes.content,
 					borderRadius: attributes.borderRadius,
@@ -25,7 +25,7 @@ const transforms = {
 					maxUnit: attributes.maxUnit,
 					animationType: attributes.animationType,
 					animationInterval: attributes.animationInterval,
-				} );
+				});
 			},
 		},
 	],

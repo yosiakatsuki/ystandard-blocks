@@ -30,7 +30,7 @@ import { __ } from '@wordpress/i18n';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
-function faIcon( props ) {
+function faIcon(props) {
 	const {
 		textColor,
 		setTextColor,
@@ -51,40 +51,40 @@ function faIcon( props ) {
 		linkTarget,
 	} = attributes;
 
-	const classes = classnames( className, 'ystdb-fa-icon', {
-		[ `has-text-align-${ align }` ]: align,
-		[ textColor.class ]: textColor.class,
-		[ fontSize.class ]: fontSize.class,
-	} );
+	const classes = classnames(className, 'ystdb-fa-icon', {
+		[`has-text-align-${align}`]: align,
+		[textColor.class]: textColor.class,
+		[fontSize.class]: fontSize.class,
+	});
 
 	const styles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
 	};
 
-	const iconClass = classnames( {
-		[ icon ]: icon,
-		[ iconSize ]: iconSize,
+	const iconClass = classnames({
+		[icon]: icon,
+		[iconSize]: iconSize,
 		'fa-spin': animating === 'spin',
-	} );
+	});
 
 	return (
 		<Fragment>
 			<BlockControls>
 				<AlignmentToolbar
-					value={ align }
-					onChange={ ( nextAlign ) => {
-						setAttributes( { align: nextAlign } );
-					} }
+					value={align}
+					onChange={(nextAlign) => {
+						setAttributes({ align: nextAlign });
+					}}
 				/>
 			</BlockControls>
 			<InspectorControls>
 				<BaseControl>
 					<div
-						style={ {
+						style={{
 							color: ystdbConfig.color.iconDeprecatedForeground,
 							padding: '0 16px',
-						} }
+						}}
 					>
 						※このブロックは非推奨になりました。
 						<br />
@@ -92,132 +92,124 @@ function faIcon( props ) {
 					</div>
 				</BaseControl>
 				<PanelColorSettings
-					title={ __( 'Color settings' ) }
-					initialOpen={ true }
-					colorSettings={ [
+					title={__('Color settings')}
+					initialOpen={true}
+					colorSettings={[
 						{
 							value: textColor.color,
-							onChange: ( color ) => {
-								setTextColor( color );
+							onChange: (color) => {
+								setTextColor(color);
 							},
-							label: __( 'Text Color' ),
+							label: __('Text Color'),
 						},
-					] }
+					]}
 				/>
-				<PanelBody title={ __( 'サイズ設定', 'ystandard-blocks' ) }>
+				<PanelBody title={__('サイズ設定', 'ystandard-blocks')}>
 					<FontSizePicker
-						label={ __( 'アイコンサイズ', 'ystandard-blocks' ) }
-						value={ fontSize.size }
-						onChange={ ( font ) => {
-							setFontSize( font );
-						} }
+						label={__('アイコンサイズ', 'ystandard-blocks')}
+						value={fontSize.size}
+						onChange={(font) => {
+							setFontSize(font);
+						}}
 					/>
 					<SelectControl
-						label={ __( 'アイコン倍率', 'ystandard-blocks' ) }
-						value={ iconSize }
-						options={ sizing }
-						onChange={ ( size ) => {
-							setAttributes( { iconSize: size } );
-						} }
+						label={__('アイコン倍率', 'ystandard-blocks')}
+						value={iconSize}
+						options={sizing}
+						onChange={(size) => {
+							setAttributes({ iconSize: size });
+						}}
 					/>
 				</PanelBody>
 
-				<PanelBody title={ __( 'アイコン装飾', 'ystandard-blocks' ) }>
+				<PanelBody title={__('アイコン装飾', 'ystandard-blocks')}>
 					<BaseControl>
 						<ToggleControl
-							label={ __(
-								'アイコンを回転する',
-								'ystandard-blocks'
-							) }
-							checked={ animating === 'spin' }
-							onChange={ () => {
-								setAttributes( {
+							label={__('アイコンを回転する', 'ystandard-blocks')}
+							checked={animating === 'spin'}
+							onChange={() => {
+								setAttributes({
 									animating:
 										animating === 'spin' ? '' : 'spin',
-								} );
-							} }
+								});
+							}}
 						/>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={ __( 'Link settings' ) }>
+				<PanelBody title={__('Link settings')}>
 					<ToggleControl
-						label={ __( 'Open in new tab' ) }
-						onChange={ ( value ) => {
+						label={__('Open in new tab')}
+						onChange={(value) => {
 							const newLinkTarget = value ? '_blank' : undefined;
 
 							let updatedRel = rel;
-							if ( newLinkTarget && ! rel ) {
+							if (newLinkTarget && !rel) {
 								updatedRel = NEW_TAB_REL;
-							} else if (
-								! newLinkTarget &&
-								rel === NEW_TAB_REL
-							) {
+							} else if (!newLinkTarget && rel === NEW_TAB_REL) {
 								updatedRel = undefined;
 							}
 
-							setAttributes( {
+							setAttributes({
 								linkTarget: newLinkTarget,
 								rel: updatedRel,
-							} );
-						} }
-						checked={ linkTarget === '_blank' }
+							});
+						}}
+						checked={linkTarget === '_blank'}
 					/>
 					<TextControl
-						label={ __( 'Link rel' ) }
-						value={ rel || '' }
-						onChange={ ( value ) => {
-							setAttributes( { rel: value } );
-						} }
+						label={__('Link rel')}
+						value={rel || ''}
+						onChange={(value) => {
+							setAttributes({ rel: value });
+						}}
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classes } style={ styles }>
-				{ !! icon ? (
-					<span className={ iconClass }></span>
+			<div className={classes} style={styles}>
+				{!!icon ? (
+					<span className={iconClass}></span>
 				) : (
-					<div className={ 'ystdb-fa-icon__select--no-icon' }>
+					<div className={'ystdb-fa-icon__select--no-icon'}>
 						<i className="fas fa-info-circle"></i>
 						<div>アイコンを選択</div>
 					</div>
-				) }
-				{ !! isSelected && (
+				)}
+				{!!isSelected && (
 					<div>
 						<div className="ystdb-fa-icon__select-start">
 							<IconSelect
-								panelTitle={ __(
+								panelTitle={__(
 									'アイコン選択',
 									'ystandard-blocks'
-								) }
-								iconControlTitle={ '' }
-								selectedIcon={ icon }
-								onClickIcon={ ( value ) => {
-									setAttributes( { icon: value } );
-								} }
+								)}
+								iconControlTitle={''}
+								selectedIcon={icon}
+								onClickIcon={(value) => {
+									setAttributes({ icon: value });
+								}}
 							/>
 						</div>
 						<URLInput
-							label={ __( 'Link' ) }
+							label={__('Link')}
 							className="ystdb-fa-icon__link"
-							value={ url }
+							value={url}
 							/* eslint-disable jsx-a11y/no-autofocus */
-							autoFocus={ false }
+							autoFocus={false}
 							/* eslint-enable jsx-a11y/no-autofocus */
-							onChange={ ( value ) =>
-								setAttributes( { url: value } )
-							}
-							disableSuggestions={ ! isSelected }
+							onChange={(value) => setAttributes({ url: value })}
+							disableSuggestions={!isSelected}
 							isFullWidth
 							hasBorder
 						/>
 					</div>
-				) }
+				)}
 			</div>
 		</Fragment>
 	);
 }
 
-export default compose( [
-	withColors( { textColor: 'color' } ),
-	withFontSizes( 'fontSize' ),
-] )( faIcon );
+export default compose([
+	withColors({ textColor: 'color' }),
+	withFontSizes('fontSize'),
+])(faIcon);

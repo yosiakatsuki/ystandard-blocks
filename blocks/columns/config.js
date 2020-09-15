@@ -34,23 +34,23 @@ export const attributes = {
 };
 
 export const supports = {
-	align: [ 'wide', 'full' ],
+	align: ['wide', 'full'],
 	className: false,
 	lightBlockWrapper: true,
 };
 
-export const allowedBlocks = [ 'ystdb/column' ];
+export const allowedBlocks = ['ystdb/column'];
 
 export const template = [
-	[ 'ystdb/column', {} ],
-	[ 'ystdb/column', {} ],
-	[ 'ystdb/column', {} ],
+	['ystdb/column', {}],
+	['ystdb/column', {}],
+	['ystdb/column', {}],
 ];
 
 export const alignmentsControls = {
 	top: {
 		icon: alignTop,
-		title: _x( 'Vertically Align Top', 'Block vertical alignment setting' ),
+		title: _x('Vertically Align Top', 'Block vertical alignment setting'),
 	},
 	center: {
 		icon: alignCenter,
@@ -68,25 +68,25 @@ export const alignmentsControls = {
 	},
 	last: {
 		icon: alignLastBlockBottom,
-		title: _x( '最後のブロックを下に揃える', 'ystandard-blocks' ),
+		title: _x('最後のブロックを下に揃える', 'ystandard-blocks'),
 	},
 };
 
 export const horizonAlignmentsControls = {
 	left: {
-		icon: <Dashicon icon={ 'align-left' } />,
-		title: __( '左寄せ', 'ystandard-blocks' ),
+		icon: <Dashicon icon={'align-left'} />,
+		title: __('左寄せ', 'ystandard-blocks'),
 	},
 	center: {
-		icon: <Dashicon icon={ 'align-center' } />,
-		title: __( '中央', 'ystandard-blocks' ),
+		icon: <Dashicon icon={'align-center'} />,
+		title: __('中央', 'ystandard-blocks'),
 	},
 	right: {
-		icon: <Dashicon icon={ 'align-right' } />,
-		title: __( '右寄せ', 'ystandard-blocks' ),
+		icon: <Dashicon icon={'align-right'} />,
+		title: __('右寄せ', 'ystandard-blocks'),
 	},
 	between: {
-		icon: <Dashicon icon={ 'align-wide' } />,
-		title: __( '両端に揃える', 'ystandard-blocks' ),
+		icon: <Dashicon icon={'align-wide'} />,
+		title: __('両端に揃える', 'ystandard-blocks'),
 	},
 };

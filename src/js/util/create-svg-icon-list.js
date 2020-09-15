@@ -1,12 +1,12 @@
 /**
  * SVGアイコンのリストを作成するスクリプト
  */
-const fs = require( 'fs' );
-const feather = require( 'feather-icons' );
+const fs = require('fs');
+const feather = require('feather-icons');
 const jsonPath = './src/js/components/svg-icon-select/icons-sample.json';
 const featherIcons = [];
-for ( const iconName in feather.icons ) {
-	featherIcons.push( iconName );
+for (const iconName in feather.icons) {
+	featherIcons.push(iconName);
 }
 const snsIcons = [
 	'sns-Twitter',
@@ -35,12 +35,12 @@ const icons = {
 /**
  * JSONファイルの作成
  */
-fs.writeFile( jsonPath, JSON.stringify( icons ), ( err ) => {
+fs.writeFile(jsonPath, JSON.stringify(icons), (err) => {
 	/* eslint-disable no-console */
-	if ( err ) {
-		console.log( err );
+	if (err) {
+		console.log(err);
 	} else {
-		console.log( 'write end' );
+		console.log('write end');
 	}
 	/* eslint-enable */
-} );
+});

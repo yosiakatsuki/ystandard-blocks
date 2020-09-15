@@ -4,9 +4,9 @@ const transforms = {
 	from: [
 		{
 			type: 'block',
-			blocks: [ 'ystdb/fa-icon' ],
-			transform: ( attributes ) => {
-				return createBlock( 'ystdb/svg-icon', {
+			blocks: ['ystdb/fa-icon'],
+			transform: (attributes) => {
+				return createBlock('ystdb/svg-icon', {
 					className: attributes.className,
 					align: attributes.align,
 					textColor: attributes.textColor,
@@ -18,7 +18,7 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-				} );
+				});
 			},
 		},
 	],

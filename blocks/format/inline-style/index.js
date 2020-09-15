@@ -7,30 +7,30 @@ import { Fragment } from '@wordpress/element';
 /**
  * インラインスタイル追加
  */
-inlineStyles.map( ( style, index ) => {
-	registerFormatType( style.name, {
+inlineStyles.map((style, index) => {
+	registerFormatType(style.name, {
 		title: style.title,
 		tagName: 'span',
 		className: style.class,
-		edit( props ) {
+		edit(props) {
 			const { value, isActive, onChange } = props;
 			const onToggle = () =>
-				onChange( toggleFormat( value, { type: style.name } ) );
+				onChange(toggleFormat(value, { type: style.name }));
 			return (
 				<Fragment>
 					<BlockFormatControls>
 						<div className="editor-format-toolbar block-editor-format-toolbar">
 							<div
-								className={ `ystdb-inline-style-toolbar inline-style-${
+								className={`ystdb-inline-style-toolbar inline-style-${
 									index + 1
-								}` }
+								}`}
 							>
 								<Toolbar>
 									<ToolbarButton
-										icon={ style.icon }
-										title={ style.title }
-										onClick={ onToggle }
-										isActive={ isActive }
+										icon={style.icon}
+										title={style.title}
+										onClick={onToggle}
+										isActive={isActive}
 									/>
 								</Toolbar>
 							</div>
@@ -39,6 +39,6 @@ inlineStyles.map( ( style, index ) => {
 				</Fragment>
 			);
 		},
-	} );
+	});
 	return true;
-} );
+});

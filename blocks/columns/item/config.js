@@ -27,14 +27,14 @@ export const supports = {
 export const paddingTypes = [
 	{
 		value: '',
-		label: __( 'なし' ),
+		label: __('なし'),
 	},
 	{
 		value: 'is-padding-small',
-		label: __( '小' ),
+		label: __('小'),
 	},
 	{
 		value: 'is-padding-large',
-		label: __( '大' ),
+		label: __('大'),
 	},
 ];

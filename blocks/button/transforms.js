@@ -4,14 +4,14 @@ const transforms = {
 	from: [
 		{
 			type: 'block',
-			blocks: [ 'core/button' ],
-			transform: ( attributes ) => {
+			blocks: ['core/button'],
+			transform: (attributes) => {
 				const newIconLeft =
-					attributes.iconPosition === 'left' && !! attributes.icon
+					attributes.iconPosition === 'left' && !!attributes.icon
 						? attributes.icon
 						: undefined;
 				const newIconRight =
-					attributes.iconPosition === 'right' && !! attributes.icon
+					attributes.iconPosition === 'right' && !!attributes.icon
 						? attributes.icon
 						: undefined;
 				const size = {
@@ -19,7 +19,7 @@ const transforms = {
 					sm: 'is-small',
 				};
 
-				return createBlock( 'ystdb/ys-btn', {
+				return createBlock('ystdb/ys-btn', {
 					text: attributes.text.replace(
 						/<i.+class=".+?">.*?<\/i>/g,
 						''
@@ -40,19 +40,19 @@ const transforms = {
 						attributes.buttonBlock === true
 							? 'is-block'
 							: undefined,
-					paddingType: !! attributes.buttonSize
-						? size[ attributes.buttonSize ]
+					paddingType: !!attributes.buttonSize
+						? size[attributes.buttonSize]
 						: undefined,
-				} );
+				});
 			},
 		},
 	],
 	to: [
 		{
 			type: 'block',
-			blocks: [ 'core/button' ],
-			transform: ( attributes ) => {
-				return createBlock( 'core/button', {
+			blocks: ['core/button'],
+			transform: (attributes) => {
+				return createBlock('core/button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
 					align: attributes.align,
@@ -63,7 +63,7 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-				} );
+				});
 			},
 		},
 	],

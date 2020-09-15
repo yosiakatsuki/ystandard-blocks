@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import { InnerBlocks, getColorClassName } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		shadow,
 		backgroundColor,
@@ -15,12 +15,12 @@ export default function save( { attributes } ) {
 		backgroundColor
 	);
 
-	const wrapperClasses = classnames( 'ystdb-column', {
+	const wrapperClasses = classnames('ystdb-column', {
 		'has-background': backgroundClass || customBackgroundColor,
-		[ backgroundClass ]: backgroundClass,
+		[backgroundClass]: backgroundClass,
 		'has-shadow': shadow,
-		[ paddingType ]: paddingType,
-	} );
+		[paddingType]: paddingType,
+	});
 	const wrapperStyle = {
 		backgroundColor: customBackgroundColor
 			? customBackgroundColor
@@ -28,7 +28,7 @@ export default function save( { attributes } ) {
 	};
 
 	return (
-		<div className={ wrapperClasses } style={ wrapperStyle }>
+		<div className={wrapperClasses} style={wrapperStyle}>
 			<div className="ystdb-column-block-container">
 				<InnerBlocks.Content />
 			</div>

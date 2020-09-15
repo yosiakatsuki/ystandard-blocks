@@ -6,19 +6,19 @@ import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-registerBlockType( 'ystdb/column', {
-	title: __( 'カラム', 'ystandard-blocks' ),
-	description: __( 'yStandard Blocks カラムブロック', 'ystandard-blocks' ),
+registerBlockType('ystdb/column', {
+	title: __('カラム', 'ystandard-blocks'),
+	description: __('yStandard Blocks カラムブロック', 'ystandard-blocks'),
 	icon: (
 		<Columns
-			stroke={ ystdbConfig.color.iconForeground }
-			style={ { fill: 'none' } }
+			stroke={ystdbConfig.color.iconForeground}
+			style={{ fill: 'none' }}
 		/>
 	),
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
-	parent: [ 'ystdb/columns' ],
+	parent: ['ystdb/columns'],
 	edit,
 	save,
-} );
+});

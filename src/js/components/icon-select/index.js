@@ -22,59 +22,57 @@ class IconSelect extends Component {
 
 		const iconBaseControlTitle =
 			iconControlTitle === undefined
-				? __( '表示アイコン', 'ystandard-blocks' )
+				? __('表示アイコン', 'ystandard-blocks')
 				: iconControlTitle;
 		const useIcons =
 			'all' === ystdb.useAllIcons
-				? [ ...recommendIcons.icons, ...allIcons.icons ]
-				: [ ...recommendIcons.icons ];
-		const icons = _.uniq( useIcons );
+				? [...recommendIcons.icons, ...allIcons.icons]
+				: [...recommendIcons.icons];
+		const icons = _.uniq(useIcons);
 
 		const pickerProps = {
 			icons,
 			theme: 'bluegrey',
 			renderUsing: 'class',
 			value: selectedIcon,
-			onChange: ( value ) => {
-				onClickIcon( value );
+			onChange: (value) => {
+				onClickIcon(value);
 			},
 			isMulti: false,
 		};
 
 		return (
-			<div className={ 'ystdb-icon-select' }>
-				{ customInfo && (
-					<div style={ customInfoStyle }>{ customInfo }</div>
-				) }
-				{ !! onChangePosition && (
+			<div className={'ystdb-icon-select'}>
+				{customInfo && <div style={customInfoStyle}>{customInfo}</div>}
+				{!!onChangePosition && (
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">
-							{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
+							{__('アイコン表示位置', 'ystandard-blocks')}
 						</div>
-						<div className={ 'ystdb-icon-select__position' }>
+						<div className={'ystdb-icon-select__position'}>
 							<RadioControl
-								selected={ iconPosition }
-								options={ [
+								selected={iconPosition}
+								options={[
 									{
-										label: __( '左', 'ystandard-blocks' ),
+										label: __('左', 'ystandard-blocks'),
 										value: 'left',
 									},
 									{
-										label: __( '右', 'ystandard-blocks' ),
+										label: __('右', 'ystandard-blocks'),
 										value: 'right',
 									},
-								] }
-								onChange={ onChangePosition }
+								]}
+								onChange={onChangePosition}
 							/>
 						</div>
 					</BaseControl>
-				) }
+				)}
 				<BaseControl>
 					<div className="ystdb-inspector-controls__label">
-						{ iconBaseControlTitle }
+						{iconBaseControlTitle}
 					</div>
-					<div className={ 'ystdb-icon-select__picker' }>
-						<FontIconPicker { ...pickerProps } />
+					<div className={'ystdb-icon-select__picker'}>
+						<FontIconPicker {...pickerProps} />
 					</div>
 				</BaseControl>
 			</div>

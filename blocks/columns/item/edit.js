@@ -18,7 +18,7 @@ import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { paddingTypes } from './config';
 
-function ColumnEdit( props ) {
+function ColumnEdit(props) {
 	const {
 		attributes,
 		setAttributes,
@@ -29,75 +29,73 @@ function ColumnEdit( props ) {
 	} = props;
 	const { shadow, paddingType } = attributes;
 
-	const classes = classnames( className, 'ystdb-column', {
+	const classes = classnames(className, 'ystdb-column', {
 		'has-background': backgroundColor.color,
-		[ backgroundColor.class ]: backgroundColor.class,
+		[backgroundColor.class]: backgroundColor.class,
 		'has-shadow': shadow,
-		[ paddingType ]: paddingType,
-	} );
+		[paddingType]: paddingType,
+	});
 
 	return (
 		<Fragment>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Color settings' ) }
-					colorSettings={ [
+					title={__('Color settings')}
+					colorSettings={[
 						{
 							value: backgroundColor.color,
-							onChange: ( color ) => {
-								setBackgroundColor( color );
+							onChange: (color) => {
+								setBackgroundColor(color);
 							},
-							label: __( 'Background Color' ),
+							label: __('Background Color'),
 						},
-					] }
+					]}
 				/>
-				<PanelBody title={ __( 'デザイン', 'ystandard-blocks' ) }>
+				<PanelBody title={__('デザイン', 'ystandard-blocks')}>
 					<BaseControl
-						id={ 'padding' }
-						label={ __( '余白', 'ystandard-blocks' ) }
+						id={'padding'}
+						label={__('余白', 'ystandard-blocks')}
 					>
 						<div className="ystdb-inspector-controls__horizon-buttons">
-							{ paddingTypes.map( ( item ) => {
+							{paddingTypes.map((item) => {
 								return (
 									<Button
-										key={ item.value }
-										isSecondary={
-											paddingType !== item.value
-										}
-										isPrimary={ paddingType === item.value }
-										onClick={ () => {
-											setAttributes( {
+										key={item.value}
+										isSecondary={paddingType !== item.value}
+										isPrimary={paddingType === item.value}
+										onClick={() => {
+											setAttributes({
 												paddingType: item.value,
-											} );
-										} }
+											});
+										}}
 									>
-										<span>{ item.label }</span>
+										<span>{item.label}</span>
 									</Button>
 								);
-							} ) }
+							})}
 						</div>
 					</BaseControl>
 					<BaseControl
-						id={ 'shadow' }
-						label={ __( '影', 'ystandard-blocks' ) }
+						id={'shadow'}
+						label={__('影', 'ystandard-blocks')}
 					>
 						<ToggleControl
-							label={ __( '影をつける', 'ystandard-blocks' ) }
-							checked={ shadow }
-							onChange={ () => {
-								setAttributes( {
-									shadow: ! shadow,
-								} );
-							} }
+							label={__('影をつける', 'ystandard-blocks')}
+							checked={shadow}
+							onChange={() => {
+								setAttributes({
+									shadow: !shadow,
+								});
+							}}
 						/>
 					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classes }>
+			<div className={classes}>
 				<div className="ystdb-column-block-container">
 					<InnerBlocks
-						templateLock={ false }
+						templateLock={false}
 						renderAppender={
 							hasChildBlocks
 								? undefined
@@ -110,14 +108,14 @@ function ColumnEdit( props ) {
 	);
 }
 
-export default compose( [
-	withColors( 'backgroundColor' ),
-	withSelect( ( select, ownProps ) => {
+export default compose([
+	withColors('backgroundColor'),
+	withSelect((select, ownProps) => {
 		const { clientId } = ownProps;
-		const { getBlockOrder } = select( 'core/block-editor' );
+		const { getBlockOrder } = select('core/block-editor');
 
 		return {
-			hasChildBlocks: getBlockOrder( clientId ).length > 0,
+			hasChildBlocks: getBlockOrder(clientId).length > 0,
 		};
-	} ),
-] )( ColumnEdit );
+	}),
+])(ColumnEdit);

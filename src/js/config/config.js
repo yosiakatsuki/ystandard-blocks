@@ -21,35 +21,35 @@ export const ystdbConfig = {
 		paddingTypes: [
 			{
 				value: 'is-small',
-				label: __( '小' ),
+				label: __('小'),
 			},
 			{
 				value: '',
-				label: __( '中' ),
+				label: __('中'),
 			},
 			{
 				value: 'is-large',
-				label: __( '大' ),
+				label: __('大'),
 			},
 		],
 		animationTypes: [
-			{ label: __( 'なし', 'ystandard-blocks' ), value: 'none' },
-			{ label: __( 'キラキラ', 'ystandard-blocks' ), value: 'shine' },
+			{ label: __('なし', 'ystandard-blocks'), value: 'none' },
+			{ label: __('キラキラ', 'ystandard-blocks'), value: 'shine' },
 		],
 	},
 	icon: {
 		size: [
 			{
 				value: 'is-small',
-				label: __( '小' ),
+				label: __('小'),
 			},
 			{
 				value: '',
-				label: __( '中' ),
+				label: __('中'),
 			},
 			{
 				value: 'is-large',
-				label: __( '大' ),
+				label: __('大'),
 			},
 		],
 	},

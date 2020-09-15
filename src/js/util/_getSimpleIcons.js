@@ -16,8 +16,8 @@ import github from 'simple-icons/icons/github';
 import tumblr from 'simple-icons/icons/tumblr';
 import amazon from 'simple-icons/icons/amazon';
 
-export const getSimpleIcons = ( name ) => {
-	switch ( name ) {
+export const getSimpleIcons = (name) => {
+	switch (name) {
 		case 'sns-Twitter':
 			return twitter.svg;
 		case 'sns-Facebook':

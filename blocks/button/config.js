@@ -90,14 +90,14 @@ export const supports = {
 export const iconSize = [
 	{
 		value: 'fa-xs',
-		label: __( '小' ),
+		label: __('小'),
 	},
 	{
 		value: '',
-		label: __( '中' ),
+		label: __('中'),
 	},
 	{
 		value: 'fa-2x',
-		label: __( '大' ),
+		label: __('大'),
 	},
 ];

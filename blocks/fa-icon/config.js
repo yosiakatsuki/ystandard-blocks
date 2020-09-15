@@ -52,26 +52,26 @@ export const supports = {
 export const sizing = [
 	{
 		value: 'fa-xs',
-		label: __( '0.75倍' ),
+		label: __('0.75倍'),
 	},
 	{
 		value: '',
-		label: __( '1倍' ),
+		label: __('1倍'),
 	},
 	{
 		value: 'fa-2x',
-		label: __( '2倍' ),
+		label: __('2倍'),
 	},
 	{
 		value: 'fa-3x',
-		label: __( '3倍' ),
+		label: __('3倍'),
 	},
 	{
 		value: 'fa-5x',
-		label: __( '5倍' ),
+		label: __('5倍'),
 	},
 	{
 		value: 'fa-10x',
-		label: __( '10倍' ),
+		label: __('10倍'),
 	},
 ];

@@ -128,11 +128,11 @@ export const supports = {
 
 export const positions = [
 	{
-		label: __( '下', 'ystandard-blocks' ),
+		label: __('下', 'ystandard-blocks'),
 		value: 'bottom',
 	},
 	{
-		label: __( '上', 'ystandard-blocks' ),
+		label: __('上', 'ystandard-blocks'),
 		value: 'top',
 	},
 ];

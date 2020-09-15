@@ -43,13 +43,13 @@ const deprecated = [
 				type: 'integer',
 			},
 		},
-		migrate( attributes ) {
+		migrate(attributes) {
 			const newIconLeft =
-				attributes.iconPosition === 'left' && !! attributes.icon
+				attributes.iconPosition === 'left' && !!attributes.icon
 					? attributes.icon
 					: undefined;
 			const newIconRight =
-				attributes.iconPosition === 'right' && !! attributes.icon
+				attributes.iconPosition === 'right' && !!attributes.icon
 					? attributes.icon
 					: undefined;
 			const size = {
@@ -66,8 +66,8 @@ const deprecated = [
 				iconRight: newIconRight,
 				buttonType:
 					attributes.buttonType === 'full' ? 'is-block' : undefined,
-				paddingType: !! attributes.buttonSize
-					? size[ attributes.buttonSize ]
+				paddingType: !!attributes.buttonSize
+					? size[attributes.buttonSize]
 					: undefined,
 			};
 		},
@@ -119,9 +119,9 @@ const deprecated = [
 				type: 'integer',
 			},
 		},
-		migrate( attributes ) {
+		migrate(attributes) {
 			const newIcon =
-				!! attributes.customIcon && 'custom' === attributes.icon
+				!!attributes.customIcon && 'custom' === attributes.icon
 					? attributes.customIcon
 					: attributes.icon;
 			return {

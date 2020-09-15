@@ -9,15 +9,15 @@ class SVGIcon extends Component {
 	render() {
 		const { name } = this.props;
 
-		if ( ! name ) {
+		if (!name) {
 			return '';
 		}
 		return (
 			<span
-				className={ classnames( 'ys-icon', {
-					'sns-icon': -1 !== name.indexOf( 'sns-' ),
-				} ) }
-				dangerouslySetInnerHTML={ { __html: getSVGIconTag( name ) } }
+				className={classnames('ys-icon', {
+					'sns-icon': -1 !== name.indexOf('sns-'),
+				})}
+				dangerouslySetInnerHTML={{ __html: getSVGIconTag(name) }}
 			/>
 		);
 	}
