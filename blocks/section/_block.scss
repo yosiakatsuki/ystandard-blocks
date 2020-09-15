@@ -1,135 +1,139 @@
 .ystdb-section {
-	position: relative;
-	z-index: 0;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+  position: relative;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-	&.is-screen-height {
-		display: flex;
-		align-items: center;
-		height: 100vh;
+  &.is-screen-height {
+	display: flex;
+	align-items: center;
+	height: 100vh;
 
-		.ystdb-section__container {
-			flex: 0 0 100%;
-			max-width: 100%;
-		}
+	.ystdb-section__container {
+	  flex: 0 0 100%;
+	  max-width: 100%;
 	}
+  }
 
+  &.has-parallax {
+	background-attachment: fixed;
+  }
+
+  @supports ( -webkit-overflow-scrolling: touch ) {
 	&.has-parallax {
-		background-attachment: fixed;
+	  background-attachment: scroll;
 	}
+  }
 
-	@supports ( -webkit-overflow-scrolling: touch ) {
-		&.has-parallax {
-			background-attachment: scroll;
-		}
-	}
+  &.has-animation {
+	animation-duration: 1s;
+	opacity: 0;
 
-	&.has-animation {
-		animation-duration: 1s;
-		opacity: 0;
+	animation-fill-mode: both;
+  }
 
-		animation-fill-mode: both;
-	}
+  &.animation--fadein {
+	animation-name: ystdb-fadein;
+  }
 
-	&.animation--fadein {
-		animation-name: ystdb-fadein;
-	}
+  &.animation--fadein-up {
+	animation-name: ystdb-fadein-up;
+  }
 
-	&.animation--fadein-up {
-		animation-name: ystdb-fadein-up;
-	}
-
-	&.animation--fadein-shrink {
-		animation-name: ystdb-fadein-shrink;
-	}
+  &.animation--fadein-shrink {
+	animation-name: ystdb-fadein-shrink;
+  }
 }
 
 .ystdb-section__bg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .ystdb-section__inner {
-	position: relative;
-	z-index: 2;
+  position: relative;
+  z-index: 2;
 
-	> * {
-		margin-top: 1.5em;
+  > * {
+	margin-top: 1.5em;
+	margin-bottom: 0;
 
-		&:first-child {
-			margin-top: 0;
-		}
+	&:first-child {
+	  margin-top: 0;
 	}
+  }
+  p:empty {
+	display: none;
+  }
 }
 
 .ystdb-section__divider {
-	position: absolute;
-	left: 0;
-	z-index: 2;
-	width: 100%;
-	overflow: hidden;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
 
-	svg {
-		display: block;
-		width: 100%;
-		height: auto;
-		max-height: 100px;
-	}
+  svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 100px;
+  }
 }
 
 .ystdb-section__divider--top {
-	top: -1px;
-	transform: rotate(180deg);
+  top: -1px;
+  transform: rotate(180deg);
 }
 
 .ystdb-section__divider--bottom {
-	bottom: -1px;
+  bottom: -1px;
 }
 
 .ystdb-section__divider--triangle {
-	svg {
-		max-width: 250px;
-		margin-right: auto;
-		margin-left: auto;
-	}
+  svg {
+	max-width: 250px;
+	margin-right: auto;
+	margin-left: auto;
+  }
 }
 
 @keyframes ystdb-fadein {
-	from {
-		opacity: 0;
-	}
+  from {
+	opacity: 0;
+  }
 
-	to {
-		opacity: 1;
-	}
+  to {
+	opacity: 1;
+  }
 }
 
 @keyframes ystdb-fadein-up {
-	from {
-		transform: translateY(5%);
-		opacity: 0;
-	}
+  from {
+	transform: translateY(5%);
+	opacity: 0;
+  }
 
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
+  to {
+	transform: translateY(0);
+	opacity: 1;
+  }
 }
 
 @keyframes ystdb-fadein-shrink {
-	from {
-		transform: scale(1.05, 1.05);
-		opacity: 0;
-	}
+  from {
+	transform: scale(1.05, 1.05);
+	opacity: 0;
+  }
 
-	to {
-		transform: scale(1, 1);
-		opacity: 1;
-	}
+  to {
+	transform: scale(1, 1);
+	opacity: 1;
+  }
 }
