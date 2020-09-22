@@ -321,7 +321,7 @@ class Card extends Dynamic_Block {
 			$rel = ' rel="' . $this->params['rel'] . '"';
 		}
 
-		return "<a class=\"$class\" href=\"$url\" ${target}${$rel}>$url</a>";
+		return "<a class=\"${class}\" href=\"${url}\" ${target}${rel}>${url}</a>";
 	}
 
 	/**
@@ -633,12 +633,12 @@ class Card extends Dynamic_Block {
 		}
 		// タイトル.
 		if ( empty( $this->params['title'] ) ) {
-			$this->params['title'] = $site_data['title'];
+			$this->params['title'] = isset( $site_data['title'] ) ? $site_data['title'] : '';
 		}
 		// 概要.
 		if ( Utility::to_bool( $this->params['show_dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
-				if ( $site_data['dscr'] ) {
+				if ( isset( $site_data['dscr'] ) && $site_data['dscr'] ) {
 					$this->params['dscr'] = wp_trim_words(
 						Utility::get_plain_text( $site_data['dscr'] ),
 						$this->params['dscr_char_count']
@@ -650,7 +650,7 @@ class Card extends Dynamic_Block {
 		}
 		// 画像.
 		if ( Utility::to_bool( $this->params['show_image'] ) ) {
-			$this->params['image'] = $site_data['image'];
+			$this->params['image'] = isset( $site_data['image'] ) ? $site_data['image'] : '';
 		}
 		// ドメイン.
 		if ( Utility::to_bool( $this->params['show_domain'] ) ) {

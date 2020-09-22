@@ -4,6 +4,7 @@ import { CreditCard } from 'react-feather';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import transforms from './transforms';
 
 registerBlockType('ystdb/card', {
 	title: __('カード', 'ystandard-blocks'),
@@ -29,4 +30,5 @@ registerBlockType('ystdb/card', {
 	save() {
 		return null;
 	},
+	transforms,
 });

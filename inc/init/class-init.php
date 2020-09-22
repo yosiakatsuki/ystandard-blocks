@@ -69,6 +69,7 @@ class Init {
 		require_once $inc . '/blocks/class-dynamic-block.php';
 		require_once $inc . '/blocks/class-register.php';
 		require_once $inc . '/enqueue/class-enqueue.php';
+		require_once $inc . '/enqueue/class-enqueue-embed.php';
 		require_once $inc . '/enqueue/class-polyfill.php';
 		require_once $inc . '/enqueue/class-block-editor.php';
 		require_once $inc . '/admin/class-admin.php';
