@@ -43,6 +43,7 @@ function columns( props ) {
 		verticalAlignment,
 		horizonAlignment,
 		reverse,
+		removeMargin,
 	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
@@ -157,6 +158,20 @@ function columns( props ) {
 							} }
 							min={ 1 }
 							max={ 6 }
+						/>
+					</BaseControl>
+					<BaseControl
+						id={ 'remove-margin' }
+						label={ __( 'カラム間の余白を削除', 'ystandard-blocks' ) }
+					>
+						<ToggleControl
+							label={ __( '余白なし', 'ystandard-blocks' ) }
+							checked={ removeMargin }
+							onChange={ () => {
+								setAttributes( {
+									removeMargin: ! removeMargin,
+								} );
+							} }
 						/>
 					</BaseControl>
 					<BaseControl

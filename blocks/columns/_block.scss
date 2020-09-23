@@ -76,11 +76,27 @@ _:-ms-lang(x)::-ms-backdrop,
 	min-width: 0;
   }
 
+  &.is-no-margin {
+	margin-right: 0;
+	margin-left: 0;
+
+	.ystdb-column {
+	  margin: 0;
+	}
+  }
+
   @for $i from 1 through 6 {
 	&.has-#{$i}-columns {
 	  .ystdb-column {
 		flex: 0 0 calc(#{(100% / $i)} - 2rem);
 		width: calc(#{(100% / $i)} - 2rem);
+	  }
+
+	  &.is-no-margin {
+		.ystdb-column {
+		  flex: 0 0 calc(#{(100% / $i)});
+		  width: calc(#{(100% / $i)});
+		}
 	  }
 	}
   }
@@ -92,6 +108,13 @@ _:-ms-lang(x)::-ms-backdrop,
 		  flex: 0 0 calc(#{(100% / $i)} - 2rem);
 		  width: calc(#{(100% / $i)} - 2rem);
 		}
+
+		&.is-no-margin {
+		  .ystdb-column {
+			flex: 0 0 calc(#{(100% / $i)});
+			width: calc(#{(100% / $i)});
+		  }
+		}
 	  }
 	}
   }
@@ -102,6 +125,13 @@ _:-ms-lang(x)::-ms-backdrop,
 		.ystdb-column {
 		  flex: 0 0 calc(#{(100% / $i)} - 2rem);
 		  width: calc(#{(100% / $i)} - 2rem);
+		}
+
+		&.is-no-margin {
+		  .ystdb-column {
+			flex: 0 0 calc(#{(100% / $i)});
+			width: calc(#{(100% / $i)});
+		  }
 		}
 	  }
 	}

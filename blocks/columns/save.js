@@ -9,6 +9,7 @@ export default function ( { attributes } ) {
 		verticalAlignment,
 		horizonAlignment,
 		reverse,
+		removeMargin,
 	} = attributes;
 
 	const classes = classnames( 'ystdb-columns', {
@@ -18,6 +19,7 @@ export default function ( { attributes } ) {
 		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 		[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
 		'is-reverse': reverse,
+		'is-no-margin': removeMargin,
 	} );
 
 	return (
