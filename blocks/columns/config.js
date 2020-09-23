@@ -31,6 +31,10 @@ export const attributes = {
 		type: 'string',
 		default: undefined,
 	},
+	reverse: {
+		type: 'bool',
+		default: false,
+	},
 };
 
 export const supports = {

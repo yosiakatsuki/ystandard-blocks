@@ -107,6 +107,11 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
   }
 
+
+  &.is-reverse {
+	flex-direction: row-reverse;
+  }
+
   &.is-vertically-aligned-center {
 	.ystdb-column-block-container {
 	  justify-content: center;
