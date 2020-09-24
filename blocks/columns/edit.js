@@ -52,6 +52,7 @@ function columns(props) {
 		[`has-${colPc}-columns--pc`]: colPc,
 		[`is-vertically-aligned-${verticalAlignment}`]: verticalAlignment,
 		[`is-horizontally-aligned-${horizonAlignment}`]: horizonAlignment,
+		'is-no-margin': removeMargin,
 	});
 
 	const DEFAULT_CONTROLS = ['top', 'center', 'bottom', 'last'];

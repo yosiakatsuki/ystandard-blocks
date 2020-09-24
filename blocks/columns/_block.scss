@@ -1,3 +1,8 @@
+.ystdb-columns-wrap {
+  + .ystdb-columns-wrap {
+	margin-top: 0;
+  }
+}
 .ystdb-column-block-container {
   display: flex;
   flex-direction: column;
