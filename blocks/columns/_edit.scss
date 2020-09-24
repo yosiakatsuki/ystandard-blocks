@@ -71,6 +71,10 @@
 		  > *:not(.block-list-appender) {
 			width: 100%;
 		  }
+
+		  > *:first-child {
+			margin-top: 0;
+		  }
 		}
 	  }
 	}
@@ -91,14 +95,6 @@
 	  .block-list-appender {
 		flex: 0 0 auto;
 		max-width: unset;
-	  }
-	}
-  }
-
-  .ystdb-column-block-container {
-	.block-editor-block-list__layout {
-	  > *:first-child {
-		margin-top: 0;
 	  }
 	}
   }
