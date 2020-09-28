@@ -49,7 +49,7 @@ class Card extends Dynamic_Block {
 			'type' => 'string',
 		],
 		'showImage'             => [
-			'type' => 'bool',
+			'type' => 'boolean',
 		],
 		'imageSize'             => [
 			'type' => 'string',
@@ -71,7 +71,7 @@ class Card extends Dynamic_Block {
 			'default' => 0,
 		],
 		'showDscr'              => [
-			'type' => 'bool',
+			'type' => 'boolean',
 		],
 		'dscrCharCount'         => [
 			'type' => 'number',
@@ -80,7 +80,7 @@ class Card extends Dynamic_Block {
 			'type' => 'string',
 		],
 		'showDomain'            => [
-			'type' => 'bool',
+			'type' => 'boolean',
 		],
 		'backgroundColor'       => [
 			'type' => 'string',
