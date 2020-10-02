@@ -5,6 +5,8 @@ import {
 	dividerTypes,
 	animationTypes,
 	dividerPath,
+	IMAGE_BACKGROUND_TYPE,
+	VIDEO_BACKGROUND_TYPE,
 } from './config';
 import getNum from '../../src/js/util/_getNum';
 import { select } from '@wordpress/data';
@@ -28,6 +30,7 @@ import {
 	ColorPalette,
 	ToggleControl,
 	SelectControl,
+	FocalPointPicker,
 } from '@wordpress/components';
 
 import { Fragment } from '@wordpress/element';
@@ -56,6 +59,8 @@ const sectionEdit = ( props ) => {
 		paddingBottom,
 		paddingLeft,
 		paddingRight,
+		backgroundType,
+		focalPoint,
 		backgroundImageURL,
 		backgroundImageAlt,
 		backgroundImageID,
@@ -82,8 +87,11 @@ const sectionEdit = ( props ) => {
 	/**
 	 * 背景画像関連
 	 */
-	const ALLOWED_MEDIA_TYPES = [ 'image' ];
+	const ALLOWED_MEDIA_TYPES = [ 'image', 'video' ];
 	const showBgMask = backgroundImageURL || backgroundColor.color;
+	const isImageBackground = IMAGE_BACKGROUND_TYPE === backgroundType;
+	const isVideoBackground = VIDEO_BACKGROUND_TYPE === backgroundType;
+	const showFocalPointPicker = ! isVideoBackground || ( isImageBackground && ! backgroundImageParallax );
 
 	/**
 	 * 編集画面のラッパー
@@ -97,9 +105,17 @@ const sectionEdit = ( props ) => {
 	 * セクションクラス名
 	 */
 	const sectionClass = classnames( className, 'ystdb-section', {
-		'has-background-image': backgroundImageURL,
+		'has-background-image': isImageBackground,
+		'has-background-video': isVideoBackground,
 		'is-screen-height': screenHeightMode,
 	} );
+	const positionValue = () => {
+		if ( ! focalPoint || ! showFocalPointPicker ) {
+			return undefined;
+		}
+		return `${ focalPoint.x * 100 }% ${ focalPoint.y * 100 }%`;
+	};
+
 	/**
 	 * セクションスタイル
 	 */
@@ -107,10 +123,11 @@ const sectionEdit = ( props ) => {
 		color: textColor.color,
 		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
 		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
-		backgroundImage: backgroundImageURL
+		backgroundImage: backgroundImageURL && isImageBackground
 			? `url("${ backgroundImageURL }")`
 			: undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+		backgroundPosition: positionValue(),
 	};
 	/**
 	 * 背景マスク
@@ -158,7 +175,17 @@ const sectionEdit = ( props ) => {
 					className={ 'ystdb-mediaupload__preview' }
 					style={ { padding: 0 } }
 				>
-					<img src={ backgroundImageURL } alt={ backgroundImageAlt }/>
+					{ backgroundType === IMAGE_BACKGROUND_TYPE && (
+						<img src={ backgroundImageURL } alt={ backgroundImageAlt }/>
+					) }
+					{ backgroundType === VIDEO_BACKGROUND_TYPE && (
+						<video
+							autoPlay
+							muted
+							loop
+							src={ backgroundImageURL }
+						/>
+					) }
 				</Button>
 				<Button
 					isSecondary
@@ -166,6 +193,8 @@ const sectionEdit = ( props ) => {
 						setAttributes( {
 							backgroundImageURL: '',
 							backgroundImageID: 0,
+							backgroundType: undefined,
+							focalPoint: undefined,
 						} );
 					} }
 				>
@@ -374,68 +403,109 @@ const sectionEdit = ( props ) => {
 							</div>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody
-						title={ __( '背景設定', 'ystandard-blocks' ) }
-						initialOpen={ false }
-					>
-						<div className="ystdb-inspector-controls__label">
-							{ __( '背景画像', 'ystandard-blocks' ) }
-						</div>
-						<MediaUpload
-							onSelect={ ( media ) => {
-								setAttributes( {
-									backgroundImageURL: media.url,
-									backgroundImageID: media.id,
-									backgroundImageAlt: media.alt,
-								} );
-								if ( 100 === backgroundImageOpacity ) {
-									setAttributes( {
-										backgroundImageOpacity: 50,
-									} );
-								}
-							} }
-							type={ ALLOWED_MEDIA_TYPES }
-							value={ backgroundImageID }
-							render={ mediaUploadRender }
-						/>
-						<br/>
-						<br/>
-						<RangeControl
+					<PanelBody title={ __( '背景設定', 'ystandard-blocks' ) } initialOpen={ false }>
+						<BaseControl
+							id={ 'background' }
+							label={ __( '背景画像', 'ystandard-blocks' ) }
+						>
+							<div>
+								<MediaUpload
+									onSelect={ ( media ) => {
+										let mediaType;
+										if ( media.media_type ) {
+											if ( media.media_type === IMAGE_BACKGROUND_TYPE ) {
+												mediaType = IMAGE_BACKGROUND_TYPE;
+											} else {
+												mediaType = VIDEO_BACKGROUND_TYPE;
+											}
+										} else {
+											if (
+												media.type !== IMAGE_BACKGROUND_TYPE &&
+												media.type !== VIDEO_BACKGROUND_TYPE
+											) {
+												return;
+											}
+											mediaType = media.type;
+										}
+										setAttributes( {
+											backgroundImageURL: media.url,
+											backgroundImageID: media.id,
+											backgroundImageAlt: media.alt,
+											backgroundType: mediaType,
+										} );
+										if ( 100 === backgroundImageOpacity ) {
+											setAttributes( {
+												backgroundImageOpacity: 50,
+											} );
+										}
+									} }
+									type={ ALLOWED_MEDIA_TYPES }
+									value={ backgroundImageID }
+									render={ mediaUploadRender }
+								/>
+							</div>
+						</BaseControl>
+						{ showFocalPointPicker && backgroundImageURL && (
+							<BaseControl
+								id={ 'background-point' }
+								label={ __( '表示位置', 'ystandard-blocks' ) }
+							>
+								<FocalPointPicker
+									label={ __( 'Focal point picker' ) }
+									url={ backgroundImageURL }
+									value={ focalPoint }
+									onChange={ ( newFocalPoint ) => {
+										setAttributes( {
+											focalPoint: newFocalPoint,
+										} )
+									}
+									}
+								/>
+							</BaseControl>
+						) }
+						<BaseControl
+							id={ 'background-opacity' }
 							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
-							value={ backgroundImageOpacity }
-							onChange={ ( value ) =>
-								setAttributes( {
-									backgroundImageOpacity: getNum(
-										value,
-										0,
-										100
-									),
-								} )
-							}
-							min={ 0 }
-							max={ 100 }
-							step={ 1 }
-						/>
-						<p>
-							<span className={ `ystdb-info__small` }>
-								※数値が大きいほど背景画像が見えづらくなります。
-							</span>
-							<span className={ `ystdb-info__small` }>
-								※画像の上に重ねる色は、色設定の「背景色」で変更できます。
-							</span>
-						</p>
-						<div className="ystdb-inspector-controls__label">
-							{ __( '固定背景', 'ystandard-blocks' ) }
-						</div>
-						<ToggleControl
-							label={ __( '背景を固定する', 'ystandard-blocks' ) }
-							checked={ backgroundImageParallax }
-							onChange={ () => {
-								setAttributes( {
-									backgroundImageParallax: ! backgroundImageParallax,
-								} );
-							} }
-						/>
+						>
+							<RangeControl
+								value={ backgroundImageOpacity }
+								onChange={ ( value ) =>
+									setAttributes( {
+										backgroundImageOpacity: getNum(
+											value,
+											0,
+											100
+										),
+									} )
+								}
+								min={ 0 }
+								max={ 100 }
+								step={ 1 }
+							/>
+							<p>
+								<span className={ `ystdb-info__small` }>
+									※数値が大きいほど背景画像が見えづらくなります。
+								</span>
+								<span className={ `ystdb-info__small` }>
+									※画像の上に重ねる色は、色設定の「背景色」で変更できます。
+								</span>
+							</p>
+						</BaseControl>
+						<BaseControl
+							id={ 'background-opacity' }
+							label={ __( '固定背景', 'ystandard-blocks' ) }
+						>
+
+							<ToggleControl
+								label={ __( '背景を固定する', 'ystandard-blocks' ) }
+								checked={ backgroundImageParallax }
+								onChange={ () => {
+									setAttributes( {
+										backgroundImageParallax: ! backgroundImageParallax,
+									} );
+								} }
+							/>
+						</BaseControl>
 					</PanelBody>
 					<PanelColorSettings
 						title={ __( 'Color settings' ) }
@@ -734,6 +804,16 @@ const sectionEdit = ( props ) => {
 				style={ editWrapStyle }
 			>
 				<div className={ sectionClass } style={ sectionStyles }>
+					{ isVideoBackground && (
+						<video
+							className="ystdb-section__video-background"
+							autoPlay
+							muted
+							loop
+							src={ backgroundImageURL }
+							style={ { objectPosition: positionValue() } }
+						/>
+					) }
 					{ showBgMask && (
 						<div
 							className={ bgMaskClass }
