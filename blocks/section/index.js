@@ -3,7 +3,7 @@ import edit from './edit';
 import save from './save';
 import { Layers } from 'react-feather';
 import { attributes, supports } from './config';
-import { deprecated } from './_deprecated';
+import { deprecated } from './deprecated/index';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
