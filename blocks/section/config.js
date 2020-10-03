@@ -74,6 +74,27 @@ export const attributes = {
 		type: 'bool',
 		default: false,
 	},
+	backgroundImageSize: {
+		type: 'string'
+	},
+	backgroundImageSizeX: {
+		type: 'string',
+	},
+	backgroundImageSizeUnitX: {
+		type: 'string',
+		default: 'px',
+	},
+	backgroundImageSizeY: {
+		type: 'string',
+	},
+	backgroundImageSizeUnitY: {
+		type: 'string',
+		default: 'px',
+	},
+	backgroundImageRepeat: {
+		type: 'string',
+		default: 'no-repeat',
+	},
 	screenHeightMode: {
 		type: 'bool',
 		default: false,
@@ -196,6 +217,33 @@ export const marginType = {
 		},
 	],
 };
+/**
+ * 背景画像サイズ
+ */
+export const backgroundImageSizeOption = [
+	{ value: 'cover', label: __( 'cover', 'ystandard-blocks' ) },
+	{ value: 'contain', label: __( 'contain', 'ystandard-blocks' ) },
+	{ value: 'custom', label: __( 'カスタム', 'ystandard-blocks' ) },
+];
+/**
+ * 背景画像サイズ単位
+ */
+export const backgroundImageSizeUnitOption = [
+	{ value: 'px', label: __( 'px', 'ystandard-blocks' ) },
+	{ value: 'em', label: __( 'em', 'ystandard-blocks' ) },
+	{ value: '%', label: __( '%', 'ystandard-blocks' ) },
+	{ value: 'vw', label: __( 'vw', 'ystandard-blocks' ) },
+	{ value: 'vh', label: __( 'vh', 'ystandard-blocks' ) },
+];
+/**
+ * 背景画像リピート
+ */
+export const backgroundImageRepeatOption = [
+	{ value: 'no-repeat', label: __( 'なし', 'ystandard-blocks' ) },
+	{ value: 'repeat', label: __( 'あり', 'ystandard-blocks' ) },
+	{ value: 'repeat-x', label: __( '横のみ', 'ystandard-blocks' ) },
+	{ value: 'repeat-y', label: __( '縦のみ', 'ystandard-blocks' ) },
+];
 /**
  * HTMLタグ
  */

@@ -5,6 +5,9 @@ import {
 	dividerTypes,
 	animationTypes,
 	dividerPath,
+	backgroundImageSizeOption,
+	backgroundImageSizeUnitOption,
+	backgroundImageRepeatOption,
 	IMAGE_BACKGROUND_TYPE,
 	VIDEO_BACKGROUND_TYPE,
 } from './config';
@@ -13,7 +16,6 @@ import { select } from '@wordpress/data';
 
 import {
 	InspectorControls,
-	PanelColorSettings,
 	ContrastChecker,
 	withColors,
 	InnerBlocks,
@@ -31,11 +33,14 @@ import {
 	ToggleControl,
 	SelectControl,
 	FocalPointPicker,
+	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
 import { Fragment } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
+import { cssUnit } from "../heading/config";
+import getNumberInputStep from "../../src/js/util/_getNumberInputStep";
 
 const sectionEdit = ( props ) => {
 	const {
@@ -66,6 +71,12 @@ const sectionEdit = ( props ) => {
 		backgroundImageID,
 		backgroundImageOpacity,
 		backgroundImageParallax,
+		backgroundImageSize,
+		backgroundImageSizeX,
+		backgroundImageSizeUnitX,
+		backgroundImageSizeY,
+		backgroundImageSizeUnitY,
+		backgroundImageRepeat,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -228,10 +239,7 @@ const sectionEdit = ( props ) => {
 			<InspectorControls>
 				<div className="ystdb-inspectorcontrols">
 					<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
-						<BaseControl>
-							<div className="ystdb-inspector-controls__label">
-								{ __( '余白設定(外側)', 'ystandard-blocks' ) }
-							</div>
+						<BaseControl id={ 'margin' } label={ __( '余白設定(外側)', 'ystandard-blocks' ) }>
 							<div className={ `ystdb-info__label` }>
 								かんたん設定
 							</div>
@@ -404,10 +412,34 @@ const sectionEdit = ( props ) => {
 						</BaseControl>
 					</PanelBody>
 					<PanelBody title={ __( '背景設定', 'ystandard-blocks' ) } initialOpen={ false }>
-						<BaseControl
-							id={ 'background' }
-							label={ __( '背景画像', 'ystandard-blocks' ) }
-						>
+						<BaseControl id={ 'background-color' } label={ __( '背景色', 'ystandard-blocks' ) }>
+							<ColorPalette
+								colors={ colors }
+								disableCustomColors={ false }
+								onChange={ ( color ) => {
+									setBackgroundColor( color );
+								} }
+								value={ backgroundColor.color }
+							/>
+						</BaseControl>
+						<BaseControl id={ 'background-opacity' } label={ __( '背景色の濃さ', 'ystandard-blocks' ) }>
+							<RangeControl
+								value={ backgroundImageOpacity }
+								onChange={ ( value ) =>
+									setAttributes( {
+										backgroundImageOpacity: getNum(
+											value,
+											0,
+											100
+										),
+									} )
+								}
+								min={ 0 }
+								max={ 100 }
+								step={ 1 }
+							/>
+						</BaseControl>
+						<BaseControl id={ 'background-image' } label={ __( '背景画像', 'ystandard-blocks' ) }>
 							<div>
 								<MediaUpload
 									onSelect={ ( media ) => {
@@ -446,56 +478,94 @@ const sectionEdit = ( props ) => {
 							</div>
 						</BaseControl>
 						{ showFocalPointPicker && backgroundImageURL && (
-							<BaseControl
-								id={ 'background-point' }
-								label={ __( '表示位置', 'ystandard-blocks' ) }
-							>
-								<FocalPointPicker
-									label={ __( 'Focal point picker' ) }
-									url={ backgroundImageURL }
-									value={ focalPoint }
-									onChange={ ( newFocalPoint ) => {
-										setAttributes( {
-											focalPoint: newFocalPoint,
-										} )
-									}
-									}
-								/>
-							</BaseControl>
+							<>
+								<BaseControl id={ 'background-point' } label={ __( '表示位置', 'ystandard-blocks' ) }>
+									<FocalPointPicker
+										label={ __( 'Focal point picker' ) }
+										url={ backgroundImageURL }
+										value={ focalPoint }
+										onChange={ ( newFocalPoint ) => {
+											setAttributes( {
+												focalPoint: newFocalPoint,
+											} )
+										}
+										}
+									/>
+								</BaseControl>
+								<BaseControl id={ 'background-size' } label={ __( 'サイズ', 'ystandard-blocks' ) }>
+									<SelectControl
+										value={ backgroundImageSize }
+										options={ backgroundImageSizeOption }
+										onChange={ ( type ) => {
+											setAttributes( {
+												backgroundImageSize: type,
+											} );
+										} }
+									/>
+									{ 'custom' === backgroundImageSize && (
+										<>
+											<div className="ystdb-inspector-controls__columns">
+												<span>{ __( '幅　', 'ystandard-blocks' ) }</span>
+												<NumberControl
+													value={ backgroundImageSizeX }
+													onChange={ ( value ) => {
+														const newValue =
+															'' === value
+																? ''
+																: getNum( value, 0, 9999, 0 );
+														setAttributes( {
+															backgroundImageSizeX: newValue.toString(),
+														} );
+													} }
+													min={ 0 }
+													max={ 9999 }
+													step={ getNumberInputStep( backgroundImageSizeX ) }
+													style={ { flexGrow: 1 } }
+												/>
+												<SelectControl
+													value={ backgroundImageSizeUnitX }
+													options={ backgroundImageSizeUnitOption }
+													onChange={ ( type ) => {
+														setAttributes( {
+															backgroundImageSizeUnitX: type,
+														} );
+													} }
+												/>
+											</div>
+											<div className="ystdb-inspector-controls__columns">
+												<span>{ __( '高さ', 'ystandard-blocks' ) }</span>
+												<NumberControl
+													value={ backgroundImageSizeY }
+													onChange={ ( value ) => {
+														const newValue =
+															'' === value
+																? ''
+																: getNum( value, 0, 9999, 0 );
+														setAttributes( {
+															backgroundImageSizeY: newValue.toString(),
+														} );
+													} }
+													min={ 0 }
+													max={ 9999 }
+													step={ getNumberInputStep( backgroundImageSizeY ) }
+													style={ { flexGrow: 1 } }
+												/>
+												<SelectControl
+													value={ backgroundImageSizeUnitY }
+													options={ backgroundImageSizeUnitOption }
+													onChange={ ( type ) => {
+														setAttributes( {
+															backgroundImageSizeUnitY: type,
+														} );
+													} }
+												/>
+											</div>
+										</>
+									) }
+								</BaseControl>
+							</>
 						) }
-						<BaseControl
-							id={ 'background-opacity' }
-							label={ __( '背景色の濃さ', 'ystandard-blocks' ) }
-						>
-							<RangeControl
-								value={ backgroundImageOpacity }
-								onChange={ ( value ) =>
-									setAttributes( {
-										backgroundImageOpacity: getNum(
-											value,
-											0,
-											100
-										),
-									} )
-								}
-								min={ 0 }
-								max={ 100 }
-								step={ 1 }
-							/>
-							<p>
-								<span className={ `ystdb-info__small` }>
-									※数値が大きいほど背景画像が見えづらくなります。
-								</span>
-								<span className={ `ystdb-info__small` }>
-									※画像の上に重ねる色は、色設定の「背景色」で変更できます。
-								</span>
-							</p>
-						</BaseControl>
-						<BaseControl
-							id={ 'background-opacity' }
-							label={ __( '固定背景', 'ystandard-blocks' ) }
-						>
-
+						<BaseControl id={ 'background-opacity' } label={ __( '固定背景', 'ystandard-blocks' ) }>
 							<ToggleControl
 								label={ __( '背景を固定する', 'ystandard-blocks' ) }
 								checked={ backgroundImageParallax }
@@ -507,35 +577,26 @@ const sectionEdit = ( props ) => {
 							/>
 						</BaseControl>
 					</PanelBody>
-					<PanelColorSettings
-						title={ __( 'Color settings' ) }
-						initialOpen={ false }
-						colorSettings={ [
-							{
-								value: backgroundColor.color,
-								onChange: ( color ) => {
-									setBackgroundColor( color );
-								},
-								label: __( 'Background Color' ),
-							},
-							{
-								value: textColor.color,
-								onChange: ( color ) => {
+					<PanelBody title={ __( '文字設定', 'ystandard-blocks' ) } initialOpen={ false }>
+						<BaseControl
+							id={ 'text-color' }
+							label={ __( '文字色', 'ystandard-blocks' ) }
+						>
+							<ColorPalette
+								colors={ colors }
+								disableCustomColors={ false }
+								onChange={ ( color ) => {
 									setTextColor( color );
-								},
-								label: __( 'Text Color' ),
-							},
-						] }
-					>
-						<ContrastChecker
-							backgroundColor={ backgroundColor.color }
-							textColor={ textColor.color }
-						/>
-					</PanelColorSettings>
-					<PanelBody
-						title={ __( '区切り線（上）', 'ystandard-blocks' ) }
-						initialOpen={ false }
-					>
+								} }
+								value={ textColor.color }
+							/>
+							<ContrastChecker
+								backgroundColor={ backgroundColor.color }
+								textColor={ textColor.color }
+							/>
+						</BaseControl>
+					</PanelBody>
+					<PanelBody title={ __( '区切り線（上）', 'ystandard-blocks' ) } initialOpen={ false }>
 						<div className="ystdb-inspector-controls__dscr">
 							タイプ・レベル・色をすべて設定すると表示されます。<br/><br/>
 						</div>
