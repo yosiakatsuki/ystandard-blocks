@@ -11,6 +11,10 @@ import {
 	IMAGE_BACKGROUND_TYPE,
 	VIDEO_BACKGROUND_TYPE,
 } from './config';
+import {
+	getBackgroundPosition,
+	getBackgroundSize,
+} from './shared';
 import getNum from '../../src/js/util/_getNum';
 import { select } from '@wordpress/data';
 
@@ -39,7 +43,6 @@ import {
 import { Fragment } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import { cssUnit } from "../heading/config";
 import getNumberInputStep from "../../src/js/util/_getNumberInputStep";
 
 const sectionEdit = ( props ) => {
@@ -120,26 +123,31 @@ const sectionEdit = ( props ) => {
 		'has-background-video': isVideoBackground,
 		'is-screen-height': screenHeightMode,
 	} );
-	const positionValue = () => {
-		if ( ! focalPoint || ! showFocalPointPicker ) {
-			return undefined;
-		}
-		return `${ focalPoint.x * 100 }% ${ focalPoint.y * 100 }%`;
-	};
+
 
 	/**
 	 * セクションスタイル
 	 */
 	const sectionStyles = {
-		color: textColor.color,
-		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
-		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
-		backgroundImage: backgroundImageURL && isImageBackground
-			? `url("${ backgroundImageURL }")`
-			: undefined,
-		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
-		backgroundPosition: positionValue(),
-	};
+			color: textColor.color,
+			paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
+			paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
+			backgroundImage: backgroundImageURL && isImageBackground
+				? `url("${ backgroundImageURL }")`
+				: undefined,
+			minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+			backgroundPosition: getBackgroundPosition( showFocalPointPicker, focalPoint ),
+			backgroundSize: getBackgroundSize(
+				backgroundImageSize,
+				backgroundImageSizeX,
+				backgroundImageSizeY,
+				backgroundImageSizeUnitX,
+				backgroundImageSizeUnitY,
+			),
+			backgroundRepeat: 'no-repeat' === backgroundImageRepeat ? undefined : backgroundImageRepeat,
+		}
+	;
+
 	/**
 	 * 背景マスク
 	 */
@@ -500,6 +508,14 @@ const sectionEdit = ( props ) => {
 											setAttributes( {
 												backgroundImageSize: type,
 											} );
+											if ( 'custom' !== type ) {
+												setAttributes( {
+													backgroundImageSizeX: undefined,
+													backgroundImageSizeY: undefined,
+													backgroundImageSizeUnitX: 'px',
+													backgroundImageSizeUnitY: 'px',
+												} );
+											}
 										} }
 									/>
 									{ 'custom' === backgroundImageSize && (
@@ -562,6 +578,17 @@ const sectionEdit = ( props ) => {
 											</div>
 										</>
 									) }
+								</BaseControl>
+								<BaseControl id={ 'background-repeat' } label={ __( '繰り返し', 'ystandard-blocks' ) }>
+									<SelectControl
+										value={ backgroundImageRepeat }
+										options={ backgroundImageRepeatOption }
+										onChange={ ( type ) => {
+											setAttributes( {
+												backgroundImageRepeat: type,
+											} );
+										} }
+									/>
 								</BaseControl>
 							</>
 						) }
@@ -872,7 +899,7 @@ const sectionEdit = ( props ) => {
 							muted
 							loop
 							src={ backgroundImageURL }
-							style={ { objectPosition: positionValue() } }
+							style={ { objectPosition: getBackgroundPosition( showFocalPointPicker, focalPoint ) } }
 						/>
 					) }
 					{ showBgMask && (

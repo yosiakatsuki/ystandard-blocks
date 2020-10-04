@@ -2,7 +2,16 @@ import classnames from 'classnames';
 
 import { getColorClassName, InnerBlocks } from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';
-import { dividerPath, IMAGE_BACKGROUND_TYPE, VIDEO_BACKGROUND_TYPE } from './config';
+import {
+	dividerPath,
+	IMAGE_BACKGROUND_TYPE,
+	VIDEO_BACKGROUND_TYPE
+} from './config';
+import {
+	getBackgroundPosition,
+	getBackgroundSize,
+} from './shared';
+
 
 export default function save( props ) {
 	const { attributes } = props;
@@ -23,6 +32,12 @@ export default function save( props ) {
 		backgroundImageURL,
 		backgroundImageOpacity,
 		backgroundImageParallax,
+		backgroundImageSize,
+		backgroundImageSizeX,
+		backgroundImageSizeUnitX,
+		backgroundImageSizeY,
+		backgroundImageSizeUnitY,
+		backgroundImageRepeat,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -74,12 +89,6 @@ export default function save( props ) {
 	 */
 	const showBgMask =
 		backgroundImageURL || backgroundColor || customBackgroundColor;
-	const positionValue = () => {
-		if ( ! focalPoint || ! showFocalPointPicker ) {
-			return undefined;
-		}
-		return `${ focalPoint.x * 100 }% ${ focalPoint.y * 100 }%`;
-	};
 
 	/**
 	 * セクションクラス名
@@ -107,7 +116,15 @@ export default function save( props ) {
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 		animationDuration: hasAnimation ? `${ animationSpeed }s` : undefined,
-		backgroundPosition: positionValue(),
+		backgroundPosition: getBackgroundPosition( showFocalPointPicker, focalPoint ),
+		backgroundSize: getBackgroundSize(
+			backgroundImageSize,
+			backgroundImageSizeX,
+			backgroundImageSizeY,
+			backgroundImageSizeUnitX,
+			backgroundImageSizeUnitY,
+		),
+		backgroundRepeat: 'no-repeat' === backgroundImageRepeat ? undefined : backgroundImageRepeat,
 	};
 
 	/**
@@ -185,7 +202,7 @@ export default function save( props ) {
 					muted
 					loop
 					src={ backgroundImageURL }
-					style={ { objectPosition: positionValue() } }
+					style={ { objectPosition: getBackgroundPosition( showFocalPointPicker, focalPoint ) } }
 				/>
 			) }
 			{ showBgMask && (

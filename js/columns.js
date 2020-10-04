@@ -20216,7 +20216,6 @@ function getNum(value) {
   var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   var defaultNum = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-  value = Number(value);
 
   if (isNaN(value) || value < min) {
     if (null !== defaultNum) {
@@ -20225,6 +20224,8 @@ function getNum(value) {
       value = min;
     }
   }
+
+  value = Number(value);
 
   if (null !== max && value > max) {
     value = max;

@@ -235,14 +235,15 @@ export const backgroundImageSizeUnitOption = [
 	{ value: 'vw', label: __( 'vw', 'ystandard-blocks' ) },
 	{ value: 'vh', label: __( 'vh', 'ystandard-blocks' ) },
 ];
+
 /**
  * 背景画像リピート
  */
 export const backgroundImageRepeatOption = [
 	{ value: 'no-repeat', label: __( 'なし', 'ystandard-blocks' ) },
 	{ value: 'repeat', label: __( 'あり', 'ystandard-blocks' ) },
-	{ value: 'repeat-x', label: __( '横のみ', 'ystandard-blocks' ) },
-	{ value: 'repeat-y', label: __( '縦のみ', 'ystandard-blocks' ) },
+	{ value: 'repeat-x', label: __( 'あり（横）', 'ystandard-blocks' ) },
+	{ value: 'repeat-y', label: __( 'あり（縦）', 'ystandard-blocks' ) },
 ];
 /**
  * HTMLタグ
