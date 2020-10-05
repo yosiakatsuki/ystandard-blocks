@@ -5,28 +5,6 @@ import getNum from '../../src/js/util/_getNum';
  * attributes
  */
 export const attributes = {
-	wrapperTag: {
-		type: 'string',
-		default: 'div',
-	},
-	backgroundColor: {
-		type: 'string',
-	},
-	customBackgroundColor: {
-		type: 'string',
-	},
-	gradient: {
-		type: 'string',
-	},
-	customGradient: {
-		type: 'string',
-	},
-	textColor: {
-		type: 'string',
-	},
-	customTextColor: {
-		type: 'string',
-	},
 	marginTop: {
 		type: 'number',
 		default: 0,
@@ -51,9 +29,61 @@ export const attributes = {
 		type: 'number',
 		default: 0,
 	},
-	innerCustomWidth: {
-		type: 'integer',
-		default: 0,
+	backgroundColor: {
+		type: 'string',
+	},
+	customBackgroundColor: {
+		type: 'string',
+	},
+	gradient: {
+		type: 'string',
+	},
+	customGradient: {
+		type: 'string',
+	},
+	useCustomOverlaySize: {
+		type: 'bool',
+		default: false,
+	},
+	overlaySizeX: {
+		type: 'string',
+		default: '100',
+	},
+	overlaySizeUnitX: {
+		type: 'string',
+		default: '%',
+	},
+	overlaySizeY: {
+		type: 'string',
+		default: '100',
+	},
+	overlaySizeUnitY: {
+		type: 'string',
+		default: '%',
+	},
+	overlayPositionX: {
+		type: 'string',
+		default: 'top',
+	},
+	overlayPositionValueX: {
+		type: 'string',
+		default: '0',
+	},
+	overlayPositionUnitX: {
+		type: 'string',
+		default: '%',
+	},
+	overlayPositionY: {
+		type: 'string',
+		default: 'left',
+	},
+	overlayPositionValueY: {
+		type: 'string',
+		default: '0',
+	},
+	overlayPositionUnitY: {
+		type: 'string',
+		default: '%',
 	},
 	backgroundType: {
 		type: 'string',
@@ -101,13 +131,11 @@ export const attributes = {
 		type: 'string',
 		default: 'no-repeat',
 	},
-	screenHeightMode: {
-		type: 'bool',
-		default: false,
+	textColor: {
+		type: 'string',
 	},
-	sectionMinHeight: {
-		type: 'number',
-		default: 0,
+	customTextColor: {
+		type: 'string',
 	},
 	dividerTypeTop: {
 		type: 'string',
@@ -137,6 +165,18 @@ export const attributes = {
 	customDividerColorBottom: {
 		type: 'string',
 	},
+	innerCustomWidth: {
+		type: 'integer',
+		default: 0,
+	},
+	screenHeightMode: {
+		type: 'bool',
+		default: false,
+	},
+	sectionMinHeight: {
+		type: 'number',
+		default: 0,
+	},
 	animationType: {
 		type: 'string',
 		default: 'none',
@@ -144,6 +184,10 @@ export const attributes = {
 	animationSpeed: {
 		type: 'number',
 		default: 2,
+	},
+	wrapperTag: {
+		type: 'string',
+		default: 'div',
 	},
 };
 
@@ -224,6 +268,27 @@ export const marginType = {
 	],
 };
 /**
+ * オーバーレイサイズ・位置
+ */
+export const overlaySizeUnitOption = [
+	{ value: 'px', label: __('px', 'ystandard-blocks') },
+	{ value: '%', label: __('%', 'ystandard-blocks') },
+];
+/**
+ * オーバーレイ位置-縦
+ */
+export const overlayPositionXOption = [
+	{ value: 'top', label: __('上', 'ystandard-blocks') },
+	{ value: 'bottom', label: __('下', 'ystandard-blocks') },
+];
+/**
+ * オーバーレイ位置-横
+ */
+export const overlayPositionYOption = [
+	{ value: 'left', label: __('左', 'ystandard-blocks') },
+	{ value: 'right', label: __('右', 'ystandard-blocks') },
+];
+/**
  * 背景画像サイズ
  */
 export const backgroundImageSizeOption = [
@@ -237,6 +302,7 @@ export const backgroundImageSizeOption = [
 export const backgroundImageSizeUnitOption = [
 	{ value: 'px', label: __('px', 'ystandard-blocks') },
 	{ value: 'em', label: __('em', 'ystandard-blocks') },
+	{ value: 'rem', label: __('rem', 'ystandard-blocks') },
 	{ value: '%', label: __('%', 'ystandard-blocks') },
 	{ value: 'vw', label: __('vw', 'ystandard-blocks') },
 	{ value: 'vh', label: __('vh', 'ystandard-blocks') },

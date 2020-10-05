@@ -27,6 +27,17 @@ export default function save(props) {
 		paddingBottom,
 		paddingLeft,
 		paddingRight,
+		useCustomOverlaySize,
+		overlaySizeX,
+		overlaySizeUnitX,
+		overlaySizeY,
+		overlaySizeUnitY,
+		overlayPositionX,
+		overlayPositionValueX,
+		overlayPositionUnitX,
+		overlayPositionY,
+		overlayPositionValueY,
+		overlayPositionUnitY,
 		gradient,
 		customGradient,
 		backgroundType,
@@ -92,7 +103,11 @@ export default function save(props) {
 	 * 背景関連
 	 */
 	const showBgMask =
-		backgroundImageURL || backgroundColor || customBackgroundColor;
+		backgroundImageURL ||
+		backgroundColor ||
+		customBackgroundColor ||
+		gradientClass ||
+		customGradient;
 
 	/**
 	 * セクションクラス名
@@ -145,19 +160,46 @@ export default function save(props) {
 		'has-background-gradient': gradient || customGradient,
 		[backgroundClass]: backgroundClass,
 		[gradientClass]: gradientClass,
+		'is-custom-size': useCustomOverlaySize,
 	});
 	const getMaskBackground = () => {
 		if (customGradient) {
 			return customGradient;
 		}
-		if (!backgroundClass && !customBackgroundColor) {
+		if (!backgroundClass && customBackgroundColor) {
 			return customBackgroundColor;
 		}
 		return undefined;
 	};
+	const getMaskPosition = () => {
+		if (!useCustomOverlaySize) {
+			return {};
+		}
+		const posX = !!overlayPositionValueX
+			? `${overlayPositionValueX}${overlayPositionUnitX}`
+			: 0;
+		const posY = !!overlayPositionValueY
+			? `${overlayPositionValueY}${overlayPositionUnitY}`
+			: 0;
+		return {
+			top: 'top' === overlayPositionX ? posX : undefined,
+			bottom: 'bottom' === overlayPositionX ? posX : undefined,
+			left: 'left' === overlayPositionY ? posY : undefined,
+			right: 'right' === overlayPositionY ? posY : undefined,
+		};
+	};
 	const bgMaskStyle = {
 		background: getMaskBackground(),
 		opacity: backgroundImageOpacity / 100,
+		width:
+			useCustomOverlaySize && !!overlaySizeX
+				? `${overlaySizeX}${overlaySizeUnitX}`
+				: undefined,
+		height:
+			useCustomOverlaySize && !!overlaySizeY
+				? `${overlaySizeY}${overlaySizeUnitY}`
+				: undefined,
+		...getMaskPosition(),
 	};
 
 	/**

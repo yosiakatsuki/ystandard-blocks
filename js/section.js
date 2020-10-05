@@ -90,7 +90,7 @@
 /*!**********************************!*\
   !*** ./blocks/section/config.js ***!
   \**********************************/
-/*! exports provided: attributes, supports, IMAGE_BACKGROUND_TYPE, VIDEO_BACKGROUND_TYPE, marginType, backgroundImageSizeOption, backgroundImageSizeUnitOption, backgroundImageRepeatOption, wrapperTagNames, dividerTypes, animationTypes, dividerPath */
+/*! exports provided: attributes, supports, IMAGE_BACKGROUND_TYPE, VIDEO_BACKGROUND_TYPE, marginType, overlaySizeUnitOption, overlayPositionXOption, overlayPositionYOption, backgroundImageSizeOption, backgroundImageSizeUnitOption, backgroundImageRepeatOption, wrapperTagNames, dividerTypes, animationTypes, dividerPath */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,6 +100,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGE_BACKGROUND_TYPE", function() { return IMAGE_BACKGROUND_TYPE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VIDEO_BACKGROUND_TYPE", function() { return VIDEO_BACKGROUND_TYPE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "marginType", function() { return marginType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "overlaySizeUnitOption", function() { return overlaySizeUnitOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "overlayPositionXOption", function() { return overlayPositionXOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "overlayPositionYOption", function() { return overlayPositionYOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backgroundImageSizeOption", function() { return backgroundImageSizeOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backgroundImageSizeUnitOption", function() { return backgroundImageSizeUnitOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "backgroundImageRepeatOption", function() { return backgroundImageRepeatOption; });
@@ -117,28 +120,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 var attributes = {
-  wrapperTag: {
-    type: 'string',
-    default: 'div'
-  },
-  backgroundColor: {
-    type: 'string'
-  },
-  customBackgroundColor: {
-    type: 'string'
-  },
-  gradient: {
-    type: 'string'
-  },
-  customGradient: {
-    type: 'string'
-  },
-  textColor: {
-    type: 'string'
-  },
-  customTextColor: {
-    type: 'string'
-  },
   marginTop: {
     type: 'number',
     default: 0
@@ -163,9 +144,61 @@ var attributes = {
     type: 'number',
     default: 0
   },
-  innerCustomWidth: {
-    type: 'integer',
-    default: 0
+  backgroundColor: {
+    type: 'string'
+  },
+  customBackgroundColor: {
+    type: 'string'
+  },
+  gradient: {
+    type: 'string'
+  },
+  customGradient: {
+    type: 'string'
+  },
+  useCustomOverlaySize: {
+    type: 'bool',
+    default: false
+  },
+  overlaySizeX: {
+    type: 'string',
+    default: '100'
+  },
+  overlaySizeUnitX: {
+    type: 'string',
+    default: '%'
+  },
+  overlaySizeY: {
+    type: 'string',
+    default: '100'
+  },
+  overlaySizeUnitY: {
+    type: 'string',
+    default: '%'
+  },
+  overlayPositionX: {
+    type: 'string',
+    default: 'top'
+  },
+  overlayPositionValueX: {
+    type: 'string',
+    default: '0'
+  },
+  overlayPositionUnitX: {
+    type: 'string',
+    default: '%'
+  },
+  overlayPositionY: {
+    type: 'string',
+    default: 'left'
+  },
+  overlayPositionValueY: {
+    type: 'string',
+    default: '0'
+  },
+  overlayPositionUnitY: {
+    type: 'string',
+    default: '%'
   },
   backgroundType: {
     type: 'string',
@@ -213,13 +246,11 @@ var attributes = {
     type: 'string',
     default: 'no-repeat'
   },
-  screenHeightMode: {
-    type: 'bool',
-    default: false
+  textColor: {
+    type: 'string'
   },
-  sectionMinHeight: {
-    type: 'number',
-    default: 0
+  customTextColor: {
+    type: 'string'
   },
   dividerTypeTop: {
     type: 'string',
@@ -249,6 +280,18 @@ var attributes = {
   customDividerColorBottom: {
     type: 'string'
   },
+  innerCustomWidth: {
+    type: 'integer',
+    default: 0
+  },
+  screenHeightMode: {
+    type: 'bool',
+    default: false
+  },
+  sectionMinHeight: {
+    type: 'number',
+    default: 0
+  },
   animationType: {
     type: 'string',
     default: 'none'
@@ -256,6 +299,10 @@ var attributes = {
   animationSpeed: {
     type: 'number',
     default: 2
+  },
+  wrapperTag: {
+    type: 'string',
+    default: 'div'
   }
 };
 var supports = {
@@ -320,6 +367,39 @@ var marginType = {
   }]
 };
 /**
+ * オーバーレイサイズ・位置
+ */
+
+var overlaySizeUnitOption = [{
+  value: 'px',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('px', 'ystandard-blocks')
+}, {
+  value: '%',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('%', 'ystandard-blocks')
+}];
+/**
+ * オーバーレイ位置-縦
+ */
+
+var overlayPositionXOption = [{
+  value: 'top',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('上', 'ystandard-blocks')
+}, {
+  value: 'bottom',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('下', 'ystandard-blocks')
+}];
+/**
+ * オーバーレイ位置-横
+ */
+
+var overlayPositionYOption = [{
+  value: 'left',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('左', 'ystandard-blocks')
+}, {
+  value: 'right',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('右', 'ystandard-blocks')
+}];
+/**
  * 背景画像サイズ
  */
 
@@ -343,6 +423,9 @@ var backgroundImageSizeUnitOption = [{
 }, {
   value: 'em',
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('em', 'ystandard-blocks')
+}, {
+  value: 'rem',
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('rem', 'ystandard-blocks')
 }, {
   value: '%',
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('%', 'ystandard-blocks')
@@ -1341,6 +1424,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
@@ -1373,6 +1461,17 @@ var sectionEdit = function sectionEdit(props) {
       paddingBottom = attributes.paddingBottom,
       paddingLeft = attributes.paddingLeft,
       paddingRight = attributes.paddingRight,
+      useCustomOverlaySize = attributes.useCustomOverlaySize,
+      overlaySizeX = attributes.overlaySizeX,
+      overlaySizeUnitX = attributes.overlaySizeUnitX,
+      overlaySizeY = attributes.overlaySizeY,
+      overlaySizeUnitY = attributes.overlaySizeUnitY,
+      overlayPositionX = attributes.overlayPositionX,
+      overlayPositionValueX = attributes.overlayPositionValueX,
+      overlayPositionUnitX = attributes.overlayPositionUnitX,
+      overlayPositionY = attributes.overlayPositionY,
+      overlayPositionValueY = attributes.overlayPositionValueY,
+      overlayPositionUnitY = attributes.overlayPositionUnitY,
       backgroundType = attributes.backgroundType,
       focalPoint = attributes.focalPoint,
       backgroundImageURL = attributes.backgroundImageURL,
@@ -1413,7 +1512,7 @@ var sectionEdit = function sectionEdit(props) {
    */
 
   var ALLOWED_MEDIA_TYPES = ['image', 'video'];
-  var showBgMask = backgroundImageURL || backgroundColor.color;
+  var showBgMask = backgroundImageURL || backgroundColor.color || gradientValue;
   var isImageBackground = _config__WEBPACK_IMPORTED_MODULE_3__["IMAGE_BACKGROUND_TYPE"] === backgroundType;
   var isVideoBackground = _config__WEBPACK_IMPORTED_MODULE_3__["VIDEO_BACKGROUND_TYPE"] === backgroundType;
   var showFocalPointPicker = !isVideoBackground || isImageBackground && !backgroundImageParallax;
@@ -1454,7 +1553,7 @@ var sectionEdit = function sectionEdit(props) {
 
   var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames = {
     'has-background': backgroundColor.color
-  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-background-gradient', gradientValue), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _classnames));
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-background-gradient', gradientValue), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'is-custom-size', useCustomOverlaySize), _classnames));
 
   var getMaskBackground = function getMaskBackground() {
     if (gradientValue) {
@@ -1468,13 +1567,31 @@ var sectionEdit = function sectionEdit(props) {
     return undefined;
   };
 
-  var bgMaskStyle = {
-    background: getMaskBackground(),
-    opacity: backgroundImageOpacity / 100
+  var getMaskPosition = function getMaskPosition() {
+    if (!useCustomOverlaySize) {
+      return {};
+    }
+
+    var posX = !!overlayPositionValueX ? "".concat(overlayPositionValueX).concat(overlayPositionUnitX) : 0;
+    var posY = !!overlayPositionValueY ? "".concat(overlayPositionValueY).concat(overlayPositionUnitY) : 0;
+    return {
+      top: 'top' === overlayPositionX ? posX : undefined,
+      bottom: 'bottom' === overlayPositionX ? posX : undefined,
+      left: 'left' === overlayPositionY ? posY : undefined,
+      right: 'right' === overlayPositionY ? posY : undefined
+    };
   };
+
+  var bgMaskStyle = _objectSpread({
+    background: getMaskBackground(),
+    opacity: backgroundImageOpacity / 100,
+    width: useCustomOverlaySize && !!overlaySizeX ? "".concat(overlaySizeX).concat(overlaySizeUnitX) : undefined,
+    height: useCustomOverlaySize && !!overlaySizeY ? "".concat(overlaySizeY).concat(overlaySizeUnitY) : undefined
+  }, getMaskPosition());
   /**
    * インナー
    */
+
 
   var innerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__inner', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
     'has-text-color': textColor.color
@@ -1665,7 +1782,7 @@ var sectionEdit = function sectionEdit(props) {
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景色', 'ystandard-blocks')
     }]
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
-    id: 'background-opacity',
+    id: 'overlay-opacity',
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('不透明度', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
     value: backgroundImageOpacity,
@@ -1677,7 +1794,151 @@ var sectionEdit = function sectionEdit(props) {
     min: 0,
     max: 100,
     step: 1
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
+    id: 'overlay-custom-size',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('サイズ・配置', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('サイズ・配置を指定する', 'ystandard-blocks'),
+    checked: useCustomOverlaySize,
+    onChange: function onChange() {
+      if (useCustomOverlaySize) {
+        setAttributes({
+          overlaySizeX: undefined,
+          overlaySizeUnitX: undefined,
+          overlaySizeY: undefined,
+          overlaySizeUnitY: undefined,
+          overlayPositionX: undefined,
+          overlayPositionValueX: undefined,
+          overlayPositionUnitX: undefined,
+          overlayPositionY: undefined,
+          overlayPositionValueY: undefined,
+          overlayPositionUnitY: undefined
+        });
+      }
+
+      setAttributes({
+        useCustomOverlaySize: !useCustomOverlaySize
+      });
+    }
+  })), useCustomOverlaySize && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
+    id: 'overlay-size',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('サイズ', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__columns"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('幅　', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["__experimentalNumberControl"], {
+    value: overlaySizeX,
+    onChange: function onChange(value) {
+      var newValue = '' === value ? '' : Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 0, 9999, 0);
+      setAttributes({
+        overlaySizeX: newValue.toString()
+      });
+    },
+    min: 0,
+    max: 9999,
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(overlaySizeUnitX),
+    style: {
+      flexGrow: 1
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlaySizeUnitX,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlaySizeUnitOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlaySizeUnitX: type
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__columns"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('高さ', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["__experimentalNumberControl"], {
+    value: overlaySizeY,
+    onChange: function onChange(value) {
+      var newValue = '' === value ? '' : Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 0, 9999, 0);
+      setAttributes({
+        overlaySizeY: newValue.toString()
+      });
+    },
+    min: 0,
+    max: 9999,
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(overlaySizeUnitY),
+    style: {
+      flexGrow: 1
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlaySizeUnitY,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlaySizeUnitOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlaySizeUnitY: type
+      });
+    }
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
+    id: 'overlay-position',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('配置', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__columns"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlayPositionX,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlayPositionXOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlayPositionX: type
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["__experimentalNumberControl"], {
+    value: overlayPositionValueX,
+    onChange: function onChange(value) {
+      var newValue = '' === value ? '' : Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 0, 9999, 0);
+      setAttributes({
+        overlayPositionValueX: newValue.toString()
+      });
+    },
+    min: 0,
+    max: 9999,
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(overlayPositionUnitX),
+    style: {
+      flexGrow: 1
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlayPositionUnitX,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlaySizeUnitOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlayPositionUnitX: type
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    className: "ystdb-inspector-controls__columns"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlayPositionY,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlayPositionYOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlayPositionY: type
+      });
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["__experimentalNumberControl"], {
+    value: overlayPositionValueY,
+    onChange: function onChange(value) {
+      var newValue = '' === value ? '' : Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 0, 9999, 0);
+      setAttributes({
+        overlayPositionValueY: newValue.toString()
+      });
+    },
+    min: 0,
+    max: 9999,
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(overlayPositionUnitY),
+    style: {
+      flexGrow: 1
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+    value: overlayPositionUnitY,
+    options: _config__WEBPACK_IMPORTED_MODULE_3__["overlaySizeUnitOption"],
+    onChange: function onChange(type) {
+      setAttributes({
+        overlayPositionUnitY: type
+      });
+    }
+  }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景画像', 'ystandard-blocks'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
@@ -1761,7 +2022,7 @@ var sectionEdit = function sectionEdit(props) {
     },
     min: 0,
     max: 9999,
-    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(backgroundImageSizeX),
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(backgroundImageSizeUnitX),
     style: {
       flexGrow: 1
     }
@@ -1785,7 +2046,7 @@ var sectionEdit = function sectionEdit(props) {
     },
     min: 0,
     max: 9999,
-    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(backgroundImageSizeY),
+    step: Object(_src_js_util_getNumberInputStep__WEBPACK_IMPORTED_MODULE_11__["default"])(backgroundImageSizeUnitY),
     style: {
       flexGrow: 1
     }
@@ -2128,6 +2389,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
@@ -2147,6 +2413,17 @@ function save(props) {
       paddingBottom = attributes.paddingBottom,
       paddingLeft = attributes.paddingLeft,
       paddingRight = attributes.paddingRight,
+      useCustomOverlaySize = attributes.useCustomOverlaySize,
+      overlaySizeX = attributes.overlaySizeX,
+      overlaySizeUnitX = attributes.overlaySizeUnitX,
+      overlaySizeY = attributes.overlaySizeY,
+      overlaySizeUnitY = attributes.overlaySizeUnitY,
+      overlayPositionX = attributes.overlayPositionX,
+      overlayPositionValueX = attributes.overlayPositionValueX,
+      overlayPositionUnitX = attributes.overlayPositionUnitX,
+      overlayPositionY = attributes.overlayPositionY,
+      overlayPositionValueY = attributes.overlayPositionValueY,
+      overlayPositionUnitY = attributes.overlayPositionUnitY,
       gradient = attributes.gradient,
       customGradient = attributes.customGradient,
       backgroundType = attributes.backgroundType,
@@ -2203,7 +2480,7 @@ function save(props) {
    * 背景関連
    */
 
-  var showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor;
+  var showBgMask = backgroundImageURL || backgroundColor || customBackgroundColor || gradientClass || customGradient;
   /**
    * セクションクラス名
    */
@@ -2241,27 +2518,45 @@ function save(props) {
   var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames = {
     'has-background': backgroundColor || customBackgroundColor,
     'has-background-gradient': gradient || customGradient
-  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _classnames));
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'is-custom-size', useCustomOverlaySize), _classnames));
 
   var getMaskBackground = function getMaskBackground() {
     if (customGradient) {
       return customGradient;
     }
 
-    if (!backgroundClass && !customBackgroundColor) {
+    if (!backgroundClass && customBackgroundColor) {
       return customBackgroundColor;
     }
 
     return undefined;
   };
 
-  var bgMaskStyle = {
-    background: getMaskBackground(),
-    opacity: backgroundImageOpacity / 100
+  var getMaskPosition = function getMaskPosition() {
+    if (!useCustomOverlaySize) {
+      return {};
+    }
+
+    var posX = !!overlayPositionValueX ? "".concat(overlayPositionValueX).concat(overlayPositionUnitX) : 0;
+    var posY = !!overlayPositionValueY ? "".concat(overlayPositionValueY).concat(overlayPositionUnitY) : 0;
+    return {
+      top: 'top' === overlayPositionX ? posX : undefined,
+      bottom: 'bottom' === overlayPositionX ? posX : undefined,
+      left: 'left' === overlayPositionY ? posY : undefined,
+      right: 'right' === overlayPositionY ? posY : undefined
+    };
   };
+
+  var bgMaskStyle = _objectSpread({
+    background: getMaskBackground(),
+    opacity: backgroundImageOpacity / 100,
+    width: useCustomOverlaySize && !!overlaySizeX ? "".concat(overlaySizeX).concat(overlaySizeUnitX) : undefined,
+    height: useCustomOverlaySize && !!overlaySizeY ? "".concat(overlaySizeY).concat(overlaySizeUnitY) : undefined
+  }, getMaskPosition());
   /**
    * インナー
    */
+
 
   var innerClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__inner', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
     'has-text-color': textColorClass || customTextColor

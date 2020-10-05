@@ -5,6 +5,9 @@ import {
 	dividerTypes,
 	animationTypes,
 	dividerPath,
+	overlaySizeUnitOption,
+	overlayPositionXOption,
+	overlayPositionYOption,
 	backgroundImageSizeOption,
 	backgroundImageSizeUnitOption,
 	backgroundImageRepeatOption,
@@ -66,6 +69,17 @@ const sectionEdit = (props) => {
 		paddingBottom,
 		paddingLeft,
 		paddingRight,
+		useCustomOverlaySize,
+		overlaySizeX,
+		overlaySizeUnitX,
+		overlaySizeY,
+		overlaySizeUnitY,
+		overlayPositionX,
+		overlayPositionValueX,
+		overlayPositionUnitX,
+		overlayPositionY,
+		overlayPositionValueY,
+		overlayPositionUnitY,
 		backgroundType,
 		focalPoint,
 		backgroundImageURL,
@@ -106,7 +120,8 @@ const sectionEdit = (props) => {
 	 * 背景画像関連
 	 */
 	const ALLOWED_MEDIA_TYPES = ['image', 'video'];
-	const showBgMask = backgroundImageURL || backgroundColor.color;
+	const showBgMask =
+		backgroundImageURL || backgroundColor.color || gradientValue;
 	const isImageBackground = IMAGE_BACKGROUND_TYPE === backgroundType;
 	const isVideoBackground = VIDEO_BACKGROUND_TYPE === backgroundType;
 	const showFocalPointPicker =
@@ -165,6 +180,7 @@ const sectionEdit = (props) => {
 		[backgroundColor.class]: backgroundColor.class,
 		'has-background-gradient': gradientValue,
 		[gradientClass]: gradientClass,
+		'is-custom-size': useCustomOverlaySize,
 	});
 	const getMaskBackground = () => {
 		if (gradientValue) {
@@ -175,9 +191,35 @@ const sectionEdit = (props) => {
 		}
 		return undefined;
 	};
+	const getMaskPosition = () => {
+		if (!useCustomOverlaySize) {
+			return {};
+		}
+		const posX = !!overlayPositionValueX
+			? `${overlayPositionValueX}${overlayPositionUnitX}`
+			: 0;
+		const posY = !!overlayPositionValueY
+			? `${overlayPositionValueY}${overlayPositionUnitY}`
+			: 0;
+		return {
+			top: 'top' === overlayPositionX ? posX : undefined,
+			bottom: 'bottom' === overlayPositionX ? posX : undefined,
+			left: 'left' === overlayPositionY ? posY : undefined,
+			right: 'right' === overlayPositionY ? posY : undefined,
+		};
+	};
 	const bgMaskStyle = {
 		background: getMaskBackground(),
 		opacity: backgroundImageOpacity / 100,
+		width:
+			useCustomOverlaySize && !!overlaySizeX
+				? `${overlaySizeX}${overlaySizeUnitX}`
+				: undefined,
+		height:
+			useCustomOverlaySize && !!overlaySizeY
+				? `${overlaySizeY}${overlaySizeUnitY}`
+				: undefined,
+		...getMaskPosition(),
 	};
 	/**
 	 * インナー
@@ -454,7 +496,7 @@ const sectionEdit = (props) => {
 						]}
 					>
 						<BaseControl
-							id={'background-opacity'}
+							id={'overlay-opacity'}
 							label={__('不透明度', 'ystandard-blocks')}
 						>
 							<RangeControl
@@ -473,6 +515,213 @@ const sectionEdit = (props) => {
 								step={1}
 							/>
 						</BaseControl>
+						<BaseControl
+							id={'overlay-custom-size'}
+							label={__('サイズ・配置', 'ystandard-blocks')}
+						>
+							<ToggleControl
+								label={__(
+									'サイズ・配置を指定する',
+									'ystandard-blocks'
+								)}
+								checked={useCustomOverlaySize}
+								onChange={() => {
+									if (useCustomOverlaySize) {
+										setAttributes({
+											overlaySizeX: undefined,
+											overlaySizeUnitX: undefined,
+											overlaySizeY: undefined,
+											overlaySizeUnitY: undefined,
+											overlayPositionX: undefined,
+											overlayPositionValueX: undefined,
+											overlayPositionUnitX: undefined,
+											overlayPositionY: undefined,
+											overlayPositionValueY: undefined,
+											overlayPositionUnitY: undefined,
+										});
+									}
+									setAttributes({
+										useCustomOverlaySize: !useCustomOverlaySize,
+									});
+								}}
+							/>
+						</BaseControl>
+						{useCustomOverlaySize && (
+							<>
+								<BaseControl
+									id={'overlay-size'}
+									label={__('サイズ', 'ystandard-blocks')}
+								>
+									<div className="ystdb-inspector-controls__columns">
+										<span>
+											{__('幅　', 'ystandard-blocks')}
+										</span>
+										<NumberControl
+											value={overlaySizeX}
+											onChange={(value) => {
+												const newValue =
+													'' === value
+														? ''
+														: getNum(
+																value,
+																0,
+																9999,
+																0
+														  );
+												setAttributes({
+													overlaySizeX: newValue.toString(),
+												});
+											}}
+											min={0}
+											max={9999}
+											step={getNumberInputStep(
+												overlaySizeUnitX
+											)}
+											style={{ flexGrow: 1 }}
+										/>
+										<SelectControl
+											value={overlaySizeUnitX}
+											options={overlaySizeUnitOption}
+											onChange={(type) => {
+												setAttributes({
+													overlaySizeUnitX: type,
+												});
+											}}
+										/>
+									</div>
+									<div className="ystdb-inspector-controls__columns">
+										<span>
+											{__('高さ', 'ystandard-blocks')}
+										</span>
+										<NumberControl
+											value={overlaySizeY}
+											onChange={(value) => {
+												const newValue =
+													'' === value
+														? ''
+														: getNum(
+																value,
+																0,
+																9999,
+																0
+														  );
+												setAttributes({
+													overlaySizeY: newValue.toString(),
+												});
+											}}
+											min={0}
+											max={9999}
+											step={getNumberInputStep(
+												overlaySizeUnitY
+											)}
+											style={{ flexGrow: 1 }}
+										/>
+										<SelectControl
+											value={overlaySizeUnitY}
+											options={overlaySizeUnitOption}
+											onChange={(type) => {
+												setAttributes({
+													overlaySizeUnitY: type,
+												});
+											}}
+										/>
+									</div>
+								</BaseControl>
+								<BaseControl
+									id={'overlay-position'}
+									label={__('配置', 'ystandard-blocks')}
+								>
+									<div className="ystdb-inspector-controls__columns">
+										<SelectControl
+											value={overlayPositionX}
+											options={overlayPositionXOption}
+											onChange={(type) => {
+												setAttributes({
+													overlayPositionX: type,
+												});
+											}}
+										/>
+										<NumberControl
+											value={overlayPositionValueX}
+											onChange={(value) => {
+												const newValue =
+													'' === value
+														? ''
+														: getNum(
+																value,
+																0,
+																9999,
+																0
+														  );
+												setAttributes({
+													overlayPositionValueX: newValue.toString(),
+												});
+											}}
+											min={0}
+											max={9999}
+											step={getNumberInputStep(
+												overlayPositionUnitX
+											)}
+											style={{ flexGrow: 1 }}
+										/>
+
+										<SelectControl
+											value={overlayPositionUnitX}
+											options={overlaySizeUnitOption}
+											onChange={(type) => {
+												setAttributes({
+													overlayPositionUnitX: type,
+												});
+											}}
+										/>
+									</div>
+									<div className="ystdb-inspector-controls__columns">
+										<SelectControl
+											value={overlayPositionY}
+											options={overlayPositionYOption}
+											onChange={(type) => {
+												setAttributes({
+													overlayPositionY: type,
+												});
+											}}
+										/>
+										<NumberControl
+											value={overlayPositionValueY}
+											onChange={(value) => {
+												const newValue =
+													'' === value
+														? ''
+														: getNum(
+																value,
+																0,
+																9999,
+																0
+														  );
+												setAttributes({
+													overlayPositionValueY: newValue.toString(),
+												});
+											}}
+											min={0}
+											max={9999}
+											step={getNumberInputStep(
+												overlayPositionUnitY
+											)}
+											style={{ flexGrow: 1 }}
+										/>
+
+										<SelectControl
+											value={overlayPositionUnitY}
+											options={overlaySizeUnitOption}
+											onChange={(type) => {
+												setAttributes({
+													overlayPositionUnitY: type,
+												});
+											}}
+										/>
+									</div>
+								</BaseControl>
+							</>
+						)}
 					</PanelColorGradientSettings>
 					<PanelBody
 						title={__('背景画像', 'ystandard-blocks')}
@@ -592,7 +841,7 @@ const sectionEdit = (props) => {
 													min={0}
 													max={9999}
 													step={getNumberInputStep(
-														backgroundImageSizeX
+														backgroundImageSizeUnitX
 													)}
 													style={{ flexGrow: 1 }}
 												/>
@@ -636,7 +885,7 @@ const sectionEdit = (props) => {
 													min={0}
 													max={9999}
 													step={getNumberInputStep(
-														backgroundImageSizeY
+														backgroundImageSizeUnitY
 													)}
 													style={{ flexGrow: 1 }}
 												/>
