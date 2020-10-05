@@ -15,6 +15,12 @@ export const attributes = {
 	customBackgroundColor: {
 		type: 'string',
 	},
+	gradient: {
+		type: 'string',
+	},
+	customGradient: {
+		type: 'string',
+	},
 	textColor: {
 		type: 'string',
 	},

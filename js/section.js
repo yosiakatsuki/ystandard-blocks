@@ -127,6 +127,12 @@ var attributes = {
   customBackgroundColor: {
     type: 'string'
   },
+  gradient: {
+    type: 'string'
+  },
+  customGradient: {
+    type: 'string'
+  },
   textColor: {
     type: 'string'
   },
@@ -988,12 +994,12 @@ var __deprecated = [{
 /*!*****************************************************!*\
   !*** ./blocks/section/deprecated/deprecated_2-4.js ***!
   \*****************************************************/
-/*! exports provided: deprecated_2_4 */
+/*! exports provided: deprecated24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated_2_4", function() { return deprecated_2_4; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated24", function() { return deprecated24; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
@@ -1016,7 +1022,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var deprecated_2_4 = [{
+var deprecated24 = [{
   attributes: {
     wrapperTag: {
       type: 'string',
@@ -1127,7 +1133,7 @@ var deprecated_2_4 = [{
   },
   migrate: function migrate(attributes) {
     return _objectSpread(_objectSpread({}, attributes), {}, {
-      backgroundType: backgroundImageURL ? 'image' : undefined
+      backgroundType: attributes.backgroundImageURL ? 'image' : undefined
     });
   },
   supports: {
@@ -1299,7 +1305,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated__WEBPACK_IMPORTED_MODULE_1__["__deprecated"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_4__WEBPACK_IMPORTED_MODULE_2__["deprecated_2_4"]));
+var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated__WEBPACK_IMPORTED_MODULE_1__["__deprecated"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_4__WEBPACK_IMPORTED_MODULE_2__["deprecated24"]));
 
 /***/ }),
 
@@ -1347,6 +1353,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var sectionEdit = function sectionEdit(props) {
+  var _classnames;
+
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
       backgroundColor = props.backgroundColor,
@@ -1387,6 +1395,11 @@ var sectionEdit = function sectionEdit(props) {
       sectionMinHeight = attributes.sectionMinHeight,
       animationType = attributes.animationType,
       animationSpeed = attributes.animationSpeed;
+
+  var _experimentalUseGrad = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__["__experimentalUseGradient"])(),
+      gradientClass = _experimentalUseGrad.gradientClass,
+      gradientValue = _experimentalUseGrad.gradientValue,
+      setGradient = _experimentalUseGrad.setGradient;
 
   var _select$getSettings = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_6__["select"])('core/block-editor').getSettings(),
       colors = _select$getSettings.colors;
@@ -1439,11 +1452,24 @@ var sectionEdit = function sectionEdit(props) {
    * 背景マスク
    */
 
-  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
+  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames = {
     'has-background': backgroundColor.color
-  }, backgroundColor.class, backgroundColor.class));
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-background-gradient', gradientValue), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _classnames));
+
+  var getMaskBackground = function getMaskBackground() {
+    if (gradientValue) {
+      return gradientValue;
+    }
+
+    if (backgroundColor.color) {
+      return backgroundColor.color;
+    }
+
+    return undefined;
+  };
+
   var bgMaskStyle = {
-    backgroundColor: backgroundColor.color ? backgroundColor.color : '#000',
+    background: getMaskBackground(),
     opacity: backgroundImageOpacity / 100
   };
   /**
@@ -1628,22 +1654,19 @@ var sectionEdit = function sectionEdit(props) {
     step: rangeStep
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "ystdb-info__small"
-  }, "\u203B\u6570\u5B57\u304C\u5927\u304D\u3044\u307B\u3069\u4F59\u767D\u304C\u5927\u304D\u304F\u306A\u308A\u307E\u3059\u3002")))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景設定', 'ystandard-blocks'),
-    initialOpen: false
+  }, "\u203B\u6570\u5B57\u304C\u5927\u304D\u3044\u307B\u3069\u4F59\u767D\u304C\u5927\u304D\u304F\u306A\u308A\u307E\u3059\u3002")))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__["__experimentalPanelColorGradientSettings"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('オーバーレイ', 'ystandard-blocks'),
+    initialOpen: false,
+    settings: [{
+      colorValue: backgroundColor.color,
+      gradientValue: gradientValue,
+      onColorChange: setBackgroundColor,
+      onGradientChange: setGradient,
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景色', 'ystandard-blocks')
+    }]
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
-    id: 'background-color',
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景色', 'ystandard-blocks')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["ColorPalette"], {
-    colors: colors,
-    disableCustomColors: false,
-    onChange: function onChange(color) {
-      setBackgroundColor(color);
-    },
-    value: backgroundColor.color
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
     id: 'background-opacity',
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景色の濃さ', 'ystandard-blocks')
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('不透明度', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
     value: backgroundImageOpacity,
     onChange: function onChange(value) {
@@ -1654,7 +1677,10 @@ var sectionEdit = function sectionEdit(props) {
     min: 0,
     max: 100,
     step: 1
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景画像', 'ystandard-blocks'),
+    initialOpen: false
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], {
     id: 'background-image',
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('背景画像', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__["MediaUpload"], {
@@ -2107,6 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function save(props) {
+  var _classnames;
+
   var attributes = props.attributes;
   var wrapperTag = attributes.wrapperTag,
       backgroundColor = attributes.backgroundColor,
@@ -2119,6 +2147,8 @@ function save(props) {
       paddingBottom = attributes.paddingBottom,
       paddingLeft = attributes.paddingLeft,
       paddingRight = attributes.paddingRight,
+      gradient = attributes.gradient,
+      customGradient = attributes.customGradient,
       backgroundType = attributes.backgroundType,
       focalPoint = attributes.focalPoint,
       backgroundImageURL = attributes.backgroundImageURL,
@@ -2153,9 +2183,12 @@ function save(props) {
   var isImageBackground = _config__WEBPACK_IMPORTED_MODULE_5__["IMAGE_BACKGROUND_TYPE"] === backgroundType;
   var isVideoBackground = _config__WEBPACK_IMPORTED_MODULE_5__["VIDEO_BACKGROUND_TYPE"] === backgroundType;
   var showFocalPointPicker = isVideoBackground || isImageBackground && !backgroundImageParallax;
+
+  var gradientClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["__experimentalGetGradientClass"])(gradient);
   /**
    * 色設定
    */
+
 
   var textColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["getColorClassName"])('color', textColor);
   var backgroundClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["getColorClassName"])('background-color', backgroundColor);
@@ -2205,11 +2238,25 @@ function save(props) {
    * 背景マスク
    */
 
-  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
-    'has-background': backgroundColor || customBackgroundColor
-  }, backgroundClass, backgroundClass));
+  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames = {
+    'has-background': backgroundColor || customBackgroundColor,
+    'has-background-gradient': gradient || customGradient
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _classnames));
+
+  var getMaskBackground = function getMaskBackground() {
+    if (customGradient) {
+      return customGradient;
+    }
+
+    if (!backgroundClass && !customBackgroundColor) {
+      return customBackgroundColor;
+    }
+
+    return undefined;
+  };
+
   var bgMaskStyle = {
-    backgroundColor: !backgroundClass && !customBackgroundColor ? '#000' : customBackgroundColor,
+    background: getMaskBackground(),
     opacity: backgroundImageOpacity / 100
   };
   /**
@@ -22023,7 +22070,6 @@ function getNumberInputStep(unit) {
 
   return 1;
 }
-;
 
 /***/ }),
 

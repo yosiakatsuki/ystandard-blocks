@@ -21,6 +21,8 @@ import {
 	withColors,
 	InnerBlocks,
 	MediaUpload,
+	__experimentalUseGradient,
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
 	__experimentalBlock as Block,
 } from '@wordpress/block-editor';
 import {
@@ -87,6 +89,11 @@ const sectionEdit = (props) => {
 		animationType,
 		animationSpeed,
 	} = attributes;
+	const {
+		gradientClass,
+		gradientValue,
+		setGradient,
+	} = __experimentalUseGradient();
 
 	const { colors } = select('core/block-editor').getSettings();
 
@@ -156,9 +163,20 @@ const sectionEdit = (props) => {
 	const bgMaskClass = classnames('ystdb-section__bg', {
 		'has-background': backgroundColor.color,
 		[backgroundColor.class]: backgroundColor.class,
+		'has-background-gradient': gradientValue,
+		[gradientClass]: gradientClass,
 	});
+	const getMaskBackground = () => {
+		if (gradientValue) {
+			return gradientValue;
+		}
+		if (backgroundColor.color) {
+			return backgroundColor.color;
+		}
+		return undefined;
+	};
 	const bgMaskStyle = {
-		backgroundColor: backgroundColor.color ? backgroundColor.color : '#000',
+		background: getMaskBackground(),
 		opacity: backgroundImageOpacity / 100,
 	};
 	/**
@@ -422,26 +440,22 @@ const sectionEdit = (props) => {
 							</div>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody
-						title={__('背景設定', 'ystandard-blocks')}
+					<PanelColorGradientSettings
+						title={__('オーバーレイ', 'ystandard-blocks')}
 						initialOpen={false}
+						settings={[
+							{
+								colorValue: backgroundColor.color,
+								gradientValue,
+								onColorChange: setBackgroundColor,
+								onGradientChange: setGradient,
+								label: __('背景色', 'ystandard-blocks'),
+							},
+						]}
 					>
 						<BaseControl
-							id={'background-color'}
-							label={__('背景色', 'ystandard-blocks')}
-						>
-							<ColorPalette
-								colors={colors}
-								disableCustomColors={false}
-								onChange={(color) => {
-									setBackgroundColor(color);
-								}}
-								value={backgroundColor.color}
-							/>
-						</BaseControl>
-						<BaseControl
 							id={'background-opacity'}
-							label={__('背景色の濃さ', 'ystandard-blocks')}
+							label={__('不透明度', 'ystandard-blocks')}
 						>
 							<RangeControl
 								value={backgroundImageOpacity}
@@ -459,6 +473,11 @@ const sectionEdit = (props) => {
 								step={1}
 							/>
 						</BaseControl>
+					</PanelColorGradientSettings>
+					<PanelBody
+						title={__('背景画像', 'ystandard-blocks')}
+						initialOpen={false}
+					>
 						<BaseControl
 							id={'background-image'}
 							label={__('背景画像', 'ystandard-blocks')}

@@ -1,6 +1,10 @@
 import classnames from 'classnames';
 
-import { getColorClassName, InnerBlocks } from '@wordpress/block-editor';
+import {
+	getColorClassName,
+	InnerBlocks,
+	__experimentalGetGradientClass,
+} from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';
 import {
 	dividerPath,
@@ -23,6 +27,8 @@ export default function save(props) {
 		paddingBottom,
 		paddingLeft,
 		paddingRight,
+		gradient,
+		customGradient,
 		backgroundType,
 		focalPoint,
 		backgroundImageURL,
@@ -61,6 +67,7 @@ export default function save(props) {
 	const isVideoBackground = VIDEO_BACKGROUND_TYPE === backgroundType;
 	const showFocalPointPicker =
 		isVideoBackground || (isImageBackground && !backgroundImageParallax);
+	const gradientClass = __experimentalGetGradientClass(gradient);
 
 	/**
 	 * 色設定
@@ -135,13 +142,21 @@ export default function save(props) {
 	 */
 	const bgMaskClass = classnames('ystdb-section__bg', {
 		'has-background': backgroundColor || customBackgroundColor,
+		'has-background-gradient': gradient || customGradient,
 		[backgroundClass]: backgroundClass,
+		[gradientClass]: gradientClass,
 	});
+	const getMaskBackground = () => {
+		if (customGradient) {
+			return customGradient;
+		}
+		if (!backgroundClass && !customBackgroundColor) {
+			return customBackgroundColor;
+		}
+		return undefined;
+	};
 	const bgMaskStyle = {
-		backgroundColor:
-			!backgroundClass && !customBackgroundColor
-				? '#000'
-				: customBackgroundColor,
+		background: getMaskBackground(),
 		opacity: backgroundImageOpacity / 100,
 	};
 
