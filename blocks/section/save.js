@@ -54,10 +54,16 @@ export default function save(props) {
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
+		dividerTopResponsive,
+		dividerLevelTopMin,
+		dividerLevelTopPreferred,
 		dividerColorTop,
 		customDividerColorTop,
 		dividerTypeBottom,
 		dividerLevelBottom,
+		dividerBottomResponsive,
+		dividerLevelBottomMin,
+		dividerLevelBottomPreferred,
 		dividerColorBottom,
 		customDividerColorBottom,
 		screenHeightMode,
@@ -136,7 +142,10 @@ export default function save(props) {
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
-		animationDelay: hasAnimation && 0 < animationDelay ? `${animationDelay}s` : undefined,
+		animationDelay:
+			hasAnimation && 0 < animationDelay
+				? `${animationDelay}s`
+				: undefined,
 		backgroundPosition: getBackgroundPosition(
 			showFocalPointPicker,
 			focalPoint
@@ -219,16 +228,47 @@ export default function save(props) {
 		paddingRight: 0 === paddingRight ? 0 : paddingRight + paddingUnit,
 	};
 
-	const divider = (type, position, level, colorClass, customColor) => {
+	const divider = (attr) => {
+		const {
+			type,
+			position,
+			level,
+			levelUnit,
+			colorClass,
+			customColor,
+			useResponsive,
+			levelMin,
+			levelMinUnit,
+			levelPreferred,
+		} = attr;
+
 		const dividerClass = classnames(
 			'ystdb-section__divider',
 			`ystdb-section__divider--${position}`,
 			`ystdb-section__divider--${type}`
 		);
-		const path = dividerPath(type, level);
+		let pathLevel = level;
+		if (useResponsive) {
+			pathLevel = 0 > level ? -100 : 100;
+		}
+		const path = dividerPath(type, pathLevel);
 		const svgClass = classnames('ystdb-section__divider-image', {
 			[colorClass]: colorClass,
 		});
+		const dataResponsiveClamp = useResponsive
+			? {
+					height: Math.abs(level),
+					width: 'auto',
+			  }
+			: undefined;
+
+		const clampLevel = `${Math.abs(level)}${levelUnit}`;
+		const clampMinLevel = `${Math.abs(levelMin)}${levelMinUnit}`;
+		const style = useResponsive
+			? {
+					height: `clamp( ${clampMinLevel}, ${levelPreferred}vw, ${clampLevel} )`,
+			  }
+			: undefined;
 
 		return (
 			<div className={dividerClass}>
@@ -236,7 +276,9 @@ export default function save(props) {
 					className={svgClass}
 					viewBox="0 0 100 100"
 					xmlns="http://www.w3.org/2000/svg"
-					preserveAspectRatio="none"
+					preserveAspectRatio={'none'}
+					data-responsive-clamp={dataResponsiveClamp}
+					style={style}
 				>
 					<Path d={path} strokewidth="0" fill={customColor} />
 				</SVG>
@@ -283,21 +325,31 @@ export default function save(props) {
 				</div>
 			)}
 			{dividerTop &&
-				divider(
-					dividerTypeTop,
-					'top',
-					dividerLevelTop,
-					dividerColorTopClass,
-					customDividerColorTop
-				)}
+				divider({
+					type: dividerTypeTop,
+					position: 'top',
+					level: dividerLevelTop,
+					levelUnit: 'px',
+					colorClass: dividerColorTopClass,
+					customColor: customDividerColorTop,
+					useResponsive: dividerTopResponsive,
+					levelMin: dividerLevelTopMin,
+					levelMinUnit: 'px',
+					levelPreferred: dividerLevelTopPreferred,
+				})}
 			{dividerBottom &&
-				divider(
-					dividerTypeBottom,
-					'bottom',
-					dividerLevelBottom,
-					dividerColorBottomClass,
-					customDividerColorBottom
-				)}
+				divider({
+					type: dividerTypeBottom,
+					position: 'bottom',
+					level: dividerLevelBottom,
+					levelUnit: 'px',
+					colorClass: dividerColorBottomClass,
+					customColor: customDividerColorBottom,
+					useResponsive: dividerBottomResponsive,
+					levelMin: dividerLevelBottomMin,
+					levelMinUnit: 'px',
+					levelPreferred: dividerLevelBottomPreferred,
+				})}
 			<div className="ystdb-section__container">
 				<Wrapper className={innerClasses} style={innerStyles}>
 					<InnerBlocks.Content />

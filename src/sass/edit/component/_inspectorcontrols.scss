@@ -80,6 +80,10 @@
   display: flex;
   width: 100%;
 
+  &.is-center {
+	align-items: center;
+  }
+
   > button {
 	display: block;
 	margin-right: 0;
@@ -108,3 +112,6 @@
 	margin-bottom: 8px;
   }
 }
+
+
+@import "../../../js/components/responsive-range/control";
