@@ -300,6 +300,10 @@ var attributes = {
     type: 'number',
     default: 2
   },
+  animationDelay: {
+    type: 'number',
+    default: 0
+  },
   wrapperTag: {
     type: 'string',
     default: 'div'
@@ -1441,7 +1445,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 var sectionEdit = function sectionEdit(props) {
-  var _classnames;
+  var _classnames2;
 
   var attributes = props.attributes,
       setAttributes = props.setAttributes,
@@ -1453,6 +1457,8 @@ var sectionEdit = function sectionEdit(props) {
       setTextColor = props.setTextColor,
       setDividerColorTop = props.setDividerColorTop,
       setDividerColorBottom = props.setDividerColorBottom,
+      setState = props.setState,
+      previewAnimation = props.previewAnimation,
       className = props.className;
   var wrapperTag = attributes.wrapperTag,
       marginTop = attributes.marginTop,
@@ -1493,7 +1499,8 @@ var sectionEdit = function sectionEdit(props) {
       screenHeightMode = attributes.screenHeightMode,
       sectionMinHeight = attributes.sectionMinHeight,
       animationType = attributes.animationType,
-      animationSpeed = attributes.animationSpeed;
+      animationSpeed = attributes.animationSpeed,
+      animationDelay = attributes.animationDelay;
 
   var _experimentalUseGrad = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_7__["__experimentalUseGradient"])(),
       gradientClass = _experimentalUseGrad.gradientClass,
@@ -1524,15 +1531,17 @@ var sectionEdit = function sectionEdit(props) {
     paddingTop: 0 === marginTop ? 0 : marginTop + 'px',
     paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'px'
   };
+  var hasAnimation = previewAnimation && 'none' !== animationType;
   /**
    * セクションクラス名
    */
 
-  var sectionClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-section', {
+  var sectionClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'ystdb-section', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
     'has-background-image': isImageBackground,
     'has-background-video': isVideoBackground,
-    'is-screen-height': screenHeightMode
-  });
+    'is-screen-height': screenHeightMode,
+    'has-animation': hasAnimation
+  }, "animation--".concat(animationType), hasAnimation));
   /**
    * セクションスタイル
    */
@@ -1543,6 +1552,8 @@ var sectionEdit = function sectionEdit(props) {
     paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
     backgroundImage: backgroundImageURL && isImageBackground ? "url(\"".concat(backgroundImageURL, "\")") : undefined,
     minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+    animationDuration: hasAnimation ? "".concat(animationSpeed, "s") : undefined,
+    animationDelay: hasAnimation && 0 < animationDelay ? "".concat(animationDelay, "s") : undefined,
     backgroundPosition: Object(_shared__WEBPACK_IMPORTED_MODULE_4__["getBackgroundPosition"])(showFocalPointPicker, focalPoint),
     backgroundSize: Object(_shared__WEBPACK_IMPORTED_MODULE_4__["getBackgroundSize"])(backgroundImageSize, backgroundImageSizeX, backgroundImageSizeY, backgroundImageSizeUnitX, backgroundImageSizeUnitY),
     backgroundRepeat: 'no-repeat' === backgroundImageRepeat ? undefined : backgroundImageRepeat
@@ -1551,9 +1562,9 @@ var sectionEdit = function sectionEdit(props) {
    * 背景マスク
    */
 
-  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames = {
+  var bgMaskClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-section__bg', (_classnames2 = {
     'has-background': backgroundColor.color
-  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'has-background-gradient', gradientValue), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, gradientClass, gradientClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, 'is-custom-size', useCustomOverlaySize), _classnames));
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background-gradient', gradientValue), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, gradientClass, gradientClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-custom-size', useCustomOverlaySize), _classnames2));
 
   var getMaskBackground = function getMaskBackground() {
     if (gradientValue) {
@@ -2240,7 +2251,7 @@ var sectionEdit = function sectionEdit(props) {
   }, "\u203B\u300C\u753B\u9762\u3068\u540C\u3058\u9AD8\u3055\u306B\u3059\u308B\u300D\u3092ON\u306B\u3057\u305F\u5834\u5408\u3001\u30BB\u30AF\u30B7\u30E7\u30F3\u6700\u5C0F\u9AD8\u3055\u3082\u5408\u308F\u305B\u3066\u8A2D\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002\uFF08\u4F8B\uFF1A500\uFF09")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('アニメーション設定', 'ystandard-blocks'),
     initialOpen: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('アニメーション種類', 'ystandard-blocks'),
     value: animationType,
     options: _config__WEBPACK_IMPORTED_MODULE_3__["animationTypes"],
@@ -2249,18 +2260,45 @@ var sectionEdit = function sectionEdit(props) {
         animationType: type
       });
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('アニメーション速度', 'ystandard-blocks'),
-    value: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(animationSpeed, 1, 10, 3),
+    value: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(animationSpeed, 1, 10, 2),
     onChange: function onChange(value) {
       return setAttributes({
-        animationSpeed: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 1, 10, 3)
+        animationSpeed: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 1, 10, 2)
       });
     },
     min: 1,
     max: 10,
     allowReset: true
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('アニメーション開始までの時間', 'ystandard-blocks'),
+    value: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(animationDelay, 0, 10, 0),
+    onChange: function onChange(value) {
+      return setAttributes({
+        animationDelay: Object(_src_js_util_getNum__WEBPACK_IMPORTED_MODULE_5__["default"])(value, 0, 10, 0)
+      });
+    },
+    min: 0,
+    max: 10,
+    allowReset: true
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Button"], {
+    key: 'check-animation',
+    isPrimary: true,
+    onClick: function onClick() {
+      setState({
+        previewAnimation: !previewAnimation
+      });
+
+      if (!previewAnimation) {
+        setTimeout(function () {
+          setState({
+            previewAnimation: false
+          });
+        }, (animationDelay + animationSpeed) * 1000);
+      }
+    }
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])(previewAnimation ? 'アニメーションの停止' : 'アニメーションの確認', 'ystandard-blocks')))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_10__["__"])('HTMLタグ設定', 'ystandard-blocks'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
@@ -2310,6 +2348,8 @@ var sectionEdit = function sectionEdit(props) {
   textColor: 'color',
   dividerColorTop: 'fill',
   dividerColorBottom: 'fill'
+}), Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_9__["withState"])({
+  previewAnimation: false
 })])(sectionEdit));
 
 /***/ }),
@@ -2449,7 +2489,8 @@ function save(props) {
       screenHeightMode = attributes.screenHeightMode,
       sectionMinHeight = attributes.sectionMinHeight,
       animationType = attributes.animationType,
-      animationSpeed = attributes.animationSpeed;
+      animationSpeed = attributes.animationSpeed,
+      animationDelay = attributes.animationDelay;
   /**
    * HTMLタグ
    */
@@ -2507,6 +2548,7 @@ function save(props) {
     paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
     paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
     animationDuration: hasAnimation ? "".concat(animationSpeed, "s") : undefined,
+    animationDelay: hasAnimation && 0 < animationDelay ? "".concat(animationDelay, "s") : undefined,
     backgroundPosition: Object(_shared__WEBPACK_IMPORTED_MODULE_6__["getBackgroundPosition"])(showFocalPointPicker, focalPoint),
     backgroundSize: Object(_shared__WEBPACK_IMPORTED_MODULE_6__["getBackgroundSize"])(backgroundImageSize, backgroundImageSizeX, backgroundImageSizeY, backgroundImageSizeUnitX, backgroundImageSizeUnitY),
     backgroundRepeat: 'no-repeat' === backgroundImageRepeat ? undefined : backgroundImageRepeat

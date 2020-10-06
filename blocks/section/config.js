@@ -185,6 +185,10 @@ export const attributes = {
 		type: 'number',
 		default: 2,
 	},
+	animationDelay: {
+		type: 'number',
+		default: 0,
+	},
 	wrapperTag: {
 		type: 'string',
 		default: 'div',

@@ -64,6 +64,7 @@ export default function save(props) {
 		sectionMinHeight,
 		animationType,
 		animationSpeed,
+		animationDelay,
 	} = attributes;
 
 	/**
@@ -135,6 +136,7 @@ export default function save(props) {
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
+		animationDelay: hasAnimation && 0 < animationDelay ? `${animationDelay}s` : undefined,
 		backgroundPosition: getBackgroundPosition(
 			showFocalPointPicker,
 			focalPoint
