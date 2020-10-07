@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
  * data-responsive-clamp関連
  */
 function parseResponsiveClamp() {
-	const data = document.querySelectorAll('[data-responsive-clamp]');
+	const dataList = document.querySelectorAll('[data-responsive-clamp]');
+	var data = Array.prototype.slice.call(dataList,0);
 	data.forEach((el) => {
 		const attr = el.getAttribute('data-responsive-clamp');
 		const styles = JSON.parse(attr);
