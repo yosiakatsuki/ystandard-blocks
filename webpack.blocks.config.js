@@ -4,6 +4,7 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		'app': './src/js/app/app.js',
+		'app-ie': './src/js/app/app-ie.js',
 		'block': './src/js/block/block.js',
 		'icons': './src/js/components/icon-select/app.js',
 		'svg-button': './blocks/svg-button/index.js',

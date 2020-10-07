@@ -191,6 +191,13 @@ class ResponsiveRangeControl extends Component {
 								{showDeviceSizeValue && (
 									<div className="ystdb-responsive-range__info">
 										<div className="ystdb-inspector-controls__columns is-center">
+											<div
+												className={
+													'ystdb-responsive-range__info-label'
+												}
+											>
+												参考値{' '}
+											</div>
 											<span>
 												<SVGIcon name={'smartphone'} />
 												{calcSize.mobile}

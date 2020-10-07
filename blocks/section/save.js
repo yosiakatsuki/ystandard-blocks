@@ -256,10 +256,7 @@ export default function save(props) {
 			[colorClass]: colorClass,
 		});
 		const dataResponsiveClamp = useResponsive
-			? {
-					height: Math.abs(level),
-					width: 'auto',
-			  }
+			? JSON.stringify({ height: `${Math.abs(level)}px` })
 			: undefined;
 
 		const clampLevel = `${Math.abs(level)}${levelUnit}`;

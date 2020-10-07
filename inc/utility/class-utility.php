@@ -79,6 +79,42 @@ class Utility {
 	}
 
 	/**
+	 * Polyfillが必要か
+	 *
+	 * @return bool
+	 */
+	public static function need_polyfill() {
+		return ( self::is_ie() || self::is_edge() );
+	}
+
+	/**
+	 * IEチェック
+	 *
+	 * @return bool
+	 */
+	public static function is_ie() {
+		$ua = [
+			'Trident',
+			'MSIE',
+		];
+
+		return self::check_user_agent( $ua );
+	}
+
+	/**
+	 * Edgeチェック
+	 *
+	 * @return bool
+	 */
+	public static function is_edge() {
+		$ua = [
+			'Edge',
+		];
+
+		return self::check_user_agent( $ua );
+	}
+
+	/**
 	 * Parse Block.
 	 *
 	 * @param string $content content.
@@ -465,6 +501,22 @@ class Utility {
 		}
 
 		return $types;
+	}
+
+	/**
+	 * ユーザーエージェントのチェック
+	 *
+	 * @param array $ua 対象ユーザーエージェントのリスト.
+	 *
+	 * @return boolean
+	 */
+	public static function check_user_agent( $ua ) {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return false;
+		}
+		$pattern = '/' . implode( '|', $ua ) . '/i';
+
+		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 	}
 
 }
