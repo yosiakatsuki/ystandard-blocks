@@ -55,4 +55,8 @@ export const overlay = {
 		type: 'string',
 		default: '%',
 	},
+	backgroundImageOpacity: {
+		type: 'integer',
+		default: 100,
+	},
 };

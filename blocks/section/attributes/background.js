@@ -16,10 +16,6 @@ export const background = {
 		type: 'integer',
 		default: 0,
 	},
-	backgroundImageOpacity: {
-		type: 'integer',
-		default: 100,
-	},
 	backgroundImageParallax: {
 		type: 'bool',
 		default: false,
@@ -44,5 +40,13 @@ export const background = {
 	backgroundImageRepeat: {
 		type: 'string',
 		default: 'no-repeat',
+	},
+	backgroundImageOnOverlay: {
+		type: 'bool',
+		default: false,
+	},
+	backgroundImageOnOverlayOpacity: {
+		type: 'integer',
+		default: 80,
 	},
 };

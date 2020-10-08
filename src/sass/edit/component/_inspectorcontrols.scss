@@ -8,6 +8,23 @@
 	  font-weight: 400;
 	}
   }
+  .components-panel__body {
+	&.is-opened {
+	  > .components-panel__body {
+		margin-right: -16px;
+		margin-left: -16px;
+		&:not(.is-opened) {
+		  margin-bottom: -16px;
+		}
+	  }
+	}
+  }
+
+  .dark-focal-point-picker {
+	.components-focal-point-picker-wrapper {
+	  background-color: #313131;
+	}
+  }
 }
 
 .ystdb-inspectorcontrols__horizontal-radio {
@@ -107,11 +124,64 @@
   }
 }
 
+.ystdb__preset-select-buttons {
+  > button {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	height: auto;
+	border: 1px solid var(--wp-admin-theme-color);
+	box-shadow: none !important;
+
+	&:nth-child(n+2) {
+	  border-top: 0;
+	}
+  }
+
+  .is-block {
+	display: block;
+  }
+
+  .is-flex {
+	display: flex;
+  }
+}
+
+.ystdb__design-select {
+  > button {
+	display: block;
+	width: 100%;
+	padding: 1.5em 1em;
+	margin-top: 1.5em;
+	height: auto;
+	border: 0;
+	border-radius: 0.5em;
+	outline: none;
+	box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0 !important;
+	transition: background-color .3s;
+
+	&:hover,
+	&:focus {
+	  background-color: $color__bg-gray-light;
+	}
+  }
+
+  .is-block {
+	display: block;
+  }
+
+  .is-flex {
+	display: flex;
+  }
+}
+
 .ystdb-inspector-controls__toggle-list {
   .components-toggle-control {
 	margin-bottom: 8px;
   }
 }
+
+
 
 
 @import "../../../js/components/responsive-range/control";

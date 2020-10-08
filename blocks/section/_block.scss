@@ -1,19 +1,19 @@
 .ystdb-section {
+  display: flex;
+  align-items: center;
   position: relative;
   z-index: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
-  &.is-screen-height {
-	display: flex;
-	align-items: center;
-	height: 100vh;
+  .ystdb-section__container {
+	flex: 0 0 100%;
+	max-width: 100%;
+  }
 
-	.ystdb-section__container {
-	  flex: 0 0 100%;
-	  max-width: 100%;
-	}
+  &.is-screen-height {
+	height: 100vh;
   }
 
   &.has-parallax {
@@ -67,6 +67,17 @@
 	width: 100%;
 	height: 100%;
   }
+}
+
+.ystdb-section__overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .ystdb-section__inner {

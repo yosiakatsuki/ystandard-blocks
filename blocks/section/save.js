@@ -71,6 +71,8 @@ export default function save(props) {
 		backgroundImageSizeY,
 		backgroundImageSizeUnitY,
 		backgroundImageRepeat,
+		backgroundImageOnOverlay,
+		backgroundImageOnOverlayOpacity,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -127,6 +129,31 @@ export default function save(props) {
 	const hasAnimation = animationType && 'none' !== animationType;
 
 	/**
+	 * 背景画像
+	 */
+	const backgroundImageStyles = {
+		backgroundImage:
+			backgroundImageURL && isImageBackground
+				? `url("${backgroundImageURL}")`
+				: undefined,
+		backgroundPosition: getBackgroundPosition(
+			showFocalPointPicker,
+			focalPoint
+		),
+		backgroundSize: getBackgroundSize(
+			backgroundImageSize,
+			backgroundImageSizeX,
+			backgroundImageSizeY,
+			backgroundImageSizeUnitX,
+			backgroundImageSizeUnitY
+		),
+		backgroundRepeat:
+			'no-repeat' === backgroundImageRepeat
+				? undefined
+				: backgroundImageRepeat,
+	};
+
+	/**
 	 * 背景関連
 	 */
 	const showBgMask =
@@ -164,7 +191,7 @@ export default function save(props) {
 	/**
 	 * セクションスタイル
 	 */
-	const sectionStyles = {
+	let sectionStyles = {
 		color: textColorClass ? undefined : customTextColor,
 		paddingTop: getMargin(
 			paddingTop,
@@ -196,31 +223,19 @@ export default function save(props) {
 			marginBottomMin,
 			marginBottomPreferred
 		),
-		backgroundImage: backgroundImageURL
-			? `url("${backgroundImageURL}")`
-			: undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
 		animationDelay:
 			hasAnimation && 0 < animationDelay
 				? `${animationDelay}s`
 				: undefined,
-		backgroundPosition: getBackgroundPosition(
-			showFocalPointPicker,
-			focalPoint
-		),
-		backgroundSize: getBackgroundSize(
-			backgroundImageSize,
-			backgroundImageSizeX,
-			backgroundImageSizeY,
-			backgroundImageSizeUnitX,
-			backgroundImageSizeUnitY
-		),
-		backgroundRepeat:
-			'no-repeat' === backgroundImageRepeat
-				? undefined
-				: backgroundImageRepeat,
 	};
+	if (!backgroundImageOnOverlay) {
+		sectionStyles = {
+			...sectionStyles,
+			...backgroundImageStyles,
+		};
+	}
 
 	const sectionClampData = {
 		'margin-top': marginTopResponsive
@@ -286,6 +301,16 @@ export default function save(props) {
 				: undefined,
 		...getMaskPosition(),
 	};
+
+	let overlayImageStyle = {
+		opacity: backgroundImageOnOverlayOpacity / 100,
+	};
+	if (backgroundImageOnOverlay) {
+		overlayImageStyle = {
+			...overlayImageStyle,
+			...backgroundImageStyles,
+		};
+	}
 
 	/**
 	 * インナー
@@ -415,6 +440,16 @@ export default function save(props) {
 					role="img"
 					style={bgMaskStyle}
 				>
+					{backgroundImageOnOverlay && (
+						<div
+							className={'ystdb-section__overlay-image'}
+							aria-hidden="true"
+							role="img"
+							style={overlayImageStyle}
+						>
+							&nbsp;
+						</div>
+					)}
 					&nbsp;
 				</div>
 			)}

@@ -11,6 +11,7 @@ import {
 	backgroundImageSizeOption,
 	backgroundImageSizeUnitOption,
 	backgroundImageRepeatOption,
+	backgroundPatternOptions,
 	IMAGE_BACKGROUND_TYPE,
 	VIDEO_BACKGROUND_TYPE,
 } from './config';
@@ -63,6 +64,7 @@ const sectionEdit = (props) => {
 		setDividerColorBottom,
 		setState,
 		previewAnimation,
+		useDarkImagePreview,
 		className,
 	} = props;
 	const {
@@ -115,6 +117,8 @@ const sectionEdit = (props) => {
 		backgroundImageSizeY,
 		backgroundImageSizeUnitY,
 		backgroundImageRepeat,
+		backgroundImageOnOverlay,
+		backgroundImageOnOverlayOpacity,
 		innerCustomWidth,
 		dividerTypeTop,
 		dividerLevelTop,
@@ -152,6 +156,7 @@ const sectionEdit = (props) => {
 	 * 背景画像関連
 	 */
 	const ALLOWED_MEDIA_TYPES = ['image', 'video'];
+	const DARK_IMAGE_PREVIEW_COLOR = '#313131';
 	const showBgMask =
 		backgroundImageURL || backgroundColor.color || gradientValue;
 	const isImageBackground = IMAGE_BACKGROUND_TYPE === backgroundType;
@@ -201,45 +206,14 @@ const sectionEdit = (props) => {
 	};
 
 	const hasAnimation = previewAnimation && 'none' !== animationType;
-	/**
-	 * セクションクラス名
-	 */
-	const sectionClass = classnames(className, 'ystdb-section', {
-		'has-background-image': isImageBackground,
-		'has-background-video': isVideoBackground,
-		'is-screen-height': screenHeightMode,
-		'has-animation': hasAnimation,
-		[`animation--${animationType}`]: hasAnimation,
-	});
 
 	/**
-	 * セクションスタイル
+	 * 背景画像
 	 */
-	const sectionStyles = {
-		color: textColor.color,
-		paddingTop: getMargin(
-			paddingTop,
-			paddingUnit,
-			paddingTopResponsive,
-			paddingTopMin,
-			paddingTopPreferred
-		),
-		paddingBottom: getMargin(
-			paddingBottom,
-			paddingUnit,
-			paddingBottomResponsive,
-			paddingBottomMin,
-			paddingBottomPreferred
-		),
+	const backgroundImageStyles = {
 		backgroundImage:
 			backgroundImageURL && isImageBackground
 				? `url("${backgroundImageURL}")`
-				: undefined,
-		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
-		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
-		animationDelay:
-			hasAnimation && 0 < animationDelay
-				? `${animationDelay}s`
 				: undefined,
 		backgroundPosition: getBackgroundPosition(
 			showFocalPointPicker,
@@ -257,6 +231,50 @@ const sectionEdit = (props) => {
 				? undefined
 				: backgroundImageRepeat,
 	};
+
+	/**
+	 * セクションクラス名
+	 */
+	const sectionClass = classnames(className, 'ystdb-section', {
+		'has-background-image': isImageBackground,
+		'has-background-video': isVideoBackground,
+		'is-screen-height': screenHeightMode,
+		'has-animation': hasAnimation,
+		[`animation--${animationType}`]: hasAnimation,
+	});
+
+	/**
+	 * セクションスタイル
+	 */
+	let sectionStyles = {
+		color: textColor.color,
+		paddingTop: getMargin(
+			paddingTop,
+			paddingUnit,
+			paddingTopResponsive,
+			paddingTopMin,
+			paddingTopPreferred
+		),
+		paddingBottom: getMargin(
+			paddingBottom,
+			paddingUnit,
+			paddingBottomResponsive,
+			paddingBottomMin,
+			paddingBottomPreferred
+		),
+		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
+		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
+		animationDelay:
+			hasAnimation && 0 < animationDelay
+				? `${animationDelay}s`
+				: undefined,
+	};
+	if (!backgroundImageOnOverlay) {
+		sectionStyles = {
+			...sectionStyles,
+			...backgroundImageStyles,
+		};
+	}
 	/**
 	 * 背景マスク
 	 */
@@ -306,6 +324,16 @@ const sectionEdit = (props) => {
 				: undefined,
 		...getMaskPosition(),
 	};
+
+	let overlayImageStyle = {
+		opacity: backgroundImageOnOverlayOpacity / 100,
+	};
+	if (backgroundImageOnOverlay) {
+		overlayImageStyle = {
+			...overlayImageStyle,
+			...backgroundImageStyles,
+		};
+	}
 	/**
 	 * インナー
 	 */
@@ -356,7 +384,12 @@ const sectionEdit = (props) => {
 				<Button
 					onClick={obj.open}
 					className={'ystdb-mediaupload__preview'}
-					style={{ padding: 0 }}
+					style={{
+						padding: 0,
+						backgroundColor: useDarkImagePreview
+							? DARK_IMAGE_PREVIEW_COLOR
+							: undefined,
+					}}
 				>
 					{backgroundType === IMAGE_BACKGROUND_TYPE && (
 						<img
@@ -374,9 +407,19 @@ const sectionEdit = (props) => {
 						setAttributes({
 							backgroundImageURL: '',
 							backgroundImageID: 0,
-							backgroundType: undefined,
 							focalPoint: undefined,
+							backgroundType: undefined,
+							backgroundImageParallax: undefined,
+							backgroundImageSize: undefined,
+							backgroundImageSizeX: undefined,
+							backgroundImageSizeUnitX: undefined,
+							backgroundImageSizeY: undefined,
+							backgroundImageSizeUnitY: undefined,
+							backgroundImageRepeat: undefined,
+							backgroundImageOnOverlay: undefined,
+							backgroundImageOnOverlayOpacity: undefined,
 						});
+						setState({ useDarkImagePreview: false });
 					}}
 				>
 					{__('背景画像をクリア', 'ystandard-blocks')}
@@ -1144,6 +1187,17 @@ const sectionEdit = (props) => {
 											backgroundImageAlt: media.alt,
 											backgroundType: mediaType,
 										});
+										if (
+											mediaType === VIDEO_BACKGROUND_TYPE
+										) {
+											setAttributes({
+												backgroundImageOnOverlay: false,
+												backgroundImageOnOverlayOpacity: 80,
+											});
+											setState({
+												useDarkImagePreview: false,
+											});
+										}
 										if (100 === backgroundImageOpacity) {
 											setAttributes({
 												backgroundImageOpacity: 50,
@@ -1156,6 +1210,23 @@ const sectionEdit = (props) => {
 								/>
 							</div>
 						</BaseControl>
+						{backgroundImageURL &&
+							IMAGE_BACKGROUND_TYPE === backgroundType && (
+								<BaseControl>
+									<ToggleControl
+										label={__(
+											'プレビューを暗くする',
+											'ystandard-blocks'
+										)}
+										checked={useDarkImagePreview}
+										onChange={() => {
+											setState({
+												useDarkImagePreview: !useDarkImagePreview,
+											});
+										}}
+									/>
+								</BaseControl>
+							)}
 						{showFocalPointPicker && backgroundImageURL && (
 							<>
 								<BaseControl
@@ -1171,6 +1242,9 @@ const sectionEdit = (props) => {
 												focalPoint: newFocalPoint,
 											});
 										}}
+										className={classnames({
+											'dark-focal-point-picker': useDarkImagePreview,
+										})}
 									/>
 								</BaseControl>
 								<BaseControl
@@ -1303,22 +1377,124 @@ const sectionEdit = (props) => {
 										}}
 									/>
 								</BaseControl>
+								<BaseControl
+									id={'background-opacity'}
+									label={__('固定背景', 'ystandard-blocks')}
+								>
+									<ToggleControl
+										label={__(
+											'背景を固定する',
+											'ystandard-blocks'
+										)}
+										checked={backgroundImageParallax}
+										onChange={() => {
+											setAttributes({
+												backgroundImageParallax: !backgroundImageParallax,
+											});
+										}}
+									/>
+								</BaseControl>
 							</>
 						)}
-						<BaseControl
-							id={'background-opacity'}
-							label={__('固定背景', 'ystandard-blocks')}
+						<PanelBody
+							title={__('背景パターン', 'ystandard-blocks')}
+							initialOpen={false}
 						>
-							<ToggleControl
-								label={__('背景を固定する', 'ystandard-blocks')}
-								checked={backgroundImageParallax}
-								onChange={() => {
-									setAttributes({
-										backgroundImageParallax: !backgroundImageParallax,
-									});
-								}}
-							/>
-						</BaseControl>
+							<BaseControl>
+								<div className="ystdb-inspector-controls__dscr">
+									背景パターン画像を使うときに便利な設定です。
+								</div>
+							</BaseControl>
+							<BaseControl
+								id={'background-pattern-overlay'}
+								label={__('オーバーレイ', 'ystandard-blocks')}
+							>
+								<ToggleControl
+									label={__(
+										'背景画像をオーバーレイより前に重ねる',
+										'ystandard-blocks'
+									)}
+									checked={backgroundImageOnOverlay}
+									onChange={() => {
+										if (backgroundImageOnOverlay) {
+											setAttributes({
+												backgroundImageOnOverlayOpacity: 80,
+											});
+										}
+										setAttributes({
+											backgroundImageOnOverlay: !backgroundImageOnOverlay,
+										});
+									}}
+								/>
+							</BaseControl>
+							{backgroundImageOnOverlay && (
+								<BaseControl
+									id={'background-pattern-overlay-opacity'}
+									label={__(
+										'背景画像の不透明度',
+										'ystandard-blocks'
+									)}
+								>
+									<RangeControl
+										value={backgroundImageOnOverlayOpacity}
+										onChange={(value) =>
+											setAttributes({
+												backgroundImageOnOverlayOpacity: getNum(
+													value,
+													0,
+													100
+												),
+											})
+										}
+										min={0}
+										max={100}
+										step={1}
+									/>
+								</BaseControl>
+							)}
+							<BaseControl
+								id={'background-pattern-preset'}
+								label={__(
+									'サンプル背景パターン',
+									'ystandard-blocks'
+								)}
+							>
+								<div className="ystdb-inspector-controls__dscr">
+									背景パターンのサンプルデザインです。デザインを選択すると、必要な設定がセットされます。
+								</div>
+								<div className="ystdb__design-select">
+									{backgroundPatternOptions.map((item) => {
+										const imageUrl = `${ystdb.pluginUrl}/assets/images/background-pattern/${item.image}`;
+										return (
+											<Button
+												key={item.name}
+												onClick={() => {
+													setAttributes({
+														...item.value,
+														backgroundImageURL: imageUrl,
+													});
+													setState({
+														useDarkImagePreview:
+															item.useDarkPreview,
+													});
+												}}
+												style={{
+													...item.style,
+													backgroundImage: `url('${imageUrl}')`,
+													backgroundColor: item.useDarkPreview
+														? DARK_IMAGE_PREVIEW_COLOR
+														: undefined,
+												}}
+											>
+												<span style={{ opacity: 0 }}>
+													{item.name}
+												</span>
+											</Button>
+										);
+									})}
+								</div>
+							</BaseControl>
+						</PanelBody>
 					</PanelBody>
 					<PanelBody
 						title={__('文字設定', 'ystandard-blocks')}
@@ -1749,6 +1925,16 @@ const sectionEdit = (props) => {
 							role="img"
 							style={bgMaskStyle}
 						>
+							{backgroundImageOnOverlay && (
+								<div
+									className={'ystdb-section__overlay-image'}
+									aria-hidden="true"
+									role="img"
+									style={overlayImageStyle}
+								>
+									&nbsp;
+								</div>
+							)}
 							&nbsp;
 						</div>
 					)}
@@ -1795,5 +1981,8 @@ export default compose([
 		dividerColorTop: 'fill',
 		dividerColorBottom: 'fill',
 	}),
-	withState({ previewAnimation: false }),
+	withState({
+		previewAnimation: false,
+		useDarkImagePreview: false,
+	}),
 ])(sectionEdit);

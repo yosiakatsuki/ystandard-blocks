@@ -41,6 +41,7 @@
 - [追加] セクションブロック　アニメーション確認機能追加
 - [追加] セクションブロック　余白　最大・最小サイズ設定追加
 - [追加] セクションブロック　区切り線　最大・最小サイズ設定追加
+- [追加] セクションブロック　背景パターン画像サンプル選択機能
 - [修正] カスタム見出しブロック スタイル調整
 
 ### v2.4.1
@@ -277,3 +278,8 @@ Source : <https://github.com/xiaokaike/vue-color>
 
 License: Open Font License.  
 Source : <https://fonts.google.com/specimen/Lato>
+
+### BGJar.
+
+License: CC BY 4.0  
+Source : <https://bgjar.com/>
