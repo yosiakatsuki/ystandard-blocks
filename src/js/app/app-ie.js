@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function parseResponsiveClamp() {
 	const dataList = document.querySelectorAll('[data-responsive-clamp]');
-	var data = Array.prototype.slice.call(dataList,0);
+	const data = Array.prototype.slice.call(dataList, 0);
 	data.forEach((el) => {
 		const attr = el.getAttribute('data-responsive-clamp');
 		const styles = JSON.parse(attr);
