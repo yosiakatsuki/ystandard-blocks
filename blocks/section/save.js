@@ -12,6 +12,8 @@ import {
 	VIDEO_BACKGROUND_TYPE,
 } from './config';
 import { getBackgroundPosition, getBackgroundSize } from './shared';
+import getCssClamp from '../../src/js/util/_getCssClamp';
+import getDataClamp from '../../src/js/util/_getDataClamp';
 
 export default function save(props) {
 	const { attributes } = props;
@@ -22,11 +24,29 @@ export default function save(props) {
 		textColor,
 		customTextColor,
 		marginTop,
+		marginTopResponsive,
+		marginTopMin,
+		marginTopPreferred,
 		marginBottom,
+		marginBottomResponsive,
+		marginBottomMin,
+		marginBottomPreferred,
 		paddingTop,
+		paddingTopResponsive,
+		paddingTopMin,
+		paddingTopPreferred,
 		paddingBottom,
+		paddingBottomResponsive,
+		paddingBottomMin,
+		paddingBottomPreferred,
 		paddingLeft,
+		paddingLeftResponsive,
+		paddingLeftMin,
+		paddingLeftPreferred,
 		paddingRight,
+		paddingRightResponsive,
+		paddingRightMin,
+		paddingRightPreferred,
 		useCustomOverlaySize,
 		overlaySizeX,
 		overlaySizeUnitX,
@@ -126,21 +146,60 @@ export default function save(props) {
 		'has-parallax': backgroundImageParallax,
 	});
 	const dataAnimation = hasAnimation ? animationType : undefined;
+
+	const getMargin = (value, unit, useResponsive, min, preferred) => {
+		if (!useResponsive) {
+			if (0 === value) {
+				return 0;
+			}
+			return undefined !== value ? `${value}${unit}` : undefined;
+		}
+		return getCssClamp({
+			min,
+			max: value,
+			unit,
+			preferred,
+		});
+	};
 	/**
 	 * セクションスタイル
 	 */
 	const sectionStyles = {
 		color: textColorClass ? undefined : customTextColor,
-		paddingTop: 0 === paddingTop ? 0 : paddingTop + paddingUnit,
-		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + paddingUnit,
-		marginTop: marginTop + marginUnit,
-		marginBottom: marginBottom + marginUnit,
+		paddingTop: getMargin(
+			paddingTop,
+			paddingUnit,
+			paddingTopResponsive,
+			paddingTopMin,
+			paddingTopPreferred
+		),
+		paddingBottom: getMargin(
+			paddingBottom,
+			paddingUnit,
+			paddingBottomResponsive,
+			paddingBottomMin,
+			paddingBottomPreferred
+		),
+		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
+		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
+		marginTop: getMargin(
+			marginTop,
+			marginUnit,
+			marginTopResponsive,
+			marginTopMin,
+			marginTopPreferred
+		),
+		marginBottom: getMargin(
+			marginBottom,
+			marginUnit,
+			marginBottomResponsive,
+			marginBottomMin,
+			marginBottomPreferred
+		),
 		backgroundImage: backgroundImageURL
 			? `url("${backgroundImageURL}")`
 			: undefined,
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
-		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
-		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
 		animationDelay:
 			hasAnimation && 0 < animationDelay
@@ -161,6 +220,21 @@ export default function save(props) {
 			'no-repeat' === backgroundImageRepeat
 				? undefined
 				: backgroundImageRepeat,
+	};
+
+	const sectionClampData = {
+		'margin-top': marginTopResponsive
+			? `${marginTop}${marginUnit}`
+			: undefined,
+		'margin-bottom': marginBottomResponsive
+			? `${marginBottom}${marginUnit}`
+			: undefined,
+		'padding-top': paddingTopResponsive
+			? `${paddingTop}${paddingUnit}`
+			: undefined,
+		'padding-bottom': paddingBottomResponsive
+			? `${paddingBottom}${paddingUnit}`
+			: undefined,
 	};
 
 	/**
@@ -224,8 +298,29 @@ export default function save(props) {
 		maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 		marginRight: 'auto',
 		marginLeft: 'auto',
-		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + paddingUnit,
-		paddingRight: 0 === paddingRight ? 0 : paddingRight + paddingUnit,
+		paddingLeft: getMargin(
+			paddingLeft,
+			paddingUnit,
+			paddingLeftResponsive,
+			paddingLeftMin,
+			paddingLeftPreferred
+		),
+		paddingRight: getMargin(
+			paddingRight,
+			paddingUnit,
+			paddingRightResponsive,
+			paddingRightMin,
+			paddingRightPreferred
+		),
+	};
+
+	const innerClampData = {
+		'padding-left': paddingLeftResponsive
+			? `${paddingLeft}${paddingUnit}`
+			: undefined,
+		'padding-right': paddingRightResponsive
+			? `${paddingRight}${paddingUnit}`
+			: undefined,
 	};
 
 	const divider = (attr) => {
@@ -255,9 +350,6 @@ export default function save(props) {
 		const svgClass = classnames('ystdb-section__divider-image', {
 			[colorClass]: colorClass,
 		});
-		const dataResponsiveClamp = useResponsive
-			? JSON.stringify({ height: `${Math.abs(level)}px` })
-			: undefined;
 
 		const clampLevel = `${Math.abs(level)}${levelUnit}`;
 		const clampMinLevel = `${Math.abs(levelMin)}${levelMinUnit}`;
@@ -274,10 +366,14 @@ export default function save(props) {
 					viewBox="0 0 100 100"
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio={'none'}
-					data-responsive-clamp={dataResponsiveClamp}
 					style={style}
+					{...getDataClamp({
+						height: useResponsive
+							? `${Math.abs(level)}px`
+							: undefined,
+					})}
 				>
-					<Path d={path} strokewidth="0" fill={customColor} />
+					<Path d={path} fill={customColor} />
 				</SVG>
 			</div>
 		);
@@ -295,6 +391,7 @@ export default function save(props) {
 			className={sectionClass}
 			style={sectionStyles}
 			data-animation={dataAnimation}
+			{...getDataClamp(sectionClampData)}
 		>
 			{isVideoBackground && (
 				<video
@@ -348,7 +445,11 @@ export default function save(props) {
 					levelPreferred: dividerLevelBottomPreferred,
 				})}
 			<div className="ystdb-section__container">
-				<Wrapper className={innerClasses} style={innerStyles}>
+				<Wrapper
+					className={innerClasses}
+					style={innerStyles}
+					{...getDataClamp(innerClampData)}
+				>
 					<InnerBlocks.Content />
 				</Wrapper>
 			</div>

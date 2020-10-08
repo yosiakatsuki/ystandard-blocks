@@ -1,222 +1,31 @@
 import { __ } from '@wordpress/i18n';
 import getNum from '../../src/js/util/_getNum';
+import { margin } from './attributes/margin';
+import { padding } from './attributes/padding';
+import { overlay } from './attributes/overlay';
+import { background } from './attributes/background';
+import { text } from './attributes/text';
+import { divider } from './attributes/divider';
+import { innerWidth } from './attributes/inner-width';
+import { screenHeight } from './attributes/screen-height';
+import { animation } from './attributes/animation';
+import { wrapper } from './attributes/wrapper';
 
 /**
  * attributes
  */
 export const attributes = {
-	marginTop: {
-		type: 'number',
-		default: 0,
-	},
-	marginBottom: {
-		type: 'number',
-		default: 0,
-	},
-	paddingTop: {
-		type: 'number',
-		default: 80,
-	},
-	paddingBottom: {
-		type: 'number',
-		default: 80,
-	},
-	paddingLeft: {
-		type: 'number',
-		default: 0,
-	},
-	paddingRight: {
-		type: 'number',
-		default: 0,
-	},
-	backgroundColor: {
-		type: 'string',
-	},
-	customBackgroundColor: {
-		type: 'string',
-	},
-	gradient: {
-		type: 'string',
-	},
-	customGradient: {
-		type: 'string',
-	},
-	useCustomOverlaySize: {
-		type: 'bool',
-		default: false,
-	},
-	overlaySizeX: {
-		type: 'string',
-		default: '100',
-	},
-	overlaySizeUnitX: {
-		type: 'string',
-		default: '%',
-	},
-	overlaySizeY: {
-		type: 'string',
-		default: '100',
-	},
-	overlaySizeUnitY: {
-		type: 'string',
-		default: '%',
-	},
-	overlayPositionX: {
-		type: 'string',
-		default: 'top',
-	},
-	overlayPositionValueX: {
-		type: 'string',
-		default: '0',
-	},
-	overlayPositionUnitX: {
-		type: 'string',
-		default: '%',
-	},
-	overlayPositionY: {
-		type: 'string',
-		default: 'left',
-	},
-	overlayPositionValueY: {
-		type: 'string',
-		default: '0',
-	},
-	overlayPositionUnitY: {
-		type: 'string',
-		default: '%',
-	},
-	backgroundType: {
-		type: 'string',
-		default: 'image',
-	},
-	focalPoint: {
-		type: 'object',
-	},
-	backgroundImageURL: {
-		type: 'string',
-	},
-	backgroundImageAlt: {
-		type: 'string',
-	},
-	backgroundImageID: {
-		type: 'integer',
-		default: 0,
-	},
-	backgroundImageOpacity: {
-		type: 'integer',
-		default: 100,
-	},
-	backgroundImageParallax: {
-		type: 'bool',
-		default: false,
-	},
-	backgroundImageSize: {
-		type: 'string',
-	},
-	backgroundImageSizeX: {
-		type: 'string',
-	},
-	backgroundImageSizeUnitX: {
-		type: 'string',
-		default: 'px',
-	},
-	backgroundImageSizeY: {
-		type: 'string',
-	},
-	backgroundImageSizeUnitY: {
-		type: 'string',
-		default: 'px',
-	},
-	backgroundImageRepeat: {
-		type: 'string',
-		default: 'no-repeat',
-	},
-	textColor: {
-		type: 'string',
-	},
-	customTextColor: {
-		type: 'string',
-	},
-	dividerTypeTop: {
-		type: 'string',
-		default: 'skew',
-	},
-	dividerTopResponsive: {
-		type: 'bool',
-		default: false,
-	},
-	dividerLevelTop: {
-		type: 'number',
-		default: 0,
-	},
-	dividerLevelTopMin: {
-		type: 'number',
-		default: 0,
-	},
-	dividerLevelTopPreferred: {
-		type: 'string',
-		default: '8',
-	},
-	dividerColorTop: {
-		type: 'string',
-	},
-	customDividerColorTop: {
-		type: 'string',
-	},
-	dividerTypeBottom: {
-		type: 'string',
-		default: 'skew',
-	},
-	dividerBottomResponsive: {
-		type: 'bool',
-		default: false,
-	},
-	dividerLevelBottom: {
-		type: 'number',
-		default: 0,
-	},
-	dividerLevelBottomMin: {
-		type: 'number',
-		default: 0,
-	},
-	dividerLevelBottomPreferred: {
-		type: 'string',
-		default: '8',
-	},
-	dividerColorBottom: {
-		type: 'string',
-	},
-	customDividerColorBottom: {
-		type: 'string',
-	},
-	innerCustomWidth: {
-		type: 'integer',
-		default: 0,
-	},
-	screenHeightMode: {
-		type: 'bool',
-		default: false,
-	},
-	sectionMinHeight: {
-		type: 'number',
-		default: 0,
-	},
-	animationType: {
-		type: 'string',
-		default: 'none',
-	},
-	animationSpeed: {
-		type: 'number',
-		default: 2,
-	},
-	animationDelay: {
-		type: 'number',
-		default: 0,
-	},
-	wrapperTag: {
-		type: 'string',
-		default: 'div',
-	},
+	...margin,
+	...padding,
+	...overlay,
+	...background,
+	...text,
+	...divider,
+	...innerWidth,
+	...innerWidth,
+	...screenHeight,
+	...animation,
+	...wrapper,
 };
 
 export const supports = {

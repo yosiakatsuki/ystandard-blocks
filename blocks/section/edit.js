@@ -47,6 +47,7 @@ import { compose, withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import getNumberInputStep from '../../src/js/util/_getNumberInputStep';
 import ResponsiveRangeControl from '../../src/js/components/responsive-range';
+import getCssClamp from '../../src/js/util/_getCssClamp';
 
 const sectionEdit = (props) => {
 	const {
@@ -67,11 +68,29 @@ const sectionEdit = (props) => {
 	const {
 		wrapperTag,
 		marginTop,
+		marginTopResponsive,
+		marginTopMin,
+		marginTopPreferred,
 		marginBottom,
+		marginBottomResponsive,
+		marginBottomMin,
+		marginBottomPreferred,
 		paddingTop,
+		paddingTopResponsive,
+		paddingTopMin,
+		paddingTopPreferred,
 		paddingBottom,
+		paddingBottomResponsive,
+		paddingBottomMin,
+		paddingBottomPreferred,
 		paddingLeft,
+		paddingLeftResponsive,
+		paddingLeftMin,
+		paddingLeftPreferred,
 		paddingRight,
+		paddingRightResponsive,
+		paddingRightMin,
+		paddingRightPreferred,
 		useCustomOverlaySize,
 		overlaySizeX,
 		overlaySizeUnitX,
@@ -125,6 +144,9 @@ const sectionEdit = (props) => {
 	const rangeMax = 200;
 	const rangeMin = 0;
 
+	const marginUnit = 'px';
+	const paddingUnit = 'px';
+
 	const Wrapper = wrapperTag;
 	/**
 	 * 背景画像関連
@@ -137,12 +159,45 @@ const sectionEdit = (props) => {
 	const showFocalPointPicker =
 		!isVideoBackground || (isImageBackground && !backgroundImageParallax);
 
+	const getMargin = (value, unit, useResponsive, min, preferred) => {
+		if (!useResponsive) {
+			if (0 === value) {
+				return 0;
+			}
+			return undefined !== value ? `${value}${unit}` : undefined;
+		}
+		return getCssClamp({
+			min,
+			max: value,
+			unit,
+			preferred,
+		});
+	};
+
 	/**
 	 * 編集画面のラッパー
 	 */
 	const editWrapStyle = {
-		paddingTop: 0 === marginTop ? 0 : marginTop + 'px',
-		paddingBottom: 0 === marginBottom ? 0 : marginBottom + 'px',
+		paddingTop:
+			0 === marginTop
+				? 0
+				: getMargin(
+						marginTop,
+						marginUnit,
+						marginTopResponsive,
+						marginTopMin,
+						marginTopPreferred
+				  ),
+		paddingBottom:
+			0 === marginBottom
+				? 0
+				: getMargin(
+						marginBottom,
+						marginUnit,
+						marginBottomResponsive,
+						marginBottomMin,
+						marginBottomPreferred
+				  ),
 	};
 
 	const hasAnimation = previewAnimation && 'none' !== animationType;
@@ -162,8 +217,20 @@ const sectionEdit = (props) => {
 	 */
 	const sectionStyles = {
 		color: textColor.color,
-		paddingTop: 0 === paddingTop ? 0 : paddingTop + 'px',
-		paddingBottom: 0 === paddingBottom ? 0 : paddingBottom + 'px',
+		paddingTop: getMargin(
+			paddingTop,
+			paddingUnit,
+			paddingTopResponsive,
+			paddingTopMin,
+			paddingTopPreferred
+		),
+		paddingBottom: getMargin(
+			paddingBottom,
+			paddingUnit,
+			paddingBottomResponsive,
+			paddingBottomMin,
+			paddingBottomPreferred
+		),
 		backgroundImage:
 			backgroundImageURL && isImageBackground
 				? `url("${backgroundImageURL}")`
@@ -250,10 +317,27 @@ const sectionEdit = (props) => {
 		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
 		marginRight: 'auto',
 		marginLeft: 'auto',
-		paddingLeft: 0 === paddingLeft ? 0 : paddingLeft + 'px',
-		paddingRight: 0 === paddingRight ? 0 : paddingRight + 'px',
+		paddingLeft:
+			0 === paddingLeft && !paddingLeftResponsive
+				? undefined
+				: getMargin(
+						paddingLeft,
+						paddingUnit,
+						paddingLeftResponsive,
+						paddingLeftMin,
+						paddingLeftPreferred
+				  ),
+		paddingRight:
+			0 === paddingRight && !paddingRightResponsive
+				? undefined
+				: getMargin(
+						paddingRight,
+						paddingUnit,
+						paddingRightResponsive,
+						paddingRightMin,
+						paddingRightPreferred
+				  ),
 	};
-
 	/**
 	 * 画像設定コントロール
 	 *
@@ -338,7 +422,7 @@ const sectionEdit = (props) => {
 					preserveAspectRatio={'none'}
 					style={style}
 				>
-					<Path d={path} strokewidth="0" fill={color} />
+					<Path d={path} fill={color} />
 				</SVG>
 			</div>
 		);
@@ -352,175 +436,433 @@ const sectionEdit = (props) => {
 							id={'margin'}
 							label={__('余白設定(外側)', 'ystandard-blocks')}
 						>
-							<div className={`ystdb-info__label`}>
-								かんたん設定
-							</div>
-							<div
-								className={
-									'ystdb-btn-selector components-base-control'
-								}
+							<BaseControl
+								id={'margin-preset'}
+								label={__('かんたん設定', 'ystandard-blocks')}
 							>
-								{marginType.margin.map((item) => {
-									return (
-										<Button
-											key={item.value}
-											isSecondary
-											onClick={() => {
-												setAttributes({
-													marginTop: item.num,
-													marginBottom: item.num,
-												});
-											}}
-										>
-											<span>{item.label}</span>
-										</Button>
-									);
-								})}
-							</div>
-							<RangeControl
-								label={__('上側', 'ystandard-blocks')}
-								value={marginTop}
-								onChange={(value) =>
-									setAttributes({
-										marginTop: getNum(
-											value,
-											-1 * rangeMax,
-											rangeMax,
-											0
-										),
-									})
-								}
-								min={-1 * rangeMax}
-								max={rangeMax}
-								step={rangeStep}
-							/>
-							<RangeControl
-								label={__('下側', 'ystandard-blocks')}
-								value={marginBottom}
-								onChange={(value) =>
-									setAttributes({
-										marginBottom: getNum(
-											value,
-											-1 * rangeMax,
-											rangeMax,
-											0
-										),
-									})
-								}
-								min={-1 * rangeMax}
-								max={rangeMax}
-								step={rangeStep}
-							/>
+								<div
+									className={
+										'ystdb-btn-selector components-base-control'
+									}
+								>
+									{marginType.margin.map((item) => {
+										return (
+											<Button
+												key={item.value}
+												isSecondary
+												onClick={() => {
+													setAttributes({
+														marginTop: item.num,
+														marginBottom: item.num,
+													});
+												}}
+											>
+												<span>{item.label}</span>
+											</Button>
+										);
+									})}
+								</div>
+							</BaseControl>
+							<BaseControl data-control="margin-top">
+								<ResponsiveRangeControl
+									id={'margin-top'}
+									label={__('上側', 'ystandard-blocks')}
+									useResponsive={marginTopResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											marginTopResponsive: value,
+										});
+									}}
+									normalRangeValue={marginTop}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											marginTop: getNum(
+												value,
+												-1 * rangeMax,
+												rangeMax,
+												0
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={marginTop}
+												onChange={(value) =>
+													setAttributes({
+														marginTop: getNum(
+															value,
+															-1 * rangeMax,
+															rangeMax,
+															0
+														),
+													})
+												}
+												min={-1 * rangeMax}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={-1 * rangeMax}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={marginTopMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											marginTopMin: value,
+										})
+									}
+									preferredValue={marginTopPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											marginTopPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
+							<BaseControl data-control="margin-top">
+								<ResponsiveRangeControl
+									id={'margin-bottom'}
+									label={__('下側', 'ystandard-blocks')}
+									useResponsive={marginBottomResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											marginBottomResponsive: value,
+										});
+									}}
+									normalRangeValue={marginBottom}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											marginBottom: getNum(
+												value,
+												-1 * rangeMax,
+												rangeMax,
+												0
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={marginBottom}
+												onChange={(value) =>
+													setAttributes({
+														marginBottom: getNum(
+															value,
+															-1 * rangeMax,
+															rangeMax,
+															0
+														),
+													})
+												}
+												min={-1 * rangeMax}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={-1 * rangeMax}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={marginBottomMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											marginBottomMin: value,
+										})
+									}
+									preferredValue={marginBottomPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											marginBottomPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
 							<p>
 								<span className={`ystdb-info__small`}>
 									※数字が大きいほど余白が大きくなります。
 								</span>
 							</p>
 						</BaseControl>
-						<BaseControl>
-							<div className="ystdb-inspector-controls__label">
-								{__('余白設定(内側)', 'ystandard-blocks')}
-							</div>
-							<div className={`ystdb-info__label`}>
-								かんたん設定
-							</div>
-							<div
-								className={
-									'ystdb-btn-selector components-base-control'
-								}
+						<BaseControl
+							id={'padding'}
+							label={__('余白設定(内側)', 'ystandard-blocks')}
+						>
+							<BaseControl
+								id={'padding-preset'}
+								label={__('かんたん設定', 'ystandard-blocks')}
 							>
-								{marginType.padding.map((item) => {
-									return (
-										<Button
-											key={item.value}
-											isSecondary
-											onClick={() => {
-												setAttributes({
-													paddingTop: item.num,
-													paddingBottom: item.num,
-												});
-											}}
-										>
-											<span>{item.label}</span>
-										</Button>
-									);
-								})}
-								<br />
-								<div>
-									<span className={`ystdb-info__small`}>
-										※上下余白のかんたん設定
-									</span>
+								<div
+									className={
+										'ystdb-btn-selector components-base-control'
+									}
+								>
+									{marginType.padding.map((item) => {
+										return (
+											<Button
+												key={item.value}
+												isSecondary
+												onClick={() => {
+													setAttributes({
+														paddingTop: item.num,
+														paddingBottom: item.num,
+													});
+												}}
+											>
+												<span>{item.label}</span>
+											</Button>
+										);
+									})}
+									<br />
+									<div>
+										<span className={`ystdb-info__small`}>
+											※上下余白のかんたん設定
+										</span>
+									</div>
 								</div>
-							</div>
-							<RangeControl
-								label={__('上側', 'ystandard-blocks')}
-								value={paddingTop}
-								onChange={(value) =>
-									setAttributes({
-										paddingTop: getNum(
-											value,
-											rangeMin,
-											rangeMax
-										),
-									})
-								}
-								min={rangeMin}
-								max={rangeMax}
-								step={rangeStep}
-							/>
-							<RangeControl
-								label={__('下側', 'ystandard-blocks')}
-								value={paddingBottom}
-								onChange={(value) =>
-									setAttributes({
-										paddingBottom: getNum(
-											value,
-											rangeMin,
-											rangeMax
-										),
-									})
-								}
-								min={rangeMin}
-								max={rangeMax}
-								step={rangeStep}
-							/>
-							<RangeControl
-								label={__('左側', 'ystandard-blocks')}
-								value={paddingLeft}
-								onChange={(value) =>
-									setAttributes({
-										paddingLeft: getNum(
-											value,
-											rangeMin,
-											rangeMax
-										),
-									})
-								}
-								min={rangeMin}
-								max={rangeMax}
-								step={rangeStep}
-							/>
-							<RangeControl
-								label={__('右側', 'ystandard-blocks')}
-								value={paddingRight}
-								onChange={(value) =>
-									setAttributes({
-										paddingRight: getNum(
-											value,
-											rangeMin,
-											rangeMax
-										),
-									})
-								}
-								min={rangeMin}
-								max={rangeMax}
-								step={rangeStep}
-							/>
-							<div>
+							</BaseControl>
+							<BaseControl data-control="padding-top">
+								<ResponsiveRangeControl
+									id={'padding-top'}
+									label={__('上側', 'ystandard-blocks')}
+									useResponsive={paddingTopResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											paddingTopResponsive: value,
+										});
+									}}
+									normalRangeValue={paddingTop}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											paddingTop: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={paddingTop}
+												onChange={(value) =>
+													setAttributes({
+														paddingTop: getNum(
+															value,
+															rangeMin,
+															rangeMax
+														),
+													})
+												}
+												min={rangeMin}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={rangeMin}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={paddingTopMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											paddingTopMin: value,
+										})
+									}
+									preferredValue={paddingTopPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											paddingTopPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
+							<BaseControl data-control="padding-bottom">
+								<ResponsiveRangeControl
+									id={'padding-bottom'}
+									label={__('下側', 'ystandard-blocks')}
+									useResponsive={paddingBottomResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											paddingBottomResponsive: value,
+										});
+									}}
+									normalRangeValue={paddingBottom}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											paddingBottom: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={paddingBottom}
+												onChange={(value) =>
+													setAttributes({
+														paddingBottom: getNum(
+															value,
+															rangeMin,
+															rangeMax
+														),
+													})
+												}
+												min={rangeMin}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={rangeMin}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={paddingBottomMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											paddingBottomMin: value,
+										})
+									}
+									preferredValue={paddingBottomPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											paddingBottomPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
+							<BaseControl data-control="padding-left">
+								<ResponsiveRangeControl
+									id={'padding-left'}
+									label={__('左側', 'ystandard-blocks')}
+									useResponsive={paddingLeftResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											paddingLeftResponsive: value,
+										});
+									}}
+									normalRangeValue={paddingLeft}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											paddingLeft: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={paddingLeft}
+												onChange={(value) =>
+													setAttributes({
+														paddingLeft: getNum(
+															value,
+															rangeMin,
+															rangeMax
+														),
+													})
+												}
+												min={rangeMin}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={rangeMin}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={paddingLeftMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											paddingLeftMin: value,
+										})
+									}
+									preferredValue={paddingLeftPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											paddingLeftPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
+							<BaseControl data-control="padding-right">
+								<ResponsiveRangeControl
+									id={'padding-right'}
+									label={__('右側', 'ystandard-blocks')}
+									useResponsive={paddingRightResponsive}
+									changeResponsiveMode={(value) => {
+										setAttributes({
+											paddingRightResponsive: value,
+										});
+									}}
+									normalRangeValue={paddingRight}
+									normalRangeOnChange={(value) =>
+										setAttributes({
+											paddingRight: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
+										})
+									}
+									normalRangeControl={() => {
+										return (
+											<RangeControl
+												value={paddingRight}
+												onChange={(value) =>
+													setAttributes({
+														paddingRight: getNum(
+															value,
+															rangeMin,
+															rangeMax
+														),
+													})
+												}
+												min={rangeMin}
+												max={rangeMax}
+												step={rangeStep}
+											/>
+										);
+									}}
+									min={rangeMin}
+									max={rangeMax}
+									step={rangeStep}
+									minRangeValue={paddingRightMin}
+									minRangeUnit={''}
+									minRangeOnChange={(value) =>
+										setAttributes({
+											paddingRightMin: value,
+										})
+									}
+									preferredValue={paddingRightPreferred}
+									preferredOnChange={(value) =>
+										setAttributes({
+											paddingRightPreferred: value,
+										})
+									}
+									preferredMax={20}
+								/>
+							</BaseControl>
+							<p>
 								<span className={`ystdb-info__small`}>
 									※数字が大きいほど余白が大きくなります。
 								</span>
-							</div>
+							</p>
 						</BaseControl>
 					</PanelBody>
 					<PanelColorGradientSettings
@@ -1059,8 +1401,8 @@ const sectionEdit = (props) => {
 									),
 								})
 							}
-							rangeMin={-100}
-							rangeMax={100}
+							min={-100}
+							max={100}
 							minRangeValue={dividerLevelTopMin}
 							minRangeUnit={''}
 							minRangeOnChange={(value) =>
@@ -1074,8 +1416,6 @@ const sectionEdit = (props) => {
 									dividerLevelTopPreferred: value,
 								})
 							}
-							preferredMax={10}
-							preferredMin={-10}
 						/>
 						<BaseControl
 							id={'divider-top-color'}
@@ -1152,8 +1492,8 @@ const sectionEdit = (props) => {
 									),
 								})
 							}
-							rangeMin={-100}
-							rangeMax={100}
+							min={-100}
+							max={100}
 							minRangeValue={dividerLevelBottomMin}
 							minRangeUnit={''}
 							minRangeOnChange={(value) =>
@@ -1167,8 +1507,6 @@ const sectionEdit = (props) => {
 									dividerLevelBottomPreferred: value,
 								})
 							}
-							preferredMax={10}
-							preferredMin={-10}
 						/>
 						<BaseControl
 							id={'divider-bottom-color'}

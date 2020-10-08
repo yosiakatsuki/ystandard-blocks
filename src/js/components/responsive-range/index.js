@@ -20,9 +20,10 @@ class ResponsiveRangeControl extends Component {
 			normalRangeOnChange,
 			normalRangeUnit,
 			normalRangeUnitOnChange,
-			rangeMin,
-			rangeMax,
-			rangeStep,
+			normalRangeControl,
+			min,
+			max,
+			step,
 			unitOptions,
 			minRangeValue,
 			minRangeOnChange,
@@ -45,6 +46,10 @@ class ResponsiveRangeControl extends Component {
 			changeResponsiveMode(!useResponsive);
 		};
 
+		const customRangeControl = () => {
+			return normalRangeControl ? normalRangeControl() : undefined;
+		};
+
 		const getDeviceSize = (size) => {
 			let deviceSize = (preferredValue / 100) * size;
 			if (deviceSize < minRangeValue) {
@@ -60,6 +65,9 @@ class ResponsiveRangeControl extends Component {
 			tablet: getDeviceSize(768),
 			desktop: getDeviceSize(1200),
 		};
+
+		const controlPreferredMax = !!preferredMax ? preferredMax : 10;
+		const controlPreferredMin = !!preferredMin ? preferredMin : 0;
 
 		return (
 			<BaseControl>
@@ -82,34 +90,41 @@ class ResponsiveRangeControl extends Component {
 
 					<div className="ystdb-responsive-range__content">
 						{!useResponsive ? (
-							<div className="ystdb-inspector-controls__columns is-center">
-								<span className={'label'}>
-									{normalRangeLabel}
-								</span>
-								<NumberControl
-									value={normalRangeValue}
-									onChange={(value) => {
-										normalRangeOnChange(value);
-									}}
-									min={rangeMin}
-									max={rangeMax}
-									step={
-										undefined === rangeStep ? 1 : rangeStep
-									}
-									style={{ flexGrow: 1 }}
-								/>
-								{!!unitOptions ? (
-									<SelectControl
-										value={normalRangeUnit}
-										options={unitOptions}
-										onChange={(value) => {
-											normalRangeUnitOnChange(value);
-										}}
-									/>
+							<>
+								{undefined !== normalRangeControl ? (
+									customRangeControl()
 								) : (
-									<span>{normalRangeUnit}</span>
+									<div className="ystdb-inspector-controls__columns is-center">
+										<span className={'label'}>
+											{normalRangeLabel}
+										</span>
+										<NumberControl
+											value={normalRangeValue}
+											onChange={(value) => {
+												normalRangeOnChange(value);
+											}}
+											min={min}
+											max={max}
+											step={undefined === step ? 1 : step}
+											style={{ flexGrow: 1 }}
+										/>
+
+										{!!unitOptions ? (
+											<SelectControl
+												value={normalRangeUnit}
+												options={unitOptions}
+												onChange={(value) => {
+													normalRangeUnitOnChange(
+														value
+													);
+												}}
+											/>
+										) : (
+											<span>{normalRangeUnit}</span>
+										)}
+									</div>
 								)}
-							</div>
+							</>
 						) : (
 							<Fragment>
 								<div className="ystdb-inspector-controls__columns is-center">
@@ -121,13 +136,9 @@ class ResponsiveRangeControl extends Component {
 										onChange={(value) => {
 											normalRangeOnChange(value);
 										}}
-										min={rangeMin}
-										max={rangeMax}
-										step={
-											undefined === rangeStep
-												? 1
-												: rangeStep
-										}
+										min={min}
+										max={max}
+										step={undefined === step ? 1 : step}
 										style={{ flexGrow: 1 }}
 									/>
 									{!!unitOptions ? (
@@ -151,13 +162,9 @@ class ResponsiveRangeControl extends Component {
 										onChange={(value) => {
 											minRangeOnChange(value);
 										}}
-										min={rangeMin}
-										max={rangeMax}
-										step={
-											undefined === rangeStep
-												? 1
-												: rangeStep
-										}
+										min={min}
+										max={max}
+										step={undefined === step ? 1 : step}
 										style={{ flexGrow: 1 }}
 									/>
 									{!!unitOptions ? (
@@ -181,8 +188,8 @@ class ResponsiveRangeControl extends Component {
 										onChange={(value) => {
 											preferredOnChange(value);
 										}}
-										min={preferredMin}
-										max={preferredMax}
+										min={controlPreferredMin}
+										max={controlPreferredMax}
 										step={'0.1'}
 										style={{ flexGrow: 1 }}
 									/>
