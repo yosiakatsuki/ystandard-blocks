@@ -9,8 +9,8 @@ export const getBackgroundSize = (size, sizeX, sizeY, unitX, unitY) => {
 	if ('custom' !== size) {
 		return 'cover' === size ? undefined : size;
 	}
-	const x = isFinite(sizeX) ? sizeX : 'auto';
-	const y = isFinite(sizeY) ? sizeY : 'auto';
+	const x = isFinite(sizeX) ? `${sizeX}${unitX}` : 'auto';
+	const y = isFinite(sizeY) ? `${sizeY}${unitY}` : 'auto';
 
-	return `${x}${unitX} ${y}${unitY}`;
+	return `${x} ${y}`;
 };

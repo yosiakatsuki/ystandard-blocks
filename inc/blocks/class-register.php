@@ -250,13 +250,16 @@ class Register {
 	 * @return array
 	 */
 	private function create_block_config() {
-		return [
-			'yStandard'     => Utility::is_ystandard() ? '1' : '',
-			'useAllIcons'   => Font_Awesome::is_use_all_icons() ? 'all' : '',
-			'homeUrl'       => home_url(),
-			'pluginUrl'     => YSTDB_URL,
-			'balloonImages' => Balloon::get_balloon_images(),
-		];
+		return apply_filters(
+			'ystdb_block_config',
+			[
+				'yStandard'     => Utility::is_ystandard() ? '1' : '',
+				'useAllIcons'   => Font_Awesome::is_use_all_icons() ? 'all' : '',
+				'homeUrl'       => home_url(),
+				'pluginUrl'     => YSTDB_URL,
+				'balloonImages' => Balloon::get_balloon_images(),
+			]
+		);
 	}
 
 	/**

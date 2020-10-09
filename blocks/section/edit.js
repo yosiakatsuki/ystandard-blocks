@@ -11,7 +11,6 @@ import {
 	backgroundImageSizeOption,
 	backgroundImageSizeUnitOption,
 	backgroundImageRepeatOption,
-	backgroundPatternOptions,
 	IMAGE_BACKGROUND_TYPE,
 	VIDEO_BACKGROUND_TYPE,
 } from './config';
@@ -40,6 +39,7 @@ import {
 	ToggleControl,
 	SelectControl,
 	FocalPointPicker,
+	ExternalLink,
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
@@ -49,6 +49,7 @@ import { __ } from '@wordpress/i18n';
 import getNumberInputStep from '../../src/js/util/_getNumberInputStep';
 import ResponsiveRangeControl from '../../src/js/components/responsive-range';
 import getCssClamp from '../../src/js/util/_getCssClamp';
+import convertPHPObject2JS from '../../src/js/util/_convertPHPObject2JS';
 
 const sectionEdit = (props) => {
 	const {
@@ -1215,7 +1216,7 @@ const sectionEdit = (props) => {
 								<BaseControl>
 									<ToggleControl
 										label={__(
-											'プレビューを暗くする',
+											'プレビューの背景を暗くする',
 											'ystandard-blocks'
 										)}
 										checked={useDarkImagePreview}
@@ -1426,6 +1427,9 @@ const sectionEdit = (props) => {
 										});
 									}}
 								/>
+								<div className="ystdb-inspector-controls__dscr">
+									白など明るい色のパターン画像を使う場合はこの設定をONにしてください。
+								</div>
 							</BaseControl>
 							{backgroundImageOnOverlay && (
 								<BaseControl
@@ -1459,40 +1463,65 @@ const sectionEdit = (props) => {
 									'ystandard-blocks'
 								)}
 							>
-								<div className="ystdb-inspector-controls__dscr">
-									背景パターンのサンプルデザインです。デザインを選択すると、必要な設定がセットされます。
-								</div>
-								<div className="ystdb__design-select">
-									{backgroundPatternOptions.map((item) => {
-										const imageUrl = `${ystdb.pluginUrl}/assets/images/background-pattern/${item.image}`;
-										return (
-											<Button
-												key={item.name}
-												onClick={() => {
-													setAttributes({
-														...item.value,
-														backgroundImageURL: imageUrl,
-													});
-													setState({
-														useDarkImagePreview:
-															item.useDarkPreview,
-													});
-												}}
-												style={{
-													...item.style,
-													backgroundImage: `url('${imageUrl}')`,
-													backgroundColor: item.useDarkPreview
-														? DARK_IMAGE_PREVIEW_COLOR
-														: undefined,
-												}}
+								{!!ystdb.sectionBackgroundPatterns ? (
+									<>
+										<div className="ystdb-inspector-controls__dscr">
+											背景パターンのサンプルデザインです。デザインを選択すると、必要な設定がセットされます。
+										</div>
+										<div className="ystdb__design-select">
+											{ystdb.sectionBackgroundPatterns.map(
+												(item) => {
+													const imageUrl = item.image;
+													return (
+														<Button
+															key={item.name}
+															onClick={() => {
+																setAttributes({
+																	...convertPHPObject2JS(
+																		item.value
+																	),
+																	backgroundImageURL: imageUrl,
+																});
+																setState({
+																	useDarkImagePreview:
+																		item.useDarkPreview,
+																});
+															}}
+															style={{
+																...item.style,
+																backgroundImage: `url('${imageUrl}')`,
+																backgroundColor: item.useDarkPreview
+																	? DARK_IMAGE_PREVIEW_COLOR
+																	: undefined,
+															}}
+														>
+															<span
+																style={{
+																	opacity: 0,
+																}}
+															>
+																{item.name}
+															</span>
+														</Button>
+													);
+												}
+											)}
+										</div>
+									</>
+								) : (
+									<>
+										<div className="ystdb-premium-feature">
+											<ExternalLink
+												herf={
+													'https://wp-ystandard.com/plugins/ystandard-toolbox/'
+												}
 											>
-												<span style={{ opacity: 0 }}>
-													{item.name}
-												</span>
-											</Button>
-										);
-									})}
-								</div>
+												yStandard Toolbox
+											</ExternalLink>
+											をインストール・有効化している場合、サンプル背景パターンを利用できます。
+										</div>
+									</>
+								)}
 							</BaseControl>
 						</PanelBody>
 					</PanelBody>
