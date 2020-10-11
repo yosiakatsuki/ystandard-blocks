@@ -7,13 +7,9 @@ export const margin = {
 		type: 'bool',
 		default: false,
 	},
-	marginTopMin: {
+	marginTopMobile: {
 		type: 'number',
 		default: 0,
-	},
-	marginTopPreferred: {
-		type: 'number',
-		default: 10,
 	},
 	marginBottom: {
 		type: 'number',
@@ -23,12 +19,8 @@ export const margin = {
 		type: 'bool',
 		default: false,
 	},
-	marginBottomMin: {
+	marginBottomMobile: {
 		type: 'number',
 		default: 0,
-	},
-	marginBottomPreferred: {
-		type: 'number',
-		default: 10,
 	},
 };

@@ -3,6 +3,10 @@ export const divider = {
 		type: 'string',
 		default: 'skew',
 	},
+	dividerTopReverse: {
+		type: 'bool',
+		default: false,
+	},
 	dividerTopResponsive: {
 		type: 'bool',
 		default: false,
@@ -11,13 +15,9 @@ export const divider = {
 		type: 'number',
 		default: 0,
 	},
-	dividerLevelTopMin: {
+	dividerLevelTopMobile: {
 		type: 'number',
 		default: 0,
-	},
-	dividerLevelTopPreferred: {
-		type: 'string',
-		default: '8',
 	},
 	dividerColorTop: {
 		type: 'string',
@@ -29,6 +29,10 @@ export const divider = {
 		type: 'string',
 		default: 'skew',
 	},
+	dividerBottomReverse: {
+		type: 'bool',
+		default: false,
+	},
 	dividerBottomResponsive: {
 		type: 'bool',
 		default: false,
@@ -37,13 +41,9 @@ export const divider = {
 		type: 'number',
 		default: 0,
 	},
-	dividerLevelBottomMin: {
+	dividerLevelBottomMobile: {
 		type: 'number',
 		default: 0,
-	},
-	dividerLevelBottomPreferred: {
-		type: 'string',
-		default: '8',
 	},
 	dividerColorBottom: {
 		type: 'string',

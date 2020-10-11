@@ -1,13 +1,14 @@
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
 import {
 	BaseControl,
 	Button,
 	SelectControl,
+	Icon,
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 import { Fragment, Component } from '@wordpress/element';
 import SVGIcon from '../svg-icon';
+import { calcClamp } from '../../util/_calcClamp';
 
 class ResponsiveRangeControl extends Component {
 	render() {
@@ -15,30 +16,23 @@ class ResponsiveRangeControl extends Component {
 			label,
 			useResponsive,
 			changeResponsiveMode,
-			normalRangeLabel,
-			normalRangeValue,
-			normalRangeOnChange,
-			normalRangeUnit,
-			normalRangeUnitOnChange,
-			normalRangeControl,
+			desktopLabel,
+			desktopValue,
+			desktopOnChange,
+			desktopUnit,
+			desktopUnitOnChange,
+			desktopControl,
 			min,
 			max,
 			step,
 			unitOptions,
-			minRangeValue,
-			minRangeOnChange,
-			minRangeUnit,
-			minRangeUnitOnChange,
-			preferredValue,
-			preferredOnChange,
-			preferredMax,
-			preferredMin,
-			preferredUnit,
+			mobileValue,
+			mobileOnChange,
+			mobileUnit,
+			mobileUnitOnChange,
 			showDeviceSize,
 		} = this.props;
 
-		const preferredUnitLabel =
-			undefined === preferredUnit ? '' : preferredUnit;
 		const showDeviceSizeValue =
 			undefined === showDeviceSize ? true : showDeviceSize;
 
@@ -47,28 +41,26 @@ class ResponsiveRangeControl extends Component {
 		};
 
 		const customRangeControl = () => {
-			return normalRangeControl ? normalRangeControl() : undefined;
+			return desktopControl ? desktopControl() : undefined;
 		};
 
-		const getDeviceSize = (size) => {
-			let deviceSize = (preferredValue / 100) * size;
-			if (deviceSize < minRangeValue) {
-				deviceSize = minRangeValue;
-			}
-			if (deviceSize > normalRangeValue) {
-				deviceSize = normalRangeValue;
-			}
-			return parseInt(deviceSize);
-		};
 		const calcSize = {
-			mobile: getDeviceSize(320),
-			tablet: getDeviceSize(768),
-			desktop: getDeviceSize(1200),
+			mobile: calcClamp({
+				size: 320,
+				mobile: mobileValue,
+				desktop: desktopValue,
+			}),
+			tablet: calcClamp({
+				size: 768,
+				mobile: mobileValue,
+				desktop: desktopValue,
+			}),
+			desktop: calcClamp({
+				size: 1200,
+				mobile: mobileValue,
+				desktop: desktopValue,
+			}),
 		};
-
-		const controlPreferredMax = !!preferredMax ? preferredMax : 10;
-		const controlPreferredMin = !!preferredMin ? preferredMin : 0;
-
 		return (
 			<BaseControl>
 				<div className="ystdb-responsive-range">
@@ -91,17 +83,17 @@ class ResponsiveRangeControl extends Component {
 					<div className="ystdb-responsive-range__content">
 						{!useResponsive ? (
 							<>
-								{undefined !== normalRangeControl ? (
+								{undefined !== desktopControl ? (
 									customRangeControl()
 								) : (
 									<div className="ystdb-inspector-controls__columns is-center">
 										<span className={'label'}>
-											{normalRangeLabel}
+											{desktopLabel}
 										</span>
 										<NumberControl
-											value={normalRangeValue}
+											value={desktopValue}
 											onChange={(value) => {
-												normalRangeOnChange(value);
+												desktopOnChange(value);
 											}}
 											min={min}
 											max={max}
@@ -111,16 +103,14 @@ class ResponsiveRangeControl extends Component {
 
 										{!!unitOptions ? (
 											<SelectControl
-												value={normalRangeUnit}
+												value={desktopUnit}
 												options={unitOptions}
 												onChange={(value) => {
-													normalRangeUnitOnChange(
-														value
-													);
+													desktopUnitOnChange(value);
 												}}
 											/>
 										) : (
-											<span>{normalRangeUnit}</span>
+											<span>{desktopUnit}</span>
 										)}
 									</div>
 								)}
@@ -128,13 +118,11 @@ class ResponsiveRangeControl extends Component {
 						) : (
 							<Fragment>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<span className={'label'}>
-										{__('最大', 'ystandard-blocks')}
-									</span>
+									<Icon icon={'desktop'} />
 									<NumberControl
-										value={normalRangeValue}
+										value={desktopValue}
 										onChange={(value) => {
-											normalRangeOnChange(value);
+											desktopOnChange(value);
 										}}
 										min={min}
 										max={max}
@@ -143,24 +131,22 @@ class ResponsiveRangeControl extends Component {
 									/>
 									{!!unitOptions ? (
 										<SelectControl
-											value={normalRangeUnit}
+											value={desktopUnit}
 											options={unitOptions}
 											onChange={(value) => {
-												normalRangeUnitOnChange(value);
+												desktopUnitOnChange(value);
 											}}
 										/>
 									) : (
-										<span>{normalRangeUnit}</span>
+										<span>{desktopUnit}</span>
 									)}
 								</div>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<span className={'label'}>
-										{__('最小', 'ystandard-blocks')}
-									</span>
+									<Icon icon={'smartphone'} />
 									<NumberControl
-										value={minRangeValue}
+										value={mobileValue}
 										onChange={(value) => {
-											minRangeOnChange(value);
+											mobileOnChange(value);
 										}}
 										min={min}
 										max={max}
@@ -169,31 +155,15 @@ class ResponsiveRangeControl extends Component {
 									/>
 									{!!unitOptions ? (
 										<SelectControl
-											value={minRangeUnit}
+											value={mobileUnit}
 											options={unitOptions}
 											onChange={(value) => {
-												minRangeUnitOnChange(value);
+												mobileUnitOnChange(value);
 											}}
 										/>
 									) : (
-										<span>{minRangeUnit}</span>
+										<span>{mobileUnit}</span>
 									)}
-								</div>
-								<div className="ystdb-inspector-controls__columns is-center">
-									<span className={'label'}>
-										{__('増加率', 'ystandard-blocks')}
-									</span>
-									<NumberControl
-										value={preferredValue}
-										onChange={(value) => {
-											preferredOnChange(value);
-										}}
-										min={controlPreferredMin}
-										max={controlPreferredMax}
-										step={'0.1'}
-										style={{ flexGrow: 1 }}
-									/>
-									<span>{preferredUnitLabel}</span>
 								</div>
 								{showDeviceSizeValue && (
 									<div className="ystdb-responsive-range__info">

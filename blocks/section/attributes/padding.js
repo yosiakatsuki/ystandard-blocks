@@ -7,13 +7,9 @@ export const padding = {
 		type: 'bool',
 		default: false,
 	},
-	paddingTopMin: {
+	paddingTopMobile: {
 		type: 'number',
 		default: 0,
-	},
-	paddingTopPreferred: {
-		type: 'number',
-		default: 10,
 	},
 	paddingBottom: {
 		type: 'number',
@@ -23,13 +19,9 @@ export const padding = {
 		type: 'bool',
 		default: false,
 	},
-	paddingBottomMin: {
+	paddingBottomMobile: {
 		type: 'number',
 		default: 0,
-	},
-	paddingBottomPreferred: {
-		type: 'number',
-		default: 10,
 	},
 	paddingLeft: {
 		type: 'number',
@@ -39,13 +31,9 @@ export const padding = {
 		type: 'bool',
 		default: false,
 	},
-	paddingLeftMin: {
+	paddingLeftMobile: {
 		type: 'number',
 		default: 0,
-	},
-	paddingLeftPreferred: {
-		type: 'number',
-		default: 10,
 	},
 	paddingRight: {
 		type: 'number',
@@ -55,7 +43,7 @@ export const padding = {
 		type: 'bool',
 		default: false,
 	},
-	paddingRightMin: {
+	paddingRightMobile: {
 		type: 'number',
 		default: 0,
 	},

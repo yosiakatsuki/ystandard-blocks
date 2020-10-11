@@ -25,28 +25,22 @@ export default function save(props) {
 		customTextColor,
 		marginTop,
 		marginTopResponsive,
-		marginTopMin,
-		marginTopPreferred,
+		marginTopMobile,
 		marginBottom,
 		marginBottomResponsive,
-		marginBottomMin,
-		marginBottomPreferred,
+		marginBottomMobile,
 		paddingTop,
 		paddingTopResponsive,
-		paddingTopMin,
-		paddingTopPreferred,
+		paddingTopMobile,
 		paddingBottom,
 		paddingBottomResponsive,
-		paddingBottomMin,
-		paddingBottomPreferred,
+		paddingBottomMobile,
 		paddingLeft,
 		paddingLeftResponsive,
-		paddingLeftMin,
-		paddingLeftPreferred,
+		paddingLeftMobile,
 		paddingRight,
 		paddingRightResponsive,
-		paddingRightMin,
-		paddingRightPreferred,
+		paddingRightMobile,
 		useCustomOverlaySize,
 		overlaySizeX,
 		overlaySizeUnitX,
@@ -75,17 +69,17 @@ export default function save(props) {
 		backgroundImageOnOverlayOpacity,
 		innerCustomWidth,
 		dividerTypeTop,
+		dividerTopReverse,
 		dividerLevelTop,
 		dividerTopResponsive,
-		dividerLevelTopMin,
-		dividerLevelTopPreferred,
+		dividerLevelTopMobile,
 		dividerColorTop,
 		customDividerColorTop,
 		dividerTypeBottom,
+		dividerBottomReverse,
 		dividerLevelBottom,
 		dividerBottomResponsive,
-		dividerLevelBottomMin,
-		dividerLevelBottomPreferred,
+		dividerLevelBottomMobile,
 		dividerColorBottom,
 		customDividerColorBottom,
 		screenHeightMode,
@@ -174,18 +168,16 @@ export default function save(props) {
 	});
 	const dataAnimation = hasAnimation ? animationType : undefined;
 
-	const getMargin = (value, unit, useResponsive, min, preferred) => {
+	const getMargin = (useResponsive, desktop, mobile) => {
 		if (!useResponsive) {
-			if (0 === value) {
+			if (0 === desktop) {
 				return 0;
 			}
-			return undefined !== value ? `${value}${unit}` : undefined;
+			return undefined !== desktop ? `${desktop}px` : undefined;
 		}
 		return getCssClamp({
-			min,
-			max: value,
-			unit,
-			preferred,
+			desktop,
+			mobile,
 		});
 	};
 	/**
@@ -194,34 +186,22 @@ export default function save(props) {
 	let sectionStyles = {
 		color: textColorClass ? undefined : customTextColor,
 		paddingTop: getMargin(
-			paddingTop,
-			paddingUnit,
 			paddingTopResponsive,
-			paddingTopMin,
-			paddingTopPreferred
+			paddingTop,
+			paddingTopMobile
 		),
 		paddingBottom: getMargin(
-			paddingBottom,
-			paddingUnit,
 			paddingBottomResponsive,
-			paddingBottomMin,
-			paddingBottomPreferred
+			paddingBottom,
+			paddingBottomMobile
 		),
 		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
-		marginTop: getMargin(
-			marginTop,
-			marginUnit,
-			marginTopResponsive,
-			marginTopMin,
-			marginTopPreferred
-		),
+		marginTop: getMargin(marginTopResponsive, marginTop, marginTopMobile),
 		marginBottom: getMargin(
-			marginBottom,
-			marginUnit,
 			marginBottomResponsive,
-			marginBottomMin,
-			marginBottomPreferred
+			marginBottom,
+			marginBottomMobile
 		),
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
@@ -324,18 +304,14 @@ export default function save(props) {
 		marginRight: 'auto',
 		marginLeft: 'auto',
 		paddingLeft: getMargin(
-			paddingLeft,
-			paddingUnit,
 			paddingLeftResponsive,
-			paddingLeftMin,
-			paddingLeftPreferred
+			paddingLeft,
+			paddingLeftMobile
 		),
 		paddingRight: getMargin(
-			paddingRight,
-			paddingUnit,
 			paddingRightResponsive,
-			paddingRightMin,
-			paddingRightPreferred
+			paddingRight,
+			paddingRightMobile
 		),
 	};
 
@@ -351,15 +327,13 @@ export default function save(props) {
 	const divider = (attr) => {
 		const {
 			type,
+			reverse,
 			position,
 			level,
-			levelUnit,
 			colorClass,
 			customColor,
 			useResponsive,
-			levelMin,
-			levelMinUnit,
-			levelPreferred,
+			levelMobile,
 		} = attr;
 
 		const dividerClass = classnames(
@@ -368,19 +342,22 @@ export default function save(props) {
 			`ystdb-section__divider--${type}`
 		);
 		let pathLevel = level;
+		if (reverse) {
+			pathLevel = -1 * pathLevel;
+		}
 		if (useResponsive) {
-			pathLevel = 0 > level ? -100 : 100;
+			pathLevel = 0 > pathLevel ? -100 : 100;
 		}
 		const path = dividerPath(type, pathLevel);
 		const svgClass = classnames('ystdb-section__divider-image', {
 			[colorClass]: colorClass,
 		});
-
-		const clampLevel = `${Math.abs(level)}${levelUnit}`;
-		const clampMinLevel = `${Math.abs(levelMin)}${levelMinUnit}`;
 		const style = useResponsive
 			? {
-					height: `clamp( ${clampMinLevel}, ${levelPreferred}vw, ${clampLevel} )`,
+					height: getCssClamp({
+						desktop: Math.abs(level),
+						mobile: Math.abs(levelMobile),
+					}),
 			  }
 			: undefined;
 
@@ -456,28 +433,24 @@ export default function save(props) {
 			{dividerTop &&
 				divider({
 					type: dividerTypeTop,
+					reverse: dividerTopReverse,
 					position: 'top',
-					level: dividerLevelTop,
-					levelUnit: 'px',
+					level: Math.abs(dividerLevelTop),
 					colorClass: dividerColorTopClass,
 					customColor: customDividerColorTop,
 					useResponsive: dividerTopResponsive,
-					levelMin: dividerLevelTopMin,
-					levelMinUnit: 'px',
-					levelPreferred: dividerLevelTopPreferred,
+					levelMobile: dividerLevelTopMobile,
 				})}
 			{dividerBottom &&
 				divider({
 					type: dividerTypeBottom,
+					reverse: dividerBottomReverse,
 					position: 'bottom',
-					level: dividerLevelBottom,
-					levelUnit: 'px',
+					level: Math.abs(dividerLevelBottom),
 					colorClass: dividerColorBottomClass,
 					customColor: customDividerColorBottom,
 					useResponsive: dividerBottomResponsive,
-					levelMin: dividerLevelBottomMin,
-					levelMinUnit: 'px',
-					levelPreferred: dividerLevelBottomPreferred,
+					levelMobile: dividerLevelBottomMobile,
 				})}
 			<div className="ystdb-section__container">
 				<Wrapper

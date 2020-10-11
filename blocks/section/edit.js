@@ -72,28 +72,22 @@ const sectionEdit = (props) => {
 		wrapperTag,
 		marginTop,
 		marginTopResponsive,
-		marginTopMin,
-		marginTopPreferred,
+		marginTopMobile,
 		marginBottom,
 		marginBottomResponsive,
-		marginBottomMin,
-		marginBottomPreferred,
+		marginBottomMobile,
 		paddingTop,
 		paddingTopResponsive,
-		paddingTopMin,
-		paddingTopPreferred,
+		paddingTopMobile,
 		paddingBottom,
 		paddingBottomResponsive,
-		paddingBottomMin,
-		paddingBottomPreferred,
+		paddingBottomMobile,
 		paddingLeft,
 		paddingLeftResponsive,
-		paddingLeftMin,
-		paddingLeftPreferred,
+		paddingLeftMobile,
 		paddingRight,
 		paddingRightResponsive,
-		paddingRightMin,
-		paddingRightPreferred,
+		paddingRightMobile,
 		useCustomOverlaySize,
 		overlaySizeX,
 		overlaySizeUnitX,
@@ -122,15 +116,15 @@ const sectionEdit = (props) => {
 		backgroundImageOnOverlayOpacity,
 		innerCustomWidth,
 		dividerTypeTop,
+		dividerTopReverse,
 		dividerLevelTop,
 		dividerTopResponsive,
-		dividerLevelTopMin,
-		dividerLevelTopPreferred,
+		dividerLevelTopMobile,
 		dividerTypeBottom,
+		dividerBottomReverse,
 		dividerLevelBottom,
 		dividerBottomResponsive,
-		dividerLevelBottomMin,
-		dividerLevelBottomPreferred,
+		dividerLevelBottomMobile,
 		screenHeightMode,
 		sectionMinHeight,
 		animationType,
@@ -149,9 +143,6 @@ const sectionEdit = (props) => {
 	const rangeMax = 200;
 	const rangeMin = 0;
 
-	const marginUnit = 'px';
-	const paddingUnit = 'px';
-
 	const Wrapper = wrapperTag;
 	/**
 	 * 背景画像関連
@@ -165,18 +156,16 @@ const sectionEdit = (props) => {
 	const showFocalPointPicker =
 		!isVideoBackground || (isImageBackground && !backgroundImageParallax);
 
-	const getMargin = (value, unit, useResponsive, min, preferred) => {
+	const getMargin = (useResponsive, desktop, mobile) => {
 		if (!useResponsive) {
-			if (0 === value) {
+			if (0 === desktop) {
 				return 0;
 			}
-			return undefined !== value ? `${value}${unit}` : undefined;
+			return undefined !== desktop ? `${desktop}px` : undefined;
 		}
 		return getCssClamp({
-			min,
-			max: value,
-			unit,
-			preferred,
+			desktop,
+			mobile,
 		});
 	};
 
@@ -187,22 +176,14 @@ const sectionEdit = (props) => {
 		paddingTop:
 			0 === marginTop
 				? 0
-				: getMargin(
-						marginTop,
-						marginUnit,
-						marginTopResponsive,
-						marginTopMin,
-						marginTopPreferred
-				  ),
+				: getMargin(marginTopResponsive, marginTop, marginTopMobile),
 		paddingBottom:
 			0 === marginBottom
 				? 0
 				: getMargin(
 						marginBottom,
-						marginUnit,
 						marginBottomResponsive,
-						marginBottomMin,
-						marginBottomPreferred
+						marginBottomMobile
 				  ),
 	};
 
@@ -248,20 +229,16 @@ const sectionEdit = (props) => {
 	 * セクションスタイル
 	 */
 	let sectionStyles = {
+		paddingBottom: getMargin(
+			paddingBottomResponsive,
+			paddingBottom,
+			paddingBottomMobile
+		),
 		color: textColor.color,
 		paddingTop: getMargin(
-			paddingTop,
-			paddingUnit,
 			paddingTopResponsive,
-			paddingTopMin,
-			paddingTopPreferred
-		),
-		paddingBottom: getMargin(
-			paddingBottom,
-			paddingUnit,
-			paddingBottomResponsive,
-			paddingBottomMin,
-			paddingBottomPreferred
+			paddingTop,
+			paddingTopMobile
 		),
 		minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
 		animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
@@ -350,21 +327,17 @@ const sectionEdit = (props) => {
 			0 === paddingLeft && !paddingLeftResponsive
 				? undefined
 				: getMargin(
-						paddingLeft,
-						paddingUnit,
 						paddingLeftResponsive,
-						paddingLeftMin,
-						paddingLeftPreferred
+						paddingLeft,
+						paddingLeftMobile
 				  ),
 		paddingRight:
 			0 === paddingRight && !paddingRightResponsive
 				? undefined
 				: getMargin(
-						paddingRight,
-						paddingUnit,
 						paddingRightResponsive,
-						paddingRightMin,
-						paddingRightPreferred
+						paddingRight,
+						paddingRightMobile
 				  ),
 	};
 	/**
@@ -432,14 +405,12 @@ const sectionEdit = (props) => {
 	const divider = (attr) => {
 		const {
 			type,
+			reverse,
 			position,
 			level,
-			levelUnit,
 			color,
 			useResponsive,
-			levelMin,
-			levelMinUnit,
-			levelPreferred,
+			levelMobile,
 		} = attr;
 		const dividerClass = classnames(
 			'ystdb-section__divider',
@@ -447,15 +418,19 @@ const sectionEdit = (props) => {
 			`ystdb-section__divider--${type}`
 		);
 		let pathLevel = level;
+		if (reverse) {
+			pathLevel = -1 * pathLevel;
+		}
 		if (useResponsive) {
-			pathLevel = 0 > level ? -100 : 100;
+			pathLevel = 0 > pathLevel ? -100 : 100;
 		}
 		const path = dividerPath(type, pathLevel);
-		const clampLevel = `${Math.abs(level)}${levelUnit}`;
-		const clampMinLevel = `${Math.abs(levelMin)}${levelMinUnit}`;
 		const style = useResponsive
 			? {
-					height: `clamp( ${clampMinLevel}, ${levelPreferred}vw, ${clampLevel} )`,
+					height: getCssClamp({
+						desktop: Math.abs(level),
+						mobile: Math.abs(levelMobile),
+					}),
 			  }
 			: undefined;
 		return (
@@ -517,8 +492,8 @@ const sectionEdit = (props) => {
 											marginTopResponsive: value,
 										});
 									}}
-									normalRangeValue={marginTop}
-									normalRangeOnChange={(value) =>
+									desktopValue={marginTop}
+									desktopOnChange={(value) =>
 										setAttributes({
 											marginTop: getNum(
 												value,
@@ -528,7 +503,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={marginTop}
@@ -551,23 +526,21 @@ const sectionEdit = (props) => {
 									min={-1 * rangeMax}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={marginTopMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={marginTopMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											marginTopMin: value,
+											marginTopMobile: getNum(
+												value,
+												-1 * rangeMax,
+												rangeMax,
+												0
+											),
 										})
 									}
-									preferredValue={marginTopPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											marginTopPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
-							<BaseControl data-control="margin-top">
+							<BaseControl data-control="margin-bottom">
 								<ResponsiveRangeControl
 									id={'margin-bottom'}
 									label={__('下側', 'ystandard-blocks')}
@@ -577,8 +550,8 @@ const sectionEdit = (props) => {
 											marginBottomResponsive: value,
 										});
 									}}
-									normalRangeValue={marginBottom}
-									normalRangeOnChange={(value) =>
+									desktopValue={marginBottom}
+									desktopOnChange={(value) =>
 										setAttributes({
 											marginBottom: getNum(
 												value,
@@ -588,7 +561,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={marginBottom}
@@ -611,20 +584,18 @@ const sectionEdit = (props) => {
 									min={-1 * rangeMax}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={marginBottomMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={marginBottomMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											marginBottomMin: value,
+											marginBottomMobile: getNum(
+												value,
+												-1 * rangeMax,
+												rangeMax,
+												0
+											),
 										})
 									}
-									preferredValue={marginBottomPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											marginBottomPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
 							<p>
@@ -680,8 +651,8 @@ const sectionEdit = (props) => {
 											paddingTopResponsive: value,
 										});
 									}}
-									normalRangeValue={paddingTop}
-									normalRangeOnChange={(value) =>
+									desktopValue={paddingTop}
+									desktopOnChange={(value) =>
 										setAttributes({
 											paddingTop: getNum(
 												value,
@@ -690,7 +661,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={paddingTop}
@@ -712,20 +683,17 @@ const sectionEdit = (props) => {
 									min={rangeMin}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={paddingTopMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={paddingTopMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											paddingTopMin: value,
+											paddingTopMobile: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
 										})
 									}
-									preferredValue={paddingTopPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											paddingTopPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
 							<BaseControl data-control="padding-bottom">
@@ -738,8 +706,8 @@ const sectionEdit = (props) => {
 											paddingBottomResponsive: value,
 										});
 									}}
-									normalRangeValue={paddingBottom}
-									normalRangeOnChange={(value) =>
+									desktopValue={paddingBottom}
+									desktopOnChange={(value) =>
 										setAttributes({
 											paddingBottom: getNum(
 												value,
@@ -748,7 +716,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={paddingBottom}
@@ -770,20 +738,17 @@ const sectionEdit = (props) => {
 									min={rangeMin}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={paddingBottomMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={paddingBottomMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											paddingBottomMin: value,
+											paddingBottomMobile: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
 										})
 									}
-									preferredValue={paddingBottomPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											paddingBottomPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
 							<BaseControl data-control="padding-left">
@@ -796,8 +761,8 @@ const sectionEdit = (props) => {
 											paddingLeftResponsive: value,
 										});
 									}}
-									normalRangeValue={paddingLeft}
-									normalRangeOnChange={(value) =>
+									desktopValue={paddingLeft}
+									desktopOnChange={(value) =>
 										setAttributes({
 											paddingLeft: getNum(
 												value,
@@ -806,7 +771,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={paddingLeft}
@@ -828,20 +793,17 @@ const sectionEdit = (props) => {
 									min={rangeMin}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={paddingLeftMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={paddingLeftMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											paddingLeftMin: value,
+											paddingLeftMobile: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
 										})
 									}
-									preferredValue={paddingLeftPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											paddingLeftPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
 							<BaseControl data-control="padding-right">
@@ -854,8 +816,8 @@ const sectionEdit = (props) => {
 											paddingRightResponsive: value,
 										});
 									}}
-									normalRangeValue={paddingRight}
-									normalRangeOnChange={(value) =>
+									desktopValue={paddingRight}
+									desktopOnChange={(value) =>
 										setAttributes({
 											paddingRight: getNum(
 												value,
@@ -864,7 +826,7 @@ const sectionEdit = (props) => {
 											),
 										})
 									}
-									normalRangeControl={() => {
+									desktopControl={() => {
 										return (
 											<RangeControl
 												value={paddingRight}
@@ -886,20 +848,17 @@ const sectionEdit = (props) => {
 									min={rangeMin}
 									max={rangeMax}
 									step={rangeStep}
-									minRangeValue={paddingRightMin}
-									minRangeUnit={''}
-									minRangeOnChange={(value) =>
+									mobileValue={paddingRightMobile}
+									mobileUnit={''}
+									mobileOnChange={(value) =>
 										setAttributes({
-											paddingRightMin: value,
+											paddingRightMobile: getNum(
+												value,
+												rangeMin,
+												rangeMax
+											),
 										})
 									}
-									preferredValue={paddingRightPreferred}
-									preferredOnChange={(value) =>
-										setAttributes({
-											paddingRightPreferred: value,
-										})
-									}
-									preferredMax={20}
 								/>
 							</BaseControl>
 							<p>
@@ -1587,6 +1546,19 @@ const sectionEdit = (props) => {
 								})}
 							</div>
 						</BaseControl>
+						<BaseControl>
+							<ToggleControl
+								label={__('左右反転させる', 'ystandard-blocks')}
+								checked={
+									dividerTopReverse || 0 > dividerLevelTop
+								}
+								onChange={() => {
+									setAttributes({
+										dividerTopReverse: !dividerTopReverse,
+									});
+								}}
+							/>
+						</BaseControl>
 						<ResponsiveRangeControl
 							id={'divider-level-top'}
 							label={__('レベル', 'ystandard-blocks')}
@@ -1594,31 +1566,25 @@ const sectionEdit = (props) => {
 							changeResponsiveMode={(value) => {
 								setAttributes({ dividerTopResponsive: value });
 							}}
-							normalRangeValue={dividerLevelTop}
-							normalRangeUnit={''}
-							normalRangeOnChange={(value) =>
+							desktopValue={Math.abs(dividerLevelTop)}
+							desktopUnit={''}
+							desktopOnChange={(value) =>
 								setAttributes({
-									dividerLevelTop: getNum(
+									dividerLevelTop: getNum(value, 0, 100, 0),
+								})
+							}
+							min={0}
+							max={100}
+							mobileValue={dividerLevelTopMobile}
+							mobileUnit={''}
+							mobileOnChange={(value) =>
+								setAttributes({
+									dividerLevelTopMobile: getNum(
 										value,
-										-100,
+										0,
 										100,
 										0
 									),
-								})
-							}
-							min={-100}
-							max={100}
-							minRangeValue={dividerLevelTopMin}
-							minRangeUnit={''}
-							minRangeOnChange={(value) =>
-								setAttributes({
-									dividerLevelTopMin: value,
-								})
-							}
-							preferredValue={dividerLevelTopPreferred}
-							preferredOnChange={(value) =>
-								setAttributes({
-									dividerLevelTopPreferred: value,
 								})
 							}
 						/>
@@ -1677,6 +1643,20 @@ const sectionEdit = (props) => {
 								})}
 							</div>
 						</BaseControl>
+						<BaseControl>
+							<ToggleControl
+								label={__('左右反転させる', 'ystandard-blocks')}
+								checked={
+									dividerBottomReverse ||
+									0 > dividerLevelBottom
+								}
+								onChange={() => {
+									setAttributes({
+										dividerBottomReverse: !dividerBottomReverse,
+									});
+								}}
+							/>
+						</BaseControl>
 						<ResponsiveRangeControl
 							label={__('レベル', 'ystandard-blocks')}
 							useResponsive={dividerBottomResponsive}
@@ -1685,31 +1665,30 @@ const sectionEdit = (props) => {
 									dividerBottomResponsive: value,
 								});
 							}}
-							normalRangeValue={dividerLevelBottom}
-							normalRangeUnit={''}
-							normalRangeOnChange={(value) =>
+							desktopValue={Math.abs(dividerLevelBottom)}
+							desktopUnit={''}
+							desktopOnChange={(value) =>
 								setAttributes({
 									dividerLevelBottom: getNum(
 										value,
-										-100,
+										0,
 										100,
 										0
 									),
 								})
 							}
-							min={-100}
+							min={0}
 							max={100}
-							minRangeValue={dividerLevelBottomMin}
-							minRangeUnit={''}
-							minRangeOnChange={(value) =>
+							mobileValue={dividerLevelBottomMobile}
+							mobileUnit={''}
+							mobileOnChange={(value) =>
 								setAttributes({
-									dividerLevelBottomMin: value,
-								})
-							}
-							preferredValue={dividerLevelBottomPreferred}
-							preferredOnChange={(value) =>
-								setAttributes({
-									dividerLevelBottomPreferred: value,
+									dividerLevelBottomMobile: getNum(
+										value,
+										-100,
+										100,
+										0
+									),
 								})
 							}
 						/>
@@ -1843,6 +1822,7 @@ const sectionEdit = (props) => {
 								}
 								min={1}
 								max={10}
+								step={0.1}
 								allowReset={true}
 							/>
 						</BaseControl>
@@ -1860,6 +1840,7 @@ const sectionEdit = (props) => {
 								}
 								min={0}
 								max={10}
+								step={0.1}
 								allowReset={true}
 							/>
 						</BaseControl>
@@ -1971,27 +1952,23 @@ const sectionEdit = (props) => {
 						dividerColorTop.color &&
 						divider({
 							type: dividerTypeTop,
+							reverse: dividerTopReverse,
 							position: 'top',
 							level: dividerLevelTop,
-							levelUnit: 'px',
 							color: dividerColorTop.color,
 							useResponsive: dividerTopResponsive,
-							levelMin: dividerLevelTopMin,
-							levelMinUnit: 'px',
-							levelPreferred: dividerLevelTopPreferred,
+							levelMobile: dividerLevelTopMobile,
 						})}
 					{0 !== dividerLevelBottom &&
 						dividerColorBottom.color &&
 						divider({
 							type: dividerTypeBottom,
+							reverse: dividerBottomReverse,
 							position: 'bottom',
 							level: dividerLevelBottom,
-							levelUnit: 'px',
 							color: dividerColorBottom.color,
 							useResponsive: dividerBottomResponsive,
-							levelMin: dividerLevelBottomMin,
-							levelMinUnit: 'px',
-							levelPreferred: dividerLevelBottomPreferred,
+							levelMobile: dividerLevelBottomMobile,
 						})}
 					<div className="ystdb-section__container">
 						<Wrapper className={innerClasses} style={innerStyles}>

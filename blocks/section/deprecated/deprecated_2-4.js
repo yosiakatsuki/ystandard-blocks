@@ -120,6 +120,10 @@ export const deprecated24 = [
 				backgroundType: attributes.backgroundImageURL
 					? 'image'
 					: undefined,
+				dividerTopReverse: 0 > attributes.dividerLevelTop,
+				dividerLevelTop: Math.abs(attributes.dividerLevelTop),
+				dividerBottomReverse: 0 > attributes.dividerLevelBottom,
+				dividerLevelBottom: Math.abs(attributes.dividerLevelBottom),
 			};
 		},
 		supports: {
