@@ -1,0 +1,26 @@
+{
+    "name": "yosiakatsuki/ystandard-blocks",
+    "description": "yStandard Blocks",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "yosiakatsuki"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "phpcompatibility/phpcompatibility-wp": "*",
+        "squizlabs/php_codesniffer": "*",
+        "wp-coding-standards/wpcs": "*",
+        "phpunit/phpunit":"4.8.*|5.7.*|6.*.*|7.*.*"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpcs": "phpcs --standard=./.phpcs.xml.dist"
+    }
+}
