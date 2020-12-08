@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 
 export default function ({ attributes }) {
@@ -22,8 +22,12 @@ export default function ({ attributes }) {
 		'is-no-margin': removeMargin,
 	});
 
+	const blockProps = useBlockProps.save({
+		className: 'ystdb-columns-wrap',
+	});
+
 	return (
-		<div className="ystdb-columns-wrap">
+		<div {...blockProps}>
 			<div className={classes}>
 				<InnerBlocks.Content />
 			</div>

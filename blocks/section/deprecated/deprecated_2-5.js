@@ -6,10 +6,14 @@ import {
 	__experimentalGetGradientClass,
 } from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';
-import { dividerPath, IMAGE_BACKGROUND_TYPE, VIDEO_BACKGROUND_TYPE } from '../config';
-import { getBackgroundPosition, getBackgroundSize } from "../shared";
-import getCssClamp from "../../../src/js/util/_getCssClamp";
-import getDataClamp from "../../../src/js/util/_getDataClamp";
+import {
+	dividerPath,
+	IMAGE_BACKGROUND_TYPE,
+	VIDEO_BACKGROUND_TYPE,
+} from '../config';
+import { getBackgroundPosition, getBackgroundSize } from '../shared';
+import getCssClamp from '../../../src/js/util/_getCssClamp';
+import getDataClamp from '../../../src/js/util/_getDataClamp';
 
 export const deprecated25 = [
 	{
@@ -376,7 +380,8 @@ export const deprecated25 = [
 			const isImageBackground = IMAGE_BACKGROUND_TYPE === backgroundType;
 			const isVideoBackground = VIDEO_BACKGROUND_TYPE === backgroundType;
 			const showFocalPointPicker =
-				isVideoBackground || (isImageBackground && !backgroundImageParallax);
+				isVideoBackground ||
+				(isImageBackground && !backgroundImageParallax);
 			const gradientClass = __experimentalGetGradientClass(gradient);
 
 			/**
@@ -387,7 +392,10 @@ export const deprecated25 = [
 				'background-color',
 				backgroundColor
 			);
-			const dividerColorTopClass = getColorClassName('fill', dividerColorTop);
+			const dividerColorTopClass = getColorClassName(
+				'fill',
+				dividerColorTop
+			);
 			const dividerColorBottomClass = getColorClassName(
 				'fill',
 				dividerColorBottom
@@ -473,14 +481,22 @@ export const deprecated25 = [
 				),
 				paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 				paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
-				marginTop: getMargin(marginTopResponsive, marginTop, marginTopMobile),
+				marginTop: getMargin(
+					marginTopResponsive,
+					marginTop,
+					marginTopMobile
+				),
 				marginBottom: getMargin(
 					marginBottomResponsive,
 					marginBottom,
 					marginBottomMobile
 				),
-				minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
-				animationDuration: hasAnimation ? `${animationSpeed}s` : undefined,
+				minHeight: sectionMinHeight
+					? sectionMinHeight + 'px'
+					: undefined,
+				animationDuration: hasAnimation
+					? `${animationSpeed}s`
+					: undefined,
 				animationDelay:
 					hasAnimation && 0 < animationDelay
 						? `${animationDelay}s`
@@ -630,11 +646,11 @@ export const deprecated25 = [
 				});
 				const style = useResponsive
 					? {
-						height: getCssClamp({
-							desktop: Math.abs(level),
-							mobile: Math.abs(levelMobile),
-						}),
-					}
+							height: getCssClamp({
+								desktop: Math.abs(level),
+								mobile: Math.abs(levelMobile),
+							}),
+					  }
 					: undefined;
 
 				return (
@@ -707,27 +723,27 @@ export const deprecated25 = [
 						</div>
 					)}
 					{dividerTop &&
-					divider({
-						type: dividerTypeTop,
-						reverse: dividerTopReverse,
-						position: 'top',
-						level: Math.abs(dividerLevelTop),
-						colorClass: dividerColorTopClass,
-						customColor: customDividerColorTop,
-						useResponsive: dividerTopResponsive,
-						levelMobile: dividerLevelTopMobile,
-					})}
+						divider({
+							type: dividerTypeTop,
+							reverse: dividerTopReverse,
+							position: 'top',
+							level: Math.abs(dividerLevelTop),
+							colorClass: dividerColorTopClass,
+							customColor: customDividerColorTop,
+							useResponsive: dividerTopResponsive,
+							levelMobile: dividerLevelTopMobile,
+						})}
 					{dividerBottom &&
-					divider({
-						type: dividerTypeBottom,
-						reverse: dividerBottomReverse,
-						position: 'bottom',
-						level: Math.abs(dividerLevelBottom),
-						colorClass: dividerColorBottomClass,
-						customColor: customDividerColorBottom,
-						useResponsive: dividerBottomResponsive,
-						levelMobile: dividerLevelBottomMobile,
-					})}
+						divider({
+							type: dividerTypeBottom,
+							reverse: dividerBottomReverse,
+							position: 'bottom',
+							level: Math.abs(dividerLevelBottom),
+							colorClass: dividerColorBottomClass,
+							customColor: customDividerColorBottom,
+							useResponsive: dividerBottomResponsive,
+							levelMobile: dividerLevelBottomMobile,
+						})}
 					<div className="ystdb-section__container">
 						<Wrapper
 							className={innerClasses}

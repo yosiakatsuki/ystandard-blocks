@@ -34,11 +34,11 @@ export const deprecated25 = [
 			},
 		},
 		supports: {
-			align: [ 'wide', 'full' ],
+			align: ['wide', 'full'],
 			className: false,
 			lightBlockWrapper: true,
 		},
-		save( { attributes } ) {
+		save({ attributes }) {
 			const {
 				colPc,
 				colTablet,
@@ -66,6 +66,6 @@ export const deprecated25 = [
 					</div>
 				</div>
 			);
-		}
-	}
+		},
+	},
 ];

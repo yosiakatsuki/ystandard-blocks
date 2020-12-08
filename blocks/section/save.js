@@ -387,15 +387,15 @@ export default function save(props) {
 		0 !== dividerLevelBottom &&
 		(dividerColorBottomClass || customDividerColorBottom);
 
-	const blockProps = useBlockProps.save( {
+	const blockProps = useBlockProps.save({
 		className: sectionClass,
 		style: sectionStyles,
-		"data-animation" : dataAnimation,
-		...getDataClamp(sectionClampData)
-	} );
+		'data-animation': dataAnimation,
+		...getDataClamp(sectionClampData),
+	});
 
 	return (
-		<div {...blockProps} >
+		<div {...blockProps}>
 			{isVideoBackground && (
 				<video
 					className="ystdb-section__video-background"
