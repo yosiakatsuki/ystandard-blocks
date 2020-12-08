@@ -178,7 +178,10 @@ function svgButton(props) {
 								return (
 									<Button
 										key={item.value}
-										isSecondary
+										isSecondary={
+											convertIconSize(iconSizeLeft) !==
+											item.value
+										}
 										isPrimary={
 											convertIconSize(iconSizeLeft) ===
 											item.value
@@ -215,7 +218,10 @@ function svgButton(props) {
 								return (
 									<Button
 										key={item.value}
-										isSecondary
+										isSecondary={
+											convertIconSize(iconSizeRight) !==
+											item.value
+										}
 										isPrimary={
 											convertIconSize(iconSizeRight) ===
 											item.value
@@ -259,7 +265,7 @@ function svgButton(props) {
 								return (
 									<Button
 										key={item.value}
-										isSecondary
+										isSecondary={paddingType !== item.value}
 										isPrimary={paddingType === item.value}
 										onClick={() => {
 											setAttributes({
