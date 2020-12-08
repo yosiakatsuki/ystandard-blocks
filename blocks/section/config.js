@@ -15,6 +15,10 @@ import { wrapper } from './attributes/wrapper';
  * attributes
  */
 export const attributes = {
+	align: {
+		type: 'string',
+		default: 'full',
+	},
 	...margin,
 	...padding,
 	...overlay,

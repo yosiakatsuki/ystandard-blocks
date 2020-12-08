@@ -1,20 +1,28 @@
 @import "block";
 
 [data-type="ystdb/section"] {
+  .ystdb-section {
+	overflow: unset;
+  }
+
+  &[data-align="full"] {
 	.ystdb-section {
-		overflow: unset;
+	  padding-right: 64px;
+	  padding-left: 64px;
 	}
 
-	&[data-align="full"] {
-		.ystdb-section {
-			padding-right: 64px;
-			padding-left: 64px;
-		}
-
-		.ystdb-section__inner {
-			.wp-block {
-				max-width: 100%;
-			}
-		}
+	.ystdb-section__inner {
+	  .wp-block {
+		max-width: 100%;
+	  }
 	}
+  }
+
+  .ystdb-section__inner {
+	> .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+	  max-width: 830px;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+  }
 }
