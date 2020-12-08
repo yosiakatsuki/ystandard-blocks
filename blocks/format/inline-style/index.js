@@ -3,6 +3,7 @@ import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { Toolbar, ToolbarButton } from '@wordpress/components';
 import { BlockFormatControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
+import classnames from 'classnames';
 
 /**
  * インラインスタイル追加
@@ -21,9 +22,11 @@ inlineStyles.map((style, index) => {
 					<BlockFormatControls>
 						<div className="editor-format-toolbar block-editor-format-toolbar">
 							<div
-								className={`ystdb-inline-style-toolbar inline-style-${
-									index + 1
-								}`}
+								className={classnames(
+									'ystdb-inline-style-toolbar',
+									`inline-style-${index + 1}`,
+									style.class
+								)}
 							>
 								<Toolbar>
 									<ToolbarButton
