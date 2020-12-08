@@ -4,8 +4,51 @@ on:
     branches:
       - develop
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  lint:
+    runs-on:  ubuntu-latest
+    name: lint
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: 'develop'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.3
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: xdebug
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Composer install
+        run: composer install --optimize-autoloader --prefer-dist
+
+      - name: phpcs tests
+        run: composer phpcs
+
+      - name: npm install
+        run: npm install
+
+      - name: npm run lint-js
+        run: npm run lint-js
+
+      - name: Notify Lint
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: Failure lint
+          fields: repo,message,commit,job
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: failure()
+
+  release:
+    name: Release
+    needs: [ lint ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -18,6 +61,7 @@ jobs:
       - name: Build
         run: |
           npm install
+          npm run build
           npm run build:deploy-files
           npm run rename:beta-json
       - name: FTP-Deploy-Action
@@ -28,3 +72,14 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: build
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
+
+      - name: Notify Release
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: "[yStandard Blocks]開発バージョンのアップデート準備OK！"
+          fields: repo,message
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: success()
