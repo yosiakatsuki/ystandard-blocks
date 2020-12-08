@@ -4,6 +4,7 @@ import {
 	getColorClassName,
 	InnerBlocks,
 	__experimentalGetGradientClass,
+	useBlockProps,
 } from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';
 import {
@@ -134,6 +135,10 @@ export default function save(props) {
 			showFocalPointPicker,
 			focalPoint
 		),
+		backgroundRepeat:
+			'no-repeat' === backgroundImageRepeat
+				? undefined
+				: backgroundImageRepeat,
 		backgroundSize: getBackgroundSize(
 			backgroundImageSize,
 			backgroundImageSizeX,
@@ -141,10 +146,6 @@ export default function save(props) {
 			backgroundImageSizeUnitX,
 			backgroundImageSizeUnitY
 		),
-		backgroundRepeat:
-			'no-repeat' === backgroundImageRepeat
-				? undefined
-				: backgroundImageRepeat,
 	};
 
 	/**
@@ -195,8 +196,6 @@ export default function save(props) {
 			paddingBottom,
 			paddingBottomMobile
 		),
-		paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
-		paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 		marginTop: getMargin(marginTopResponsive, marginTop, marginTopMobile),
 		marginBottom: getMargin(
 			marginBottomResponsive,
@@ -388,13 +387,15 @@ export default function save(props) {
 		0 !== dividerLevelBottom &&
 		(dividerColorBottomClass || customDividerColorBottom);
 
+	const blockProps = useBlockProps.save( {
+		className: sectionClass,
+		style: sectionStyles,
+		"data-animation" : dataAnimation,
+		...getDataClamp(sectionClampData)
+	} );
+
 	return (
-		<div
-			className={sectionClass}
-			style={sectionStyles}
-			data-animation={dataAnimation}
-			{...getDataClamp(sectionClampData)}
-		>
+		<div {...blockProps} >
 			{isVideoBackground && (
 				<video
 					className="ystdb-section__video-background"
