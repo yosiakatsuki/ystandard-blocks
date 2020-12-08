@@ -13,6 +13,7 @@ import {
 	FontSizePicker,
 	withFontSizes,
 } from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
 
 import { Fragment } from '@wordpress/element';
 
@@ -21,11 +22,11 @@ import {
 	PanelBody,
 	BaseControl,
 	ToggleControl,
-	ServerSideRender,
 	RadioControl,
 	RangeControl,
 	Button,
 	ToolbarGroup,
+	ToolbarButton,
 } from '@wordpress/components';
 
 import { withState, compose } from '@wordpress/compose';
@@ -85,7 +86,7 @@ const SVGButtonLinkEdit = (props) => {
 						}}
 					/>
 					<ToolbarGroup>
-						<Button
+						<ToolbarButton
 							className={`components-tab-button`}
 							isPressed={!isPreview}
 							onClick={() => {
@@ -93,8 +94,8 @@ const SVGButtonLinkEdit = (props) => {
 							}}
 						>
 							<span>HTML</span>
-						</Button>
-						<Button
+						</ToolbarButton>
+						<ToolbarButton
 							className={`components-tab-button`}
 							isPressed={isPreview}
 							onClick={() => {
@@ -102,7 +103,7 @@ const SVGButtonLinkEdit = (props) => {
 							}}
 						>
 							<span>{__('Preview')}</span>
-						</Button>
+						</ToolbarButton>
 					</ToolbarGroup>
 				</BlockControls>
 				<Disabled.Consumer>
@@ -192,7 +193,11 @@ const SVGButtonLinkEdit = (props) => {
 									return (
 										<Button
 											key={item.value}
-											isDefault
+											isSecondary={
+												convertIconSize(
+													iconSizeLeft
+												) !== item.value
+											}
 											isPrimary={
 												convertIconSize(
 													iconSizeLeft
@@ -236,7 +241,11 @@ const SVGButtonLinkEdit = (props) => {
 									return (
 										<Button
 											key={item.value}
-											isDefault
+											isSecondary={
+												convertIconSize(
+													iconSizeRight
+												) !== item.value
+											}
 											isPrimary={
 												convertIconSize(
 													iconSizeRight
@@ -281,7 +290,9 @@ const SVGButtonLinkEdit = (props) => {
 									return (
 										<Button
 											key={item.value}
-											isDefault
+											isSecondary={
+												paddingType !== item.value
+											}
 											isPrimary={
 												paddingType === item.value
 											}
