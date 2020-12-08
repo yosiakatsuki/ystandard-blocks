@@ -30,7 +30,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-define( 'YSTDB_VERSION', '2.5.0' );
+define( 'YSTDB_VERSION', '2.6.0' );
 define( 'YSTDB_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'YSTDB_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
