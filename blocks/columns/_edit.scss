@@ -103,7 +103,6 @@
 
 [data-type="ystdb/columns"] {
   .ystdb-columns {
-	margin: 0;
 
 	&.is-no-margin {
 	  > .block-editor-inner-blocks > .block-editor-block-list__layout {
@@ -212,7 +211,7 @@
 	&.is-vertically-aligned-last {
 	  .ystdb-column-block-container {
 		> .block-editor-inner-blocks > .block-editor-block-list__layout {
-		  > *:nth-last-child(3) {
+		  > *:nth-last-child(2) {
 			flex-grow: 1;
 		  }
 		}
@@ -243,7 +242,7 @@
 	  &.is-vertically-aligned-last {
 		.ystdb-column-block-container {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout {
-			> *:nth-last-child(4) {
+			> *:nth-last-child(3) {
 			  flex-grow: 1;
 			}
 		  }
