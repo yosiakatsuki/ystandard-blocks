@@ -3,7 +3,7 @@
  * Plugin Name: yStandard Blocks
  * Plugin URI: https://wp-ystandard.com/
  * Description: 無料WordPressテーマ「yStandard」用ブロック追加プラグイン.
- * Version: 2.5.0
+ * Version: 2.6.0
  * Author: yosiakatsuki
  * Author URI: https://yosiakatsuki.net
  * License: GPL-2.0 or later
