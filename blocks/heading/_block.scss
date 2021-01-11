@@ -1,5 +1,20 @@
 .ystdb-heading {
   position: relative;
+
+
+  &.ys-is-font-responsive {
+	.ystdb-heading__text {
+	  @include media-breakpoint-down(md) {
+		font-size: var(--ys-font-mobile);
+	  }
+	  @include media-breakpoint_between(md, lg) {
+		font-size: var(--ys-font-tablet);
+	  }
+	  @include media-breakpoint(lg) {
+		font-size: var(--ys-font-desktop);
+	  }
+	}
+  }
 }
 
 .ystdb-heading {
@@ -44,6 +59,18 @@
 
   &:not(.has-color) {
 	color: var(--font-gray);
+  }
+
+  &.ys-is-font-responsive {
+	@include media-breakpoint-down(md) {
+	  font-size: var(--ys-font-mobile);
+	}
+	@include media-breakpoint_between(md, lg) {
+	  font-size: var(--ys-font-tablet);
+	}
+	@include media-breakpoint(lg) {
+	  font-size: var(--ys-font-desktop);
+	}
   }
 }
 

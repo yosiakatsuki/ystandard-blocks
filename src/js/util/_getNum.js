@@ -4,12 +4,20 @@
  * @param {string} value
  * @param {number} min
  * @param {number} max
- * @param {number} defaultNum
+ * @param {number} defaultValue
  */
-export default function getNum(value, min = 0, max = null, defaultNum = null) {
-	if (isNaN(value) || value < min) {
-		if (null !== defaultNum) {
-			value = defaultNum;
+export default function getNum(
+	value,
+	min = 0,
+	max = null,
+	defaultValue = undefined
+) {
+	if (!isFinite(value) || '' === value || value < min) {
+		if (null === defaultValue && ('' === value || undefined === value)) {
+			return undefined;
+		}
+		if (undefined !== defaultValue) {
+			value = defaultValue;
 		} else {
 			value = min;
 		}

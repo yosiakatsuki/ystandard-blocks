@@ -8,7 +8,6 @@ import {
 	PlainText,
 	MediaUpload,
 	withColors,
-	FontSizePicker,
 	withFontSizes,
 } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
@@ -34,6 +33,11 @@ import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { positions, cssUnit } from './config';
 import getNum from '../../src/js/util/_getNum';
+import ResponsiveFontSizeControl from '../../src/js/components/responsive-font-size/index';
+import {
+	getFontResponsiveClass,
+	getFontResponsiveStyle,
+} from '../../src/js/components/responsive-font-size/functions';
 
 function customHeading(props) {
 	const {
@@ -58,10 +62,18 @@ function customHeading(props) {
 		content,
 		level,
 		align,
+		useFontSizeResponsive,
+		fontSizeMobile,
+		fontSizeTablet,
+		fontSizeDesktop,
 		subText,
 		subTextPosition,
 		subTextBorderWidth,
 		subTextBorderHeight,
+		useSubTextSizeResponsive,
+		subTextSizeMobile,
+		subTextSizeTablet,
+		subTextSizeDesktop,
 		dividerMarginTop,
 		dividerMarginBottom,
 		clearStyle,
@@ -113,9 +125,15 @@ function customHeading(props) {
 	const headingClasses = classnames(className, 'ystdb-heading', {
 		[`has-text-align-${align}`]: align,
 		[textColor.class]: textColor.class,
-		[fontSize.class]: fontSize.class,
+		[fontSize.class]: fontSize.class && !useFontSizeResponsive,
 		'has-border': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
+		...getFontResponsiveClass(
+			useFontSizeResponsive,
+			fontSizeDesktop,
+			fontSizeTablet,
+			fontSizeMobile
+		),
 	});
 
 	const getVerticalMargin = (margin, unit) => {
@@ -134,11 +152,20 @@ function customHeading(props) {
 			'' !== marginRight ? marginRight + marginRightUnit : undefined,
 		marginBottom: getVerticalMargin(marginBottom, marginBottomUnit),
 		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
+		...getFontResponsiveStyle({
+			isResponsive: useFontSizeResponsive,
+			desktop: fontSizeDesktop,
+			tablet: fontSizeTablet,
+			mobile: fontSizeMobile,
+		}),
 	};
 
 	const styles = {
 		color: textColor.color,
-		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
+		fontSize:
+			fontSize.size && !useFontSizeResponsive
+				? fontSize.size + 'px'
+				: undefined,
 	};
 
 	const textClass = classnames('ystdb-heading__text', {
@@ -236,22 +263,46 @@ function customHeading(props) {
 			marginLeft: 'center' === align ? 'auto' : undefined,
 		};
 
-		const textStyle = {
-			fontSize: subTextSize.size ? subTextSize.size + 'px' : '16px',
+		let textStyle = {
 			color: subTextColor.color,
 			textAlign: align,
 			width: 'auto',
 			height: 'auto',
 		};
 
+		if (useSubTextSizeResponsive) {
+			textStyle = {
+				...textStyle,
+				...getFontResponsiveStyle({
+					isResponsive: useSubTextSizeResponsive,
+					desktop: subTextSizeDesktop,
+					tablet: subTextSizeTablet,
+					mobile: subTextSizeMobile,
+				}),
+			};
+		} else {
+			textStyle = {
+				...textStyle,
+				fontSize: subTextSize.size ? subTextSize.size + 'px' : '16px',
+			};
+		}
+
+		const subTextClass = classnames(
+			'ystdb-heading__subtext',
+			'ystdb-heading__subtext-edit',
+			{
+				...getFontResponsiveClass(
+					useSubTextSizeResponsive,
+					subTextSizeDesktop,
+					subTextSizeTablet,
+					subTextSizeMobile
+				),
+			}
+		);
+
 		return (
 			<Fragment>
-				<div
-					className={
-						'ystdb-heading__subtext ystdb-heading__subtext-edit'
-					}
-					style={wrapStyle}
-				>
+				<div className={subTextClass} style={wrapStyle}>
 					{showSubText && (
 						<PlainText
 							value={subText}
@@ -365,12 +416,68 @@ function customHeading(props) {
 					<div className="ystdb-inspector-controls__label">
 						{__('文字サイズ', 'ystandard-blocks')}
 					</div>
-					<FontSizePicker
-						label={__('文字サイズ', 'ystandard-blocks')}
-						value={fontSize.size}
-						onChange={(font) => {
+					<ResponsiveFontSizeControl
+						id={'font-size'}
+						useResponsive={useFontSizeResponsive}
+						fontSize={fontSize}
+						onChangeFontSizePicker={(font) => {
 							setFontSize(font);
 						}}
+						changeResponsiveMode={(value) => {
+							if (value) {
+								setAttributes({
+									fontSizeDesktop:
+										!fontSizeDesktop && fontSize.size
+											? fontSize.size
+											: getNum(
+													fontSizeDesktop,
+													0,
+													200,
+													null
+											  ),
+									fontSizeTablet:
+										!fontSizeTablet && fontSize.size
+											? fontSize.size
+											: getNum(
+													fontSizeTablet,
+													0,
+													200,
+													null
+											  ),
+									fontSizeMobile:
+										!fontSizeMobile && fontSize.size
+											? fontSize.size
+											: getNum(
+													fontSizeMobile,
+													0,
+													200,
+													null
+											  ),
+								});
+							}
+							setAttributes({ useFontSizeResponsive: value });
+						}}
+						desktopValue={fontSizeDesktop}
+						desktopOnChange={(value) => {
+							setAttributes({
+								fontSizeDesktop: getNum(value, 0, 200, null),
+							});
+						}}
+						desktopUnit={'px'}
+						tabletValue={fontSizeTablet}
+						tabletOnChange={(value) =>
+							setAttributes({
+								fontSizeTablet: getNum(value, 0, 200, null),
+							})
+						}
+						tabletUnit={'px'}
+						mobileValue={fontSizeMobile}
+						mobileOnChange={(value) =>
+							setAttributes({
+								fontSizeMobile: getNum(value, 0, 200, null),
+							})
+						}
+						mobileUnit={'px'}
 					/>
 				</PanelBody>
 				<PanelBody
@@ -532,12 +639,68 @@ function customHeading(props) {
 					<div className="ystdb-inspector-controls__label">
 						{__('サブテキスト文字サイズ', 'ystandard-blocks')}
 					</div>
-					<FontSizePicker
-						label={__('文字サイズ', 'ystandard-blocks')}
-						value={subTextSize.size}
-						onChange={(font) => {
+					<ResponsiveFontSizeControl
+						id={'sub-text-size'}
+						useResponsive={useSubTextSizeResponsive}
+						fontSize={subTextSize}
+						onChangeFontSizePicker={(font) => {
 							setSubTextSize(font);
 						}}
+						changeResponsiveMode={(value) => {
+							if (value) {
+								setAttributes({
+									subTextSizeDesktop:
+										!subTextSizeDesktop && subTextSize.size
+											? subTextSize.size
+											: getNum(
+													subTextSizeDesktop,
+													0,
+													200,
+													null
+											  ),
+									subTextSizeTablet:
+										!subTextSizeTablet && subTextSize.size
+											? subTextSize.size
+											: getNum(
+													subTextSizeTablet,
+													0,
+													200,
+													null
+											  ),
+									subTextSizeMobile:
+										!subTextSizeMobile && subTextSize.size
+											? subTextSize.size
+											: getNum(
+													subTextSizeMobile,
+													0,
+													200,
+													null
+											  ),
+								});
+							}
+							setAttributes({ useSubTextSizeResponsive: value });
+						}}
+						desktopValue={subTextSizeDesktop}
+						desktopOnChange={(value) =>
+							setAttributes({
+								subTextSizeDesktop: getNum(value, 0, 200, null),
+							})
+						}
+						desktopUnit={'px'}
+						tabletValue={subTextSizeTablet}
+						tabletOnChange={(value) =>
+							setAttributes({
+								subTextSizeTablet: getNum(value, 0, 200, null),
+							})
+						}
+						tabletUnit={'px'}
+						mobileValue={subTextSizeMobile}
+						mobileOnChange={(value) =>
+							setAttributes({
+								subTextSizeMobile: getNum(value, 0, 200, null),
+							})
+						}
+						mobileUnit={'px'}
 					/>
 				</PanelBody>
 				<PanelBody

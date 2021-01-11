@@ -6,7 +6,7 @@ import transforms from './transforms';
 import { attributes, supports } from './config';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
-import deprecated from './deprecated';
+import { deprecated } from './deprecated/index';
 
 registerBlockType('ystdb/heading', {
 	title: __('カスタム見出し', 'ystandard-blocks'),

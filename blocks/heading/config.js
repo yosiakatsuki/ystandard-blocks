@@ -32,6 +32,19 @@ export const attributes = {
 	customSubTextSize: {
 		type: 'number',
 	},
+	useSubTextSizeResponsive: {
+		type: 'bool',
+		default: false,
+	},
+	subTextSizeMobile: {
+		type: 'number',
+	},
+	subTextSizeTablet: {
+		type: 'number',
+	},
+	subTextSizeDesktop: {
+		type: 'number',
+	},
 	subTextColor: {
 		type: 'string',
 	},
@@ -70,6 +83,26 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
+		type: 'number',
+	},
+	useFontSizeResponsive: {
+		type: 'bool',
+		default: false,
+	},
+	fontSizeMobile: {
+		type: 'number',
+	},
+	fontSizeTablet: {
+		type: 'number',
+	},
+	fontSizeDesktop: {
+		type: 'number',
+	},
+	fontWeight: {
+		type: 'string',
+		default: '',
+	},
+	letterSpacing: {
 		type: 'number',
 	},
 	clearStyle: {
@@ -134,6 +167,21 @@ export const positions = [
 	{
 		label: __('上', 'ystandard-blocks'),
 		value: 'top',
+	},
+];
+
+export const fontWeightList = [
+	{
+		label: __('指定なし', 'ystandard-blocks'),
+		value: '',
+	},
+	{
+		label: __('bold', 'ystandard-blocks'),
+		value: '700',
+	},
+	{
+		label: __('normal', 'ystandard-blocks'),
+		value: '700',
 	},
 ];
 

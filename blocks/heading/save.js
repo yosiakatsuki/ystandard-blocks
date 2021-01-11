@@ -7,6 +7,11 @@ import {
 } from '@wordpress/block-editor';
 
 import { Path, SVG } from '@wordpress/components';
+import {
+	getFontResponsiveClass,
+	getFontResponsiveStyle,
+} from '../../src/js/components/responsive-font-size/functions';
+import getDataProperty from '../../src/js/util/_getResponsivPropertye';
 
 export default function save({ attributes }) {
 	const {
@@ -17,9 +22,17 @@ export default function save({ attributes }) {
 		customTextColor,
 		fontSize,
 		customFontSize,
+		useFontSizeResponsive,
+		fontSizeDesktop,
+		fontSizeTablet,
+		fontSizeMobile,
 		subText,
 		subTextSize,
 		customSubTextSize,
+		useSubTextSizeResponsive,
+		subTextSizeMobile,
+		subTextSizeTablet,
+		subTextSizeDesktop,
 		subTextColor,
 		customSubTextColor,
 		subTextBorderHeight,
@@ -55,6 +68,12 @@ export default function save({ attributes }) {
 		'has-sub-text': subText,
 		[`has-subtext--${subTextPosition}`]:
 			subText || (subTextBorderHeight && subTextBorderWidth),
+		...getFontResponsiveClass(
+			useFontSizeResponsive,
+			fontSizeDesktop,
+			fontSizeTablet,
+			fontSizeMobile
+		),
 	});
 
 	const headingStyles = {
@@ -64,19 +83,25 @@ export default function save({ attributes }) {
 		marginBottom:
 			'' !== marginBottom ? marginBottom + marginBottomUnit : undefined,
 		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
+		...getFontResponsiveStyle({
+			isResponsive: useFontSizeResponsive,
+			desktop: fontSizeDesktop,
+			tablet: fontSizeTablet,
+			mobile: fontSizeMobile,
+		}),
 	};
 
 	const textClasses = classnames('ystdb-heading__text', {
 		'is-clear-style': clearStyle,
 		[textClass]: textClass,
 		'has-text-color': textColor || customTextColor,
-		[fontSizeClass]: fontSizeClass,
+		[fontSizeClass]: fontSizeClass && !useFontSizeResponsive,
 	});
 
 	const textStyles = {
 		color: textClass ? undefined : customTextColor,
 		fontSize:
-			!fontSizeClass && customFontSize
+			!fontSizeClass && customFontSize && !useFontSizeResponsive
 				? customFontSize + 'px'
 				: undefined,
 	};
@@ -156,27 +181,66 @@ export default function save({ attributes }) {
 			return null;
 		}
 		const subTextClasses = classnames('ystdb-heading__subtext', {
-			'has-font-size': subTextSizeClass || customSubTextSize,
+			'has-font-size':
+				subTextSizeClass ||
+				customSubTextSize ||
+				useSubTextSizeResponsive,
 			'has-color': subTextColorClass || customSubTextColor,
 			[subTextColorClass]: subTextColorClass,
-			[subTextSizeClass]: subTextSizeClass,
+			[subTextSizeClass]: subTextSizeClass && !useSubTextSizeResponsive,
+			...getFontResponsiveClass(
+				useSubTextSizeResponsive,
+				subTextSizeDesktop,
+				subTextSizeTablet,
+				subTextSizeMobile
+			),
 		});
-		const styles = {
+		let subTextStyle = {
 			color: subTextColorClass ? undefined : customSubTextColor,
-			fontSize: customSubTextSize ? customSubTextSize + 'px' : undefined,
 		};
+		if (useSubTextSizeResponsive) {
+			subTextStyle = {
+				...subTextStyle,
+				...getFontResponsiveStyle({
+					isResponsive: useSubTextSizeResponsive,
+					desktop: subTextSizeDesktop,
+					tablet: subTextSizeTablet,
+					mobile: subTextSizeMobile,
+				}),
+			};
+		} else {
+			subTextStyle = {
+				...subTextStyle,
+				fontSize: customSubTextSize
+					? customSubTextSize + 'px'
+					: undefined,
+			};
+		}
 		return (
 			<div
 				className={subTextClasses}
 				aria-hidden={'true'}
-				style={styles}
+				style={subTextStyle}
 				data-text={subText}
+				{...getDataProperty({
+					'font-size': useSubTextSizeResponsive
+						? `${subTextSizeDesktop}px`
+						: undefined,
+				})}
 			></div>
 		);
 	};
 
 	return (
-		<div className={classes} style={headingStyles}>
+		<div
+			className={classes}
+			style={headingStyles}
+			{...getDataProperty({
+				'font-size': useFontSizeResponsive
+					? `${fontSizeDesktop}px`
+					: undefined,
+			})}
+		>
 			<div className={`ystdb-heading__container`}>
 				{'top' === subTextPosition && showSubText()}
 				{'top' === subTextPosition && divider()}
