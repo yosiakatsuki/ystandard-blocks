@@ -87,16 +87,6 @@ class Enqueue {
 			true
 		);
 		wp_script_add_data( Config::JS_APP_HANDLE, 'defer', true );
-
-		if ( Utility::is_ie() ) {
-			wp_enqueue_script(
-				Config::JS_APP_HANDLE . '-ie',
-				YSTDB_URL . '/js/app-ie.js',
-				[],
-				YSTDB_VERSION,
-				true
-			);
-		}
 	}
 
 	/**

@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-	parseResponsiveClamp();
+	parseResponsiveProperties();
 });
 
 /**
- * data-responsive-clamp関連
+ * レスポンシブ用スタイル処理
  */
-function parseResponsiveClamp() {
+function parseResponsiveProperties() {
 	const dataList = document.querySelectorAll('[data-responsive-clamp]');
 	const data = Array.prototype.slice.call(dataList, 0);
 	data.forEach((el) => {
@@ -18,11 +18,11 @@ function parseResponsiveClamp() {
 		}
 	});
 	const propertyList = document.querySelectorAll(
-		'[data-ystdb-responsive-property]'
+		'[data-ys-responsive-property]'
 	);
 	const property = Array.prototype.slice.call(propertyList, 0);
 	property.forEach((el) => {
-		const attr = el.getAttribute('data-ystdb-responsive-property');
+		const attr = el.getAttribute('data-ys-responsive-property');
 		const styles = JSON.parse(attr);
 		if (styles) {
 			for (const key in styles) {

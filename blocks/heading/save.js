@@ -232,15 +232,7 @@ export default function save({ attributes }) {
 	};
 
 	return (
-		<div
-			className={classes}
-			style={headingStyles}
-			{...getDataProperty({
-				'font-size': useFontSizeResponsive
-					? `${fontSizeDesktop}px`
-					: undefined,
-			})}
-		>
+		<div className={classes} style={headingStyles}>
 			<div className={`ystdb-heading__container`}>
 				{'top' === subTextPosition && showSubText()}
 				{'top' === subTextPosition && divider()}
@@ -249,6 +241,11 @@ export default function save({ attributes }) {
 					className={textClasses}
 					style={textStyles}
 					value={content}
+					{...getDataProperty({
+						'font-size': useFontSizeResponsive
+							? `${fontSizeDesktop}px`
+							: undefined,
+					})}
 				/>
 				{'bottom' === subTextPosition && divider()}
 				{'bottom' === subTextPosition && showSubText()}

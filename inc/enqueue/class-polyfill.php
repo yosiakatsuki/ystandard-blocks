@@ -35,7 +35,15 @@ class Polyfill {
 			'ystandard-blocks-intersection-observer-polyfill',
 			YSTDB_URL . '/library/IntersectionObserver/polyfill/intersection-observer.js',
 			[],
-			null
+			null,
+			false
+		);
+		wp_enqueue_script(
+			Config::JS_APP_HANDLE . '-ie',
+			YSTDB_URL . '/js/app-ie.js',
+			[],
+			YSTDB_VERSION,
+			true
 		);
 	}
 
