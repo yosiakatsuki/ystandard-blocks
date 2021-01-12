@@ -26,6 +26,8 @@ export default function save({ attributes }) {
 		fontSizeDesktop,
 		fontSizeTablet,
 		fontSizeMobile,
+		fontWeight,
+		letterSpacing,
 		subText,
 		subTextSize,
 		customSubTextSize,
@@ -33,6 +35,8 @@ export default function save({ attributes }) {
 		subTextSizeMobile,
 		subTextSizeTablet,
 		subTextSizeDesktop,
+		subTextFontWeight,
+		subTextLetterSpacing,
 		subTextColor,
 		customSubTextColor,
 		subTextBorderHeight,
@@ -103,6 +107,11 @@ export default function save({ attributes }) {
 		fontSize:
 			!fontSizeClass && customFontSize && !useFontSizeResponsive
 				? customFontSize + 'px'
+				: undefined,
+		fontWeight: !!fontWeight ? fontWeight : undefined,
+		letterSpacing:
+			!!letterSpacing && 0 < letterSpacing
+				? `${letterSpacing}em`
 				: undefined,
 	};
 
@@ -197,6 +206,11 @@ export default function save({ attributes }) {
 		});
 		let subTextStyle = {
 			color: subTextColorClass ? undefined : customSubTextColor,
+			fontWeight: !!subTextFontWeight ? subTextFontWeight : undefined,
+			letterSpacing:
+				!!subTextLetterSpacing && 0 < subTextLetterSpacing
+					? `${subTextLetterSpacing}em`
+					: undefined,
 		};
 		if (useSubTextSizeResponsive) {
 			subTextStyle = {

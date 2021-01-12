@@ -1,6 +1,6 @@
 import { inlineStyles } from './config';
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
-import { Toolbar, ToolbarButton } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { BlockFormatControls } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import classnames from 'classnames';
@@ -28,14 +28,14 @@ inlineStyles.map((style, index) => {
 									style.class
 								)}
 							>
-								<Toolbar>
+								<ToolbarGroup>
 									<ToolbarButton
 										icon={style.icon}
 										title={style.title}
 										onClick={onToggle}
 										isActive={isActive}
 									/>
-								</Toolbar>
+								</ToolbarGroup>
 							</div>
 						</div>
 					</BlockFormatControls>

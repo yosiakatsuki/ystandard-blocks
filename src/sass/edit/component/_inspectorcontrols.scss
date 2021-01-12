@@ -8,11 +8,13 @@
 	  font-weight: 400;
 	}
   }
+
   .components-panel__body {
 	&.is-opened {
 	  > .components-panel__body {
 		margin-right: -16px;
 		margin-left: -16px;
+
 		&:not(.is-opened) {
 		  margin-bottom: -16px;
 		}
@@ -76,6 +78,12 @@
 
 	&:last-child {
 	  margin-right: 0;
+	}
+  }
+
+  &.has-unit-select {
+	> *:last-child {
+	  flex: 0 0 auto;
 	}
   }
 
@@ -189,13 +197,13 @@
 	text-align: center;
 	font-weight: 700;
   }
+
   padding: 1.5em;
   background-color: $color__bg-gray-light;
   color: $color__text-light;
   font-size: 0.8em;
   font-weight: 400;
 }
-
 
 
 @import "../../../js/components/responsive-range/control";

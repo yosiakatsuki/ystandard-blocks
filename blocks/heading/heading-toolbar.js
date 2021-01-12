@@ -1,7 +1,13 @@
 import { range } from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { Component } from '@wordpress/element';
-import { Toolbar, Path, SVG } from '@wordpress/components';
+import {
+	Path,
+	SVG,
+	ToolbarGroup,
+	ToolbarItem,
+	DropdownMenu,
+} from '@wordpress/components';
 import { paths } from './config';
 
 class HeadingToolbar extends Component {
@@ -25,13 +31,25 @@ class HeadingToolbar extends Component {
 		} = this.props;
 
 		return (
-			<Toolbar
-				isCollapsed={isCollapsed}
-				icon={this.getIcon(selectedLevel)}
-				controls={range(minLevel, maxLevel).map((index) =>
-					this.createLevelControl(index, selectedLevel, onChange)
-				)}
-			/>
+			<ToolbarGroup>
+				<ToolbarItem>
+					{(toolbarItemHTMLProps) => (
+						<DropdownMenu
+							toggleProps={toolbarItemHTMLProps}
+							isCollapsed={isCollapsed}
+							icon={this.getIcon(selectedLevel)}
+							label={__('見出しレベル', 'ystandard-blocks')}
+							controls={range(minLevel, maxLevel).map((index) =>
+								this.createLevelControl(
+									index,
+									selectedLevel,
+									onChange
+								)
+							)}
+						/>
+					)}
+				</ToolbarItem>
+			</ToolbarGroup>
 		);
 	}
 

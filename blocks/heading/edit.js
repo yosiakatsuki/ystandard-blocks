@@ -31,7 +31,7 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
-import { positions, cssUnit } from './config';
+import { positions, cssUnit, fontWeightList } from './config';
 import getNum from '../../src/js/util/_getNum';
 import ResponsiveFontSizeControl from '../../src/js/components/responsive-font-size/index';
 import {
@@ -66,6 +66,8 @@ function customHeading(props) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
+		fontWeight,
+		letterSpacing,
 		subText,
 		subTextPosition,
 		subTextBorderWidth,
@@ -74,6 +76,8 @@ function customHeading(props) {
 		subTextSizeMobile,
 		subTextSizeTablet,
 		subTextSizeDesktop,
+		subTextFontWeight,
+		subTextLetterSpacing,
 		dividerMarginTop,
 		dividerMarginBottom,
 		clearStyle,
@@ -166,8 +170,12 @@ function customHeading(props) {
 			fontSize.size && !useFontSizeResponsive
 				? fontSize.size + 'px'
 				: undefined,
+		fontWeight: !!fontWeight ? fontWeight : undefined,
+		letterSpacing:
+			!!letterSpacing && 0 < letterSpacing
+				? `${letterSpacing}em`
+				: undefined,
 	};
-
 	const textClass = classnames('ystdb-heading__text', {
 		'is-clear-style': clearStyle,
 	});
@@ -268,6 +276,11 @@ function customHeading(props) {
 			textAlign: align,
 			width: 'auto',
 			height: 'auto',
+			fontWeight: !!subTextFontWeight ? subTextFontWeight : undefined,
+			letterSpacing:
+				!!subTextLetterSpacing && 0 < subTextLetterSpacing
+					? `${subTextLetterSpacing}em`
+					: undefined,
 		};
 
 		if (useSubTextSizeResponsive) {
@@ -329,7 +342,7 @@ function customHeading(props) {
 	const mediaUploadRender = (obj) => {
 		if (0 === dividerImageID) {
 			return (
-				<Button isDefault onClick={obj.open}>
+				<Button isSecondary onClick={obj.open}>
 					{__('画像を選択', 'ystandard-blocks')}
 				</Button>
 			);
@@ -344,7 +357,7 @@ function customHeading(props) {
 					<img src={dividerImageURL} alt={dividerImageAlt} />
 				</Button>
 				<Button
-					isDefault
+					isSecondary
 					onClick={() => {
 						setAttributes({
 							dividerImageURL: '',
@@ -479,12 +492,38 @@ function customHeading(props) {
 						}
 						mobileUnit={'px'}
 					/>
+					<div className="ystdb-inspector-controls__label">
+						{__('太さ', 'ystandard-blocks')}
+					</div>
+					<SelectControl
+						value={fontWeight}
+						options={fontWeightList}
+						onChange={(type) => {
+							setAttributes({
+								fontWeight: type,
+							});
+						}}
+					/>
+					<div className="ystdb-inspector-controls__label">
+						{__('Letter Spacing', 'ystandard-blocks')}
+					</div>
+					<NumberControl
+						value={letterSpacing}
+						onChange={(value) => {
+							setAttributes({
+								letterSpacing: getNum(value, 0, 1, null),
+							});
+						}}
+						min={0}
+						max={1}
+						step={0.01}
+					/>
 				</PanelBody>
 				<PanelBody
 					title={__('余白', 'ystandard-blocks')}
 					initialOpen={false}
 				>
-					<div className="ystdb-inspector-controls__columns">
+					<div className="ystdb-inspector-controls__columns has-unit-select">
 						<span>{__('上', 'ystandard-blocks')}</span>
 						<NumberControl
 							value={marginTop}
@@ -512,7 +551,7 @@ function customHeading(props) {
 							}}
 						/>
 					</div>
-					<div className="ystdb-inspector-controls__columns">
+					<div className="ystdb-inspector-controls__columns has-unit-select">
 						<span>{__('右', 'ystandard-blocks')}</span>
 						<NumberControl
 							value={marginRight}
@@ -540,7 +579,7 @@ function customHeading(props) {
 							}}
 						/>
 					</div>
-					<div className="ystdb-inspector-controls__columns">
+					<div className="ystdb-inspector-controls__columns has-unit-select">
 						<span>{__('下', 'ystandard-blocks')}</span>
 						<NumberControl
 							value={marginBottom}
@@ -568,7 +607,7 @@ function customHeading(props) {
 							}}
 						/>
 					</div>
-					<div className="ystdb-inspector-controls__columns">
+					<div className="ystdb-inspector-controls__columns has-unit-select">
 						<span>{__('左', 'ystandard-blocks')}</span>
 						<NumberControl
 							value={marginLeft}
@@ -612,7 +651,7 @@ function customHeading(props) {
 							return (
 								<Button
 									key={item.value}
-									isDefault
+									isSecondary={subTextPosition !== item.value}
 									isPrimary={subTextPosition === item.value}
 									onClick={() => {
 										setAttributes({
@@ -701,6 +740,33 @@ function customHeading(props) {
 							})
 						}
 						mobileUnit={'px'}
+					/>
+
+					<div className="ystdb-inspector-controls__label">
+						{__('太さ', 'ystandard-blocks')}
+					</div>
+					<SelectControl
+						value={subTextFontWeight}
+						options={fontWeightList}
+						onChange={(type) => {
+							setAttributes({
+								subTextFontWeight: type,
+							});
+						}}
+					/>
+					<div className="ystdb-inspector-controls__label">
+						{__('Letter Spacing', 'ystandard-blocks')}
+					</div>
+					<NumberControl
+						value={subTextLetterSpacing}
+						onChange={(value) => {
+							setAttributes({
+								subTextLetterSpacing: getNum(value, 0, 1, null),
+							});
+						}}
+						min={0}
+						max={1}
+						step={0.01}
 					/>
 				</PanelBody>
 				<PanelBody

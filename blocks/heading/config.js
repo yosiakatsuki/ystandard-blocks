@@ -45,6 +45,13 @@ export const attributes = {
 	subTextSizeDesktop: {
 		type: 'number',
 	},
+	subTextFontWeight: {
+		type: 'string',
+		default: '',
+	},
+	subTextLetterSpacing: {
+		type: 'number',
+	},
 	subTextColor: {
 		type: 'string',
 	},
@@ -181,7 +188,7 @@ export const fontWeightList = [
 	},
 	{
 		label: __('normal', 'ystandard-blocks'),
-		value: '700',
+		value: '400',
 	},
 ];
 
