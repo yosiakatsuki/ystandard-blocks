@@ -6,6 +6,7 @@ import {
 	SVG,
 	ToolbarGroup,
 	ToolbarItem,
+	ToolbarButton,
 	DropdownMenu,
 } from '@wordpress/components';
 import { paths } from './config';
@@ -30,8 +31,8 @@ class HeadingToolbar extends Component {
 			onChange,
 		} = this.props;
 
-		return (
-			<ToolbarGroup>
+		const dropdownMenu = () => {
+			return (
 				<ToolbarItem>
 					{(toolbarItemHTMLProps) => (
 						<DropdownMenu
@@ -49,6 +50,27 @@ class HeadingToolbar extends Component {
 						/>
 					)}
 				</ToolbarItem>
+			);
+		};
+
+		const buttons = () => {
+			return range(minLevel, maxLevel).map((index) => {
+				return (
+					<ToolbarButton
+						key={index}
+						{...this.createLevelControl(
+							index,
+							selectedLevel,
+							onChange
+						)}
+					/>
+				);
+			});
+		};
+
+		return (
+			<ToolbarGroup>
+				{isCollapsed ? dropdownMenu() : buttons()}
 			</ToolbarGroup>
 		);
 	}
