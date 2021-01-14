@@ -5,8 +5,9 @@ import {
 	getColorClassName,
 	getFontSizeClass,
 } from '@wordpress/block-editor';
+import SVGIcon from "../../../src/js/components/svg-icon";
 
-const deprecated = [
+export const deprecated27 = [
 	{
 		attributes: {
 			text: {
@@ -51,7 +52,7 @@ const deprecated = [
 				type: 'string',
 			},
 			customFontSize: {
-				type: 'string',
+				type: 'number',
 			},
 			url: {
 				type: 'string',
@@ -84,10 +85,6 @@ const deprecated = [
 			animationInterval: {
 				type: 'number',
 				default: 5,
-			},
-			className: {
-				type: 'string',
-				default: '',
 			},
 		},
 		supports: {
@@ -143,11 +140,11 @@ const deprecated = [
 					'no-border-radius': borderRadius === 0,
 					[paddingType]: paddingType,
 					[buttonType]: buttonType,
-					'has-animation': animationType,
-					[`has-animation--${animationType}`]:
-						'none' !== animationType,
+					'has-animation': animationType && 'none' !== animationType,
+					[`has-animation--${animationType}`]: 'none' !== animationType,
 				}
 			);
+
 			const wrapStyles = {
 				fontSize:
 					!fontSizeClass && customFontSize
@@ -156,14 +153,9 @@ const deprecated = [
 			};
 			const linkStyles = {
 				color: textClass ? undefined : customTextColor,
-				backgroundColor: backgroundClass
-					? undefined
-					: customBackgroundColor,
+				backgroundColor: backgroundClass ? undefined : customBackgroundColor,
 				borderRadius: borderRadius ? borderRadius + 'px' : undefined,
-				maxWidth:
-					buttonType && maxWidth
-						? `${maxWidth}${maxUnit}`
-						: undefined,
+				maxWidth: buttonType && maxWidth ? `${maxWidth}${maxUnit}` : undefined,
 				animationDuration:
 					'none' !== animationType && animationInterval
 						? `${animationInterval}s`
@@ -179,42 +171,42 @@ const deprecated = [
 						target={linkTarget}
 						rel={rel}
 					>
-						<span className="ystdb-button__link-content">
-							{!!iconLeft && (
-								<i
-									className={classnames(
-										'ystdb-button__icon',
-										'ystdb-button__icon--left',
-										iconLeft,
-										{
-											[iconSizeLeft]: iconSizeLeft,
-										}
-									)}
-								></i>
+				<span className="ystdb-button__link-content">
+					{!!iconLeft && (
+						<span
+							className={classnames(
+								'ystdb-button__icon',
+								'ystdb-button__icon--left',
+								{
+									[iconSizeLeft]: iconSizeLeft,
+								}
 							)}
-							<RichText.Content
-								tagName={'span'}
-								value={text}
-								className={'ystdb-button__text'}
-							/>
-							{!!iconRight && (
-								<i
-									className={classnames(
-										'ystdb-button__icon',
-										'ystdb-button__icon--right',
-										iconRight,
-										{
-											[iconSizeRight]: iconSizeRight,
-										}
-									)}
-								></i>
-							)}
+						>
+							<SVGIcon name={iconLeft} />
 						</span>
+					)}
+					<RichText.Content
+						tagName={'span'}
+						value={text}
+						className={'ystdb-button__text'}
+					/>
+					{!!iconRight && (
+						<span
+							className={classnames(
+								'ystdb-button__icon',
+								'ystdb-button__icon--right',
+								{
+									[iconSizeRight]: iconSizeRight,
+								}
+							)}
+						>
+							<SVGIcon name={iconRight} />
+						</span>
+					)}
+				</span>
 					</a>
 				</div>
 			);
-		},
+		}
 	},
 ];
-
-export default deprecated;

@@ -185,15 +185,16 @@ var supports = {
 
 /***/ }),
 
-/***/ "./blocks/svg-button/deprecated.js":
-/*!*****************************************!*\
-  !*** ./blocks/svg-button/deprecated.js ***!
-  \*****************************************/
-/*! exports provided: default */
+/***/ "./blocks/svg-button/deprecated/__deprecated.js":
+/*!******************************************************!*\
+  !*** ./blocks/svg-button/deprecated/__deprecated.js ***!
+  \******************************************************/
+/*! exports provided: __deprecated */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__deprecated", function() { return __deprecated; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
@@ -206,7 +207,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var deprecated = [{
+var __deprecated = [{
   attributes: {
     text: {
       type: 'string',
@@ -356,7 +357,204 @@ var deprecated = [{
     }))));
   }
 }];
-/* harmony default export */ __webpack_exports__["default"] = (deprecated);
+
+/***/ }),
+
+/***/ "./blocks/svg-button/deprecated/deprecated_2-7.js":
+/*!********************************************************!*\
+  !*** ./blocks/svg-button/deprecated/deprecated_2-7.js ***!
+  \********************************************************/
+/*! exports provided: deprecated27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated27", function() { return deprecated27; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _src_js_components_svg_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../src/js/components/svg-icon */ "./src/js/components/svg-icon/index.js");
+
+
+
+
+
+var deprecated27 = [{
+  attributes: {
+    text: {
+      type: 'string',
+      source: 'html',
+      selector: '.ystdb-button__text'
+    },
+    borderRadius: {
+      type: 'number',
+      default: 4
+    },
+    iconLeft: {
+      type: 'string'
+    },
+    iconSizeLeft: {
+      type: 'string',
+      default: ''
+    },
+    iconRight: {
+      type: 'string'
+    },
+    iconSizeRight: {
+      type: 'string',
+      default: ''
+    },
+    align: {
+      type: 'string'
+    },
+    backgroundColor: {
+      type: 'string'
+    },
+    customBackgroundColor: {
+      type: 'string'
+    },
+    textColor: {
+      type: 'string'
+    },
+    customTextColor: {
+      type: 'string'
+    },
+    fontSize: {
+      type: 'string'
+    },
+    customFontSize: {
+      type: 'number'
+    },
+    url: {
+      type: 'string'
+    },
+    linkTarget: {
+      type: 'string'
+    },
+    rel: {
+      type: 'string'
+    },
+    paddingType: {
+      type: 'string',
+      default: ''
+    },
+    buttonType: {
+      type: 'string'
+    },
+    maxWidth: {
+      type: 'number',
+      default: 100
+    },
+    maxUnit: {
+      type: 'string',
+      default: '%'
+    },
+    animationType: {
+      type: 'string',
+      default: 'none'
+    },
+    animationInterval: {
+      type: 'number',
+      default: 5
+    }
+  },
+  supports: {
+    align: false,
+    className: false
+  },
+  save: function save(_ref) {
+    var _classnames, _classnames2;
+
+    var attributes = _ref.attributes;
+    var textColor = attributes.textColor,
+        customTextColor = attributes.customTextColor,
+        fontSize = attributes.fontSize,
+        customFontSize = attributes.customFontSize,
+        backgroundColor = attributes.backgroundColor,
+        customBackgroundColor = attributes.customBackgroundColor,
+        text = attributes.text,
+        borderRadius = attributes.borderRadius,
+        iconLeft = attributes.iconLeft,
+        iconSizeLeft = attributes.iconSizeLeft,
+        iconRight = attributes.iconRight,
+        iconSizeRight = attributes.iconSizeRight,
+        align = attributes.align,
+        url = attributes.url,
+        rel = attributes.rel,
+        linkTarget = attributes.linkTarget,
+        paddingType = attributes.paddingType,
+        buttonType = attributes.buttonType,
+        maxWidth = attributes.maxWidth,
+        maxUnit = attributes.maxUnit,
+        animationType = attributes.animationType,
+        animationInterval = attributes.animationInterval;
+    var textClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["getColorClassName"])('color', textColor);
+    var backgroundClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["getColorClassName"])('background-color', backgroundColor);
+    var fontSizeClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["getFontSizeClass"])(fontSize);
+    var wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSizeClass, fontSizeClass), _classnames));
+    var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textClass, textClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor || customTextColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor || customBackgroundColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'no-border-radius', borderRadius === 0), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, buttonType, buttonType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
+    var wrapStyles = {
+      fontSize: !fontSizeClass && customFontSize ? customFontSize + 'px' : undefined
+    };
+    var linkStyles = {
+      color: textClass ? undefined : customTextColor,
+      backgroundColor: backgroundClass ? undefined : customBackgroundColor,
+      borderRadius: borderRadius ? borderRadius + 'px' : undefined,
+      maxWidth: buttonType && maxWidth ? "".concat(maxWidth).concat(maxUnit) : undefined,
+      animationDuration: 'none' !== animationType && animationInterval ? "".concat(animationInterval, "s") : undefined
+    };
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: wrapClasses,
+      style: wrapStyles
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
+      href: url,
+      className: linkClasses,
+      style: linkStyles,
+      target: linkTarget,
+      rel: rel
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+      className: "ystdb-button__link-content"
+    }, !!iconLeft && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-button__icon', 'ystdb-button__icon--left', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, iconSizeLeft, iconSizeLeft))
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_src_js_components_svg_icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      name: iconLeft
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      tagName: 'span',
+      value: text,
+      className: 'ystdb-button__text'
+    }), !!iconRight && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('ystdb-button__icon', 'ystdb-button__icon--right', _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({}, iconSizeRight, iconSizeRight))
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_src_js_components_svg_icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      name: iconRight
+    })))));
+  }
+}];
+
+/***/ }),
+
+/***/ "./blocks/svg-button/deprecated/index.js":
+/*!***********************************************!*\
+  !*** ./blocks/svg-button/deprecated/index.js ***!
+  \***********************************************/
+/*! exports provided: deprecated */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated", function() { return deprecated; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _deprecated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./__deprecated */ "./blocks/svg-button/deprecated/__deprecated.js");
+/* harmony import */ var _deprecated_2_7__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./deprecated_2-7 */ "./blocks/svg-button/deprecated/deprecated_2-7.js");
+
+
+
+var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated__WEBPACK_IMPORTED_MODULE_1__["__deprecated"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_7__WEBPACK_IMPORTED_MODULE_2__["deprecated27"]));
 
 /***/ }),
 
@@ -745,7 +943,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./blocks/svg-button/save.js");
 /* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/index.js");
 /* harmony import */ var _transforms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./transforms */ "./blocks/svg-button/transforms.js");
-/* harmony import */ var _deprecated__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./deprecated */ "./blocks/svg-button/deprecated.js");
+/* harmony import */ var _deprecated_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./deprecated/index */ "./blocks/svg-button/deprecated/index.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./config */ "./blocks/svg-button/config.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__);
@@ -785,7 +983,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('yst
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
   transforms: _transforms__WEBPACK_IMPORTED_MODULE_5__["default"],
-  deprecated: _deprecated__WEBPACK_IMPORTED_MODULE_6__["default"]
+  deprecated: _deprecated_index__WEBPACK_IMPORTED_MODULE_6__["deprecated"]
 });
 
 /***/ }),
@@ -963,6 +1161,44 @@ var transforms = {
   }]
 };
 /* harmony default export */ __webpack_exports__["default"] = (transforms);
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
 
 /***/ }),
 
@@ -1196,6 +1432,36 @@ module.exports = _inherits;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
@@ -1239,6 +1505,29 @@ module.exports = _setPrototypeOf;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/typeof.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
@@ -1263,6 +1552,28 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
 
 /***/ }),
 
