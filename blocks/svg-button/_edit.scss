@@ -1,6 +1,14 @@
 @import "block";
 
 [data-type="ystdb/svg-button"] {
+
+
+  .ystdb-button__link {
+	.block-editor-url-input__input[type=text]:not(:focus) {
+	  border: 1px solid $color__border-gray-light;
+	}
+  }
+
   .ystdb-button__link-label {
 	font-size: 0.8rem;
   }
@@ -12,7 +20,9 @@
 
   .ystdb-button__link-container {
 	margin-top: 1rem;
+	padding: 1rem;
 	text-align: left;
+	background-color: $color__bg-gray-light;
   }
 
   &.is-selected {

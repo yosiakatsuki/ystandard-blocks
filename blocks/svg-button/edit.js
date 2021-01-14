@@ -436,6 +436,26 @@ function svgButton(props) {
 						isFullWidth
 						hasBorder
 					/>
+					<ToggleControl
+						label={__('Open in new tab')}
+						onChange={(value) => {
+							const newLinkTarget = value ? '_blank' : undefined;
+							let updatedRel = rel;
+							if (newLinkTarget && !rel) {
+								updatedRel = ystdbConfig.button.newTabRel;
+							} else if (
+								!newLinkTarget &&
+								rel === ystdbConfig.button.newTabRel
+							) {
+								updatedRel = undefined;
+							}
+							setAttributes({
+								linkTarget: newLinkTarget,
+								rel: updatedRel,
+							});
+						}}
+						checked={linkTarget === '_blank'}
+					/>
 				</div>
 			)}
 		</Fragment>
