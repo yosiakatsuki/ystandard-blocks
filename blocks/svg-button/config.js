@@ -59,8 +59,14 @@ export const attributes = {
 		type: 'string',
 		default: '',
 	},
-	buttonType: {
-		type: 'string',
+	buttonBlockDesktop: {
+		type: 'bool',
+	},
+	buttonBlockTablet: {
+		type: 'bool',
+	},
+	buttonBlockMobile: {
+		type: 'bool',
 	},
 	maxWidth: {
 		type: 'number',

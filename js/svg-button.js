@@ -158,8 +158,14 @@ var attributes = {
     type: 'string',
     default: ''
   },
-  buttonType: {
-    type: 'string'
+  buttonBlockDesktop: {
+    type: 'bool'
+  },
+  buttonBlockTablet: {
+    type: 'bool'
+  },
+  buttonBlockMobile: {
+    type: 'bool'
   },
   maxWidth: {
     type: 'number',
@@ -382,6 +388,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 var deprecated27 = [{
@@ -462,6 +473,14 @@ var deprecated27 = [{
       type: 'number',
       default: 5
     }
+  },
+  migrate: function migrate(attributes) {
+    return _objectSpread(_objectSpread({}, attributes), {}, {
+      buttonBlockDesktop: 'is-block' === attributes.buttonType,
+      buttonBlockTablet: 'is-block' === attributes.buttonType,
+      buttonBlockMobile: 'is-block' === attributes.buttonType,
+      buttonType: undefined
+    });
   },
   supports: {
     align: false,
@@ -620,13 +639,15 @@ function svgButton(props) {
       rel = attributes.rel,
       linkTarget = attributes.linkTarget,
       paddingType = attributes.paddingType,
-      buttonType = attributes.buttonType,
+      buttonBlockDesktop = attributes.buttonBlockDesktop,
+      buttonBlockTablet = attributes.buttonBlockTablet,
+      buttonBlockMobile = attributes.buttonBlockMobile,
       maxWidth = attributes.maxWidth,
       maxUnit = attributes.maxUnit,
       animationType = attributes.animationType,
       animationInterval = attributes.animationInterval;
   var wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'wp-block-button', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSize.class, fontSize.class), _classnames));
-  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, buttonType, buttonType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
+  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textColor.class, textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundColor.class, backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor.class), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block', buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--desktop', buttonBlockDesktop), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--tablet', buttonBlockTablet), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--mobile', buttonBlockMobile), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
   var wrapStyles = {
     fontSize: fontSize.size ? fontSize.size + 'px' : undefined
   };
@@ -634,7 +655,7 @@ function svgButton(props) {
     color: textColor.color,
     backgroundColor: backgroundColor.color,
     borderRadius: borderRadius,
-    maxWidth: buttonType && maxWidth ? "".concat(maxWidth).concat(maxUnit) : undefined,
+    maxWidth: (buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) && maxWidth ? "".concat(maxWidth).concat(maxUnit) : undefined,
     animationDuration: 'none' !== animationType && animationInterval ? "".concat(animationInterval, "s") : undefined
   };
   var maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
@@ -766,17 +787,32 @@ function svgButton(props) {
       }
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", null, item.label));
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('ブロックボタン設定', 'ystandard-blocks')
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('ブロックタイプ設定', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('ボタンをブロック型にする', 'ystandard-blocks'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('デスクトップ', 'ystandard-blocks'),
     onChange: function onChange() {
-      var value = 'is-block' === buttonType ? '' : 'is-block';
       setAttributes({
-        buttonType: value
+        buttonBlockDesktop: !buttonBlockDesktop
       });
     },
-    checked: buttonType === 'is-block'
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["RangeControl"], {
+    checked: buttonBlockDesktop
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('タブレット', 'ystandard-blocks'),
+    onChange: function onChange() {
+      setAttributes({
+        buttonBlockTablet: !buttonBlockTablet
+      });
+    },
+    checked: buttonBlockTablet
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('モバイル', 'ystandard-blocks'),
+    onChange: function onChange() {
+      setAttributes({
+        buttonBlockMobile: !buttonBlockMobile
+      });
+    },
+    checked: buttonBlockMobile
+  })), (buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["RangeControl"], {
     value: maxWidthValue,
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('ボタン最大幅', 'ystandard-blocks'),
     min: 0,
@@ -1033,7 +1069,9 @@ function save(props) {
       rel = attributes.rel,
       linkTarget = attributes.linkTarget,
       paddingType = attributes.paddingType,
-      buttonType = attributes.buttonType,
+      buttonBlockDesktop = attributes.buttonBlockDesktop,
+      buttonBlockTablet = attributes.buttonBlockTablet,
+      buttonBlockMobile = attributes.buttonBlockMobile,
       maxWidth = attributes.maxWidth,
       maxUnit = attributes.maxUnit,
       animationType = attributes.animationType,
@@ -1042,7 +1080,7 @@ function save(props) {
   var backgroundClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["getColorClassName"])('background-color', backgroundColor);
   var fontSizeClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["getFontSizeClass"])(fontSize);
   var wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button', (_classnames = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, "has-text-align-".concat(align), align), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames, fontSizeClass, fontSizeClass), _classnames));
-  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textClass, textClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor || customTextColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor || customBackgroundColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'no-border-radius', borderRadius === 0), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, buttonType, buttonType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
+  var linkClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('wp-block-button__link', 'ystdb-button__link', (_classnames2 = {}, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, textClass, textClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-text-color', textColor || customTextColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, backgroundClass, backgroundClass), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-background', backgroundColor || customBackgroundColor), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'no-border-radius', borderRadius === 0), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, paddingType, paddingType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block', buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--desktop', buttonBlockDesktop), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--tablet', buttonBlockTablet), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'is-block--mobile', buttonBlockMobile), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, 'has-animation', animationType && 'none' !== animationType), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_classnames2, "has-animation--".concat(animationType), 'none' !== animationType), _classnames2));
   var wrapStyles = {
     fontSize: !fontSizeClass && customFontSize ? customFontSize + 'px' : undefined
   };
@@ -1050,7 +1088,7 @@ function save(props) {
     color: textClass ? undefined : customTextColor,
     backgroundColor: backgroundClass ? undefined : customBackgroundColor,
     borderRadius: borderRadius ? borderRadius + 'px' : undefined,
-    maxWidth: buttonType && maxWidth ? "".concat(maxWidth).concat(maxUnit) : undefined,
+    maxWidth: (buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) && maxWidth ? "".concat(maxWidth).concat(maxUnit) : undefined,
     animationDuration: 'none' !== animationType && animationInterval ? "".concat(animationInterval, "s") : undefined
   };
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {

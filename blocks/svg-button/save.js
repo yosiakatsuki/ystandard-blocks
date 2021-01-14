@@ -7,7 +7,7 @@ import {
 	getFontSizeClass,
 } from '@wordpress/block-editor';
 
-export default function save(props) {
+export default function save( props ) {
 	const { attributes } = props;
 	const {
 		textColor,
@@ -27,44 +27,49 @@ export default function save(props) {
 		rel,
 		linkTarget,
 		paddingType,
-		buttonType,
+		buttonBlockDesktop,
+		buttonBlockTablet,
+		buttonBlockMobile,
 		maxWidth,
 		maxUnit,
 		animationType,
 		animationInterval,
 	} = attributes;
 
-	const textClass = getColorClassName('color', textColor);
+	const textClass = getColorClassName( 'color', textColor );
 	const backgroundClass = getColorClassName(
 		'background-color',
 		backgroundColor
 	);
-	const fontSizeClass = getFontSizeClass(fontSize);
+	const fontSizeClass = getFontSizeClass( fontSize );
 
-	const wrapClasses = classnames('wp-block-button', {
-		[`has-text-align-${align}`]: align,
-		[fontSizeClass]: fontSizeClass,
-	});
+	const wrapClasses = classnames( 'wp-block-button', {
+		[ `has-text-align-${ align }` ]: align,
+		[ fontSizeClass ]: fontSizeClass,
+	} );
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
 		'ystdb-button__link',
 		{
-			[textClass]: textClass,
+			[ textClass ]: textClass,
 			'has-text-color': textColor || customTextColor,
-			[backgroundClass]: backgroundClass,
+			[ backgroundClass ]: backgroundClass,
 			'has-background': backgroundColor || customBackgroundColor,
 			'no-border-radius': borderRadius === 0,
-			[paddingType]: paddingType,
-			[buttonType]: buttonType,
+			[ paddingType ]: paddingType,
+			'is-block': buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile,
+			'is-block--desktop': buttonBlockDesktop,
+			'is-block--tablet': buttonBlockTablet,
+			'is-block--mobile': buttonBlockMobile,
 			'has-animation': animationType && 'none' !== animationType,
-			[`has-animation--${animationType}`]: 'none' !== animationType,
+			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
 		}
 	);
 
 	const wrapStyles = {
 		fontSize:
-			!fontSizeClass && customFontSize
+			! fontSizeClass && customFontSize
 				? customFontSize + 'px'
 				: undefined,
 	};
@@ -72,54 +77,54 @@ export default function save(props) {
 		color: textClass ? undefined : customTextColor,
 		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
 		borderRadius: borderRadius ? borderRadius + 'px' : undefined,
-		maxWidth: buttonType && maxWidth ? `${maxWidth}${maxUnit}` : undefined,
+		maxWidth: ( buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile ) && maxWidth ? `${ maxWidth }${ maxUnit }` : undefined,
 		animationDuration:
 			'none' !== animationType && animationInterval
-				? `${animationInterval}s`
+				? `${ animationInterval }s`
 				: undefined,
 	};
 
 	return (
-		<div className={wrapClasses} style={wrapStyles}>
+		<div className={ wrapClasses } style={ wrapStyles }>
 			<a
-				href={url}
-				className={linkClasses}
-				style={linkStyles}
-				target={linkTarget}
-				rel={rel}
+				href={ url }
+				className={ linkClasses }
+				style={ linkStyles }
+				target={ linkTarget }
+				rel={ rel }
 			>
 				<span className="ystdb-button__link-content">
-					{!!iconLeft && (
+					{ !! iconLeft && (
 						<span
-							className={classnames(
+							className={ classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--left',
 								{
-									[iconSizeLeft]: iconSizeLeft,
+									[ iconSizeLeft ]: iconSizeLeft,
 								}
-							)}
+							) }
 						>
-							<SVGIcon name={iconLeft} />
+							<SVGIcon name={ iconLeft }/>
 						</span>
-					)}
+					) }
 					<RichText.Content
-						tagName={'span'}
-						value={text}
-						className={'ystdb-button__text'}
+						tagName={ 'span' }
+						value={ text }
+						className={ 'ystdb-button__text' }
 					/>
-					{!!iconRight && (
+					{ !! iconRight && (
 						<span
-							className={classnames(
+							className={ classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--right',
 								{
-									[iconSizeRight]: iconSizeRight,
+									[ iconSizeRight ]: iconSizeRight,
 								}
-							)}
+							) }
 						>
-							<SVGIcon name={iconRight} />
+							<SVGIcon name={ iconRight }/>
 						</span>
-					)}
+					) }
 				</span>
 			</a>
 		</div>

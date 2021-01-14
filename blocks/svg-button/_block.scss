@@ -78,10 +78,25 @@
 	}
 
 	&.is-block {
-	  display: block;
 	  margin-right: auto;
 	  margin-left: auto;
 	  text-align: center;
+	}
+
+	@include media-breakpoint-down(md) {
+	  &.is-block--mobile {
+		display: block;
+	  }
+	}
+	@include media-breakpoint_between(md, lg) {
+	  &.is-block--tablet {
+		display: block;
+	  }
+	}
+	@include media-breakpoint(lg) {
+	  &.is-block--desktop {
+		display: block;
+	  }
 	}
   }
 }

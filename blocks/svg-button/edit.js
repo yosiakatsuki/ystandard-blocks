@@ -31,7 +31,7 @@ import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 
-function svgButton(props) {
+function svgButton( props ) {
 	const {
 		textColor,
 		backgroundColor,
@@ -56,30 +56,35 @@ function svgButton(props) {
 		rel,
 		linkTarget,
 		paddingType,
-		buttonType,
+		buttonBlockDesktop,
+		buttonBlockTablet,
+		buttonBlockMobile,
 		maxWidth,
 		maxUnit,
 		animationType,
 		animationInterval,
 	} = attributes;
 
-	const wrapClasses = classnames(className, 'wp-block-button', {
-		[`has-text-align-${align}`]: align,
-		[fontSize.class]: fontSize.class,
-	});
+	const wrapClasses = classnames( className, 'wp-block-button', {
+		[ `has-text-align-${ align }` ]: align,
+		[ fontSize.class ]: fontSize.class,
+	} );
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
 		'ystdb-button__link',
 		{
-			[textColor.class]: textColor.class,
+			[ textColor.class ]: textColor.class,
 			'has-text-color': textColor.class,
-			[backgroundColor.class]: backgroundColor.class,
+			[ backgroundColor.class ]: backgroundColor.class,
 			'has-background': backgroundColor.class,
-			[paddingType]: paddingType,
-			[buttonType]: buttonType,
+			[ paddingType ]: paddingType,
+			'is-block': buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile,
+			'is-block--desktop': buttonBlockDesktop,
+			'is-block--tablet': buttonBlockTablet,
+			'is-block--mobile': buttonBlockMobile,
 			'has-animation': animationType && 'none' !== animationType,
-			[`has-animation--${animationType}`]: 'none' !== animationType,
+			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
 		}
 	);
 
@@ -90,21 +95,21 @@ function svgButton(props) {
 		color: textColor.color,
 		backgroundColor: backgroundColor.color,
 		borderRadius,
-		maxWidth: buttonType && maxWidth ? `${maxWidth}${maxUnit}` : undefined,
+		maxWidth: ( buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile ) && maxWidth ? `${ maxWidth }${ maxUnit }` : undefined,
 		animationDuration:
 			'none' !== animationType && animationInterval
-				? `${animationInterval}s`
+				? `${ animationInterval }s`
 				: undefined,
 	};
 
 	const maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
 	const maxWidthValue = '%' === maxUnit && 100 < maxWidth ? 100 : maxWidth;
 
-	const convertIconSize = (size) => {
-		if ('fa-xs' === size) {
+	const convertIconSize = ( size ) => {
+		if ( 'fa-xs' === size ) {
 			return 'is-small';
 		}
-		if ('fa-2x' === size) {
+		if ( 'fa-2x' === size ) {
 			return 'is-large';
 		}
 		return size;
@@ -114,146 +119,146 @@ function svgButton(props) {
 		<Fragment>
 			<BlockControls>
 				<AlignmentToolbar
-					value={align}
-					onChange={(nextAlign) => {
-						setAttributes({ align: nextAlign });
-					}}
+					value={ align }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { align: nextAlign } );
+					} }
 				/>
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={__('Color settings')}
-					initialOpen={true}
-					colorSettings={[
+					title={ __( 'Color settings' ) }
+					initialOpen={ true }
+					colorSettings={ [
 						{
 							value: backgroundColor.color,
-							onChange: (newColor) => {
-								setAttributes({ customGradient: undefined });
-								setBackgroundColor(newColor);
+							onChange: ( newColor ) => {
+								setAttributes( { customGradient: undefined } );
+								setBackgroundColor( newColor );
 							},
-							label: __('Background Color'),
+							label: __( 'Background Color' ),
 						},
 						{
 							value: textColor.color,
-							onChange: (color) => {
-								setTextColor(color);
+							onChange: ( color ) => {
+								setTextColor( color );
 							},
-							label: __('Text Color'),
+							label: __( 'Text Color' ),
 						},
-					]}
+					] }
 				/>
-				<PanelBody title={__('枠線設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( '枠線設定', 'ystandard-blocks' ) }>
 					<RangeControl
-						value={borderRadius}
-						label={__('枠線の角丸', 'ystandard-blocks')}
-						min={ystdbConfig.button.borderRadiusMin}
-						max={ystdbConfig.button.borderRadiusMax}
+						value={ borderRadius }
+						label={ __( '枠線の角丸', 'ystandard-blocks' ) }
+						min={ ystdbConfig.button.borderRadiusMin }
+						max={ ystdbConfig.button.borderRadiusMax }
 						initialPosition={
 							ystdbConfig.button.borderRadiusInitialPosition
 						}
 						allowReset
-						onChange={(value) => {
-							setAttributes({ borderRadius: value });
-						}}
+						onChange={ ( value ) => {
+							setAttributes( { borderRadius: value } );
+						} }
 					/>
 				</PanelBody>
-				<PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
 					<SVGIconSelect
-						iconControlTitle={__('左アイコン', 'ystandard-blocks')}
-						selectedIcon={iconLeft}
-						onClickIcon={(value) => {
-							setAttributes({ iconLeft: value });
-						}}
+						iconControlTitle={ __( '左アイコン', 'ystandard-blocks' ) }
+						selectedIcon={ iconLeft }
+						onClickIcon={ ( value ) => {
+							setAttributes( { iconLeft: value } );
+						} }
 					/>
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">
-							{_x('左アイコンサイズ', 'ystandard-blocks')}
+							{ _x( '左アイコンサイズ', 'ystandard-blocks' ) }
 						</div>
 						<div
 							className={
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ystdbConfig.icon.size.map((item) => {
+							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
-										key={item.value}
+										key={ item.value }
 										isSecondary={
-											convertIconSize(iconSizeLeft) !==
+											convertIconSize( iconSizeLeft ) !==
 											item.value
 										}
 										isPrimary={
-											convertIconSize(iconSizeLeft) ===
+											convertIconSize( iconSizeLeft ) ===
 											item.value
 										}
-										onClick={() => {
-											setAttributes({
+										onClick={ () => {
+											setAttributes( {
 												iconSizeLeft: item.value,
-											});
-										}}
+											} );
+										} }
 									>
-										<span>{item.label}</span>
+										<span>{ item.label }</span>
 									</Button>
 								);
-							})}
+							} ) }
 						</div>
 					</BaseControl>
 					<SVGIconSelect
-						iconControlTitle={__('右アイコン', 'ystandard-blocks')}
-						selectedIcon={iconRight}
-						onClickIcon={(value) => {
-							setAttributes({ iconRight: value });
-						}}
+						iconControlTitle={ __( '右アイコン', 'ystandard-blocks' ) }
+						selectedIcon={ iconRight }
+						onClickIcon={ ( value ) => {
+							setAttributes( { iconRight: value } );
+						} }
 					/>
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">
-							{_x('右アイコンサイズ', 'ystandard-blocks')}
+							{ _x( '右アイコンサイズ', 'ystandard-blocks' ) }
 						</div>
 						<div
 							className={
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ystdbConfig.icon.size.map((item) => {
+							{ ystdbConfig.icon.size.map( ( item ) => {
 								return (
 									<Button
-										key={item.value}
+										key={ item.value }
 										isSecondary={
-											convertIconSize(iconSizeRight) !==
+											convertIconSize( iconSizeRight ) !==
 											item.value
 										}
 										isPrimary={
-											convertIconSize(iconSizeRight) ===
+											convertIconSize( iconSizeRight ) ===
 											item.value
 										}
-										onClick={() => {
-											setAttributes({
+										onClick={ () => {
+											setAttributes( {
 												iconSizeRight: item.value,
-											});
-										}}
+											} );
+										} }
 									>
-										<span>{item.label}</span>
+										<span>{ item.label }</span>
 									</Button>
 								);
-							})}
+							} ) }
 						</div>
 					</BaseControl>
 				</PanelBody>
 
-				<PanelBody title={__('文字設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( '文字設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<FontSizePicker
-							label={__('文字サイズ', 'ystandard-blocks')}
-							value={fontSize.size}
-							onChange={(font) => {
-								setFontSize(font);
-							}}
+							label={ __( '文字サイズ', 'ystandard-blocks' ) }
+							value={ fontSize.size }
+							onChange={ ( font ) => {
+								setFontSize( font );
+							} }
 						/>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('余白設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 					<BaseControl>
-						<span className={`ystdb-info__small`}>
+						<span className={ `ystdb-info__small` }>
 							ボタン内側の余白を設定できます。
 						</span>
 						<div
@@ -261,208 +266,230 @@ function svgButton(props) {
 								'ystdb-btn-selector components-base-control'
 							}
 						>
-							{ystdbConfig.button.paddingTypes.map((item) => {
+							{ ystdbConfig.button.paddingTypes.map( ( item ) => {
 								return (
 									<Button
-										key={item.value}
-										isSecondary={paddingType !== item.value}
-										isPrimary={paddingType === item.value}
-										onClick={() => {
-											setAttributes({
+										key={ item.value }
+										isSecondary={ paddingType !== item.value }
+										isPrimary={ paddingType === item.value }
+										onClick={ () => {
+											setAttributes( {
 												paddingType: item.value,
-											});
-										}}
+											} );
+										} }
 									>
-										<span>{item.label}</span>
+										<span>{ item.label }</span>
 									</Button>
 								);
-							})}
+							} ) }
 						</div>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('ブロックボタン設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( 'ブロックタイプ設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<ToggleControl
-							label={__(
-								'ボタンをブロック型にする',
+							label={ __(
+								'デスクトップ',
 								'ystandard-blocks'
-							)}
-							onChange={() => {
-								const value =
-									'is-block' === buttonType ? '' : 'is-block';
-								setAttributes({ buttonType: value });
-							}}
-							checked={buttonType === 'is-block'}
+							) }
+							onChange={ () => {
+								setAttributes( { buttonBlockDesktop: ! buttonBlockDesktop } );
+							} }
+							checked={ buttonBlockDesktop }
 						/>
+						<ToggleControl
+							label={ __(
+								'タブレット',
+								'ystandard-blocks'
+							) }
+							onChange={ () => {
+								setAttributes( { buttonBlockTablet: ! buttonBlockTablet } );
+							} }
+							checked={ buttonBlockTablet }
+						/>
+						<ToggleControl
+							label={ __(
+								'モバイル',
+								'ystandard-blocks'
+							) }
+							onChange={ () => {
+								setAttributes( { buttonBlockMobile: ! buttonBlockMobile } );
+							} }
+							checked={ buttonBlockMobile }
+						/>
+					</BaseControl>
+					{ ( buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile ) &&
+					<BaseControl>
 						<RangeControl
-							value={maxWidthValue}
-							label={__('ボタン最大幅', 'ystandard-blocks')}
-							min={0}
-							max={maxWidthUnitMaximum}
-							initialPosition={100}
+							value={ maxWidthValue }
+							label={ __( 'ボタン最大幅', 'ystandard-blocks' ) }
+							min={ 0 }
+							max={ maxWidthUnitMaximum }
+							initialPosition={ 100 }
 							allowReset
-							onChange={(value) => {
-								setAttributes({ maxWidth: value });
-							}}
+							onChange={ ( value ) => {
+								setAttributes( { maxWidth: value } );
+							} }
 						/>
 						<RadioControl
-							label={__('最大幅単位', 'ystandard-blocks')}
-							selected={maxUnit}
-							options={[
+							label={ __( '最大幅単位', 'ystandard-blocks' ) }
+							selected={ maxUnit }
+							options={ [
 								{
-									label: __('%', 'ystandard-blocks'),
+									label: __( '%', 'ystandard-blocks' ),
 									value: '%',
 								},
 								{
-									label: __('px', 'ystandard-blocks'),
+									label: __( 'px', 'ystandard-blocks' ),
 									value: 'px',
 								},
-							]}
-							onChange={(option) => {
-								setAttributes({ maxUnit: option });
-							}}
+							] }
+							onChange={ ( option ) => {
+								setAttributes( { maxUnit: option } );
+							} }
 						/>
 					</BaseControl>
+					}
 				</PanelBody>
-				<PanelBody title={__('アニメーション設定', 'ystandard-blocks')}>
+				<PanelBody title={ __( 'アニメーション設定', 'ystandard-blocks' ) }>
 					<BaseControl>
 						<RadioControl
-							label={__('アニメーション種類', 'ystandard-blocks')}
-							selected={animationType}
-							options={ystdbConfig.button.animationTypes}
-							onChange={(option) => {
-								setAttributes({ animationType: option });
-							}}
+							label={ __( 'アニメーション種類', 'ystandard-blocks' ) }
+							selected={ animationType }
+							options={ ystdbConfig.button.animationTypes }
+							onChange={ ( option ) => {
+								setAttributes( { animationType: option } );
+							} }
 						/>
 						<RangeControl
-							value={animationInterval}
-							label={__(
+							value={ animationInterval }
+							label={ __(
 								'アニメーションの速さ(秒)',
 								'ystandard-blocks'
-							)}
-							min={1}
-							max={10}
-							initialPosition={5}
+							) }
+							min={ 1 }
+							max={ 10 }
+							initialPosition={ 5 }
 							allowReset
-							onChange={(value) => {
-								setAttributes({ animationInterval: value });
-							}}
+							onChange={ ( value ) => {
+								setAttributes( { animationInterval: value } );
+							} }
 						/>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('Link settings')}>
+				<PanelBody title={ __( 'Link settings' ) }>
 					<ToggleControl
-						label={__('Open in new tab')}
-						onChange={(value) => {
+						label={ __( 'Open in new tab' ) }
+						onChange={ ( value ) => {
 							const newLinkTarget = value ? '_blank' : undefined;
 							let updatedRel = rel;
-							if (newLinkTarget && !rel) {
+							if ( newLinkTarget && ! rel ) {
 								updatedRel = ystdbConfig.button.newTabRel;
 							} else if (
-								!newLinkTarget &&
+								! newLinkTarget &&
 								rel === ystdbConfig.button.newTabRel
 							) {
 								updatedRel = undefined;
 							}
-							setAttributes({
+							setAttributes( {
 								linkTarget: newLinkTarget,
 								rel: updatedRel,
-							});
-						}}
-						checked={linkTarget === '_blank'}
+							} );
+						} }
+						checked={ linkTarget === '_blank' }
 					/>
 					<TextControl
-						label={__('Link rel')}
-						value={rel || ''}
-						onChange={(value) => {
-							setAttributes({ rel: value });
-						}}
+						label={ __( 'Link rel' ) }
+						value={ rel || '' }
+						onChange={ ( value ) => {
+							setAttributes( { rel: value } );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={wrapClasses} style={wrapStyles}>
-				<span className={linkClasses} style={linkStyles}>
+			<div className={ wrapClasses } style={ wrapStyles }>
+				<span className={ linkClasses } style={ linkStyles }>
 					<span className="ystdb-button__link-content">
-						{!!iconLeft && (
+						{ !! iconLeft && (
 							<span
-								className={classnames(
+								className={ classnames(
 									'ystdb-button__icon',
 									'ystdb-button__icon--left',
 									{
-										[iconSizeLeft]: iconSizeLeft,
+										[ iconSizeLeft ]: iconSizeLeft,
 									}
-								)}
+								) }
 							>
-								<SVGIcon name={iconLeft} />
+								<SVGIcon name={ iconLeft }/>
 							</span>
-						)}
+						) }
 						<RichText
-							tagName={'span'}
-							placeholder={__('Add text…')}
-							value={text}
-							onChange={(value) => setAttributes({ text: value })}
+							tagName={ 'span' }
+							placeholder={ __( 'Add text…' ) }
+							value={ text }
+							onChange={ ( value ) => setAttributes( { text: value } ) }
 							withoutInteractiveFormatting
-							className={'ystdb-button__text'}
+							className={ 'ystdb-button__text' }
 						/>
-						{!!iconRight && (
+						{ !! iconRight && (
 							<span
-								className={classnames(
+								className={ classnames(
 									'ystdb-button__icon',
 									'ystdb-button__icon--right',
 									{
-										[iconSizeRight]: iconSizeRight,
+										[ iconSizeRight ]: iconSizeRight,
 									}
-								)}
+								) }
 							>
-								<SVGIcon name={iconRight} />
+								<SVGIcon name={ iconRight }/>
 							</span>
-						)}
+						) }
 					</span>
 				</span>
 			</div>
 
-			{!!isSelected && (
-				<div className={'ystdb-button__link-container'}>
+			{ !! isSelected && (
+				<div className={ 'ystdb-button__link-container' }>
 					<URLInput
-						label={__('Link')}
+						label={ __( 'Link' ) }
 						className="ystdb-button__link"
-						value={url}
+						value={ url }
 						/* eslint-disable jsx-a11y/no-autofocus */
-						autoFocus={false}
+						autoFocus={ false }
 						/* eslint-enable jsx-a11y/no-autofocus */
-						onChange={(value) => setAttributes({ url: value })}
-						disableSuggestions={!isSelected}
+						onChange={ ( value ) => setAttributes( { url: value } ) }
+						disableSuggestions={ ! isSelected }
 						isFullWidth
 						hasBorder
 					/>
 					<ToggleControl
-						label={__('Open in new tab')}
-						onChange={(value) => {
+						label={ __( 'Open in new tab' ) }
+						onChange={ ( value ) => {
 							const newLinkTarget = value ? '_blank' : undefined;
 							let updatedRel = rel;
-							if (newLinkTarget && !rel) {
+							if ( newLinkTarget && ! rel ) {
 								updatedRel = ystdbConfig.button.newTabRel;
 							} else if (
-								!newLinkTarget &&
+								! newLinkTarget &&
 								rel === ystdbConfig.button.newTabRel
 							) {
 								updatedRel = undefined;
 							}
-							setAttributes({
+							setAttributes( {
 								linkTarget: newLinkTarget,
 								rel: updatedRel,
-							});
-						}}
-						checked={linkTarget === '_blank'}
+							} );
+						} }
+						checked={ linkTarget === '_blank' }
 					/>
 				</div>
-			)}
+			) }
 		</Fragment>
 	);
 }
 
-export default compose([
-	withColors('backgroundColor', { textColor: 'color' }),
-	withFontSizes('fontSize'),
-])(svgButton);
+export default compose( [
+	withColors( 'backgroundColor', { textColor: 'color' } ),
+	withFontSizes( 'fontSize' ),
+] )( svgButton );
