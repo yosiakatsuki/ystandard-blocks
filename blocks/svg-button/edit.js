@@ -6,7 +6,6 @@ import { ystdbConfig } from '../../src/js/config/config';
 import {
 	AlignmentToolbar,
 	BlockControls,
-	FontSizePicker,
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
@@ -30,11 +29,17 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
+import ResponsiveFontSizeControl from '../../src/js/components/responsive-font-size/index';
 import ResponsiveNumberControl from '../../src/js/components/responsive-number-control/index';
 import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
 } from '../../src/js/components/responsive-number-control/functions';
+import getNum from '../../src/js/util/_getNum';
+import {
+	getFontResponsiveClass,
+	getFontResponsiveStyle,
+} from '../../src/js/components/responsive-font-size/functions';
 
 function svgButton(props) {
 	const {
@@ -56,6 +61,10 @@ function svgButton(props) {
 		iconSizeLeft,
 		iconRight,
 		iconSizeRight,
+		isFontSizeResponsive,
+		fontSizeMobile,
+		fontSizeTablet,
+		fontSizeDesktop,
 		align,
 		url,
 		rel,
@@ -79,10 +88,25 @@ function svgButton(props) {
 
 	const wrapClasses = classnames(className, 'wp-block-button', {
 		[`has-text-align-${align}`]: align,
-		[fontSize.class]: fontSize.class,
+		[fontSize.class]: fontSize.class && !isFontSizeResponsive,
+		...getFontResponsiveClass(
+			isFontSizeResponsive,
+			fontSizeDesktop,
+			fontSizeTablet,
+			fontSizeMobile
+		),
 	});
 	const wrapStyles = {
-		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
+		fontSize:
+			fontSize.size && !isFontSizeResponsive
+				? fontSize.size + 'px'
+				: undefined,
+		...getFontResponsiveStyle({
+			isResponsive: isFontSizeResponsive,
+			desktop: fontSizeDesktop,
+			tablet: fontSizeTablet,
+			mobile: fontSizeMobile,
+		}),
 	};
 
 	const linkClasses = classnames(
@@ -311,12 +335,73 @@ function svgButton(props) {
 
 				<PanelBody title={__('文字設定', 'ystandard-blocks')}>
 					<BaseControl>
-						<FontSizePicker
-							label={__('文字サイズ', 'ystandard-blocks')}
-							value={fontSize.size}
-							onChange={(font) => {
+						<ResponsiveFontSizeControl
+							id={'font-size'}
+							useResponsive={isFontSizeResponsive}
+							fontSize={fontSize}
+							onChangeFontSizePicker={(font) => {
 								setFontSize(font);
 							}}
+							changeResponsiveMode={(value) => {
+								if (value) {
+									setAttributes({
+										fontSizeDesktop:
+											!fontSizeDesktop && fontSize.size
+												? fontSize.size
+												: getNum(
+														fontSizeDesktop,
+														0,
+														200,
+														null
+												  ),
+										fontSizeTablet:
+											!fontSizeTablet && fontSize.size
+												? fontSize.size
+												: getNum(
+														fontSizeTablet,
+														0,
+														200,
+														null
+												  ),
+										fontSizeMobile:
+											!fontSizeMobile && fontSize.size
+												? fontSize.size
+												: getNum(
+														fontSizeMobile,
+														0,
+														200,
+														null
+												  ),
+									});
+								}
+								setAttributes({ isFontSizeResponsive: value });
+							}}
+							desktopValue={fontSizeDesktop}
+							desktopOnChange={(value) => {
+								setAttributes({
+									fontSizeDesktop: getNum(
+										value,
+										0,
+										200,
+										null
+									),
+								});
+							}}
+							desktopUnit={'px'}
+							tabletValue={fontSizeTablet}
+							tabletOnChange={(value) =>
+								setAttributes({
+									fontSizeTablet: getNum(value, 0, 200, null),
+								})
+							}
+							tabletUnit={'px'}
+							mobileValue={fontSizeMobile}
+							mobileOnChange={(value) =>
+								setAttributes({
+									fontSizeMobile: getNum(value, 0, 200, null),
+								})
+							}
+							mobileUnit={'px'}
 						/>
 					</BaseControl>
 				</PanelBody>

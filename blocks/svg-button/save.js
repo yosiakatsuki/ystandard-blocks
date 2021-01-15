@@ -10,6 +10,11 @@ import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
 } from '../../src/js/components/responsive-number-control/functions';
+import {
+	getFontResponsiveClass,
+	getFontResponsiveStyle,
+} from '../../src/js/components/responsive-font-size/functions';
+import getDataProperty from '../../src/js/util/_getResponsivPropertye';
 
 export default function save(props) {
 	const { attributes } = props;
@@ -26,6 +31,10 @@ export default function save(props) {
 		iconSizeLeft,
 		iconRight,
 		iconSizeRight,
+		isFontSizeResponsive,
+		fontSizeMobile,
+		fontSizeTablet,
+		fontSizeDesktop,
 		align,
 		url,
 		rel,
@@ -56,13 +65,25 @@ export default function save(props) {
 
 	const wrapClasses = classnames('wp-block-button', {
 		[`has-text-align-${align}`]: align,
-		[fontSizeClass]: fontSizeClass,
+		[fontSizeClass]: fontSizeClass && !isFontSizeResponsive,
+		...getFontResponsiveClass(
+			isFontSizeResponsive,
+			fontSizeDesktop,
+			fontSizeTablet,
+			fontSizeMobile
+		),
 	});
 	const wrapStyles = {
 		fontSize:
-			!fontSizeClass && customFontSize
+			!fontSizeClass && customFontSize && !isFontSizeResponsive
 				? customFontSize + 'px'
 				: undefined,
+		...getFontResponsiveStyle({
+			isResponsive: isFontSizeResponsive,
+			desktop: fontSizeDesktop,
+			tablet: fontSizeTablet,
+			mobile: fontSizeMobile,
+		}),
 	};
 
 	const linkClasses = classnames(
@@ -151,6 +172,23 @@ export default function save(props) {
 				style={linkStyles}
 				target={linkTarget}
 				rel={rel}
+				{...getDataProperty({
+					'font-size': isFontSizeResponsive
+						? `${fontSizeDesktop}px`
+						: undefined,
+					'padding-top': isPaddingVerticalResponsive
+						? `${paddingVerticalDesktop}px`
+						: undefined,
+					'padding-bottom': isPaddingVerticalResponsive
+						? `${paddingVerticalDesktop}px`
+						: undefined,
+					'padding-right': isPaddingHorizontalResponsive
+						? `${paddingHorizontalDesktop}px`
+						: undefined,
+					'padding-left': isPaddingHorizontalResponsive
+						? `${paddingHorizontalDesktop}px`
+						: undefined,
+				})}
 			>
 				<span className="ystdb-button__link-content">
 					{!!iconLeft && (

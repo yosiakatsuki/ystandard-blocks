@@ -46,6 +46,19 @@ export const attributes = {
 	customFontSize: {
 		type: 'number',
 	},
+	isFontSizeResponsive: {
+		type: 'bool',
+		default: false,
+	},
+	fontSizeMobile: {
+		type: 'number',
+	},
+	fontSizeTablet: {
+		type: 'number',
+	},
+	fontSizeDesktop: {
+		type: 'number',
+	},
 	url: {
 		type: 'string',
 	},

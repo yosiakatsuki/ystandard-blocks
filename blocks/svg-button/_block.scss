@@ -68,6 +68,19 @@
 }
 
 .wp-block-button {
+
+  &.ys-is-font-responsive {
+	@include media-breakpoint-down(md) {
+	  font-size: var(--ys-font-mobile);
+	}
+	@include media-breakpoint_between(md, lg) {
+	  font-size: var(--ys-font-tablet);
+	}
+	@include media-breakpoint(lg) {
+	  font-size: var(--ys-font-desktop);
+	}
+  }
+
   .ystdb-button__link {
 	&.is-small {
 	  padding: 0.25rem 1rem;
@@ -126,18 +139,6 @@
 	  @include media-breakpoint(lg) {
 		padding-right: var(--ys-padding-horizontal-desktop);
 		padding-left: var(--ys-padding-horizontal-desktop);
-	  }
-	}
-
-	&.ys-is-font-responsive {
-	  @include media-breakpoint-down(md) {
-		font-size: var(--ys-font-mobile);
-	  }
-	  @include media-breakpoint_between(md, lg) {
-		font-size: var(--ys-font-tablet);
-	  }
-	  @include media-breakpoint(lg) {
-		font-size: var(--ys-font-desktop);
 	  }
 	}
   }
