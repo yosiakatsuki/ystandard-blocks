@@ -98,6 +98,48 @@
 		display: block;
 	  }
 	}
+
+	&.is-vertical-padding-responsive {
+	  @include media-breakpoint-down(md) {
+		padding-top: var(--ys-padding-vertical-mobile);
+		padding-bottom: var(--ys-padding-vertical-mobile);
+	  }
+	  @include media-breakpoint_between(md, lg) {
+		padding-top: var(--ys-padding-vertical-tablet);
+		padding-bottom: var(--ys-padding-vertical-tablet);
+	  }
+	  @include media-breakpoint(lg) {
+		padding-top: var(--ys-padding-vertical-desktop);
+		padding-bottom: var(--ys-padding-vertical-desktop);
+	  }
+	}
+
+	&.is-horizontal-padding-responsive {
+	  @include media-breakpoint-down(md) {
+		padding-right: var(--ys-padding-horizontal-mobile);
+		padding-left: var(--ys-padding-horizontal-mobile);
+	  }
+	  @include media-breakpoint_between(md, lg) {
+		padding-right: var(--ys-padding-horizontal-tablet);
+		padding-left: var(--ys-padding-horizontal-tablet);
+	  }
+	  @include media-breakpoint(lg) {
+		padding-right: var(--ys-padding-horizontal-desktop);
+		padding-left: var(--ys-padding-horizontal-desktop);
+	  }
+	}
+
+	&.ys-is-font-responsive {
+	  @include media-breakpoint-down(md) {
+		font-size: var(--ys-font-mobile);
+	  }
+	  @include media-breakpoint_between(md, lg) {
+		font-size: var(--ys-font-tablet);
+	  }
+	  @include media-breakpoint(lg) {
+		font-size: var(--ys-font-desktop);
+	  }
+	}
   }
 }
 

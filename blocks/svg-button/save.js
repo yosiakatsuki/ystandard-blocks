@@ -6,8 +6,12 @@ import {
 	getColorClassName,
 	getFontSizeClass,
 } from '@wordpress/block-editor';
+import {
+	getPaddingResponsiveClass,
+	getPaddingResponsiveStyle,
+} from '../../src/js/components/responsive-number-control/functions';
 
-export default function save( props ) {
+export default function save(props) {
 	const { attributes } = props;
 	const {
 		textColor,
@@ -26,7 +30,14 @@ export default function save( props ) {
 		url,
 		rel,
 		linkTarget,
-		paddingType,
+		isPaddingVerticalResponsive,
+		paddingVerticalDesktop,
+		paddingVerticalTablet,
+		paddingVerticalMobile,
+		isPaddingHorizontalResponsive,
+		paddingHorizontalDesktop,
+		paddingHorizontalTablet,
+		paddingHorizontalMobile,
 		buttonBlockDesktop,
 		buttonBlockTablet,
 		buttonBlockMobile,
@@ -36,95 +47,143 @@ export default function save( props ) {
 		animationInterval,
 	} = attributes;
 
-	const textClass = getColorClassName( 'color', textColor );
+	const textClass = getColorClassName('color', textColor);
 	const backgroundClass = getColorClassName(
 		'background-color',
 		backgroundColor
 	);
-	const fontSizeClass = getFontSizeClass( fontSize );
+	const fontSizeClass = getFontSizeClass(fontSize);
 
-	const wrapClasses = classnames( 'wp-block-button', {
-		[ `has-text-align-${ align }` ]: align,
-		[ fontSizeClass ]: fontSizeClass,
-	} );
+	const wrapClasses = classnames('wp-block-button', {
+		[`has-text-align-${align}`]: align,
+		[fontSizeClass]: fontSizeClass,
+	});
+	const wrapStyles = {
+		fontSize:
+			!fontSizeClass && customFontSize
+				? customFontSize + 'px'
+				: undefined,
+	};
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
 		'ystdb-button__link',
 		{
-			[ textClass ]: textClass,
+			[textClass]: textClass,
 			'has-text-color': textColor || customTextColor,
-			[ backgroundClass ]: backgroundClass,
+			[backgroundClass]: backgroundClass,
 			'has-background': backgroundColor || customBackgroundColor,
 			'no-border-radius': borderRadius === 0,
-			[ paddingType ]: paddingType,
-			'is-block': buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile,
+			'is-block':
+				buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile,
 			'is-block--desktop': buttonBlockDesktop,
 			'is-block--tablet': buttonBlockTablet,
 			'is-block--mobile': buttonBlockMobile,
 			'has-animation': animationType && 'none' !== animationType,
-			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
+			[`has-animation--${animationType}`]: 'none' !== animationType,
+			...getPaddingResponsiveClass({
+				isResponsive: isPaddingVerticalResponsive,
+				desktop: paddingVerticalDesktop,
+				tablet: paddingVerticalTablet,
+				mobile: paddingVerticalMobile,
+				prefix: 'vertical',
+			}),
+			...getPaddingResponsiveClass({
+				isResponsive: isPaddingHorizontalResponsive,
+				desktop: paddingHorizontalDesktop,
+				tablet: paddingHorizontalTablet,
+				mobile: paddingHorizontalMobile,
+				prefix: 'horizontal',
+			}),
 		}
 	);
 
-	const wrapStyles = {
-		fontSize:
-			! fontSizeClass && customFontSize
-				? customFontSize + 'px'
-				: undefined,
-	};
 	const linkStyles = {
 		color: textClass ? undefined : customTextColor,
 		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
 		borderRadius: borderRadius ? borderRadius + 'px' : undefined,
-		maxWidth: ( buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile ) && maxWidth ? `${ maxWidth }${ maxUnit }` : undefined,
+		maxWidth:
+			(buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) &&
+			maxWidth
+				? `${maxWidth}${maxUnit}`
+				: undefined,
 		animationDuration:
 			'none' !== animationType && animationInterval
-				? `${ animationInterval }s`
+				? `${animationInterval}s`
 				: undefined,
+		paddingTop:
+			!isPaddingVerticalResponsive && paddingVerticalDesktop
+				? paddingVerticalDesktop
+				: undefined,
+		paddingBottom:
+			!isPaddingVerticalResponsive && paddingVerticalDesktop
+				? paddingVerticalDesktop
+				: undefined,
+		paddingRight:
+			!isPaddingHorizontalResponsive && paddingHorizontalDesktop
+				? paddingHorizontalDesktop
+				: undefined,
+		paddingLeft:
+			!isPaddingHorizontalResponsive && paddingHorizontalDesktop
+				? paddingHorizontalDesktop
+				: undefined,
+		...getPaddingResponsiveStyle({
+			isResponsive: isPaddingVerticalResponsive,
+			desktop: paddingVerticalDesktop,
+			tablet: paddingVerticalTablet,
+			mobile: paddingVerticalMobile,
+			prefix: 'vertical',
+		}),
+		...getPaddingResponsiveStyle({
+			isResponsive: isPaddingHorizontalResponsive,
+			desktop: paddingHorizontalDesktop,
+			tablet: paddingHorizontalTablet,
+			mobile: paddingHorizontalMobile,
+			prefix: 'horizontal',
+		}),
 	};
 
 	return (
-		<div className={ wrapClasses } style={ wrapStyles }>
+		<div className={wrapClasses} style={wrapStyles}>
 			<a
-				href={ url }
-				className={ linkClasses }
-				style={ linkStyles }
-				target={ linkTarget }
-				rel={ rel }
+				href={url}
+				className={linkClasses}
+				style={linkStyles}
+				target={linkTarget}
+				rel={rel}
 			>
 				<span className="ystdb-button__link-content">
-					{ !! iconLeft && (
+					{!!iconLeft && (
 						<span
-							className={ classnames(
+							className={classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--left',
 								{
-									[ iconSizeLeft ]: iconSizeLeft,
+									[iconSizeLeft]: iconSizeLeft,
 								}
-							) }
+							)}
 						>
-							<SVGIcon name={ iconLeft }/>
+							<SVGIcon name={iconLeft} />
 						</span>
-					) }
+					)}
 					<RichText.Content
-						tagName={ 'span' }
-						value={ text }
-						className={ 'ystdb-button__text' }
+						tagName={'span'}
+						value={text}
+						className={'ystdb-button__text'}
 					/>
-					{ !! iconRight && (
+					{!!iconRight && (
 						<span
-							className={ classnames(
+							className={classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--right',
 								{
-									[ iconSizeRight ]: iconSizeRight,
+									[iconSizeRight]: iconSizeRight,
 								}
-							) }
+							)}
 						>
-							<SVGIcon name={ iconRight }/>
+							<SVGIcon name={iconRight} />
 						</span>
-					) }
+					)}
 				</span>
 			</a>
 		</div>

@@ -59,6 +59,30 @@ export const attributes = {
 		type: 'string',
 		default: '',
 	},
+	isPaddingVerticalResponsive: {
+		type: 'bool',
+	},
+	paddingVerticalDesktop: {
+		type: 'number',
+	},
+	paddingVerticalTablet: {
+		type: 'number',
+	},
+	paddingVerticalMobile: {
+		type: 'number',
+	},
+	isPaddingHorizontalResponsive: {
+		type: 'bool',
+	},
+	paddingHorizontalDesktop: {
+		type: 'number',
+	},
+	paddingHorizontalTablet: {
+		type: 'number',
+	},
+	paddingHorizontalMobile: {
+		type: 'number',
+	},
 	buttonBlockDesktop: {
 		type: 'bool',
 	},

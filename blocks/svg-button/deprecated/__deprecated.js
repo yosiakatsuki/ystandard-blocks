@@ -145,7 +145,7 @@ export const __deprecated = [
 					[buttonType]: buttonType,
 					'has-animation': animationType,
 					[`has-animation--${animationType}`]:
-					'none' !== animationType,
+						'none' !== animationType,
 				}
 			);
 			const wrapStyles = {
