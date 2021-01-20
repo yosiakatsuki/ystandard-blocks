@@ -94,6 +94,11 @@
 	  margin-right: auto;
 	  margin-left: auto;
 	  text-align: center;
+
+	  // 下位互換.
+	  &:not(.is-block--mobile):not(.is-block--tablet):not(.is-block--desktop) {
+		display: block;
+	  }
 	}
 
 	@include media-breakpoint-down(md) {
