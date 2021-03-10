@@ -200,15 +200,16 @@ class Format {
 	public static function get_format_button_css() {
 		$css = '';
 		for ( $i = 1; $i <= 3; $i ++ ) {
-			$style  = '';
-			$option = self::get_format_styles_option( $i );
+			$style_icon = '';
+			$style_mark = '';
+			$option     = self::get_format_styles_option( $i );
 			/**
 			 * 文字サイズ
 			 */
 			if ( 1.5 < $option['fz'] ) {
 				$option['fz'] = 1.5;
 			}
-			$style .= sprintf(
+			$style_icon .= sprintf(
 				'transform: scale(%s);',
 				$option['fz']
 			);
@@ -216,29 +217,35 @@ class Format {
 			 * 文字色
 			 */
 			if ( $option['color'] ) {
-				$style .= sprintf( 'fill:%s;', $option['color'] );
+				$style_icon .= sprintf( 'fill:%s;', $option['color'] );
 			}
 			/**
 			 * マーカー
 			 */
 			if ( 0 < $option['mark_weight'] ) {
-				$style .= self::get_marker_style(
+				$style_mark .= self::get_marker_style(
 					$option['mark_color'],
 					$option['mark_weight'],
 					$option['mark_opacity']
 				);
 			} else {
-				$style .= 'background: none';
+				$style_mark .= 'background: none';
 			}
-			$selector = '.editor-styles-wrapper .ystdb-inline-style-toolbar.inline-style-' . $i . ' svg';
+			$selector_mark = ".ystdb-inline-style-toolbar.inline-style-${i} .components-button";
+			$selector_icon = ".ystdb-inline-style-toolbar.inline-style-${i} .dashicon";
 
 			/**
 			 * CSS作成
 			 */
 			$css .= sprintf(
 				'%s{%s}',
-				$selector,
-				$style
+				$selector_mark,
+				$style_mark
+			);
+			$css .= sprintf(
+				'%s{%s}',
+				$selector_icon,
+				$style_icon
 			);
 		}
 

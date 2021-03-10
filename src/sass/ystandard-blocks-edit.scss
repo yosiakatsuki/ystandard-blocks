@@ -4,7 +4,22 @@
 @import "edit/**/*.scss";
 
 .editor-styles-wrapper {
-	@import "../../blocks/**/_edit.scss";
+  @import "../../blocks/balloon/edit";
+  @import "../../blocks/card/edit";
+  @import "../../blocks/columns/edit";
+  @import "../../blocks/conditional-group-block/edit";
+  @import "../../blocks/format/inline-font-size/edit";
+  @import "../../blocks/heading/edit";
+  @import "../../blocks/section/edit";
+  @import "../../blocks/svg-button/edit";
+  @import "../../blocks/svg-button-link/edit";
+  @import "../../blocks/svg-icon/edit";
+  // 廃止予定.
+  @import "../../blocks/button/edit";
+  @import "../../blocks/button-link/edit";
+  @import "../../blocks/fa-icon/edit";
 }
+
+@import "../../blocks/format/inline-style/edit";
 
 @import "../../blocks/**/_inspector-controls.scss";
