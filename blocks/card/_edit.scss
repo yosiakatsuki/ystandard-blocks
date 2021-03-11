@@ -1,31 +1,38 @@
 @import "block";
 
+.is-selected {
+  .ystdb-card__edit {
+	background-color: $color__bg-gray-light;
+  }
+}
+
+
 .ystdb-card__edit-text {
-	font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .ystdb-card__url-input {
-	margin-bottom: 1rem;
+  padding: 1rem;
 }
 
 .ystdb-card__preview {
-	position: relative;
+  position: relative;
 
-	&.is-rendered {
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			z-index: 2;
-		}
+  &.is-rendered {
+	&::after {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: 2;
 	}
+  }
 
-	.ystdb-card__link {
-		&::after {
-			display: none;
-		}
+  .ystdb-card__link {
+	&::after {
+	  display: none;
 	}
+  }
 }
