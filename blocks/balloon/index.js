@@ -23,4 +23,5 @@ registerBlockType('ystdb/balloon', {
 	edit,
 	save,
 	deprecated,
+	example: {},
 });

@@ -24,4 +24,5 @@ registerBlockType('ystdb/columns', {
 	edit,
 	save,
 	deprecated,
+	example: {},
 });

@@ -29,4 +29,5 @@ registerBlockType('ystdb/svg-button', {
 	save,
 	transforms,
 	deprecated,
+	example: {},
 });

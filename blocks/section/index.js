@@ -27,4 +27,5 @@ registerBlockType('ystdb/section', {
 	edit,
 	save,
 	deprecated,
+	example: {},
 });

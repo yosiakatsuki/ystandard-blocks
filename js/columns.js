@@ -660,7 +660,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__["registerBlockType"])('yst
   supports: _config__WEBPACK_IMPORTED_MODULE_5__["supports"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
-  deprecated: _deprecated_index__WEBPACK_IMPORTED_MODULE_8__["deprecated"]
+  deprecated: _deprecated_index__WEBPACK_IMPORTED_MODULE_8__["deprecated"],
+  example: {}
 });
 
 /***/ }),

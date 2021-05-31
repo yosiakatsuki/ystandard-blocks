@@ -25,4 +25,5 @@ registerBlockType('ystdb/heading', {
 	save,
 	transforms,
 	deprecated,
+	example: {},
 });

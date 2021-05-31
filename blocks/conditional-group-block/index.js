@@ -31,4 +31,5 @@ registerBlockType('ystdb/conditional-group-block', {
 	supports,
 	edit,
 	save,
+	example: {},
 });

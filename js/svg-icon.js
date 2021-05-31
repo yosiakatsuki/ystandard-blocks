@@ -374,7 +374,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["registerBlockType"])('yst
   supports: _config__WEBPACK_IMPORTED_MODULE_6__["supports"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
-  transforms: _transforms__WEBPACK_IMPORTED_MODULE_5__["default"]
+  transforms: _transforms__WEBPACK_IMPORTED_MODULE_5__["default"],
+  example: {}
 });
 
 /***/ }),

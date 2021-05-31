@@ -31,4 +31,5 @@ registerBlockType('ystdb/svg-button-link', {
 		{ name: 'outline', label: __('アウトライン') },
 	],
 	transforms,
+	example: {},
 });

@@ -664,7 +664,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_5__["registerBlockType"])('yst
   save: function save() {
     return null;
   },
-  transforms: _transforms__WEBPACK_IMPORTED_MODULE_7__["default"]
+  transforms: _transforms__WEBPACK_IMPORTED_MODULE_7__["default"],
+  example: {
+    attributes: {
+      url: 'https://wp-ystandard.com/'
+    }
+  }
 });
 
 /***/ }),

@@ -535,7 +535,8 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__["registerBlockType"])('yst
     name: 'outline',
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アウトライン')
   }],
-  transforms: _transforms__WEBPACK_IMPORTED_MODULE_4__["default"]
+  transforms: _transforms__WEBPACK_IMPORTED_MODULE_4__["default"],
+  example: {}
 });
 
 /***/ }),
