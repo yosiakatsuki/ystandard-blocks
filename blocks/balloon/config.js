@@ -173,20 +173,14 @@ export const alignTop = (
 export const alignmentsControls = {
 	top: {
 		icon: alignTop,
-		title: _x('Vertically Align Top', 'Block vertical alignment setting'),
+		title: _x('上揃え', 'ystandard-blocks'),
 	},
 	center: {
 		icon: alignCenter,
-		title: _x(
-			'Vertically Align Middle',
-			'Block vertical alignment setting'
-		),
+		title: _x('中央揃え', 'ystandard-blocks'),
 	},
 	bottom: {
 		icon: alignBottom,
-		title: _x(
-			'Vertically Align Bottom',
-			'Block vertical alignment setting'
-		),
+		title: _x('下揃え', 'ystandard-blocks'),
 	},
 };

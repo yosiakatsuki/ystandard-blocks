@@ -156,15 +156,15 @@ var template = [['ystdb/column', {}], ['ystdb/column', {}], ['ystdb/column', {}]
 var alignmentsControls = {
   top: {
     icon: _icons__WEBPACK_IMPORTED_MODULE_3__["alignTop"],
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('Vertically Align Top', 'Block vertical alignment setting')
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('上揃え', 'ystandard-blocks')
   },
   center: {
     icon: _icons__WEBPACK_IMPORTED_MODULE_3__["alignCenter"],
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('Vertically Align Middle', 'Block vertical alignment setting')
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('中央揃え', 'ystandard-blocks')
   },
   bottom: {
     icon: _icons__WEBPACK_IMPORTED_MODULE_3__["alignBottom"],
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('Vertically Align Bottom', 'Block vertical alignment setting')
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["_x"])('下揃え', 'ystandard-blocks')
   },
   last: {
     icon: _icons__WEBPACK_IMPORTED_MODULE_3__["alignLastBlockBottom"],
