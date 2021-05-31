@@ -21,7 +21,7 @@
     "watch": "npm run start:block & gulp watch",
     "zip": "gulp zip",
     "build:deploy-files": "gulp createDeployFiles",
-    "rename:beta-json": "rename -f build/ystandard-blocks-beta.json ystandard-blocks.json",
+    "build:deploy-files-beta": "gulp createDeployFilesBeta",
     "packages-update": "wp-scripts packages-update"
   },
   "repository": {
@@ -60,13 +60,13 @@
     "file-loader": "^4.3.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sass-glob": "^1.1.0",
     "gulp-zip": "^5.0.2",
     "lodash": "^4.17.20",
     "prettier": "^2.2.1",
     "react-feather": "^2.0.9",
-    "rename-cli": "^6.2.1",
     "sass": "^1.30.0",
     "sass-loader": "^8.0.2",
     "simple-icons": "^2.19.0",

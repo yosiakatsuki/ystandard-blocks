@@ -10,6 +10,7 @@ const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
 const webpackStream = require( 'webpack-stream' );
 const webpack = require( 'webpack' );
+const rename = require( 'gulp-rename' );
 
 const webpackConfig = require( './webpack.menu.config.js' );
 
@@ -104,10 +105,18 @@ function zip() {
 		.pipe( dest( 'build' ) );
 }
 
-function copyJson() {
-	return src( [ 'ystandard-blocks.json', 'ystandard-blocks-beta.json' ] )
+function copyUpdateJson() {
+	return src( 'ystandard-blocks.json' )
 		.pipe( dest( 'build' ) );
 }
+
+function copyUpdateJsonBeta() {
+	return src( 'ystandard-blocks-beta.json' )
+		.pipe( rename( 'ystandard-blocks.json' ) )
+		.pipe( dest( 'build' ) );
+}
+
+
 
 function watchFiles() {
 	cleanFiles();
@@ -122,8 +131,9 @@ function watchFiles() {
 /**
  * サーバーにデプロイするファイルを作成
  */
+exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJson ) );
+exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJsonBeta ) );
 
-exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyJson ) );
 exports.watch = series( watchFiles );
 exports.sass = series( sass );
 exports.clean = series( cleanFiles );
