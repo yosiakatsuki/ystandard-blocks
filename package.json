@@ -22,7 +22,7 @@
     "zip": "gulp zip",
     "build:deploy-files": "gulp createDeployFiles",
     "rename:beta-json": "rename -f build/ystandard-blocks-beta.json ystandard-blocks.json",
-	"packages-update": "wp-scripts packages-update"
+    "packages-update": "wp-scripts packages-update"
   },
   "repository": {
     "type": "git",
