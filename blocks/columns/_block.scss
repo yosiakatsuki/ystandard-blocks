@@ -148,19 +148,19 @@ _:-ms-lang(x)::-ms-backdrop,
   }
 
   &.is-vertically-aligned-center {
-	.ystdb-column-block-container {
+	> .ystdb-column > .ystdb-column-block-container {
 	  justify-content: center;
 	}
   }
 
   &.is-vertically-aligned-bottom {
-	.ystdb-column-block-container {
+	> .ystdb-column > .ystdb-column-block-container {
 	  justify-content: flex-end;
 	}
   }
 
   &.is-vertically-aligned-last {
-	.ystdb-column-block-container {
+	> .ystdb-column > .ystdb-column-block-container {
 	  > *:nth-last-child(2) {
 		flex-grow: 1;
 	  }
