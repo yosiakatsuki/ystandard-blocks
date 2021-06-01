@@ -22,6 +22,9 @@
 	@supports (-webkit-overflow-scrolling: touch) {
 	  background-attachment: scroll;
 	}
+	@supports (-webkit-touch-callout: none) {
+	  background-attachment: scroll;
+	}
 
 	@media (prefers-reduced-motion: reduce) {
 	  background-attachment: scroll;
