@@ -17,12 +17,14 @@
   }
 
   &.has-parallax {
-	background-attachment: scroll;
-  }
+	background-attachment: fixed;
 
-  @supports ( background-attachment: fixed ) {
-	&.has-parallax {
-	  background-attachment: fixed
+	@supports (-webkit-overflow-scrolling: touch) {
+	  background-attachment: scroll;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+	  background-attachment: scroll;
 	}
   }
 
