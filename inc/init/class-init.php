@@ -38,6 +38,14 @@ class Init {
 		add_filter( 'block_categories', [ $this, 'block_categories' ] );
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
+		add_filter(
+			'ys_system_info',
+			function ( $info ) {
+				$info[] = 'yStandard Blocks バージョン: ' . YSTDB_VERSION;
+				return $info;
+			},
+			11
+		);
 	}
 
 	/**
