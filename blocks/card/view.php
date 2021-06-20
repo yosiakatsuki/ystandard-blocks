@@ -9,6 +9,7 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
 ?>
 <div class="<?php echo $attributes['class']; ?>" <?php echo $attributes['warp_style']; ?>>
 	<div class="<?php echo $attributes['container_class']; ?>">

@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Conditional_Group_Block
  *

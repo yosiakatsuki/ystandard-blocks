@@ -9,6 +9,8 @@
 
 use \ystandard_blocks\Utility;
 
+defined( 'ABSPATH' ) || die();
+
 $attributes = wp_parse_args(
 	$attributes,
 	[

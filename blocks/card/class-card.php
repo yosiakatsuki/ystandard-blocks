@@ -8,6 +8,9 @@
  */
 
 namespace ystandard_blocks;
+
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Card
  */
