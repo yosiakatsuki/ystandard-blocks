@@ -129,7 +129,7 @@ export default function save(props) {
 	const backgroundImageStyles = {
 		backgroundImage:
 			backgroundImageURL && isImageBackground
-				? `url("${backgroundImageURL}")`
+				? `url('${backgroundImageURL}')`
 				: undefined,
 		backgroundPosition: getBackgroundPosition(
 			showFocalPointPicker,
