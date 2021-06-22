@@ -80,6 +80,7 @@ class Init {
 		require_once $inc . '/enqueue/class-enqueue-embed.php';
 		require_once $inc . '/enqueue/class-polyfill.php';
 		require_once $inc . '/enqueue/class-block-editor.php';
+		require_once $inc . '/kses/class-kses.php';
 		require_once $inc . '/admin/class-admin.php';
 		require_once $inc . '/menu-page/class-menu.php';
 		require_once $inc . '/menu-page/class-option-no-ystd.php';
