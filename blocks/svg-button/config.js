@@ -67,6 +67,9 @@ export const attributes = {
 	},
 	rel: {
 		type: 'string',
+		source: 'attribute',
+		selector: 'a',
+		attribute: 'rel',
 	},
 	paddingType: {
 		type: 'string',
