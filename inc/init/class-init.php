@@ -35,13 +35,14 @@ class Init {
 			return;
 		}
 		$this->load_files();
-		add_filter( 'block_categories', [ $this, 'block_categories' ] );
+		add_filter( 'block_categories_all', [ __CLASS__, 'add_block_categories' ] );
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
 		add_filter(
 			'ys_system_info',
 			function ( $info ) {
 				$info[] = 'yStandard Blocks バージョン: ' . YSTDB_VERSION;
+
 				return $info;
 			},
 			11
@@ -85,6 +86,7 @@ class Init {
 		require_once $inc . '/menu-page/class-menu.php';
 		require_once $inc . '/menu-page/class-option-no-ystd.php';
 		require_once $inc . '/customizer/class-customizer.php';
+		require_once $inc . '/compatible/class-compatible.php';
 	}
 
 	/**
@@ -94,7 +96,7 @@ class Init {
 	 *
 	 * @return array
 	 */
-	public function block_categories( $categories ) {
+	public static function add_block_categories( $categories ) {
 		$categories[] = [
 			'slug'  => 'ystdb',
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
