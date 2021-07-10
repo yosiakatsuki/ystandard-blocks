@@ -360,7 +360,13 @@ const SectionEdit = (props) => {
 						/>
 					)}
 					{backgroundType === VIDEO_BACKGROUND_TYPE && (
-						<video autoPlay muted loop src={backgroundImageURL} />
+						<video
+							autoPlay
+							muted
+							loop
+							playsInline
+							src={backgroundImageURL}
+						/>
 					)}
 				</Button>
 				<Button

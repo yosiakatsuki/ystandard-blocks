@@ -402,6 +402,7 @@ export default function save(props) {
 					autoPlay
 					muted
 					loop
+					playsInline
 					src={backgroundImageURL}
 					style={{
 						objectPosition: getBackgroundPosition(
