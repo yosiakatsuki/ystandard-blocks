@@ -519,4 +519,18 @@ class Utility {
 		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 	}
 
+	/**
+	 * WordPressのバージョンチェック
+	 *
+	 * @param string $version バージョン.
+	 *
+	 * @return bool|int
+	 */
+	public static function wordpress_version_compare( $version ) {
+
+		$wp_version = get_bloginfo( 'version' );
+
+		return version_compare( $wp_version, $version, '>=' );
+	}
+
 }

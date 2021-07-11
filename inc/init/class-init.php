@@ -35,7 +35,6 @@ class Init {
 			return;
 		}
 		$this->load_files();
-		add_filter( 'block_categories_all', [ __CLASS__, 'add_block_categories' ] );
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
 		add_filter(
@@ -47,6 +46,12 @@ class Init {
 			},
 			11
 		);
+
+		if ( Utility::wordpress_version_compare( '5.8-alpha-1' ) ) {
+			add_filter( 'block_categories_all', [ __CLASS__, 'add_block_categories' ] );
+		} else {
+			add_filter( 'block_categories', [ __CLASS__, 'add_block_categories' ] );
+		}
 	}
 
 	/**
@@ -86,7 +91,6 @@ class Init {
 		require_once $inc . '/menu-page/class-menu.php';
 		require_once $inc . '/menu-page/class-option-no-ystd.php';
 		require_once $inc . '/customizer/class-customizer.php';
-		require_once $inc . '/compatible/class-compatible.php';
 	}
 
 	/**
