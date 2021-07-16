@@ -1,4 +1,5 @@
 const defaultConfig = require( "@wordpress/scripts/config/webpack.config" );
+const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
@@ -38,5 +39,11 @@ module.exports = {
 				loader: 'file-loader?name=../font/[name].[ext]'
 			}
 		]
-	}
+	},
+	resolve: {
+		alias: {
+			'@ystdb/util': path.resolve( __dirname, 'src/js/util' ),
+			'@ystdb/component': path.resolve( __dirname, 'src/js/components' ),
+		}
+	},
 };
