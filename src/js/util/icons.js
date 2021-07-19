@@ -1,10 +1,7 @@
-import classnames from "classnames";
-import { Component } from '@wordpress/element';
-
 /**
  * アイコンのリストを取得
  *
- * @returns {boolean}
+ * @return {Array} アイコン一覧.
  */
 export function getIcons() {
 	return window.ystdbIconList;
@@ -14,14 +11,14 @@ export function getIcons() {
  * アイコンSVG取得
  *
  * @param {string} iconName アイコン名.
- * @returns {undefined|string}
+ * @return {undefined|string} アイコンSVG.
  */
-export function getIconSvg( iconName ) {
-	const name = migrateOldSNSIconName( iconName );
-	const targetIcon = getIcons().find( ( icon ) => {
+export function getIconSvg(iconName) {
+	const name = migrateOldSNSIconName(iconName);
+	const targetIcon = getIcons().find((icon) => {
 		return icon.name === name;
-	} );
-	if ( ! targetIcon || ! targetIcon.hasOwnProperty( 'icon' ) ) {
+	});
+	if (!targetIcon || !targetIcon.hasOwnProperty('icon')) {
 		return undefined;
 	}
 	return targetIcon.icon;
@@ -31,10 +28,10 @@ export function getIconSvg( iconName ) {
  * 旧SNSアイコン名を新SNSアイコン名に変換
  *
  * @param {string} name SNSアイコン名
- * @returns {string}
+ * @return {string} アイコン名.
  */
-export function migrateOldSNSIconName( name ) {
-	if ( ! name ) {
+export function migrateOldSNSIconName(name) {
+	if (!name) {
 		return name;
 	}
 	const snsIcons = [
@@ -105,12 +102,12 @@ export function migrateOldSNSIconName( name ) {
 		{
 			old: 'sns-Amazon',
 			new: 'sns-amazon',
-		}
+		},
 	];
-	const migrate = snsIcons.find( ( icon ) => {
+	const migrate = snsIcons.find((icon) => {
 		return icon.old === name;
-	} );
-	if ( ! migrate ) {
+	});
+	if (!migrate) {
 		return name;
 	}
 	return migrate.new;
