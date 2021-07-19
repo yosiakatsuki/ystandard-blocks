@@ -59,16 +59,7 @@ class Register {
 	 *
 	 * @var array
 	 */
-	private $deprecated_blocks = [
-		'fa-icon' => [
-			'name'    => 'ystdb/fa-icon',
-			'no-ystd' => true,
-		],
-		'button'  => [
-			'name'    => 'ystdb/ys-btn',
-			'no-ystd' => true,
-		],
-	];
+	private $deprecated_blocks = [];
 
 	/**
 	 * ダイナミックブロック一覧
@@ -98,13 +89,7 @@ class Register {
 	 *
 	 * @var array
 	 */
-	private $deprecated_dynamic_blocks = [
-		'button-link' => [
-			'name'    => 'ystdb/btn-link',
-			'no-ystd' => true,
-			'class'   => 'button-link',
-		],
-	];
+	private $deprecated_dynamic_blocks = [];
 
 	/**
 	 * スタイル、フォーマット、コア拡張など
@@ -177,13 +162,13 @@ class Register {
 		 */
 		$asset_file = include( YSTDB_PATH . '/js/block.asset.php' );
 		wp_enqueue_script(
-			'ystandard-blocks-editor',
+			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
 			YSTDB_URL . '/js/block.js',
 			$asset_file['dependencies'],
 			$asset_file['version']
 		);
 		wp_localize_script(
-			'ystandard-blocks-editor',
+			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
 			'ystdb',
 			$this->create_block_config()
 		);

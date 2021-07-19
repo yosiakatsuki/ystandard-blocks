@@ -43,6 +43,11 @@ class Config {
 	const JS_APP_HANDLE = 'ystdb-js-app';
 
 	/**
+	 * Block Editor Script Handle.
+	 */
+	const BLOCK_EDITOR_SCRIPT_HANDLE = 'ystandard-blocks-editor';
+
+	/**
 	 * Body Class.
 	 */
 	const BODY_CLASS = 'ystdb';

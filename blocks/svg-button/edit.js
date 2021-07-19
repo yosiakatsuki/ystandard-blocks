@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import SVGIconSelect from '../../src/js/components/svg-icon-select/index';
-import SVGIcon from '../../src/js/components/svg-icon';
+import SVGIconSelect from '@ystdb/components/svg-icon-select/index';
+import SVGIcon from '@ystdb/components/svg-icon';
 import { ystdbConfig } from '../../src/js/config/config';
 
 import {
@@ -29,17 +29,17 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
-import ResponsiveFontSizeControl from '../../src/js/components/responsive-font-size/index';
-import ResponsiveNumberControl from '../../src/js/components/responsive-number-control/index';
+import ResponsiveFontSizeControl from '@ystdb/components/responsive-font-size/index';
+import ResponsiveNumberControl from '@ystdb/components/responsive-number-control/index';
 import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
-} from '../../src/js/components/responsive-number-control/functions';
+} from '@ystdb/components/responsive-number-control/functions';
 import getNum from '../../src/js/util/_getNum';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '../../src/js/components/responsive-font-size/functions';
+} from '@ystdb/components/responsive-font-size/functions';
 
 function svgButton(props) {
 	const {

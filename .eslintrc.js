@@ -6,5 +6,6 @@ module.exports = {
 		...defaultConfig.globals,
 		ystdb: true,
 		ystdbOption: true,
+		ystdbIconList: true,
 	},
 };

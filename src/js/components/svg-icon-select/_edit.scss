@@ -1,83 +1,129 @@
-.ystdb-icon-select__btn-list {
+.ystdb-icon-select {
+  &.align--center {
+	.ys-icon-picker__selected {
+	  justify-content: center;
+	}
+  }
+  &.is-float {
+	.ys-icon-picker__list {
+	  position: absolute;
+	  top: calc(100% + 0.5em);
+	  left: 0;
+	  right: 0;
+	  width: 100%;
+	  z-index: 10;
+	}
+  }
+}
+
+.ys-icon-picker {
+  position: relative;
+  margin-top: 0.25em;
+}
+
+.ys-icon-picker__selected {
+  display: flex;
+  align-items: center;
+}
+
+.ys-icon-picker__preview {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1em;
+  background-color: $color__bg-gray-dark;
+  color: $color__text-main;
+  line-height: 1;
+
+  > * {
+	display: block;
+  }
+
+  &:empty {
+	&::after {
+	  content: "...";
+	  color: $color__text-light;
+	}
+  }
+}
+
+.ys-icon-picker__remove {
+  margin-left: .5em;
+}
+
+.ys-icon-picker__list {
+  height: 0;
+  margin-top: .5em;
+  border: 0;
+  background-color: #fff;
+  transition: height .3s, border .3s;
+  overflow-y: auto;
+  color: $color__text-main;
+
+  &.is-open {
+	height: 200px;
+	border: 1px solid $color__border-gray;
+  }
+}
+
+.ys-icon-picker__list-container {
   display: flex;
   flex-wrap: wrap;
+  padding: 2px 2px 0 2px;
+}
 
-  button {
-	display: block;
-	flex: 1 1 20%;
-	max-width: 20%;
-	margin-right: 0;
-	margin-bottom: 0.25em;
-	text-align: center;
+.ys-icon-picker__icon {
+  width: 25%;
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color__bg-gray-dark;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  line-height: 1;
+
+  &:focus {
+	box-shadow: none !important;
+	outline: 0 !important;
   }
 
-  .ystdb-icon-select__custom {
-	flex: 1 1 100%;
-	max-width: 100%;
-	margin-top: 0.5rem;
+  &:active {
+	color: currentColor !important;
   }
-}
 
-.ystdb-icon-select__label {
-  margin-top: 1rem;
-}
+  &:nth-child(4n) {
+	border-right: 0;
+  }
 
-.ystdb-icon-select__sub {
-  font-size: 0.9em;
-}
+  &.is-selected {
+	background-color: $color__text-main;
+	color: #fff;
 
-.ystdb-icon-select__clear {
-  margin-top: 0.5rem;
-}
-
-.ystdb-icon-select__position {
-  .components-radio-control__option {
-	display: inline-block;
-	margin-right: 1rem;
-
-	&:last-child {
-	  margin-right: 0;
-	}
-
-	.components-radio-control__input {
-	  margin-right: 0.25rem;
+	&:active {
+	  color: #fff !important;
 	}
   }
-}
 
-.ystdb-icon-select__picker {
-  .rfip {
+  svg {
 	display: block;
-	margin: 0.5rem 0 0;
+	fill: none;
   }
 
-  .rfipbtn {
-	width: 100%;
+  .ys-icon {
+	svg {
+	  display: block;
+	  width: 24px;
+	  height: 24px;
+	}
   }
 
-  .rfipdropdown {
-	right: 0;
-	left: auto;
-	width: 100%;
-	min-width: 250px;
+  .sns-icon {
+	svg {
+	  fill: currentColor;
+	  color: currentColor;
+	}
   }
-
-  .rfipicons__icon {
-	height: 40px;
-  }
-
-  .rfipsearch input {
-	border-radius: 0;
-  }
-  .rfipcategory select {
-	background: #fff;
-  }
-  .sns-icon svg {
-	width: 24px;
-	height: 24px;
-  }
-}
-.rfipicons__icon svg,
-.rfipbtn__icon svg {
-  display: block;
 }

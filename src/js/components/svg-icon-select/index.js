@@ -1,28 +1,9 @@
-import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
-import icons from './icons.json';
+import classnames from "classnames";
+import IconSelect from './icon-select';
 import { __ } from '@wordpress/i18n';
 import { RadioControl, BaseControl } from '@wordpress/components';
 
 import { Component } from '@wordpress/element';
-import classnames from 'classnames';
-import { getFeatherIcon } from '../../util/_getFeatherIcon';
-import { getSimpleIcons } from '../../util/_getSimpleIcons';
-
-export const getSVGIconTag = (name) => {
-	if (!name) {
-		return '';
-	}
-	let svg = '';
-	const isSNSIcon = -1 !== name.indexOf('sns-');
-
-	if (isSNSIcon) {
-		svg = getSimpleIcons(name);
-	} else {
-		svg = getFeatherIcon(name);
-	}
-
-	return svg;
-};
 
 class SVGIconSelect extends Component {
 	render() {
@@ -34,67 +15,60 @@ class SVGIconSelect extends Component {
 			onClickIcon,
 			customInfo,
 			customInfoStyle,
+			previewIcon,
+			align,
+			isFloat,
 		} = this.props;
 
 		const iconBaseControlTitle =
 			iconControlTitle === undefined
-				? __('表示アイコン', 'ystandard-blocks')
+				? __( '表示アイコン', 'ystandard-blocks' )
 				: iconControlTitle;
-		const pickerProps = {
-			icons,
-			theme: 'bluegrey',
-			renderUsing: 'class',
-			value: selectedIcon,
-			onChange: (value) => {
-				onClickIcon(value);
-			},
-			renderFunc: (name) => {
-				return (
-					<div
-						className={classnames({
-							'sns-icon': -1 !== name.indexOf('sns-'),
-						})}
-						dangerouslySetInnerHTML={{
-							__html: getSVGIconTag(name),
-						}}
-					/>
-				);
-			},
-			isMulti: false,
-		};
 
 		return (
-			<div className={'ystdb-icon-select'}>
-				{customInfo && <div style={customInfoStyle}>{customInfo}</div>}
-				{!!onChangePosition && (
+			<div className={ classnames(
+				'ystdb-icon-select',
+				{
+					[ `align--${align}` ]: align,
+					'is-float': isFloat,
+				}
+			) }>
+				{ customInfo && <div style={ customInfoStyle }>{ customInfo }</div> }
+				{ !! onChangePosition && (
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">
-							{__('アイコン表示位置', 'ystandard-blocks')}
+							{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
 						</div>
-						<div className={'ystdb-icon-select__position'}>
+						<div className={ 'ystdb-icon-select__position' }>
 							<RadioControl
-								selected={iconPosition}
-								options={[
+								selected={ iconPosition }
+								options={ [
 									{
-										label: __('左', 'ystandard-blocks'),
+										label: __( '左', 'ystandard-blocks' ),
 										value: 'left',
 									},
 									{
-										label: __('右', 'ystandard-blocks'),
+										label: __( '右', 'ystandard-blocks' ),
 										value: 'right',
 									},
-								]}
-								onChange={onChangePosition}
+								] }
+								onChange={ onChangePosition }
 							/>
 						</div>
 					</BaseControl>
-				)}
+				) }
 				<BaseControl>
 					<div className="ystdb-inspector-controls__label">
-						{iconBaseControlTitle}
+						{ iconBaseControlTitle }
 					</div>
-					<div className={'ystdb-icon-select__picker'}>
-						<FontIconPicker {...pickerProps} />
+					<div className={ 'ystdb-icon-select__picker' }>
+						<IconSelect
+							selectedIcon={ selectedIcon }
+							previewIcon={ previewIcon }
+							onChange={ ( value ) => {
+								onClickIcon( value );
+							} }
+						/>
 					</div>
 				</BaseControl>
 			</div>

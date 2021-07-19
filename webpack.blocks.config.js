@@ -7,7 +7,6 @@ module.exports = {
 		'app': './src/js/app/app.js',
 		'app-ie': './src/js/app/app-ie.js',
 		'block': './src/js/block/block.js',
-		'icons': './src/js/components/icon-select/app.js',
 		'svg-button': './blocks/svg-button/index.js',
 		'svg-icon': './blocks/svg-icon/index.js',
 		'svg-button-link': './blocks/svg-button-link/index.js',
@@ -16,12 +15,9 @@ module.exports = {
 		'section': './blocks/section/index.js',
 		'heading': './blocks/heading/index.js',
 		'balloon': './blocks/balloon/index.js',
-		'button-link': './blocks/button-link/index.js',
 		'card': './blocks/card/index.js',
 		'conditional-group-block': './blocks/conditional-group-block/index.js',
 		'format': './blocks/format/index.js',
-		'fa-icon': './blocks/fa-icon/index.js',
-		'button': './blocks/button/index.js',
 	},
 	output: {
 		filename: '[name].js',
@@ -43,7 +39,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			'@ystdb/util': path.resolve( __dirname, 'src/js/util' ),
-			'@ystdb/component': path.resolve( __dirname, 'src/js/components' ),
+			'@ystdb/components': path.resolve( __dirname, 'src/js/components' ),
 		}
 	},
 };
