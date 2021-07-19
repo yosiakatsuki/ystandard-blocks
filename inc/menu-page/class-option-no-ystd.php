@@ -71,21 +71,6 @@ class Option_No_YSTD {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row">Font Awesome</th>
-						<td>
-							<label>
-								<input type="hidden" name="<?php echo $this->get_option_name( 'load_font_awesome' ); ?>" value="0">
-								<input id="load_font_awesome" type="checkbox" name="<?php echo $this->get_option_name( 'load_font_awesome' ); ?>" value="1" <?php checked( $this->get_option( 'load_font_awesome', '1' ), '1' ); ?>>Font Awesome（アイコンフォント）用スクリプトを読み込む
-							</label>
-							<p>※テーマや他のプラグインでFont Awesomeを読み込んでいる場合はチェックを外してください。</p><br>
-							<label>
-								<input type="hidden" name="<?php echo $this->get_option_name( 'use_all_icons' ); ?>" value="0">
-								<input id="use_all_icons" type="checkbox" name="<?php echo $this->get_option_name( 'use_all_icons' ); ?>" value="1" <?php checked( $this->get_option( 'use_all_icons', '0' ), '1' ); ?>>すべてのFont Awesome（アイコンフォント）アイコンを読み込む
-							</label>
-							<p>※yStandard BlocksでFont Awesomeを読み込む場合に有効な設定です。<br>※チェックをつけるとすべてのFont Awesomeアイコンを読み込みます。選べるアイコン種類が多くなりますが、読み込み速度が遅くなります。</p><br>
-						</td>
-					</tr>
-					<tr>
 						<th scope="row">カラーパレットCSS</th>
 						<td>
 							<p>

@@ -40,8 +40,6 @@ class Migration {
 	 * Migration constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', [ $this, 'add_migration_page' ], 999 );
-		Notice::set_notice( [ $this, 'notice' ] );
 	}
 
 	/**
@@ -87,14 +85,7 @@ class Migration {
 	 * 設定ページを表示するか
 	 */
 	private function show_migration_page() {
-		$old      = self::exist_old_option();
-		$register = new Register();
-		$posts    = $register->get_posts_with_deprecated_blocks();
-		if ( ! $old && empty( $posts ) ) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
 	/**

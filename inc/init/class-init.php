@@ -78,7 +78,6 @@ class Init {
 		require_once $inc . '/migration/class-migration.php';
 		require_once $inc . '/option/class-option.php';
 		require_once $inc . '/icon/class-icon.php';
-		require_once $inc . '/icon/class-font-awesome.php';
 		require_once $inc . '/format/class-format.php';
 		require_once $inc . '/balloon/class-balloon.php';
 		require_once $inc . '/blocks/class-dynamic-block.php';
