@@ -81,7 +81,7 @@ class Icon {
 		foreach ( $icons as $icon ) {
 			$icon['name'] = self::CUSTOM_ICON_PREFIX . $icon['name'];
 			if ( ! isset( $icon['category'] ) ) {
-				$icon['category'] = self::CUSTOM_ICON_PREFIX;
+				$icon['category'] = self::CUSTOM_ICON_CATEGORY;
 			}
 		}
 
