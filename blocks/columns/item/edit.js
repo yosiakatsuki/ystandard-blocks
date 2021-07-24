@@ -40,14 +40,14 @@ function ColumnEdit(props) {
 		<Fragment>
 			<InspectorControls>
 				<PanelColorSettings
-					title={__('Color settings')}
+					title={__('色設定', 'ystandard-blocks')}
 					colorSettings={[
 						{
 							value: backgroundColor.color,
 							onChange: (color) => {
 								setBackgroundColor(color);
 							},
-							label: __('Background Color'),
+							label: __('背景色', 'ystandard-blocks'),
 						},
 					]}
 				/>
