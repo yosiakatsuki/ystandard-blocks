@@ -19,6 +19,11 @@ defined( 'ABSPATH' ) || die();
 class Config {
 
 	/**
+	 * Text Domain.
+	 */
+	const TEXT_DOMAIN = 'ystandard-blocks';
+
+	/**
 	 * 設定名
 	 */
 	const OPTION_NAME = 'ystdb_options';

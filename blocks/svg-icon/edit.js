@@ -66,7 +66,7 @@ function svgIcon(props) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={__('Color settings')}
+					title={__('Color settings', 'ystandard-blocks')}
 					initialOpen={true}
 					colorSettings={[
 						{
@@ -74,7 +74,7 @@ function svgIcon(props) {
 							onChange: (color) => {
 								setTextColor(color);
 							},
-							label: __('Text Color'),
+							label: __('Text Color', 'ystandard-blocks'),
 						},
 					]}
 				/>

@@ -26,13 +26,6 @@ class Enqueue {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ], 11 );
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
-		add_filter(
-			'ys_get_font_awesome_svg_light_url',
-			function () {
-				return YSTDB_URL . '/js/icons.js';
-			},
-			9
-		);
 		if ( ! Utility::is_ystandard() ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'no_ystd_enqueue' ], 12 );
 		}

@@ -32,18 +32,6 @@ class Block_Editor {
 	 * Enqueue Block Editor Assets.
 	 */
 	public function block_editor_assets() {
-		wp_enqueue_style(
-			'fonticonpicker-base-theme',
-			YSTDB_URL . '/library/react-fonticonpicker/fonticonpicker.base-theme.react.css',
-			[],
-			YSTDB_VERSION
-		);
-		wp_enqueue_style(
-			'fonticonpicker-material-theme',
-			YSTDB_URL . '/library/react-fonticonpicker/fonticonpicker.material-theme.react.css',
-			[],
-			YSTDB_VERSION
-		);
 		/**
 		 * エディタ用CSS
 		 */

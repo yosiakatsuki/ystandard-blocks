@@ -213,7 +213,7 @@ function svgButton(props) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={__('Color settings')}
+					title={__('Color settings', 'ystandard-blocks')}
 					initialOpen={true}
 					colorSettings={[
 						{
@@ -222,7 +222,7 @@ function svgButton(props) {
 								setAttributes({ customGradient: undefined });
 								setBackgroundColor(newColor);
 							},
-							label: __('Background Color'),
+							label: __('Background Color', 'ystandard-blocks'),
 						},
 						{
 							value: textColor.color,

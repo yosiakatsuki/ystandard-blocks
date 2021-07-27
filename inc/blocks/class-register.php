@@ -172,6 +172,11 @@ class Register {
 			'ystdb',
 			$this->create_block_config()
 		);
+		wp_set_script_translations(
+			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
+			Config::TEXT_DOMAIN,
+			YSTDB_PATH . '/languages'
+		);
 		foreach ( $this->block_editor_assets as $key => $value ) {
 			/**
 			 * 非yStandardの利用チェック

@@ -1,0 +1,1284 @@
+# Copyright (C) 2021 yosiakatsuki
+# This file is distributed under the same license as the yStandard Blocks plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: yStandard Blocks 2.10.1-beta-1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ystandard-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-07-25T13:33:27+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: ystandard-blocks\n"
+
+#. Plugin Name of the plugin
+msgid "yStandard Blocks"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wp-ystandard.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "無料WordPressテーマ「yStandard」用ブロック追加プラグイン."
+msgstr ""
+
+#. Author of the plugin
+msgid "yosiakatsuki"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://yosiakatsuki.net"
+msgstr ""
+
+#: inc/init/class-init.php:106
+msgid "[ys]yStandard Blocks"
+msgstr ""
+
+#: inc/init/class-init.php:110
+msgid "[ys]yStandard Blocks Beta"
+msgstr ""
+
+#: inc/init/class-init.php:114
+msgid "[ys]yStandard Blocks(非推奨)"
+msgstr ""
+
+#: blocks/balloon/config.js:106
+#: js/balloon.js:1
+msgid "会話"
+msgstr ""
+
+#: blocks/balloon/config.js:110
+#: js/balloon.js:1
+msgid "考え中"
+msgstr ""
+
+#: blocks/balloon/config.js:117
+#: blocks/heading/edit.js:555
+#: blocks/section/config.js:130
+#: js/balloon.js:1
+#: js/heading.js:1
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/index.js:50
+msgid "右"
+msgstr ""
+
+#: blocks/balloon/config.js:121
+#: blocks/heading/edit.js:611
+#: blocks/section/config.js:129
+#: js/balloon.js:1
+#: js/heading.js:1
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/index.js:46
+msgid "左"
+msgstr ""
+
+#: blocks/balloon/config.js:128
+#: blocks/section/config.js:62
+#: blocks/section/config.js:84
+#: js/balloon.js:1
+#: js/section.js:1
+msgid "小"
+msgstr ""
+
+#: blocks/balloon/config.js:132
+#: blocks/section/config.js:57
+#: blocks/section/config.js:79
+#: js/balloon.js:1
+#: js/section.js:1
+msgid "大"
+msgstr ""
+
+#: blocks/balloon/edit.js:256
+#: js/balloon.js:1
+msgid "吹き出し設定"
+msgstr ""
+
+#: blocks/balloon/edit.js:259
+#: js/balloon.js:1
+msgid "吹き出しの位置"
+msgstr ""
+
+#: blocks/balloon/edit.js:303
+#: js/balloon.js:1
+msgid "吹き出しタイプ"
+msgstr ""
+
+#: blocks/balloon/edit.js:344
+#: js/balloon.js:1
+msgid "登録済みアバター画像"
+msgstr ""
+
+#: blocks/balloon/edit.js:400
+#: js/balloon.js:1
+msgid "アバター設定"
+msgstr ""
+
+#: blocks/balloon/edit.js:403
+#: js/balloon.js:1
+msgid "アバターサイズ"
+msgstr ""
+
+#: blocks/balloon/edit.js:431
+#: js/balloon.js:1
+msgid "アバター画像の角丸"
+msgstr ""
+
+#: blocks/balloon/edit.js:446
+#: js/balloon.js:1
+msgid "アバター画像の枠線太さ"
+msgstr ""
+
+#: blocks/balloon/edit.js:463
+#: js/balloon.js:1
+msgid "アバター画像枠色"
+msgstr ""
+
+#: blocks/balloon/edit.js:476
+#: js/balloon.js:1
+msgid "アバター名文字色"
+msgstr ""
+
+#: blocks/balloon/edit.js:488
+#: js/balloon.js:1
+msgid "テキスト設定"
+msgstr ""
+
+#: blocks/balloon/edit.js:491
+#: blocks/heading/edit.js:430
+#: blocks/svg-button-link/edit.js:271
+#: js/balloon.js:1
+#: js/heading.js:1
+#: js/svg-button-link.js:1
+msgid "文字サイズ"
+msgstr ""
+
+#: blocks/balloon/edit.js:500
+#: js/balloon.js:1
+msgid "吹き出し背景色"
+msgstr ""
+
+#: blocks/balloon/edit.js:512
+#: js/balloon.js:1
+msgid "吹き出し文字色"
+msgstr ""
+
+#: blocks/balloon/index.js:11
+#: js/balloon.js:1
+msgid "吹き出し"
+msgstr ""
+
+#: blocks/balloon/index.js:12
+#: js/balloon.js:1
+msgid "yStandard Blocks 吹き出しブロック"
+msgstr ""
+
+#: blocks/card/edit.js:101
+#: blocks/heading/edit.js:346
+#: js/card.js:1
+#: js/heading.js:1
+msgid "画像を選択"
+msgstr ""
+
+#: blocks/card/edit.js:123
+#: blocks/heading/edit.js:368
+#: js/card.js:1
+#: js/heading.js:1
+msgid "画像をクリア"
+msgstr ""
+
+#: blocks/card/edit.js:133
+#: js/card.js:1
+msgid "リンク設定"
+msgstr ""
+
+#: blocks/card/edit.js:183
+#: js/card.js:1
+msgid "カード表示設定"
+msgstr ""
+
+#: blocks/card/edit.js:186
+#: js/card.js:1
+msgid "カード表示タイプ"
+msgstr ""
+
+#: blocks/card/edit.js:197
+#: js/card.js:1
+msgid "カード背景色"
+msgstr ""
+
+#: blocks/card/edit.js:208
+#: js/card.js:1
+msgid "カード枠線"
+msgstr ""
+
+#: blocks/card/edit.js:222
+#: blocks/card/edit.js:226
+#: js/card.js:1
+msgid "タイトル"
+msgstr ""
+
+#: blocks/card/edit.js:240
+#: js/card.js:1
+msgid "タイトル文字色"
+msgstr ""
+
+#: blocks/card/edit.js:254
+#: js/card.js:1
+msgid "画像設定"
+msgstr ""
+
+#: blocks/card/edit.js:258
+#: js/card.js:1
+msgid "画像を表示する"
+msgstr ""
+
+#: blocks/card/edit.js:269
+#: js/card.js:1
+msgid "カスタム画像"
+msgstr ""
+
+#: blocks/card/edit.js:291
+#: js/card.js:1
+msgid "画像サイズ"
+msgstr ""
+
+#: blocks/card/edit.js:328
+#: js/card.js:1
+msgid "画像表示タイプ"
+msgstr ""
+
+#: blocks/card/edit.js:343
+#: js/card.js:1
+msgid "画像表示位置"
+msgstr ""
+
+#: blocks/card/edit.js:361
+#: js/card.js:1
+msgid "概要文設定"
+msgstr ""
+
+#: blocks/card/edit.js:365
+#: js/card.js:1
+msgid "概要文を表示する"
+msgstr ""
+
+#: blocks/card/edit.js:378
+#: js/card.js:1
+msgid "概要文の字数"
+msgstr ""
+
+#: blocks/card/edit.js:390
+#: js/card.js:1
+msgid "概要文"
+msgstr ""
+
+#: blocks/card/edit.js:404
+#: js/card.js:1
+msgid "概要 文字色"
+msgstr ""
+
+#: blocks/card/edit.js:418
+#: js/card.js:1
+msgid "ドメイン表示設定"
+msgstr ""
+
+#: blocks/card/edit.js:422
+#: js/card.js:1
+msgid "ドメインを表示する"
+msgstr ""
+
+#: blocks/card/edit.js:434
+#: js/card.js:1
+msgid "ドメイン 文字色"
+msgstr ""
+
+#: blocks/card/edit.js:452
+#: js/card.js:1
+msgid "リンクを作成するURLを入力"
+msgstr ""
+
+#: blocks/card/index.js:10
+#: js/card.js:1
+msgid "カード"
+msgstr ""
+
+#: blocks/card/index.js:11
+#: js/card.js:1
+msgid "カード型リンクを作成するブロック"
+msgstr ""
+
+#: blocks/columns/config.js:80
+#: js/columns.js:1
+msgid "左寄せ"
+msgstr ""
+
+#: blocks/columns/config.js:84
+#: js/columns.js:1
+msgid "中央"
+msgstr ""
+
+#: blocks/columns/config.js:88
+#: js/columns.js:1
+msgid "右寄せ"
+msgstr ""
+
+#: blocks/columns/config.js:92
+#: js/columns.js:1
+msgid "両端に揃える"
+msgstr ""
+
+#: blocks/columns/edit.js:123
+#: js/columns.js:1
+msgid "横位置"
+msgstr ""
+
+#: blocks/columns/edit.js:149
+#: js/columns.js:1
+msgid "カラム設定"
+msgstr ""
+
+#: blocks/columns/edit.js:152
+#: js/columns.js:1
+msgid "カラム数"
+msgstr ""
+
+#: blocks/columns/edit.js:155
+#: blocks/svg-button/edit.js:480
+#: js/columns.js:1
+#: js/svg-button.js:1
+msgid "デスクトップ"
+msgstr ""
+
+#: blocks/columns/edit.js:167
+#: blocks/svg-button/edit.js:489
+#: js/columns.js:1
+#: js/svg-button.js:1
+msgid "タブレット"
+msgstr ""
+
+#: blocks/columns/edit.js:179
+#: blocks/svg-button/edit.js:498
+#: js/columns.js:1
+#: js/svg-button.js:1
+msgid "モバイル"
+msgstr ""
+
+#: blocks/columns/edit.js:193
+#: js/columns.js:1
+msgid "カラム間の余白を削除"
+msgstr ""
+
+#: blocks/columns/edit.js:196
+#: js/columns.js:1
+msgid "余白なし"
+msgstr ""
+
+#: blocks/columns/edit.js:207
+#: js/columns.js:1
+msgid "表示順序を逆順にする"
+msgstr ""
+
+#: blocks/columns/edit.js:215
+#: js/columns.js:1
+msgid "逆順にする"
+msgstr ""
+
+#: blocks/columns/edit.js:225
+#: js/columns.js:1
+msgid "デザイン 一括設定"
+msgstr ""
+
+#: blocks/columns/edit.js:228
+#: blocks/columns/item/edit.js:57
+#: blocks/heading/edit.js:523
+#: js/column.js:1
+#: js/columns.js:1
+#: js/heading.js:1
+msgid "余白"
+msgstr ""
+
+#: blocks/columns/edit.js:256
+#: blocks/columns/item/edit.js:80
+#: js/column.js:1
+#: js/columns.js:1
+msgid "影"
+msgstr ""
+
+#: blocks/columns/edit.js:266
+#: js/columns.js:1
+msgid "ON"
+msgstr ""
+
+#: blocks/columns/edit.js:275
+#: js/columns.js:1
+msgid "OFF"
+msgstr ""
+
+#: blocks/columns/index.js:12
+#: js/columns.js:1
+msgid "カスタムカラム"
+msgstr ""
+
+#: blocks/columns/index.js:13
+#: blocks/columns/item/index.js:11
+#: js/column.js:1
+#: js/columns.js:1
+msgid "yStandard Blocks カラムブロック"
+msgstr ""
+
+#: blocks/columns/item/edit.js:43
+#: js/column.js:1
+msgid "色設定"
+msgstr ""
+
+#: blocks/columns/item/edit.js:50
+#: blocks/section/edit.js:879
+#: js/column.js:1
+#: js/section.js:1
+msgid "背景色"
+msgstr ""
+
+#: blocks/columns/item/edit.js:54
+#: js/column.js:1
+msgid "デザイン"
+msgstr ""
+
+#: blocks/columns/item/edit.js:83
+#: js/column.js:1
+msgid "影をつける"
+msgstr ""
+
+#: blocks/columns/item/index.js:10
+#: js/column.js:1
+msgid "カラム"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:26
+#: js/conditional-group-block.js:1
+msgid "画面サイズ別非表示設定"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:34
+#: js/conditional-group-block.js:1
+msgid "スマートフォンサイズで非表示"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:45
+#: js/conditional-group-block.js:1
+msgid "タブレットサイズで非表示"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:56
+#: js/conditional-group-block.js:1
+msgid "PCサイズで非表示"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:65
+#: js/conditional-group-block.js:1
+msgid "AMP 表示・非表示 設定"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:73
+#: js/conditional-group-block.js:1
+msgid "AMPページで非表示"
+msgstr ""
+
+#: blocks/conditional-group-block/edit.js:80
+#: js/conditional-group-block.js:1
+msgid "AMPページのみ表示"
+msgstr ""
+
+#: blocks/conditional-group-block/index.js:10
+#: blocks/conditional-group-block/index.js:23
+#: js/conditional-group-block.js:1
+msgid "条件付きグループブロック"
+msgstr ""
+
+#: blocks/conditional-group-block/index.js:11
+#: js/conditional-group-block.js:1
+msgid "条件により表示・非表示を切り替えできるグループブロック"
+msgstr ""
+
+#: blocks/conditional-group-block/index.js:22
+#: js/conditional-group-block.js:1
+msgid "cgb"
+msgstr ""
+
+#: blocks/conditional-group-block/index.js:24
+#: js/conditional-group-block.js:1
+msgid "conditional group block"
+msgstr ""
+
+#: blocks/conditional-group-block/index.js:25
+#: js/conditional-group-block.js:1
+msgid "グループブロック"
+msgstr ""
+
+#: blocks/format/inline-font-size/config.js:9
+#: js/format.js:1
+msgid "[ys]少し大きく"
+msgstr ""
+
+#: blocks/format/inline-font-size/config.js:15
+#: js/format.js:1
+msgid "[ys]少し小さく"
+msgstr ""
+
+#: blocks/format/inline-font-size/config.js:21
+#: js/format.js:1
+msgid "[ys]少し大きく(SP)"
+msgstr ""
+
+#: blocks/format/inline-font-size/config.js:27
+#: js/format.js:1
+msgid "[ys]少し小さく(SP)"
+msgstr ""
+
+#: blocks/format/inline-style/config.js:9
+#: js/format.js:1
+msgid "[ys]インラインスタイル 1"
+msgstr ""
+
+#: blocks/format/inline-style/config.js:15
+#: js/format.js:1
+msgid "[ys]インラインスタイル 2"
+msgstr ""
+
+#: blocks/format/inline-style/config.js:21
+#: js/format.js:1
+msgid "[ys]インラインスタイル 3"
+msgstr ""
+
+#: blocks/heading/config.js:171
+#: blocks/heading/edit.js:583
+#: blocks/section/config.js:123
+#: js/heading.js:1
+#: js/section.js:1
+msgid "下"
+msgstr ""
+
+#: blocks/heading/config.js:175
+#: blocks/heading/edit.js:527
+#: blocks/section/config.js:122
+#: js/heading.js:1
+#: js/section.js:1
+msgid "上"
+msgstr ""
+
+#: blocks/heading/config.js:182
+#: js/heading.js:1
+msgid "指定なし"
+msgstr ""
+
+#: blocks/heading/config.js:186
+#: js/heading.js:1
+msgid "bold"
+msgstr ""
+
+#: blocks/heading/config.js:190
+#: js/heading.js:1
+msgid "normal"
+msgstr ""
+
+#: blocks/heading/edit.js:400
+#: blocks/heading/heading-toolbar.js:42
+#: js/heading.js:1
+msgid "見出しレベル"
+msgstr ""
+
+#: blocks/heading/edit.js:415
+#: js/heading.js:1
+msgid "色・サイズ"
+msgstr ""
+
+#: blocks/heading/edit.js:496
+#: blocks/heading/edit.js:746
+#: js/heading.js:1
+msgid "太さ"
+msgstr ""
+
+#: blocks/heading/edit.js:508
+#: blocks/heading/edit.js:758
+#: js/heading.js:1
+msgid "Letter Spacing"
+msgstr ""
+
+#: blocks/heading/edit.js:641
+#: js/heading.js:1
+msgid "サブテキスト"
+msgstr ""
+
+#: blocks/heading/edit.js:645
+#: js/heading.js:1
+msgid "サブテキストの位置"
+msgstr ""
+
+#: blocks/heading/edit.js:668
+#: js/heading.js:1
+msgid "サブテキスト文字の色"
+msgstr ""
+
+#: blocks/heading/edit.js:679
+#: js/heading.js:1
+msgid "サブテキスト文字サイズ"
+msgstr ""
+
+#: blocks/heading/edit.js:773
+#: js/heading.js:1
+msgid "区切り線"
+msgstr ""
+
+#: blocks/heading/edit.js:777
+#: js/heading.js:1
+msgid "線の長さ(px)"
+msgstr ""
+
+#: blocks/heading/edit.js:789
+#: js/heading.js:1
+msgid "線の太さ(px)"
+msgstr ""
+
+#: blocks/heading/edit.js:801
+#: js/heading.js:1
+msgid "区切り線の色"
+msgstr ""
+
+#: blocks/heading/edit.js:812
+#: js/heading.js:1
+msgid "区切り線用画像"
+msgstr ""
+
+#: blocks/heading/edit.js:827
+#: js/heading.js:1
+msgid "※画像を指定した場合、区切り線の色設定は無視されます。"
+msgstr ""
+
+#: blocks/heading/edit.js:833
+#: js/heading.js:1
+msgid "区切り線の上下余白"
+msgstr ""
+
+#: blocks/heading/edit.js:836
+#: js/heading.js:1
+msgid "上側の余白(px)"
+msgstr ""
+
+#: blocks/heading/edit.js:849
+#: js/heading.js:1
+msgid "下側の余白(px)"
+msgstr ""
+
+#: blocks/heading/edit.js:863
+#: js/heading.js:1
+msgid "スタイル削除"
+msgstr ""
+
+#: blocks/heading/edit.js:867
+#: js/heading.js:1
+msgid "テーマの見出しスタイルをクリアする"
+msgstr ""
+
+#: blocks/heading/index.js:12
+#: js/heading.js:1
+msgid "カスタム見出し"
+msgstr ""
+
+#: blocks/heading/index.js:13
+#: js/heading.js:1
+msgid "カスタム見出しブロック"
+msgstr ""
+
+#: blocks/section/config.js:52
+#: blocks/section/config.js:74
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/icon-select.js:51
+msgid "リセット"
+msgstr ""
+
+#: blocks/section/config.js:67
+#: blocks/section/config.js:89
+#: blocks/section/config.js:106
+#: blocks/section/config.js:156
+#: js/balloon.js:1
+#: js/card.js:1
+#: js/column.js:1
+#: js/columns.js:1
+#: js/conditional-group-block.js:1
+#: js/heading.js:1
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/config/config.js:36
+msgid "なし"
+msgstr ""
+
+#: blocks/section/config.js:96
+#: js/section.js:1
+msgid "ワイド"
+msgstr ""
+
+#: blocks/section/config.js:101
+#: js/section.js:1
+msgid "スリム"
+msgstr ""
+
+#: blocks/section/config.js:115
+#: blocks/section/config.js:144
+#: blocks/svg-button-link/edit.js:350
+#: blocks/svg-button/edit.js:531
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "px"
+msgstr ""
+
+#: blocks/section/config.js:116
+#: blocks/section/config.js:147
+#: blocks/svg-button-link/edit.js:346
+#: blocks/svg-button/edit.js:527
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "%"
+msgstr ""
+
+#: blocks/section/config.js:136
+#: js/section.js:1
+msgid "cover"
+msgstr ""
+
+#: blocks/section/config.js:137
+#: js/section.js:1
+msgid "contain"
+msgstr ""
+
+#: blocks/section/config.js:138
+#: js/section.js:1
+msgid "カスタム"
+msgstr ""
+
+#: blocks/section/config.js:145
+#: js/section.js:1
+msgid "em"
+msgstr ""
+
+#: blocks/section/config.js:146
+#: js/section.js:1
+msgid "rem"
+msgstr ""
+
+#: blocks/section/config.js:148
+#: js/section.js:1
+msgid "vw"
+msgstr ""
+
+#: blocks/section/config.js:149
+#: js/section.js:1
+msgid "vh"
+msgstr ""
+
+#: blocks/section/config.js:157
+#: js/section.js:1
+msgid "あり"
+msgstr ""
+
+#: blocks/section/config.js:158
+#: js/section.js:1
+msgid "あり（横）"
+msgstr ""
+
+#: blocks/section/config.js:159
+#: js/section.js:1
+msgid "あり（縦）"
+msgstr ""
+
+#: blocks/section/config.js:180
+#: js/section.js:1
+msgid "斜め"
+msgstr ""
+
+#: blocks/section/config.js:184
+#: js/section.js:1
+msgid "波線"
+msgstr ""
+
+#: blocks/section/config.js:188
+#: js/section.js:1
+msgid "三角形"
+msgstr ""
+
+#: blocks/section/edit.js:340
+#: js/section.js:1
+msgid "背景画像を選択"
+msgstr ""
+
+#: blocks/section/edit.js:393
+#: js/section.js:1
+msgid "背景画像をクリア"
+msgstr ""
+
+#: blocks/section/edit.js:452
+#: blocks/svg-button-link/edit.js:279
+#: blocks/svg-button/edit.js:409
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "余白設定"
+msgstr ""
+
+#: blocks/section/edit.js:455
+#: js/section.js:1
+msgid "余白設定(外側)"
+msgstr ""
+
+#: blocks/section/edit.js:459
+#: blocks/section/edit.js:612
+#: js/section.js:1
+msgid "かんたん設定"
+msgstr ""
+
+#: blocks/section/edit.js:487
+#: blocks/section/edit.js:646
+#: js/section.js:1
+msgid "上側"
+msgstr ""
+
+#: blocks/section/edit.js:545
+#: blocks/section/edit.js:701
+#: js/section.js:1
+msgid "下側"
+msgstr ""
+
+#: blocks/section/edit.js:608
+#: js/section.js:1
+msgid "余白設定(内側)"
+msgstr ""
+
+#: blocks/section/edit.js:756
+#: js/section.js:1
+msgid "左側"
+msgstr ""
+
+#: blocks/section/edit.js:811
+#: js/section.js:1
+msgid "右側"
+msgstr ""
+
+#: blocks/section/edit.js:871
+#: js/section.js:1
+msgid "背景色・オーバーレイ"
+msgstr ""
+
+#: blocks/section/edit.js:885
+#: js/section.js:1
+msgid "不透明度"
+msgstr ""
+
+#: blocks/section/edit.js:905
+#: js/section.js:1
+msgid "サイズ・配置"
+msgstr ""
+
+#: blocks/section/edit.js:908
+#: js/section.js:1
+msgid "サイズ・配置を指定する"
+msgstr ""
+
+#: blocks/section/edit.js:938
+#: blocks/section/edit.js:1211
+#: js/section.js:1
+msgid "サイズ"
+msgstr ""
+
+#: blocks/section/edit.js:942
+#: blocks/section/edit.js:1236
+#: js/section.js:1
+msgid "幅　"
+msgstr ""
+
+#: blocks/section/edit.js:979
+#: blocks/section/edit.js:1280
+#: js/section.js:1
+msgid "高さ"
+msgstr ""
+
+#: blocks/section/edit.js:1017
+#: js/section.js:1
+msgid "配置"
+msgstr ""
+
+#: blocks/section/edit.js:1112
+#: blocks/section/edit.js:1117
+#: js/section.js:1
+msgid "背景画像"
+msgstr ""
+
+#: blocks/section/edit.js:1176
+#: js/section.js:1
+msgid "プレビューの背景を暗くする"
+msgstr ""
+
+#: blocks/section/edit.js:1193
+#: js/section.js:1
+msgid "表示位置"
+msgstr ""
+
+#: blocks/section/edit.js:1327
+#: js/section.js:1
+msgid "繰り返し"
+msgstr ""
+
+#: blocks/section/edit.js:1341
+#: js/section.js:1
+msgid "固定背景"
+msgstr ""
+
+#: blocks/section/edit.js:1344
+#: js/section.js:1
+msgid "背景を固定する"
+msgstr ""
+
+#: blocks/section/edit.js:1359
+#: js/section.js:1
+msgid "背景パターン"
+msgstr ""
+
+#: blocks/section/edit.js:1369
+#: js/section.js:1
+msgid "オーバーレイ"
+msgstr ""
+
+#: blocks/section/edit.js:1372
+#: js/section.js:1
+msgid "背景画像をオーバーレイより前に重ねる"
+msgstr ""
+
+#: blocks/section/edit.js:1395
+#: js/section.js:1
+msgid "背景画像の不透明度"
+msgstr ""
+
+#: blocks/section/edit.js:1419
+#: js/section.js:1
+msgid "サンプル背景パターン"
+msgstr ""
+
+#: blocks/section/edit.js:1487
+#: blocks/svg-button-link/edit.js:268
+#: blocks/svg-button/edit.js:336
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "文字設定"
+msgstr ""
+
+#: blocks/section/edit.js:1492
+#: js/section.js:1
+msgid "文字色"
+msgstr ""
+
+#: blocks/section/edit.js:1509
+#: js/section.js:1
+msgid "区切り線（上）"
+msgstr ""
+
+#: blocks/section/edit.js:1519
+#: blocks/section/edit.js:1615
+#: js/section.js:1
+msgid "タイプ"
+msgstr ""
+
+#: blocks/section/edit.js:1550
+#: blocks/section/edit.js:1647
+#: js/section.js:1
+msgid "左右反転させる"
+msgstr ""
+
+#: blocks/section/edit.js:1563
+#: blocks/section/edit.js:1660
+#: js/section.js:1
+msgid "レベル"
+msgstr ""
+
+#: blocks/section/edit.js:1592
+#: blocks/section/edit.js:1696
+#: js/section.js:1
+msgid "色"
+msgstr ""
+
+#: blocks/section/edit.js:1605
+#: js/section.js:1
+msgid "区切り線（下）"
+msgstr ""
+
+#: blocks/section/edit.js:1709
+#: js/section.js:1
+msgid "コンテンツ幅設定"
+msgstr ""
+
+#: blocks/section/edit.js:1735
+#: js/section.js:1
+msgid "コンテンツ部分の最大幅"
+msgstr ""
+
+#: blocks/section/edit.js:1757
+#: js/section.js:1
+msgid "セクション高さ設定"
+msgstr ""
+
+#: blocks/section/edit.js:1761
+#: js/section.js:1
+msgid "高さ設定"
+msgstr ""
+
+#: blocks/section/edit.js:1764
+#: js/section.js:1
+msgid "画面と同じ高さにする"
+msgstr ""
+
+#: blocks/section/edit.js:1776
+#: js/section.js:1
+msgid "セクション最小高さ"
+msgstr ""
+
+#: blocks/section/edit.js:1792
+#: blocks/svg-button-link/edit.js:361
+#: blocks/svg-button/edit.js:542
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "アニメーション設定"
+msgstr ""
+
+#: blocks/section/edit.js:1797
+#: blocks/svg-button-link/edit.js:365
+#: blocks/svg-button/edit.js:545
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "アニメーション種類"
+msgstr ""
+
+#: blocks/section/edit.js:1812
+#: js/section.js:1
+msgid "アニメーション速度"
+msgstr ""
+
+#: blocks/section/edit.js:1830
+#: js/section.js:1
+msgid "アニメーション開始までの時間"
+msgstr ""
+
+#: blocks/section/edit.js:1864
+#: js/section.js:1
+msgid "アニメーションの停止"
+msgstr ""
+
+#: blocks/section/edit.js:1868
+#: js/section.js:1
+msgid "アニメーションの確認"
+msgstr ""
+
+#: blocks/section/edit.js:1876
+#: js/section.js:1
+msgid "HTMLタグ設定"
+msgstr ""
+
+#: blocks/section/index.js:12
+#: js/section.js:1
+msgid "セクション"
+msgstr ""
+
+#: blocks/section/index.js:13
+#: js/section.js:1
+msgid "yStandard Blocks汎用セクションブロック"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:154
+#: blocks/svg-button/edit.js:237
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "枠線設定"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:157
+#: blocks/svg-button/edit.js:240
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "枠線の角丸"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:169
+#: blocks/svg-button/edit.js:253
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "アイコン設定"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:171
+#: blocks/svg-button/edit.js:255
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "左アイコン"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:219
+#: blocks/svg-button/edit.js:295
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "右アイコン"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:313
+#: js/svg-button-link.js:1
+msgid "ブロックボタン設定"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:317
+#: js/svg-button-link.js:1
+msgid "ボタンをブロック型にする"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:332
+#: blocks/svg-button/edit.js:513
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "ボタン最大幅"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:342
+#: blocks/svg-button/edit.js:523
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "最大幅単位"
+msgstr ""
+
+#: blocks/svg-button-link/edit.js:377
+#: blocks/svg-button/edit.js:554
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+msgid "アニメーションの速さ(秒)"
+msgstr ""
+
+#: blocks/svg-button-link/index.js:10
+#: js/svg-button-link.js:1
+msgid "ボタン型リンク"
+msgstr ""
+
+#: blocks/svg-button-link/index.js:11
+#: js/svg-button-link.js:1
+msgid "入力したリンク(a)タグをボタン形式で表示するブロック"
+msgstr ""
+
+#: blocks/svg-button/edit.js:216
+#: blocks/svg-icon/edit.js:69
+msgid "Color settings"
+msgstr ""
+
+#: blocks/svg-button/edit.js:225
+msgid "Background Color"
+msgstr ""
+
+#: blocks/svg-button/edit.js:420
+#: js/svg-button.js:1
+msgid "上下"
+msgstr ""
+
+#: blocks/svg-button/edit.js:446
+#: js/svg-button.js:1
+msgid "左右"
+msgstr ""
+
+#: blocks/svg-button/edit.js:477
+#: js/svg-button.js:1
+msgid "ブロックタイプ設定"
+msgstr ""
+
+#: blocks/svg-button/index.js:12
+#: js/svg-button.js:1
+msgid "カスタムボタン"
+msgstr ""
+
+#: blocks/svg-button/index.js:13
+#: js/svg-button.js:1
+msgid "yStandard Blocks カスタムボタン"
+msgstr ""
+
+#: blocks/svg-icon/edit.js:77
+msgid "Text Color"
+msgstr ""
+
+#: blocks/svg-icon/edit.js:81
+#: js/svg-icon.js:1
+msgid "サイズ設定"
+msgstr ""
+
+#: blocks/svg-icon/edit.js:83
+#: js/svg-icon.js:1
+msgid "アイコンサイズ"
+msgstr ""
+
+#: blocks/svg-icon/edit.js:90
+#: js/svg-icon.js:1
+msgid "アイコン倍率"
+msgstr ""
+
+#: blocks/svg-icon/edit.js:143
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/icon-select.js:39
+msgid "アイコン選択"
+msgstr ""
+
+#: blocks/svg-icon/index.js:11
+#: js/svg-icon.js:1
+msgid "アイコン"
+msgstr ""
+
+#: blocks/svg-icon/index.js:12
+#: js/svg-icon.js:1
+msgid "アイコン表示ブロック"
+msgstr ""
+
+#: js/balloon.js:1
+#: js/card.js:1
+#: js/column.js:1
+#: js/columns.js:1
+#: js/conditional-group-block.js:1
+#: js/heading.js:1
+#: js/section.js:1
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/config/config.js:37
+msgid "キラキラ"
+msgstr ""
+
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/index.js:25
+msgid "表示アイコン"
+msgstr ""
+
+#: js/svg-button-link.js:1
+#: js/svg-button.js:1
+#: js/svg-icon.js:1
+#: src/js/components/svg-icon-select/index.js:39
+msgid "アイコン表示位置"
+msgstr ""
