@@ -1109,12 +1109,12 @@ const SectionEdit = (props) => {
 						)}
 					</PanelColorGradientSettings>
 					<PanelBody
-						title={__('背景画像', 'ystandard-blocks')}
+						title={__('背景画像・動画', 'ystandard-blocks')}
 						initialOpen={false}
 					>
 						<BaseControl
 							id={'background-image'}
-							label={__('背景画像', 'ystandard-blocks')}
+							label={__('背景画像・動画', 'ystandard-blocks')}
 						>
 							<div>
 								<MediaUpload
