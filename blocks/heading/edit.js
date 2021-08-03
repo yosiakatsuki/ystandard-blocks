@@ -167,9 +167,7 @@ function customHeading(props) {
 	const styles = {
 		color: textColor.color,
 		fontSize:
-			fontSize.size && !useFontSizeResponsive
-				? fontSize.size
-				: undefined,
+			fontSize.size && !useFontSizeResponsive ? fontSize.size : undefined,
 		fontWeight: !!fontWeight ? fontWeight : undefined,
 		letterSpacing:
 			!!letterSpacing && 0 < letterSpacing

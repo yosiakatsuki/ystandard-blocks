@@ -98,9 +98,7 @@ function svgButton(props) {
 	});
 	const wrapStyles = {
 		fontSize:
-			fontSize.size && !isFontSizeResponsive
-				? fontSize.size
-				: undefined,
+			fontSize.size && !isFontSizeResponsive ? fontSize.size : undefined,
 		...getFontResponsiveStyle({
 			isResponsive: isFontSizeResponsive,
 			desktop: fontSizeDesktop,

@@ -176,7 +176,7 @@ const blockSupports = {
 	__unstablePasteTextInline: true,
 };
 
-export const deprecated_2_10_1 = [
+export const deprecated2101 = [
 	{
 		attributes: {
 			...blockAttributes,
@@ -184,14 +184,15 @@ export const deprecated_2_10_1 = [
 		supports: {
 			...blockSupports,
 		},
-		migrate( attributes ) {
+		migrate(attributes) {
 			let newFontSize = attributes.customFontSize;
 			let newSubFontSize = attributes.customSubTextSize;
-			if ( 'number' === typeof newFontSize ) {
-				newFontSize = newFontSize.toString().replace( 'px', '' ) + 'px';
+			if ('number' === typeof newFontSize) {
+				newFontSize = newFontSize.toString().replace('px', '') + 'px';
 			}
-			if ( 'number' === typeof newSubFontSize ) {
-				newSubFontSize = newSubFontSize.toString().replace( 'px', '' ) + 'px';
+			if ('number' === typeof newSubFontSize) {
+				newSubFontSize =
+					newSubFontSize.toString().replace('px', '') + 'px';
 			}
 			return {
 				...attributes,
@@ -199,7 +200,7 @@ export const deprecated_2_10_1 = [
 				customSubTextSize: newSubFontSize,
 			};
 		},
-		save( { attributes } ) {
+		save({ attributes }) {
 			const {
 				align,
 				content,
@@ -246,58 +247,64 @@ export const deprecated_2_10_1 = [
 			} = attributes;
 			const TagName = 'h' + level;
 
-			const textClass = getColorClassName( 'color', textColor );
-			const fontSizeClass = getFontSizeClass( fontSize );
-			const subTextSizeClass = getFontSizeClass( subTextSize );
-			const subTextColorClass = getColorClassName( 'color', subTextColor );
-			const dividerColorClass = getColorClassName( 'fill', dividerColor );
+			const textClass = getColorClassName('color', textColor);
+			const fontSizeClass = getFontSizeClass(fontSize);
+			const subTextSizeClass = getFontSizeClass(subTextSize);
+			const subTextColorClass = getColorClassName('color', subTextColor);
+			const dividerColorClass = getColorClassName('fill', dividerColor);
 
-			const classes = classnames( 'ystdb-heading', {
-				[ `has-text-align-${ align }` ]: align,
+			const classes = classnames('ystdb-heading', {
+				[`has-text-align-${align}`]: align,
 				'has-divider': subTextBorderHeight && subTextBorderWidth,
 				'has-sub-text': subText,
-				[ `has-subtext--${ subTextPosition }` ]:
-				subText || ( subTextBorderHeight && subTextBorderWidth ),
+				[`has-subtext--${subTextPosition}`]:
+					subText || (subTextBorderHeight && subTextBorderWidth),
 				...getFontResponsiveClass(
 					useFontSizeResponsive,
 					fontSizeDesktop,
 					fontSizeTablet,
 					fontSizeMobile
 				),
-			} );
+			});
 
 			const headingStyles = {
-				marginTop: '' !== marginTop ? marginTop + marginTopUnit : undefined,
+				marginTop:
+					'' !== marginTop ? marginTop + marginTopUnit : undefined,
 				marginRight:
-					'' !== marginRight ? marginRight + marginRightUnit : undefined,
+					'' !== marginRight
+						? marginRight + marginRightUnit
+						: undefined,
 				marginBottom:
-					'' !== marginBottom ? marginBottom + marginBottomUnit : undefined,
-				marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
-				...getFontResponsiveStyle( {
+					'' !== marginBottom
+						? marginBottom + marginBottomUnit
+						: undefined,
+				marginLeft:
+					'' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
+				...getFontResponsiveStyle({
 					isResponsive: useFontSizeResponsive,
 					desktop: fontSizeDesktop,
 					tablet: fontSizeTablet,
 					mobile: fontSizeMobile,
-				} ),
+				}),
 			};
 
-			const textClasses = classnames( 'ystdb-heading__text', {
+			const textClasses = classnames('ystdb-heading__text', {
 				'is-clear-style': clearStyle,
-				[ textClass ]: textClass,
+				[textClass]: textClass,
 				'has-text-color': textColor || customTextColor,
-				[ fontSizeClass ]: fontSizeClass && ! useFontSizeResponsive,
-			} );
+				[fontSizeClass]: fontSizeClass && !useFontSizeResponsive,
+			});
 
 			const textStyles = {
 				color: textClass ? undefined : customTextColor,
 				fontSize:
-					! fontSizeClass && customFontSize && ! useFontSizeResponsive
+					!fontSizeClass && customFontSize && !useFontSizeResponsive
 						? customFontSize + 'px'
 						: undefined,
-				fontWeight: !! fontWeight ? fontWeight : undefined,
+				fontWeight: !!fontWeight ? fontWeight : undefined,
 				letterSpacing:
-					!! letterSpacing && 0 < letterSpacing
-						? `${ letterSpacing }em`
+					!!letterSpacing && 0 < letterSpacing
+						? `${letterSpacing}em`
 						: undefined,
 			};
 
@@ -305,12 +312,12 @@ export const deprecated_2_10_1 = [
 			 * 線
 			 */
 			const divider = () => {
-				if ( 0 === subTextBorderHeight || 0 === subTextBorderWidth ) {
+				if (0 === subTextBorderHeight || 0 === subTextBorderWidth) {
 					return null;
 				}
-				const lineClass = classnames( 'ystdb-heading__line', {
-					[ dividerColorClass ]: dividerColorClass,
-				} );
+				const lineClass = classnames('ystdb-heading__line', {
+					[dividerColorClass]: dividerColorClass,
+				});
 				const svg = () => {
 					const borderColor = customDividerColor
 						? customDividerColor
@@ -318,21 +325,25 @@ export const deprecated_2_10_1 = [
 					const lineStyle = {
 						fill: dividerColorClass ? undefined : borderColor,
 						marginTop:
-							0 !== dividerMarginTop ? dividerMarginTop : undefined,
+							0 !== dividerMarginTop
+								? dividerMarginTop
+								: undefined,
 						marginBottom:
-							0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+							0 !== dividerMarginBottom
+								? dividerMarginBottom
+								: undefined,
 					};
 					return (
 						<SVG
-							className={ lineClass }
-							width={ subTextBorderWidth }
-							height={ subTextBorderHeight }
-							viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
+							className={lineClass}
+							width={subTextBorderWidth}
+							height={subTextBorderHeight}
+							viewBox={`0 0 ${subTextBorderWidth} ${subTextBorderHeight}`}
 							xmlns="http://www.w3.org/2000/svg"
-							style={ lineStyle }
+							style={lineStyle}
 						>
 							<Path
-								d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }
+								d={`m0 0 h ${subTextBorderWidth} v ${subTextBorderHeight} h -${subTextBorderWidth} z`}
 							/>
 						</SVG>
 					);
@@ -343,11 +354,17 @@ export const deprecated_2_10_1 = [
 						width: subTextBorderWidth,
 						height: subTextBorderHeight,
 						marginTop:
-							0 !== dividerMarginTop ? dividerMarginTop : undefined,
+							0 !== dividerMarginTop
+								? dividerMarginTop
+								: undefined,
 						marginBottom:
-							0 !== dividerMarginBottom ? dividerMarginBottom : undefined,
+							0 !== dividerMarginBottom
+								? dividerMarginBottom
+								: undefined,
 						marginRight:
-							'left' === align || 'center' === align ? 'auto' : undefined,
+							'left' === align || 'center' === align
+								? 'auto'
+								: undefined,
 						marginLeft:
 							'right' === align || 'center' === align
 								? 'auto'
@@ -355,16 +372,16 @@ export const deprecated_2_10_1 = [
 					};
 					return (
 						<img
-							className={ lineClass }
-							src={ dividerImageURL }
-							width={ subTextBorderWidth }
-							height={ subTextBorderHeight }
-							alt={ dividerImageAlt }
-							style={ lineStyle }
+							className={lineClass}
+							src={dividerImageURL}
+							width={subTextBorderWidth}
+							height={subTextBorderHeight}
+							alt={dividerImageAlt}
+							style={lineStyle}
 						/>
 					);
 				};
-				return !! dividerImageURL ? image() : svg();
+				return !!dividerImageURL ? image() : svg();
 			};
 			/**
 			 * サブテキスト
@@ -372,41 +389,44 @@ export const deprecated_2_10_1 = [
 			 * @return {null|*} サブテキスト.
 			 */
 			const showSubText = () => {
-				if ( ! subText ) {
+				if (!subText) {
 					return null;
 				}
-				const subTextClasses = classnames( 'ystdb-heading__subtext', {
+				const subTextClasses = classnames('ystdb-heading__subtext', {
 					'has-font-size':
 						subTextSizeClass ||
 						customSubTextSize ||
 						useSubTextSizeResponsive,
 					'has-color': subTextColorClass || customSubTextColor,
-					[ subTextColorClass ]: subTextColorClass,
-					[ subTextSizeClass ]: subTextSizeClass && ! useSubTextSizeResponsive,
+					[subTextColorClass]: subTextColorClass,
+					[subTextSizeClass]:
+						subTextSizeClass && !useSubTextSizeResponsive,
 					...getFontResponsiveClass(
 						useSubTextSizeResponsive,
 						subTextSizeDesktop,
 						subTextSizeTablet,
 						subTextSizeMobile
 					),
-				} );
+				});
 				let subTextStyle = {
 					color: subTextColorClass ? undefined : customSubTextColor,
-					fontWeight: !! subTextFontWeight ? subTextFontWeight : undefined,
+					fontWeight: !!subTextFontWeight
+						? subTextFontWeight
+						: undefined,
 					letterSpacing:
-						!! subTextLetterSpacing && 0 < subTextLetterSpacing
-							? `${ subTextLetterSpacing }em`
+						!!subTextLetterSpacing && 0 < subTextLetterSpacing
+							? `${subTextLetterSpacing}em`
 							: undefined,
 				};
-				if ( useSubTextSizeResponsive ) {
+				if (useSubTextSizeResponsive) {
 					subTextStyle = {
 						...subTextStyle,
-						...getFontResponsiveStyle( {
+						...getFontResponsiveStyle({
 							isResponsive: useSubTextSizeResponsive,
 							desktop: subTextSizeDesktop,
 							tablet: subTextSizeTablet,
 							mobile: subTextSizeMobile,
-						} ),
+						}),
 					};
 				} else {
 					subTextStyle = {
@@ -418,40 +438,40 @@ export const deprecated_2_10_1 = [
 				}
 				return (
 					<div
-						className={ subTextClasses }
-						aria-hidden={ 'true' }
-						style={ subTextStyle }
-						data-text={ subText }
-						{ ...getDataProperty( {
+						className={subTextClasses}
+						aria-hidden={'true'}
+						style={subTextStyle}
+						data-text={subText}
+						{...getDataProperty({
 							'font-size': useSubTextSizeResponsive
-								? `${ subTextSizeDesktop }px`
+								? `${subTextSizeDesktop}px`
 								: undefined,
-						} ) }
+						})}
 					></div>
 				);
 			};
 
 			return (
-				<div className={ classes } style={ headingStyles }>
-					<div className={ `ystdb-heading__container` }>
-						{ 'top' === subTextPosition && showSubText() }
-						{ 'top' === subTextPosition && divider() }
+				<div className={classes} style={headingStyles}>
+					<div className={`ystdb-heading__container`}>
+						{'top' === subTextPosition && showSubText()}
+						{'top' === subTextPosition && divider()}
 						<RichText.Content
-							tagName={ TagName }
-							className={ textClasses }
-							style={ textStyles }
-							value={ content }
-							{ ...getDataProperty( {
+							tagName={TagName}
+							className={textClasses}
+							style={textStyles}
+							value={content}
+							{...getDataProperty({
 								'font-size': useFontSizeResponsive
-									? `${ fontSizeDesktop }px`
+									? `${fontSizeDesktop}px`
 									: undefined,
-							} ) }
+							})}
 						/>
-						{ 'bottom' === subTextPosition && divider() }
-						{ 'bottom' === subTextPosition && showSubText() }
+						{'bottom' === subTextPosition && divider()}
+						{'bottom' === subTextPosition && showSubText()}
 					</div>
 				</div>
 			);
-		}
-	}
+		},
+	},
 ];

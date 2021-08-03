@@ -225,9 +225,7 @@ export default function save({ attributes }) {
 		} else {
 			subTextStyle = {
 				...subTextStyle,
-				fontSize: customSubTextSize
-					? customSubTextSize
-					: undefined,
+				fontSize: customSubTextSize ? customSubTextSize : undefined,
 			};
 		}
 		return (

@@ -140,7 +140,10 @@ const SVGButtonLinkEdit = (props) => {
 									});
 									setBackgroundColor(newColor);
 								},
-								label: __('Background Color', 'ystandard-blocks'),
+								label: __(
+									'Background Color',
+									'ystandard-blocks'
+								),
 							},
 							{
 								value: textColor.color,

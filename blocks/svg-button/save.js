@@ -16,7 +16,7 @@ import {
 } from '@ystdb/components/responsive-font-size/functions';
 import getDataProperty from '@ystdb/util/_getResponsivPropertye';
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		textColor,
 		customTextColor,
