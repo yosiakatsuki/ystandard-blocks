@@ -50,17 +50,17 @@ export const deprecated2101 = [
 		supports: {
 			...blockSupports,
 		},
-		migrate( attributes ) {
+		migrate(attributes) {
 			let newFontSize = attributes.customFontSize;
-			if ( 'number' === typeof newFontSize ) {
-				newFontSize = newFontSize.toString().replace( 'px', '' ) + 'px';
+			if ('number' === typeof newFontSize) {
+				newFontSize = newFontSize.toString().replace('px', '') + 'px';
 			}
 			return {
 				...attributes,
 				customFontSize: newFontSize,
 			};
 		},
-		save( { attributes } ) {
+		save({ attributes }) {
 			const {
 				textColor,
 				customTextColor,
@@ -74,16 +74,16 @@ export const deprecated2101 = [
 				linkTarget,
 			} = attributes;
 
-			const textClass = getColorClassName( 'color', textColor );
-			const fontSizeClass = getFontSizeClass( fontSize );
+			const textClass = getColorClassName('color', textColor);
+			const fontSizeClass = getFontSizeClass(fontSize);
 
-			const classes = classnames( 'ystdb-icon', {
+			const classes = classnames('ystdb-icon', {
 				'has-text-color': textColor || customTextColor,
-				[ textClass ]: textClass,
-				[ `has-text-align-${ align }` ]: align,
-				[ fontSizeClass ]: fontSizeClass,
-				[ `is-size--${ iconSize }` ]: iconSize,
-			} );
+				[textClass]: textClass,
+				[`has-text-align-${align}`]: align,
+				[fontSizeClass]: fontSizeClass,
+				[`is-size--${iconSize}`]: iconSize,
+			});
 
 			const styles = {
 				color: textClass ? undefined : customTextColor,
@@ -91,21 +91,21 @@ export const deprecated2101 = [
 			};
 
 			return (
-				<div className={ classes } style={ styles }>
-					{ !! url ? (
+				<div className={classes} style={styles}>
+					{!!url ? (
 						<a
-							className={ 'ystdb-icon__link' }
-							href={ url }
-							target={ linkTarget }
-							rel={ rel }
+							className={'ystdb-icon__link'}
+							href={url}
+							target={linkTarget}
+							rel={rel}
 						>
-							<SVGIcon name={ icon }/>
+							<SVGIcon name={icon} />
 						</a>
 					) : (
-						<SVGIcon name={ icon }/>
-					) }
+						<SVGIcon name={icon} />
+					)}
 				</div>
 			);
-		}
-	}
+		},
+	},
 ];

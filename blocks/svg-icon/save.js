@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import SVGIcon from '@ystdb/components/svg-icon';
 import { getColorClassName, getFontSizeClass } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		textColor,
 		customTextColor,
@@ -16,16 +16,16 @@ export default function save( { attributes } ) {
 		linkTarget,
 	} = attributes;
 
-	const textClass = getColorClassName( 'color', textColor );
-	const fontSizeClass = getFontSizeClass( fontSize );
+	const textClass = getColorClassName('color', textColor);
+	const fontSizeClass = getFontSizeClass(fontSize);
 
-	const classes = classnames( 'ystdb-icon', {
+	const classes = classnames('ystdb-icon', {
 		'has-text-color': textColor || customTextColor,
-		[ textClass ]: textClass,
-		[ `has-text-align-${ align }` ]: align,
-		[ fontSizeClass ]: fontSizeClass,
-		[ `is-size--${ iconSize }` ]: iconSize,
-	} );
+		[textClass]: textClass,
+		[`has-text-align-${align}`]: align,
+		[fontSizeClass]: fontSizeClass,
+		[`is-size--${iconSize}`]: iconSize,
+	});
 
 	const styles = {
 		color: textClass ? undefined : customTextColor,
@@ -33,19 +33,19 @@ export default function save( { attributes } ) {
 	};
 
 	return (
-		<div className={ classes } style={ styles }>
-			{ !! url ? (
+		<div className={classes} style={styles}>
+			{!!url ? (
 				<a
-					className={ 'ystdb-icon__link' }
-					href={ url }
-					target={ linkTarget }
-					rel={ rel }
+					className={'ystdb-icon__link'}
+					href={url}
+					target={linkTarget}
+					rel={rel}
 				>
-					<SVGIcon name={ icon }/>
+					<SVGIcon name={icon} />
 				</a>
 			) : (
-				<SVGIcon name={ icon }/>
-			) }
+				<SVGIcon name={icon} />
+			)}
 		</div>
 	);
 }
