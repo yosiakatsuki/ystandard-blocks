@@ -82,7 +82,7 @@ class SVG_Button_Link extends Dynamic_Block {
 			'type' => 'string',
 		],
 		'customFontSize'        => [
-			'type' => 'integer',
+			'type' => 'string',
 		],
 		'paddingType'           => [
 			'type' => 'string',

@@ -3,6 +3,7 @@ import edit from './edit';
 import { Code } from 'react-feather';
 import transforms from './transforms';
 import { attributes, supports } from './config';
+import { deprecated } from './deprecated/index';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
@@ -30,6 +31,7 @@ registerBlockType('ystdb/svg-button-link', {
 		{ name: 'fill', label: __('塗りつぶし'), isDefault: true },
 		{ name: 'outline', label: __('アウトライン') },
 	],
+	deprecated,
 	transforms,
 	example: {},
 });

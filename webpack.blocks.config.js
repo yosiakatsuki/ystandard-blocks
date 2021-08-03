@@ -38,6 +38,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
+			'@ystdb/config': path.resolve( __dirname, 'src/js/config' ),
 			'@ystdb/util': path.resolve( __dirname, 'src/js/util' ),
 			'@ystdb/components': path.resolve( __dirname, 'src/js/components' ),
 		}

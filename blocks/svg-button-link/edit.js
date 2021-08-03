@@ -1,6 +1,6 @@
 import SVGIconSelect from '@ystdb/components/svg-icon-select/index';
 import { getIconSvg } from '@ystdb/util/icons';
-import { ystdbConfig } from '../../src/js/config/config';
+import { ystdbConfig } from '@ystdb/config/config';
 
 import {
 	BlockControls,
@@ -129,7 +129,7 @@ const SVGButtonLinkEdit = (props) => {
 				</Disabled.Consumer>
 				<InspectorControls>
 					<PanelColorSettings
-						title={__('Color settings')}
+						title={__('Color settings', 'ystandard-blocks')}
 						initialOpen={true}
 						colorSettings={[
 							{
@@ -140,14 +140,14 @@ const SVGButtonLinkEdit = (props) => {
 									});
 									setBackgroundColor(newColor);
 								},
-								label: __('Background Color'),
+								label: __('Background Color', 'ystandard-blocks'),
 							},
 							{
 								value: textColor.color,
 								onChange: (color) => {
 									setTextColor(color);
 								},
-								label: __('Text Color'),
+								label: __('Text Color', 'ystandard-blocks'),
 							},
 						]}
 					/>

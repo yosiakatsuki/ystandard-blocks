@@ -1,7 +1,4 @@
-/**
- * attributes
- */
-export const attributes = {
+export const blockAttributes = {
 	content: {
 		type: 'string',
 	},
@@ -48,7 +45,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'string',
+		type: 'number',
 	},
 	paddingType: {
 		type: 'string',
@@ -74,10 +71,28 @@ export const attributes = {
 		default: 5,
 	},
 };
-/**
- * supports
- */
-export const supports = {
+export const blockSupports = {
 	className: false,
 	html: false,
 };
+
+export const deprecated_2_10_1 = [
+	{
+		attributes: {
+			...blockAttributes,
+		},
+		supports: {
+			...blockSupports,
+		},
+		migrate( attributes ) {
+			let newFontSize = attributes.customFontSize;
+			if ( 'number' === typeof newFontSize ) {
+				newFontSize = newFontSize.toString().replace( 'px', '' ) + 'px';
+			}
+			return {
+				...attributes,
+				customFontSize: newFontSize,
+			};
+		}
+	}
+];

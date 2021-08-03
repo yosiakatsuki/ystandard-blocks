@@ -62,7 +62,7 @@ if ( $attributes['align'] ) {
 	$wrap_class[] = Utility::get_align_class( $attributes['align'] );
 }
 if ( $attributes['customFontSize'] ) {
-	$wrap_style[] = Utility::get_font_size_style( $attributes['customFontSize'] );
+	$wrap_style[] = 'font-size:' . $attributes['customFontSize'];
 } elseif ( $attributes['fontSize'] ) {
 	$wrap_class[] = Utility::get_font_size_class( $attributes['fontSize'] );
 }

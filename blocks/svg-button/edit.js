@@ -229,7 +229,7 @@ function svgButton(props) {
 							onChange: (color) => {
 								setTextColor(color);
 							},
-							label: __('Text Color'),
+							label: __('Text Color', 'ystandard-blocks'),
 						},
 					]}
 				/>
