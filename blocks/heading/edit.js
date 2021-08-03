@@ -32,12 +32,12 @@ import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
 import { positions, cssUnit, fontWeightList } from './config';
-import getNum from '../../src/js/util/_getNum';
-import ResponsiveFontSizeControl from '../../src/js/components/responsive-font-size/index';
+import getNum from '@ystdb/util/_getNum';
+import ResponsiveFontSizeControl from '@ystdb/components/responsive-font-size/index';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '../../src/js/components/responsive-font-size/functions';
+} from '@ystdb/components/responsive-font-size/functions';
 
 function customHeading(props) {
 	const {
@@ -168,7 +168,7 @@ function customHeading(props) {
 		color: textColor.color,
 		fontSize:
 			fontSize.size && !useFontSizeResponsive
-				? fontSize.size + 'px'
+				? fontSize.size
 				: undefined,
 		fontWeight: !!fontWeight ? fontWeight : undefined,
 		letterSpacing:
@@ -296,7 +296,7 @@ function customHeading(props) {
 		} else {
 			textStyle = {
 				...textStyle,
-				fontSize: subTextSize.size ? subTextSize.size + 'px' : '16px',
+				fontSize: subTextSize.size ? subTextSize.size : '16px',
 			};
 		}
 

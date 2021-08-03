@@ -10,8 +10,8 @@ import { Path, SVG } from '@wordpress/components';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '../../src/js/components/responsive-font-size/functions';
-import getDataProperty from '../../src/js/util/_getResponsivPropertye';
+} from '@ystdb/components/responsive-font-size/functions';
+import getDataProperty from '@ystdb/util/_getResponsivPropertye';
 
 export default function save({ attributes }) {
 	const {
@@ -106,7 +106,7 @@ export default function save({ attributes }) {
 		color: textClass ? undefined : customTextColor,
 		fontSize:
 			!fontSizeClass && customFontSize && !useFontSizeResponsive
-				? customFontSize + 'px'
+				? customFontSize
 				: undefined,
 		fontWeight: !!fontWeight ? fontWeight : undefined,
 		letterSpacing:
@@ -226,7 +226,7 @@ export default function save({ attributes }) {
 			subTextStyle = {
 				...subTextStyle,
 				fontSize: customSubTextSize
-					? customSubTextSize + 'px'
+					? customSubTextSize
 					: undefined,
 			};
 		}

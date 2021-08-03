@@ -30,7 +30,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customSubTextSize: {
-		type: 'number',
+		type: 'string',
 	},
 	useSubTextSizeResponsive: {
 		type: 'bool',
@@ -90,7 +90,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'number',
+		type: 'string',
 	},
 	useFontSizeResponsive: {
 		type: 'bool',
