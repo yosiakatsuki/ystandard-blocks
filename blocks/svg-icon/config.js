@@ -24,7 +24,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'number',
+		type: 'string',
 	},
 	url: {
 		type: 'string',

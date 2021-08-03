@@ -235,14 +235,14 @@ var supports = {
 /*!************************************************!*\
   !*** ./blocks/svg-button/deprecated/2-10-1.js ***!
   \************************************************/
-/*! exports provided: blockAttributes, blockSupports, deprecated_2_10_1 */
+/*! exports provided: blockAttributes, blockSupports, deprecated2101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockAttributes", function() { return blockAttributes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockSupports", function() { return blockSupports; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated_2_10_1", function() { return deprecated_2_10_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated2101", function() { return deprecated2101; });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
@@ -399,7 +399,7 @@ var blockSupports = {
   align: false,
   className: false
 };
-var deprecated_2_10_1 = [{
+var deprecated2101 = [{
   attributes: _objectSpread({}, blockAttributes),
   supports: _objectSpread({}, blockSupports),
   migrate: function migrate(attributes) {
@@ -1078,7 +1078,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_7__WEBPACK_IMPORTED_MODULE_1__["deprecated27"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_9_3__WEBPACK_IMPORTED_MODULE_2__["deprecated293"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_2_10_1__WEBPACK_IMPORTED_MODULE_3__["deprecated_2_10_1"]));
+var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_7__WEBPACK_IMPORTED_MODULE_1__["deprecated27"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated_2_9_3__WEBPACK_IMPORTED_MODULE_2__["deprecated293"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_2_10_1__WEBPACK_IMPORTED_MODULE_3__["deprecated2101"]));
 
 /***/ }),
 
@@ -22312,8 +22312,13 @@ var IconSelect = /*#__PURE__*/function (_Component) {
           setState({
             isOpen: !isOpen
           });
+        },
+        style: {
+          minWidth: '110px',
+          textAlign: 'center',
+          justifyContent: 'center'
         }
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('アイコン選択', 'ystandard-blocks'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
+      }, isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('閉じる', 'ystandard-blocks')), !isOpen && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("span", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('アイコン選択', 'ystandard-blocks'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
         className: 'ys-icon-picker__remove',
         disabled: !selectedIcon,
         isSmall: true,

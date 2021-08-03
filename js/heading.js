@@ -317,12 +317,12 @@ var paths = {
 /*!*********************************************!*\
   !*** ./blocks/heading/deprecated/2-10-1.js ***!
   \*********************************************/
-/*! exports provided: deprecated_2_10_1 */
+/*! exports provided: deprecated2101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated_2_10_1", function() { return deprecated_2_10_1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated2101", function() { return deprecated2101; });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
@@ -511,7 +511,7 @@ var blockSupports = {
   anchor: true,
   __unstablePasteTextInline: true
 };
-var deprecated_2_10_1 = [{
+var deprecated2101 = [{
   attributes: _objectSpread({}, blockAttributes),
   supports: _objectSpread({}, blockSupports),
   migrate: function migrate(attributes) {
@@ -1510,7 +1510,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated__WEBPACK_IMPORTED_MODULE_1__["__deprecated"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_2_10_1__WEBPACK_IMPORTED_MODULE_2__["deprecated_2_10_1"]));
+var deprecated = [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_deprecated__WEBPACK_IMPORTED_MODULE_1__["__deprecated"]), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(_2_10_1__WEBPACK_IMPORTED_MODULE_2__["deprecated2101"]));
 
 /***/ }),
 

@@ -1,9 +1,10 @@
-import { ystdbConfig } from '../../src/js/config/config';
+import { ystdbConfig } from '@ystdb/config/config';
 import edit from './edit';
 import save from './save';
 import { Info } from 'react-feather';
 import transforms from './transforms';
 import { attributes, supports } from './config';
+import { deprecated } from './deprecated/index';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
@@ -22,6 +23,7 @@ registerBlockType('ystdb/svg-icon', {
 	supports,
 	edit,
 	save,
+	deprecated,
 	transforms,
 	example: {},
 });
