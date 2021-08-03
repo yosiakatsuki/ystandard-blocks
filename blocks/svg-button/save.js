@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import SVGIcon from '../../src/js/components/svg-icon';
+import SVGIcon from '@ystdb/components/svg-icon';
 
 import {
 	RichText,
@@ -9,15 +9,14 @@ import {
 import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
-} from '../../src/js/components/responsive-number-control/functions';
+} from '@ystdb/components/responsive-number-control/functions';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '../../src/js/components/responsive-font-size/functions';
-import getDataProperty from '../../src/js/util/_getResponsivPropertye';
+} from '@ystdb/components/responsive-font-size/functions';
+import getDataProperty from '@ystdb/util/_getResponsivPropertye';
 
-export default function save(props) {
-	const { attributes } = props;
+export default function save( { attributes } ) {
 	const {
 		textColor,
 		customTextColor,
@@ -76,7 +75,7 @@ export default function save(props) {
 	const wrapStyles = {
 		fontSize:
 			!fontSizeClass && customFontSize && !isFontSizeResponsive
-				? customFontSize + 'px'
+				? customFontSize
 				: undefined,
 		...getFontResponsiveStyle({
 			isResponsive: isFontSizeResponsive,

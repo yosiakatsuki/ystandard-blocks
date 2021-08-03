@@ -44,7 +44,7 @@ export const attributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'number',
+		type: 'string',
 	},
 	isFontSizeResponsive: {
 		type: 'bool',

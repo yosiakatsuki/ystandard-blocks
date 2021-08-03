@@ -99,7 +99,7 @@ function svgButton(props) {
 	const wrapStyles = {
 		fontSize:
 			fontSize.size && !isFontSizeResponsive
-				? fontSize.size + 'px'
+				? fontSize.size
 				: undefined,
 		...getFontResponsiveStyle({
 			isResponsive: isFontSizeResponsive,
