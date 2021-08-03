@@ -23,7 +23,8 @@
     "zip": "gulp zip",
     "build:deploy-files": "gulp createDeployFiles",
     "build:deploy-files-beta": "gulp createDeployFilesBeta",
-    "packages-update": "wp-scripts packages-update"
+    "packages-update": "wp-scripts packages-update",
+	"production": "npm run build && npm run build:deploy-files"
   },
   "repository": {
     "type": "git",

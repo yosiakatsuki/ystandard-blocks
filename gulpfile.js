@@ -54,6 +54,14 @@ function cleanFiles( cb ) {
 		cb );
 }
 
+function cleanTemp( cb ) {
+	return del(
+		[
+			'./ystandard-blocks',
+		],
+		cb );
+}
+
 /**
  * 必要ファイルのコピー
  */
@@ -117,7 +125,6 @@ function copyUpdateJsonBeta() {
 }
 
 
-
 function watchFiles() {
 	cleanFiles();
 	sass();
@@ -131,8 +138,8 @@ function watchFiles() {
 /**
  * サーバーにデプロイするファイルを作成
  */
-exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJson ) );
-exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJsonBeta ) );
+exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJson ), cleanTemp );
+exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJsonBeta ), cleanTemp );
 
 exports.watch = series( watchFiles );
 exports.sass = series( sass );

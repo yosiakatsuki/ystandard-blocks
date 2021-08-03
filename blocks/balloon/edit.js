@@ -175,7 +175,7 @@ function ysBalloon(props) {
 	 */
 	const textStyles = {
 		color: textColor.color,
-		fontSize: fontSize.size ? fontSize.size + 'px' : undefined,
+		fontSize: fontSize.size ? fontSize.size : undefined,
 	};
 
 	/**
