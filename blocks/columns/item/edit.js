@@ -36,6 +36,10 @@ function ColumnEdit(props) {
 		[paddingType]: paddingType,
 	});
 
+	const styles = {
+		backgroundColor: backgroundColor.color,
+	};
+
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -92,7 +96,7 @@ function ColumnEdit(props) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={classes}>
+			<div className={classes} style={styles}>
 				<div className="ystdb-column-block-container">
 					<InnerBlocks
 						templateLock={false}
