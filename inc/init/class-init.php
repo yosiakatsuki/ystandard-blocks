@@ -24,21 +24,32 @@ class Init {
 	public function __construct() {
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
-		add_filter(
-			'ys_system_info',
-			function ( $info ) {
-				$info[] = 'yStandard Blocks バージョン: ' . YSTDB_VERSION;
+		add_filter( 'ys_system_info', [ $this, 'add_system_info' ], 11 );
+		add_filter( 'ystdb_get_version', [ $this, 'get_blocks_version' ] );
+	}
 
-				return $info;
-			},
-			11
-		);
-		add_filter(
-			'ystdb_get_version',
-			function ( $ver ) {
-				return YSTDB_VERSION;
-			}
-		);
+	/**
+	 * システム情報追加
+	 *
+	 * @param array $info システム情報.
+	 *
+	 * @return array
+	 */
+	public function add_system_info( $info ) {
+		$info[] = 'yStandard Blocks バージョン: ' . YSTDB_VERSION;
+
+		return $info;
+	}
+
+	/**
+	 * バージョン情報の取得.
+	 *
+	 * @param string $ver Version.
+	 *
+	 * @return string
+	 */
+	public function get_blocks_version( $ver ) {
+		return YSTDB_VERSION;
 	}
 
 	/**
