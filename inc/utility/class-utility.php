@@ -1,6 +1,6 @@
 <?php
 /**
- * Utility
+ * Utility (徐々にHelper/**へ分割予定)
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki

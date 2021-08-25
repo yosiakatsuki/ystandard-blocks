@@ -22,19 +22,6 @@ class Init {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_filter(
-			'ystdb_get_version',
-			function ( $ver ) {
-				return YSTDB_VERSION;
-			}
-		);
-		/**
-		 * 必要バージョンのチェック
-		 */
-		if ( ! $this->check_version() ) {
-			return;
-		}
-		$this->load_files();
 		add_action( 'admin_notices', [ $this, 'ystandard_notice' ] );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
 		add_filter(
@@ -45,6 +32,12 @@ class Init {
 				return $info;
 			},
 			11
+		);
+		add_filter(
+			'ystdb_get_version',
+			function ( $ver ) {
+				return YSTDB_VERSION;
+			}
 		);
 
 		if ( Utility::wordpress_version_compare( '5.8-alpha-1' ) ) {
@@ -65,32 +58,6 @@ class Init {
 		$classes[] = Config::BODY_CLASS;
 
 		return $classes;
-	}
-
-	/**
-	 * ファイル読み込み
-	 */
-	private function load_files() {
-		$inc = YSTDB_PATH . '/inc';
-		require_once $inc . '/config/class-config.php';
-		require_once $inc . '/utility/class-utility.php';
-		require_once $inc . '/admin/class-notice.php';
-		require_once $inc . '/migration/class-migration.php';
-		require_once $inc . '/option/class-option.php';
-		require_once $inc . '/icon/class-icon.php';
-		require_once $inc . '/format/class-format.php';
-		require_once $inc . '/balloon/class-balloon.php';
-		require_once $inc . '/blocks/class-dynamic-block.php';
-		require_once $inc . '/blocks/class-register.php';
-		require_once $inc . '/enqueue/class-enqueue.php';
-		require_once $inc . '/enqueue/class-enqueue-embed.php';
-		require_once $inc . '/enqueue/class-polyfill.php';
-		require_once $inc . '/enqueue/class-block-editor.php';
-		require_once $inc . '/kses/class-kses.php';
-		require_once $inc . '/admin/class-admin.php';
-		require_once $inc . '/menu-page/class-menu.php';
-		require_once $inc . '/menu-page/class-option-no-ystd.php';
-		require_once $inc . '/customizer/class-customizer.php';
 	}
 
 	/**
@@ -140,54 +107,6 @@ class Init {
 		<?php
 	}
 
-	/**
-	 * PHPバージョン不足案内
-	 */
-	public function phpversion_notice() {
-		?>
-		<div class="notice notice-error is-dismissible">
-			<p>PHPバージョンが古いためyStandard Blocksが機能しません。</p>
-			<p>yStandard BlocksはPHP 7.3以上での利用を推奨しています。</p>
-			<p>お使いのサーバーのPHPバージョンをご確認ください。（このサイトで有効になっているPHPバージョン：<?php echo phpversion(); ?>）</p>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Gutenberg使えない案内
-	 */
-	public function gutenberg_notice() {
-		?>
-		<div class="notice notice-error is-dismissible">
-			<p>このサイトではブロックエディターが使えないためyStandard Blocksが機能しません。</p>
-			<p>クラシックエディター(Classic Editor)を停止するなど、ブロックエディターが使える状態にしてください。</p>
-		</div>
-		<?php
-	}
-
-	/**
-	 * プラグインの有効化チェック
-	 */
-	private function check_version() {
-		/**
-		 * PHPバージョンチェック
-		 */
-		if ( version_compare( phpversion(), '7.0.0', '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'phpversion_notice' ] );
-
-			return false;
-		}
-		/**
-		 * Gutenbergチェック
-		 */
-		if ( ! function_exists( 'register_block_type' ) ) {
-			add_action( 'admin_notices', [ $this, 'gutenberg_notice' ] );
-
-			return false;
-		}
-
-		return true;
-	}
 }
 
 new Init();
