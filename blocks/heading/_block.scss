@@ -1,16 +1,17 @@
+@use "../../src/sass/global";
 .ystdb-heading {
   position: relative;
 
 
   &.ys-is-font-responsive {
 	.ystdb-heading__text {
-	  @include media-breakpoint-down(md) {
+	  @include global.media-breakpoint-down(md) {
 		font-size: var(--ys-font-mobile);
 	  }
-	  @include media-breakpoint_between(md, lg) {
+	  @include global.media-breakpoint_between(md, lg) {
 		font-size: var(--ys-font-tablet);
 	  }
-	  @include media-breakpoint(lg) {
+	  @include global.media-breakpoint(lg) {
 		font-size: var(--ys-font-desktop);
 	  }
 	}
@@ -62,13 +63,13 @@
   }
 
   &.ys-is-font-responsive {
-	@include media-breakpoint-down(md) {
+	@include global.media-breakpoint-down(md) {
 	  font-size: var(--ys-font-mobile);
 	}
-	@include media-breakpoint_between(md, lg) {
+	@include global.media-breakpoint_between(md, lg) {
 	  font-size: var(--ys-font-tablet);
 	}
-	@include media-breakpoint(lg) {
+	@include global.media-breakpoint(lg) {
 	  font-size: var(--ys-font-desktop);
 	}
   }

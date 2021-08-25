@@ -1,8 +1,8 @@
-@import "foundation/variable";
+@use "global";
 
 @mixin controlsLabel($i) {
 	padding: 0.25em 0.5em;
-	background-color: $color__ystd_blue;
+	background-color: global.$color__ystd_blue;
 	color: #ffffff;
 
 	@if $i != 1 {

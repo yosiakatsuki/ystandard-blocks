@@ -1,12 +1,12 @@
-
+@use "../../../src/sass/global";
 .ystdb-inline--1 {
-	@include highlight(#da6272);
+	@include global.highlight(#da6272);
 }
 
 .ystdb-inline--2 {
-	@include highlight(#45a1cf);
+	@include global.highlight(#45a1cf);
 }
 
 .ystdb-inline--3 {
-	@include highlight(#ffee55);
+	@include global.highlight(#ffee55);
 }

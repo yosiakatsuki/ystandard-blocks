@@ -1,9 +1,10 @@
+@use "../../src/sass/global";
 .ystdb-card {
   position: relative;
   background-color: #ffffff;
   border-width: 1px;
   border-style: solid;
-  border-color: $color__border-gray-light;
+  border-color: global.$color__border-gray-light;
 
 
   &.is-horizon,
@@ -18,7 +19,7 @@
 
 .ystdb-card__container {
   &.is-horizon {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  display: flex;
 	}
   }
@@ -70,19 +71,19 @@
   }
 
   &.is-size--small {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  @include get_card_image_size(small);
 	}
   }
 
   &.is-size--normal {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  @include get_card_image_size(normal);
 	}
   }
 
   &.is-size--large {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  @include get_card_image_size(large);
 	}
   }
@@ -96,7 +97,7 @@
 		width: 100%;
 		height: 100%;
 
-		@include media-breakpoint(md) {
+		@include global.media-breakpoint(md) {
 		  position: absolute;
 		  top: 0;
 		  left: 0;
@@ -116,7 +117,7 @@
 
 .ystdb-card__title {
   font-size: 1em;
-  font-weight: $font__weight_bold;
+  font-weight: global.$font__weight_bold;
   line-height: 1.3;
 }
 

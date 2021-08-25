@@ -1,9 +1,28 @@
 @charset "UTF-8";
-@import "foundation/import";
-@import "../js/**/_edit.scss";
-@import "edit/**/*.scss";
+@use "../js/components/svg-icon-select/edit" as svg-icon-select-components;
+@use "edit/component/button-selector";
+@use "edit/component/components";
+@use "edit/component/editor-text";
+@use "edit/component/inspectorcontrols";
+@use "edit/component/mediaupload";
+@use "edit/component/toolbar";
 
-.editor-styles-wrapper {
-	@import "../../blocks/**/_edit.scss";
-	@import "../../blocks/**/_edit-no-ystd.scss";
-}
+// Blocks.
+@use "../../blocks/balloon/edit" as balloon-edit;
+@use "../../blocks/card/edit" as card-edit;
+@use "../../blocks/columns/edit" as columns-edit;
+@use "../../blocks/conditional-group-block/edit" as conditional-group-block-edit;
+@use "../../blocks/format/inline-font-size/edit" as inline-font-size-edit;
+@use "../../blocks/format/inline-style/edit" as inline-style-edit;
+@use "../../blocks/heading/edit" as heading-edit;
+@use "../../blocks/section/edit" as section-edit;
+@use "../../blocks/svg-button/edit" as svg-button-edit;
+@use "../../blocks/svg-button-link/edit" as svg-button-link-edit;
+@use "../../blocks/svg-icon/edit" as svg-icon-edit;
+
+// Inspector controls.
+@use "../../blocks/balloon/inspector-controls";
+
+// No yStandard.
+@use "../../blocks/format/inline-font-size/edit-no-ystd" as inline-font-size-no-ystd;
+@use "../../blocks/format/inline-style/edit-no-ystd" as inline-style-no-ystandard;

@@ -1,4 +1,6 @@
-@import "block";
+@use "../../src/sass/global";
+@use "block";
+
 
 [data-type="ystdb/section"] {
   .ystdb-section {
@@ -15,8 +17,8 @@
 }
 [data-align="full"] {
   .ystdb-section:after {
-	border-top: 1px solid rgba($color__ystd_blue, 0.1);
-	border-bottom: 1px solid rgba($color__ystd_blue, 0.1);
+	border-top: 1px solid rgba(global.$color__ystd_blue, 0.1);
+	border-bottom: 1px solid rgba(global.$color__ystd_blue, 0.1);
   }
 }
 .ystdb-section__inner {

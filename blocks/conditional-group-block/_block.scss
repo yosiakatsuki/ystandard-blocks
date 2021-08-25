@@ -1,16 +1,18 @@
-@include media-breakpoint-down(md) {
+@use "../../src/sass/global";
+
+@include global.media-breakpoint-down(md) {
   :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--sp {
 	display: none;
   }
 }
 
-@include media-breakpoint-between(md, lg) {
+@include global.media-breakpoint-between(md, lg) {
   :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--md {
 	display: none;
   }
 }
 
-@include media-breakpoint(lg) {
+@include global.media-breakpoint(lg) {
   :root:not(#_):not(#_):not(#_):not(#_):not(#_):not(#_):not(#_) .ystdb-hide--lg {
 	display: none;
   }

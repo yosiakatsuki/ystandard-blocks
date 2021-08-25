@@ -1,3 +1,4 @@
+@use "../global";
 #ystdb-menu {
   animation: ystdbMenuShow 1.5s;
   animation-fill-mode: both;
@@ -60,12 +61,12 @@
 	font-size: 0.85rem;
 
 	&:hover {
-	  border-color: $color__ystd_blue;
+	  border-color: global.$color__ystd_blue;
 	}
   }
 
   &.is-active {
-	border-color: $color__ystd_blue;
+	border-color: global.$color__ystd_blue;
   }
 }
 

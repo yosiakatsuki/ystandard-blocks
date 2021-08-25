@@ -1,3 +1,5 @@
+@use "../../src/sass/global";
+@use "sass:math";
 [data-type="ystdb/column"] {
   margin-bottom: 1rem;
 
@@ -174,31 +176,31 @@
 	@for $i from 1 through 6 {
 	  &.has-#{$i}-columns {
 		> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-		  flex: 0 0 calc(#{(100% / $i)} - 1rem);
-		  max-width: calc(#{(100% / $i)} - 1rem);
+		  flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
+		  max-width: calc(#{math.div(100% , $i)} - 1rem);
 		}
 
 		&.is-no-margin {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			flex: 0 0 calc(#{(100% / $i)});
-			max-width: calc(#{(100% / $i)});
+			flex: 0 0 calc(#{math.div(100% , $i)});
+			max-width: calc(#{math.div(100% , $i)});
 		  }
 		}
 	  }
 	}
 
 	@for $i from 1 through 6 {
-	  @include media-breakpoint(md) {
+	  @include global.media-breakpoint(md) {
 		&.has-#{$i}-columns--tablet {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			flex: 0 0 calc(#{(100% / $i)} - 1rem);
-			max-width: calc(#{(100% / $i)} - 1rem);
+			flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
+			max-width: calc(#{math.div(100% , $i)} - 1rem);
 		  }
 
 		  &.is-no-margin {
 			> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			  flex: 0 0 calc(#{(100% / $i)});
-			  max-width: calc(#{(100% / $i)});
+			  flex: 0 0 calc(#{math.div(100% , $i)});
+			  max-width: calc(#{math.div(100% , $i)});
 			}
 		  }
 		}
@@ -206,17 +208,17 @@
 	}
 
 	@for $i from 1 through 6 {
-	  @include media-breakpoint(lg) {
+	  @include global.media-breakpoint(lg) {
 		&.has-#{$i}-columns--pc {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			flex: 0 0 calc(#{(100% / $i)} - 1rem);
-			max-width: calc(#{(100% / $i)} - 1rem);
+			flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
+			max-width: calc(#{math.div(100% , $i)} - 1rem);
 		  }
 
 		  &.is-no-margin {
 			> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			  flex: 0 0 calc(#{(100% / $i)});
-			  max-width: calc(#{(100% / $i)});
+			  flex: 0 0 calc(#{math.div(100% , $i)});
+			  max-width: calc(#{math.div(100% , $i)});
 			}
 		  }
 		}

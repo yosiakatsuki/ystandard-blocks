@@ -1,8 +1,9 @@
-@import "block";
+@use "../../src/sass/global";
+@use "block";
 
 .is-selected {
   .ystdb-card__edit {
-	background-color: $color__bg-gray-light;
+	background-color: global.$color__bg-gray-light;
   }
 }
 

@@ -1,6 +1,9 @@
+@use "../../global";
+@use "../../../js/components/responsive-range/control";
+
 .ystdb-inspectorcontrols {
   .components-base-control__label {
-	font-weight: $font__weight_bold;
+	font-weight: global.$font__weight_bold;
   }
 
   .components-base-control__field .components-base-control__field {
@@ -52,7 +55,7 @@
 
 .ystdb-inspector-controls__label {
   margin: 2rem 0 0.25rem;
-  font-weight: $font__weight_bold;
+  font-weight: global.$font__weight_bold;
 
   &:first-of-type {
 	margin-top: .5rem;
@@ -60,7 +63,7 @@
 }
 
 .ystdb-inspector-controls__dscr {
-  color: $color__text-light;
+  color: global.$color__text-light;
   font-size: 0.8em;
   font-weight: 400;
 
@@ -174,7 +177,7 @@
 
 	&:hover,
 	&:focus {
-	  background-color: $color__bg-gray-light;
+	  background-color: global.$color__bg-gray-light;
 	}
   }
 
@@ -203,11 +206,10 @@
   }
 
   padding: 1.5em;
-  background-color: $color__bg-gray-light;
-  color: $color__text-light;
+  background-color: global.$color__bg-gray-light;
+  color: global.$color__text-light;
   font-size: 0.8em;
   font-weight: 400;
 }
 
 
-@import "../../../js/components/responsive-range/control";

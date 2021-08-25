@@ -1,5 +1,7 @@
+@use "../../src/sass/global";
+
 .ystdb-heading__subtext {
   &:not(.has-color) {
-	color: $color__text-light;
+	color: global.$color__text-light;
   }
 }

@@ -1,13 +1,14 @@
+@use "../../../src/sass/global";
 .ystdb-inline-style-toolbar {
 	&.inline-style-1 svg {
-		@include highlight(#da6272);
+		@include global.highlight(#da6272);
 	}
 
 	&.inline-style-2 svg {
-		@include highlight(#45a1cf);
+		@include global.highlight(#45a1cf);
 	}
 
 	&.inline-style-3 svg {
-		@include highlight(#ffee55);
+		@include global.highlight(#ffee55);
 	}
 }

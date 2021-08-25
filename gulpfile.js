@@ -1,9 +1,7 @@
 const { series, parallel, watch, src, dest } = require( 'gulp' );
-const gulpSass = require( 'gulp-sass' );
-const sassGlob = require( "gulp-sass-glob" );
+const gulpSass = require( 'gulp-sass' )( require( 'sass' ) );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
-const mqpacker = require( 'css-mqpacker' );
 const cssdeclsort = require( 'css-declaration-sorter' );
 const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
@@ -18,7 +16,6 @@ const postcssPlugins = [
 	autoprefixer( {
 		grid: 'autoplace'
 	} ),
-	mqpacker(),
 	cssnano( {
 			preset: [
 				'default',
@@ -34,7 +31,6 @@ const postcssPlugins = [
  */
 function sass() {
 	return src( './src/sass/*.scss' )
-		.pipe( sassGlob() )
 		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( dest( './css' ) );
@@ -135,6 +131,12 @@ function watchFiles() {
 	watch( [ './src/js/admin/**/*.js' ], buildWebpack );
 }
 
+function watchSass() {
+	watch( './src/sass/**/*.scss', sass );
+	watch( './src/js/**/*.scss', sass );
+	watch( './blocks/**/*.scss', sass );
+}
+
 /**
  * サーバーにデプロイするファイルを作成
  */
@@ -142,6 +144,7 @@ exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( z
 exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJsonBeta ), cleanTemp );
 
 exports.watch = series( watchFiles );
+exports.watchSass = series( watchSass );
 exports.sass = series( sass );
 exports.clean = series( cleanFiles );
 exports.webpack = series( buildWebpack );

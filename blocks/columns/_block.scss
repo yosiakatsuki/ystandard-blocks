@@ -1,3 +1,5 @@
+@use "../../src/sass/global";
+@use "sass:math";
 .ystdb-columns-wrap {
   + .ystdb-columns-wrap {
 	margin-top: 0;
@@ -93,31 +95,31 @@ _:-ms-lang(x)::-ms-backdrop,
   @for $i from 1 through 6 {
 	&.has-#{$i}-columns {
 	  .ystdb-column {
-		flex: 0 0 calc(#{(100% / $i)} - 2rem);
-		width: calc(#{(100% / $i)} - 2rem);
+		flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
+		width: calc(#{math.div(100% , $i)} - 2rem);
 	  }
 
 	  &.is-no-margin {
 		.ystdb-column {
-		  flex: 0 0 calc(#{(100% / $i)});
-		  width: calc(#{(100% / $i)});
+		  flex: 0 0 calc(#{math.div(100% , $i)});
+		  width: calc(#{math.div(100% , $i)});
 		}
 	  }
 	}
   }
 
   @for $i from 1 through 6 {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  &.has-#{$i}-columns--tablet {
 		.ystdb-column {
-		  flex: 0 0 calc(#{(100% / $i)} - 2rem);
-		  width: calc(#{(100% / $i)} - 2rem);
+		  flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
+		  width: calc(#{math.div(100% , $i)} - 2rem);
 		}
 
 		&.is-no-margin {
 		  .ystdb-column {
-			flex: 0 0 calc(#{(100% / $i)});
-			width: calc(#{(100% / $i)});
+			flex: 0 0 calc(#{math.div(100% , $i)});
+			width: calc(#{math.div(100% , $i)});
 		  }
 		}
 	  }
@@ -125,17 +127,17 @@ _:-ms-lang(x)::-ms-backdrop,
   }
 
   @for $i from 1 through 6 {
-	@include media-breakpoint(lg) {
+	@include global.media-breakpoint(lg) {
 	  &.has-#{$i}-columns--pc {
 		.ystdb-column {
-		  flex: 0 0 calc(#{(100% / $i)} - 2rem);
-		  width: calc(#{(100% / $i)} - 2rem);
+		  flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
+		  width: calc(#{math.div(100% , $i)} - 2rem);
 		}
 
 		&.is-no-margin {
 		  .ystdb-column {
-			flex: 0 0 calc(#{(100% / $i)});
-			width: calc(#{(100% / $i)});
+			flex: 0 0 calc(#{math.div(100% , $i)});
+			width: calc(#{math.div(100% , $i)});
 		  }
 		}
 	  }

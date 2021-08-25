@@ -1,3 +1,5 @@
+@use "../../global";
+
 .ystdb-mediaupload__preview {
   display: block;
   position: relative;
@@ -11,7 +13,7 @@
 	display: block;
 	max-width: 100%;
 	height: auto;
-	border: 2px solid $color__border-gray;
+	border: 2px solid global.$color__border-gray;
   }
 
   @at-root {

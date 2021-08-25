@@ -1,3 +1,4 @@
+@use "../../src/sass/global";
 /**
  * InspectorControls
  */
@@ -30,7 +31,7 @@
   display: flex;
   padding: 0.5em;
   background-color: #ffffff;
-  border: 2px solid $color__border-gray;
+  border: 2px solid global.$color__border-gray;
   border-radius: 3px;
 
   &.is-serif {
@@ -131,8 +132,8 @@
 .ystdb-balloon-selector__image,
 .ystdb-balloon-selector__body {
   display: block;
-  background-color: $color__border-gray;
-  color: $color__border-gray;
+  background-color: global.$color__border-gray;
+  color: global.$color__border-gray;
 }
 
 .ystdb-balloon-selector__image {

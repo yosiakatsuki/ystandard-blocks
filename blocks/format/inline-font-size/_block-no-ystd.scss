@@ -1,3 +1,4 @@
+@use "../../../src/sass/global";
 .ystdb-inline--larger {
 	font-size: 1.2em;
 }
@@ -6,7 +7,7 @@
 	font-size: 0.8em;
 }
 
-@include media-breakpoint-down(md) {
+@include global.media-breakpoint-down(md) {
 	.ystdb-inline--larger-sp {
 		font-size: 1.2em;
 	}

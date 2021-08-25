@@ -1,3 +1,5 @@
+@use "../../src/sass/global";
+
 .ystdb-balloon {
   display: flex;
   align-items: flex-start;
@@ -28,7 +30,7 @@
   }
 
   &.is-size-large {
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  flex: 0 0 80px;
 	  width: 80px;
 
@@ -50,7 +52,7 @@
 
   &.has-border {
 	border-style: solid;
-	border-color: $color__border-gray-light;
+	border-color: global.$color__border-gray-light;
   }
 }
 
@@ -67,8 +69,8 @@
 .ystdb-balloon__body {
   position: relative;
   padding: 1em;
-  background-color: $color__bg-gray-dark;
-  border-color: $color__bg-gray-dark;
+  background-color: global.$color__bg-gray-dark;
+  border-color: global.$color__bg-gray-dark;
   border-radius: 4px;
 
   &::after {
@@ -116,10 +118,9 @@
 	  }
 	}
   }
-
   /**
-*  考え中
-*/
+  *  考え中
+  */
   &.is-think {
 	padding: 1.5em;
 	border-radius: 3em;

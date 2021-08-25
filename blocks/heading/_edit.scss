@@ -1,4 +1,5 @@
-@import "block";
+@use "../../src/sass/global";
+@use "block";
 
 [data-type="ystdb/heading"] {
   .ystdb-heading__editor {
@@ -28,13 +29,13 @@
 .ystdb-heading__subtext {
   &.ys-is-font-responsive {
 	.ystdb-heading__subtext-textarea {
-	  @include media-breakpoint-down(md) {
+	  @include global.media-breakpoint-down(md) {
 		font-size: var(--ys-font-mobile);
 	  }
-	  @include media-breakpoint_between(md, lg) {
+	  @include global.media-breakpoint_between(md, lg) {
 		font-size: var(--ys-font-tablet);
 	  }
-	  @include media-breakpoint(lg) {
+	  @include global.media-breakpoint(lg) {
 		font-size: var(--ys-font-desktop);
 	  }
 	}
