@@ -10,7 +10,7 @@
 namespace ystandard_blocks\menu_page;
 
 use ystandard_blocks\Config;
-use ystandard_blocks\Menu;
+use ystandard_blocks\Admin_Menu;
 use ystandard_blocks\Option;
 
 defined( 'ABSPATH' ) || die();
@@ -28,22 +28,22 @@ class Balloon {
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 101 );
 		add_action(
-			Menu::SCRIPT_ENQUEUE,
+			Admin_Menu::SCRIPT_ENQUEUE,
 			function () {
 				wp_enqueue_media();
 			}
 		);
 		add_filter(
-			Menu::SCRIPT_ENQUEUE_DEPS,
+			Admin_Menu::SCRIPT_ENQUEUE_DEPS,
 			function ( $deps ) {
 				$deps[] = 'jquery';
 
 				return $deps;
 			}
 		);
-		add_filter( Menu::SAVE_FILTER, [ $this, 'save' ] );
+		add_filter( Admin_Menu::SAVE_FILTER, [ $this, 'save' ] );
 		add_filter(
-			Menu::LOCALIZE_SCRIPT_PARAM,
+			Admin_Menu::LOCALIZE_SCRIPT_PARAM,
 			function ( $param ) {
 				$param['balloon'] = \ystandard_blocks\Balloon::get_balloon_images();
 
@@ -57,7 +57,7 @@ class Balloon {
 	 */
 	public function add_menu_page() {
 		add_submenu_page(
-			Menu::MENU_SLUG,
+			Admin_Menu::MENU_SLUG,
 			'吹き出し画像登録',
 			'吹き出し登録',
 			'manage_options',
@@ -122,7 +122,7 @@ class Balloon {
 		</div>
 		<?php
 		$content = ob_get_clean();
-		Menu::blocks_menu_content( $content, 'balloon' );
+		Admin_Menu::blocks_menu_content( $content, 'balloon' );
 	}
 
 	/**

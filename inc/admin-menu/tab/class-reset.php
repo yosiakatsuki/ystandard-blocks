@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks\menu_page;
 
-use ystandard_blocks\Menu;
+use ystandard_blocks\Admin_Menu;
 
 defined( 'ABSPATH' ) || die();
 
@@ -25,7 +25,7 @@ class Reset {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 101 );
-		add_filter( Menu::SAVE_FILTER, [ $this, 'save' ] );
+		add_filter( Admin_Menu::SAVE_FILTER, [ $this, 'save' ] );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Reset {
 	 */
 	public function add_menu_page() {
 		add_submenu_page(
-			Menu::MENU_SLUG,
+			Admin_Menu::MENU_SLUG,
 			'設定初期化',
 			'設定初期化',
 			'manage_options',
@@ -66,7 +66,7 @@ class Reset {
 		</div>
 		<?php
 		$content = ob_get_clean();
-		Menu::blocks_menu_content( $content, 'reset' );
+		Admin_Menu::blocks_menu_content( $content, 'reset' );
 	}
 
 	/**

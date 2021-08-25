@@ -16,12 +16,11 @@ defined( 'ABSPATH' ) || die();
  *
  * @package ystandard_blocks
  */
-class Menu {
+class Admin_Menu {
 	/**
 	 * 設定保存用フック名
 	 */
 	const SAVE_FILTER = 'ystdb_block_option_save';
-
 	/**
 	 * 管理画面用スクリプトエンキューフック名
 	 */
@@ -38,6 +37,10 @@ class Menu {
 	 * メニュースラッグ.
 	 */
 	const MENU_SLUG = 'ystdb-menu';
+	/**
+	 * メニューリスト追加用フック
+	 */
+	const ADMIN_MENU_NAV_LIST = 'ystdb_add_admin_menu_nav_list';
 
 	/**
 	 * Menu constructor.
@@ -100,12 +103,6 @@ class Menu {
 			return;
 		}
 		wp_enqueue_style(
-			'Lato',
-			'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap',
-			[],
-			YSTDB_VERSION
-		);
-		wp_enqueue_style(
 			'ystdb-menu-page',
 			YSTDB_URL . '/css/ystandard-blocks-menu-page.css',
 			[],
@@ -140,6 +137,62 @@ class Menu {
 		$classes .= ' ' . Config::ADMIN_MENU_BODY_CLASS;
 
 		return $classes;
+	}
+
+	/**
+	 * 設定画面のフォーマット
+	 *
+	 * @param string $content   設定画面のメイン部分.
+	 * @param string $page_slug 設定スラッグ.
+	 */
+	public static function admin_menu_content( $content, $page_slug ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+		}
+		?>
+		<div class="wrap ystdb-menu-page">
+			<h1 class="ystdb-menu__title"><span class="orbitron">yStandard Blocks</span>設定</h1>
+			<div id="ystdb-menu">
+				<div class="ystdb-menu__container">
+					<div class="ystdb-menu__nav">
+						<ul class="ystdb-menu__nav-list">
+							<?php self::get_menu_list( $page_slug ); ?>
+						</ul>
+					</div>
+					<div class="ystdb-menu__content">
+						<?php echo $content; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * ページナビゲーションの作成
+	 *
+	 * @param string $page_slug Slug.
+	 */
+	public static function get_menu_list( $page_slug ) {
+		/**
+		 * メニューリスト : slug => label,link.
+		 */
+		$list = apply_filters( self::ADMIN_MENU_NAV_LIST, [] );
+		$nav  = [];
+		foreach ( $list as $slug => $value ) {
+			$classes = [ 'ystdb-menu__nav-link' ];
+			if ( $page_slug === $slug ) {
+				$classes[] = 'is-active';
+			}
+			$nav[] = sprintf(
+				'<li><a class="%s" href="%s">%s</a></li>',
+				trim( implode( ' ', $classes ) ),
+				$value['link'],
+				$value['label']
+			);
+		}
+
+		echo implode( PHP_EOL, $nav );
 	}
 
 	/**
@@ -207,4 +260,4 @@ class Menu {
 }
 
 
-new Menu();
+new Admin_Menu();

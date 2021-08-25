@@ -11,7 +11,7 @@ namespace ystandard_blocks\menu_page;
 
 use ystandard_blocks\Config;
 use ystandard_blocks\Format;
-use ystandard_blocks\Menu;
+use ystandard_blocks\Admin_Menu;
 use ystandard_blocks\Option;
 use ystandard_blocks\Utility;
 
@@ -29,9 +29,9 @@ class Inline {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 101 );
-		add_filter( Menu::SAVE_FILTER, [ $this, 'save' ] );
+		add_filter( Admin_Menu::SAVE_FILTER, [ $this, 'save' ] );
 		add_filter(
-			Menu::LOCALIZE_SCRIPT_PARAM,
+			Admin_Menu::LOCALIZE_SCRIPT_PARAM,
 			function ( $param ) {
 				$param['inline'] = Format::get_options_all();
 
@@ -45,11 +45,11 @@ class Inline {
 	 */
 	public function add_menu_page() {
 		add_submenu_page(
-			Menu::MENU_SLUG,
+			Admin_Menu::MENU_SLUG,
 			'インラインスタイル設定',
 			'インラインスタイル',
 			'manage_options',
-			Menu::MENU_SLUG,
+			Admin_Menu::MENU_SLUG,
 			[ $this, 'add_menu' ]
 		);
 	}
@@ -76,7 +76,7 @@ class Inline {
 		</div>
 		<?php
 		$content = ob_get_clean();
-		Menu::blocks_menu_content( $content, 'inline' );
+		Admin_Menu::blocks_menu_content( $content, 'inline' );
 	}
 
 	/**
