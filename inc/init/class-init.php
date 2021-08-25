@@ -39,12 +39,6 @@ class Init {
 				return YSTDB_VERSION;
 			}
 		);
-
-		if ( Utility::wordpress_version_compare( '5.8-alpha-1' ) ) {
-			add_filter( 'block_categories_all', [ __CLASS__, 'add_block_categories' ] );
-		} else {
-			add_filter( 'block_categories', [ __CLASS__, 'add_block_categories' ] );
-		}
 	}
 
 	/**
@@ -58,30 +52,6 @@ class Init {
 		$classes[] = Config::BODY_CLASS;
 
 		return $classes;
-	}
-
-	/**
-	 * Add block category
-	 *
-	 * @param array $categories ブロックカテゴリー.
-	 *
-	 * @return array
-	 */
-	public static function add_block_categories( $categories ) {
-		$categories[] = [
-			'slug'  => 'ystdb',
-			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
-		];
-		$categories[] = [
-			'slug'  => 'ystdb_beta',
-			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
-		];
-		$categories[] = [
-			'slug'  => 'ystdb_deprecated',
-			'title' => __( '[ys]yStandard Blocks(非推奨)', 'ystandard-blocks' ),
-		];
-
-		return $categories;
 	}
 
 	/**

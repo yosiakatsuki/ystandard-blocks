@@ -104,12 +104,41 @@ class Register {
 	 * フックの登録など
 	 */
 	public function register() {
+		if ( Utility::wordpress_version_compare( '5.8-alpha-1' ) ) {
+			add_filter( 'block_categories_all', [ __CLASS__, 'add_block_categories' ] );
+		} else {
+			add_filter( 'block_categories', [ __CLASS__, 'add_block_categories' ] );
+		}
 		add_action( 'init', [ $this, 'register_block' ] );
 		add_action( 'init', [ $this, 'register_dynamic_block' ] );
 		add_action(
 			'enqueue_block_editor_assets',
 			[ $this, 'enqueue_block_editor_assets' ]
 		);
+	}
+
+	/**
+	 * Add block category
+	 *
+	 * @param array $categories ブロックカテゴリー.
+	 *
+	 * @return array
+	 */
+	public static function add_block_categories( $categories ) {
+		$categories[] = [
+			'slug'  => 'ystdb',
+			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
+		];
+		$categories[] = [
+			'slug'  => 'ystdb_beta',
+			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
+		];
+		$categories[] = [
+			'slug'  => 'ystdb_deprecated',
+			'title' => __( '[ys]yStandard Blocks(非推奨)', 'ystandard-blocks' ),
+		];
+
+		return $categories;
 	}
 
 	/**
