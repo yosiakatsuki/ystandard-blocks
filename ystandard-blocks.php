@@ -37,6 +37,7 @@ define( 'YSTDB_VERSION', '3.0.0-beta-1' );
 define( 'YSTDB_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'YSTDB_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
+
 /**
  * Init.
  */

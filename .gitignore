@@ -2,3 +2,4 @@
 build/
 ystandard-blocks/
 /vendor/
+*.map

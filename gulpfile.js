@@ -6,11 +6,7 @@ const cssdeclsort = require( 'css-declaration-sorter' );
 const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
-const webpackStream = require( 'webpack-stream' );
-const webpack = require( 'webpack' );
 const rename = require( 'gulp-rename' );
-
-const webpackConfig = require( './webpack.menu.config.js' );
 
 const postcssPlugins = [
 	autoprefixer( {
@@ -36,10 +32,6 @@ function sass() {
 		.pipe( dest( './css' ) );
 }
 
-function buildWebpack() {
-	return webpackStream( webpackConfig, webpack )
-		.pipe( dest( 'js/' ) )
-}
 
 function cleanFiles( cb ) {
 	return del(
@@ -73,7 +65,9 @@ function copyProductionFiles() {
 			'!package.json',
 			'!package-lock.json',
 			'!webpack.config.js',
-			'!ystandard-blocks-webpack-config.js',
+			'!webpack.blocks.config.js',
+			'!webpack.admin-menu.config.js',
+			'!webpack.admin-menu.config.dev.js',
 			'!ystandard-blocks.json',
 			'!ystandard-blocks-beta.json',
 			'!phpcs.ruleset.dist',
@@ -120,18 +114,14 @@ function copyUpdateJsonBeta() {
 		.pipe( dest( 'build' ) );
 }
 
-
 function watchFiles() {
 	cleanFiles();
-	sass();
-	buildWebpack();
-	watch( './src/sass/**/*.scss', sass );
-	watch( './src/js/**/*.scss', sass );
-	watch( './blocks/**/*.scss', sass );
-	watch( [ './src/js/admin/**/*.js' ], buildWebpack );
+	// watch.
+	watchSass();
 }
 
 function watchSass() {
+	sass();
 	watch( './src/sass/**/*.scss', sass );
 	watch( './src/js/**/*.scss', sass );
 	watch( './blocks/**/*.scss', sass );
@@ -147,7 +137,6 @@ exports.watch = series( watchFiles );
 exports.watchSass = series( watchSass );
 exports.sass = series( sass );
 exports.clean = series( cleanFiles );
-exports.webpack = series( buildWebpack );
 /**
  * default
  */

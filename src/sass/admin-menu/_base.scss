@@ -1,11 +1,6 @@
-@charset "UTF-8";
-@use "admin/menu-page";
-@use "admin/menu-inline";
-@use "admin/menu-balloon";
-@use "admin/menu-reset";
-
 .ystd-blocks-menu {
   background-color: #fff;
+
   #wpcontent {
 	background-color: #fff;
   }
@@ -23,5 +18,13 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+
+  * {
+	box-sizing: border-box;
+  }
 }
 
+.ystdb-menu__title {
+  font-size: 1.4rem;
+  border-bottom: 1px solid #ccc;
+}

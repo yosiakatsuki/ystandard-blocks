@@ -63,7 +63,23 @@ class Config {
 	const ADMIN_MENU_BODY_CLASS = 'ystd-blocks-menu';
 
 	/**
+	 * メニューリスト追加用フック
+	 */
+	const ADMIN_MENU_NAV_LIST = 'ystdb_add_admin_menu_nav_list';
+
+	/**
+	 * 設定保存用フック名
+	 */
+	const ADMIN_MENU_SAVE_FILTER_HOOK = 'ystdb_block_option_save';
+
+	/**
+	 * Admin Menu Name Space.
+	 */
+	const ADMIN_MENU_NAMESPACE = 'ystdb-admin-menu';
+
+	/**
 	 * 旧設定プレフィックス
 	 */
 	const OPTION_PREFIX = 'ystdb_';
+
 }
