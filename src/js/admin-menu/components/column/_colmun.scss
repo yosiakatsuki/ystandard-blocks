@@ -1,0 +1,26 @@
+.ystdb-menu-component-columns {
+  display: flex;
+  flex-direction: column-reverse;
+  @media (min-width: 640px) {
+	flex-direction: row;
+  }
+
+  .ystdb-menu-component-columns__item {
+	position: relative;
+	margin-top: 1em;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+
+	@media (min-width: 640px) {
+	  flex: 0 0 calc(50% - 0.5em);
+	  margin-top: 0;
+	  margin-right: 1em;
+
+	  &:last-child {
+		margin-right: 0;
+	  }
+	}
+  }
+}

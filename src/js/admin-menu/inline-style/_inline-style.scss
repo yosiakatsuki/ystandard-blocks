@@ -1,0 +1,19 @@
+.ystdb-menu-inline-style__disable {
+  height: 60vh;
+  overflow: hidden;
+}
+
+.ystdb-menu-inline-style__cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(241, 241, 241);
+  background: linear-gradient(180deg, rgba(241, 241, 241, 0.5) 0%, rgba(241, 241, 241, 0.8) 70%, rgba(241, 241, 241, 1) 100%);
+  z-index: 999;
+  font-weight: bold;
+}

@@ -1,0 +1,10 @@
+@use "../../../../sass/global";
+
+.ystdb-component-preview {
+  position: sticky;
+  top: 50px;
+  background-color: #fff;
+  padding: 2em;
+  color: global.$color__admin-menu-text;
+  box-shadow: 0 0 16px rgba(#000, 0.15);
+}

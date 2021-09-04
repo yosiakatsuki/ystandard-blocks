@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_CSS;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -155,7 +157,7 @@ class Format {
 		 * マーカー
 		 */
 		$mark_weight  = Option::get_option_by_number( self::OPTION_SECTION, 'mark_weight_' . $index, 25 );
-		$mark_color   = Utility::hex_2_rgb(
+		$mark_color   = Helper_CSS::hex_2_rgb(
 			Option::get_option( self::OPTION_SECTION, 'mark_color_' . $index, self::MARKER_DEFAULT_COLOR[ $index ] )
 		);
 		$mark_opacity = Option::get_option_by_number( self::OPTION_SECTION, 'mark_opacity_' . $index, 30 ) / 100;

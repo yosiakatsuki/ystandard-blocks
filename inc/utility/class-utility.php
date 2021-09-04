@@ -388,22 +388,6 @@ class Utility {
 		return "has-${name}";
 	}
 
-
-	/**
-	 * カラーコードをrgbに変換
-	 *
-	 * @param string $color カラーコード.
-	 *
-	 * @return array
-	 */
-	public static function hex_2_rgb( $color ) {
-		return [
-			hexdec( substr( $color, 1, 2 ) ),
-			hexdec( substr( $color, 3, 2 ) ),
-			hexdec( substr( $color, 5, 2 ) ),
-		];
-	}
-
 	/**
 	 * CSS minify
 	 *

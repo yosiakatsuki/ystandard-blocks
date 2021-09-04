@@ -55,10 +55,6 @@ class Option {
 		if ( ! is_array( $ystd_options ) ) {
 			// グローバルに作成していなければ設定取得.
 			$ystd_options = self::get_option_all( null );
-			// 設定がなければ旧オプションから作成.
-			if ( is_null( $ystd_options ) ) {
-				$ystd_options = Migration::convert_new_options();
-			}
 		}
 
 		if ( ! isset( $ystd_options[ $section ] ) ) {
@@ -135,5 +131,41 @@ class Option {
 		}
 
 		return $default;
+	}
+
+	/**
+	 * 設定更新.
+	 *
+	 * @param string $section セクション名.
+	 * @param array  $data    設定値.
+	 *
+	 * @return bool
+	 */
+	public static function update_section( $section, $data ) {
+		$option = self::get_option_all( [] );
+		$old    = isset( $option[ $section ] ) ? $option[ $section ] : null;
+		if ( $old === $data ) {
+			return true;
+		}
+		$option[ $section ] = $data;
+
+		return update_option( Config::OPTION_NAME, $option );
+	}
+
+	/**
+	 * セクション削除
+	 *
+	 * @param string $section セクション名.
+	 *
+	 * @return bool
+	 */
+	public static function delete_section( $section ) {
+		$option = self::get_option_all( [] );
+		if ( ! isset( $option[ $section ] ) ) {
+			return true;
+		}
+		unset( $option[ $section ] );
+
+		return update_option( Config::OPTION_NAME, $option );
 	}
 }

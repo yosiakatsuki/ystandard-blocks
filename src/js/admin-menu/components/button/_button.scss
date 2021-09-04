@@ -1,0 +1,15 @@
+@use "../../../../sass/global";
+
+.ystdb-component-admin-menu-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+
+  &.is-update {
+	background-color: global.$color__ystd_blue;
+	color: #fff;
+	&:active {
+	  color: #fff;
+	}
+  }
+}

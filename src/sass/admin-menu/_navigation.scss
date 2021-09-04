@@ -1,13 +1,18 @@
 @use "../global";
 
 .ystdb-menu__nav {
+  display: none;
   @media (min-width: 640px) {
-	width: 100px;
+	display: block;
+	width: 160px;
   }
 }
 
 .ystdb-menu__nav-list {
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   @media (min-width: 640px) {
 	flex-direction: column;

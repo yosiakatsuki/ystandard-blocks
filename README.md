@@ -324,11 +324,21 @@
 - [追加] 「ボタン型リンク」ブロック追加
 - [追加] コアのボタンブロックにアイコンとブロック型表示オプションを追加
 
+## yStandardシリーズ共通フック
+
+### `ys_get_custom_icon`
+
+カスタムアイコン追加用フック
+
+### `ys_block_default_attributes`
+
+ブロック初期値カスタマイズ用フック
+
+### `ys_get_break_points`
+
+ブレークポイント定義のカスタマイズ用フック
+
 ## Third-party resources
-
-### Font Awesome
-
-Font License: SIL OFL 1.1 Code License: MIT License Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 ### Plugin Update Checker
 
@@ -357,22 +367,7 @@ Source : <https://github.com/feathericons/react-feather>
 License: CC0 - 1.0  
 Source : <https://github.com/simple-icons/simple-icons>
 
-### UIkit
+### React-Toastify
 
 License: MIT  
-Source : <https://github.com/uikit/uikit>
-
-### Vue.js
-
-License: MIT  
-Source : <https://github.com/vuejs/vue>
-
-### vue-color
-
-License: MIT  
-Source : <https://github.com/xiaokaike/vue-color>
-
-### Lato
-
-License: Open Font License.  
-Source : <https://fonts.google.com/specimen/Lato>
+Source : <https://github.com/fkhadra/react-toastify>

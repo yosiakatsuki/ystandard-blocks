@@ -1,0 +1,24 @@
+@use "sass:math";
+
+.ystdb-component-responsive__container {
+  display: flex;
+
+  .ystdb-component-responsive__item {
+	$width: calc(33% - .33em);
+	display: flex;
+	align-items: center;
+	flex: 0 0 $width;
+	width: $width;
+	margin-right: 0.5em;
+
+	&:last-child {
+	  margin-right: 0;
+	}
+
+	svg {
+	  flex: 0 0 30px;
+	  width: 30px;
+	  height: 30px;
+	}
+  }
+}

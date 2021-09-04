@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @package ystandard_blocks\version
  */
-class Version {
+class Helper_Version {
 
 	/**
 	 * プラグインの有効化チェック

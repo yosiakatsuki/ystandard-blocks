@@ -1,0 +1,62 @@
+{
+  "inlineStyle": {
+	"buttons": [
+	  {
+		"enable": true,
+		"style": {
+		  "font-size": "",
+		  "font-weight": "",
+		  "color": "",
+		  "@markerColor": "#f2d9db",
+		  "@markerOpacity": 60,
+		  "@markerWeight": 30
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  },
+	  {
+		"enable": true,
+		"style": {
+		  "font-size": "",
+		  "font-weight": "",
+		  "color": "",
+		  "@markerColor": "#ceecfd",
+		  "@markerOpacity": 60,
+		  "@markerWeight": 30
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  },
+	  {
+		"enable": true,
+		"style": {
+		  "font-size": "",
+		  "font-weight": "",
+		  "color": "",
+		  "@markerColor": "#ffedcc",
+		  "@markerOpacity": 60,
+		  "@markerWeight": 30
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  }
+	],
+	"items": [
+	  {
+		"name": "",
+		"label": "",
+		"style": {},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  }
+	]
+  }
+}

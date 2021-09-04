@@ -1,3 +1,5 @@
+@use "../global";
+
 .ystd-blocks-menu {
   background-color: #fff;
 
@@ -10,7 +12,7 @@
 
   -webkit-text-size-adjust: 100%;
   background: #fff;
-  color: #666;
+  color: global.$color__admin-menu-text;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -19,7 +21,9 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  * {
+  *,
+  *::after,
+  *::before {
 	box-sizing: border-box;
   }
 }

@@ -41,17 +41,16 @@ class Enqueue {
 			[],
 			YSTDB_VERSION
 		);
-		$inline_css = '';
+		$inline = '';
 		/**
 		 * インラインCSS
 		 */
-		$inline_css .= Format::get_format_styles();
-		$inline_css .= self::get_color_css( '' );
-		$inline_css .= self::get_font_size_css( '' );
-		$inline_css .= self::get_icon_font_css( '' );
+		$inline .= self::get_color_css( '' );
+		$inline .= self::get_font_size_css( '' );
+		$inline .= self::get_icon_font_css( '' );
 		wp_add_inline_style(
 			Config::CSS_HANDLE,
-			$inline_css
+			$inline
 		);
 
 		/**

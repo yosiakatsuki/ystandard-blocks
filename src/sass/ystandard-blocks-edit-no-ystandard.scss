@@ -1,11 +1,6 @@
 @charset "UTF-8";
 @use "../js/components/svg-icon-select/edit" as svg-icon-select-components;
-@use "edit/component/button-selector";
-@use "edit/component/components";
-@use "edit/component/editor-text";
-@use "edit/component/inspectorcontrols";
-@use "edit/component/mediaupload";
-@use "edit/component/toolbar";
+@use "edit/component";
 
 // Blocks.
 @use "../../blocks/balloon/edit" as balloon-edit;

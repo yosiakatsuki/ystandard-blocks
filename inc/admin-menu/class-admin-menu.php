@@ -50,11 +50,15 @@ class Admin_Menu {
 	/**
 	 * 管理画面用スクリプトの読み込み
 	 *
-	 * @param $name
+	 * @param string $name   Script Name.
+	 * @param array  $route  Api route.
+	 * @param array  $config Config.
 	 */
-	public static function enqueue_admin_scripts( $name ) {
+	public static function enqueue_admin_scripts( $name, $route, $config = [] ) {
 		$css_url  = YSTDB_URL . "/js/admin-menu/${name}.css";
 		$css_path = YSTDB_PATH . "/js/admin-menu/${name}.css";
+
+		wp_enqueue_style( 'wp-components' );
 
 		if ( file_exists( $css_path ) ) {
 			wp_enqueue_style(
@@ -73,21 +77,24 @@ class Admin_Menu {
 			$asset_file['version'],
 			true
 		);
-		wp_localize_script(
-			$script_handle,
-			'ystdbAdminMenuConfig',
+		$config = array_merge(
 			[
 				'pageId'            => self::get_option_page_id( $name ),
 				'endpointNamespace' => self::get_endpoint_namespace(),
 				'editorColors'      => self::get_editor_colors(),
-			]
+				'route'             => $route,
+			],
+			$config
+		);
+		wp_localize_script(
+			$script_handle,
+			'ystdbAdminMenuConfig',
+			[ 'config' => $config ]
 		);
 		wp_localize_script(
 			$script_handle,
 			'ystdbAdminMenuOptions',
-			[
-				'options' => Option::get_option_all(),
-			]
+			[ 'options' => Option::get_option_all() ]
 		);
 	}
 
@@ -186,7 +193,7 @@ class Admin_Menu {
 		?>
 		<div class="wrap ystdb-menu-page">
 			<h1 class="ystdb-menu__title"><span class="orbitron">yStandard Blocks</span>設定</h1>
-			<div id="ystdb-menu">
+			<div id="ystdb-menu" class="ystdb-menu">
 				<div class="ystdb-menu__container">
 					<?php if ( $navigation ) : ?>
 						<div class="ystdb-menu__nav">

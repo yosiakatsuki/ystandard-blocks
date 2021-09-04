@@ -94,6 +94,15 @@ function copyProductionFiles() {
 		.pipe( dest( './ystandard-blocks' ) );
 }
 
+function copyAdminMenuFiles() {
+	return src(
+		[
+			'./src/js/admin-menu/inline-style/schema.json',
+		],
+		{ base: './src/js/admin-menu' }
+	).pipe( dest( './assets/admin-menu' ) )
+}
+
 /**
  * Zip
  */
@@ -127,6 +136,12 @@ function watchSass() {
 	watch( './blocks/**/*.scss', sass );
 }
 
+function watchAdminMenu() {
+	copyAdminMenuFiles();
+	watch( './src/js/admin-menu/**/*.js', copyAdminMenuFiles );
+	watch( './src/js/admin-menu/**/*.json', copyAdminMenuFiles );
+}
+
 /**
  * サーバーにデプロイするファイルを作成
  */
@@ -135,8 +150,10 @@ exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, paralle
 
 exports.watch = series( watchFiles );
 exports.watchSass = series( watchSass );
+exports.watchAdminMenu = series( watchAdminMenu );
 exports.sass = series( sass );
 exports.clean = series( cleanFiles );
+exports.copyAdminMenuFiles = series( copyAdminMenuFiles );
 /**
  * default
  */

@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 
 /**
  * 設定
@@ -21,36 +21,94 @@ export const ystdbConfig = {
 		paddingTypes: [
 			{
 				value: 'is-small',
-				label: __('小'),
+				label: __( '小', 'ystandard-blocks' ),
 			},
 			{
 				value: '',
-				label: __('中'),
+				label: __( '中', 'ystandard-blocks' ),
 			},
 			{
 				value: 'is-large',
-				label: __('大'),
+				label: __( '大', 'ystandard-blocks' ),
 			},
 		],
 		animationTypes: [
-			{ label: __('なし', 'ystandard-blocks'), value: 'none' },
-			{ label: __('キラキラ', 'ystandard-blocks'), value: 'shine' },
+			{ label: __( 'なし', 'ystandard-blocks' ), value: 'none' },
+			{ label: __( 'キラキラ', 'ystandard-blocks' ), value: 'shine' },
 		],
 	},
 	icon: {
 		size: [
 			{
 				value: 'is-small',
-				label: __('小'),
+				label: __( '小', 'ystandard-blocks' ),
 			},
 			{
 				value: '',
-				label: __('中'),
+				label: __( '中', 'ystandard-blocks' ),
 			},
 			{
 				value: 'is-large',
-				label: __('大'),
+				label: __( '大', 'ystandard-blocks' ),
 			},
 		],
 	},
+	component: {
+		fontWeight: [
+			{
+				value: '',
+				label: _x( '指定無し', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: 'normal',
+				label: _x( 'normal', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: 'bold',
+				label: _x( 'bold', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '100',
+				label: _x( '100', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '200',
+				label: _x( '200', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '300',
+				label: _x( '300', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '400',
+				label: _x( '400', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '500',
+				label: _x( '500', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '600',
+				label: _x( '600', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '700',
+				label: _x( '700', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '800',
+				label: _x( '800', 'component-config', 'ystandard-blocks' ),
+			},
+			{
+				value: '900',
+				label: _x( '900', 'component-config', 'ystandard-blocks' ),
+			},
+		],
+		fontUnit: [
+			{ value: 'px', label: 'px' },
+			{ value: 'em', label: 'em' },
+			{ value: 'rem', label: 'rem' },
+			{ value: '%', label: '%' },
+		]
+	}
 };
