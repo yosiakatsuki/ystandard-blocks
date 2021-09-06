@@ -310,7 +310,14 @@ class Admin_Menu {
 	 * @return string
 	 */
 	public function admin_body_class( $classes ) {
-		$classes .= ' ' . Config::ADMIN_MENU_BODY_CLASS;
+		/**
+		 * @var \WP_Screen
+		 */
+		$screen = get_current_screen();
+		if ( false !== strpos( $screen->base, 'ystandard-blocks_page' ) ) {
+			$classes .= ' ' . Config::ADMIN_MENU_BODY_CLASS;
+			$classes .= ' block-editor-page';
+		}
 
 		return $classes;
 	}

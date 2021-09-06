@@ -51,6 +51,7 @@
 	  {
 		"name": "",
 		"label": "",
+		"enable": true,
 		"style": {},
 		"tabletStyle": {},
 		"mobileStyle": {},

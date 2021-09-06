@@ -28,7 +28,6 @@ require_once __DIR__ . '/icon/class-icon.php';
 require_once __DIR__ . '/api/class-api.php';
 require_once __DIR__ . '/admin/class-admin.php';
 require_once __DIR__ . '/admin-menu/class-admin-menu.php';
-require_once __DIR__ . '/admin-menu/class-debug-menu.php';
 require_once __DIR__ . '/inline-style/class-inline-style.php';
 require_once __DIR__ . '/balloon/class-balloon.php';
 require_once __DIR__ . '/blocks/class-dynamic-block.php';

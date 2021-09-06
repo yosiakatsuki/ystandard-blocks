@@ -10,12 +10,16 @@ import {
 	TabPanel,
 	Disabled
 } from '@wordpress/components';
+import apiFetch from '@wordpress/api-fetch';
+import { NotificationContainer, notifySuccess } from "../components/notification/notification";
+
 import schema from './schema.json';
 import ToolbarButtons from './toolbar-buttons';
+import ButtonItems from './button-items';
 
 import {
-	getConfig,
-	getOption,
+	getConfig, getEndpoint,
+	getOption, isApiSuccess,
 } from '@ystdb/helper/admin-menu';
 
 import Notice from '@ystdb/components/notice/index';
@@ -40,11 +44,41 @@ const InlineStyle = () => {
 		const migrationPage = getConfig( 'migrationPage', '#' );
 		const [ buttons, setButtons ] = useState( {} );
 		const [ items, setItems ] = useState( {} );
+		const [ isUpdating, setIsUpdating ] = useState( false );
+		const [ currentButtonIndex, setCurrentButtonIndex ] = useState( 0 );
+		const [ selectedItem, setSelectedItem ] = useState( '' );
+		const [ activeTabName, setActiveTabName ] = useState( 'toolbar-buttons' );
 
 		useEffect( () => {
 			setButtons( { ...options.buttons } );
 			setItems( { ...options.items } );
 		}, [] );
+
+		const optionUpdate = () => {
+			setIsUpdating( true );
+			const data = {
+				...options,
+				...{
+					buttons: buttons,
+					items: items,
+				}
+			};
+			apiFetch( {
+				path: getEndpoint( 'update' ),
+				method: 'POST',
+				data: data
+			} ).then( ( response ) => {
+				if ( isApiSuccess( response.status ) ) {
+					notifySuccess();
+				}
+			} ).catch( ( error ) => {
+				/* eslint-disable no-console */
+				console.error( "エラーが発生しました:" );
+				console.log( error );
+				/* eslint-enable */
+			} );
+			setIsUpdating( false );
+		};
 
 		const TabContent = () => {
 			return (
@@ -54,23 +88,35 @@ const InlineStyle = () => {
 						tabs.toolbarButtons,
 						tabs.toolbarItems,
 					] }
+					onSelect={ ( tabName ) => {
+						setActiveTabName( tabName );
+					} }
+					initialTabName={ activeTabName }
 				>
 					{ ( tab ) => (
 						<div className="ystdb-menu-inline-style__tab-container">
+							<NotificationContainer/>
 							<InlineStyleContext.Provider
 								value={ {
 									options,
 									buttons,
 									setButtons,
 									items,
-									setItems
+									setItems,
+									isUpdating,
+									setIsUpdating,
+									currentButtonIndex,
+									setCurrentButtonIndex,
+									selectedItem,
+									setSelectedItem,
+									optionUpdate
 								} }
 							>
 								{ tabs.toolbarButtons.name === tab.name && (
 									<ToolbarButtons/>
 								) }
 								{ tabs.toolbarItems.name === tab.name && (
-									<>アイテム</>
+									<ButtonItems/>
 								) }
 							</InlineStyleContext.Provider>
 						</div>
@@ -84,7 +130,7 @@ const InlineStyle = () => {
 				<div className="ystdb-menu__wrap">
 					<h1 className="ystdb-menu__content-title">インラインスタイル</h1>
 					{ ( needMigration && <Notice type="warning">
-						<p>旧設定が見つかりました。「<a href={migrationPage}>v2 -&gt; v3 設定移行</a>」画面から設定を移行してください。</p>
+						<p>旧設定が見つかりました。「<a href={ migrationPage }>v2 -&gt; v3 設定移行</a>」画面から設定を移行してください。</p>
 					</Notice> ) }
 					{ needMigration ? (
 						<Disabled className={ "ystdb-menu-inline-style__disable" }>

@@ -17,3 +17,14 @@
   z-index: 999;
   font-weight: bold;
 }
+
+
+.ystdb-menu-inline-items__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  .components-base-control__field {
+	margin-bottom: 0;
+  }
+}

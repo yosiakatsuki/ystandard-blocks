@@ -7,4 +7,9 @@
   padding: 2em;
   color: global.$color__admin-menu-text;
   box-shadow: 0 0 16px rgba(#000, 0.15);
+
+  *:focus,
+  *:focus-visible {
+	outline: none;
+  }
 }

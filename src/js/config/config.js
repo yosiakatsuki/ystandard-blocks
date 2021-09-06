@@ -109,6 +109,10 @@ export const ystdbConfig = {
 			{ value: 'em', label: 'em' },
 			{ value: 'rem', label: 'rem' },
 			{ value: '%', label: '%' },
+		],
+		fontStyle: [
+			{ value: '', label: _x( '指定無し', 'component-config', 'ystandard-blocks' ) },
+			{ value: 'italic', label: _x( 'イタリック体', 'component-config', 'ystandard-blocks' ) },
 		]
 	}
 };

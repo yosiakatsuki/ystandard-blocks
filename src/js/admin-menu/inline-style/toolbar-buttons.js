@@ -1,5 +1,5 @@
 import { InlineStyleContext } from './index';
-import { useContext, useState } from '@wordpress/element';
+import { useContext, useEffect, useState } from '@wordpress/element';
 import { Icon, desktop, tablet, mobile } from '@wordpress/icons';
 import {
 	PanelBody,
@@ -8,20 +8,17 @@ import {
 	Button,
 	SelectControl,
 	RangeControl,
+	TextControl,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
-import {
-	PlainText,
-} from '@wordpress/block-editor';
-import apiFetch from '@wordpress/api-fetch';
 
 import { getComponentConfig } from "@ystdb/helper/config";
 import { hex2rgb } from "@ystdb/helper/color";
-import { isApiSuccess, getEndpoint } from "@ystdb/helper/admin-menu";
+
 import Preview from '../components/preview/index';
 import ColorPalette from "../components/color-palette/color-palette";
 import { UpdateButton } from "../components/button/button";
-import { NotificationContainer, notifySuccess } from "../components/notification/notification";
+
 import schema from './schema.json';
 import { getStyle } from "./function";
 
@@ -31,13 +28,17 @@ const ToolbarButtons = () => {
 		options,
 		buttons,
 		setButtons,
+		isUpdating,
+		currentButtonIndex,
+		setCurrentButtonIndex,
+		optionUpdate,
 	} = useContext( InlineStyleContext );
 
 	const fontUnit = getComponentConfig( 'fontUnit' );
-	const [ isUpdating, setIsUpdating ] = useState( false );
 
-	const [ currentButtonIndex, setCurrentButtonIndex ] = useState( 0 );
+
 	const [ customPreviewText, setCustomPreviewText ] = useState( '' );
+	const [ currentOption, setCurrentOption ] = useState( {} );
 	const previewText = customPreviewText ? customPreviewText : `インラインスタイル${ currentButtonIndex + 1 }`;
 
 	const getDefaultStyle = ( name, defaultValue = undefined, device = 'style' ) => {
@@ -49,18 +50,26 @@ const ToolbarButtons = () => {
 		return style[ name ];
 	};
 
+	useEffect( () => {
+		setCurrentOption( buttons[ currentButtonIndex ] );
+	}, [ currentButtonIndex ] );
+
 	const updateButtonsOption = ( value ) => {
-		let option = buttons;
-		option[ currentButtonIndex ] = {
-			...option[ currentButtonIndex ],
+		let option = {
+			...currentOption,
 			...value
 		};
-		setButtons( { ...option } );
+		setCurrentOption( option );
+		let newButtons = buttons;
+		newButtons[ currentButtonIndex ] = {
+			...newButtons[ currentButtonIndex ],
+			...option
+		};
+		setButtons( newButtons );
 	};
 
 	const updateButtonsStyle = ( value, device = 'style' ) => {
 		let newOption = {};
-		console.log(value);
 		newOption[ device ] = {
 			...currentOption[ device ],
 			...value
@@ -84,42 +93,15 @@ const ToolbarButtons = () => {
 		};
 	};
 
-	const optionUpdate = () => {
-		setIsUpdating( true );
-		const data = {
-			...options,
-			...{
-				buttons: buttons
-			}
-		};
-		apiFetch( {
-			path: getEndpoint( 'update' ),
-			method: 'POST',
-			data: data
-		} ).then( ( response ) => {
-			if ( isApiSuccess( response.status ) ) {
-				notifySuccess();
-			}
-			setIsUpdating( false );
-		} ).catch( ( error ) => {
-			/* eslint-disable no-console */
-			console.error( "エラーが発生しました:" );
-			console.log( error );
-			/* eslint-enable */
-			setIsUpdating( false );
-		} );
-	};
-
-	const currentOption = buttons[ currentButtonIndex ];
 	const previewStyle = currentOption.enable ? {
 		...currentOption.style,
 		...getMarkerStyle(),
 	} : {};
 	const previewClassName = `ystdb-inline--${ currentButtonIndex + 1 }`;
+
 	return (
 		<>
 			<div className="ystdb-menu-toolbar-buttons__select">
-				<NotificationContainer/>
 				<div className="ystdb__horizon-buttons">
 					{ options.buttons.map( ( item, index ) => {
 						return (
@@ -159,7 +141,7 @@ const ToolbarButtons = () => {
 							</PanelBody>
 							{ ( currentOption.enable &&
 								<>
-									<PanelBody title={ 'フォント' }>
+									<PanelBody title={ '大きさ・スタイル' }>
 										<BaseControl
 											id={ 'font-size' }
 											label={ 'サイズ' }
@@ -228,6 +210,22 @@ const ToolbarButtons = () => {
 												options={ getComponentConfig( 'fontWeight' ) }
 												onChange={ ( value ) => {
 													updateButtonsStyle( { 'font-weight': value } );
+												} }
+											/>
+										</BaseControl>
+										<BaseControl
+											id={ 'font-style' }
+											label={ 'スタイル' }
+										>
+											<SelectControl
+												value={ getStyle(
+													currentOption.style,
+													'font-style',
+													getDefaultStyle( 'font-style' )
+												) }
+												options={ getComponentConfig( 'fontStyle' ) }
+												onChange={ ( value ) => {
+													updateButtonsStyle( { 'font-style': value } );
 												} }
 											/>
 										</BaseControl>
@@ -309,6 +307,23 @@ const ToolbarButtons = () => {
 											/>
 										</BaseControl>
 									</PanelBody>
+									<PanelBody title={ '上級者向け' } initialOpen={ false }>
+										<BaseControl
+											id={ 'font-family' }
+											label={ 'フォント' }
+										>
+											<TextControl
+												value={ getStyle(
+													currentOption.style,
+													'font-family',
+													getDefaultStyle( 'font-family' )
+												) }
+												onChange={ ( value ) => {
+													updateButtonsStyle( { 'font-family': value } );
+												} }
+											/>
+										</BaseControl>
+									</PanelBody>
 								</> ) }
 							<div className="ystdb-components-section">
 								<UpdateButton
@@ -324,7 +339,8 @@ const ToolbarButtons = () => {
 						</div>
 						<div className="ystdb-menu-component-columns__item">
 							<Preview>
-								<span className={ previewClassName } style={ previewStyle }>{ previewText }</span>
+								<span className={ previewClassName } style={ previewStyle }
+									  contenteditable="true">{ previewText }</span>
 							</Preview>
 						</div>
 					</div>
