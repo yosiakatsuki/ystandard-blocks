@@ -47,8 +47,8 @@
 		"lock": false
 	  }
 	],
-	"items": [
-	  {
+	"items": {
+	  "schema": {
 		"name": "",
 		"label": "",
 		"enable": true,
@@ -58,6 +58,6 @@
 		"customCss": "",
 		"lock": false
 	  }
-	]
+	}
   }
 }

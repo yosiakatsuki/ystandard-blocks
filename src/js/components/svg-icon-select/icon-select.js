@@ -8,13 +8,8 @@ import { __ } from '@wordpress/i18n';
 
 class IconSelect extends Component {
 	render() {
-		const {
-			selectedIcon,
-			onChange,
-			isOpen,
-			previewIcon,
-			setState,
-		} = this.props;
+		const { selectedIcon, onChange, isOpen, previewIcon, setState } =
+			this.props;
 
 		const iconList = getIcons();
 		const isPreview = false === previewIcon ? previewIcon : true;

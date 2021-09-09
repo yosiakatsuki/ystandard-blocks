@@ -484,5 +484,47 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
 .ystdb-component-admin-menu-button.is-update:active {
   color: #fff;
 }
+.ystdb-component-admin-menu-button.is-cancel {
+  background-color: #fff;
+  color: #757575;
+  border: 1px solid #bdc3c7;
+  box-shadow: inset 0 0 0 1px #eeeeee;
+}
+.ystdb-component-admin-menu-button.is-cancel:active:not(:disabled), .ystdb-component-admin-menu-button.is-cancel:hover:not(:disabled) {
+  background-color: #fff;
+  border: 1px solid #bdc3c7;
+  color: #757575;
+  box-shadow: inset 0 0 0 1px #eeeeee;
+}
+.ystdb-component-admin-menu-button.is-delete {
+  background-color: #fff;
+  color: rgba(174, 59, 67, 0.8);
+  border: 1px solid rgba(174, 59, 67, 0.8);
+  box-shadow: none !important;
+}
+.ystdb-component-admin-menu-button.is-delete:active:not(:disabled), .ystdb-component-admin-menu-button.is-delete:hover:not(:disabled) {
+  background-color: #fff;
+  border: 1px solid rgba(174, 59, 67, 0.8);
+  color: rgba(174, 59, 67, 0.8);
+  box-shadow: none !important;
+}
+.ystdb-component-message {
+  display: block;
+  margin: 0 0 1em;
+  font-size: 0.9em;
+  color: #757575;
+}
+.ystdb-component-message.is-error {
+  color: #AE3B43;
+}
+.ystdb-component-message.is-warning {
+  color: #E29E21;
+}
+.ystdb-component-message.is-info {
+  color: #07689f;
+}
+.ystdb-component-message.is-hide {
+  display: none;
+}
 
 /*# sourceMappingURL=inline-style.css.map*/

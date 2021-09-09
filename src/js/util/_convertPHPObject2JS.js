@@ -1,7 +1,7 @@
 /**
  * PHP側で作ったオブジェクトをJS用に変換
  *
- * @param {Object} object  オブジェクト.
+ * @param {Object} object オブジェクト.
  */
 export default function convertPHPObject2JS(object) {
 	return Object.fromEntries(

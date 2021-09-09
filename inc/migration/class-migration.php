@@ -107,36 +107,36 @@ class Migration {
 		$migration = [];
 		$section   = 'inline';
 
-		$font_size   = ( Option::get_option_by_number( $section, 'larger', 120 ) / 100 );
-		$migration[] = [
+		$font_size               = ( Option::get_option_by_number( $section, 'larger', 120 ) / 100 );
+		$migration['larger']     = [
 			'name'  => 'larger',
 			'label' => '少し大きく',
 			'style' => [
 				'font-size' => $font_size . 'em',
 			],
 		];
-		$font_size   = ( Option::get_option_by_number( $section, 'smaller', 80 ) / 100 );
-		$migration[] = [
+		$font_size               = ( Option::get_option_by_number( $section, 'smaller', 80 ) / 100 );
+		$migration['smaller']    = [
 			'name'  => 'smaller',
 			'label' => '少し小さく',
 			'style' => [
 				'font-size' => $font_size . 'em',
 			],
 		];
-		$font_size   = ( Option::get_option_by_number( $section, 'larger-sp', 120 ) / 100 );
-		$migration[] = [
+		$font_size               = ( Option::get_option_by_number( $section, 'larger-sp', 120 ) / 100 );
+		$migration['larger-sp']  = [
 			'name'        => 'larger-sp',
 			'label'       => '少し大きく(SP)',
 			'mobileStyle' => [
-				'font-size' => $font_size . 'em',
+				'--ys-font-size-mobile' => $font_size . 'em',
 			],
 		];
-		$font_size   = ( Option::get_option_by_number( $section, 'smaller-sp', 80 ) / 100 );
-		$migration[] = [
+		$font_size               = ( Option::get_option_by_number( $section, 'smaller-sp', 80 ) / 100 );
+		$migration['smaller-sp'] = [
 			'name'        => 'smaller-sp',
 			'label'       => '少し小さく(SP)',
 			'mobileStyle' => [
-				'font-size' => $font_size . 'em',
+				'--ys-font-size-mobile' => $font_size . 'em',
 			],
 		];
 

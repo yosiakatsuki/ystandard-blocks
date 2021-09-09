@@ -8,4 +8,11 @@ module.exports = {
 		ystdbOption: true,
 		ystdbIconList: true,
 	},
+	rules:{
+		...defaultConfig.rules,
+		"import/no-unresolved": "off",
+		"import/no-extraneous-dependencies": "off",
+		"@wordpress/no-unsafe-wp-apis": "off",
+
+	}
 };

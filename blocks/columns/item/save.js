@@ -3,12 +3,8 @@ import classnames from 'classnames';
 import { InnerBlocks, getColorClassName } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-	const {
-		shadow,
-		backgroundColor,
-		customBackgroundColor,
-		paddingType,
-	} = attributes;
+	const { shadow, backgroundColor, customBackgroundColor, paddingType } =
+		attributes;
 
 	const backgroundClass = getColorClassName(
 		'background-color',

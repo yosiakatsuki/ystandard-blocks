@@ -1,21 +1,15 @@
-import classnames from "classnames";
+import classnames from 'classnames';
 
-const Notice = ( props ) => {
-	const {
-		children,
-		type,
-		className,
-	} = props;
+const Notice = (props) => {
+	const { children, type, className } = props;
 
 	const noticeType = type || 'info';
 	const wrapClass = classnames(
 		'ystdb-component-notice',
 		className,
-		`is-${ noticeType }`
+		`is-${noticeType}`
 	);
-	return (
-		<div className={ wrapClass }>{ children }</div>
-	);
+	return <div className={wrapClass}>{children}</div>;
 };
 
 export default Notice;

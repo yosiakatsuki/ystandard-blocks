@@ -68,9 +68,8 @@ export const inlineStyle = () => {
 				this.inline[`color${index}`] = this.inline[`color${index}`].hex;
 			},
 			updateMakerColor(index) {
-				this.inline[`markColor${index}`] = this.inline[
-					`markColor${index}`
-				].hex;
+				this.inline[`markColor${index}`] =
+					this.inline[`markColor${index}`].hex;
 			},
 		},
 	});
