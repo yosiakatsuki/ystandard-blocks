@@ -35,7 +35,6 @@ require_once __DIR__ . '/blocks/class-register.php';
 require_once __DIR__ . '/enqueue/class-enqueue.php';
 require_once __DIR__ . '/enqueue/class-enqueue-embed.php';
 require_once __DIR__ . '/enqueue/class-polyfill.php';
-require_once __DIR__ . '/enqueue/class-block-editor.php';
 require_once __DIR__ . '/kses/class-kses.php';
 require_once __DIR__ . '/customizer/class-customizer.php';
 require_once __DIR__ . '/migration/class-format.php';

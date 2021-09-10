@@ -48,9 +48,29 @@ class Config {
 	const JS_APP_HANDLE = 'ystdb-js-app';
 
 	/**
+	 * Block Category.
+	 */
+	const BLOCK_CATEGORY = 'ystdb';
+
+	/**
+	 * Block Category beta.
+	 */
+	const BLOCK_CATEGORY_BETA = 'ystdb_beta';
+
+	/**
+	 * Block Category deprecated.
+	 */
+	const BLOCK_CATEGORY_DEPRECATED = 'ystdb_deprecated';
+
+	/**
 	 * Block Editor Script Handle.
 	 */
 	const BLOCK_EDITOR_SCRIPT_HANDLE = 'ystandard-blocks-editor';
+
+	/**
+	 * Block Editor CSS Handle.
+	 */
+	const BLOCK_EDITOR_CSS_HANDLE = 'ystandard-blocks-editor-style';
 
 	/**
 	 * Body Class.

@@ -19,42 +19,6 @@ defined( 'ABSPATH' ) || die();
 class Register {
 
 	/**
-	 * 読み込みブロック一覧
-	 *
-	 * @var array
-	 */
-	private $blocks = [
-		'svg-button' => [
-			'name'    => 'ystdb/svg-button',
-			'no-ystd' => true,
-		],
-		'svg-icon'   => [
-			'name'    => 'ystdb/svg-icon',
-			'no-ystd' => true,
-		],
-		'columns'    => [
-			'name'    => 'ystdb/columns',
-			'no-ystd' => true,
-		],
-		'column'     => [
-			'name'    => 'ystdb/column',
-			'no-ystd' => true,
-		],
-		'section'    => [
-			'name'    => 'ystdb/section',
-			'no-ystd' => true,
-		],
-		'heading'    => [
-			'name'    => 'ystdb/heading',
-			'no-ystd' => true,
-		],
-		'balloon'    => [
-			'name'    => 'ystdb/balloon',
-			'no-ystd' => true,
-		],
-	];
-
-	/**
 	 * 非推奨ブロック
 	 *
 	 * @var array
@@ -62,43 +26,11 @@ class Register {
 	private $deprecated_blocks = [];
 
 	/**
-	 * ダイナミックブロック一覧
+	 * 有効化するブロックのリスト
 	 *
 	 * @var array
 	 */
-	private $dynamic_block = [
-		'svg-button-link'         => [
-			'name'    => 'ystdb/svg-button-link',
-			'no-ystd' => true,
-			'class'   => 'svg-button-link',
-		],
-		'card'                    => [
-			'name'    => 'ystdb/card',
-			'no-ystd' => true,
-			'class'   => 'card',
-		],
-		'conditional-group-block' => [
-			'name'    => 'ystdb/conditional-group-block',
-			'no-ystd' => true,
-			'class'   => 'conditional-group-block',
-		],
-	];
-
-	/**
-	 * 非推奨ダイナミックブロック
-	 *
-	 * @var array
-	 */
-	private $deprecated_dynamic_blocks = [];
-
-	/**
-	 * スタイル、フォーマット、コア拡張など
-	 *
-	 * @var array
-	 */
-	private $block_editor_assets = [
-		'format' => true,
-	];
+	private $register_blocks;
 
 	/**
 	 * フックの登録など
@@ -109,12 +41,11 @@ class Register {
 		} else {
 			add_filter( 'block_categories', [ __CLASS__, 'add_block_categories' ] );
 		}
+		$this->init();
+		add_action( 'init', [ $this, 'require_dynamic_block_file' ] );
 		add_action( 'init', [ $this, 'register_block' ] );
-		add_action( 'init', [ $this, 'register_dynamic_block' ] );
-		add_action(
-			'enqueue_block_editor_assets',
-			[ $this, 'enqueue_block_editor_assets' ]
-		);
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_dynamic_block_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 	}
 
 	/**
@@ -126,19 +57,54 @@ class Register {
 	 */
 	public static function add_block_categories( $categories ) {
 		$categories[] = [
-			'slug'  => 'ystdb',
+			'slug'  => Config::BLOCK_CATEGORY,
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
 		];
 		$categories[] = [
-			'slug'  => 'ystdb_beta',
+			'slug'  => Config::BLOCK_CATEGORY_BETA,
 			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
 		];
 		$categories[] = [
-			'slug'  => 'ystdb_deprecated',
+			'slug'  => Config::BLOCK_CATEGORY_DEPRECATED,
 			'title' => __( '[ys]yStandard Blocks(非推奨)', 'ystandard-blocks' ),
 		];
 
 		return $categories;
+	}
+
+	private function init() {
+		$this->register_blocks = [
+			'normal'  => [],
+			'dynamic' => [],
+		];
+		foreach ( glob( YSTDB_PATH . '/js/blocks/*.js' ) as $file ) {
+			if ( is_file( $file ) ) {
+				// ブロックの情報.
+				$name = basename( $file, '.js' );
+				if ( in_array( $name, [ 'app', 'block' ], true ) ) {
+					continue;
+				}
+
+				$asset = include( YSTDB_PATH . "/js/blocks/${name}.asset.php" );
+				// ダイナミックブロック判定.
+				$render = YSTDB_PATH . "/blocks/${name}/class-${name}.php";
+				$type   = file_exists( $render ) ? 'dynamic' : 'normal';
+				// カテゴリー.
+				$category = Config::BLOCK_CATEGORY;
+				if ( in_array( $name, $this->deprecated_blocks, true ) ) {
+					$category = Config::BLOCK_CATEGORY_DEPRECATED;
+				}
+				// セット.
+				$this->register_blocks[ $type ][] = [
+					'name'         => $name,
+					'url'          => str_replace( YSTDB_PATH, YSTDB_URL, $file ),
+					'dependencies' => $asset['dependencies'],
+					'version'      => $asset['version'],
+					'render'       => $render,
+					'category'     => $category,
+				];
+			}
+		}
 	}
 
 	/**
@@ -148,51 +114,13 @@ class Register {
 		if ( ! is_admin() ) {
 			return;
 		}
-		$blocks = $this->blocks;
-		// 非推奨ブロックのチェック.
-		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_blocks );
-		if ( ! empty( $deprecated_blocks ) ) {
-			$blocks = array_merge(
-				$blocks,
-				$deprecated_blocks
-			);
-		}
-		foreach ( $blocks as $key => $value ) {
-			/**
-			 * 非yStandardの利用チェック
-			 */
-			if ( ! Utility::is_ystandard() ) {
-				if ( ! $value['no-ystd'] ) {
-					continue;
-				}
-			}
-			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
-			$handle     = 'ystandard-blocks-' . $key;
-			wp_register_script(
-				$handle,
-				YSTDB_URL . '/js/' . $key . '.js',
-				$asset_file['dependencies'],
-				$asset_file['version']
-			);
-			register_block_type(
-				$value['name'],
-				[ 'editor_script' => $handle ]
-			);
-		}
-
-	}
-
-	/**
-	 * ブロックassets
-	 */
-	public function enqueue_block_editor_assets() {
 		/**
 		 * ブロック共通スクリプト
 		 */
-		$asset_file = include( YSTDB_PATH . '/js/block.asset.php' );
+		$asset_file = include( YSTDB_PATH . '/js/blocks/block.asset.php' );
 		wp_enqueue_script(
 			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-			YSTDB_URL . '/js/block.js',
+			YSTDB_URL . '/js/blocks/block.js',
 			$asset_file['dependencies'],
 			$asset_file['version']
 		);
@@ -201,65 +129,71 @@ class Register {
 			'ystdb',
 			$this->create_block_config()
 		);
-		wp_set_script_translations(
-			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-			Config::TEXT_DOMAIN,
-			YSTDB_PATH . '/languages'
-		);
-		foreach ( $this->block_editor_assets as $key => $value ) {
-			/**
-			 * 非yStandardの利用チェック
-			 */
-			if ( ! Utility::is_ystandard() ) {
-				if ( ! $value ) {
-					continue;
-				}
-			}
-			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
-			wp_enqueue_script(
-				'ystandard-blocks-' . $key,
-				YSTDB_URL . '/js/' . $key . '.js',
-				$asset_file['dependencies'],
-				$asset_file['version']
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations(
+				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
+				Config::TEXT_DOMAIN,
+				YSTDB_PATH . '/languages'
+			);
+		}
+		foreach ( $this->register_blocks['normal'] as $block ) {
+			$handle = 'ystandard-blocks-' . $block['name'];
+			wp_register_script(
+				$handle,
+				$block['url'],
+				$block['dependencies'],
+				$block['version']
+			);
+			register_block_type(
+				$block['category'] . '/' . $block['name'],
+				[ 'editor_script' => $handle ]
 			);
 		}
 	}
 
-	/**
-	 * ダイナミックブロック登録
-	 */
-	public function register_dynamic_block() {
-
-		$blocks = $this->dynamic_block;
-		// 非推奨ブロックのチェック.
-		$deprecated_blocks = $this->check_deprecated_blocks( $this->deprecated_dynamic_blocks );
-		if ( ! empty( $deprecated_blocks ) ) {
-			$blocks = array_merge(
-				$blocks,
-				$deprecated_blocks
-			);
+	public function require_dynamic_block_file() {
+		foreach ( $this->register_blocks['dynamic'] as $block ) {
+			require_once( $block['render'] );
 		}
+	}
+
+	/**
+	 * ブロックassets
+	 */
+	public function enqueue_block_editor_assets() {
 		/**
-		 * ダイナミックブロック
+		 * エディタ用CSS
 		 */
-		foreach ( $blocks as $key => $value ) {
-			/**
-			 * 非yStandardの利用チェック
-			 */
-			if ( ! Utility::is_ystandard() ) {
-				if ( ! $value['no-ystd'] ) {
-					continue;
-				}
-			}
-			$asset_file = include( YSTDB_PATH . '/js/' . $key . '.asset.php' );
-			$handle     = 'ystandard-blocks-' . $key;
-			wp_register_script(
-				$handle,
-				YSTDB_URL . '/js/' . $key . '.js',
-				$asset_file['dependencies'],
-				$asset_file['version']
+		$inline_css = '';
+		// インラインCSS.
+		$inline_css .= Enqueue::get_color_css( '.editor-styles-wrapper ' );
+		$inline_css .= Enqueue::get_icon_font_css( '.editor-styles-wrapper ' );
+		$inline_css .= Enqueue::get_font_size_css( '.editor-styles-wrapper ' );
+
+		wp_enqueue_style(
+			Config::BLOCK_EDITOR_CSS_HANDLE,
+			YSTDB_URL . '/css/ystandard-blocks-edit.css',
+			[],
+			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
+		);
+
+		wp_add_inline_style(
+			Config::BLOCK_EDITOR_CSS_HANDLE,
+			$inline_css
+		);
+	}
+
+	/**
+	 * ダイナミックブロックの登録
+	 */
+	public function enqueue_dynamic_block_scripts() {
+		foreach ( $this->register_blocks['dynamic'] as $block ) {
+			wp_enqueue_script(
+				'ystandard-blocks-' . $block['name'],
+				$block['url'],
+				$block['dependencies'],
+				$block['version']
 			);
-			require_once( YSTDB_PATH . '/blocks/' . $key . '/class-' . $value['class'] . '.php' );
 		}
 	}
 
@@ -278,91 +212,6 @@ class Register {
 				'balloonImages' => Balloon::get_balloon_images(),
 			]
 		);
-	}
-
-	/**
-	 * 非推奨ブロックの利用チェック
-	 *
-	 * @param array $blocks 非推奨ブロックのリスト.
-	 *
-	 * @return array
-	 */
-	private function check_deprecated_blocks( $blocks ) {
-		$result = [];
-
-		foreach ( $blocks as $key => $value ) {
-			if ( $this->is_use_block( $value['name'] ) ) {
-				$result[ $key ] = $value;
-			}
-		}
-
-		return $result;
-	}
-
-	/**
-	 * ブロックが使われているかの確認.
-	 *
-	 * @param string $name Name.
-	 *
-	 * @return bool
-	 */
-	private function is_use_block( $name ) {
-		// フロント側ではチェックしない.
-		if ( ! is_admin() ) {
-			return true;
-		}
-
-		$result = $this->get_posts_with_blocks( $name );
-
-		return ! empty( $result );
-	}
-
-	/**
-	 * ブロックが使われている投稿の取得.
-	 *
-	 * @param string $name Block Name.
-	 *
-	 * @return \WP_Post[]
-	 */
-	private function get_posts_with_blocks( $name ) {
-		$types = get_post_types( [ 'public' => true ] );
-		if ( in_array( 'ys-parts', $types, true ) ) {
-			$types[] = 'ys-parts';
-		}
-
-		return get_posts(
-			[
-				'post_type' => $types,
-				's'         => $name,
-			]
-		);
-	}
-
-	/**
-	 * 非推奨ブロックが使われている投稿の取得.
-	 *
-	 * @return \WP_Post[]
-	 */
-	public function get_posts_with_deprecated_blocks() {
-		$blocks = array_merge(
-			$this->deprecated_blocks,
-			$this->deprecated_dynamic_blocks
-		);
-		$result = [];
-		foreach ( $blocks as $key => $value ) {
-			$posts = $this->get_posts_with_blocks( $value['name'] );
-			foreach ( $posts as $post ) {
-				if ( ! array_key_exists( $post->post_name, $result ) ) {
-					$result[ $post->post_name ] = [
-						'title' => $post->post_title,
-						'url'   => get_permalink( $post ),
-						'edit'  => get_edit_post_link( $post ),
-					];
-				}
-			}
-		}
-
-		return $result;
 	}
 }
 
