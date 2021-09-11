@@ -32,6 +32,8 @@ require_once __DIR__ . '/inline-style/class-inline-style.php';
 require_once __DIR__ . '/balloon/class-balloon.php';
 require_once __DIR__ . '/blocks/class-dynamic-block.php';
 require_once __DIR__ . '/blocks/class-register.php';
+require_once __DIR__ . '/blocks/class-color-palette.php';
+require_once __DIR__ . '/blocks/class-font-size.php';
 require_once __DIR__ . '/enqueue/class-enqueue.php';
 require_once __DIR__ . '/enqueue/class-enqueue-embed.php';
 require_once __DIR__ . '/enqueue/class-polyfill.php';

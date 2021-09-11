@@ -338,6 +338,22 @@
 
 ブレークポイント定義のカスタマイズ用フック
 
+### `ys_is_enqueue_color_pallet`
+
+カラーパレット用CSSが追加されたか(フロント)
+
+### `ys_is_enqueue_block_editor_color_pallet`
+
+カラーパレット用CSSが追加されたか(ブロックエディター)
+
+### `ys_is_enqueue_font_size`
+
+フォント用CSSが追加されたか(フロント)
+
+### `ys_is_enqueue_block_editor_font_size`
+
+フォント用CSSが追加されたか(ブロックエディター)
+
 ## Third-party resources
 
 ### Plugin Update Checker

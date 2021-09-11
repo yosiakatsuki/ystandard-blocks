@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Dynamic_block
  */
