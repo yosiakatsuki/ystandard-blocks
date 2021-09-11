@@ -36,6 +36,11 @@ class Inline_Style {
 	const SCRIPT_NAME = 'inline-style';
 
 	/**
+	 * CSS Class Prefix.
+	 */
+	const CLASS_PREFIX = '.ystdb-inline--';
+
+	/**
 	 * Cache Key.
 	 */
 	const CACHE_KEY = 'ystsb-inline-style';
@@ -58,16 +63,24 @@ class Inline_Style {
 	 * Inline_Style constructor.
 	 */
 	public function __construct() {
+		$this->get_default_option();
+
 		/**
 		 * Front.
 		 */
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ], 21 );
+		/**
+		 * Block Editor.
+		 */
+		add_filter( 'ystdb_block_config', [ $this, 'add_inline_style_config' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
 		/**
 		 * Admin.
 		 */
 		add_action( 'admin_menu', [ $this, 'add_menu' ], 100 + self::MENU_POSITION );
 		add_filter( Config::ADMIN_MENU_NAV_LIST, [ $this, 'add_nav_item' ], self::MENU_POSITION );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
+
 		add_action( 'rest_api_init', [ $this, 'add_endpoint' ] );
 	}
 
@@ -76,13 +89,6 @@ class Inline_Style {
 	 */
 	public function enqueue_styles() {
 		$css = '';
-		// デフォルト取得.
-		$this->default_option = json_decode(
-			helper\Helper_Filesystem::file_get_contents(
-				YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json'
-			),
-			true
-		);
 		// キャッシュ取得.
 		if ( ! Helper_Debug::is_debug_mode() ) {
 			// キャッシュの更新は設定更新時.
@@ -92,6 +98,7 @@ class Inline_Style {
 			$css = '';
 			// ボタン.
 			$css .= $this->get_button_css();
+			$css .= $this->get_items_css();
 		}
 		wp_add_inline_style(
 			Config::CSS_HANDLE,
@@ -101,13 +108,45 @@ class Inline_Style {
 	}
 
 	/**
-	 * 3ボタン用CSS作成
+	 * 設定追加.
 	 *
-	 * @param string $prefix Prefix.
+	 * @param array $config Config.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	private function get_button_css( $prefix = '' ) {
+	public function add_inline_style_config( $config ) {
+		$config['inlineStyle'] = [
+			'buttons' => $this->get_buttons_option(),
+			'items'   => $this->get_items_option(),
+		];
+
+		return $config;
+	}
+
+	/**
+	 * デフォルトオプション取得.
+	 */
+	private function get_default_option() {
+		if ( ! empty( $this->default_option ) ) {
+			return;
+		}
+		$default = json_decode(
+			helper\Helper_Filesystem::file_get_contents(
+				YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json'
+			),
+			true
+		);
+		unset( $default['inlineStyle']['items']['schema'] );
+		// デフォルト取得.
+		$this->default_option = $default;
+	}
+
+	/**
+	 * マーカーボタン設定取得.
+	 *
+	 * @return array
+	 */
+	private function get_buttons_option() {
 		$option = Option::get_option(
 			'inlineStyle',
 			'buttons',
@@ -123,11 +162,48 @@ class Inline_Style {
 			$option = $this->filter_option['buttons'];
 		}
 
+		return $option;
+	}
+
+	/**
+	 * その他スタイル設定取得.
+	 *
+	 * @return array
+	 */
+	private function get_items_option() {
+		$option = Option::get_option(
+			'inlineStyle',
+			'items',
+			$this->default_option['inlineStyle']['items']
+		);
+		// 旧設定からの移行.
+		$old_option = Migration::get_old_toolbar_item_option();
+		if ( ! empty( $old_option ) ) {
+			$option = $old_option;
+		}
+		// フック優先.
+		if ( $this->get_filtered_option() ) {
+			$option = $this->filter_option['items'];
+		}
+
+		return $option;
+	}
+
+	/**
+	 * 3ボタン用CSS作成
+	 *
+	 * @param string $prefix Prefix.
+	 *
+	 * @return string
+	 */
+	private function get_button_css( $prefix = '' ) {
+
+		$option = $this->get_buttons_option();
 		// CSS作成.
 		$result = '';
 		for ( $i = 0; $i < 3; $i ++ ) {
 			$prefix       = empty( $prefix ) ? '' : trim( $prefix ) . ' ';
-			$selector     = $prefix . '.ystdb-inline--' . ( $i + 1 );
+			$selector     = $prefix . self::CLASS_PREFIX . ( $i + 1 );
 			$style        = [];
 			$style_tablet = [];
 			$style_mobile = [];
@@ -146,6 +222,38 @@ class Inline_Style {
 				$style,
 				$style_tablet,
 				$style_mobile
+			);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * その他スタイルCSS作成
+	 *
+	 * @param string $prefix Prefix.
+	 *
+	 * @return string
+	 */
+	private function get_items_css( $prefix = '' ) {
+
+		$option = $this->get_items_option();
+		if ( empty( $option ) || ! is_array( $option ) ) {
+			return '';
+		}
+		$result = '';
+		foreach ( $option as $key => $value ) {
+			$prefix   = empty( $prefix ) ? '' : trim( $prefix ) . ' ';
+			$selector = $prefix . self::CLASS_PREFIX . $key;
+			if ( isset( $value['enable'] ) && false === $value['enable'] ) {
+				continue;
+			}
+
+			$result .= $this->get_css(
+				$selector,
+				isset( $value['style'] ) ? $value['style'] : [],
+				isset( $value['tabletStyle'] ) ? $value['tabletStyle'] : [],
+				isset( $value['mobileStyle'] ) ? $value['mobileStyle'] : []
 			);
 		}
 
@@ -219,6 +327,23 @@ class Inline_Style {
 		$this->filter_option = apply_filters( 'ystdb_inline_style_options', null );
 
 		return $this->filter_option;
+	}
+
+	/**
+	 * ブロックエディター
+	 */
+	public function enqueue_block_editor_assets() {
+		$css = '';
+		// 管理画面用CSS取得.
+		$css .= $this->get_button_css( '.editor-styles-wrapper' );
+		$css .= $this->get_items_css( '.editor-styles-wrapper' );
+		$css .= $this->get_button_css( '.editor-format-toolbar' );
+		$css .= $this->get_items_css( '.components-dropdown__content' );
+
+		wp_add_inline_style(
+			Config::BLOCK_EDITOR_CSS_HANDLE,
+			$css
+		);
 	}
 
 	/**

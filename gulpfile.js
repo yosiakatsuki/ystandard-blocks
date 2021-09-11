@@ -127,6 +127,7 @@ function watchFiles() {
 	cleanFiles();
 	// watch.
 	watchSass();
+	watchAdminMenu();
 }
 
 function watchSass() {

@@ -17,11 +17,11 @@ module.exports = {
 		'balloon': './blocks/balloon/index.js',
 		'card': './blocks/card/index.js',
 		'conditional-group-block': './blocks/conditional-group-block/index.js',
-		'format': './blocks/format/index.js',
+		'inline-style': './blocks/inline-style/index.js',
 	},
 	output: {
 		filename: '[name].js',
-		path: `${ __dirname }/js`
+		path: `${ __dirname }/js/blocks`
 	},
 	module: {
 		rules: [

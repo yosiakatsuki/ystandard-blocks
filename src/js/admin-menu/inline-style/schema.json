@@ -57,6 +57,54 @@
 		"mobileStyle": {},
 		"customCss": "",
 		"lock": false
+	  },
+	  "lager": {
+		"name": "larger",
+		"label": "少し大きく",
+		"enable": true,
+		"style": {
+		  "font-size": "1.2em"
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  },
+	  "smaller": {
+		"name": "smaller",
+		"label": "少し小さく",
+		"enable": true,
+		"style": {
+		  "font-size": "0.8em"
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
+	  },
+	  "larger-sp": {
+		"name": "larger-sp",
+		"label": "少し大きく(SP)",
+		"enable": true,
+		"style": {},
+		"tabletStyle": {},
+		"mobileStyle": {
+		  "font-size": "1.2em"
+		},
+		"customCss": "",
+		"lock": false
+	  },
+	  "smaller-sp": {
+		"name": "smaller-sp",
+		"label": "少し小さく(SP)",
+		"enable": true,
+		"style": {},
+		"tabletStyle": {},
+		"mobileStyle": {
+		  "font-size": "0.8em"
+		},
+		"customCss": "",
+		"lock": false
 	  }
 	}
   }

@@ -22,7 +22,7 @@
     "watch:sass": "gulp watchSass",
     "watch:admin-menu": "NODE_ENV=development wp-scripts start --config webpack.admin-menu.config.js & gulp watchAdminMenu",
     "watch:admin": "npm run watch:admin-menu  & npm run watch:sass",
-    "watch": "npm run start:block & gulp watch",
+    "watch": "npm run watch:block & gulp watch",
     "zip": "gulp zip",
     "build:deploy-files": "gulp createDeployFiles",
     "build:deploy-files-beta": "gulp createDeployFilesBeta",

@@ -7,13 +7,12 @@
 @use "../../blocks/card/edit" as card-edit;
 @use "../../blocks/columns/edit" as columns-edit;
 @use "../../blocks/conditional-group-block/edit" as conditional-group-block-edit;
-@use "../../blocks/format/inline-font-size/edit" as inline-font-size-edit;
-@use "../../blocks/format/inline-style/edit" as inline-style-edit;
 @use "../../blocks/heading/edit" as heading-edit;
 @use "../../blocks/section/edit" as section-edit;
 @use "../../blocks/svg-button/edit" as svg-button-edit;
 @use "../../blocks/svg-button-link/edit" as svg-button-link-edit;
 @use "../../blocks/svg-icon/edit" as svg-icon-edit;
+@use "../../blocks/inline-style/edit" as toolbar-buttons;
 
 // Inspector controls.
 @use "../../blocks/balloon/inspector-controls";

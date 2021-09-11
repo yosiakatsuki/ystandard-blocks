@@ -254,12 +254,12 @@ const ButtonItems = () => {
 															'tabletStyle',
 															{}
 														),
-														'--ys-font-size-tablet'
+														'font-size'
 													) }
 													onChange={ ( value ) => {
 														updateInlineItemStyle(
 															{
-																'--ys-font-size-tablet':
+																'font-size':
 																value,
 															},
 															'tabletStyle'
@@ -276,12 +276,12 @@ const ButtonItems = () => {
 															'mobileStyle',
 															{}
 														),
-														'--ys-font-size-mobile'
+														'font-size'
 													) }
 													onChange={ ( value ) => {
 														updateInlineItemStyle(
 															{
-																'--ys-font-size-mobile':
+																'font-size':
 																value,
 															},
 															'mobileStyle'
