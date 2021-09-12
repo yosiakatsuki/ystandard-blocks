@@ -9,7 +9,8 @@
 		  "color": "",
 		  "@markerColor": "#f2d9db",
 		  "@markerOpacity": 60,
-		  "@markerWeight": 30
+		  "@markerWeight": 30,
+		  "background": "linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)"
 		},
 		"tabletStyle": {},
 		"mobileStyle": {},
@@ -24,7 +25,8 @@
 		  "color": "",
 		  "@markerColor": "#ceecfd",
 		  "@markerOpacity": 60,
-		  "@markerWeight": 30
+		  "@markerWeight": 30,
+		  "background": "linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)"
 		},
 		"tabletStyle": {},
 		"mobileStyle": {},
@@ -39,7 +41,8 @@
 		  "color": "",
 		  "@markerColor": "#ffedcc",
 		  "@markerOpacity": 60,
-		  "@markerWeight": 30
+		  "@markerWeight": 30,
+		  "background": "linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)"
 		},
 		"tabletStyle": {},
 		"mobileStyle": {},

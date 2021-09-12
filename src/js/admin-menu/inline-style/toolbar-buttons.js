@@ -81,7 +81,7 @@ const ToolbarButtons = () => {
 			...buttons,
 			...{
 				[ currentButtonIndex ]: {
-					...schema.inlineStyle.buttons[ currentButtonIndex ]
+					...schema.inlineStyle.buttons[ currentButtonIndex ],
 				},
 			},
 		};
