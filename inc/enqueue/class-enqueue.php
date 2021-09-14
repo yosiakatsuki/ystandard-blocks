@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_CSS;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -26,9 +28,6 @@ class Enqueue {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ], 11 );
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 		add_action( 'wp_head', [ $this, 'noscript_styles' ], PHP_INT_MAX );
-		if ( ! Utility::is_ystandard() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'no_ystd_enqueue' ], 12 );
-		}
 	}
 
 	/**
@@ -41,18 +40,6 @@ class Enqueue {
 			[],
 			YSTDB_VERSION
 		);
-		$inline = '';
-		/**
-		 * インラインCSS
-		 */
-		$inline .= self::get_color_css( '' );
-		$inline .= self::get_font_size_css( '' );
-		$inline .= self::get_icon_font_css( '' );
-		wp_add_inline_style(
-			Config::CSS_HANDLE,
-			$inline
-		);
-
 		/**
 		 * AMP対応
 		 */
@@ -82,16 +69,6 @@ class Enqueue {
 	}
 
 	/**
-	 * テーマが yStandard 以外の場合
-	 */
-	public function no_ystd_enqueue() {
-		$wp_styles = wp_styles();
-		if ( isset( $wp_styles->registered[ Config::CSS_HANDLE ] ) ) {
-			$wp_styles->registered[ Config::CSS_HANDLE ]->src = YSTDB_URL . '/css/ystandard-blocks-no-ystandard.css';
-		}
-	}
-
-	/**
 	 * Noscriptで出力するCSS
 	 */
 	public function noscript_styles() {
@@ -100,7 +77,7 @@ class Enqueue {
 		}
 		printf(
 			'<noscript><style>%s</style></noscript>' . PHP_EOL,
-			Utility::minify( $this->get_fallback_animation_css() )
+			Helper_CSS::minify( $this->get_fallback_animation_css() )
 		);
 	}
 
@@ -111,151 +88,6 @@ class Enqueue {
 	 */
 	private function get_fallback_animation_css() {
 		return '.ystdb-section.has-animation:not(:root) {opacity:1;}';
-	}
-
-	/**
-	 * カラーパレットのCSS取得
-	 *
-	 * @param string $prefix プレフィックス.
-	 *
-	 * @return string
-	 */
-	public static function get_color_css( $prefix = '' ) {
-		$palette = get_theme_support( 'editor-color-palette' );
-		if ( empty( $palette ) ) {
-			return '';
-		}
-		$css = '';
-
-		foreach ( $palette[0] as $value ) {
-			if ( self::is_enqueue_inline_style( 'background-color' ) ) {
-				/**
-				 * Background-color
-				 */
-				$class_name = Utility::get_background_color_class( $value['slug'] );
-				/**
-				 * 結合
-				 */
-				$css .= "${prefix} .${class_name},
-				${prefix} .has-background.${class_name}{
-					background-color:${value['color']};
-				}";
-			}
-			if ( self::is_enqueue_inline_style( 'color' ) ) {
-				/**
-				 * Text Color
-				 */
-				$class_name = Utility::get_text_color_class( $value['slug'] );
-				/**
-				 * 結合
-				 */
-				$css .= "${prefix} .${class_name},
-				${prefix} .has-text-color.${class_name},
-				${prefix} .${class_name}:hover,
-				${prefix} .has-text-color.${class_name}:hover {
-					color:${value['color']};
-				}";
-			}
-			if ( self::is_enqueue_inline_style( 'border-color' ) ) {
-				/**
-				 * Border-color
-				 */
-				$class_name = Utility::get_border_color_class( $value['slug'] );
-				/**
-				 * 結合
-				 */
-				$css .= "${prefix} .${class_name},
-				${prefix} .has-border.${class_name}{
-					border-color:${value['color']};
-				}";
-			}
-			if ( self::is_enqueue_inline_style( 'fill' ) ) {
-				/**
-				 * Fill-color
-				 */
-				$class_name = Utility::get_fill_color_class( $value['slug'] );
-				/**
-				 * 結合
-				 */
-				$css .= "${prefix} .${class_name},
-				${prefix} .has-fill-color.${class_name}{
-					fill:${value['color']};
-				}";
-			}
-		}
-
-		return Utility::minify( $css );
-	}
-
-	/**
-	 * インラインCSSを出力するか
-	 *
-	 * @param string $type Type.
-	 */
-	public static function is_enqueue_inline_style( $type ) {
-		$list = [
-			'background-color' => false,
-			'color'            => false,
-			'border-color'     => true,
-			'fill'             => true,
-			'font-size'        => false,
-		];
-		if ( ! Utility::is_ystandard() ) {
-			$list['background-color'] = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_bg', true );
-			$list['color']            = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_text', true );
-			$list['border-color']     = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_border', true );
-			$list['fill']             = get_option( Config::OPTION_PREFIX . 'add_color_palette_css_fill', true );
-			$list['font-size']        = get_option( Config::OPTION_PREFIX . 'add_font_size_css', true );
-		}
-		if ( ! isset( $list[ $type ] ) ) {
-			return true;
-		}
-
-		return $list[ $type ];
-	}
-
-
-	/**
-	 * フォントサイズ
-	 *
-	 * @param string $prefix プレフィックス.
-	 *
-	 * @return string
-	 */
-	public static function get_font_size_css( $prefix = '' ) {
-		$palette = get_theme_support( 'editor-font-sizes' );
-		if ( empty( $palette ) ) {
-			return '';
-		}
-		$css = '';
-		if ( self::is_enqueue_inline_style( 'font-size' ) ) {
-			foreach ( $palette[0] as $value ) {
-				$slug = $value['slug'];
-				/**
-				 * CSS作成
-				 */
-				$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $value['size'] . 'px;}';
-			}
-		}
-
-		return Utility::minify( $css );
-	}
-
-	/**
-	 * アイコンフォント用CSS
-	 *
-	 * @param string $prefix prefix.
-	 *
-	 * @return string
-	 */
-	public static function get_icon_font_css( $prefix = '' ) {
-		$css = '';
-		if ( 'none' !== get_option( 'ys_enqueue_icon_font_type', 'none' ) ) {
-			$css .= $prefix . '.ystdb-button__link .fa-xs svg {width: 1em;height: 1em}';
-			$css .= $prefix . '.ystdb-button__link .fa-2x svg {width: 1em;height: 1em}';
-		}
-
-		return Utility::minify( $css );
 	}
 
 	/**

@@ -341,35 +341,7 @@ class Utility {
 		return "has-${color}-border-color";
 	}
 
-	/**
-	 * SVG 色スタイル取得
-	 *
-	 * @param string $color color.
-	 *
-	 * @return string
-	 */
-	public static function get_fill_color_style( $color ) {
-		if ( ! $color ) {
-			return '';
-		}
 
-		return "fill:${color}";
-	}
-
-	/**
-	 * SVG 色クラス取得
-	 *
-	 * @param string $color color.
-	 *
-	 * @return string
-	 */
-	public static function get_fill_color_class( $color ) {
-		if ( ! $color ) {
-			return '';
-		}
-
-		return "has-${color}-fill";
-	}
 
 	/**
 	 * [has-]クラス名作成
@@ -386,22 +358,6 @@ class Utility {
 		}
 
 		return "has-${name}";
-	}
-
-	/**
-	 * CSS minify
-	 *
-	 * @param string $style スタイル.
-	 *
-	 * @return string
-	 */
-	public static function minify( $style ) {
-		$style = preg_replace( '#/\*[^*]*\*+([^/][^*]*\*+)*/#', '', $style );
-		$style = str_replace( ': ', ':', $style );
-		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], ' ', $style );
-		$style = str_replace( [ '  ', '    ' ], ' ', $style );
-
-		return $style;
 	}
 
 	/**
@@ -439,22 +395,6 @@ class Utility {
 		}
 
 		return $number;
-	}
-
-	/**
-	 * 色コードのサニタイズ.
-	 *
-	 * @param string $color   Color.
-	 * @param string $default Default.
-	 *
-	 * @return string
-	 */
-	public static function sanitize_hex( $color, $default ) {
-		if ( ! preg_match( '/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/', $color ) ) {
-			return $default;
-		}
-
-		return $color;
 	}
 
 	/**
