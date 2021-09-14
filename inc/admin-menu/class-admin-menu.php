@@ -59,6 +59,7 @@ class Admin_Menu {
 		$css_path = YSTDB_PATH . "/js/admin-menu/${name}.css";
 
 		wp_enqueue_style( 'wp-components' );
+		wp_enqueue_media();
 
 		if ( file_exists( $css_path ) ) {
 			wp_enqueue_style(
@@ -70,6 +71,11 @@ class Admin_Menu {
 
 		$asset_file    = include( YSTDB_PATH . "/js/admin-menu/${name}.asset.php" );
 		$script_handle = "ystandard-blocks-admin-menu-${name}-script";
+		// 追加スクリプト.
+		$asset_file['dependencies'] = array_merge(
+			$asset_file['dependencies'],
+			[  ]
+		);
 		wp_enqueue_script(
 			$script_handle,
 			YSTDB_URL . "/js/admin-menu/${name}.js",

@@ -1,0 +1,21 @@
+.ystdb-menu-balloon {
+  .ystdb-menu-balloon__list-header {
+	margin: 3em 0 0;
+	font-size: 0.8em;
+
+	*:not(.ystdb-menu-balloon__item-content) {
+	  padding: 0 !important;
+	  border-radius: 0 !important;
+	  box-shadow: none !important;
+	}
+
+	.ystdb-menu-balloon__item-content {
+	  padding-top: 0;
+	  padding-bottom: 0;
+	}
+
+	.ystdb-menu-balloon__item-enable {
+	  width: auto;
+	}
+  }
+}

@@ -20750,6 +20750,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ystdbConfig", function() { return ystdbConfig; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_balloon_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../blocks/balloon/config */ "./blocks/balloon/config.js");
+
 
 /**
  * 設定
@@ -20801,6 +20803,9 @@ const ystdbConfig = {
     }]
   },
   component: {
+    defaultAvatar: {
+      url: 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp'
+    },
     fontWeight: [{
       value: '',
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('指定無し', 'component-config', 'ystandard-blocks')

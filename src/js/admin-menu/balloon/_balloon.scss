@@ -1,0 +1,108 @@
+@use "../../../sass/global";
+
+.ystdb-menu-balloon__list {
+  margin-top: 3em;
+
+  figure {
+	margin: 0;
+  }
+}
+
+.ystdb-menu-balloon__item {
+  margin-top: 1em;
+  box-shadow: 0 1px 16px rgba(#000, 0.1);
+  transition: all .3s;
+
+  &.is-disable {
+	background-color: global.$color__bg-gray-dark;
+  }
+
+  .components-text-control__input,
+  .components-form-toggle__track {
+	background-color: transparent;
+  }
+}
+
+.ystdb-menu-balloon__item-container {
+  display: flex;
+}
+
+.ystdb-menu-balloon__item-sort {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .ystdb-menu-balloon__item-sort-button {
+	height: auto;
+	padding: 1em;
+
+	&:first-child {
+	  padding-bottom: .5em;
+	}
+
+	&:last-child {
+	  padding-top: .5em;
+	}
+  }
+}
+
+.ystdb-menu-balloon__item-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding: 1rem;
+
+  .components-base-control__field {
+	margin: 0;
+  }
+}
+
+.ystdb-menu-balloon__item-image {
+  width: 40px;
+  margin: 0 1rem 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+
+  @include global.media-breakpoint(md) {
+	width: 80px;
+	margin-right: 2rem;
+  }
+
+  img {
+	height: 40px;
+	width: 40px;
+	object-fit: cover;
+
+	@include global.media-breakpoint(md) {
+	  height: 80px;
+	  width: 80px;
+	}
+  }
+}
+
+
+.ystdb-menu-balloon__item-name {
+  width: 120px;
+  margin-right: 1rem;
+
+  @include global.media-breakpoint(md) {
+	width: 200px;
+	margin-right: 2rem;
+  }
+}
+
+.ystdb-menu-balloon__item-enable {
+  width: 36px;
+
+  .components-form-toggle {
+	margin: 0 !important;
+  }
+}
+
+.ystdb-menu-balloon__update {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+
+}

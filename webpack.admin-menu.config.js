@@ -5,6 +5,7 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		'inline-style': './src/js/admin-menu/inline-style/index.js',
+		'balloon': './src/js/admin-menu/balloon/index.js',
 	},
 	output: {
 		filename: '[name].js',

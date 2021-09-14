@@ -143,7 +143,10 @@ class Option {
 	 */
 	public static function update_section( $section, $data ) {
 		$option = self::get_option_all( [] );
-		$old    = isset( $option[ $section ] ) ? $option[ $section ] : null;
+		if ( ! is_array( $option ) ) {
+			$option = [];
+		}
+		$old = isset( $option[ $section ] ) ? $option[ $section ] : [];
 		if ( $old === $data ) {
 			return true;
 		}

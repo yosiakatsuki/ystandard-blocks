@@ -1,0 +1,27 @@
+.ystdb-component-manual-link {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-size: 12px;
+
+  &.is-top-right {
+	height: 20px;
+	margin: 0 0 -20px;
+	text-align: right;
+  }
+
+  a {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+  }
+
+  svg {
+	display: block;
+  }
+}
+.ystdb-component-manual-link__icon {
+  margin-right: .25em;
+}
+.ystdb-component-manual-link__text {
+  text-decoration: underline;
+}

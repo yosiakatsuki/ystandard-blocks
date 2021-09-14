@@ -1,0 +1,59 @@
+@use "../../../../sass/global";
+
+.ystdb-menu-balloon__avatar-media-upload {
+  position: relative;
+  display: block;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(#000, 0.7);
+	opacity: 0;
+	transition: opacity .3s;
+	z-index: 1;
+  }
+
+  img {
+	display: block;
+	border-radius: 50%;
+  }
+
+  .ystdb-menu-balloon__avatar-media-upload-select {
+	display: block;
+	height: auto;
+	padding: 0;
+  }
+
+  .ystdb-menu-balloon__avatar-media-upload-select-hover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	font-size: 0.8em;
+	text-align: center;
+	color: #fff;
+	opacity: 0;
+	transition: opacity .3s;
+	z-index: 2;
+  }
+
+  &:hover {
+	&::before,
+	.ystdb-menu-balloon__avatar-media-upload-select-hover {
+	  opacity: 1;
+	}
+  }
+}

@@ -1,0 +1,25 @@
+.ystdb-menu-balloon__add-modal {
+  .ystdb-menu-balloon__add-modal-image {
+	display: flex;
+	justify-content: center;
+  }
+
+  img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+  }
+
+  .ystdb-menu-balloon__add-modal-name {
+	margin-top: 0.5em;
+
+	.components-base-control__field {
+	  display: flex;
+	  justify-content: center;
+	}
+	.components-text-control__input {
+	  width: auto;
+	  max-width: 100%;
+	}
+  }
+}

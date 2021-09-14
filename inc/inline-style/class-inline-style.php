@@ -33,7 +33,7 @@ class Inline_Style {
 	/**
 	 * Script Name.
 	 */
-	const SCRIPT_NAME = 'inline-style';
+	const ADMIN_MENU_SCRIPT_NAME = 'inline-style';
 
 	/**
 	 * CSS Class Prefix.
@@ -357,7 +357,7 @@ class Inline_Style {
 		}
 
 		Admin_Menu::enqueue_admin_scripts(
-			self::SCRIPT_NAME,
+			self::ADMIN_MENU_SCRIPT_NAME,
 			[
 				'update' => 'update-inline-style',
 			],
@@ -389,7 +389,7 @@ class Inline_Style {
 	/**
 	 * 設定更新
 	 *
-	 * @param \WP_REST_Request $request
+	 * @param \WP_REST_Request $request Request.
 	 *
 	 * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
 	 */
@@ -425,7 +425,7 @@ class Inline_Style {
 	 */
 	public function add_page() {
 		Admin_Menu::admin_menu_content(
-			Admin_Menu::get_option_page_element( self::SCRIPT_NAME ),
+			Admin_Menu::get_option_page_element( self::ADMIN_MENU_SCRIPT_NAME ),
 			self::MENU_SLUG
 		);
 	}
