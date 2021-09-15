@@ -29475,13 +29475,15 @@ var _schema_json__WEBPACK_IMPORTED_MODULE_9___namespace = /*#__PURE__*/__webpack
 
 
 const ButtonItems = () => {
+  var _searchItem;
+
   const {
     items,
     setItems,
     selectedItem,
     setSelectedItem,
     isUpdating,
-    optionUpdate
+    updateOption
   } = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_index__WEBPACK_IMPORTED_MODULE_1__["InlineStyleContext"]);
   const fontUnit = Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_4__["getComponentConfig"])('fontUnit');
   const [isAddStyleModalOpen, setIsAddStyleModalOpen] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
@@ -29500,14 +29502,24 @@ const ButtonItems = () => {
 
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
+  const isNothingItems = 0 >= Object(_ystdb_helper_object__WEBPACK_IMPORTED_MODULE_11__["object2Array"])(items).length;
+
   const getItemList = () => {
-    const newItemList = Object(_ystdb_helper_object__WEBPACK_IMPORTED_MODULE_11__["object2Array"])(items).map(value => {
+    let _items = Object.entries({ ...items
+    }).map(value => {
+      return { ...value[1],
+        key: value[0]
+      };
+    });
+
+    const newItemList = _items.map(value => {
       return { ...value,
         ...{
-          value: value.name
+          value: value.key
         }
       };
     });
+
     return [...[{
       label: '-- 選択してください --',
       value: '',
@@ -29569,11 +29581,11 @@ const ButtonItems = () => {
   };
 
   const deleteItem = name => {
-    const newItems = { ...items
+    const newValue = { ...items
     };
-    delete newItems[name];
-    setItems(newItems);
-    return newItems;
+    delete newValue[name];
+    setItems(newValue);
+    return newValue;
   };
 
   const updateInlineItem = value => {
@@ -29598,6 +29610,15 @@ const ButtonItems = () => {
     });
   };
 
+  const importInitialItems = () => {
+    const newValue = _schema_json__WEBPACK_IMPORTED_MODULE_9__.inlineStyle.items;
+    delete newValue.schema;
+    setItems(newValue);
+    updateOption({
+      items: newValue
+    });
+  };
+
   const previewStyle = { ...getCurrentOption('style', {})
   };
   const previewClassName = `ystdb-inline--${selectedItem}`;
@@ -29610,9 +29631,18 @@ const ButtonItems = () => {
     className: "ystdb-menu-component-columns__item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
     title: 'スタイル選択'
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], null, isNothingItems && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u30B9\u30BF\u30A4\u30EB\u8A2D\u5B9A\u304C\u3042\u308A\u307E\u305B\u3093\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u521D\u671F\u8A2D\u5B9A\u3092\u30A4\u30F3\u30DD\u30FC\u30C8\u3059\u308B\u304B\u3001\u300C\u30B9\u30BF\u30A4\u30EB\u8FFD\u52A0\u300D\u304B\u3089\u30B9\u30BF\u30A4\u30EB\u3092\u8FFD\u52A0\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-menu-inline-items__header"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, isNothingItems && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "ystdb-menu-inline-items__no-items"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+    isPrimary: true,
+    disabled: isUpdating,
+    onClick: importInitialItems
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+    className: 'ystdb-button-icon',
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["download"]
+  }), " \u521D\u671F\u8A2D\u5B9A\u3092\u30A4\u30F3\u30DD\u30FC\u30C8")), !isNothingItems && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
     label: "\u30B9\u30BF\u30A4\u30EB",
     value: selectedItem,
     options: getItemList(),
@@ -29739,7 +29769,7 @@ const ButtonItems = () => {
     },
     value: Object(_function__WEBPACK_IMPORTED_MODULE_8__["getStyle"])(getCurrentOption('style', {}), 'color')
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-    title: '上級者向け',
+    title: '上級者向け設定',
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], {
     id: 'font-family',
@@ -29755,7 +29785,7 @@ const ButtonItems = () => {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_button_button__WEBPACK_IMPORTED_MODULE_7__["UpdateButton"], {
     key: 'update',
     onClick: () => {
-      optionUpdate({
+      updateOption({
         items
       });
     },
@@ -29841,7 +29871,7 @@ const ButtonItems = () => {
     onRequestClose: closeDeleteModal,
     shouldCloseOnClickOutside: false,
     isDismissible: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, searchItem(selectedItem).label, ' ', "\u3092\u524A\u9664\u3057\u3066\u3082\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, (_searchItem = searchItem(selectedItem)) === null || _searchItem === void 0 ? void 0 : _searchItem.label, ' ', "\u3092\u524A\u9664\u3057\u3066\u3082\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-components-section"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-menu-component-columns"
@@ -29850,10 +29880,11 @@ const ButtonItems = () => {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_button_button__WEBPACK_IMPORTED_MODULE_7__["DeleteButton"], {
     isPrimary: true,
     onClick: () => {
-      optionUpdate({
+      updateOption({
         items: deleteItem(selectedItem)
       }, '設定を削除しました。');
       setSelectedItem('');
+      closeDeleteModal();
     },
     disabled: isUpdating
   }, "\u524A\u9664")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -30075,7 +30106,7 @@ Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["render"])(Object(_wordpr
 /*! exports provided: inlineStyle, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"inlineStyle\":{\"buttons\":[{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#f2d9db\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ceecfd\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ffedcc\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false}],\"items\":{\"schema\":{\"name\":\"\",\"label\":\"\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"lager\":{\"name\":\"larger\",\"label\":\"少し大きく\",\"enable\":true,\"style\":{\"font-size\":\"1.2em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"smaller\":{\"name\":\"smaller\",\"label\":\"少し小さく\",\"enable\":true,\"style\":{\"font-size\":\"0.8em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger-sp\":{\"name\":\"larger-sp\",\"label\":\"少し大きく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"1.2em\"},\"customCss\":\"\",\"lock\":false},\"smaller-sp\":{\"name\":\"smaller-sp\",\"label\":\"少し小さく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"0.8em\"},\"customCss\":\"\",\"lock\":false}}}}");
+module.exports = JSON.parse("{\"inlineStyle\":{\"buttons\":[{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#f2d9db\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ceecfd\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ffedcc\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false}],\"items\":{\"schema\":{\"name\":\"\",\"label\":\"\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger\":{\"name\":\"larger\",\"label\":\"少し大きく\",\"enable\":true,\"style\":{\"font-size\":\"1.2em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"smaller\":{\"name\":\"smaller\",\"label\":\"少し小さく\",\"enable\":true,\"style\":{\"font-size\":\"0.8em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger-sp\":{\"name\":\"larger-sp\",\"label\":\"少し大きく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"1.2em\"},\"customCss\":\"\",\"lock\":false},\"smaller-sp\":{\"name\":\"smaller-sp\",\"label\":\"少し小さく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"0.8em\"},\"customCss\":\"\",\"lock\":false}}}}");
 
 /***/ }),
 
@@ -30125,7 +30156,7 @@ const ToolbarButtons = () => {
     buttons,
     setButtons,
     isUpdating,
-    optionUpdate
+    updateOption
   } = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_index__WEBPACK_IMPORTED_MODULE_1__["InlineStyleContext"]);
   const fontUnit = Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_4__["getComponentConfig"])('fontUnit');
   const [currentButtonIndex, setCurrentButtonIndex] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
@@ -30355,7 +30386,7 @@ const ToolbarButtons = () => {
     min: 5,
     max: 95
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-    title: '上級者向け',
+    title: '上級者向け設定',
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], {
     id: 'font-family',
@@ -30373,7 +30404,7 @@ const ToolbarButtons = () => {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_button_button__WEBPACK_IMPORTED_MODULE_8__["UpdateButton"], {
     key: 'update',
     onClick: () => {
-      optionUpdate();
+      updateOption();
     },
     disabled: isUpdating
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_feather__WEBPACK_IMPORTED_MODULE_12__["Save"], {
@@ -30403,7 +30434,7 @@ const ToolbarButtons = () => {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_button_button__WEBPACK_IMPORTED_MODULE_8__["DeleteButton"], {
     isPrimary: true,
     onClick: () => {
-      optionUpdate({
+      updateOption({
         buttons: resetOption()
       }, '設定を初期化しました。');
       closeDeleteModal();

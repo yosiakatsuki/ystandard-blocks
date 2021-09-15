@@ -61,7 +61,7 @@
 		"customCss": "",
 		"lock": false
 	  },
-	  "lager": {
+	  "larger": {
 		"name": "larger",
 		"label": "少し大きく",
 		"enable": true,

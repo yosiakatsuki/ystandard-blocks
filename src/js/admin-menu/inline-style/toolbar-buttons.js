@@ -30,7 +30,7 @@ import { getProperty } from '@ystdb/helper/object';
 import { Save } from "react-feather";
 
 const ToolbarButtons = () => {
-	const { options, buttons, setButtons, isUpdating, optionUpdate } =
+	const { options, buttons, setButtons, isUpdating, updateOption } =
 		useContext(InlineStyleContext);
 
 	const fontUnit = getComponentConfig('fontUnit');
@@ -371,7 +371,7 @@ const ToolbarButtons = () => {
 										</BaseControl>
 									</PanelBody>
 									<PanelBody
-										title={'上級者向け'}
+										title={'上級者向け設定'}
 										initialOpen={false}
 									>
 										<BaseControl
@@ -401,7 +401,7 @@ const ToolbarButtons = () => {
 								<UpdateButton
 									key={'update'}
 									onClick={() => {
-										optionUpdate();
+										updateOption();
 									}}
 									disabled={isUpdating}
 								>
@@ -435,7 +435,7 @@ const ToolbarButtons = () => {
 												<DeleteButton
 													isPrimary
 													onClick={() => {
-														optionUpdate(
+														updateOption(
 															{
 																buttons:
 																	resetOption(),
