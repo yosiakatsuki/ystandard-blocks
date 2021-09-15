@@ -1,7 +1,9 @@
 @use "../../../../sass/global";
 
 .ystdb-component-admin-menu-button {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   font-weight: bold;
 

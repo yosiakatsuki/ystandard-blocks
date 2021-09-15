@@ -1,6 +1,6 @@
 import { InlineStyleContext } from './index';
 import { useContext, useState } from '@wordpress/element';
-import { desktop, Icon, mobile, tablet } from '@wordpress/icons';
+import { desktop, Icon, mobile, plusCircle, tablet } from '@wordpress/icons';
 import {
 	__experimentalUnitControl as UnitControl,
 	BaseControl,
@@ -24,6 +24,7 @@ import { getStyle } from './function';
 import schema from './schema.json';
 import { ErrorMessage } from '../components/message';
 import { getProperty, hasKey, object2Array } from '@ystdb/helper/object';
+import { Save } from "react-feather";
 
 const ButtonItems = () => {
 	const {
@@ -183,7 +184,7 @@ const ButtonItems = () => {
 											disabled={!!selectedItem}
 											onClick={openAddStyleModal}
 										>
-											スタイル追加
+											<Icon className={ 'ystdb-button-icon' } icon={ plusCircle }/> スタイル追加
 										</Button>
 									</div>
 								</div>
@@ -410,7 +411,7 @@ const ButtonItems = () => {
 									}}
 									disabled={isUpdating}
 								>
-									設定を保存
+									<Save className={'ystdb-button-icon'} style={ { fill: 'none' } }/> 設定を保存
 								</UpdateButton>
 								<div className="ystdb-components-section">
 									<DeleteButton
