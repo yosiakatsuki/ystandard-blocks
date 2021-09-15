@@ -20,6 +20,7 @@ import '../components/_index.scss';
 import { initOption } from './functions';
 import BalloonItem from './item/item';
 import BalloonItemHeader from './item/balloon-item-header';
+import StartBalloonSetting from './item/start-balloon-setting';
 import AddItem from './item/add-item';
 import ManualLink from '../components/manual-link';
 
@@ -85,13 +86,22 @@ const Balloon = () => {
 						} }
 					>
 						<div className="ystdb-menu-balloon__list">
-							<BalloonItemHeader/>
+							{ ( 0 < balloons.length &&
+								<>
+									<BalloonItemHeader/>
 
-							{ balloons.map( ( value, index ) => {
-								return (
-									<BalloonItem key={ index } index={ index }/>
-								);
-							} ) }
+									{ balloons.map( ( value, index ) => {
+										return (
+											<BalloonItem key={ index } index={ index }/>
+										);
+									} ) }
+								</>
+							) }
+							{ ( 0 >= balloons.length &&
+								<>
+									<StartBalloonSetting/>
+								</>
+							) }
 						</div>
 						<div className="ystdb-menu-balloon__update">
 							<Button
@@ -101,7 +111,7 @@ const Balloon = () => {
 								} }
 								disabled={ isUpdating }
 							>
-								<Save className={'ystdb-button-icon'} style={ { fill: 'none' } }/> 設定を保存
+								<Save className={ 'ystdb-button-icon' } style={ { fill: 'none' } }/> 設定を保存
 							</Button>
 							<AddItem/>
 						</div>

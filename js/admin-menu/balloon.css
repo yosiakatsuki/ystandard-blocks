@@ -704,6 +704,13 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
 .ystdb-component-message.is-hide {
   display: none;
 }
+.ystdb-menu-balloon__start {
+  padding: 3em;
+  text-align: center;
+}
+.ystdb-menu-balloon__start .ystdb-menu-balloon__start-button {
+  font-size: 2em;
+}
 .ystdb-component-manual-link {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
