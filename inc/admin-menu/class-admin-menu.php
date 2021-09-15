@@ -177,7 +177,84 @@ class Admin_Menu {
 	public function menu_page_index() {
 		ob_start();
 		?>
-		<p>メニューコンテンツ</p>
+		<h1><span class="orbitron">yStandard Blocks</span>設定</h1>
+		<div class="ystdb-menu-top">
+			<div class="ystdb-menu-top__columns">
+				<div class="ystdb-menu-top__column">
+					<div class="ystdb-menu-top__contents">
+						<h2 class="ystdb-menu-top__title">インラインスタイル</h2>
+						<figure class="ystdb-menu-top__icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+								<path d="M12 20h9"></path>
+								<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+							</svg>
+						</figure>
+						<div class="ystdb-menu-top__dscr">
+							<p>段落ブロックなどで使えるインライン装飾の編集機能です。</p>
+							<p>マーカー3種類と任意で追加・削除できる装飾を好みにカスタマイズできます。</p>
+						</div>
+						<div class="ystdb-menu-top__links">
+							<div class="ystdb-menu-top__columns">
+								<div class="ystdb-menu-top__column no-shadow no-padding">
+									<a class="ystdb-menu-top__link-option button is-primary is-small" href="<?php echo esc_url_raw( admin_url( 'admin.php?page=' . Inline_Style::MENU_SLUG ) ); ?>">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
+											<circle cx="12" cy="12" r="3"></circle>
+											<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+										</svg>
+										設定画面
+									</a>
+								</div>
+								<div class="ystdb-menu-top__column no-shadow no-padding">
+									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-inline-style/" target="_blank" rel="noopener">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book">
+											<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+											<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+										</svg>
+										マニュアル
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ystdb-menu-top__column">
+					<div class="ystdb-menu-top__contents">
+						<h2 class="ystdb-menu-top__title">吹き出し登録</h2>
+						<figure class="ystdb-menu-top__icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square">
+								<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+							</svg>
+						</figure>
+						<div class="ystdb-menu-top__dscr">
+							<p>吹き出しブロックで使うアバター画像と名前を登録できる機能です。</p>
+							<p>よく使うアバターを登録しておくと便利です。</p>
+						</div>
+						<div class="ystdb-menu-top__links">
+							<div class="ystdb-menu-top__columns">
+								<div class="ystdb-menu-top__column no-shadow no-padding">
+									<a class="ystdb-menu-top__link-option button is-primary is-small" href="<?php echo esc_url_raw( admin_url( 'admin.php?page=' . Balloon::MENU_SLUG ) ); ?>">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
+											<circle cx="12" cy="12" r="3"></circle>
+											<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+										</svg>
+										設定画面
+									</a>
+								</div>
+								<div class="ystdb-menu-top__column no-shadow no-padding">
+									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/" target="_blank" rel="noopener">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book">
+											<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+											<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+										</svg>
+										マニュアル
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php
 		self::admin_menu_content(
 			ob_get_clean(),
@@ -322,7 +399,7 @@ class Admin_Menu {
 		 * @var \WP_Screen
 		 */
 		$screen = get_current_screen();
-		if ( false !== strpos( $screen->base, 'ystandard-blocks_page' ) ) {
+		if ( false !== strpos( $screen->base, 'ystandard-blocks_page' ) || false !== strpos( $screen->base, 'ystdb-menu' ) ) {
 			$classes .= ' ' . Config::ADMIN_MENU_BODY_CLASS;
 			$classes .= ' block-editor-page';
 		}
