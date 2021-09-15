@@ -93,6 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/* eslint-disable @wordpress/no-global-event-listener */
 document.addEventListener('DOMContentLoaded', () => {
   const animateSection = document.querySelectorAll('.has-animation');
   const options = {

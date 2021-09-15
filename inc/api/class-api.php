@@ -38,11 +38,13 @@ class Api {
 	 */
 	public static function create_response( $status, $message = '', $data = [] ) {
 
-		return rest_ensure_response( [
-			'status'  => self::get_status( $status ),
-			'message' => $message,
-			'data'    => $data,
-		] );
+		return rest_ensure_response(
+			[
+				'status'  => self::get_status( $status ),
+				'message' => $message,
+				'data'    => $data,
+			]
+		);
 	}
 
 	/**

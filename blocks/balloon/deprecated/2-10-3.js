@@ -84,7 +84,7 @@ const blockAttributes = {
 		type: 'string',
 	},
 	customFontSize: {
-		type: 'number',
+		type: 'string',
 	},
 	balloonType: {
 		type: 'string',
@@ -101,7 +101,7 @@ const blockSupports = {
 	className: false,
 };
 
-export const deprecated2101 = [
+export const deprecated = [
 	{
 		attributes: {
 			...blockAttributes,
@@ -277,7 +277,7 @@ export const deprecated2101 = [
 				color: textClass ? undefined : customTextColor,
 				fontSize:
 					!fontSizeClass && customFontSize
-						? customFontSize + 'px'
+						? customFontSize
 						: undefined,
 			};
 

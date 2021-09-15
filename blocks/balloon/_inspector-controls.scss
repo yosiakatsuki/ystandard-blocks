@@ -1,155 +1,8 @@
 @use "../../src/sass/global";
+
 /**
  * InspectorControls
  */
-.ystdb-balloon-selector {
-  .components-button {
-	display: block;
-	width: 100%;
-	height: auto;
-	padding: 0;
-	border: 0;
-	outline: none;
-	box-shadow: none;
-
-	&.is-primary {
-	  .ystdb-balloon-selector__container {
-		border-color: #007cba;
-	  }
-
-	  .ystdb-balloon-selector__image,
-	  .ystdb-balloon-selector__body {
-		background-color: #007cba;
-		border-color: #007cba;
-		color: #007cba;
-	  }
-	}
-  }
-}
-
-.ystdb-balloon-selector__container {
-  display: flex;
-  padding: 0.5em;
-  background-color: #ffffff;
-  border: 2px solid global.$color__border-gray;
-  border-radius: 3px;
-
-  &.is-serif {
-	.ystdb-balloon-selector__body {
-	  &::after {
-		content: "";
-		position: absolute;
-		top: 0.5em;
-		border: 0.5em solid transparent;
-	  }
-	}
-  }
-
-  &.is-think {
-	.ystdb-balloon-selector__body {
-	  border-radius: 20px;
-
-	  &::before,
-	  &::after {
-		content: "";
-		position: absolute;
-		background-color: inherit;
-		border-radius: 50%;
-	  }
-
-	  &::before {
-		top: 10px;
-		width: 5px;
-		height: 5px;
-	  }
-
-	  &::after {
-		top: 5px;
-		width: 7px;
-		height: 7px;
-	  }
-	}
-  }
-
-  &.is-right {
-	.ystdb-balloon-selector__body {
-	  margin-left: 1em;
-	}
-
-	&.is-serif {
-	  .ystdb-balloon-selector__body {
-		&::after {
-		  right: 100%;
-		  border-right-color: inherit;
-		}
-	  }
-	}
-
-	&.is-think {
-	  .ystdb-balloon-selector__body {
-		&::before {
-		  right: calc(100% + 0.5em);
-		}
-
-		&::after {
-		  right: calc(99%);
-		}
-	  }
-	}
-  }
-
-  &.is-left {
-	flex-direction: row-reverse;
-
-	.ystdb-balloon-selector__body {
-	  margin-right: 1em;
-	}
-
-	&.is-serif {
-	  .ystdb-balloon-selector__body {
-		&::after {
-		  left: 100%;
-		  border-left-color: inherit;
-		}
-	  }
-	}
-
-	&.is-think {
-	  .ystdb-balloon-selector__body {
-		&::before {
-		  left: calc(100% + 0.5em);
-		}
-
-		&::after {
-		  left: calc(99%);
-		}
-	  }
-	}
-  }
-}
-
-
-.ystdb-balloon-selector__image,
-.ystdb-balloon-selector__body {
-  display: block;
-  background-color: global.$color__border-gray;
-  color: global.$color__border-gray;
-}
-
-.ystdb-balloon-selector__image {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
-.ystdb-balloon-selector__body {
-  flex-grow: 1;
-  position: relative;
-  height: 40px;
-  border-radius: 4px;
-}
-
 
 /**
  * 登録済みアバター
@@ -182,6 +35,7 @@
 
 	  filter: grayscale(100%);
 	}
+
 	&:not(:disabled):not([aria-disabled=true]):not(.is-secondary):not(.is-primary):not(.is-tertiary):not(.is-link):hover {
 	  box-shadow: none;
 	}

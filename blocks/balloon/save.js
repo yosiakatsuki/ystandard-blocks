@@ -15,6 +15,7 @@ export default function save({ attributes }) {
 		customBackgroundColor,
 		balloonBorderColor,
 		customBalloonBorderColor,
+		balloonBorderWidth,
 		avatarNameColor,
 		customAvatarNameColor,
 		avatarBorderColor,
@@ -49,6 +50,8 @@ export default function save({ attributes }) {
 		'border-color',
 		balloonBorderColor
 	);
+
+	const isSerifBorder = 'serif-border' === balloonType;
 
 	/**
 	 * 大枠
@@ -136,6 +139,7 @@ export default function save({ attributes }) {
 	const balloonBodyStyles = {
 		backgroundColor: customBackgroundColor,
 		borderColor: customBalloonBorderColor,
+		borderWidth: isSerifBorder ? balloonBorderWidth : undefined,
 	};
 
 	/**
@@ -157,6 +161,28 @@ export default function save({ attributes }) {
 	const textStyles = {
 		color: textClass ? undefined : customTextColor,
 		fontSize: !fontSizeClass && customFontSize ? customFontSize : undefined,
+	};
+
+	const serifTriangleClass = classnames('ystdb-balloon__serif-triangle', {
+		[backgroundColorClass]: backgroundColorClass,
+		'has-background': backgroundColorClass || customBackgroundColor,
+		[balloonBorderColorClass]: balloonBorderColorClass,
+		'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
+	});
+
+	const serifTrianglePosition = 6 - balloonBorderWidth;
+	const serifTriangleStyle = {
+		backgroundColor: customBackgroundColor,
+		borderColor: customBalloonBorderColor,
+		borderWidth: balloonBorderWidth,
+		right:
+			'right' === balloonPosition
+				? `calc(100% - ${serifTrianglePosition}px)`
+				: undefined,
+		left:
+			'left' === balloonPosition
+				? `calc(100% - ${serifTrianglePosition}px)`
+				: undefined,
 	};
 
 	return (
@@ -184,6 +210,13 @@ export default function save({ attributes }) {
 					style={textStyles}
 					value={text}
 				/>
+				{isSerifBorder && (
+					<div
+						className={serifTriangleClass}
+						style={serifTriangleStyle}
+						aria-hidden
+					/>
+				)}
 			</div>
 		</div>
 	);

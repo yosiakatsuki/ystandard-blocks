@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_Conversion;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -38,6 +40,10 @@ class Balloon {
 	 */
 	public function __construct() {
 		/**
+		 * Block Editor.
+		 */
+		add_filter( 'ystdb_block_config', [ $this, 'add_block_config' ] );
+		/**
 		 * Admin.
 		 */
 		add_action( 'admin_menu', [ $this, 'add_menu' ], 100 + self::MENU_POSITION );
@@ -48,6 +54,23 @@ class Balloon {
 	}
 
 	/**
+	 * ブロックエディター設定追加
+	 *
+	 * @param array $config Config.
+	 *
+	 * @return array
+	 */
+	public function add_block_config( $config ) {
+		$content_background      = get_option( 'ys_color_content_bg', '#ffffff' );
+		$config['balloonImages'] = self::get_balloon_images();
+		$config['balloonOption'] = [
+			'contentBackground' => $content_background,
+		];
+
+		return $config;
+	}
+
+	/**
 	 * 吹き出し用設定取得
 	 */
 	public static function get_balloon_images() {
@@ -55,10 +78,14 @@ class Balloon {
 		$balloon_option = Option::get_option( 'balloon', '', [] );
 
 		foreach ( $balloon_option as $item ) {
-			$image = $item['image'];
-			$name  = $item['name'];
+			$image  = isset( $item['image'] ) ? $item['image'] : '';
+			$name   = isset( $item['name'] ) ? $item['name'] : '';
+			$enable = isset( $item['enable'] ) ? Helper_Conversion::to_bool( $item['enable'] ) : true;
+			$id     = 0;
 			if ( ! empty( $image ) ) {
-				$id       = attachment_url_to_postid( $image );
+				$id = attachment_url_to_postid( $image );
+			}
+			if ( $enable ) {
 				$result[] = [
 					'url'  => $image,
 					'id'   => $id,

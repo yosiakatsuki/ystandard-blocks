@@ -1,8 +1,6 @@
 import { __, _x } from '@wordpress/i18n';
 import { Path, SVG } from '@wordpress/components';
-
-export const defaultAvatar =
-	'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp';
+import { getComponentConfig } from '@ystdb/helper/config';
 
 /**
  * attributes
@@ -24,7 +22,7 @@ export const attributes = {
 		source: 'attribute',
 		selector: '.ystdb-balloon__avatar-image',
 		attribute: 'src',
-		default: defaultAvatar,
+		default: getComponentConfig('defaultAvatar').url,
 	},
 	avatarAlt: {
 		type: 'string',
@@ -74,6 +72,10 @@ export const attributes = {
 	customBalloonBorderColor: {
 		type: 'string',
 	},
+	balloonBorderWidth: {
+		type: 'integer',
+		default: 1,
+	},
 	textColor: {
 		type: 'string',
 	},
@@ -105,6 +107,10 @@ export const balloonTypes = [
 	{
 		label: __('会話', 'ystandard-blocks'),
 		value: 'serif',
+	},
+	{
+		label: __('会話(枠線)', 'ystandard-blocks'),
+		value: 'serif-border',
 	},
 	{
 		label: __('考え中', 'ystandard-blocks'),

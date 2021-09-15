@@ -29,7 +29,6 @@ class Option_No_YSTD {
 	 * 非 yStandard オプションページ追加.
 	 */
 	public function add_options_other() {
-		
 		add_options_page(
 			'yStandard Blocks 設定',
 			'yStandard Blocks 設定',

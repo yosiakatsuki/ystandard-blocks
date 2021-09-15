@@ -33,34 +33,34 @@ const ButtonItems = () => {
 		setSelectedItem,
 		isUpdating,
 		optionUpdate,
-	} = useContext( InlineStyleContext );
+	} = useContext(InlineStyleContext);
 
-	const fontUnit = getComponentConfig( 'fontUnit' );
+	const fontUnit = getComponentConfig('fontUnit');
 
-	const [ isAddStyleModalOpen, setIsAddStyleModalOpen ] = useState( false );
-	const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState( false );
-	const [ newStyleSlugErrorMessage, setNewStyleSlugErrorMessage ] =
-		useState( '' );
-	const [ newStyleLabelErrorMessage, setNewStyleLabelErrorMessage ] =
-		useState( '' );
-	const [ disableAddStyle, setDisableAddStyle ] = useState( false );
-	const [ newStyleSlug, setNewStyleSlug ] = useState( '' );
-	const [ newStyleLabel, setNewStyleLabel ] = useState( '' );
+	const [isAddStyleModalOpen, setIsAddStyleModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [newStyleSlugErrorMessage, setNewStyleSlugErrorMessage] =
+		useState('');
+	const [newStyleLabelErrorMessage, setNewStyleLabelErrorMessage] =
+		useState('');
+	const [disableAddStyle, setDisableAddStyle] = useState(false);
+	const [newStyleSlug, setNewStyleSlug] = useState('');
+	const [newStyleLabel, setNewStyleLabel] = useState('');
 
-	const openAddStyleModal = () => setIsAddStyleModalOpen( true );
-	const closeAddStyleModal = () => setIsAddStyleModalOpen( false );
-	const openDeleteModal = () => setIsDeleteModalOpen( true );
-	const closeDeleteModal = () => setIsDeleteModalOpen( false );
+	const openAddStyleModal = () => setIsAddStyleModalOpen(true);
+	const closeAddStyleModal = () => setIsAddStyleModalOpen(false);
+	const openDeleteModal = () => setIsDeleteModalOpen(true);
+	const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
 	const getItemList = () => {
-		const newItemList = object2Array( items ).map( ( value ) => {
+		const newItemList = object2Array(items).map((value) => {
 			return {
 				...value,
 				...{
 					value: value.name,
 				},
 			};
-		} );
+		});
 		return [
 			...[
 				{
@@ -73,46 +73,46 @@ const ButtonItems = () => {
 		];
 	};
 
-	const searchItem = ( search ) => {
-		if ( '' === search ) {
+	const searchItem = (search) => {
+		if ('' === search) {
 			return undefined;
 		}
-		return getProperty( items, search );
+		return getProperty(items, search);
 	};
 
-	const checkSlug = ( text, allowEmpty = false ) => {
-		if ( allowEmpty && ! text ) {
-			setNewStyleSlugErrorMessage( '' );
-			setDisableAddStyle( false );
+	const checkSlug = (text, allowEmpty = false) => {
+		if (allowEmpty && !text) {
+			setNewStyleSlugErrorMessage('');
+			setDisableAddStyle(false);
 			return true;
 		}
-		const match = text.match( /^[A-Za-z0-9\-]+$/ );
-		const hyphenLength = ( text.match( /\-/g ) || [] ).length;
-		const deleteHyphen = text.replace( /\-/g, '' );
+		const match = text.match(/^[A-Za-z0-9\-]+$/);
+		const hyphenLength = (text.match(/\-/g) || []).length;
+		const deleteHyphen = text.replace(/\-/g, '');
 		const check = match && hyphenLength <= 1 && deleteHyphen;
 		let message = '';
-		if ( ! check ) {
+		if (!check) {
 			message = 'IDは英数字のみ、ハイフンは1つまでで入力してください。';
 		}
-		const search = text ? searchItem( text ) : undefined;
-		if ( !! search ) {
+		const search = text ? searchItem(text) : undefined;
+		if (!!search) {
 			message = 'すでに登録されているIDです。';
 		}
-		setNewStyleSlugErrorMessage( message );
-		setDisableAddStyle( ! check || !! search );
+		setNewStyleSlugErrorMessage(message);
+		setDisableAddStyle(!check || !!search);
 
-		return check && ! search;
+		return check && !search;
 	};
 
-	const getCurrentOption = ( name, defaultValue = undefined ) => {
-		const currentOption = getProperty( items, selectedItem );
-		return getProperty( currentOption, name, defaultValue );
+	const getCurrentOption = (name, defaultValue = undefined) => {
+		const currentOption = getProperty(items, selectedItem);
+		return getProperty(currentOption, name, defaultValue);
 	};
 
-	const addInlineItem = ( slug, label ) => {
+	const addInlineItem = (slug, label) => {
 		const newValue = {
 			...items,
-			[ slug ]: {
+			[slug]: {
 				...schema.inlineStyle.items.schema,
 				...{
 					name: slug,
@@ -120,68 +120,68 @@ const ButtonItems = () => {
 				},
 			},
 		};
-		setItems( newValue );
+		setItems(newValue);
 	};
 
-	const deleteItem = ( name ) => {
+	const deleteItem = (name) => {
 		const newItems = { ...items };
-		delete newItems[ name ];
-		setItems( newItems );
+		delete newItems[name];
+		setItems(newItems);
 		return newItems;
 	};
 
-	const updateInlineItem = ( value ) => {
+	const updateInlineItem = (value) => {
 		const newValue = { ...items };
-		if ( hasKey( newValue, selectedItem ) ) {
-			newValue[ selectedItem ] = {
-				...getProperty( items, selectedItem ),
+		if (hasKey(newValue, selectedItem)) {
+			newValue[selectedItem] = {
+				...getProperty(items, selectedItem),
 				...value,
 			};
 		}
-		setItems( newValue );
+		setItems(newValue);
 	};
-	const updateInlineItemStyle = ( value, device = 'style' ) => {
+	const updateInlineItemStyle = (value, device = 'style') => {
 		const currentStyle = getProperty(
-			getProperty( items, selectedItem ),
+			getProperty(items, selectedItem),
 			device
 		);
-		updateInlineItem( {
-			[ device ]: {
+		updateInlineItem({
+			[device]: {
 				...currentStyle,
 				...value,
 			},
-		} );
+		});
 	};
 
 	const previewStyle = {
-		...getCurrentOption( 'style', {} ),
+		...getCurrentOption('style', {}),
 	};
-	const previewClassName = `ystdb-inline--${ selectedItem }`;
-	const previewText = `インラインスタイル${ selectedItem }`;
+	const previewClassName = `ystdb-inline--${selectedItem}`;
+	const previewText = `インラインスタイル${selectedItem}`;
 
 	return (
 		<>
 			<div className="ystdb-components-section">
 				<div className="ystdb-menu-component-columns">
 					<div className="ystdb-menu-component-columns__item">
-						<PanelBody title={ 'スタイル選択' }>
+						<PanelBody title={'スタイル選択'}>
 							<BaseControl>
 								<div className="ystdb-menu-inline-items__header">
 									<div>
 										<SelectControl
 											label="スタイル"
-											value={ selectedItem }
-											options={ getItemList() }
-											onChange={ ( value ) => {
-												setSelectedItem( value );
-											} }
+											value={selectedItem}
+											options={getItemList()}
+											onChange={(value) => {
+												setSelectedItem(value);
+											}}
 										/>
 									</div>
 									<div>
 										<Button
 											isPrimary
-											disabled={ !! selectedItem }
-											onClick={ openAddStyleModal }
+											disabled={!!selectedItem}
+											onClick={openAddStyleModal}
 										>
 											スタイル追加
 										</Button>
@@ -189,153 +189,156 @@ const ButtonItems = () => {
 								</div>
 							</BaseControl>
 						</PanelBody>
-						{ selectedItem && (
-							<PanelBody title={ '基本設定' }>
+						{selectedItem && (
+							<PanelBody title={'基本設定'}>
 								<BaseControl
-									id={ 'button-name' }
-									label={ 'ボタン名' }
+									id={'button-name'}
+									label={'ボタン名'}
 								>
 									<TextControl
-										label={ `表示名 (ID:${ getCurrentOption( 'name', '' ) })` }
-										value={ getCurrentOption( 'label', '' ) }
-										onChange={ ( value ) => {
-											updateInlineItem( { label: value } );
-										} }
+										label={`表示名 (ID:${getCurrentOption(
+											'name',
+											''
+										)})`}
+										value={getCurrentOption('label', '')}
+										onChange={(value) => {
+											updateInlineItem({ label: value });
+										}}
 									/>
 								</BaseControl>
 								<BaseControl
-									id={ 'enable' }
-									label={ 'ボタンの有効化' }
+									id={'enable'}
+									label={'ボタンの有効化'}
 								>
 									<ToggleControl
-										label={ 'ボタンを有効にする' }
-										checked={ getCurrentOption(
+										label={'ボタンを有効にする'}
+										checked={getCurrentOption(
 											'enable',
 											true
-										) }
-										onChange={ ( value ) => {
-											updateInlineItem( { enable: value } );
-										} }
+										)}
+										onChange={(value) => {
+											updateInlineItem({ enable: value });
+										}}
 									/>
 								</BaseControl>
 							</PanelBody>
-						) }
-						{ selectedItem && getCurrentOption( 'enable', true ) && (
+						)}
+						{selectedItem && getCurrentOption('enable', true) && (
 							<>
-								<PanelBody title={ '大きさ・スタイル' }>
+								<PanelBody title={'大きさ・スタイル'}>
 									<BaseControl
-										id={ 'item-font-size' }
-										label={ 'サイズ' }
+										id={'item-font-size'}
+										label={'サイズ'}
 									>
 										<div className="ystdb-component-responsive__container">
 											<div className="ystdb-component-responsive__item">
-												<Icon icon={ desktop }/>
+												<Icon icon={desktop} />
 												<UnitControl
-													value={ getStyle(
+													value={getStyle(
 														getCurrentOption(
 															'style',
 															{}
 														),
 														'font-size'
-													) }
-													onChange={ ( value ) => {
-														updateInlineItemStyle( {
+													)}
+													onChange={(value) => {
+														updateInlineItemStyle({
 															'font-size': value,
-														} );
-													} }
-													units={ fontUnit }
+														});
+													}}
+													units={fontUnit}
 												/>
 											</div>
 											<div className="ystdb-component-responsive__item">
-												<Icon icon={ tablet }/>
+												<Icon icon={tablet} />
 												<UnitControl
-													value={ getStyle(
+													value={getStyle(
 														getCurrentOption(
 															'tabletStyle',
 															{}
 														),
 														'font-size'
-													) }
-													onChange={ ( value ) => {
+													)}
+													onChange={(value) => {
 														updateInlineItemStyle(
 															{
 																'font-size':
-																value,
+																	value,
 															},
 															'tabletStyle'
 														);
-													} }
-													units={ fontUnit }
+													}}
+													units={fontUnit}
 												/>
 											</div>
 											<div className="ystdb-component-responsive__item">
-												<Icon icon={ mobile }/>
+												<Icon icon={mobile} />
 												<UnitControl
-													value={ getStyle(
+													value={getStyle(
 														getCurrentOption(
 															'mobileStyle',
 															{}
 														),
 														'font-size'
-													) }
-													onChange={ ( value ) => {
+													)}
+													onChange={(value) => {
 														updateInlineItemStyle(
 															{
 																'font-size':
-																value,
+																	value,
 															},
 															'mobileStyle'
 														);
-													} }
-													units={ fontUnit }
+													}}
+													units={fontUnit}
 												/>
 											</div>
 										</div>
 									</BaseControl>
 									<BaseControl
-										id={ 'font-weight' }
-										label={ '太さ' }
+										id={'font-weight'}
+										label={'太さ'}
 									>
 										<SelectControl
-											value={ getStyle(
-												getCurrentOption( 'style', {} ),
+											value={getStyle(
+												getCurrentOption('style', {}),
 												'font-weight'
-											) }
-											options={ getComponentConfig(
+											)}
+											options={getComponentConfig(
 												'fontWeight'
-											) }
-											onChange={ ( value ) => {
-												updateInlineItemStyle( {
+											)}
+											onChange={(value) => {
+												updateInlineItemStyle({
 													'font-weight': value,
-												} );
-											} }
+												});
+											}}
 										/>
 									</BaseControl>
 									<BaseControl
-										id={ 'font-style' }
-										label={ 'スタイル' }
+										id={'font-style'}
+										label={'スタイル'}
 									>
 										<SelectControl
-											value={ getStyle(
-												getCurrentOption( 'style', {} ),
+											value={getStyle(
+												getCurrentOption('style', {}),
 												'font-style'
-											) }
-											options={ getComponentConfig(
+											)}
+											options={getComponentConfig(
 												'fontStyle'
-											) }
-											onChange={ ( value ) => {
-												updateInlineItemStyle( {
+											)}
+											onChange={(value) => {
+												updateInlineItemStyle({
 													'font-style': value,
-												} );
-											} }
+												});
+											}}
 										/>
 									</BaseControl>
 									<BaseControl
-										id={ 'white-space' }
-										label={ '改行しない' }
+										id={'white-space'}
+										label={'改行しない'}
 									>
 										<ToggleControl
-											label={ '改行しない' }
+											label={'改行しない'}
 											checked={
 												'nowrap' ===
 												getStyle(
@@ -346,128 +349,128 @@ const ButtonItems = () => {
 													'white-space'
 												)
 											}
-											onChange={ ( value ) => {
-												updateInlineItemStyle( {
+											onChange={(value) => {
+												updateInlineItemStyle({
 													'white-space': value
 														? 'nowrap'
 														: undefined,
-												} );
-											} }
+												});
+											}}
 										/>
 									</BaseControl>
 								</PanelBody>
-								<PanelBody title={ '色' }>
+								<PanelBody title={'色'}>
 									<BaseControl
-										id={ 'font-color' }
-										label={ '文字色' }
+										id={'font-color'}
+										label={'文字色'}
 									>
 										<ColorPalette
-											onChange={ ( color ) => {
-												updateInlineItemStyle( {
+											onChange={(color) => {
+												updateInlineItemStyle({
 													color,
-												} );
-											} }
-											value={ getStyle(
-												getCurrentOption( 'style', {} ),
+												});
+											}}
+											value={getStyle(
+												getCurrentOption('style', {}),
 												'color'
-											) }
+											)}
 										/>
 									</BaseControl>
 								</PanelBody>
 								<PanelBody
-									title={ '上級者向け' }
-									initialOpen={ false }
+									title={'上級者向け'}
+									initialOpen={false}
 								>
 									<BaseControl
-										id={ 'font-family' }
-										label={ 'フォント' }
+										id={'font-family'}
+										label={'フォント'}
 									>
 										<TextControl
-											placeholder={ 'sans-serif' }
-											value={ getStyle(
-												getCurrentOption( 'style', {} ),
+											placeholder={'sans-serif'}
+											value={getStyle(
+												getCurrentOption('style', {}),
 												'font-family'
-											) }
-											onChange={ ( value ) =>
-												updateInlineItemStyle( {
+											)}
+											onChange={(value) =>
+												updateInlineItemStyle({
 													'font-family': value,
-												} )
+												})
 											}
 										/>
 									</BaseControl>
 								</PanelBody>
 							</>
-						) }
-						{ selectedItem && (
+						)}
+						{selectedItem && (
 							<div className="ystdb-components-section">
 								<UpdateButton
-									key={ 'update' }
-									onClick={ () => {
-										optionUpdate( { items } );
-									} }
-									disabled={ isUpdating }
+									key={'update'}
+									onClick={() => {
+										optionUpdate({ items });
+									}}
+									disabled={isUpdating}
 								>
 									設定を保存
 								</UpdateButton>
 								<div className="ystdb-components-section">
 									<DeleteButton
 										isSmall
-										onClick={ () => {
+										onClick={() => {
 											openDeleteModal();
-										} }
-										disabled={ isUpdating }
+										}}
+										disabled={isUpdating}
 									>
 										設定を削除
 									</DeleteButton>
 								</div>
 							</div>
-						) }
+						)}
 					</div>
 					<div className="ystdb-menu-component-columns__item">
 						<Preview>
 							<span
-								className={ previewClassName }
-								style={ previewStyle }
+								className={previewClassName}
+								style={previewStyle}
 								contentEditable="true"
 							>
-								{ previewText }
+								{previewText}
 							</span>
 						</Preview>
 					</div>
-					{ isAddStyleModalOpen && (
+					{isAddStyleModalOpen && (
 						<Modal
 							title="スタイルの追加"
-							onRequestClose={ closeAddStyleModal }
-							shouldCloseOnClickOutside={ false }
-							isDismissible={ false }
+							onRequestClose={closeAddStyleModal}
+							shouldCloseOnClickOutside={false}
+							isDismissible={false}
 							focusOnMount
 						>
 							<BaseControl>
 								<TextControl
 									label="ID (英数字)"
-									value={ newStyleSlug }
-									onChange={ ( value ) => {
-										checkSlug( value, true );
-										setNewStyleSlug( value );
-									} }
+									value={newStyleSlug}
+									onChange={(value) => {
+										checkSlug(value, true);
+										setNewStyleSlug(value);
+									}}
 								/>
 								<ErrorMessage
-									isShow={ !! newStyleSlugErrorMessage }
+									isShow={!!newStyleSlugErrorMessage}
 								>
-									{ newStyleSlugErrorMessage }
+									{newStyleSlugErrorMessage}
 								</ErrorMessage>
 								<TextControl
 									label="表示名"
-									value={ newStyleLabel }
-									onChange={ ( value ) => {
-										setNewStyleLabel( value );
-										setNewStyleLabelErrorMessage( '' );
-									} }
+									value={newStyleLabel}
+									onChange={(value) => {
+										setNewStyleLabel(value);
+										setNewStyleLabelErrorMessage('');
+									}}
 								/>
 								<ErrorMessage
-									isShow={ !! newStyleLabelErrorMessage }
+									isShow={!!newStyleLabelErrorMessage}
 								>
-									{ newStyleLabelErrorMessage }
+									{newStyleLabelErrorMessage}
 								</ErrorMessage>
 							</BaseControl>
 							<div className="ystdb-components-section">
@@ -475,31 +478,31 @@ const ButtonItems = () => {
 									<div className="ystdb-menu-component-columns__item">
 										<UpdateButton
 											isPrimary
-											onClick={ () => {
+											onClick={() => {
 												const check =
-													checkSlug( newStyleSlug );
-												if ( ! newStyleLabel ) {
+													checkSlug(newStyleSlug);
+												if (!newStyleLabel) {
 													setNewStyleLabelErrorMessage(
 														'表示名を入力してください。'
 													);
 												}
-												if ( ! check || ! newStyleLabel ) {
+												if (!check || !newStyleLabel) {
 													return;
 												}
 												addInlineItem(
 													newStyleSlug,
 													newStyleLabel
 												);
-												setNewStyleSlug( '' );
-												setNewStyleLabel( '' );
-												setNewStyleSlugErrorMessage( '' );
+												setNewStyleSlug('');
+												setNewStyleLabel('');
+												setNewStyleSlugErrorMessage('');
 												setNewStyleLabelErrorMessage(
 													''
 												);
-												setSelectedItem( newStyleSlug );
+												setSelectedItem(newStyleSlug);
 												closeAddStyleModal();
-											} }
-											disabled={ disableAddStyle }
+											}}
+											disabled={disableAddStyle}
 										>
 											追加
 										</UpdateButton>
@@ -507,7 +510,7 @@ const ButtonItems = () => {
 									<div className="ystdb-menu-component-columns__item">
 										<CancelButton
 											isSecondary
-											onClick={ closeAddStyleModal }
+											onClick={closeAddStyleModal}
 										>
 											キャンセル
 										</CancelButton>
@@ -515,16 +518,16 @@ const ButtonItems = () => {
 								</div>
 							</div>
 						</Modal>
-					) }
-					{ isDeleteModalOpen && (
+					)}
+					{isDeleteModalOpen && (
 						<Modal
 							title="確認"
-							onRequestClose={ closeDeleteModal }
-							shouldCloseOnClickOutside={ false }
-							isDismissible={ false }
+							onRequestClose={closeDeleteModal}
+							shouldCloseOnClickOutside={false}
+							isDismissible={false}
 						>
 							<p>
-								{ searchItem( selectedItem ).label }{ ' ' }
+								{searchItem(selectedItem).label}{' '}
 								を削除してもよろしいですか？
 							</p>
 							<div className="ystdb-components-section">
@@ -532,7 +535,7 @@ const ButtonItems = () => {
 									<div className="ystdb-menu-component-columns__item">
 										<DeleteButton
 											isPrimary
-											onClick={ () => {
+											onClick={() => {
 												optionUpdate(
 													{
 														items: deleteItem(
@@ -541,9 +544,9 @@ const ButtonItems = () => {
 													},
 													'設定を削除しました。'
 												);
-												setSelectedItem( '' );
-											} }
-											disabled={ isUpdating }
+												setSelectedItem('');
+											}}
+											disabled={isUpdating}
 										>
 											削除
 										</DeleteButton>
@@ -551,7 +554,7 @@ const ButtonItems = () => {
 									<div className="ystdb-menu-component-columns__item">
 										<CancelButton
 											isSecondary
-											onClick={ closeDeleteModal }
+											onClick={closeDeleteModal}
 										>
 											キャンセル
 										</CancelButton>
@@ -559,7 +562,7 @@ const ButtonItems = () => {
 								</div>
 							</div>
 						</Modal>
-					) }
+					)}
 				</div>
 			</div>
 		</>

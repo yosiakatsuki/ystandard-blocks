@@ -71,6 +71,7 @@
   padding: 1em;
   background-color: global.$color__bg-gray-dark;
   border-color: global.$color__bg-gray-dark;
+  border-style: solid;
   border-radius: 4px;
 
   &::after {
@@ -78,8 +79,10 @@
 	position: absolute;
   }
 
+  /**
+   * 会話
+   */
   &.is-serif {
-	margin-left: 1.5em;
 
 	&::after {
 	  top: 1em;
@@ -89,6 +92,8 @@
 	}
 
 	&.is-right {
+	  margin-left: 1.5em;
+
 	  &::after {
 		right: 100%;
 		border-right-color: inherit;
@@ -118,11 +123,86 @@
 	  }
 	}
   }
+
+  /**
+  * 会話(枠線)
+  */
+  &.is-serif-border {
+
+	&:not(.has-border-color) {
+	  border-color: #656565;
+	  .ystdb-balloon__serif-triangle {
+		border-color: #656565;
+	  }
+	}
+
+	.ystdb-balloon__serif-triangle {
+	  position: absolute;
+	  top: 16px;
+	  width: 12px;
+	  height: 12px;
+	  border-style: solid;
+	  transform: rotate(-45deg);
+
+	  &::after {
+		content: "";
+		display: block;
+		width: 12px;
+		height: 12px;
+		background-color: inherit;
+	  }
+	}
+
+
+	&.is-right {
+	  margin-left: 1.5em;
+
+	  .ystdb-balloon__serif-triangle {
+		right: calc(100% - 5px);
+	  }
+	}
+
+	&.is-left {
+	  margin-right: 1.5em;
+
+	  .ystdb-balloon__serif-triangle {
+		transform: rotate(135deg);
+		left: calc(100% - 5px);
+	  }
+	}
+
+	&.is-center {
+	  .ystdb-balloon__serif-triangle {
+		top: 50%;
+	  }
+
+	  &.is-right {
+		.ystdb-balloon__serif-triangle {
+		  transform: translateY(-50%) rotate(-45deg);
+		}
+	  }
+
+	  &.is-left {
+		.ystdb-balloon__serif-triangle {
+		  transform: translateY(-50%) rotate(135deg);
+		}
+	  }
+	}
+
+	&.is-bottom {
+	  .ystdb-balloon__serif-triangle {
+		top: auto;
+		bottom: 3em;
+	  }
+	}
+
+  }
+
   /**
   *  考え中
   */
   &.is-think {
-	padding: 1.5em;
+	padding: 1em 1.5em;
 	border-radius: 3em;
 
 	&::before,
@@ -134,26 +214,26 @@
 	&::before {
 	  content: "";
 	  position: absolute;
-	  top: 2em;
-	  width: 15px;
-	  height: 15px;
+	  top: 3.2em;
+	  width: 10px;
+	  height: 10px;
 	}
 
 	&::after {
-	  top: 1em;
-	  width: 20px;
-	  height: 20px;
+	  top: 2.8em;
+	  width: 16px;
+	  height: 16px;
 	}
 
 	&.is-right {
 	  margin-left: 2.5em;
 
 	  &::before {
-		right: calc(100% + 1.1em);
+		right: calc(100% + 1.2em);
 	  }
 
 	  &::after {
-		right: 100%;
+		right: calc(100% + .1em);
 	  }
 	}
 

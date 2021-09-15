@@ -90,12 +90,11 @@
 /*!**********************************!*\
   !*** ./blocks/balloon/config.js ***!
   \**********************************/
-/*! exports provided: defaultAvatar, attributes, supports, balloonTypes, balloonPositions, avatarSizes, alignBottom, alignCenter, alignTop, alignmentsControls */
+/*! exports provided: attributes, supports, balloonTypes, balloonPositions, avatarSizes, alignBottom, alignCenter, alignTop, alignmentsControls */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultAvatar", function() { return defaultAvatar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "attributes", function() { return attributes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "supports", function() { return supports; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "balloonTypes", function() { return balloonTypes; });
@@ -111,10 +110,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ystdb/helper/config */ "./src/js/helper/config.js");
 
 
 
-const defaultAvatar = 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp';
+
 /**
  * attributes
  */
@@ -136,7 +136,7 @@ const attributes = {
     source: 'attribute',
     selector: '.ystdb-balloon__avatar-image',
     attribute: 'src',
-    default: defaultAvatar
+    default: Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__["getComponentConfig"])('defaultAvatar').url
   },
   avatarAlt: {
     type: 'string',
@@ -186,6 +186,10 @@ const attributes = {
   customBalloonBorderColor: {
     type: 'string'
   },
+  balloonBorderWidth: {
+    type: 'integer',
+    default: 1
+  },
   textColor: {
     type: 'string'
   },
@@ -214,6 +218,9 @@ const supports = {
 const balloonTypes = [{
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('会話', 'ystandard-blocks'),
   value: 'serif'
+}, {
+  label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('会話(枠線)', 'ystandard-blocks'),
+  value: 'serif-border'
 }, {
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('考え中', 'ystandard-blocks'),
   value: 'think'
@@ -298,7 +305,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../config */ "./blocks/balloon/config.js");
+/* harmony import */ var _ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ystdb/helper/config */ "./src/js/helper/config.js");
 
 
 
@@ -320,7 +327,7 @@ const blockAttributes = {
     source: 'attribute',
     selector: '.ystdb-balloon__avatar-image',
     attribute: 'src',
-    default: _config__WEBPACK_IMPORTED_MODULE_3__["defaultAvatar"]
+    default: Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__["getComponentConfig"])('defaultAvatar').url
   },
   avatarAlt: {
     type: 'string',
@@ -585,6 +592,309 @@ const deprecated2101 = [{
 
 /***/ }),
 
+/***/ "./blocks/balloon/deprecated/2-10-3.js":
+/*!*********************************************!*\
+  !*** ./blocks/balloon/deprecated/2-10-3.js ***!
+  \*********************************************/
+/*! exports provided: deprecated */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated", function() { return deprecated; });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ystdb/helper/config */ "./src/js/helper/config.js");
+
+
+
+
+const blockAttributes = {
+  avatarName: {
+    type: 'string',
+    source: 'html',
+    selector: '.ystdb-balloon__name'
+  },
+  avatarNameColor: {
+    type: 'string'
+  },
+  customAvatarNameColor: {
+    type: 'string'
+  },
+  avatarURL: {
+    type: 'string',
+    source: 'attribute',
+    selector: '.ystdb-balloon__avatar-image',
+    attribute: 'src',
+    default: Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_3__["getComponentConfig"])('defaultAvatar').url
+  },
+  avatarAlt: {
+    type: 'string',
+    source: 'attribute',
+    selector: '.ystdb-balloon__avatar-image',
+    attribute: 'alt'
+  },
+  avatarID: {
+    type: 'integer',
+    default: 0
+  },
+  avatarSize: {
+    type: 'string',
+    default: 'large'
+  },
+  avatarBorderColor: {
+    type: 'string'
+  },
+  customAvatarBorderColor: {
+    type: 'string'
+  },
+  avatarBorderWidth: {
+    type: 'integer',
+    default: 0
+  },
+  avatarBorderRadius: {
+    type: 'integer'
+  },
+  text: {
+    type: 'string',
+    source: 'html',
+    selector: '.ystdb-balloon__text'
+  },
+  balloonPosition: {
+    type: 'string',
+    default: 'right'
+  },
+  backgroundColor: {
+    type: 'string'
+  },
+  customBackgroundColor: {
+    type: 'string'
+  },
+  balloonBorderColor: {
+    type: 'string'
+  },
+  customBalloonBorderColor: {
+    type: 'string'
+  },
+  textColor: {
+    type: 'string'
+  },
+  customTextColor: {
+    type: 'string'
+  },
+  fontSize: {
+    type: 'string'
+  },
+  customFontSize: {
+    type: 'string'
+  },
+  balloonType: {
+    type: 'string',
+    default: 'serif'
+  },
+  verticalAlign: {
+    type: 'string',
+    default: 'top'
+  }
+};
+const blockSupports = {
+  align: false,
+  className: false
+};
+const deprecated = [{
+  attributes: { ...blockAttributes
+  },
+  supports: { ...blockSupports
+  },
+
+  migrate(attributes) {
+    let newFontSize = attributes.customFontSize;
+
+    if ('number' === typeof newFontSize) {
+      newFontSize = newFontSize.toString().replace('px', '') + 'px';
+    }
+
+    return { ...attributes,
+      customFontSize: newFontSize
+    };
+  },
+
+  save({
+    attributes
+  }) {
+    const {
+      className,
+      textColor,
+      customTextColor,
+      backgroundColor,
+      customBackgroundColor,
+      balloonBorderColor,
+      customBalloonBorderColor,
+      avatarNameColor,
+      customAvatarNameColor,
+      avatarBorderColor,
+      customAvatarBorderColor,
+      fontSize,
+      customFontSize,
+      avatarName,
+      avatarURL,
+      avatarAlt,
+      avatarSize,
+      avatarBorderWidth,
+      avatarBorderRadius,
+      text,
+      balloonPosition,
+      balloonType,
+      verticalAlign
+    } = attributes;
+    const avatarNameColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('color', avatarNameColor);
+    const avatarBorderColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('border-color', avatarBorderColor);
+    const textClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('color', textColor);
+    const fontSizeClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getFontSizeClass"])(fontSize);
+    const backgroundColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('background-color', backgroundColor);
+    const balloonBorderColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('border-color', balloonBorderColor);
+    /**
+     * 大枠
+     *
+     * @type {string}
+     */
+
+    const wrapClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'ystdb-balloon', {
+      [`is-vertically-aligned-${verticalAlign}`]: verticalAlign,
+      [`is-balloon-position-${balloonPosition}`]: balloonPosition
+    });
+    /**
+     * アバター画像カラムクラス
+     *
+     * @type {string}
+     */
+
+    const avatarWrapClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__avatar', {
+      [`is-size-${avatarSize}`]: avatarSize
+    });
+    /**
+     * アバター画像クラス
+     *
+     * @type {string}
+     */
+
+    const avatarClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__avatar-image', {
+      'has-border-color': avatarBorderColorClass || customAvatarBorderColor,
+      [avatarBorderColorClass]: avatarBorderColorClass,
+      'has-border': 0 < avatarBorderWidth
+    });
+    /**
+     * アバター画像スタイル
+     *
+     * @type {{borderColor: *}}
+     */
+
+    const avatarStyle = {
+      borderColor: customAvatarBorderColor,
+      borderWidth: 0 < avatarBorderWidth ? avatarBorderWidth : undefined,
+      borderRadius: avatarBorderRadius
+    };
+    /**
+     * アバター画像ALT
+     */
+
+    const avatarAltText = avatarAlt ? avatarAlt : avatarName;
+    /**
+     * アバター名クラス
+     *
+     * @type {string}
+     */
+
+    const avatarNameClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__name', {
+      [avatarNameColorClass]: avatarNameColorClass,
+      'has-text-color': customAvatarNameColor || avatarNameColorClass
+    });
+    /**
+     * アバター名スタイル
+     *
+     * @type {{color: *}}
+     */
+
+    const avatarNameStyles = {
+      color: customAvatarNameColor
+    };
+    /**
+     * 吹き出しクラス
+     *
+     * @type {string}
+     */
+
+    const balloonBodyClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__body', {
+      [backgroundColorClass]: backgroundColorClass,
+      'has-background': backgroundColorClass || customBackgroundColor,
+      [balloonBorderColorClass]: balloonBorderColorClass,
+      'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
+      [`is-${verticalAlign}`]: verticalAlign,
+      [`is-${balloonPosition}`]: balloonPosition,
+      [`is-${balloonType}`]: balloonType
+    });
+    /**
+     * 吹き出しスタイル
+     *
+     * @type {{backgroundColor: *}}
+     */
+
+    const balloonBodyStyles = {
+      backgroundColor: customBackgroundColor,
+      borderColor: customBalloonBorderColor
+    };
+    /**
+     * 吹き出しテキストクラス
+     *
+     * @type {string}
+     */
+
+    const textClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__text', {
+      [textClass]: textClass,
+      'has-text-color': textColor || customTextColor,
+      [fontSizeClass]: fontSizeClass
+    });
+    /**
+     * 吹き出しテキストスタイル
+     *
+     * @type {{color: (*), fontSize: (string|*)}}
+     */
+
+    const textStyles = {
+      color: textClass ? undefined : customTextColor,
+      fontSize: !fontSizeClass && customFontSize ? customFontSize : undefined
+    };
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: wrapClasses
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
+      className: avatarWrapClasses
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      className: avatarClasses,
+      style: avatarStyle,
+      src: avatarURL,
+      alt: avatarAltText
+    }), avatarName && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figcaption", {
+      className: avatarNameClass,
+      style: avatarNameStyles
+    }, avatarName)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: balloonBodyClass,
+      style: balloonBodyStyles
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"].Content, {
+      tagName: 'p',
+      className: textClasses,
+      style: textStyles,
+      value: text
+    })));
+  }
+
+}];
+
+/***/ }),
+
 /***/ "./blocks/balloon/deprecated/index.js":
 /*!********************************************!*\
   !*** ./blocks/balloon/deprecated/index.js ***!
@@ -596,8 +906,10 @@ const deprecated2101 = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deprecated", function() { return deprecated; });
 /* harmony import */ var _2_10_1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./2-10-1 */ "./blocks/balloon/deprecated/2-10-1.js");
+/* harmony import */ var _2_10_3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./2-10-3 */ "./blocks/balloon/deprecated/2-10-3.js");
 
-const deprecated = [..._2_10_1__WEBPACK_IMPORTED_MODULE_0__["deprecated2101"]];
+
+const deprecated = [..._2_10_1__WEBPACK_IMPORTED_MODULE_0__["deprecated2101"], ..._2_10_3__WEBPACK_IMPORTED_MODULE_1__["deprecated"]];
 
 /***/ }),
 
@@ -625,6 +937,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _src_js_admin_menu_components_manual_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/js/admin-menu/components/manual-link */ "./src/js/admin-menu/components/manual-link/index.js");
+/* harmony import */ var _ystdb_helper_config__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ystdb/helper/config */ "./src/js/helper/config.js");
+/* harmony import */ var _ystdb_components_horizon_buttons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ystdb/components/horizon-buttons */ "./src/js/components/horizon-buttons/index.js");
 
 
 
@@ -635,7 +950,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ysBalloon(props) {
+
+
+
+function Balloon(props) {
   const {
     textColor,
     backgroundColor,
@@ -663,6 +981,7 @@ function ysBalloon(props) {
     avatarBorderWidth,
     avatarBorderRadius,
     text,
+    balloonBorderWidth,
     balloonPosition,
     balloonType,
     verticalAlign
@@ -670,6 +989,10 @@ function ysBalloon(props) {
   const ALLOWED_MEDIA_TYPES = ['image'];
   const DEFAULT_CONTROLS = ['top', 'center', 'bottom'];
   const DEFAULT_CONTROL = 'top';
+  const defaultAvatar = Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_9__["getComponentConfig"])('defaultAvatar').url;
+  const balloonImages = Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_9__["getBlockEditorConfig"])('balloonImages', []);
+  const balloonOption = Object(_ystdb_helper_config__WEBPACK_IMPORTED_MODULE_9__["getBlockEditorConfig"])('balloonOption', {});
+  const isSerifBorder = 'serif-border' === balloonType;
   const activeAlignment = _config__WEBPACK_IMPORTED_MODULE_2__["alignmentsControls"][verticalAlign];
   const defaultAlignmentControl = _config__WEBPACK_IMPORTED_MODULE_2__["alignmentsControls"][DEFAULT_CONTROL];
   const {
@@ -737,8 +1060,9 @@ function ysBalloon(props) {
 
   const balloonBodyClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__body', {
     [backgroundColor.class]: backgroundColor.class,
-    [balloonBorderColor.class]: balloonBorderColor.class,
     'has-background': backgroundColor.color,
+    [balloonBorderColor.class]: balloonBorderColor.class,
+    'has-border-color': balloonBorderColor.color,
     [`is-${verticalAlign}`]: verticalAlign,
     [`is-${balloonPosition}`]: balloonPosition,
     [`is-${balloonType}`]: balloonType
@@ -751,7 +1075,8 @@ function ysBalloon(props) {
 
   const balloonBodyStyles = {
     backgroundColor: backgroundColor.color,
-    borderColor: balloonBorderColor.color
+    borderColor: balloonBorderColor.color,
+    borderWidth: isSerifBorder ? balloonBorderWidth : undefined
   };
   /**
    * 吹き出しテキストクラス
@@ -774,6 +1099,20 @@ function ysBalloon(props) {
     color: textColor.color,
     fontSize: fontSize.size ? fontSize.size : undefined
   };
+  const serifTriangleClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__serif-triangle', {
+    [backgroundColor.class]: backgroundColor.class,
+    'has-background': backgroundColor.color,
+    [balloonBorderColor.class]: balloonBorderColor.class,
+    'has-border-color': balloonBorderColor.color
+  });
+  const serifTrianglePosition = 6 - balloonBorderWidth;
+  const serifTriangleStyle = {
+    backgroundColor: backgroundColor.color,
+    borderColor: balloonBorderColor.color,
+    borderWidth: balloonBorderWidth,
+    right: 'right' === balloonPosition ? `calc(100% - ${serifTrianglePosition}px)` : undefined,
+    left: 'left' === balloonPosition ? `calc(100% - ${serifTrianglePosition}px)` : undefined
+  };
   /**
    * 画像設定コントロール
    *
@@ -781,7 +1120,7 @@ function ysBalloon(props) {
    */
 
   const mediaUploadRender = obj => {
-    if (!avatarURL || _config__WEBPACK_IMPORTED_MODULE_2__["defaultAvatar"] === avatarURL) {
+    if (!avatarURL || defaultAvatar === avatarURL) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
         className: avatarClasses,
         style: avatarStyle
@@ -789,7 +1128,7 @@ function ysBalloon(props) {
         onClick: obj.open,
         className: 'ystdb-mediaupload__preview is-no-image'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
-        src: _config__WEBPACK_IMPORTED_MODULE_2__["defaultAvatar"],
+        src: defaultAvatar,
         alt: ''
       })));
     }
@@ -816,7 +1155,7 @@ function ysBalloon(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["BlockControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToolbarGroup"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToolbarItem"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["_x"])('Change vertical alignment', 'Block vertical alignment setting label')
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["_x"])('縦位置の変更', 'ystandard-blocks')
   }, toolbarItemHTMLProps => Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["DropdownMenu"], {
     toggleProps: toolbarItemHTMLProps,
     isCollapsed: true,
@@ -831,11 +1170,10 @@ function ysBalloon(props) {
     })
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し設定', 'ystandard-blocks')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出しの位置', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: 'ystdb-balloon-selector'
-  }, _config__WEBPACK_IMPORTED_MODULE_2__["balloonPositions"].map(item => {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'balloon-position',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出しの向き', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_ystdb_components_horizon_buttons__WEBPACK_IMPORTED_MODULE_10__["default"], null, _config__WEBPACK_IMPORTED_MODULE_2__["balloonPositions"].map(item => {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Button"], {
       key: item.value,
       isSecondary: balloonPosition !== item.value,
@@ -845,39 +1183,32 @@ function ysBalloon(props) {
           balloonPosition: item.value
         });
       }
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: `ystdb-balloon-selector__container is-${item.value} is-${balloonType}`
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: 'ystdb-balloon-selector__image'
-    }, ' '), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: 'ystdb-balloon-selector__body'
-    }, item.label)));
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出しタイプ', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: 'ystdb-balloon-selector'
-  }, _config__WEBPACK_IMPORTED_MODULE_2__["balloonTypes"].map(item => {
+    }, item.label);
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'balloon-type',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出しタイプ', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_ystdb_components_horizon_buttons__WEBPACK_IMPORTED_MODULE_10__["default"], null, _config__WEBPACK_IMPORTED_MODULE_2__["balloonTypes"].map(item => {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Button"], {
       key: item.value,
       isSecondary: balloonType !== item.value,
       isPrimary: balloonType === item.value,
       onClick: () => {
+        if ('serif-border' === item.value && 'serif-border' !== balloonType) {
+          setBackgroundColor(balloonOption.contentBackground);
+        }
+
         setAttributes({
           balloonType: item.value
         });
       }
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: `ystdb-balloon-selector__container is-${item.value} is-${balloonPosition}`
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: 'ystdb-balloon-selector__image'
-    }, ' '), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-      className: 'ystdb-balloon-selector__body'
-    }, item.label)));
-  })))), '1' === ystdb.yStandard && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+    }, item.label);
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('登録済みアバター画像', 'ystandard-blocks')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, 0 >= ystdb.balloonImages.length ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u767B\u9332\u6E08\u307F\u306E\u30A2\u30D0\u30BF\u30FC\u753B\u50CF\u306F\u3042\u308A\u307E\u305B\u3093\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u30AB\u30B9\u30BF\u30DE\u30A4\u30B6\u30FC\u306E\u300C[ys]\u62E1\u5F35\u6A5F\u80FD\u8A2D\u5B9A\u300D\u2192\u300C[ys blocks]\u5439\u304D\u51FA\u3057\u30D6\u30ED\u30C3\u30AF\u753B\u50CF\u8A2D\u5B9A\u300D\u304B\u3089\u767B\u9332\u3057\u3066\u304F\u3060\u3055\u3044\u3002")) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, 0 >= balloonImages.length ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u767B\u9332\u6E08\u307F\u306E\u30A2\u30D0\u30BF\u30FC\u753B\u50CF\u306F\u3042\u308A\u307E\u305B\u3093\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u300CyStandard Blocks\u300D\u8A2D\u5B9A\u753B\u9762\u306E\u300C\u5439\u304D\u51FA\u3057\u767B\u9332\u300D\u304B\u3089\u3088\u304F\u4F7F\u3046\u30A2\u30D0\u30BF\u30FC\u753B\u50CF\u3092\u767B\u9332\u3067\u304D\u307E\u3059\u3002"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_src_js_admin_menu_components_manual_link__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    url: 'https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/'
+  })) : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: 'ystdb-avatar-list'
-  }, ystdb.balloonImages.map(item => {
+  }, balloonImages.map(item => {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Button"], {
       key: item.id,
       isPrimary: avatarID === item.id && avatarName === item.name,
@@ -898,11 +1229,10 @@ function ysBalloon(props) {
     }, item.name)));
   })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバター設定', 'ystandard-blocks')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバターサイズ', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: 'ystdb-btn-selector components-base-control'
-  }, _config__WEBPACK_IMPORTED_MODULE_2__["avatarSizes"].map(item => {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'avatar-size',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバターサイズ', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_ystdb_components_horizon_buttons__WEBPACK_IMPORTED_MODULE_10__["default"], null, _config__WEBPACK_IMPORTED_MODULE_2__["avatarSizes"].map(item => {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["Button"], {
       key: item.value,
       isSecondary: avatarSize !== item.value,
@@ -937,18 +1267,20 @@ function ysBalloon(props) {
         avatarBorderWidth: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバター画像枠色', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'avatar-border-color',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバター画像枠色', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
     colors: colors,
     disableCustomColors: false,
     onChange: color => {
       setAvatarBorderColor(color);
     },
     value: avatarBorderColor.color
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバター名文字色', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'avatar-text-color',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('アバター名文字色', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
     colors: colors,
     disableCustomColors: false,
     onChange: color => {
@@ -956,26 +1288,31 @@ function ysBalloon(props) {
     },
     value: avatarNameColor.color
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('テキスト設定', 'ystandard-blocks')
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し設定', 'ystandard-blocks')
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["FontSizePicker"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('文字サイズ', 'ystandard-blocks'),
     value: fontSize.size,
     onChange: font => {
       setFontSize(font);
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し背景色', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'balloon-background',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し背景色', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
     colors: colors,
     disableCustomColors: false,
     onChange: color => {
       setBackgroundColor(color);
-      setBalloonBorderColor(color);
+
+      if (!isSerifBorder) {
+        setBalloonBorderColor(color);
+      }
     },
     value: backgroundColor.color
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-inspector-controls__label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し文字色', 'ystandard-blocks')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'balloon-text-color',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し文字色', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
     colors: colors,
     disableCustomColors: false,
     onChange: color => {
@@ -985,7 +1322,29 @@ function ysBalloon(props) {
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["ContrastChecker"], {
     backgroundColor: backgroundColor.color,
     textColor: textColor.color
-  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  })), isSerifBorder && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], {
+    id: 'serif-border-color',
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し枠線色', 'ystandard-blocks')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ColorPalette"], {
+    colors: colors,
+    disableCustomColors: false,
+    onChange: color => {
+      setBalloonBorderColor(color);
+    },
+    value: balloonBorderColor.color
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["RangeControl"], {
+    value: balloonBorderWidth,
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('吹き出し枠線太さ', 'ystandard-blocks'),
+    min: 1,
+    max: 4,
+    initialPosition: 1,
+    allowReset: true,
+    onChange: value => {
+      setAttributes({
+        balloonBorderWidth: value
+      });
+    }
+  }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: wrapClasses
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
     className: avatarWrapClasses
@@ -1002,7 +1361,7 @@ function ysBalloon(props) {
     render: mediaUploadRender
   }), (isSelected || avatarName) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figcaption", {
     className: avatarNameClass
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
     value: avatarName,
     className: 'ystdb-balloon__name--edit',
     onChange: value => {
@@ -1026,6 +1385,10 @@ function ysBalloon(props) {
     withoutInteractiveFormatting: true,
     className: textClasses,
     style: textStyles
+  }), isSerifBorder && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: serifTriangleClass,
+    style: serifTriangleStyle,
+    "aria-hidden": true
   }))));
 }
 
@@ -1034,7 +1397,7 @@ function ysBalloon(props) {
   avatarNameColor: 'color',
   avatarBorderColor: 'borderColor',
   balloonBorderColor: 'borderColor'
-}), Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["withFontSizes"])('fontSize')])(ysBalloon));
+}), Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["withFontSizes"])('fontSize')])(Balloon));
 
 /***/ }),
 
@@ -1070,7 +1433,7 @@ __webpack_require__.r(__webpack_exports__);
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["registerBlockType"])('ystdb/balloon', {
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('吹き出し', 'ystandard-blocks'),
-  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('yStandard Blocks 吹き出しブロック', 'ystandard-blocks'),
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__["__"])('吹き出しブロック', 'ystandard-blocks'),
   icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_feather__WEBPACK_IMPORTED_MODULE_4__["MessageSquare"], {
     stroke: _src_js_config_config__WEBPACK_IMPORTED_MODULE_1__["ystdbConfig"].color.iconForeground,
     style: {
@@ -1119,6 +1482,7 @@ function save({
     customBackgroundColor,
     balloonBorderColor,
     customBalloonBorderColor,
+    balloonBorderWidth,
     avatarNameColor,
     customAvatarNameColor,
     avatarBorderColor,
@@ -1142,6 +1506,7 @@ function save({
   const fontSizeClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getFontSizeClass"])(fontSize);
   const backgroundColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('background-color', backgroundColor);
   const balloonBorderColorClass = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["getColorClassName"])('border-color', balloonBorderColor);
+  const isSerifBorder = 'serif-border' === balloonType;
   /**
    * 大枠
    *
@@ -1230,7 +1595,8 @@ function save({
 
   const balloonBodyStyles = {
     backgroundColor: customBackgroundColor,
-    borderColor: customBalloonBorderColor
+    borderColor: customBalloonBorderColor,
+    borderWidth: isSerifBorder ? balloonBorderWidth : undefined
   };
   /**
    * 吹き出しテキストクラス
@@ -1253,6 +1619,20 @@ function save({
     color: textClass ? undefined : customTextColor,
     fontSize: !fontSizeClass && customFontSize ? customFontSize : undefined
   };
+  const serifTriangleClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-balloon__serif-triangle', {
+    [backgroundColorClass]: backgroundColorClass,
+    'has-background': backgroundColorClass || customBackgroundColor,
+    [balloonBorderColorClass]: balloonBorderColorClass,
+    'has-border-color': balloonBorderColorClass || customBalloonBorderColor
+  });
+  const serifTrianglePosition = 6 - balloonBorderWidth;
+  const serifTriangleStyle = {
+    backgroundColor: customBackgroundColor,
+    borderColor: customBalloonBorderColor,
+    borderWidth: balloonBorderWidth,
+    right: 'right' === balloonPosition ? `calc(100% - ${serifTrianglePosition}px)` : undefined,
+    left: 'left' === balloonPosition ? `calc(100% - ${serifTrianglePosition}px)` : undefined
+  };
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: wrapClasses
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("figure", {
@@ -1273,6 +1653,10 @@ function save({
     className: textClasses,
     style: textStyles,
     value: text
+  }), isSerifBorder && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: serifTriangleClass,
+    style: serifTriangleStyle,
+    "aria-hidden": true
   })));
 }
 
@@ -20738,6 +21122,94 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./src/js/admin-menu/components/manual-link/_manual-link.scss":
+/*!********************************************************************!*\
+  !*** ./src/js/admin-menu/components/manual-link/_manual-link.scss ***!
+  \********************************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/js/admin-menu/components/manual-link/index.js":
+/*!***********************************************************!*\
+  !*** ./src/js/admin-menu/components/manual-link/index.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/index.js");
+/* harmony import */ var _manual_link_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_manual-link.scss */ "./src/js/admin-menu/components/manual-link/_manual-link.scss");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+const ManualLink = props => {
+  const {
+    url,
+    target,
+    text,
+    topRight
+  } = props;
+  const linkText = text || 'マニュアルを見る';
+  const linkTarget = target || '_blank';
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('ystdb-component-manual-link', {
+      'is-top-right': topRight
+    })
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+    href: url,
+    target: linkTarget
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+    className: "ystdb-component-manual-link__icon"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_feather__WEBPACK_IMPORTED_MODULE_1__["Book"], {
+    size: 12
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+    className: "ystdb-component-manual-link__text"
+  }, linkText)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ManualLink);
+
+/***/ }),
+
+/***/ "./src/js/components/horizon-buttons/index.js":
+/*!****************************************************!*\
+  !*** ./src/js/components/horizon-buttons/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const HorizonButtons = ({
+  children
+}) => {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "ystdb__horizon-buttons"
+  }, children);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HorizonButtons);
+
+/***/ }),
+
 /***/ "./src/js/config/config.js":
 /*!*********************************!*\
   !*** ./src/js/config/config.js ***!
@@ -20750,8 +21222,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ystdbConfig", function() { return ystdbConfig; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _blocks_balloon_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../blocks/balloon/config */ "./blocks/balloon/config.js");
-
 
 /**
  * 設定
@@ -20864,6 +21334,40 @@ const ystdbConfig = {
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('イタリック体', 'component-config', 'ystandard-blocks')
     }]
   }
+};
+
+/***/ }),
+
+/***/ "./src/js/helper/config.js":
+/*!*********************************!*\
+  !*** ./src/js/helper/config.js ***!
+  \*********************************/
+/*! exports provided: getConfig, getComponentConfig, getBlockEditorConfig */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getConfig", function() { return getConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getComponentConfig", function() { return getComponentConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBlockEditorConfig", function() { return getBlockEditorConfig; });
+/* harmony import */ var _ystdb_config_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ystdb/config/config */ "./src/js/config/config.js");
+
+const getConfig = name => {
+  return _ystdb_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"][name];
+};
+const getComponentConfig = name => {
+  return _ystdb_config_config__WEBPACK_IMPORTED_MODULE_0__["ystdbConfig"].component[name];
+};
+const getBlockEditorConfig = (name, defaultValue = undefined) => {
+  if (!window.ystdb || 'object' !== typeof window.ystdb) {
+    return defaultValue;
+  }
+
+  if (!window.ystdb.hasOwnProperty(name)) {
+    return defaultValue;
+  }
+
+  return window.ystdb[name];
 };
 
 /***/ }),

@@ -36,10 +36,10 @@ class Admin_Menu {
 	}
 
 	/**
-	 * 今いるの設定画面がチェック
+	 * 今いるの設定画面がチェック.
 	 *
-	 * @param $slug
-	 * @param $hook_suffix
+	 * @param string $slug        スラッグ.
+	 * @param string $hook_suffix Hook Suffix.
 	 *
 	 * @return bool
 	 */
@@ -74,7 +74,7 @@ class Admin_Menu {
 		// 追加スクリプト.
 		$asset_file['dependencies'] = array_merge(
 			$asset_file['dependencies'],
-			[  ]
+			[ 'jquery' ]
 		);
 		wp_enqueue_script(
 			$script_handle,
@@ -317,6 +317,8 @@ class Admin_Menu {
 	 */
 	public function admin_body_class( $classes ) {
 		/**
+		 * WP_Screen
+		 *
 		 * @var \WP_Screen
 		 */
 		$screen = get_current_screen();

@@ -72,6 +72,9 @@ class Register {
 		return $categories;
 	}
 
+	/**
+	 * 初期化処理
+	 */
 	private function init() {
 		$this->register_blocks = [
 			'normal'  => [],
@@ -151,6 +154,9 @@ class Register {
 		}
 	}
 
+	/**
+	 * ダイナミックブロックのファイルを読み込み.
+	 */
 	public function require_dynamic_block_file() {
 		foreach ( $this->register_blocks['dynamic'] as $block ) {
 			require_once( $block['render'] );
@@ -161,25 +167,11 @@ class Register {
 	 * ブロックassets
 	 */
 	public function enqueue_block_editor_assets() {
-		/**
-		 * エディタ用CSS
-		 */
-		$inline_css = '';
-		// インラインCSS.
-		$inline_css .= Enqueue::get_color_css( '.editor-styles-wrapper ' );
-		$inline_css .= Enqueue::get_icon_font_css( '.editor-styles-wrapper ' );
-		$inline_css .= Enqueue::get_font_size_css( '.editor-styles-wrapper ' );
-
 		wp_enqueue_style(
 			Config::BLOCK_EDITOR_CSS_HANDLE,
 			YSTDB_URL . '/css/ystandard-blocks-edit.css',
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
-		);
-
-		wp_add_inline_style(
-			Config::BLOCK_EDITOR_CSS_HANDLE,
-			$inline_css
 		);
 	}
 
@@ -206,10 +198,10 @@ class Register {
 		return apply_filters(
 			'ystdb_block_config',
 			[
-				'yStandard'     => Utility::is_ystandard() ? '1' : '',
-				'homeUrl'       => home_url(),
-				'pluginUrl'     => YSTDB_URL,
-				'balloonImages' => Balloon::get_balloon_images(),
+				'yStandard' => Utility::is_ystandard() ? '1' : '', // 廃止予定.
+				'isYSTD'    => Utility::is_ystandard() ? '1' : '',
+				'homeUrl'   => home_url(),
+				'pluginUrl' => YSTDB_URL,
 			]
 		);
 	}

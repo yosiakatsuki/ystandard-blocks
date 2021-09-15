@@ -30,7 +30,7 @@ class Font_Size {
 
 
 	/**
-	 * フロント用カラーパレットCSS
+	 * フロント用フォントサイズCSS
 	 */
 	public function enqueue_font_size_css() {
 		if ( apply_filters( 'ys_is_enqueue_font_size', false ) ) {
@@ -44,8 +44,7 @@ class Font_Size {
 	}
 
 	/**
-	 * 編集画面用カラーパレットCSS
-	 *
+	 * 編集画面用フォントサイズCSS
 	 */
 	public function enqueue_block_editor_font_size_css() {
 		if ( apply_filters( 'ys_is_enqueue_block_editor_font_size', false ) ) {

@@ -9,7 +9,7 @@ import { __ } from '@wordpress/i18n';
 
 registerBlockType('ystdb/balloon', {
 	title: __('吹き出し', 'ystandard-blocks'),
-	description: __('yStandard Blocks 吹き出しブロック', 'ystandard-blocks'),
+	description: __('吹き出しブロック', 'ystandard-blocks'),
 	icon: (
 		<MessageSquare
 			stroke={ystdbConfig.color.iconForeground}

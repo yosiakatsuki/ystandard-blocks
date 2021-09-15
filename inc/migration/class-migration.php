@@ -195,14 +195,14 @@ class Migration {
 			<div id="ystdb-menu" class="ystdb-menu">
 				<div class="ystdb-menu__container">
 					<div class="ystdb-menu__content">
-						<?php if ( $need_migration ): ?>
+						<?php if ( $need_migration ) : ?>
 							<form method="post" action="">
 								<?php wp_nonce_field( Config::NONCE_ACTION, Config::NONCE_NAME ); ?>
 								<p>yStandard Blocks バージョン2の設定をバージョン3用の設定にアップグレードします。</p>
 								<input type="hidden" name="ystdb-migration" value="true">
 								<?php submit_button( 'アップグレードする' ); ?>
 							</form>
-						<?php else: ?>
+						<?php else : ?>
 							<p>設定移行が完了しました。</p>
 						<?php endif; ?>
 					</div>

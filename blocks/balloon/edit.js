@@ -4,12 +4,10 @@ import {
 	balloonTypes,
 	balloonPositions,
 	avatarSizes,
-	defaultAvatar,
 } from './config';
 
 import {
 	RichText,
-	PlainText,
 	BlockControls,
 	InspectorControls,
 	withColors,
@@ -26,6 +24,7 @@ import {
 	PanelBody,
 	BaseControl,
 	Button,
+	TextControl,
 	RangeControl,
 	ToolbarGroup,
 	ToolbarItem,
@@ -36,8 +35,11 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
+import ManualLink from '../../src/js/admin-menu/components/manual-link';
+import { getBlockEditorConfig, getComponentConfig } from '@ystdb/helper/config';
+import HorizonButtons from '@ystdb/components/horizon-buttons';
 
-function ysBalloon(props) {
+function Balloon(props) {
 	const {
 		textColor,
 		backgroundColor,
@@ -65,6 +67,7 @@ function ysBalloon(props) {
 		avatarBorderWidth,
 		avatarBorderRadius,
 		text,
+		balloonBorderWidth,
 		balloonPosition,
 		balloonType,
 		verticalAlign,
@@ -73,6 +76,11 @@ function ysBalloon(props) {
 	const ALLOWED_MEDIA_TYPES = ['image'];
 	const DEFAULT_CONTROLS = ['top', 'center', 'bottom'];
 	const DEFAULT_CONTROL = 'top';
+
+	const defaultAvatar = getComponentConfig('defaultAvatar').url;
+	const balloonImages = getBlockEditorConfig('balloonImages', []);
+	const balloonOption = getBlockEditorConfig('balloonOption', {});
+	const isSerifBorder = 'serif-border' === balloonType;
 
 	const activeAlignment = alignmentsControls[verticalAlign];
 	const defaultAlignmentControl = alignmentsControls[DEFAULT_CONTROL];
@@ -140,8 +148,9 @@ function ysBalloon(props) {
 	 */
 	const balloonBodyClass = classnames('ystdb-balloon__body', {
 		[backgroundColor.class]: backgroundColor.class,
-		[balloonBorderColor.class]: balloonBorderColor.class,
 		'has-background': backgroundColor.color,
+		[balloonBorderColor.class]: balloonBorderColor.class,
+		'has-border-color': balloonBorderColor.color,
 		[`is-${verticalAlign}`]: verticalAlign,
 		[`is-${balloonPosition}`]: balloonPosition,
 		[`is-${balloonType}`]: balloonType,
@@ -155,6 +164,7 @@ function ysBalloon(props) {
 	const balloonBodyStyles = {
 		backgroundColor: backgroundColor.color,
 		borderColor: balloonBorderColor.color,
+		borderWidth: isSerifBorder ? balloonBorderWidth : undefined,
 	};
 
 	/**
@@ -176,6 +186,28 @@ function ysBalloon(props) {
 	const textStyles = {
 		color: textColor.color,
 		fontSize: fontSize.size ? fontSize.size : undefined,
+	};
+
+	const serifTriangleClass = classnames('ystdb-balloon__serif-triangle', {
+		[backgroundColor.class]: backgroundColor.class,
+		'has-background': backgroundColor.color,
+		[balloonBorderColor.class]: balloonBorderColor.class,
+		'has-border-color': balloonBorderColor.color,
+	});
+
+	const serifTrianglePosition = 6 - balloonBorderWidth;
+	const serifTriangleStyle = {
+		backgroundColor: backgroundColor.color,
+		borderColor: balloonBorderColor.color,
+		borderWidth: balloonBorderWidth,
+		right:
+			'right' === balloonPosition
+				? `calc(100% - ${serifTrianglePosition}px)`
+				: undefined,
+		left:
+			'left' === balloonPosition
+				? `calc(100% - ${serifTrianglePosition}px)`
+				: undefined,
 	};
 
 	/**
@@ -219,12 +251,7 @@ function ysBalloon(props) {
 		<Fragment>
 			<BlockControls>
 				<ToolbarGroup>
-					<ToolbarItem
-						label={_x(
-							'Change vertical alignment',
-							'Block vertical alignment setting label'
-						)}
-					>
+					<ToolbarItem label={_x('縦位置の変更', 'ystandard-blocks')}>
 						{(toolbarItemHTMLProps) => (
 							<DropdownMenu
 								toggleProps={toolbarItemHTMLProps}
@@ -254,11 +281,11 @@ function ysBalloon(props) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={__('吹き出し設定', 'ystandard-blocks')}>
-					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('吹き出しの位置', 'ystandard-blocks')}
-						</div>
-						<div className={'ystdb-balloon-selector'}>
+					<BaseControl
+						id={'balloon-position'}
+						label={__('吹き出しの向き', 'ystandard-blocks')}
+					>
+						<HorizonButtons>
 							{balloonPositions.map((item) => {
 								return (
 									<Button
@@ -275,34 +302,17 @@ function ysBalloon(props) {
 											});
 										}}
 									>
-										<span
-											className={`ystdb-balloon-selector__container is-${item.value} is-${balloonType}`}
-										>
-											<span
-												className={
-													'ystdb-balloon-selector__image'
-												}
-											>
-												{' '}
-											</span>
-											<span
-												className={
-													'ystdb-balloon-selector__body'
-												}
-											>
-												{item.label}
-											</span>
-										</span>
+										{item.label}
 									</Button>
 								);
 							})}
-						</div>
+						</HorizonButtons>
 					</BaseControl>
-					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('吹き出しタイプ', 'ystandard-blocks')}
-						</div>
-						<div className={'ystdb-balloon-selector'}>
+					<BaseControl
+						id={'balloon-type'}
+						label={__('吹き出しタイプ', 'ystandard-blocks')}
+					>
+						<HorizonButtons>
 							{balloonTypes.map((item) => {
 								return (
 									<Button
@@ -310,103 +320,93 @@ function ysBalloon(props) {
 										isSecondary={balloonType !== item.value}
 										isPrimary={balloonType === item.value}
 										onClick={() => {
+											if (
+												'serif-border' === item.value &&
+												'serif-border' !== balloonType
+											) {
+												setBackgroundColor(
+													balloonOption.contentBackground
+												);
+											}
 											setAttributes({
 												balloonType: item.value,
 											});
 										}}
 									>
-										<span
-											className={`ystdb-balloon-selector__container is-${item.value} is-${balloonPosition}`}
-										>
-											<span
-												className={
-													'ystdb-balloon-selector__image'
-												}
-											>
-												{' '}
-											</span>
-											<span
-												className={
-													'ystdb-balloon-selector__body'
-												}
-											>
-												{item.label}
-											</span>
-										</span>
+										{item.label}
 									</Button>
 								);
 							})}
-						</div>
+						</HorizonButtons>
 					</BaseControl>
 				</PanelBody>
-				{'1' === ystdb.yStandard && (
-					<PanelBody
-						title={__('登録済みアバター画像', 'ystandard-blocks')}
-					>
-						<BaseControl>
-							{0 >= ystdb.balloonImages.length ? (
-								<div>
-									<p>登録済みのアバター画像はありません。</p>
-									<p>
-										カスタマイザーの「[ys]拡張機能設定」→「[ys
-										blocks]吹き出しブロック画像設定」から登録してください。
-									</p>
-								</div>
-							) : (
-								<div className={'ystdb-avatar-list'}>
-									{ystdb.balloonImages.map((item) => {
-										return (
-											<Button
-												key={item.id}
-												isPrimary={
-													avatarID === item.id &&
-													avatarName === item.name
-												}
-												onClick={() => {
-													setAttributes({
-														avatarID: item.id,
-														avatarName: item.name,
-														avatarURL: item.url,
-														avatarAlt: item.name,
-													});
-												}}
-											>
-												<span>
-													<img
-														className={
-															'ystdb-avatar-list__image'
-														}
-														src={item.url}
-														alt={item.name}
-													/>
-													{!!item.name && (
-														<span
-															className={
-																'ystdb-avatar-list__name'
-															}
-														>
-															{item.name}
-														</span>
-													)}
-												</span>
-											</Button>
-										);
-									})}
-								</div>
-							)}
-						</BaseControl>
-					</PanelBody>
-				)}
-				<PanelBody title={__('アバター設定', 'ystandard-blocks')}>
+				<PanelBody
+					title={__('登録済みアバター画像', 'ystandard-blocks')}
+				>
 					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('アバターサイズ', 'ystandard-blocks')}
-						</div>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
+						{0 >= balloonImages.length ? (
+							<div>
+								<p>登録済みのアバター画像はありません。</p>
+								<p>
+									「yStandard
+									Blocks」設定画面の「吹き出し登録」からよく使うアバター画像を登録できます。
+								</p>
+								<ManualLink
+									url={
+										'https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/'
+									}
+								/>
+							</div>
+						) : (
+							<div className={'ystdb-avatar-list'}>
+								{balloonImages.map((item) => {
+									return (
+										<Button
+											key={item.id}
+											isPrimary={
+												avatarID === item.id &&
+												avatarName === item.name
+											}
+											onClick={() => {
+												setAttributes({
+													avatarID: item.id,
+													avatarName: item.name,
+													avatarURL: item.url,
+													avatarAlt: item.name,
+												});
+											}}
+										>
+											<span>
+												<img
+													className={
+														'ystdb-avatar-list__image'
+													}
+													src={item.url}
+													alt={item.name}
+												/>
+												{!!item.name && (
+													<span
+														className={
+															'ystdb-avatar-list__name'
+														}
+													>
+														{item.name}
+													</span>
+												)}
+											</span>
+										</Button>
+									);
+								})}
+							</div>
+						)}
+					</BaseControl>
+				</PanelBody>
+				<PanelBody title={__('アバター設定', 'ystandard-blocks')}>
+					<BaseControl
+						id={'avatar-size'}
+						label={__('アバターサイズ', 'ystandard-blocks')}
+					>
+						<HorizonButtons>
 							{avatarSizes.map((item) => {
 								return (
 									<Button
@@ -423,7 +423,7 @@ function ysBalloon(props) {
 									</Button>
 								);
 							})}
-						</div>
+						</HorizonButtons>
 					</BaseControl>
 					<BaseControl>
 						<RangeControl
@@ -458,10 +458,10 @@ function ysBalloon(props) {
 							}}
 						/>
 					</BaseControl>
-					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('アバター画像枠色', 'ystandard-blocks')}
-						</div>
+					<BaseControl
+						id={'avatar-border-color'}
+						label={__('アバター画像枠色', 'ystandard-blocks')}
+					>
 						<ColorPalette
 							colors={colors}
 							disableCustomColors={false}
@@ -471,10 +471,10 @@ function ysBalloon(props) {
 							value={avatarBorderColor.color}
 						/>
 					</BaseControl>
-					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('アバター名文字色', 'ystandard-blocks')}
-						</div>
+					<BaseControl
+						id={'avatar-text-color'}
+						label={__('アバター名文字色', 'ystandard-blocks')}
+					>
 						<ColorPalette
 							colors={colors}
 							disableCustomColors={false}
@@ -485,7 +485,7 @@ function ysBalloon(props) {
 						/>
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={__('テキスト設定', 'ystandard-blocks')}>
+				<PanelBody title={__('吹き出し設定', 'ystandard-blocks')}>
 					<BaseControl>
 						<FontSizePicker
 							label={__('文字サイズ', 'ystandard-blocks')}
@@ -495,22 +495,26 @@ function ysBalloon(props) {
 							}}
 						/>
 					</BaseControl>
-					<BaseControl>
-						<div className="ystdb-inspector-controls__label">
-							{__('吹き出し背景色', 'ystandard-blocks')}
-						</div>
+					<BaseControl
+						id={'balloon-background'}
+						label={__('吹き出し背景色', 'ystandard-blocks')}
+					>
 						<ColorPalette
 							colors={colors}
 							disableCustomColors={false}
 							onChange={(color) => {
 								setBackgroundColor(color);
-								setBalloonBorderColor(color);
+								if (!isSerifBorder) {
+									setBalloonBorderColor(color);
+								}
 							}}
 							value={backgroundColor.color}
 						/>
-						<div className="ystdb-inspector-controls__label">
-							{__('吹き出し文字色', 'ystandard-blocks')}
-						</div>
+					</BaseControl>
+					<BaseControl
+						id={'balloon-text-color'}
+						label={__('吹き出し文字色', 'ystandard-blocks')}
+					>
 						<ColorPalette
 							colors={colors}
 							disableCustomColors={false}
@@ -524,6 +528,41 @@ function ysBalloon(props) {
 							textColor={textColor.color}
 						/>
 					</BaseControl>
+					{isSerifBorder && (
+						<>
+							<BaseControl
+								id={'serif-border-color'}
+								label={__('吹き出し枠線色', 'ystandard-blocks')}
+							>
+								<ColorPalette
+									colors={colors}
+									disableCustomColors={false}
+									onChange={(color) => {
+										setBalloonBorderColor(color);
+									}}
+									value={balloonBorderColor.color}
+								/>
+							</BaseControl>
+							<BaseControl>
+								<RangeControl
+									value={balloonBorderWidth}
+									label={__(
+										'吹き出し枠線太さ',
+										'ystandard-blocks'
+									)}
+									min={1}
+									max={4}
+									initialPosition={1}
+									allowReset
+									onChange={(value) => {
+										setAttributes({
+											balloonBorderWidth: value,
+										});
+									}}
+								/>
+							</BaseControl>
+						</>
+					)}
 				</PanelBody>
 			</InspectorControls>
 
@@ -543,7 +582,7 @@ function ysBalloon(props) {
 					/>
 					{(isSelected || avatarName) && (
 						<figcaption className={avatarNameClass}>
-							<PlainText
+							<TextControl
 								value={avatarName}
 								className={'ystdb-balloon__name--edit'}
 								onChange={(value) => {
@@ -568,6 +607,13 @@ function ysBalloon(props) {
 						className={textClasses}
 						style={textStyles}
 					/>
+					{isSerifBorder && (
+						<div
+							className={serifTriangleClass}
+							style={serifTriangleStyle}
+							aria-hidden
+						/>
+					)}
 				</div>
 			</div>
 		</Fragment>
@@ -582,4 +628,4 @@ export default compose([
 		balloonBorderColor: 'borderColor',
 	}),
 	withFontSizes('fontSize'),
-])(ysBalloon);
+])(Balloon);

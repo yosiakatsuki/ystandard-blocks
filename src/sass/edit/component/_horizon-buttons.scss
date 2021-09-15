@@ -1,0 +1,26 @@
+.ystdb__horizon-buttons {
+  display: flex;
+  width: 100%;
+
+  > button {
+	display: block;
+	margin-right: 0;
+	border-radius: 0;
+	width: 100%;
+	border: 1px solid var(--wp-admin-theme-color);
+	box-shadow: none !important;
+	text-align: center;
+
+	&:not(:last-child) {
+	  border-right: 0;
+	}
+
+	&:first-child {
+	  border-radius: 4px 0 0 4px;
+	}
+
+	&:last-child {
+	  border-radius: 0 4px 4px 0;
+	}
+  }
+}

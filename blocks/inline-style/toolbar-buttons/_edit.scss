@@ -1,5 +1,6 @@
 
-.ystdb-inline-style-toolbar {
+
+%toolbar-style {
   position: relative;
 
   &::before,
@@ -28,6 +29,11 @@
   &.inline-style-3::before {
 	content: "3";
   }
+}
+
+.ystdb-inline-style-toolbar {
+
+  @extend %toolbar-style;
 
   .components-button:not(.is-pressed) {
 	color: currentColor;
@@ -36,5 +42,5 @@
 
 // 5.6以下.
 .editor-styles-wrapper {
-  @extend .ystdb-inline-style-toolbar;
+  @extend %toolbar-style;
 }

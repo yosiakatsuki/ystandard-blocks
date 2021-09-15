@@ -44,7 +44,6 @@ class Color_Palette {
 
 	/**
 	 * 編集画面用カラーパレットCSS
-	 *
 	 */
 	public function enqueue_block_editor_color_palette_css() {
 		if ( apply_filters( 'ys_is_enqueue_block_editor_color_pallet', false ) ) {

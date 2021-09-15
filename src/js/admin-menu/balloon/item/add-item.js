@@ -1,160 +1,143 @@
-import { Icon, plusCircle } from "@wordpress/icons";
-import { useContext, useState } from "@wordpress/element";
-import {
-	Button,
-	TextControl,
-	Modal,
-} from '@wordpress/components';
+import { Icon, plusCircle } from '@wordpress/icons';
+import { useContext, useState } from '@wordpress/element';
+import { Button, TextControl, Modal } from '@wordpress/components';
 
 import './_add-item.scss';
-import { BalloonContext } from "../index";
-import AvatarMediaUpload from "./avatar-media-upload";
-import { CancelButton, UpdateButton } from "../../components/button/button";
-import { ErrorMessage } from "../../components/message";
-import { schema } from "../functions";
+import { BalloonContext } from '../index';
+import AvatarMediaUpload from './avatar-media-upload';
+import { CancelButton, UpdateButton } from '../../components/button/button';
+import { ErrorMessage } from '../../components/message';
+import { schema } from '../functions';
 
 const AddItem = () => {
+	const { balloons, setBalloons, isUpdating } = useContext(BalloonContext);
 
-		const {
-			balloons,
-			setBalloons,
-			isUpdating,
-		} = useContext( BalloonContext );
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-		const [ isModalOpen, setIsModalOpen ] = useState( false );
+	const [avatar, setAvatar] = useState({
+		image: '',
+		imageId: 0,
+		name: '',
+	});
+	const [hasError, setHasError] = useState(false);
 
-		const [ avatar, setAvatar ] = useState( {
-			image: '',
-			imageId: 0,
-			name: '',
-		} );
-		const [ hasError, setHasError ] = useState( false );
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
-		const openModal = () => setIsModalOpen( true );
-		const closeModal = () => setIsModalOpen( false );
+	const checkInput = () => {
+		if (!avatar.image && !avatar.name) {
+			setHasError(true);
+			return false;
+		}
 
-		const checkInput = () => {
-			if ( ! avatar.image && ! avatar.name ) {
-				setHasError( true );
-				return false;
-			}
+		return true;
+	};
 
-			return true;
-		};
+	const addItem = () => {
+		balloons.push({
+			...schema,
+			...avatar,
+			...{
+				index: balloons.length - 1,
+			},
+		});
+		setBalloons([...balloons]);
+	};
 
-		const addItem = () => {
-			balloons.push( {
-				...schema,
-				...avatar,
-				...{
-					index: balloons.length - 1
-				}
-			} );
-			setBalloons( [ ...balloons ] );
-		};
-
-		return (
-			<div className="ystdb-menu-balloon__add-item">
-				<Button
-					isSecondary
-					onClick={ openModal }
-					disabled={ isUpdating }
+	return (
+		<div className="ystdb-menu-balloon__add-item">
+			<Button isSecondary onClick={openModal} disabled={isUpdating}>
+				<Icon icon={plusCircle} /> 追加
+			</Button>
+			{isModalOpen && (
+				<Modal
+					title="吹き出し設定の追加"
+					onRequestClose={closeModal}
+					shouldCloseOnClickOutside={false}
+					isDismissible={false}
 				>
-					<Icon icon={ plusCircle }/> 追加
-				</Button>
-				{ ( isModalOpen &&
-					<Modal
-						title="吹き出し設定の追加"
-						onRequestClose={ closeModal }
-						shouldCloseOnClickOutside={ false }
-						isDismissible={ false }
-					>
-						<div className="ystdb-menu-balloon__add-modal">
-							<div className="ystdb-menu-balloon__add-modal-image">
-								<AvatarMediaUpload
-									onSelect={ ( media ) => {
-										setAvatar( ( old ) => {
-											return {
-												...old,
-												...{
-													image: media.url,
-													imageId: media.id,
-												}
+					<div className="ystdb-menu-balloon__add-modal">
+						<div className="ystdb-menu-balloon__add-modal-image">
+							<AvatarMediaUpload
+								onSelect={(media) => {
+									setAvatar((old) => {
+										return {
+											...old,
+											...{
+												image: media.url,
+												imageId: media.id,
+											},
+										};
+									});
+									setHasError(false);
+								}}
+								onClickAvatarDelete={() => {
+									setAvatar((old) => {
+										return {
+											...old,
+											...{
+												image: '',
+												imageId: 0,
+											},
+										};
+									});
+								}}
+								type={['image']}
+								imageId={avatar.imageId}
+								imageUrl={avatar.image}
+								name={avatar.name}
+							/>
+						</div>
+						<div className="ystdb-menu-balloon__add-modal-name">
+							<TextControl
+								value={avatar.name}
+								onChange={(value) => {
+									setAvatar((old) => {
+										return {
+											...old,
+											...{
+												name: value,
+											},
+										};
+									});
+									setHasError(false);
+								}}
+							/>
+						</div>
+						<ErrorMessage isShow={hasError}>
+							画像 または 名前を入力してください。
+						</ErrorMessage>
+						<div className="ystdb-components-section">
+							<div className="ystdb-menu-component-columns">
+								<div className="ystdb-menu-component-columns__item">
+									<UpdateButton
+										isPrimary
+										onClick={() => {
+											if (!checkInput()) {
+												return;
 											}
-										} );
-										setHasError( false );
-									} }
-									onClickAvatarDelete={ () => {
-										setAvatar( ( old ) => {
-											return {
-												...old,
-												...{
-													image: '',
-													imageId: 0,
-												}
-											}
-										} );
-									} }
-									type={ [ 'image' ] }
-									imageId={ avatar.imageId }
-									imageUrl={ avatar.image }
-									name={ avatar.name }
-								/>
-							</div>
-							<div className="ystdb-menu-balloon__add-modal-name">
-								<TextControl
-									value={ avatar.name }
-									onChange={ ( value ) => {
-										setAvatar( ( old ) => {
-											return {
-												...old,
-												...{
-													name: value,
-												}
-											}
-										} );
-										setHasError( false );
-									} }
-								/>
-							</div>
-							<ErrorMessage
-								isShow={ hasError }
-							>
-								画像 または 名前を入力してください。
-							</ErrorMessage>
-							<div className="ystdb-components-section">
-								<div className="ystdb-menu-component-columns">
-									<div className="ystdb-menu-component-columns__item">
-										<UpdateButton
-											isPrimary
-											onClick={ () => {
-												if ( ! checkInput() ) {
-													return;
-												}
-												addItem();
-												closeModal();
-											} }
-											disabled={ hasError }
-										>
-											追加
-										</UpdateButton>
-									</div>
-									<div className="ystdb-menu-component-columns__item">
-										<CancelButton
-											isSecondary
-											onClick={ closeModal }
-										>
-											キャンセル
-										</CancelButton>
-									</div>
+											addItem();
+											closeModal();
+										}}
+										disabled={hasError}
+									>
+										追加
+									</UpdateButton>
+								</div>
+								<div className="ystdb-menu-component-columns__item">
+									<CancelButton
+										isSecondary
+										onClick={closeModal}
+									>
+										キャンセル
+									</CancelButton>
 								</div>
 							</div>
 						</div>
-					</Modal>
-				) }
-			</div>
-		);
-	}
-;
-
+					</div>
+				</Modal>
+			)}
+		</div>
+	);
+};
 export default AddItem;

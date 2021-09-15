@@ -1,55 +1,43 @@
-import { Icon, closeSmall } from "@wordpress/icons";
-import { useContext, useState } from "@wordpress/element";
-import {
-	Button,
-	Modal,
-} from '@wordpress/components';
+import { Icon, closeSmall } from '@wordpress/icons';
+import { useContext, useState } from '@wordpress/element';
+import { Button, Modal } from '@wordpress/components';
 
 import './_item-delete.scss';
-import { BalloonContext } from "../index";
-import { getComponentConfig } from "@ystdb/helper/config";
-import { CancelButton, DeleteButton } from "../../components/button/button";
+import { BalloonContext } from '../index';
+import { getComponentConfig } from '@ystdb/helper/config';
+import { CancelButton, DeleteButton } from '../../components/button/button';
 
-const DeleteItemButton = ( props ) => {
+const DeleteItemButton = (props) => {
+	const { index, item } = props;
 
-	const {
-		index,
-		item,
-	} = props;
+	const { balloons, setBalloons, isUpdating, updateOption } =
+		useContext(BalloonContext);
 
-	const {
-		balloons,
-		setBalloons,
-		isUpdating,
-		updateOption,
-	} = useContext( BalloonContext );
+	const avatar = !item?.image
+		? getComponentConfig('defaultAvatar').url
+		: item.image;
 
-	const avatar = ! item?.image ? getComponentConfig( 'defaultAvatar' ).url : item.image;
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const [ isModalOpen, setIsModalOpen ] = useState( false );
-
-	const openModal = () => setIsModalOpen( true );
-	const closeModal = () => setIsModalOpen( false );
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	const deleteItem = () => {
-		let newValue = [ ...balloons ];
-		newValue.splice( index, 1 );
-		newValue = newValue.map( ( value, index ) => {
+		let newValue = [...balloons];
+		newValue.splice(index, 1);
+		newValue = newValue.map((value, newIndex) => {
 			return {
 				...value,
 				...{
-					index: index
-				}
-			}
-		} );
-		setBalloons( newValue );
-		updateOption(
-			newValue,
-			{
-				success: '吹き出し設定を削除しました。',
-				error: '吹き出設定の削除に失敗しました。',
-			}
-		);
+					newIndex,
+				},
+			};
+		});
+		setBalloons(newValue);
+		updateOption(newValue, {
+			success: '吹き出し設定を削除しました。',
+			error: '吹き出設定の削除に失敗しました。',
+		});
 	};
 
 	return (
@@ -57,35 +45,35 @@ const DeleteItemButton = ( props ) => {
 			<div className="ystdb-menu-balloon__item-delete">
 				<Button
 					className="ystdb-menu-balloon__item-delete-button"
-					onClick={ openModal }
-					disabled={ isUpdating }
+					onClick={openModal}
+					disabled={isUpdating}
 				>
-					<Icon icon={ closeSmall }/>
+					<Icon icon={closeSmall} />
 				</Button>
-				{ ( isModalOpen &&
+				{isModalOpen && (
 					<Modal
 						title="吹き出し設定を削除しますか？"
-						onRequestClose={ closeModal }
-						shouldCloseOnClickOutside={ false }
-						isDismissible={ false }
+						onRequestClose={closeModal}
+						shouldCloseOnClickOutside={false}
+						isDismissible={false}
 					>
 						<div className="ystdb-menu-balloon__delete-modal">
 							<figure className="ystdb-menu-balloon__delete-modal-image">
-								<img src={ avatar } alt=""/>
+								<img src={avatar} alt="" />
 							</figure>
 							<p className="ystdb-menu-balloon__delete-modal-name">
-								{ item?.name }
+								{item?.name}
 							</p>
 							<div className="ystdb-components-section">
 								<div className="ystdb-menu-component-columns">
 									<div className="ystdb-menu-component-columns__item">
 										<DeleteButton
 											isPrimary
-											onClick={ () => {
+											onClick={() => {
 												deleteItem();
 												closeModal();
-											} }
-											disabled={ isUpdating }
+											}}
+											disabled={isUpdating}
 										>
 											削除
 										</DeleteButton>
@@ -93,7 +81,7 @@ const DeleteItemButton = ( props ) => {
 									<div className="ystdb-menu-component-columns__item">
 										<CancelButton
 											isSecondary
-											onClick={ closeModal }
+											onClick={closeModal}
 										>
 											キャンセル
 										</CancelButton>
@@ -102,12 +90,10 @@ const DeleteItemButton = ( props ) => {
 							</div>
 						</div>
 					</Modal>
-				) }
+				)}
 			</div>
 		</>
 	);
-
-
 };
 
 export default DeleteItemButton;

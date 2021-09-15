@@ -1,2 +1,2 @@
 import './toolbar-buttons';
-import './button-items'
+import './button-items';

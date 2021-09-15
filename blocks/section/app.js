@@ -1,3 +1,4 @@
+/* eslint-disable @wordpress/no-global-event-listener */
 document.addEventListener('DOMContentLoaded', () => {
 	const animateSection = document.querySelectorAll('.has-animation');
 	const options = {
