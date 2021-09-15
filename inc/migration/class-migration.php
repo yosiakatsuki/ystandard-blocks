@@ -127,7 +127,7 @@ class Migration {
 				'font-size' => $font_size . 'em',
 			],
 		];
-		$font_size               = ( Option::get_option_by_number( $section, 'larger-sp', 120 ) / 100 );
+		$font_size               = ( Option::get_option_by_number( $section, 'larger_sp', 120 ) / 100 );
 		$migration['larger-sp']  = [
 			'name'        => 'larger-sp',
 			'label'       => '少し大きく(SP)',
@@ -135,7 +135,7 @@ class Migration {
 				'font-size' => $font_size . 'em',
 			],
 		];
-		$font_size               = ( Option::get_option_by_number( $section, 'smaller-sp', 80 ) / 100 );
+		$font_size               = ( Option::get_option_by_number( $section, 'smaller_sp', 80 ) / 100 );
 		$migration['smaller-sp'] = [
 			'name'        => 'smaller-sp',
 			'label'       => '少し小さく(SP)',
@@ -204,6 +204,7 @@ class Migration {
 							</form>
 						<?php else : ?>
 							<p>設定移行が完了しました。</p>
+							<p><a href="<?php echo esc_url_raw( admin_url( 'admin.php?page=' . Inline_Style::MENU_SLUG ) ); ?>">設定画面を開く</a></p>
 						<?php endif; ?>
 					</div>
 				</div>

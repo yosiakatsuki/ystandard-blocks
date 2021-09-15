@@ -29616,7 +29616,7 @@ const ButtonItems = () => {
     setItems(newValue);
     updateOption({
       items: newValue
-    });
+    }, '初期設定をインポートしました。');
   };
 
   const previewStyle = { ...getCurrentOption('style', {})
@@ -29626,7 +29626,7 @@ const ButtonItems = () => {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-components-section"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-menu-component-columns"
+    className: "ystdb-menu-component-columns is-reverse"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-menu-component-columns__item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
@@ -29998,7 +29998,7 @@ const InlineStyle = () => {
   const tabs = {
     toolbarButtons: {
       name: 'toolbar-buttons',
-      title: 'ツールバーボタン'
+      title: 'マーカーボタン'
     },
     toolbarItems: {
       name: 'toolbar-items',
@@ -30020,37 +30020,37 @@ const InlineStyle = () => {
     }
 
     setIsUpdating(true);
-    setTimeout(() => {
-      const data = { ...options,
-        ...{
-          buttons,
-          items
-        },
-        ...updateData
-      };
-      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-        path: Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__["getEndpoint"])('update'),
-        method: 'POST',
-        data
-      }).then(response => {
-        if (Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__["isApiSuccess"])(response.status)) {
-          Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifySuccess"])(message);
-        } else {
-          /* eslint-disable no-console */
-          console.error('設定の更新に失敗しました。');
-          console.log(response);
-          /* eslint-enable */
-
-          Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])('設定の更新に失敗しました。');
-        }
-      }).catch(error => {
+    const data = { ...options,
+      ...{
+        buttons,
+        items
+      },
+      ...updateData
+    };
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+      path: Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__["getEndpoint"])('update'),
+      method: 'POST',
+      data
+    }).then(response => {
+      if (Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__["isApiSuccess"])(response.status)) {
+        Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifySuccess"])(message);
+      } else {
         /* eslint-disable no-console */
-        console.error('エラーが発生しました。');
-        console.log(error);
+        console.error('設定の更新に失敗しました。');
+        console.log(response);
         /* eslint-enable */
 
         Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])('設定の更新に失敗しました。');
-      });
+      }
+    }).catch(error => {
+      /* eslint-disable no-console */
+      console.error('エラーが発生しました。');
+      console.log(error);
+      /* eslint-enable */
+
+      Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])('設定の更新に失敗しました。');
+    });
+    setTimeout(() => {
       setIsUpdating(false);
     }, 500);
   };
@@ -30106,7 +30106,7 @@ Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["render"])(Object(_wordpr
 /*! exports provided: inlineStyle, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"inlineStyle\":{\"buttons\":[{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#f2d9db\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ceecfd\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ffedcc\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false}],\"items\":{\"schema\":{\"name\":\"\",\"label\":\"\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger\":{\"name\":\"larger\",\"label\":\"少し大きく\",\"enable\":true,\"style\":{\"font-size\":\"1.2em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"smaller\":{\"name\":\"smaller\",\"label\":\"少し小さく\",\"enable\":true,\"style\":{\"font-size\":\"0.8em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger-sp\":{\"name\":\"larger-sp\",\"label\":\"少し大きく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"1.2em\"},\"customCss\":\"\",\"lock\":false},\"smaller-sp\":{\"name\":\"smaller-sp\",\"label\":\"少し小さく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"0.8em\"},\"customCss\":\"\",\"lock\":false}}}}");
+module.exports = JSON.parse("{\"inlineStyle\":{\"buttons\":[{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#f2d9db\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ceecfd\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},{\"enable\":true,\"style\":{\"font-size\":\"\",\"font-weight\":\"\",\"color\":\"\",\"@markerColor\":\"#ffedcc\",\"@markerOpacity\":60,\"@markerWeight\":30,\"background\":\"linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false}],\"items\":{\"schema\":{\"name\":\"\",\"label\":\"\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger\":{\"name\":\"larger\",\"label\":\"少し大きく\",\"enable\":true,\"style\":{\"font-size\":\"1.2em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"smaller\":{\"name\":\"smaller\",\"label\":\"少し小さく\",\"enable\":true,\"style\":{\"font-size\":\"0.8em\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false},\"larger-sp\":{\"name\":\"larger-sp\",\"label\":\"少し大きく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"1.2em\"},\"customCss\":\"\",\"lock\":false},\"smaller-sp\":{\"name\":\"smaller-sp\",\"label\":\"少し小さく(SP)\",\"enable\":true,\"style\":{},\"tabletStyle\":{},\"mobileStyle\":{\"font-size\":\"0.8em\"},\"customCss\":\"\",\"lock\":false},\"nowrap\":{\"name\":\"nowrap\",\"label\":\"改行しない\",\"enable\":true,\"style\":{\"white-space\":\"nowrap\"},\"tabletStyle\":{},\"mobileStyle\":{},\"customCss\":\"\",\"lock\":false}}}}");
 
 /***/ }),
 
@@ -30253,7 +30253,7 @@ const ToolbarButtons = () => {
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-components-section"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "ystdb-menu-component-columns"
+    className: "ystdb-menu-component-columns is-reverse"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-menu-component-columns__item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
@@ -30562,10 +30562,10 @@ const ystdbConfig = {
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('指定無し', 'component-config', 'ystandard-blocks')
     }, {
       value: 'normal',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('normal', 'component-config', 'ystandard-blocks')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('通常(normal)', 'component-config', 'ystandard-blocks')
     }, {
       value: 'bold',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('bold', 'component-config', 'ystandard-blocks')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('太字(bold)', 'component-config', 'ystandard-blocks')
     }, {
       value: '100',
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('100', 'component-config', 'ystandard-blocks')

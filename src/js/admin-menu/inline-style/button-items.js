@@ -166,7 +166,10 @@ const ButtonItems = () => {
 		const newValue = schema.inlineStyle.items;
 		delete newValue.schema;
 		setItems( newValue );
-		updateOption( { items: newValue } );
+		updateOption(
+			{ items: newValue },
+			'初期設定をインポートしました。'
+		);
 	};
 	const previewStyle = {
 		...getCurrentOption( 'style', {} ),
@@ -177,7 +180,7 @@ const ButtonItems = () => {
 	return (
 		<>
 			<div className="ystdb-components-section">
-				<div className="ystdb-menu-component-columns">
+				<div className="ystdb-menu-component-columns is-reverse">
 					<div className="ystdb-menu-component-columns__item">
 						<PanelBody title={ 'スタイル選択' }>
 							<BaseControl>

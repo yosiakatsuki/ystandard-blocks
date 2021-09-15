@@ -1,3 +1,5 @@
+@use "../../../sass/global";
+
 .ystdb-menu-inline-style__disable {
   height: 60vh;
   overflow: hidden;
@@ -20,11 +22,28 @@
 
 
 .ystdb-menu-inline-items__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  @include global.media-breakpoint(md) {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+  }
+
+  > div:first-child {
+	margin-bottom: 1em;
+
+	@include global.media-breakpoint(md) {
+	  margin-bottom: 0;
+	}
+  }
 
   .components-base-control__field {
 	margin-bottom: 0;
+  }
+
+  button {
+	@include global.media-breakpoint-down(md) {
+	  width: 100%;
+	  justify-content: center;
+	}
   }
 }

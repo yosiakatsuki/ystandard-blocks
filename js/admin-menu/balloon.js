@@ -29178,30 +29178,30 @@ const Balloon = () => {
     }
 
     setIsUpdating(true);
-    setTimeout(() => {
-      _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-        path: Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_4__["getEndpoint"])('update'),
-        method: 'POST',
-        data
-      }).then(response => {
-        if (Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_4__["isApiSuccess"])(response.status)) {
-          Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifySuccess"])(message === null || message === void 0 ? void 0 : message.success);
-        } else {
-          /* eslint-disable no-console */
-          console.error('設定の更新に失敗しました。');
-          console.log(response);
-          /* eslint-enable */
-
-          Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])(message === null || message === void 0 ? void 0 : message.error);
-        }
-      }).catch(error => {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
+      path: Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_4__["getEndpoint"])('update'),
+      method: 'POST',
+      data
+    }).then(response => {
+      if (Object(_ystdb_helper_admin_menu__WEBPACK_IMPORTED_MODULE_4__["isApiSuccess"])(response.status)) {
+        Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifySuccess"])(message === null || message === void 0 ? void 0 : message.success);
+      } else {
         /* eslint-disable no-console */
-        console.error('エラーが発生しました。');
-        console.log(error);
+        console.error('設定の更新に失敗しました。');
+        console.log(response);
         /* eslint-enable */
 
         Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])(message === null || message === void 0 ? void 0 : message.error);
-      });
+      }
+    }).catch(error => {
+      /* eslint-disable no-console */
+      console.error('エラーが発生しました。');
+      console.log(error);
+      /* eslint-enable */
+
+      Object(_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__["notifyError"])(message === null || message === void 0 ? void 0 : message.error);
+    });
+    setTimeout(() => {
       setIsUpdating(false);
     }, 500);
   };
@@ -30227,10 +30227,10 @@ const ystdbConfig = {
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('指定無し', 'component-config', 'ystandard-blocks')
     }, {
       value: 'normal',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('normal', 'component-config', 'ystandard-blocks')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('通常(normal)', 'component-config', 'ystandard-blocks')
     }, {
       value: 'bold',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('bold', 'component-config', 'ystandard-blocks')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('太字(bold)', 'component-config', 'ystandard-blocks')
     }, {
       value: '100',
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('100', 'component-config', 'ystandard-blocks')

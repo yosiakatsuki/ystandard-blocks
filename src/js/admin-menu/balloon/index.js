@@ -36,30 +36,30 @@ const Balloon = () => {
 			return;
 		}
 		setIsUpdating( true );
-		setTimeout( () => {
-			apiFetch( {
-				path: getEndpoint( 'update' ),
-				method: 'POST',
-				data,
-			} )
-				.then( ( response ) => {
-					if ( isApiSuccess( response.status ) ) {
-						notifySuccess( message?.success );
-					} else {
-						/* eslint-disable no-console */
-						console.error( '設定の更新に失敗しました。' );
-						console.log( response );
-						/* eslint-enable */
-						notifyError( message?.error );
-					}
-				} )
-				.catch( ( error ) => {
+		apiFetch( {
+			path: getEndpoint( 'update' ),
+			method: 'POST',
+			data,
+		} )
+			.then( ( response ) => {
+				if ( isApiSuccess( response.status ) ) {
+					notifySuccess( message?.success );
+				} else {
 					/* eslint-disable no-console */
-					console.error( 'エラーが発生しました。' );
-					console.log( error );
+					console.error( '設定の更新に失敗しました。' );
+					console.log( response );
 					/* eslint-enable */
 					notifyError( message?.error );
-				} );
+				}
+			} )
+			.catch( ( error ) => {
+				/* eslint-disable no-console */
+				console.error( 'エラーが発生しました。' );
+				console.log( error );
+				/* eslint-enable */
+				notifyError( message?.error );
+			} );
+		setTimeout( () => {
 			setIsUpdating( false );
 		}, 500 );
 	};

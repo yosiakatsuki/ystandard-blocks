@@ -139,7 +139,7 @@ const ToolbarButtons = () => {
 					})}
 				</div>
 				<div className="ystdb-components-section">
-					<div className="ystdb-menu-component-columns">
+					<div className="ystdb-menu-component-columns is-reverse">
 						<div className="ystdb-menu-component-columns__item">
 							<PanelBody title={'基本設定'}>
 								<BaseControl

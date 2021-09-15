@@ -483,16 +483,25 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
 
 .ystdb-menu-component-columns {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  margin-bottom: -1em;
 }
 @media (min-width: 640px) {
   .ystdb-menu-component-columns {
     flex-direction: row;
   }
 }
+.ystdb-menu-component-columns.is-reverse {
+  flex-direction: column-reverse;
+}
+@media (min-width: 640px) {
+  .ystdb-menu-component-columns.is-reverse {
+    flex-direction: row;
+  }
+}
 .ystdb-menu-component-columns .ystdb-menu-component-columns__item {
   position: relative;
-  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .ystdb-menu-component-columns .ystdb-menu-component-columns__item:first-child {
   margin-top: 0;

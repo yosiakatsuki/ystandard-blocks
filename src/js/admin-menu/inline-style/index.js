@@ -29,7 +29,7 @@ const InlineStyle = () => {
 	const tabs = {
 		toolbarButtons: {
 			name: 'toolbar-buttons',
-			title: 'ツールバーボタン',
+			title: 'マーカーボタン',
 		},
 		toolbarItems: {
 			name: 'toolbar-items',
@@ -51,38 +51,38 @@ const InlineStyle = () => {
 			return;
 		}
 		setIsUpdating( true );
-		setTimeout( () => {
-			const data = {
-				...options,
-				...{
-					buttons,
-					items,
-				},
-				...updateData,
-			};
-			apiFetch( {
-				path: getEndpoint( 'update' ),
-				method: 'POST',
-				data,
-			} )
-				.then( ( response ) => {
-					if ( isApiSuccess( response.status ) ) {
-						notifySuccess( message );
-					} else {
-						/* eslint-disable no-console */
-						console.error( '設定の更新に失敗しました。' );
-						console.log( response );
-						/* eslint-enable */
-						notifyError( '設定の更新に失敗しました。' );
-					}
-				} )
-				.catch( ( error ) => {
+		const data = {
+			...options,
+			...{
+				buttons,
+				items,
+			},
+			...updateData,
+		};
+		apiFetch( {
+			path: getEndpoint( 'update' ),
+			method: 'POST',
+			data,
+		} )
+			.then( ( response ) => {
+				if ( isApiSuccess( response.status ) ) {
+					notifySuccess( message );
+				} else {
 					/* eslint-disable no-console */
-					console.error( 'エラーが発生しました。' );
-					console.log( error );
+					console.error( '設定の更新に失敗しました。' );
+					console.log( response );
 					/* eslint-enable */
 					notifyError( '設定の更新に失敗しました。' );
-				} );
+				}
+			} )
+			.catch( ( error ) => {
+				/* eslint-disable no-console */
+				console.error( 'エラーが発生しました。' );
+				console.log( error );
+				/* eslint-enable */
+				notifyError( '設定の更新に失敗しました。' );
+			} );
+		setTimeout( () => {
 			setIsUpdating( false );
 		}, 500 );
 	};

@@ -108,6 +108,18 @@
 		},
 		"customCss": "",
 		"lock": false
+	  },
+	  "nowrap": {
+		"name": "nowrap",
+		"label": "改行しない",
+		"enable": true,
+		"style": {
+		  "white-space": "nowrap"
+		},
+		"tabletStyle": {},
+		"mobileStyle": {},
+		"customCss": "",
+		"lock": false
 	  }
 	}
   }
