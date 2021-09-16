@@ -509,6 +509,19 @@ button.ystdb-mediaupload__preview:hover::before, button.ystdb-mediaupload__previ
 .ystdb-component-preview *:focus-visible {
   outline: none;
 }
+.ystdb-component-preview::before {
+  content: "Preview";
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  font-family: monospace;
+  color: #757575;
+  opacity: 0.2;
+}
 .ystdb-component-admin-menu-button {
   display: flex;
   justify-content: center;

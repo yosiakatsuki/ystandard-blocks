@@ -17,4 +17,18 @@
   *:focus-visible {
 	outline: none;
   }
+
+  &::before {
+	content: "Preview";
+	display: inline-block;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1;
+	font-family: monospace;
+	color: global.$color__text-light;
+	opacity: 0.2;
+  }
 }
