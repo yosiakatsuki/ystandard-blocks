@@ -29651,7 +29651,7 @@ const ButtonItems = () => {
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     isPrimary: true,
-    disabled: !!selectedItem,
+    disabled: !!selectedItem || isUpdating,
     onClick: openAddStyleModal
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
     className: 'ystdb-button-icon',

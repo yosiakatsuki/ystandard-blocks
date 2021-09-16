@@ -222,7 +222,7 @@ const ButtonItems = () => {
 									<div>
 										<Button
 											isPrimary
-											disabled={ !! selectedItem }
+											disabled={ !! selectedItem || isUpdating }
 											onClick={ openAddStyleModal }
 										>
 											<Icon className={ 'ystdb-button-icon' } icon={ plusCircle }/> スタイル追加
