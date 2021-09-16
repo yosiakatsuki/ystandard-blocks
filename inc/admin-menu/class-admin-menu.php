@@ -163,6 +163,7 @@ class Admin_Menu {
 		if ( false === strpos( $hook_suffix, 'ystdb-' ) ) {
 			return;
 		}
+		do_action( 'ystdb_admin_enqueue_scripts' );
 		wp_enqueue_style(
 			'ystdb-menu-page',
 			YSTDB_URL . '/css/ystandard-blocks-admin-menu.css',
