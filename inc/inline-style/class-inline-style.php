@@ -271,10 +271,11 @@ class Inline_Style {
 	 * @return string
 	 */
 	private function get_css( $selector, $style, $tablet, $mobile ) {
-		$result     = '';
-		$css        = [];
-		$tablet_css = [];
-		$mobile_css = [];
+		$result          = '';
+		$css             = [];
+		$tablet_css      = [];
+		$mobile_css      = [];
+		$selector_format = "${selector}{%s;}";
 		foreach ( $style as $prop => $value ) {
 			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
 				$css[] = "${prop}:${value}";
@@ -291,22 +292,18 @@ class Inline_Style {
 			}
 		}
 		if ( ! empty( $css ) ) {
-			$result .= sprintf(
-				'%s{%s;}',
-				$selector,
-				implode( ';', $css )
-			);
+			$result .= sprintf( $selector_format, implode( ';', $css ) );
 		}
 		if ( ! empty( $tablet_css ) ) {
 			$result .= Helper_CSS::add_media_query(
-				implode( ';', $tablet_css ) . ';',
+				sprintf( $selector_format, implode( ';', $tablet_css ) ),
 				'',
 				'md'
 			);
 		}
 		if ( ! empty( $mobile_css ) ) {
 			$result .= Helper_CSS::add_media_query(
-				implode( ';', $mobile_css ) . ';',
+				sprintf( $selector_format, implode( ';', $mobile_css ) ),
 				'',
 				'sm'
 			);
