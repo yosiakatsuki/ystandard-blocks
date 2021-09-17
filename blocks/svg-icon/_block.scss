@@ -1,6 +1,21 @@
 .ystdb-icon {
   padding: 1rem;
 
+  svg {
+	&[fill="none"] {
+	  fill: none;
+	}
+	&[fill="currentColor"] {
+	  fill: currentColor;
+	}
+	&[stroke="none"] {
+	  stroke: none;
+	}
+	&[stroke="currentColor"] {
+	  stroke: currentColor;
+	}
+  }
+
   &.is-size--2 {
 	svg {
 	  width: 2em;

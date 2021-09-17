@@ -26,9 +26,6 @@ class Admin_Menu {
 	 * Menu constructor.
 	 */
 	public function __construct() {
-		if ( ! Utility::is_ystandard() ) {
-			return;
-		}
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 100 );
 		add_action( 'admin_init', [ $this, 'save_option' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 50 );

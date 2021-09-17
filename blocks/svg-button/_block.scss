@@ -1,9 +1,26 @@
 @use "../../src/sass/global";
+
 .ystdb-button__icon {
   line-height: 1;
 
   svg {
 	display: block;
+
+	&[fill="none"] {
+	  fill: none;
+	}
+
+	&[fill="currentColor"] {
+	  fill: currentColor;
+	}
+
+	&[stroke="none"] {
+	  stroke: none;
+	}
+
+	&[stroke="currentColor"] {
+	  stroke: currentColor;
+	}
   }
 }
 

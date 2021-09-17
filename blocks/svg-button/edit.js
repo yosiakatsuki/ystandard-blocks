@@ -40,6 +40,7 @@ import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
 } from '@ystdb/components/responsive-font-size/functions';
+import HorizonButtons from "@ystdb/components/horizon-buttons";
 
 function svgButton(props) {
 	const {
@@ -260,11 +261,7 @@ function svgButton(props) {
 						<div className="ystdb-inspector-controls__label">
 							{_x('左アイコンサイズ', 'ystandard-blocks')}
 						</div>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
+						<HorizonButtons>
 							{ystdbConfig.icon.size.map((item) => {
 								return (
 									<Button
@@ -287,7 +284,7 @@ function svgButton(props) {
 									</Button>
 								);
 							})}
-						</div>
+						</HorizonButtons>
 					</BaseControl>
 					<SVGIconSelect
 						iconControlTitle={__('右アイコン', 'ystandard-blocks')}
@@ -300,11 +297,7 @@ function svgButton(props) {
 						<div className="ystdb-inspector-controls__label">
 							{_x('右アイコンサイズ', 'ystandard-blocks')}
 						</div>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
+						<HorizonButtons>
 							{ystdbConfig.icon.size.map((item) => {
 								return (
 									<Button
@@ -327,7 +320,7 @@ function svgButton(props) {
 									</Button>
 								);
 							})}
-						</div>
+						</HorizonButtons>
 					</BaseControl>
 				</PanelBody>
 

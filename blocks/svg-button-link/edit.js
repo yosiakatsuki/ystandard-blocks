@@ -31,6 +31,7 @@ import {
 import { withState, compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
+import HorizonButtons from "@ystdb/components/horizon-buttons";
 
 const SVGButtonLinkEdit = (props) => {
 	const {
@@ -187,11 +188,7 @@ const SVGButtonLinkEdit = (props) => {
 							<div className="ystdb-inspector-controls__label">
 								{_x('左アイコンサイズ', 'ystandard-blocks')}
 							</div>
-							<div
-								className={
-									'ystdb-btn-selector components-base-control'
-								}
-							>
+							<HorizonButtons>
 								{ystdbConfig.icon.size.map((item) => {
 									return (
 										<Button
@@ -216,7 +213,7 @@ const SVGButtonLinkEdit = (props) => {
 										</Button>
 									);
 								})}
-							</div>
+							</HorizonButtons>
 						</BaseControl>
 						<SVGIconSelect
 							iconControlTitle={__(
@@ -235,11 +232,7 @@ const SVGButtonLinkEdit = (props) => {
 							<div className="ystdb-inspector-controls__label">
 								{_x('右アイコンサイズ', 'ystandard-blocks')}
 							</div>
-							<div
-								className={
-									'ystdb-btn-selector components-base-control'
-								}
-							>
+							<HorizonButtons>
 								{ystdbConfig.icon.size.map((item) => {
 									return (
 										<Button
@@ -264,7 +257,7 @@ const SVGButtonLinkEdit = (props) => {
 										</Button>
 									);
 								})}
-							</div>
+							</HorizonButtons>
 						</BaseControl>
 					</PanelBody>
 
