@@ -29773,7 +29773,7 @@ const ButtonItems = () => {
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], {
     id: 'font-family',
-    label: 'フォント'
+    label: 'フォント(font-family)'
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["TextControl"], {
     placeholder: 'sans-serif',
     value: Object(_function__WEBPACK_IMPORTED_MODULE_8__["getStyle"])(getCurrentOption('style', {}), 'font-family'),
@@ -30249,7 +30249,7 @@ const ToolbarButtons = () => {
       onClick: () => {
         setCurrentButtonIndex(index);
       }
-    }, `スタイル${index + 1}`);
+    }, `ボタン ${index + 1}`);
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-components-section"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -30390,7 +30390,7 @@ const ToolbarButtons = () => {
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["BaseControl"], {
     id: 'font-family',
-    label: 'フォント'
+    label: 'フォント(font-family)'
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["TextControl"], {
     placeholder: 'sans-serif',
     value: Object(_function__WEBPACK_IMPORTED_MODULE_10__["getStyle"])(getCurrentValue('style'), 'font-family', getDefaultStyle('font-family')),
@@ -30425,7 +30425,7 @@ const ToolbarButtons = () => {
     onRequestClose: closeDeleteModal,
     shouldCloseOnClickOutside: false,
     isDismissible: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, `スタイル${currentButtonIndex + 1} を初期化しますか？`), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, `ボタン ${currentButtonIndex + 1} を初期化しますか？`), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-components-section"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-menu-component-columns"

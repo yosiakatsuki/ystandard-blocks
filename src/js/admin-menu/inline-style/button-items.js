@@ -425,7 +425,7 @@ const ButtonItems = () => {
 								>
 									<BaseControl
 										id={ 'font-family' }
-										label={ 'フォント' }
+										label={ 'フォント(font-family)' }
 									>
 										<TextControl
 											placeholder={ 'sans-serif' }

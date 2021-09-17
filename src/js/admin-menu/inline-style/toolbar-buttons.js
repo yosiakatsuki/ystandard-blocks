@@ -133,7 +133,7 @@ const ToolbarButtons = () => {
 									setCurrentButtonIndex(index);
 								}}
 							>
-								{`スタイル${index + 1}`}
+								{`ボタン ${index + 1}`}
 							</Button>
 						);
 					})}
@@ -376,7 +376,7 @@ const ToolbarButtons = () => {
 									>
 										<BaseControl
 											id={'font-family'}
-											label={'フォント'}
+											label={'フォント(font-family)'}
 										>
 											<TextControl
 												placeholder={'sans-serif'}
@@ -426,7 +426,7 @@ const ToolbarButtons = () => {
 									shouldCloseOnClickOutside={false}
 									isDismissible={false}
 								>
-									<p>{`スタイル${
+									<p>{`ボタン ${
 										currentButtonIndex + 1
 									} を初期化しますか？`}</p>
 									<div className="ystdb-components-section">
