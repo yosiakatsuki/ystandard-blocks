@@ -40,7 +40,7 @@ import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
 } from '@ystdb/components/responsive-font-size/functions';
-import HorizonButtons from "@ystdb/components/horizon-buttons";
+import HorizonButtons from '@ystdb/components/horizon-buttons';
 
 function svgButton(props) {
 	const {

@@ -31,7 +31,7 @@ import {
 import { withState, compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
-import HorizonButtons from "@ystdb/components/horizon-buttons";
+import HorizonButtons from '@ystdb/components/horizon-buttons';
 
 const SVGButtonLinkEdit = (props) => {
 	const {
