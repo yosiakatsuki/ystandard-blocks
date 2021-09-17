@@ -27,7 +27,7 @@ import {
 import schema from './schema.json';
 import { getStyle } from './function';
 import { getProperty } from '@ystdb/helper/object';
-import { Save } from "react-feather";
+import { Save } from 'react-feather';
 
 const ToolbarButtons = () => {
 	const { options, buttons, setButtons, isUpdating, updateOption } =
@@ -405,7 +405,11 @@ const ToolbarButtons = () => {
 									}}
 									disabled={isUpdating}
 								>
-									<Save className={'ystdb-button-icon'} style={ { fill: 'none' } }/> 設定を保存
+									<Save
+										className={'ystdb-button-icon'}
+										style={{ fill: 'none' }}
+									/>{' '}
+									設定を保存
 								</UpdateButton>
 							</div>
 							<div className="ystdb-components-section">
