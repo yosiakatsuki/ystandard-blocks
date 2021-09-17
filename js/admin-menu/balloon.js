@@ -29355,14 +29355,16 @@ const AddItem = () => {
   const {
     balloons,
     setBalloons,
+    updateOption,
     isUpdating
   } = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_index__WEBPACK_IMPORTED_MODULE_4__["BalloonContext"]);
   const [isModalOpen, setIsModalOpen] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const [avatar, setAvatar] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  const avatarDefaultValue = {
     image: '',
     imageId: 0,
     name: ''
-  });
+  };
+  const [avatar, setAvatar] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])(avatarDefaultValue);
   const [hasError, setHasError] = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -29386,6 +29388,8 @@ const AddItem = () => {
       }
     });
     setBalloons([...balloons]);
+    updateOption([...balloons]);
+    setAvatar(avatarDefaultValue);
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {

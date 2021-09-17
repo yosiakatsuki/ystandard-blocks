@@ -10,15 +10,17 @@ import { ErrorMessage } from '../../components/message';
 import { schema } from '../functions';
 
 const AddItem = () => {
-	const { balloons, setBalloons, isUpdating } = useContext( BalloonContext );
+	const { balloons, setBalloons, updateOption, isUpdating } = useContext( BalloonContext );
 
 	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
-	const [ avatar, setAvatar ] = useState( {
+	const avatarDefaultValue = {
 		image: '',
 		imageId: 0,
 		name: '',
-	} );
+	};
+
+	const [ avatar, setAvatar ] = useState( avatarDefaultValue );
 	const [ hasError, setHasError ] = useState( false );
 
 	const openModal = () => setIsModalOpen( true );
@@ -42,6 +44,8 @@ const AddItem = () => {
 			},
 		} );
 		setBalloons( [ ...balloons ] );
+		updateOption( [ ...balloons ] );
+		setAvatar( avatarDefaultValue );
 	};
 
 	return (
