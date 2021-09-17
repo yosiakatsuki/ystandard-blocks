@@ -60,7 +60,7 @@ class Enqueue {
 		}
 		wp_enqueue_script(
 			Config::JS_APP_HANDLE,
-			YSTDB_URL . '/js/app.js',
+			YSTDB_URL . '/js/blocks/app.js',
 			[],
 			YSTDB_VERSION,
 			true

@@ -40,7 +40,7 @@ class Polyfill {
 		);
 		wp_enqueue_script(
 			Config::JS_APP_HANDLE . '-ie',
-			YSTDB_URL . '/js/app-ie.js',
+			YSTDB_URL . '/js/block/app-ie.js',
 			[],
 			YSTDB_VERSION,
 			true
