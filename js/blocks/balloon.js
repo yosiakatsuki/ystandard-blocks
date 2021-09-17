@@ -1197,6 +1197,10 @@ function Balloon(props) {
           setBackgroundColor(balloonOption.contentBackground);
         }
 
+        if ('serif-border' !== item.value) {
+          setBalloonBorderColor(backgroundColor.color);
+        }
+
         setAttributes({
           balloonType: item.value
         });
