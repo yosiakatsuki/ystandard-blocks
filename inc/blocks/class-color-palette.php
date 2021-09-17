@@ -39,7 +39,7 @@ class Color_Palette {
 			Config::CSS_HANDLE,
 			self::get_color_palette_css( '.' . Config::BODY_CLASS )
 		);
-		add_filter( 'ys_is_enqueue_color_pallet', true );
+		add_filter( 'ys_is_enqueue_color_pallet', '__return_true' );
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Color_Palette {
 			Config::BLOCK_EDITOR_CSS_HANDLE,
 			self::get_color_palette_css( '.editor-styles-wrapper' )
 		);
-		add_filter( 'ys_is_enqueue_block_editor_color_pallet', true );
+		add_filter( 'ys_is_enqueue_block_editor_color_pallet', '__return_true' );
 	}
 
 	/**

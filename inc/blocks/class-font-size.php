@@ -40,7 +40,7 @@ class Font_Size {
 			Config::CSS_HANDLE,
 			self::get_font_size_css( '.' . Config::BODY_CLASS )
 		);
-		add_filter( 'ys_is_enqueue_font_size', true );
+		add_filter( 'ys_is_enqueue_font_size', '__return_true' );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Font_Size {
 			Config::BLOCK_EDITOR_CSS_HANDLE,
 			self::get_font_size_css( '.editor-styles-wrapper' )
 		);
-		add_filter( 'ys_is_enqueue_block_editor_font_size', true );
+		add_filter( 'ys_is_enqueue_block_editor_font_size', '__return_true' );
 	}
 
 	/**
