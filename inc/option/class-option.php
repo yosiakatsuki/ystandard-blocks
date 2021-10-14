@@ -164,6 +164,9 @@ class Option {
 	 */
 	public static function delete_section( $section ) {
 		$option = self::get_option_all( [] );
+		if ( ! is_array( $option ) ) {
+			$option = [];
+		}
 		if ( ! isset( $option[ $section ] ) ) {
 			return true;
 		}
