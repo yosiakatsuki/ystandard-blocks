@@ -77,7 +77,7 @@ class Enqueue {
 		}
 		printf(
 			'<noscript><style>%s</style></noscript>' . PHP_EOL,
-			Helper_CSS::minify( $this->get_fallback_animation_css() )
+			Helper_CSS::minify( self::get_fallback_animation_css() )
 		);
 	}
 
@@ -86,7 +86,7 @@ class Enqueue {
 	 *
 	 * @return string
 	 */
-	private function get_fallback_animation_css() {
+	public static function get_fallback_animation_css() {
 		return '.ystdb-section.has-animation:not(:root) {opacity:1;}';
 	}
 

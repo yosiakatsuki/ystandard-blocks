@@ -46,6 +46,7 @@ class Register {
 		add_action( 'init', [ $this, 'register_block' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_dynamic_block_scripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+		add_filter( 'yststd_parts_block_preview_styles', [ $this, 'add_parts_preview_style' ] );
 	}
 
 	/**
@@ -204,6 +205,31 @@ class Register {
 				'pluginUrl' => YSTDB_URL,
 			]
 		);
+	}
+
+	/**
+	 * パーツブロック表示用CSS追加
+	 *
+	 * @param array $styles スタイル.
+	 *
+	 * @return array
+	 */
+	public function add_parts_preview_style( $styles ) {
+
+		$path = YSTDB_PATH . '/css/ystandard-blocks.css';
+		if ( is_file( $path ) ) {
+			$styles[] = [
+				'css'            => file_get_contents( $path ),
+				'baseURL'        => YSTDB_URL . '/css/ystandard-blocks.css',
+				'__unstableType' => 'plugin',
+			];
+		}
+		$styles[] = [
+			'css'            => Enqueue::get_fallback_animation_css(),
+			'__unstableType' => 'plugin',
+		];
+
+		return $styles;
 	}
 }
 
