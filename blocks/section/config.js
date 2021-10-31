@@ -13,8 +13,8 @@ export const supports = {
 	lightBlockWrapper: true,
 };
 
-export const IMAGE_BACKGROUND_TYPE = 'image';
-export const VIDEO_BACKGROUND_TYPE = 'video';
+export const BACKGROUND_TYPE_IMAGE = 'image';
+export const BACKGROUND_TYPE_VIDEO = 'video';
 
 /**
  * マージン種類

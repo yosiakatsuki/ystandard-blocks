@@ -8,8 +8,8 @@ import {
 import { SVG, Path } from '@wordpress/components';
 import {
 	dividerPath,
-	IMAGE_BACKGROUND_TYPE,
-	VIDEO_BACKGROUND_TYPE,
+	BACKGROUND_TYPE_IMAGE,
+	BACKGROUND_TYPE_VIDEO,
 } from '../config';
 import { getBackgroundPosition, getBackgroundSize } from '../shared';
 import getCssClamp from '../../../src/js/util/_getCssClamp';
@@ -377,8 +377,8 @@ export const deprecated25 = [
 			const marginUnit = 'px';
 			const paddingUnit = 'px';
 
-			const isImageBackground = IMAGE_BACKGROUND_TYPE === backgroundType;
-			const isVideoBackground = VIDEO_BACKGROUND_TYPE === backgroundType;
+			const isImageBackground = BACKGROUND_TYPE_IMAGE === backgroundType;
+			const isVideoBackground = BACKGROUND_TYPE_VIDEO === backgroundType;
 			const showFocalPointPicker =
 				isVideoBackground ||
 				(isImageBackground && !backgroundImageParallax);
