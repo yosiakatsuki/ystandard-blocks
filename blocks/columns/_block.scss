@@ -164,7 +164,7 @@ _:-ms-lang(x)::-ms-backdrop,
   &.is-vertically-aligned-last {
 	> .ystdb-column > .ystdb-column-block-container {
 	  > *:nth-last-child(2) {
-		flex-grow: 1;
+		margin-bottom: auto;
 	  }
 	}
   }
