@@ -11,12 +11,10 @@
 	> .block-editor-inner-blocks > .block-editor-block-list__layout {
 	  display: flex;
 	  flex-wrap: wrap;
-	  margin-right: -0.5rem;
-	  margin-left: -0.5rem;
 
 	  [data-type="ystdb/column"] {
-		margin-right: 0.5rem;
-		margin-left: 0.5rem;
+		margin-right: 1rem;
+		margin-left: 0;
 
 		.ystdb-column {
 		  margin-right: 0;
@@ -145,35 +143,37 @@
 
 // カラム数別のスタイル.
 [data-type="ystdb/columns"] {
+  $column_margin: 1rem;
+
   .ystdb-columns {
 	@for $i from 1 through 6 {
+
+	  $minus: $column_margin *  math.div( ($i - 1) , $i );
+	  $width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
 	  &.has-#{$i}-columns {
 		> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-		  flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
-		  max-width: calc(#{math.div(100% , $i)} - 1rem);
+		  flex: 0 0 $width;
+		  max-width: $width;
+
+		  @if 1 < $i {
+			&:nth-child(1n) {
+			  margin-right: $column_margin;
+			}
+		  }
+
+		  &:nth-child(#{$i}#{"n"}) {
+			margin-right: 0;
+		  }
 		}
 
 		&.is-no-margin {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
 			flex: 0 0 calc(#{math.div(100% , $i)});
 			max-width: calc(#{math.div(100% , $i)});
-		  }
-		}
-	  }
-	}
 
-	@for $i from 1 through 6 {
-	  @include global.media-breakpoint(md) {
-		&.has-#{$i}-columns--tablet {
-		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
-			max-width: calc(#{math.div(100% , $i)} - 1rem);
-		  }
-
-		  &.is-no-margin {
-			> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			  flex: 0 0 calc(#{math.div(100% , $i)});
-			  max-width: calc(#{math.div(100% , $i)});
+			&:nth-child(1n) {
+			  margin-right: 0;
 			}
 		  }
 		}
@@ -181,17 +181,69 @@
 	}
 
 	@for $i from 1 through 6 {
-	  @include global.media-breakpoint(lg) {
-		&.has-#{$i}-columns--pc {
+	  $minus: $column_margin *  math.div( ($i - 1) , $i );
+	  $width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
+	  @include global.media-breakpoint(md) {
+		&.has-#{$i}-columns--tablet {
 		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
-			flex: 0 0 calc(#{math.div(100% , $i)} - 1rem);
-			max-width: calc(#{math.div(100% , $i)} - 1rem);
+			flex: 0 0 $width;
+			max-width: $width;
+
+			@if 1 < $i {
+			  &:nth-child(1n) {
+				margin-right: $column_margin;
+			  }
+			}
+
+			&:nth-child(#{$i}#{"n"}) {
+			  margin-right: 0;
+			}
 		  }
 
 		  &.is-no-margin {
 			> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
 			  flex: 0 0 calc(#{math.div(100% , $i)});
 			  max-width: calc(#{math.div(100% , $i)});
+
+			  &:nth-child(1n) {
+				margin-right: 0;
+			  }
+			}
+		  }
+		}
+	  }
+	}
+
+	@for $i from 1 through 6 {
+	  $minus: $column_margin *  math.div( ($i - 1) , $i );
+	  $width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
+	  @include global.media-breakpoint(lg) {
+		&.has-#{$i}-columns--pc {
+		  > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
+			flex: 0 0 $width;
+			max-width: $width;
+
+			@if 1 < $i {
+			  &:nth-child(1n) {
+				margin-right: $column_margin;
+			  }
+			}
+
+			&:nth-child(#{$i}#{"n"}) {
+			  margin-right: 0;
+			}
+		  }
+
+		  &.is-no-margin {
+			> .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="ystdb/column"] {
+			  flex: 0 0 calc(#{math.div(100% , $i)});
+			  max-width: calc(#{math.div(100% , $i)});
+
+			  &:nth-child(1n) {
+				margin-right: 0;
+			  }
 			}
 		  }
 		}

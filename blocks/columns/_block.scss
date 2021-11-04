@@ -1,87 +1,22 @@
 @use "../../src/sass/global";
 @use "sass:math";
+
+/**
+ * Columns Wrap
+ */
 .ystdb-columns-wrap {
   + .ystdb-columns-wrap {
 	margin-top: 0;
   }
 }
-.ystdb-column-block-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
 
-  > * {
-	margin-top: 1em;
-	margin-bottom: 0;
 
-	&:first-child {
-	  margin-top: 0;
-	}
-  }
-
-  p:empty {
-	display: none;
-  }
-}
-
-_:-ms-lang(x)::-ms-backdrop,
-.ystdb-column-block-container {
-  display: block;
-}
-
-.ystdb-column {
-  margin-right: 1rem;
-  margin-bottom: 2rem;
-  margin-left: 1rem;
-
-  &.has-shadow {
-	margin-bottom: 2rem;
-	box-shadow: 0 3px 15px rgba(189, 195, 199, 0.7);
-  }
-
-  &.is-padding-large {
-	padding: 1.5rem;
-
-	/* 幅広画像の特別処理 */
-	.wp-block-image.alignwide {
-	  margin-right: -1.5rem;
-	  margin-left: -1.5rem;
-	  padding-right: 0;
-	  padding-left: 0;
-
-	  &:first-child {
-		margin-top: -1.5rem;
-	  }
-	}
-  }
-
-  &.is-padding-small {
-	padding: 1rem;
-
-	/* 幅広画像の特別処理 */
-	.wp-block-image.alignwide {
-	  margin-right: -1rem;
-	  margin-left: -1rem;
-	  padding-right: 0;
-	  padding-left: 0;
-
-	  &:first-child {
-		margin-top: -1rem;
-	  }
-	}
-  }
-}
-
+/**
+ * Columns
+ */
 .ystdb-columns {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -1rem;
-  margin-left: -1rem;
-
-  .ystdb-column {
-	min-width: 0;
-  }
 
   &.is-no-margin {
 	margin-right: 0;
@@ -92,34 +27,37 @@ _:-ms-lang(x)::-ms-backdrop,
 	}
   }
 
+  $column_margin: 2rem;
+
   @for $i from 1 through 6 {
+
+	$minus: $column_margin *  math.div( ($i - 1) , $i );
+	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
 	&.has-#{$i}-columns {
 	  .ystdb-column {
-		flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
-		width: calc(#{math.div(100% , $i)} - 2rem);
+		flex: 0 0 $width;
+		width: $width;
+
+		@if 1 < $i {
+		  &:nth-child(1n) {
+			margin-right: $column_margin;
+		  }
+		}
+
+		&:nth-child(#{$i}#{"n"}) {
+		  margin-right: 0;
+		}
 	  }
+
 
 	  &.is-no-margin {
 		.ystdb-column {
 		  flex: 0 0 calc(#{math.div(100% , $i)});
 		  width: calc(#{math.div(100% , $i)});
-		}
-	  }
-	}
-  }
 
-  @for $i from 1 through 6 {
-	@include global.media-breakpoint(md) {
-	  &.has-#{$i}-columns--tablet {
-		.ystdb-column {
-		  flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
-		  width: calc(#{math.div(100% , $i)} - 2rem);
-		}
-
-		&.is-no-margin {
-		  .ystdb-column {
-			flex: 0 0 calc(#{math.div(100% , $i)});
-			width: calc(#{math.div(100% , $i)});
+		  &:nth-child(1n) {
+			margin-right: 0;
 		  }
 		}
 	  }
@@ -127,17 +65,71 @@ _:-ms-lang(x)::-ms-backdrop,
   }
 
   @for $i from 1 through 6 {
-	@include global.media-breakpoint(lg) {
-	  &.has-#{$i}-columns--pc {
+
+	$minus: $column_margin * math.div( ($i - 1) , $i );
+	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
+	@include global.media-breakpoint(md) {
+	  &.has-#{$i}-columns--tablet {
 		.ystdb-column {
-		  flex: 0 0 calc(#{math.div(100% , $i)} - 2rem);
-		  width: calc(#{math.div(100% , $i)} - 2rem);
+		  flex: 0 0 $width;
+		  width: $width;
+
+		  @if 1 < $i {
+			&:nth-child(1n) {
+			  margin-right: $column_margin;
+			}
+		  }
+
+		  &:nth-child(#{$i}#{"n"}) {
+			margin-right: 0;
+		  }
 		}
 
 		&.is-no-margin {
 		  .ystdb-column {
 			flex: 0 0 calc(#{math.div(100% , $i)});
 			width: calc(#{math.div(100% , $i)});
+
+			&:nth-child(1n) {
+			  margin-right: 0;
+			}
+		  }
+		}
+	  }
+	}
+  }
+
+  @for $i from 1 through 6 {
+
+	$minus: $column_margin * math.div( ($i - 1) , $i );
+	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+
+	@include global.media-breakpoint(lg) {
+	  &.has-#{$i}-columns--pc {
+		.ystdb-column {
+		  flex: 0 0 $width;
+		  width: $width;
+
+		  @if 1 < $i {
+			&:nth-child(1n) {
+			  margin-right: $column_margin;
+			}
+		  }
+
+		  &:nth-child(#{$i}#{"n"}) {
+			margin-right: 0;
+		  }
+		}
+
+		&.is-no-margin {
+		  .ystdb-column {
+			flex: 0 0 calc(#{math.div(100% , $i)});
+			width: calc(#{math.div(100% , $i)});
+
+			&:nth-child(1n) {
+			  margin-right: 0;
+			}
 		  }
 		}
 	  }
@@ -179,5 +171,78 @@ _:-ms-lang(x)::-ms-backdrop,
 
   &.is-horizontally-aligned-between {
 	justify-content: space-between;
+  }
+}
+
+
+/**
+ * Column
+ */
+
+.ystdb-column-block-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  > * {
+	margin-top: 1em;
+	margin-bottom: 0;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+  }
+
+  p:empty {
+	display: none;
+  }
+}
+
+_:-ms-lang(x)::-ms-backdrop,
+.ystdb-column-block-container {
+  display: block;
+}
+
+.ystdb-column {
+  margin-left: 0;
+  margin-bottom: 2rem;
+  min-width: 0;
+
+  &.has-shadow {
+	margin-bottom: 2rem;
+	box-shadow: 0 3px 15px rgba(189, 195, 199, 0.7);
+  }
+
+  &.is-padding-large {
+	padding: 1.5rem;
+
+	/* 幅広画像の特別処理 */
+	.wp-block-image.alignwide {
+	  margin-right: -1.5rem;
+	  margin-left: -1.5rem;
+	  padding-right: 0;
+	  padding-left: 0;
+
+	  &:first-child {
+		margin-top: -1.5rem;
+	  }
+	}
+  }
+
+  &.is-padding-small {
+	padding: 1rem;
+
+	/* 幅広画像の特別処理 */
+	.wp-block-image.alignwide {
+	  margin-right: -1rem;
+	  margin-left: -1rem;
+	  padding-right: 0;
+	  padding-left: 0;
+
+	  &:first-child {
+		margin-top: -1rem;
+	  }
+	}
   }
 }

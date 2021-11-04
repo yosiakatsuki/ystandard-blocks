@@ -24972,9 +24972,6 @@ const MediaUploadControl = props => {
   const _render = obj => {
     const mediaType = (media === null || media === void 0 ? void 0 : media.type) || 'image';
     const mediaId = (media === null || media === void 0 ? void 0 : media.id) || 0;
-    console.log({
-      MediaUploadControl: obj
-    });
 
     if (!mediaId || 0 === mediaId) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Button"], {
