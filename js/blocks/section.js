@@ -3626,8 +3626,6 @@ const SectionEdit = props => {
     backgroundType,
     focalPoint,
     backgroundImageURL,
-    backgroundImageAlt,
-    backgroundImageID,
     backgroundImageOpacity,
     backgroundImageParallax,
     backgroundImageSize,
