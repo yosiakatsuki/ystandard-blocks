@@ -401,3 +401,8 @@ Source : <https://github.com/simple-icons/simple-icons>
 
 License: MIT  
 Source : <https://github.com/fkhadra/react-toastify>
+
+### \_decimal.scss
+
+License: MIT License  
+Source : <https://gist.github.com/terkel/4373420>
