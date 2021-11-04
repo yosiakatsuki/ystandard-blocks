@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "yStandard用ブロック追加プラグイン",
   "scripts": {
-    "lint-all": "npm run lint-js:fix && npm run lint-css-fix",
+    "lint": "npm run lint-php && npm run lint-js:fix",
     "lint-js": "wp-scripts lint-js blocks ./src/js",
     "lint-js:fix": "npm run lint-js -- --fix",
     "lint-css:src": "wp-scripts lint-style 'src/**/*.scss'",
@@ -11,6 +11,7 @@
     "lint-css:blocks": "wp-scripts lint-style 'blocks/**/*.scss'",
     "lint-css:blocks:fix": "npm run lint-css:blocks -- --fix",
     "lint-css-fix": "npm run lint-css:src:fix && npm run lint-css:blocks:fix",
+    "lint-php": "composer phpcs",
     "make-pot": "wp i18n make-pot --domain=\"ystandard-blocks\" --exclude=\"library\" ./ languages/ystandard-blocks.pot",
     "po2json:blocks": "po2json languages/ystandard-blocks-ja.po languages/ystandard-blocks-ja-ystandard-blocks-editor.json -f jed -p",
     "build:block": "wp-scripts build --config webpack.blocks.config.js",

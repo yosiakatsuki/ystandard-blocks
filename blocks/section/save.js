@@ -19,6 +19,7 @@ import getDataClamp from '../../src/js/util/_getDataClamp';
 export default function save(props) {
 	const { attributes } = props;
 	const {
+		align,
 		wrapperTag,
 		backgroundColor,
 		customBackgroundColor,
@@ -88,12 +89,15 @@ export default function save(props) {
 		animationType,
 		animationSpeed,
 		animationDelay,
+		containerFluid,
 	} = attributes;
 
 	/**
 	 * HTMLタグ
 	 */
 	const Wrapper = wrapperTag;
+
+	const isContainerFluid = 'full' === align && containerFluid;
 
 	const marginUnit = 'px';
 	const paddingUnit = 'px';
@@ -166,6 +170,7 @@ export default function save(props) {
 		'is-screen-height': screenHeightMode,
 		'has-animation': hasAnimation,
 		'has-parallax': backgroundImageParallax,
+		'is-container-fluid': isContainerFluid,
 	});
 	const dataAnimation = hasAnimation ? animationType : undefined;
 

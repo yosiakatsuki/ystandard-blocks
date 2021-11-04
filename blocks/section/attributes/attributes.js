@@ -275,6 +275,10 @@ const attributes = {
 		type: 'string',
 		default: 'div',
 	},
+	containerFluid: {
+		type: 'bool',
+		default: false,
+	},
 };
 
 export default attributes;

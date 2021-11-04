@@ -50,6 +50,11 @@
   &.animation--fadein-shrink {
 	animation-name: ystdb-fadein-shrink;
   }
+
+  &.is-container-fluid {
+	padding-right: 0;
+	padding-left: 0;
+  }
 }
 
 .ystdb-section__video-background {

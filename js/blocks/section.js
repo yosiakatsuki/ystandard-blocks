@@ -371,9 +371,80 @@ const attributes = {
   wrapperTag: {
     type: 'string',
     default: 'div'
+  },
+  containerFluid: {
+    type: 'bool',
+    default: false
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (attributes);
+
+/***/ }),
+
+/***/ "./blocks/section/block-controls/container-fluid.js":
+/*!**********************************************************!*\
+  !*** ./blocks/section/block-controls/container-fluid.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+const ContainerFluid = props => {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const {
+    containerFluid,
+    align
+  } = attributes;
+
+  if ('full' !== align) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null);
+  }
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToolbarGroup"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToolbarButton"], {
+    icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(react_feather__WEBPACK_IMPORTED_MODULE_1__["Maximize2"], null),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('画面幅まで広げる', 'ystandard-blocks'),
+    onClick: () => {
+      setAttributes({
+        containerFluid: !containerFluid
+      });
+    },
+    isPressed: containerFluid
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ContainerFluid);
+
+/***/ }),
+
+/***/ "./blocks/section/block-controls/index.js":
+/*!************************************************!*\
+  !*** ./blocks/section/block-controls/index.js ***!
+  \************************************************/
+/*! exports provided: ContainerFluid */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _container_fluid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container-fluid */ "./blocks/section/block-controls/container-fluid.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ContainerFluid", function() { return _container_fluid__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
 
 /***/ }),
 
@@ -3558,6 +3629,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_js_util_getCssClamp__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../src/js/util/_getCssClamp */ "./src/js/util/_getCssClamp.js");
 /* harmony import */ var _src_js_util_convertPHPObject2JS__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../src/js/util/_convertPHPObject2JS */ "./src/js/util/_convertPHPObject2JS.js");
 /* harmony import */ var _inspector_controls__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./inspector-controls */ "./blocks/section/inspector-controls/index.js");
+/* harmony import */ var _block_controls__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./block-controls */ "./blocks/section/block-controls/index.js");
+
 
 
 
@@ -3593,6 +3666,7 @@ const SectionEdit = props => {
     className
   } = props;
   const {
+    align,
     wrapperTag,
     marginTop,
     marginTopResponsive,
@@ -3651,7 +3725,8 @@ const SectionEdit = props => {
     sectionMinHeight,
     animationType,
     animationSpeed,
-    animationDelay
+    animationDelay,
+    containerFluid
   } = attributes;
 
   const {
@@ -3667,6 +3742,7 @@ const SectionEdit = props => {
   const rangeMax = 200;
   const rangeMin = 0;
   const Wrapper = wrapperTag;
+  const isContainerFluid = 'full' === align && containerFluid;
   /**
    * 背景画像関連
    */
@@ -3712,7 +3788,8 @@ const SectionEdit = props => {
     'has-background-video': isVideoBackground,
     'is-screen-height': screenHeightMode,
     'has-animation': hasAnimation,
-    [`animation--${animationType}`]: hasAnimation
+    [`animation--${animationType}`]: hasAnimation,
+    'is-container-fluid': isContainerFluid
   });
   /**
    * セクションスタイル
@@ -3852,7 +3929,7 @@ const SectionEdit = props => {
     className: sectionClass,
     style: sectionStyles
   });
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["BlockControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_block_controls__WEBPACK_IMPORTED_MODULE_15__["ContainerFluid"], props)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "ystdb-inspectorcontrols"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('余白設定', 'ystandard-blocks')
@@ -4982,6 +5059,7 @@ function save(props) {
     attributes
   } = props;
   const {
+    align,
     wrapperTag,
     backgroundColor,
     customBackgroundColor,
@@ -5050,13 +5128,15 @@ function save(props) {
     sectionMinHeight,
     animationType,
     animationSpeed,
-    animationDelay
+    animationDelay,
+    containerFluid
   } = attributes;
   /**
    * HTMLタグ
    */
 
   const Wrapper = wrapperTag;
+  const isContainerFluid = 'full' === align && containerFluid;
   const marginUnit = 'px';
   const paddingUnit = 'px';
   const isImageBackground = _config__WEBPACK_IMPORTED_MODULE_5__["BACKGROUND_TYPE_IMAGE"] === backgroundType;
@@ -5101,7 +5181,8 @@ function save(props) {
     'has-background-image': backgroundImageURL,
     'is-screen-height': screenHeightMode,
     'has-animation': hasAnimation,
-    'has-parallax': backgroundImageParallax
+    'has-parallax': backgroundImageParallax,
+    'is-container-fluid': isContainerFluid
   });
   const dataAnimation = hasAnimation ? animationType : undefined;
 
