@@ -20453,6 +20453,19 @@ const ystdbConfig = {
     }, {
       value: 'italic',
       label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('イタリック体', 'component-config', 'ystandard-blocks')
+    }],
+    borderStyles: [{
+      value: 'solid',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('直線', 'component-config', 'ystandard-blocks')
+    }, {
+      value: 'dotted',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('点線', 'component-config', 'ystandard-blocks')
+    }, {
+      value: 'dashed',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('破線', 'component-config', 'ystandard-blocks')
+    }, {
+      value: 'double',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["_x"])('二重線', 'component-config', 'ystandard-blocks')
     }]
   }
 };

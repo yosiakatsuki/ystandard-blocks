@@ -50,19 +50,21 @@ import getCssClamp from '../../src/js/util/_getCssClamp';
 import convertPHPObject2JS from '../../src/js/util/_convertPHPObject2JS';
 import * as BlockOptions from './inspector-controls';
 import * as ToolbarControls from './block-controls';
+import { getBorderProperty } from './function/border';
 
 const SectionEdit = (props) => {
 	const {
 		attributes,
 		setAttributes,
 		backgroundColor,
-		textColor,
-		dividerColorTop,
-		dividerColorBottom,
 		setBackgroundColor,
+		textColor,
 		setTextColor,
+		dividerColorTop,
 		setDividerColorTop,
+		dividerColorBottom,
 		setDividerColorBottom,
+		borderColor,
 		setState,
 		previewAnimation,
 		useDarkImagePreview,
@@ -234,6 +236,12 @@ const SectionEdit = (props) => {
 			hasAnimation && 0 < animationDelay
 				? `${animationDelay}s`
 				: undefined,
+		...getBorderProperty({
+			...attributes,
+			...{
+				customBorderColor: borderColor.color,
+			},
+		}),
 	};
 	if (!backgroundImageOnOverlay) {
 		sectionStyles = {
@@ -1378,6 +1386,14 @@ const SectionEdit = (props) => {
 						</PanelBody>
 					</PanelBody>
 					<PanelBody
+						title={__('枠線設定', 'ystandard-blocks')}
+						initialOpen={false}
+					>
+						<BlockOptions.BorderSize {...props} />
+						<BlockOptions.BorderStyle {...props} />
+						<BlockOptions.BorderColor {...props} />
+					</PanelBody>
+					<PanelBody
 						title={__('文字設定', 'ystandard-blocks')}
 						initialOpen={false}
 					>
@@ -1875,6 +1891,7 @@ export default compose([
 		textColor: 'color',
 		dividerColorTop: 'fill',
 		dividerColorBottom: 'fill',
+		borderColor: 'borderColor',
 	}),
 	withState({
 		previewAnimation: false,

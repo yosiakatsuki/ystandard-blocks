@@ -131,5 +131,23 @@ export const ystdbConfig = {
 				),
 			},
 		],
+		borderStyles: [
+			{
+				value: 'solid',
+				label: _x('直線', 'component-config', 'ystandard-blocks'),
+			},
+			{
+				value: 'dotted',
+				label: _x('点線', 'component-config', 'ystandard-blocks'),
+			},
+			{
+				value: 'dashed',
+				label: _x('破線', 'component-config', 'ystandard-blocks'),
+			},
+			{
+				value: 'double',
+				label: _x('二重線', 'component-config', 'ystandard-blocks'),
+			},
+		],
 	},
 };

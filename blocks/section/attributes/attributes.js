@@ -279,6 +279,18 @@ const attributes = {
 		type: 'bool',
 		default: false,
 	},
+	borderColor: {
+		type: 'string',
+	},
+	customBorderColor: {
+		type: 'string',
+	},
+	borderSize: {
+		type: 'string',
+	},
+	borderStyle: {
+		type: 'string',
+	},
 };
 
 export default attributes;

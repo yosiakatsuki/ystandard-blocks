@@ -15,6 +15,7 @@ import {
 import { getBackgroundPosition, getBackgroundSize } from './shared';
 import getCssClamp from '../../src/js/util/_getCssClamp';
 import getDataClamp from '../../src/js/util/_getDataClamp';
+import { getBorderProperty } from './function/border';
 
 export default function save(props) {
 	const { attributes } = props;
@@ -90,6 +91,7 @@ export default function save(props) {
 		animationSpeed,
 		animationDelay,
 		containerFluid,
+		borderColor,
 	} = attributes;
 
 	/**
@@ -121,6 +123,7 @@ export default function save(props) {
 		'fill',
 		dividerColorBottom
 	);
+	const borderColorClass = getColorClassName('border-color', borderColor);
 
 	/**
 	 * アニメーション
@@ -150,6 +153,7 @@ export default function save(props) {
 			backgroundImageSizeUnitX,
 			backgroundImageSizeUnitY
 		),
+		...getBorderProperty(attributes),
 	};
 
 	/**
@@ -171,6 +175,7 @@ export default function save(props) {
 		'has-animation': hasAnimation,
 		'has-parallax': backgroundImageParallax,
 		'is-container-fluid': isContainerFluid,
+		[borderColorClass]: borderColorClass,
 	});
 	const dataAnimation = hasAnimation ? animationType : undefined;
 
