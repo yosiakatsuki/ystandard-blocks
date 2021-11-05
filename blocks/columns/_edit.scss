@@ -19,6 +19,7 @@
 		.ystdb-column {
 		  margin-right: 0;
 		  margin-left: 0;
+		  height: 100%;
 		}
 	  }
 
@@ -59,17 +60,71 @@
 [data-type="ystdb/columns"] {
   .ystdb-columns {
 
+	[data-type="ystdb/column"] {
+	  > .ystdb-column {
+		height: 100%;
+
+		> .ystdb-column-block-container {
+		  height: 100%;
+
+		  > .block-editor-inner-blocks {
+			height: 100%;
+
+			> .block-editor-block-list__layout {
+			  display: flex;
+			  flex-direction: column;
+			  height: 100%;
+
+			  > *:not(.block-list-appender) {
+				width: 100%;
+			  }
+			}
+		  }
+		}
+	  }
+	}
+
+	&.is-vertically-aligned-top {
+	  [data-type="ystdb/column"] {
+		> .ystdb-column {
+		  > .ystdb-column-block-container {
+			> .block-editor-inner-blocks {
+			  > .block-editor-block-list__layout {
+				justify-content: flex-start;
+			  }
+			}
+		  }
+		}
+	  }
+	}
+
 	// 中央揃え
 	&.is-vertically-aligned-center {
-	  > .block-editor-inner-blocks > .block-editor-block-list__layout {
-		align-items: center;
+	  [data-type="ystdb/column"] {
+		> .ystdb-column {
+		  > .ystdb-column-block-container {
+			> .block-editor-inner-blocks {
+			  > .block-editor-block-list__layout {
+				justify-content: center;
+			  }
+			}
+		  }
+		}
 	  }
 	}
 
 	// 下揃え
 	&.is-vertically-aligned-bottom {
-	  > .block-editor-inner-blocks > .block-editor-block-list__layout {
-		align-items: flex-end;
+	  [data-type="ystdb/column"] {
+		> .ystdb-column {
+		  > .ystdb-column-block-container {
+			> .block-editor-inner-blocks {
+			  > .block-editor-block-list__layout {
+				justify-content: flex-end;
+			  }
+			}
+		  }
+		}
 	  }
 	}
 
@@ -82,33 +137,10 @@
 		  }
 		}
 	  }
-
-	  [data-type="ystdb/column"] {
-		> .ystdb-column {
-		  height: 100%;
-
-		  > .ystdb-column-block-container {
-			height: 100%;
-
-			> .block-editor-inner-blocks {
-			  height: 100%;
-
-			  > .block-editor-block-list__layout {
-				display: flex;
-				flex-direction: column;
-				height: 100%;
-
-				> *:not(.block-list-appender) {
-				  width: 100%;
-				}
-			  }
-			}
-		  }
-		}
-	  }
 	}
   }
 }
+
 
 // 横位置
 [data-type="ystdb/columns"] {
@@ -270,6 +302,7 @@
 	  .block-list-appender {
 		width: 100%;
 		max-width: none;
+		margin: 0;
 	  }
 	}
 

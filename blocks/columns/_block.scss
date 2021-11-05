@@ -141,6 +141,12 @@
 	flex-direction: row-reverse;
   }
 
+  &.is-vertically-aligned-top {
+	> .ystdb-column > .ystdb-column-block-container {
+	  justify-content: flex-start;
+	}
+  }
+
   &.is-vertically-aligned-center {
 	> .ystdb-column > .ystdb-column-block-container {
 	  justify-content: center;
