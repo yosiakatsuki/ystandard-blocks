@@ -42,7 +42,7 @@ class Polyfill {
 			Config::JS_APP_HANDLE . '-ie',
 			YSTDB_URL . '/js/app/app-ie.js',
 			[],
-			filemtime( YSTDB_PATH . '/js/app/app-ie.js', ),
+			filemtime( YSTDB_PATH . '/js/app/app-ie.js' ),
 			true
 		);
 		wp_enqueue_style(
