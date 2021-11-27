@@ -7,6 +7,11 @@ const cssnano = require( 'cssnano' );
 const gulpZip = require( 'gulp-zip' );
 const del = require( 'del' );
 const rename = require( 'gulp-rename' );
+const webpackStream = require( 'webpack-stream' );
+const webpack = require( 'webpack' );
+
+const webpackAppConfig = require( './webpack.block-app.config.js' );
+const webpackAppConfigDev = require( './webpack.block-app.dev.config.js' );
 
 const postcssPlugins = [
 	autoprefixer( {
@@ -32,6 +37,16 @@ function sass() {
 		.pipe( dest( './css' ) );
 }
 
+function buildApp() {
+	return webpackStream( webpackAppConfig, webpack )
+		.pipe( dest( 'js/app/' ) )
+}
+
+function BuildAppDev() {
+	return webpackStream( webpackAppConfigDev, webpack )
+		.pipe( dest( 'js/app/' ) )
+}
+
 
 function cleanFiles( cb ) {
 	return del(
@@ -46,6 +61,14 @@ function cleanTemp( cb ) {
 	return del(
 		[
 			'./ystandard-blocks',
+		],
+		cb );
+}
+
+function deleteVendor( cb ) {
+	return del(
+		[
+			'./ystandard-blocks/vendor',
 		],
 		cb );
 }
@@ -127,6 +150,7 @@ function watchFiles() {
 	cleanFiles();
 	// watch.
 	watchSass();
+	watchJs();
 	watchAdminMenu();
 }
 
@@ -135,6 +159,12 @@ function watchSass() {
 	watch( './src/sass/**/*.scss', sass );
 	watch( './src/js/**/*.scss', sass );
 	watch( './blocks/**/*.scss', sass );
+}
+
+function watchJs() {
+	BuildAppDev();
+	watch( './src/js/app/*.js', BuildAppDev );
+	watch( './blocks/**/app.js', BuildAppDev );
 }
 
 function watchAdminMenu() {
@@ -146,13 +176,41 @@ function watchAdminMenu() {
 /**
  * サーバーにデプロイするファイルを作成
  */
-exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJson ), cleanTemp );
-exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyUpdateJsonBeta ), cleanTemp );
+exports.createDeployFiles = series(
+	cleanFiles,
+	copyProductionFiles,
+	parallel(
+		zip,
+		copyUpdateJson
+	),
+	cleanTemp
+);
+exports.createDeployFilesBeta = series(
+	cleanFiles,
+	copyProductionFiles,
+	parallel(
+		zip,
+		copyUpdateJsonBeta
+	),
+	cleanTemp
+);
+
+exports.manualProduction = series(
+	cleanFiles,
+	copyProductionFiles,
+	deleteVendor,
+	parallel(
+		zip,
+		copyUpdateJsonBeta
+	),
+	cleanTemp
+);
 
 exports.watch = series( watchFiles );
 exports.watchSass = series( watchSass );
 exports.watchAdminMenu = series( watchAdminMenu );
 exports.sass = series( sass );
+exports.app = series( buildApp );
 exports.clean = series( cleanFiles );
 exports.copyAdminMenuFiles = series( copyAdminMenuFiles );
 /**

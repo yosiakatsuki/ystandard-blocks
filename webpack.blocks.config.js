@@ -4,8 +4,6 @@ const path = require( 'path' );
 module.exports = {
 	...defaultConfig,
 	entry: {
-		'app': './src/js/app/app.js',
-		'app-ie': './src/js/app/app-ie.js',
 		'block': './src/js/block/block.js',
 		'svg-button': './blocks/svg-button/index.js',
 		'svg-icon': './blocks/svg-icon/index.js',

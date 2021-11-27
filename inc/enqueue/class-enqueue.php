@@ -60,9 +60,9 @@ class Enqueue {
 		}
 		wp_enqueue_script(
 			Config::JS_APP_HANDLE,
-			YSTDB_URL . '/js/blocks/app.js',
+			YSTDB_URL . '/js/app/app.js',
 			[],
-			YSTDB_VERSION,
+			filemtime( YSTDB_PATH . '/js/app/app.js' ),
 			true
 		);
 		wp_script_add_data( Config::JS_APP_HANDLE, 'defer', true );

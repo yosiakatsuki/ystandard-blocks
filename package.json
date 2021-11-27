@@ -18,7 +18,8 @@
     "build:icons": "node src/js/script/create-svg-icon-list.js",
     "build:admin": "wp-scripts build --config webpack.admin-menu.config.js && gulp copyAdminMenuFiles",
     "build:css": "gulp sass",
-    "build": "npm run build:block && npm run build:admin && npm run build:css",
+    "build:app": "gulp app",
+    "build": "npm run build:block && npm run build:admin && npm run build:css && npm run build:app",
     "watch:block": "wp-scripts start --config webpack.blocks.config.js",
     "watch:sass": "gulp watchSass",
     "watch:admin-menu": "NODE_ENV=development wp-scripts start --config webpack.admin-menu.config.js & gulp watchAdminMenu",
@@ -28,7 +29,8 @@
     "build:deploy-files": "gulp createDeployFiles",
     "build:deploy-files-beta": "gulp createDeployFilesBeta",
     "packages-update": "wp-scripts packages-update",
-    "production": "npm run build && npm run build:deploy-files"
+    "production": "npm run build && npm run build:deploy-files",
+    "production:manual": "npm run build && npm run build:deploy-files"
   },
   "repository": {
     "type": "git",

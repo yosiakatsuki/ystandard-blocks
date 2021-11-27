@@ -40,10 +40,16 @@ class Polyfill {
 		);
 		wp_enqueue_script(
 			Config::JS_APP_HANDLE . '-ie',
-			YSTDB_URL . '/js/block/app-ie.js',
+			YSTDB_URL . '/js/app/app-ie.js',
 			[],
-			YSTDB_VERSION,
+			filemtime( YSTDB_PATH . '/js/app/app-ie.js', ),
 			true
+		);
+		wp_enqueue_style(
+			Config::CSS_HANDLE . '-ie',
+			YSTDB_URL . '/css/ystandard-blocks-polyfill.css',
+			[ Config::CSS_HANDLE ],
+			filemtime( YSTDB_PATH . '/css/ystandard-blocks-polyfill.css' )
 		);
 	}
 
