@@ -1,5 +1,6 @@
 @use "../../src/sass/global";
 @use "sass:math";
+@use "mixin";
 
 /**
  * Columns Wrap
@@ -27,118 +28,27 @@
 	}
   }
 
-  $column_margin: 2rem;
+  @include mixin.column();
 
-  @for $i from 1 through 6 {
-
-	$minus: $column_margin *  math.div( ($i - 1) , $i );
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
-
-	&.has-#{$i}-columns {
-	  .ystdb-column {
-		flex: 0 0 $width;
-		width: $width;
-
-		@if 1 < $i {
-		  &:nth-child(1n) {
-			margin-right: $column_margin;
-		  }
-		}
-
-		&:nth-child(#{$i}#{"n"}) {
-		  margin-right: 0;
-		}
-	  }
-
-
-	  &.is-no-margin {
-		.ystdb-column {
-		  flex: 0 0 calc(#{math.div(100% , $i)});
-		  width: calc(#{math.div(100% , $i)});
-
-		  &:nth-child(1n) {
-			margin-right: 0;
-		  }
-		}
-	  }
-	}
+  @include global.media-breakpoint(md) {
+	@include mixin.column("tablet");
   }
-
-  @for $i from 1 through 6 {
-
-	$minus: $column_margin * math.div( ($i - 1) , $i );
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
-
-	@include global.media-breakpoint(md) {
-	  &.has-#{$i}-columns--tablet {
-		.ystdb-column {
-		  flex: 0 0 $width;
-		  width: $width;
-
-		  @if 1 < $i {
-			&:nth-child(1n) {
-			  margin-right: $column_margin;
-			}
-		  }
-
-		  &:nth-child(#{$i}#{"n"}) {
-			margin-right: 0;
-		  }
-		}
-
-		&.is-no-margin {
-		  .ystdb-column {
-			flex: 0 0 calc(#{math.div(100% , $i)});
-			width: calc(#{math.div(100% , $i)});
-
-			&:nth-child(1n) {
-			  margin-right: 0;
-			}
-		  }
-		}
-	  }
-	}
-  }
-
-  @for $i from 1 through 6 {
-
-	$minus: $column_margin * math.div( ($i - 1) , $i );
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
-
-	@include global.media-breakpoint(lg) {
-	  &.has-#{$i}-columns--pc {
-		.ystdb-column {
-		  flex: 0 0 $width;
-		  width: $width;
-
-		  @if 1 < $i {
-			&:nth-child(1n) {
-			  margin-right: $column_margin;
-			}
-		  }
-
-		  &:nth-child(#{$i}#{"n"}) {
-			margin-right: 0;
-		  }
-		}
-
-		&.is-no-margin {
-		  .ystdb-column {
-			flex: 0 0 calc(#{math.div(100% , $i)});
-			width: calc(#{math.div(100% , $i)});
-
-			&:nth-child(1n) {
-			  margin-right: 0;
-			}
-		  }
-		}
-	  }
-	}
+  @include global.media-breakpoint(lg) {
+	@include mixin.column("pc");
   }
 
 
   &.is-reverse {
 	flex-direction: row-reverse;
+
+	@include mixin.column("", true);
+
+	@include global.media-breakpoint(md) {
+	  @include mixin.column("tablet", true);
+	}
+	@include global.media-breakpoint(lg) {
+	  @include mixin.column("pc", true);
+	}
   }
 
   &.is-vertically-aligned-top {
