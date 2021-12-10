@@ -45,6 +45,9 @@
   }
 }
 
+/**
+ * サブテキスト
+ */
 .ystdb-heading__subtext {
   display: block;
   line-height: 1.2;
@@ -71,6 +74,14 @@
 	}
 	@include global.media-breakpoint(lg) {
 	  font-size: var(--ys-font-desktop);
+	}
+  }
+}
+// 親にテキストカラーが設定されているとき
+.has-text-color {
+  .ystdb-heading__subtext {
+	&:not(.has-color) {
+	  color: currentColor;
 	}
   }
 }
