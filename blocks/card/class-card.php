@@ -767,7 +767,24 @@ class Card extends Dynamic_Block {
 			return false;
 		}
 
-		return set_transient( $this->cache_key, $args, self::CACHE_EXPIRATION );
+		$expiration = $this->get_cache_expiration();
+
+		return set_transient( $this->cache_key, $args, $expiration );
+	}
+
+	/**
+	 * キャッシュの有効期限
+	 *
+	 * @param int|null $date Date.
+	 *
+	 * @return int
+	 */
+	private function get_cache_expiration( $date = null ) {
+		if ( ! is_numeric( $date ) ) {
+			$date = self::CACHE_EXPIRATION;
+		}
+
+		return apply_filters( 'ystdb_card_cache_expiration_date', $date * 60 * 60 * 24 );
 	}
 
 	/**
