@@ -608,7 +608,6 @@ function Balloon(props) {
 						placeholder={__('Add text…')}
 						value={text}
 						onChange={(value) => setAttributes({ text: value })}
-						withoutInteractiveFormatting
 						className={textClasses}
 						style={textStyles}
 					/>
