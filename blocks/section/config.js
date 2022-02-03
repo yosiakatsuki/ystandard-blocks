@@ -166,8 +166,12 @@ export const dividerTypes = [
 export const animationTypes = [
 	{ label: 'なし', value: 'none' },
 	{ label: 'フェードイン', value: 'fadein' },
+	{ label: '上からフェードイン', value: 'fadein-down' },
 	{ label: '下からフェードイン', value: 'fadein-up' },
+	{ label: '左からフェードイン', value: 'fadein-left' },
+	{ label: '右からフェードイン', value: 'fadein-right' },
 	{ label: '縮小しながらフェードイン', value: 'fadein-shrink' },
+	{ label: '拡大しながらフェードイン', value: 'fadein-grow' },
 ];
 
 export const dividerPath = (type, level) => {

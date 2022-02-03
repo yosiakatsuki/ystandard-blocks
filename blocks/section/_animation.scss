@@ -1,0 +1,122 @@
+@use "../../src/sass/global";
+
+.ystdb-section {
+
+  &.has-animation {
+	animation-duration: 1s;
+	opacity: 0;
+
+	animation-fill-mode: both;
+  }
+
+  &.animation--fadein {
+	animation-name: ystdb-fadein;
+  }
+
+  &.animation--fadein-up {
+	animation-name: ystdb-fadein-up;
+  }
+
+  &.animation--fadein-down {
+	animation-name: ystdb-fadein-down;
+  }
+
+  &.animation--fadein-left {
+	animation-name: ystdb-fadein-left;
+  }
+
+  &.animation--fadein-right {
+	animation-name: ystdb-fadein-right;
+  }
+
+  &.animation--fadein-shrink {
+	animation-name: ystdb-fadein-shrink;
+  }
+
+  &.animation--fadein-grow {
+	animation-name: ystdb-fadein-grow;
+  }
+}
+
+
+@keyframes ystdb-fadein {
+  from {
+	opacity: 0;
+  }
+
+  to {
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-up {
+  from {
+	transform: translateY(5%);
+	opacity: 0;
+  }
+
+  to {
+	transform: translateY(0);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-down {
+  from {
+	transform: translateY(-5%);
+	opacity: 0;
+  }
+
+  to {
+	transform: translateY(0);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-left {
+  from {
+	transform: translateX(-5%);
+	opacity: 0;
+  }
+
+  to {
+	transform: translateX(0);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-right {
+  from {
+	transform: translateX(5%);
+	opacity: 0;
+  }
+
+  to {
+	transform: translateX(0);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-shrink {
+  from {
+	transform: scale(1.05, 1.05);
+	opacity: 0;
+  }
+
+  to {
+	transform: scale(1, 1);
+	opacity: 1;
+  }
+}
+
+@keyframes ystdb-fadein-grow {
+  from {
+	transform: scale(0.95, 0.95);
+	opacity: 0;
+  }
+
+  to {
+	transform: scale(1, 1);
+	opacity: 1;
+  }
+}
