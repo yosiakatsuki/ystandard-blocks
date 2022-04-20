@@ -1,74 +1,80 @@
 @use "block";
 
 [data-type="ystdb/balloon"] {
-  .ystdb-balloon__avatar {
 
-	.ystdb-balloon__avatar-image {
-	  width: 64px;
-	  height: 64px;
-	  overflow: hidden;
+	.ystdb-balloon__avatar {
 
-	  button,
-	  img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-	  }
-	  img {
-		border: 0;
-	  }
+		.ystdb-balloon__avatar-image {
+			width: 64px;
+			height: 64px;
+			overflow: hidden;
 
-	  button.ystdb-mediaupload__preview {
-		height: 100%;
-		width: 100%;
+			button,
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
 
-		&.is-no-image {
-		  &::after,
-		  &::before {
-			opacity: 1;
-		  }
+			img {
+				border: 0;
+			}
 
-		  &::before {
-			background-color: rgba(0, 0, 0, 0.5);
-		  }
+			button.ystdb-mediaupload__preview {
+				height: 100%;
+				width: 100%;
+
+				&.is-no-image {
+
+					&::after,
+					&::before {
+						opacity: 1;
+					}
+
+					&::before {
+						background-color: rgba(0, 0, 0, 0.5);
+					}
+				}
+
+				&.is-show-text {
+
+					&::after {
+						content: "画像を削除";
+					}
+				}
+			}
 		}
 
-		&.is-show-text {
-		  &::after {
-			content: "画像を削除";
-		  }
+		&.is-size-large {
+
+			.ystdb-balloon__avatar-image {
+				width: 80px;
+				height: 80px;
+			}
 		}
-	  }
 	}
 
-	&.is-size-large {
-	  .ystdb-balloon__avatar-image {
-		width: 80px;
-		height: 80px;
-	  }
+
+	.ystdb-balloon__name--edit {
+		text-align: center;
+
+		&:focus {
+			border: 0;
+			outline: none;
+			box-shadow: none;
+		}
+
+		.components-text-control__input {
+			text-align: center;
+			border: 0;
+			padding: 0.25em;
+			min-height: auto;
+		}
 	}
-  }
 
-
-  .ystdb-balloon__name--edit {
-	text-align: center;
-
-	&:focus {
-	  border: 0;
-	  outline: none;
-	  box-shadow: none;
+	.ystdb-ystdb-balloon__text {
+		min-width: 140px;
 	}
-	.components-text-control__input {
-	  text-align: center;
-	  border: 0;
-	  padding: 0.25em;
-	  min-height: auto;
-	}
-  }
-
-  .ystdb-ystdb-balloon__text {
-	min-width: 140px;
-  }
 }

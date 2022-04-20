@@ -1,42 +1,48 @@
 .ystdb-icon {
-  padding: 1rem;
+	padding: 1rem;
 
-  svg {
-	&[fill="none"] {
-	  fill: none;
-	}
-	&[fill="currentColor"] {
-	  fill: currentColor;
-	}
-	&[stroke="none"] {
-	  stroke: none;
-	}
-	&[stroke="currentColor"] {
-	  stroke: currentColor;
-	}
-  }
-
-  &.is-size--2 {
 	svg {
-	  width: 2em;
-	  height: 2em;
-	}
-  }
-  &.is-size--5 {
-	svg {
-	  width: 5em;
-	  height: 5em;
-	}
-  }
 
-  .ystdb-icon__link {
-	color: currentColor;
-	text-decoration: none;
+		&[fill="none"] {
+			fill: none;
+		}
 
-	&:hover {
-	  color: currentColor;
+		&[fill="currentColor"] {
+			fill: currentcolor;
+		}
+
+		&[stroke="none"] {
+			stroke: none;
+		}
+
+		&[stroke="currentColor"] {
+			stroke: currentcolor;
+		}
 	}
-  }
+
+	&.is-size--2 {
+
+		svg {
+			width: 2em;
+			height: 2em;
+		}
+	}
+
+	&.is-size--5 {
+
+		svg {
+			width: 5em;
+			height: 5em;
+		}
+	}
+
+	.ystdb-icon__link {
+		color: currentcolor;
+		text-decoration: none;
+
+		&:hover {
+			color: currentcolor;
+		}
+	}
 }
-
 

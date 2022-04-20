@@ -1,7 +1,8 @@
+@use "sass:map";
 @use "../variable";
 
 @mixin media-breakpoint($name,$breakpoints: variable.$breakpoints) {
-	$breakpoint: map-get($breakpoints, $name);
+	$breakpoint: map.get($breakpoints, $name);
 
 	@if $breakpoint {
 
@@ -10,13 +11,12 @@
 		}
 	} @else {
 
-		@warn "`#{$name}` is not found. "
-			+ "Please make sure it is defined in `$breakpoints-setting` map.";
+		@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
 
 @mixin media-breakpoint-down($name,$breakpoints: variable.$breakpoints) {
-	$breakpoint: map-get($breakpoints, $name);
+	$breakpoint: map.get($breakpoints, $name);
 
 	@if $breakpoint {
 
@@ -25,8 +25,7 @@
 		}
 	} @else {
 
-		@warn "`#{$name}` is not found. "
-			+ "Please make sure it is defined in `$breakpoints-setting` map.";
+		@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
 
@@ -35,8 +34,8 @@
 	$name_down,
 	$breakpoints: variable.$breakpoints
 ) {
-	$breakpoint_up: map-get($breakpoints, $name_up);
-	$breakpoint_down: map-get($breakpoints, $name_down);
+	$breakpoint_up: map.get($breakpoints, $name_up);
+	$breakpoint_down: map.get($breakpoints, $name_down);
 
 	@if ($breakpoint_up and $breakpoint_down) {
 
@@ -45,7 +44,6 @@
 		}
 	} @else {
 
-		@warn "`#{$name_up}` is not found. "
-			+ "Please make sure it is defined in `$breakpoints-setting` map.";
+		@warn "`#{$name_up}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }

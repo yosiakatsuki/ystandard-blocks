@@ -2,52 +2,59 @@
 @use "sass:math";
 
 @mixin column($device:"",$reverse:false) {
-  @for $i from 1 through 6 {
-	$column_margin: 2rem;
-	$minus: $column_margin *  math.div( ($i - 1) , $i );
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
-	$selector: #{"&.has-"}#{$i}#{"-columns"};
 
-	@if "" != $device {
-	  $selector: #{$selector}#{"--"}#{$device};
-	}
+	@for $i from 1 through 6 {
+		$column_margin: 2rem;
+		$minus: $column_margin *  math.div(($i - 1), $i);
+		$width: calc(#{global.decimal-floor((math.div(1, $i) * 100),2)}#{"%"} - #{$minus});
+		$selector: #{"&.has-"}#{$i}#{"-columns"};
 
-	#{$selector} {
-	  .ystdb-column {
-		flex: 0 0 $width;
-		width: $width;
+		@if "" != $device {
+			$selector: #{$selector}#{"--"}#{$device};
+		}
 
-		@if 1 < $i {
-		  &:nth-child(1n) {
-			@if true == $reverse {
-			  margin-left: $column_margin;
-			  $column_margin: 0;
+		#{$selector} {
+
+			.ystdb-column {
+				flex: 0 0 $width;
+				width: $width;
+
+				@if 1 < $i {
+
+					&:nth-child(1n) {
+
+						@if true == $reverse {
+							margin-left: $column_margin;
+							$column_margin: 0;
+						}
+						margin-right: $column_margin;
+					}
+				}
+
+				&:nth-child(#{$i}#{"n"}) {
+					margin-right: 0;
+
+					@if true == $reverse {
+						margin-left: 0;
+					}
+				}
 			}
-			margin-right: $column_margin;
-		  }
-		}
 
-		&:nth-child(#{$i}#{"n"}) {
-		  margin-right: 0;
-		  @if true == $reverse {
-			margin-left: 0;
-		  }
-		}
-	  }
+			&.is-no-margin {
 
-	  &.is-no-margin {
-		.ystdb-column {
-		  flex: 0 0 calc(#{math.div(100% , $i)});
-		  width: calc(#{math.div(100% , $i)});
+				.ystdb-column {
+					flex: 0 0 calc(#{math.div(100% , $i)});
+					width: calc(#{math.div(100% , $i)});
 
-		  &:nth-child(1n) {
-			margin-right: 0;
-			@if true == $reverse {
-			  margin-left: 0;
+					&:nth-child(1n) {
+						margin-right: 0;
+
+						@if true == $reverse {
+							margin-left: 0;
+						}
+					}
+				}
 			}
-		  }
 		}
-	  }
 	}
-  }
 }

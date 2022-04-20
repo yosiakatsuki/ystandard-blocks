@@ -5,70 +5,76 @@
  * Columns
  */
 .ystdb-columns {
-  $column_margin: 2rem;
+	$column_margin: 2rem;
 
-  @for $i from 1 through 6 {
+	@for $i from 1 through 6 {
 
-	$minus: #{global.decimal-ceil($column_margin * math.div( ($i - 1) , $i ),2)};
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+		$minus: #{global.decimal-ceil($column_margin * math.div(($i - 1), $i),2)};
+		$width: calc(#{global.decimal-floor((math.div(1, $i) * 100),2)}#{"%"} - #{$minus});
 
-	&.has-#{$i}-columns {
-	  .ystdb-column {
-		flex-basis: $width;
-		max-width: $width;
-	  }
+		&.has-#{$i}-columns {
+
+			.ystdb-column {
+				flex-basis: $width;
+				max-width: $width;
+			}
 
 
-	  &.is-no-margin {
-		.ystdb-column {
-		  flex-basis: calc(#{math.div(100% , $i)});
-		  max-width: calc(#{math.div(100% , $i)});
+			&.is-no-margin {
+
+				.ystdb-column {
+					flex-basis: calc(#{math.div(100% , $i)});
+					max-width: calc(#{math.div(100% , $i)});
+				}
+			}
 		}
-	  }
 	}
-  }
 
-  @for $i from 1 through 6 {
+	@for $i from 1 through 6 {
 
-	$minus: #{global.decimal-ceil($column_margin * math.div( ($i - 1) , $i ),2)};
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+		$minus: #{global.decimal-ceil($column_margin * math.div(($i - 1), $i),2)};
+		$width: calc(#{global.decimal-floor((math.div(1, $i) * 100),2)}#{"%"} - #{$minus});
 
-	@include global.media-breakpoint(md) {
-	  &.has-#{$i}-columns--tablet {
-		.ystdb-column {
-		  flex-basis: $width;
-		  max-width: $width;
+		@include global.media-breakpoint(md) {
+			&.has-#{$i}-columns--tablet {
+
+				.ystdb-column {
+					flex-basis: $width;
+					max-width: $width;
+				}
+
+				&.is-no-margin {
+
+					.ystdb-column {
+						flex-basis: calc(#{math.div(100% , $i)});
+						max-width: calc(#{math.div(100% , $i)});
+					}
+				}
+			}
 		}
-
-		&.is-no-margin {
-		  .ystdb-column {
-			flex-basis: calc(#{math.div(100% , $i)});
-			max-width: calc(#{math.div(100% , $i)});
-		  }
-		}
-	  }
 	}
-  }
 
-  @for $i from 1 through 6 {
+	@for $i from 1 through 6 {
 
-	$minus: #{global.decimal-ceil($column_margin * math.div( ($i - 1) , $i ),2)};
-	$width: calc(#{global.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+		$minus: #{global.decimal-ceil($column_margin * math.div(($i - 1), $i),2)};
+		$width: calc(#{global.decimal-floor((math.div(1, $i) * 100),2)}#{"%"} - #{$minus});
 
-	@include global.media-breakpoint(lg) {
-	  &.has-#{$i}-columns--pc {
-		.ystdb-column {
-		  flex-basis: $width;
-		  max-width: $width;
+		@include global.media-breakpoint(lg) {
+			&.has-#{$i}-columns--pc {
+
+				.ystdb-column {
+					flex-basis: $width;
+					max-width: $width;
+				}
+
+				&.is-no-margin {
+
+					.ystdb-column {
+						flex-basis: calc(#{math.div(100% , $i)});
+						max-width: calc(#{math.div(100% , $i)});
+					}
+				}
+			}
 		}
-
-		&.is-no-margin {
-		  .ystdb-column {
-			flex-basis: calc(#{math.div(100% , $i)});
-			max-width: calc(#{math.div(100% , $i)});
-		  }
-		}
-	  }
 	}
-  }
 }

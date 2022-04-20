@@ -1,46 +1,47 @@
 
 
 %toolbar-style {
-  position: relative;
+	position: relative;
 
-  &::before,
-  &::after {
-	display: block;
-	position: absolute;
-  }
+	&::before,
+	&::after {
+		display: block;
+		position: absolute;
+	}
 
-  &::before {
-	top: 0;
-	left: 0;
-	padding: 0.1rem 0.2rem;
-	color: #222222;
-	font-size: 0.6rem;
-	line-height: 1;
-  }
+	&::before {
+		top: 0;
+		left: 0;
+		padding: 0.1rem 0.2rem;
+		color: #222;
+		font-size: 0.6rem;
+		line-height: 1;
+	}
 
-  &.inline-style-1::before {
-	content: "1";
-  }
+	&.inline-style-1::before {
+		content: "1";
+	}
 
-  &.inline-style-2::before {
-	content: "2";
-  }
+	&.inline-style-2::before {
+		content: "2";
+	}
 
-  &.inline-style-3::before {
-	content: "3";
-  }
+	&.inline-style-3::before {
+		content: "3";
+	}
 }
 
 .ystdb-inline-style-toolbar {
 
-  @extend %toolbar-style;
+	@extend %toolbar-style;
 
-  .components-button:not(.is-pressed) {
-	color: currentColor;
-  }
+	.components-button:not(.is-pressed) {
+		color: currentcolor;
+	}
 }
 
 // 5.6以下.
 .editor-styles-wrapper {
-  @extend %toolbar-style;
+
+	@extend %toolbar-style;
 }

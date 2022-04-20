@@ -2,51 +2,58 @@
 @use "block";
 
 [data-type="ystdb/heading"] {
-  .ystdb-heading__editor {
-	margin-top: 28px;
-	margin-bottom: 28px;
-  }
 
-  .ystdb-heading__subtext-edit {
-	line-height: 1;
-
-	input {
-	  display: block;
-	  width: 100% !important;
-	  padding-left: 0;
-	  padding-right: 0;
-	  margin-right: 0;
-	  margin-left: 0;
-	  background-color: transparent;
-	  border: 0;
-	  overflow: hidden !important;
-	  color: currentColor;
-
-	  &:focus {
-		padding: 0;
-		border: 0;
-		outline: unset;
-		box-shadow: none;
-	  }
+	.ystdb-heading__editor {
+		margin-top: 28px;
+		margin-bottom: 28px;
 	}
-  }
 
-  .ystdb-heading__subtext {
-	&.ys-is-font-responsive {
-	  .ystdb-heading__subtext-edit {
+	.ystdb-heading__subtext-edit {
+		line-height: 1;
+
 		input {
-		  @include global.media-breakpoint-down(md) {
-			font-size: var(--ys-font-mobile);
-		  }
-		  @include global.media-breakpoint_between(md, lg) {
-			font-size: var(--ys-font-tablet);
-		  }
-		  @include global.media-breakpoint(lg) {
-			font-size: var(--ys-font-desktop);
-		  }
+			display: block;
+			width: 100% !important;
+			padding-left: 0;
+			padding-right: 0;
+			margin-right: 0;
+			margin-left: 0;
+			background-color: transparent;
+			border: 0;
+			overflow: hidden !important;
+			color: currentcolor;
+
+			&:focus {
+				padding: 0;
+				border: 0;
+				outline: unset;
+				box-shadow: none;
+			}
 		}
-	  }
 	}
-  }
+
+	.ystdb-heading__subtext {
+
+		&.ys-is-font-responsive {
+
+			.ystdb-heading__subtext-edit {
+
+				input {
+
+					@include global.media-breakpoint-down(md) {
+						font-size: var(--ys-font-mobile);
+					}
+
+					@include global.media-breakpoint_between(md, lg) {
+						font-size: var(--ys-font-tablet);
+					}
+
+					@include global.media-breakpoint(lg) {
+						font-size: var(--ys-font-desktop);
+					}
+				}
+			}
+		}
+	}
 
 }

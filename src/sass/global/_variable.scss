@@ -1,3 +1,4 @@
+@use "sass:color";
 //文字太さ
 $font__weight_bold: 700 !default;
 
@@ -23,7 +24,7 @@ $color__border-gray-light: #eee !default;
 
 //リンク
 $color__link: #2980b9 !default;
-$color__link-hover: lighten($color__link, 10%) !default;
+$color__link-hover: color.adjust($color__link, $lightness: 10%) !default;
 
 // 管理画面
 $color__admin-menu-text: #666;

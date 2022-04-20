@@ -1,18 +1,21 @@
 @use "../../src/sass/global";
 
 @include global.media-breakpoint-down(md) {
+
 	.ystdb-hide--sp {
 		display: none !important;
 	}
 }
 
 @include global.media-breakpoint-between(md, lg) {
+
 	.ystdb-hide--md {
 		display: none !important;
 	}
 }
 
 @include global.media-breakpoint(lg) {
+
 	.ystdb-hide--lg {
 		display: none !important;
 	}

@@ -3,38 +3,48 @@
 
 
 [data-type="ystdb/section"] {
-  .ystdb-section {
-	overflow: unset;
-  }
 
-  .ystdb-section__inner {
-	> .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
-	  max-width: 830px;
-	  margin-left: auto;
-	  margin-right: auto;
+	.ystdb-section {
+		overflow: unset;
 	}
-  }
 
-  &.ystdb-section.is-container-fluid {
 	.ystdb-section__inner {
-	  > .block-editor-inner-blocks {
-		> .block-editor-block-list__layout {
-		  > * {
-			max-width: none;
-		  }
+
+		> .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
+			max-width: 830px;
+			margin-left: auto;
+			margin-right: auto;
 		}
-	  }
 	}
-  }
+
+	&.ystdb-section.is-container-fluid {
+
+		.ystdb-section__inner {
+
+			> .block-editor-inner-blocks {
+
+				> .block-editor-block-list__layout {
+
+					> * {
+						max-width: none;
+					}
+				}
+			}
+		}
+	}
 }
+
 [data-align="full"] {
-  .ystdb-section:after {
-	border-top: 1px solid rgba(global.$color__ystd_blue, 0.1);
-	border-bottom: 1px solid rgba(global.$color__ystd_blue, 0.1);
-  }
+
+	.ystdb-section::after {
+		border-top: 1px solid rgba(global.$color__ystd_blue, 0.1);
+		border-bottom: 1px solid rgba(global.$color__ystd_blue, 0.1);
+	}
 }
+
 .ystdb-section__inner {
-  p:empty {
-	display: block;
-  }
+
+	p:empty {
+		display: block;
+	}
 }

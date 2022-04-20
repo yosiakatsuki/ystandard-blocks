@@ -1,18 +1,22 @@
 @use "block";
 
 .ystdb-btn-link__preview {
-  > div:first-child .wp-block-button {
-	margin-top: 0;
-  }
+
+	> div:first-child .wp-block-button {
+		margin-top: 0;
+	}
 }
 
 [data-type="ystdb/svg-button-link"] {
-  .block-editor-block-switcher + .block-editor-block-toolbar__slot {
-	.components-toolbar:not(.components-dropdown) {
-	  min-width: 142px;
+
+	.block-editor-block-switcher + .block-editor-block-toolbar__slot {
+
+		.components-toolbar:not(.components-dropdown) {
+			min-width: 142px;
+		}
 	}
-  }
-  .ystdb-btn-link__input {
-	padding: .5em;
-  }
+
+	.ystdb-btn-link__input {
+		padding: 0.5em;
+	}
 }
