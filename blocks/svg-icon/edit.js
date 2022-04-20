@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import SVGIconSelect from '@ystdb/components/svg-icon-select/index';
-import SVGIcon from '@ystdb/components/svg-icon';
+import SVGIconSelect from '@ystd/components/svg-icon-select/index';
+import SVGIcon from '@ystd/components/svg-icon';
 import { sizing } from './config';
 
 import {

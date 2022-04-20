@@ -1,7 +1,7 @@
 import { ColorPalette as WPColorPalette } from '@wordpress/components';
 import { select } from '@wordpress/data';
 import '@wordpress/block-editor';
-import { getConfig } from '@ystdb/helper/admin-menu';
+import { getConfig } from '@ystd/helper/admin-menu';
 
 const ColorPalette = ( props ) => {
 	const editorColors = getConfig( 'editorColors' );

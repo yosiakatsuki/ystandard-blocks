@@ -1,6 +1,6 @@
 import { Button } from '@wordpress/components';
 import { MediaUpload } from '@wordpress/media-utils';
-import { getComponentConfig } from '@ystdb/helper/config';
+import { getComponentConfig } from '@ystd/helper/config';
 import './_avatar-media-upload.scss';
 
 const AvatarMediaUpload = ( props ) => {

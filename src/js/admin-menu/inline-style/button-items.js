@@ -19,7 +19,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 
-import { getComponentConfig } from '@ystdb/helper/config';
+import { getComponentConfig } from '@ystd/helper/config';
 import Preview from '../components/preview/index';
 import ColorPalette from '../components/color-palette/color-palette';
 import {
@@ -30,7 +30,7 @@ import {
 import { getStyle } from './function';
 import schema from './schema.json';
 import { ErrorMessage } from '../components/message';
-import { getProperty, hasKey, object2Array } from '@ystdb/helper/object';
+import { getProperty, hasKey, object2Array } from '@ystd/helper/object';
 import { Save } from 'react-feather';
 
 const ButtonItems = () => {

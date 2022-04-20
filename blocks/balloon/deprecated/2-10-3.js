@@ -5,7 +5,7 @@ import {
 	getFontSizeClass,
 	RichText,
 } from '@wordpress/block-editor';
-import { getComponentConfig } from '@ystdb/helper/config';
+import { getComponentConfig } from '@ystd/helper/config';
 
 const blockAttributes = {
 	avatarName: {

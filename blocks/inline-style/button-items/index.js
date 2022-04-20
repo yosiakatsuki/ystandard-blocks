@@ -8,8 +8,8 @@ import {
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { BlockFormatControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { getProperty } from '@ystdb/helper/object';
-import { getBlockEditorConfig } from '@ystdb/helper/config';
+import { getProperty } from '@ystd/helper/object';
+import { getBlockEditorConfig } from '@ystd/helper/config';
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 import { Icon, edit } from '@wordpress/icons';

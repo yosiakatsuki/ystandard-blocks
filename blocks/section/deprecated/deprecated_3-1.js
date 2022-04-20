@@ -13,8 +13,8 @@ import {
 	dividerPath,
 } from '../config';
 import { getBackgroundPosition, getBackgroundSize } from '../shared';
-import getCssClamp from '@ystdb/util/_getCssClamp';
-import getDataClamp from '@ystdb/util/_getDataClamp';
+import getCssClamp from '@ystd/util/_getCssClamp';
+import getDataClamp from '@ystd/util/_getDataClamp';
 
 export const deprecated31 = [
 	{

@@ -18,11 +18,11 @@ import {
 	getEndpoint,
 	getOption,
 	isApiSuccess,
-} from '@ystdb/helper/admin-menu';
+} from '@ystd/helper/admin-menu';
 
-import Notice from '@ystdb/components/notice/index';
+import Notice from '@ystd/components/notice/index';
 import ManualLink from '../components/manual-link';
-import { getBlockEditorConfig } from '@ystdb/helper/config';
+import { getBlockEditorConfig } from '@ystd/helper/config';
 
 export const InlineStyleContext = createContext();
 

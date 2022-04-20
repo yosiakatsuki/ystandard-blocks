@@ -1,7 +1,7 @@
 import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import MediaUploadControl from '@ystdb/components/media-upload-control';
+import MediaUploadControl from '@ystd/components/media-upload-control';
 import { BACKGROUND_TYPE_IMAGE, BACKGROUND_TYPE_VIDEO } from '../config';
 
 const BackgroundImage = ( props ) => {

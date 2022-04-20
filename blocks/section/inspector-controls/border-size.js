@@ -1,6 +1,6 @@
 import { BaseControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { toNumber } from '@ystdb/helper/number';
+import { toNumber } from '@ystd/helper/number';
 
 const BorderSize = ( props ) => {
 	const { attributes, setAttributes } = props;

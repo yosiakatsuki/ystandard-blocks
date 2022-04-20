@@ -1,6 +1,6 @@
 import { __, _x } from '@wordpress/i18n';
 import { Path, SVG } from '@wordpress/components';
-import { getComponentConfig } from '@ystdb/helper/config';
+import { getComponentConfig } from '@ystd/helper/config';
 
 /**
  * attributes

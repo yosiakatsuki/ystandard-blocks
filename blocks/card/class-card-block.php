@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Class Card
  */
-class Card extends Dynamic_Block {
+class Card_Block extends Dynamic_Block {
 	/**
 	 * Block Name.
 	 *
@@ -452,8 +452,32 @@ class Card extends Dynamic_Block {
 		if ( $output ) {
 			return $output;
 		}
-
-		return $this->render_by_view( 'card', $args );
+		ob_start();
+		?>
+		<div class="<?php echo $args['class']; ?>" <?php echo $args['warp_style']; ?>>
+			<div class="<?php echo $args['container_class']; ?>">
+				<?php if ( $args['image'] ) : ?>
+					<figure class="<?php echo esc_attr( $args['image_class'] ); ?>">
+						<?php echo $args['image']; ?>
+					</figure>
+				<?php endif; ?>
+				<div class="ystdb-card__text">
+					<div class="ystdb-card__title">
+						<a class="<?php echo $args['link_class']; ?>" href="<?php echo esc_url_raw( $args['url'] ); ?>"<?php echo $args['link_attr']; ?>><?php echo esc_html( $args['title'] ); ?></a>
+					</div>
+					<?php if ( $args['dscr'] ) : ?>
+						<div class="<?php echo $args['dscr_class']; ?>"<?php echo $args['dscr_style']; ?>>
+							<?php echo esc_html( $args['dscr'] ); ?>
+						</div>
+					<?php endif; ?>
+					<?php if ( $args['domain'] ) : ?>
+						<div class="<?php echo $args['domain_class']; ?>"<?php echo $args['domain_style']; ?>><?php echo esc_html( $args['domain'] ); ?></div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+		<?php
+		return ob_get_clean();
 	}
 
 	/**
@@ -810,5 +834,5 @@ class Card extends Dynamic_Block {
 	}
 }
 
-$card = new Card();
+$card = new Card_Block();
 $card->register_block();

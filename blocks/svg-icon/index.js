@@ -1,4 +1,4 @@
-import { ystdbConfig } from '@ystdb/config/config';
+import { ystdbConfig } from '@ystd/config/config';
 import edit from './edit';
 import save from './save';
 import { Info } from 'react-feather';

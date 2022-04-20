@@ -1,7 +1,7 @@
 import { BaseControl, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { getComponentConfig } from '@ystdb/helper/config';
+import { getComponentConfig } from '@ystd/helper/config';
 
 const BorderStyle = ( props ) => {
 	const { attributes, setAttributes } = props;

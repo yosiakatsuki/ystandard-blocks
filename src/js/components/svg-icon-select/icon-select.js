@@ -2,8 +2,8 @@ import { Component } from '@wordpress/element';
 import { withState, compose } from '@wordpress/compose';
 import { Button } from '@wordpress/components';
 import classnames from 'classnames';
-import { getIcons } from '@ystdb/util/icons';
-import SVGIcon from '@ystdb/components/svg-icon';
+import { getIcons } from '@ystd/util/icons';
+import SVGIcon from '@ystd/components/svg-icon';
 import { __ } from '@wordpress/i18n';
 
 class IconSelect extends Component {

@@ -4,8 +4,8 @@
   "description": "yStandard用ブロック追加プラグイン",
   "scripts": {
     "activate:theme": "wp-env run cli 'wp theme activate ystandard'",
-    "start:update": "wp-env start --update && npm run activate:theme",
-    "start": "wp-env start",
+    "start:update": "wp-env start --update --xdebug && npm run activate:theme",
+    "start": "wp-env start --xdebug",
     "stop": "wp-env stop",
     "lint:js": "wp-scripts lint-js blocks ./src/js --fix",
     "lint:css:src": "wp-scripts lint-style 'src/**/*.scss' --fix",

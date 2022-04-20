@@ -1,4 +1,4 @@
-import { ystdbConfig } from '@ystdb/config/config';
+import { ystdbConfig } from '@ystd/config/config';
 
 export const getConfig = ( name ) => {
 	return ystdbConfig[ name ];

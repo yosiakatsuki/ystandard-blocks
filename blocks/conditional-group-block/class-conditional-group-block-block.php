@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @package ystandard_blocks
  */
-class Conditional_Group_Block extends Dynamic_Block {
+class Conditional_Group_Block_Block extends Dynamic_Block {
 	/**
 	 * Block Name.
 	 *
@@ -125,5 +125,5 @@ class Conditional_Group_Block extends Dynamic_Block {
 	}
 }
 
-$cgb = new Conditional_Group_Block();
+$cgb = new Conditional_Group_Block_Block();
 $cgb->register_block();

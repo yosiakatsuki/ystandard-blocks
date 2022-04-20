@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import SVGIcon from '@ystdb/components/svg-icon';
+import SVGIcon from '@ystd/components/svg-icon';
 
 import {
 	RichText,
@@ -9,12 +9,12 @@ import {
 import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
-} from '@ystdb/components/responsive-number-control/functions';
+} from '@ystd/components/responsive-number-control/functions';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '@ystdb/components/responsive-font-size/functions';
-import getDataProperty from '@ystdb/util/_getResponsivPropertye';
+} from '@ystd/components/responsive-font-size/functions';
+import getDataProperty from '@ystd/util/_getResponsivPropertye';
 
 export const blockAttributes = {
 	text: {

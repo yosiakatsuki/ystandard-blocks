@@ -1,4 +1,4 @@
-import { getProperty } from '@ystdb/helper/object';
+import { getProperty } from '@ystd/helper/object';
 
 export const getStyle = ( styles, name, defaultStyle = undefined ) => {
 	return getProperty( styles, name, defaultStyle );

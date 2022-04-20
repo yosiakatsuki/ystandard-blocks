@@ -10,8 +10,8 @@ import { Path, SVG } from '@wordpress/components';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '@ystdb/components/responsive-font-size/functions';
-import getDataProperty from '@ystdb/util/_getResponsivPropertye';
+} from '@ystd/components/responsive-font-size/functions';
+import getDataProperty from '@ystd/util/_getResponsivPropertye';
 
 const blockAttributes = {
 	content: {

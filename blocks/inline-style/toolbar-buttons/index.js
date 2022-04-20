@@ -1,8 +1,8 @@
-import { getBlockEditorConfig } from '@ystdb/helper/config';
+import { getBlockEditorConfig } from '@ystd/helper/config';
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { BlockFormatControls } from '@wordpress/block-editor';
-import { getProperty } from '@ystdb/helper/object';
+import { getProperty } from '@ystd/helper/object';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 

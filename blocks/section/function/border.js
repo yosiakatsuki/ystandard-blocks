@@ -1,4 +1,4 @@
-import { toNumber } from '@ystdb/helper/number';
+import { toNumber } from '@ystd/helper/number';
 
 export const getBorderProperty = ( attributes ) => {
 	const { borderSize, borderStyle, customBorderColor } = attributes;

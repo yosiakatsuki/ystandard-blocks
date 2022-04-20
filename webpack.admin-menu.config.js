@@ -15,10 +15,10 @@ module.exports = {
 		...defaultConfig.resolve,
 		alias: {
 			...defaultConfig.resolve.alias,
-			'@ystdb/config': path.resolve( __dirname, 'src/js/config' ),
-			'@ystdb/components': path.resolve( __dirname, 'src/js/components' ),
-			'@ystdb/helper': path.resolve( __dirname, 'src/js/helper' ),
-			'@ystdb/util': path.resolve( __dirname, 'src/js/util' ),
+			'@ystd/config': path.resolve( __dirname, 'src/js/config' ),
+			'@ystd/components': path.resolve( __dirname, 'src/js/components' ),
+			'@ystd/helper': path.resolve( __dirname, 'src/js/helper' ),
+			'@ystd/util': path.resolve( __dirname, 'src/js/util' ),
 		},
 	},
 	performance: {
