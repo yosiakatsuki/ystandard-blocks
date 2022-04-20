@@ -1,49 +1,49 @@
 @use "../../../../sass/global";
 
 .ystdb-component-admin-menu-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-weight: bold;
 
-  &.is-update {
-	background-color: global.$color__ystd_blue;
-	color: #fff;
+	&.is-update {
+		background-color: global.$color__ystd_blue;
+		color: #fff;
 
-	&:active {
-	  color: #fff;
+		&:active {
+			color: #fff;
+		}
 	}
-  }
 
-  &.is-cancel {
-	background-color: #fff;
-	color: global.$color__text-light;
-	border: 1px solid global.$color__border-gray;
-	box-shadow: inset 0 0 0 1px global.$color__border-gray-light;
+	&.is-cancel {
+		background-color: #fff;
+		color: global.$color__text-light;
+		border: 1px solid global.$color__border-gray;
+		box-shadow: inset 0 0 0 1px global.$color__border-gray-light;
 
-	&:active:not(:disabled),
-	&:hover:not(:disabled) {
-	  background-color: #fff;
-	  border: 1px solid global.$color__border-gray;
-	  color: global.$color__text-light;
-	  box-shadow: inset 0 0 0 1px global.$color__border-gray-light;
+		&:active:not(:disabled),
+		&:hover:not(:disabled) {
+			background-color: #fff;
+			border: 1px solid global.$color__border-gray;
+			color: global.$color__text-light;
+			box-shadow: inset 0 0 0 1px global.$color__border-gray-light;
+		}
 	}
-  }
 
-  &.is-delete {
-	$delete_color: rgba(global.$color__notice-error, 0.8);
-	background-color: #fff;
-	color: $delete_color;
-	border: 1px solid $delete_color;
-	box-shadow: none !important;
+	&.is-delete {
+		$delete_color: rgba(global.$color__notice-error, 0.8);
+		background-color: #fff;
+		color: $delete_color;
+		border: 1px solid $delete_color;
+		box-shadow: none !important;
 
-	&:active:not(:disabled),
-	&:hover:not(:disabled) {
-	  background-color: #fff;
-	  border: 1px solid $delete_color;
-	  color: $delete_color;
-	  box-shadow: none !important;
+		&:active:not(:disabled),
+		&:hover:not(:disabled) {
+			background-color: #fff;
+			border: 1px solid $delete_color;
+			color: $delete_color;
+			box-shadow: none !important;
+		}
 	}
-  }
 }

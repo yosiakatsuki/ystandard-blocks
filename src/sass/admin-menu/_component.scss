@@ -1,84 +1,89 @@
 @use "../global";
 
 .ystdb-menu__meta {
-  margin: .5em 0;
-  font-size: .8em;
-  color: #999;
+	margin: 0.5em 0;
+	font-size: 0.8em;
+	color: #999;
 }
 
 .ystdb-menu__section {
-  margin: 1em 0;
+	margin: 1em 0;
 }
 
 .ystdb-menu__preview-section {
-  margin: 2em 0 4em;
+	margin: 2em 0 4em;
 
-  @media (min-width: 640px) {
-	display: flex;
-	> * {
-	  width: 50%;
+	@media (min-width: 640px) {
+		display: flex;
 
-	  &:last-child {
-		margin-left: 2em;
-	  }
+		> * {
+			width: 50%;
+
+			&:last-child {
+				margin-left: 2em;
+			}
+		}
 	}
-  }
 }
 
 .ystdb-menu__label {
-  margin: 1em 0 .25em;
-  color: #222;
-  font-size: 1rem;
+	margin: 1em 0 0.25em;
+	color: #222;
+	font-size: 1rem;
 }
+
 .ystdb-menu__range-info {
-  display: block;
-  line-height: 1.2;
-  font-size: 0.6rem;
+	display: block;
+	line-height: 1.2;
+	font-size: 0.6rem;
 }
 
 .notice p {
-  margin: .5em 0;
+	margin: 0.5em 0;
 }
 
 
 .ystdb-menu__table {
-  width: 100%;
-  word-break: break-all;
-  border-collapse: collapse;
+	width: 100%;
+	word-break: break-all;
+	border-collapse: collapse;
 
-  th, td {
-	padding: 1em;
-	border-bottom: 1px solid #fff;
-  }
-
-  tr:last-child {
-	th, td {
-	  border-bottom: 0;
+	th,
+	td {
+		padding: 1em;
+		border-bottom: 1px solid #fff;
 	}
-  }
 
-  th {
-	vertical-align: top;
-	background-color: global.$color__bg-gray-light;
-	border-right: 1px solid #fff;
-	white-space: nowrap;
-  }
+	tr:last-child {
+
+		th,
+		td {
+			border-bottom: 0;
+		}
+	}
+
+	th {
+		vertical-align: top;
+		background-color: global.$color__bg-gray-light;
+		border-right: 1px solid #fff;
+		white-space: nowrap;
+	}
 }
 
 .ystdb-menu__debug-label {
-  margin: 2em 0 0.5em !important;
-  font-size: 1em !important;
+	margin: 2em 0 0.5em !important;
+	font-size: 1em !important;
 }
 
 .ystdb-menu__debug {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 1em;
-  background-color: global.$color__bg-gray-light;
-  overflow: auto;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 1em;
+	background-color: global.$color__bg-gray-light;
+	overflow: auto;
 
-  &.is-table {
-	margin: -1em;
-  }
+	&.is-table {
+		margin: -1em;
+	}
 }

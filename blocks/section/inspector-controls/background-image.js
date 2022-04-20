@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import MediaUploadControl from '@ystdb/components/media-upload-control';
 import { BACKGROUND_TYPE_IMAGE, BACKGROUND_TYPE_VIDEO } from '../config';
 
-const BackgroundImage = (props) => {
+const BackgroundImage = ( props ) => {
 	const { attributes, setAttributes, setState } = props;
 	const {
 		backgroundImageURL,
@@ -13,25 +13,25 @@ const BackgroundImage = (props) => {
 		backgroundType,
 		backgroundImageOpacity,
 	} = attributes;
-	const ALLOWED_MEDIA_TYPES = ['image', 'video'];
+	const ALLOWED_MEDIA_TYPES = [ 'image', 'video' ];
 
 	return (
 		<BaseControl
-			id={'background-image'}
-			label={__('背景画像・動画', 'ystandard-blocks')}
+			id={ 'background-image' }
+			label={ __( '背景画像・動画', 'ystandard-blocks' ) }
 		>
 			<MediaUploadControl
-				media={{
+				media={ {
 					url: backgroundImageURL,
 					id: backgroundImageID,
 					alt: backgroundImageAlt,
 					type: backgroundType,
-				}}
-				mediaTypes={ALLOWED_MEDIA_TYPES}
-				onSelect={(media) => {
+				} }
+				mediaTypes={ ALLOWED_MEDIA_TYPES }
+				onSelect={ ( media ) => {
 					let mediaType;
-					if (media.media_type) {
-						if (media.media_type === BACKGROUND_TYPE_IMAGE) {
+					if ( media.media_type ) {
+						if ( media.media_type === BACKGROUND_TYPE_IMAGE ) {
 							mediaType = BACKGROUND_TYPE_IMAGE;
 						} else {
 							mediaType = BACKGROUND_TYPE_VIDEO;
@@ -45,29 +45,29 @@ const BackgroundImage = (props) => {
 						}
 						mediaType = media.type;
 					}
-					setAttributes({
+					setAttributes( {
 						backgroundImageURL: media.url,
 						backgroundImageID: media.id,
 						backgroundImageAlt: media.alt,
 						backgroundType: mediaType,
-					});
-					if (mediaType === BACKGROUND_TYPE_VIDEO) {
-						setAttributes({
+					} );
+					if ( mediaType === BACKGROUND_TYPE_VIDEO ) {
+						setAttributes( {
 							backgroundImageOnOverlay: false,
 							backgroundImageOnOverlayOpacity: 80,
-						});
-						setState({
+						} );
+						setState( {
 							useDarkImagePreview: false,
-						});
+						} );
 					}
-					if (100 === backgroundImageOpacity) {
-						setAttributes({
+					if ( 100 === backgroundImageOpacity ) {
+						setAttributes( {
 							backgroundImageOpacity: 50,
-						});
+						} );
 					}
-				}}
-				onClear={() => {
-					setAttributes({
+				} }
+				onClear={ () => {
+					setAttributes( {
 						backgroundImageURL: '',
 						backgroundImageID: 0,
 						focalPoint: undefined,
@@ -81,10 +81,10 @@ const BackgroundImage = (props) => {
 						backgroundImageRepeat: undefined,
 						backgroundImageOnOverlay: undefined,
 						backgroundImageOnOverlayOpacity: undefined,
-					});
-					setState({ useDarkImagePreview: false });
-				}}
-				value={backgroundImageID}
+					} );
+					setState( { useDarkImagePreview: false } );
+				} }
+				value={ backgroundImageID }
 			/>
 		</BaseControl>
 	);

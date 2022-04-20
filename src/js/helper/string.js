@@ -1,3 +1,3 @@
-export const toString = (value) => {
+export const toString = ( value ) => {
 	return value.toString();
 };

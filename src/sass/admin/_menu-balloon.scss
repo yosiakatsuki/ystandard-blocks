@@ -1,25 +1,26 @@
 .ystdb-balloon__image {
-  text-align: center;
+	text-align: center;
 
-  img,
-  .ystdb-balloon__image-none {
-	display: block;
-	width: 96px;
-	height: 96px;
-	object-fit: cover;
-	border-radius: 50%;
-	border: 1px solid #eee;
-	margin: auto;
-  }
-  .ystdb-balloon__image-none {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #f8f8f8;
-
-	svg {
-	  width: 32px;
-	  height: 32px;
+	img,
+	.ystdb-balloon__image-none {
+		display: block;
+		width: 96px;
+		height: 96px;
+		object-fit: cover;
+		border-radius: 50%;
+		border: 1px solid #eee;
+		margin: auto;
 	}
-  }
+
+	.ystdb-balloon__image-none {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f8f8;
+
+		svg {
+			width: 32px;
+			height: 32px;
+		}
+	}
 }

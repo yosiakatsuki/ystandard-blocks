@@ -1,47 +1,52 @@
 .color-picker-button {
-  line-height: 2;
-  background-color: transparent;
-  color: #222;
-  border: 1px solid #e5e5e5;
-
-  &:hover,
-  &:focus {
+	line-height: 2;
 	background-color: transparent;
-  }
+	color: #222;
+	border: 1px solid #e5e5e5;
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+	}
 }
 
 .color-picker-preview {
-  line-height: 2;
-  width: 34px;
-  padding: 0;
+	line-height: 2;
+	width: 34px;
+	padding: 0;
 }
 
 .vc-chrome-alpha-wrap {
-  display: none;
+	display: none;
 }
+
 .vc-chrome-controls {
-  align-items: center;
+	align-items: center;
 }
 
 .vc-chrome-fields-wrap {
-  .vc-chrome-fields:not(:first-child) {
-	.vc-chrome-field:last-child {
-	  display: none;
+
+	.vc-chrome-fields:not(:first-child) {
+
+		.vc-chrome-field:last-child {
+			display: none;
+		}
 	}
-  }
 }
 
 @media (min-width: 960px) {
-  .uk-form-horizontal .uk-form-label {
-	width: 130px;
-  }
-  .uk-form-horizontal .uk-form-controls {
-	margin-left: 145px;
-  }
+
+	.uk-form-horizontal .uk-form-label {
+		width: 130px;
+	}
+
+	.uk-form-horizontal .uk-form-controls {
+		margin-left: 145px;
+	}
 }
 
-input[type=radio]:checked::before {
-  width: .5rem;
-  height: .5rem;
-  margin: .1875rem;
+input[type="radio"]:checked::before {
+	width: 0.5rem;
+	height: 0.5rem;
+	margin: 0.1875rem;
 }

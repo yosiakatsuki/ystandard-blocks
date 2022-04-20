@@ -1,49 +1,51 @@
 @use "../../../sass/global";
 
 .ystdb-menu-inline-style__disable {
-  height: 60vh;
-  overflow: hidden;
+	height: 60vh;
+	overflow: hidden;
 }
 
 .ystdb-menu-inline-style__cover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgb(241, 241, 241);
-  background: linear-gradient(180deg, rgba(241, 241, 241, 0.5) 0%, rgba(241, 241, 241, 0.8) 70%, rgba(241, 241, 241, 1) 100%);
-  z-index: 999;
-  font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgb(241, 241, 241);
+	background: linear-gradient(180deg, rgba(241, 241, 241, 0.5) 0%, rgba(241, 241, 241, 0.8) 70%, rgba(241, 241, 241, 1) 100%);
+	z-index: 999;
+	font-weight: bold;
 }
 
 
 .ystdb-menu-inline-items__header {
-  @include global.media-breakpoint(md) {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-  }
-
-  > div:first-child {
-	margin-bottom: 1em;
 
 	@include global.media-breakpoint(md) {
-	  margin-bottom: 0;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
 	}
-  }
 
-  .components-base-control__field {
-	margin-bottom: 0;
-  }
+	> div:first-child {
+		margin-bottom: 1em;
 
-  button {
-	@include global.media-breakpoint-down(md) {
-	  width: 100%;
-	  justify-content: center;
+		@include global.media-breakpoint(md) {
+			margin-bottom: 0;
+		}
 	}
-  }
+
+	.components-base-control__field {
+		margin-bottom: 0;
+	}
+
+	button {
+
+		@include global.media-breakpoint-down(md) {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 }

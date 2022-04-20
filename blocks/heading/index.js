@@ -8,16 +8,16 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { deprecated } from './deprecated/index';
 
-registerBlockType('ystdb/heading', {
-	title: __('カスタム見出し', 'ystandard-blocks'),
-	description: __('カスタム見出しブロック', 'ystandard-blocks'),
+registerBlockType( 'ystdb/heading', {
+	title: __( 'カスタム見出し', 'ystandard-blocks' ),
+	description: __( 'カスタム見出しブロック', 'ystandard-blocks' ),
 	icon: (
 		<Bookmark
-			stroke={ystdbConfig.color.iconForeground}
-			style={{ fill: 'none' }}
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
 		/>
 	),
-	keywords: [__('heading'), __('見出し'), 'head'],
+	keywords: [ __( 'heading' ), __( '見出し' ), 'head' ],
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
@@ -26,4 +26,4 @@ registerBlockType('ystdb/heading', {
 	transforms,
 	deprecated,
 	example: {},
-});
+} );

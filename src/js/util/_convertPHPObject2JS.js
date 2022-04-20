@@ -3,11 +3,11 @@
  *
  * @param {Object} object オブジェクト.
  */
-export default function convertPHPObject2JS(object) {
+export default function convertPHPObject2JS( object ) {
 	return Object.fromEntries(
-		Object.entries(object).map(([key, val]) => [
+		Object.entries( object ).map( ( [ key, val ] ) => [
 			key,
 			null === val ? undefined : val,
-		])
+		] )
 	);
 }

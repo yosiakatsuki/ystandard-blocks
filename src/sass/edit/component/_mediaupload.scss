@@ -1,57 +1,59 @@
 @use "../../global";
 
 .ystdb-mediaupload__preview {
-  display: block;
-  position: relative;
-  margin-bottom: 0.5rem;
-
-  &.components-button {
-	height: auto;
-  }
-
-  img {
 	display: block;
-	max-width: 100%;
-	height: auto;
-	border: 2px solid global.$color__border-gray;
-  }
+	position: relative;
+	margin-bottom: 0.5rem;
 
-  @at-root {
-	button#{&} {
-	  &::before,
-	  &::after {
-		content: "";
-		display: block;
-		position: absolute;
-		top: 0;
-		right: 0;
-		left: 0;
-		transition: opacity 0.3s;
-		opacity: 0;
-	  }
-
-	  &::before {
-		bottom: 0;
-		z-index: 2;
-		background-color: rgba(#000000, 0.8);
-	  }
-
-	  &::after {
-		content: "画像を変更";
-		top: 50%;
-		z-index: 3;
-		color: #ffffff;
-		font-size: 0.8rem;
-		text-align: center;
-		transform: translateY(-50%);
-	  }
-
-	  &:hover {
-		&::before,
-		&::after {
-		  opacity: 1;
-		}
-	  }
+	&.components-button {
+		height: auto;
 	}
-  }
+
+	img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border: 2px solid global.$color__border-gray;
+	}
+
+	@at-root {
+		button#{&} {
+
+			&::before,
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				transition: opacity 0.3s;
+				opacity: 0;
+			}
+
+			&::before {
+				bottom: 0;
+				z-index: 2;
+				background-color: rgba(#000, 0.8);
+			}
+
+			&::after {
+				content: "画像を変更";
+				top: 50%;
+				z-index: 3;
+				color: #fff;
+				font-size: 0.8rem;
+				text-align: center;
+				transform: translateY(-50%);
+			}
+
+			&:hover {
+
+				&::before,
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }

@@ -1,11 +1,11 @@
 @use "../../global";
 
 .ystdb-component-information-container {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 
-  .ystdb-component-information-icom {
-	margin-left: .5em;
-	color: global.$color__text-light;
-  }
+	.ystdb-component-information-icom {
+		margin-left: 0.5em;
+		color: global.$color__text-light;
+	}
 }

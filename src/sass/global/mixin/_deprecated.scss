@@ -1,13 +1,15 @@
 @mixin deprecated() {
-  &:before {
-	background-color: rgba(#be4141, 0.2);
-  }
-  &:after {
-	content: "非推奨ブロック";
-	color: #be4141;
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 10px;
-  }
+
+	&::before {
+		background-color: rgba(#be4141, 0.2);
+	}
+
+	&::after {
+		content: "非推奨ブロック";
+		color: #be4141;
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 10px;
+	}
 }

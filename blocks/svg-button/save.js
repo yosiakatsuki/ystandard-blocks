@@ -16,7 +16,7 @@ import {
 } from '@ystdb/components/responsive-font-size/functions';
 import getDataProperty from '@ystdb/util/_getResponsivPropertye';
 
-export default function save({ attributes }) {
+export default function save( { attributes } ) {
 	const {
 		textColor,
 		customTextColor,
@@ -55,43 +55,43 @@ export default function save({ attributes }) {
 		animationInterval,
 	} = attributes;
 
-	const textClass = getColorClassName('color', textColor);
+	const textClass = getColorClassName( 'color', textColor );
 	const backgroundClass = getColorClassName(
 		'background-color',
 		backgroundColor
 	);
-	const fontSizeClass = getFontSizeClass(fontSize);
+	const fontSizeClass = getFontSizeClass( fontSize );
 
-	const wrapClasses = classnames('wp-block-button', {
-		[`has-text-align-${align}`]: align,
-		[fontSizeClass]: fontSizeClass && !isFontSizeResponsive,
+	const wrapClasses = classnames( 'wp-block-button', {
+		[ `has-text-align-${ align }` ]: align,
+		[ fontSizeClass ]: fontSizeClass && ! isFontSizeResponsive,
 		...getFontResponsiveClass(
 			isFontSizeResponsive,
 			fontSizeDesktop,
 			fontSizeTablet,
 			fontSizeMobile
 		),
-	});
+	} );
 	const wrapStyles = {
 		fontSize:
-			!fontSizeClass && customFontSize && !isFontSizeResponsive
+			! fontSizeClass && customFontSize && ! isFontSizeResponsive
 				? customFontSize
 				: undefined,
-		...getFontResponsiveStyle({
+		...getFontResponsiveStyle( {
 			isResponsive: isFontSizeResponsive,
 			desktop: fontSizeDesktop,
 			tablet: fontSizeTablet,
 			mobile: fontSizeMobile,
-		}),
+		} ),
 	};
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
 		'ystdb-button__link',
 		{
-			[textClass]: textClass,
+			[ textClass ]: textClass,
 			'has-text-color': textColor || customTextColor,
-			[backgroundClass]: backgroundClass,
+			[ backgroundClass ]: backgroundClass,
 			'has-background': backgroundColor || customBackgroundColor,
 			'no-border-radius': borderRadius === 0,
 			'is-block':
@@ -100,21 +100,21 @@ export default function save({ attributes }) {
 			'is-block--tablet': buttonBlockTablet,
 			'is-block--mobile': buttonBlockMobile,
 			'has-animation': animationType && 'none' !== animationType,
-			[`has-animation--${animationType}`]: 'none' !== animationType,
-			...getPaddingResponsiveClass({
+			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
+			...getPaddingResponsiveClass( {
 				isResponsive: isPaddingVerticalResponsive,
 				desktop: paddingVerticalDesktop,
 				tablet: paddingVerticalTablet,
 				mobile: paddingVerticalMobile,
 				prefix: 'vertical',
-			}),
-			...getPaddingResponsiveClass({
+			} ),
+			...getPaddingResponsiveClass( {
 				isResponsive: isPaddingHorizontalResponsive,
 				desktop: paddingHorizontalDesktop,
 				tablet: paddingHorizontalTablet,
 				mobile: paddingHorizontalMobile,
 				prefix: 'horizontal',
-			}),
+			} ),
 		}
 	);
 
@@ -123,104 +123,104 @@ export default function save({ attributes }) {
 		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
 		borderRadius: borderRadius ? borderRadius + 'px' : undefined,
 		maxWidth:
-			(buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) &&
+			( buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile ) &&
 			maxWidth
-				? `${maxWidth}${maxUnit}`
+				? `${ maxWidth }${ maxUnit }`
 				: undefined,
 		animationDuration:
 			'none' !== animationType && animationInterval
-				? `${animationInterval}s`
+				? `${ animationInterval }s`
 				: undefined,
 		paddingTop:
-			!isPaddingVerticalResponsive && paddingVerticalDesktop
+			! isPaddingVerticalResponsive && paddingVerticalDesktop
 				? paddingVerticalDesktop
 				: undefined,
 		paddingBottom:
-			!isPaddingVerticalResponsive && paddingVerticalDesktop
+			! isPaddingVerticalResponsive && paddingVerticalDesktop
 				? paddingVerticalDesktop
 				: undefined,
 		paddingRight:
-			!isPaddingHorizontalResponsive && paddingHorizontalDesktop
+			! isPaddingHorizontalResponsive && paddingHorizontalDesktop
 				? paddingHorizontalDesktop
 				: undefined,
 		paddingLeft:
-			!isPaddingHorizontalResponsive && paddingHorizontalDesktop
+			! isPaddingHorizontalResponsive && paddingHorizontalDesktop
 				? paddingHorizontalDesktop
 				: undefined,
-		...getPaddingResponsiveStyle({
+		...getPaddingResponsiveStyle( {
 			isResponsive: isPaddingVerticalResponsive,
 			desktop: paddingVerticalDesktop,
 			tablet: paddingVerticalTablet,
 			mobile: paddingVerticalMobile,
 			prefix: 'vertical',
-		}),
-		...getPaddingResponsiveStyle({
+		} ),
+		...getPaddingResponsiveStyle( {
 			isResponsive: isPaddingHorizontalResponsive,
 			desktop: paddingHorizontalDesktop,
 			tablet: paddingHorizontalTablet,
 			mobile: paddingHorizontalMobile,
 			prefix: 'horizontal',
-		}),
+		} ),
 	};
 
 	return (
-		<div className={wrapClasses} style={wrapStyles}>
+		<div className={ wrapClasses } style={ wrapStyles }>
 			<a
-				href={url}
-				className={linkClasses}
-				style={linkStyles}
-				target={linkTarget}
-				rel={rel}
-				{...getDataProperty({
+				href={ url }
+				className={ linkClasses }
+				style={ linkStyles }
+				target={ linkTarget }
+				rel={ rel }
+				{ ...getDataProperty( {
 					'font-size': isFontSizeResponsive
-						? `${fontSizeDesktop}px`
+						? `${ fontSizeDesktop }px`
 						: undefined,
 					'padding-top': isPaddingVerticalResponsive
-						? `${paddingVerticalDesktop}px`
+						? `${ paddingVerticalDesktop }px`
 						: undefined,
 					'padding-bottom': isPaddingVerticalResponsive
-						? `${paddingVerticalDesktop}px`
+						? `${ paddingVerticalDesktop }px`
 						: undefined,
 					'padding-right': isPaddingHorizontalResponsive
-						? `${paddingHorizontalDesktop}px`
+						? `${ paddingHorizontalDesktop }px`
 						: undefined,
 					'padding-left': isPaddingHorizontalResponsive
-						? `${paddingHorizontalDesktop}px`
+						? `${ paddingHorizontalDesktop }px`
 						: undefined,
-				})}
+				} ) }
 			>
 				<span className="ystdb-button__link-content">
-					{!!iconLeft && (
+					{ !! iconLeft && (
 						<span
-							className={classnames(
+							className={ classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--left',
 								{
-									[iconSizeLeft]: iconSizeLeft,
+									[ iconSizeLeft ]: iconSizeLeft,
 								}
-							)}
+							) }
 						>
-							<SVGIcon name={iconLeft} />
+							<SVGIcon name={ iconLeft } />
 						</span>
-					)}
+					) }
 					<RichText.Content
-						tagName={'span'}
-						value={text}
-						className={'ystdb-button__text'}
+						tagName={ 'span' }
+						value={ text }
+						className={ 'ystdb-button__text' }
 					/>
-					{!!iconRight && (
+					{ !! iconRight && (
 						<span
-							className={classnames(
+							className={ classnames(
 								'ystdb-button__icon',
 								'ystdb-button__icon--right',
 								{
-									[iconSizeRight]: iconSizeRight,
+									[ iconSizeRight ]: iconSizeRight,
 								}
-							)}
+							) }
 						>
-							<SVGIcon name={iconRight} />
+							<SVGIcon name={ iconRight } />
 						</span>
-					)}
+					) }
 				</span>
 			</a>
 		</div>

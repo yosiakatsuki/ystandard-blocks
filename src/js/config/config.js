@@ -21,46 +21,47 @@ export const ystdbConfig = {
 		paddingTypes: [
 			{
 				value: 'is-small',
-				label: __('小', 'ystandard-blocks'),
+				label: __( '小', 'ystandard-blocks' ),
 			},
 			{
 				value: '',
-				label: __('中', 'ystandard-blocks'),
+				label: __( '中', 'ystandard-blocks' ),
 			},
 			{
 				value: 'is-large',
-				label: __('大', 'ystandard-blocks'),
+				label: __( '大', 'ystandard-blocks' ),
 			},
 		],
 		animationTypes: [
-			{ label: __('なし', 'ystandard-blocks'), value: 'none' },
-			{ label: __('キラキラ', 'ystandard-blocks'), value: 'shine' },
+			{ label: __( 'なし', 'ystandard-blocks' ), value: 'none' },
+			{ label: __( 'キラキラ', 'ystandard-blocks' ), value: 'shine' },
 		],
 	},
 	icon: {
 		size: [
 			{
 				value: 'is-small',
-				label: __('小', 'ystandard-blocks'),
+				label: __( '小', 'ystandard-blocks' ),
 			},
 			{
 				value: '',
-				label: __('中', 'ystandard-blocks'),
+				label: __( '中', 'ystandard-blocks' ),
 			},
 			{
 				value: 'is-large',
-				label: __('大', 'ystandard-blocks'),
+				label: __( '大', 'ystandard-blocks' ),
 			},
 		],
 	},
 	component: {
 		defaultAvatar: {
-			url: 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp',
+			url:
+				'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp',
 		},
 		fontWeight: [
 			{
 				value: '',
-				label: _x('指定無し', 'component-config', 'ystandard-blocks'),
+				label: _x( '指定無し', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: 'normal',
@@ -72,43 +73,47 @@ export const ystdbConfig = {
 			},
 			{
 				value: 'bold',
-				label: _x('太字(bold)', 'component-config', 'ystandard-blocks'),
+				label: _x(
+					'太字(bold)',
+					'component-config',
+					'ystandard-blocks'
+				),
 			},
 			{
 				value: '100',
-				label: _x('100', 'component-config', 'ystandard-blocks'),
+				label: _x( '100', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '200',
-				label: _x('200', 'component-config', 'ystandard-blocks'),
+				label: _x( '200', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '300',
-				label: _x('300', 'component-config', 'ystandard-blocks'),
+				label: _x( '300', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '400',
-				label: _x('400', 'component-config', 'ystandard-blocks'),
+				label: _x( '400', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '500',
-				label: _x('500', 'component-config', 'ystandard-blocks'),
+				label: _x( '500', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '600',
-				label: _x('600', 'component-config', 'ystandard-blocks'),
+				label: _x( '600', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '700',
-				label: _x('700', 'component-config', 'ystandard-blocks'),
+				label: _x( '700', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '800',
-				label: _x('800', 'component-config', 'ystandard-blocks'),
+				label: _x( '800', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: '900',
-				label: _x('900', 'component-config', 'ystandard-blocks'),
+				label: _x( '900', 'component-config', 'ystandard-blocks' ),
 			},
 		],
 		fontUnit: [
@@ -120,7 +125,7 @@ export const ystdbConfig = {
 		fontStyle: [
 			{
 				value: '',
-				label: _x('指定無し', 'component-config', 'ystandard-blocks'),
+				label: _x( '指定無し', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: 'italic',
@@ -134,19 +139,19 @@ export const ystdbConfig = {
 		borderStyles: [
 			{
 				value: 'solid',
-				label: _x('直線', 'component-config', 'ystandard-blocks'),
+				label: _x( '直線', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: 'dotted',
-				label: _x('点線', 'component-config', 'ystandard-blocks'),
+				label: _x( '点線', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: 'dashed',
-				label: _x('破線', 'component-config', 'ystandard-blocks'),
+				label: _x( '破線', 'component-config', 'ystandard-blocks' ),
 			},
 			{
 				value: 'double',
-				label: _x('二重線', 'component-config', 'ystandard-blocks'),
+				label: _x( '二重線', 'component-config', 'ystandard-blocks' ),
 			},
 		],
 	},

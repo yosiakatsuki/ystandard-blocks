@@ -87,14 +87,14 @@ export const deprecated27 = [
 				default: 5,
 			},
 		},
-		migrate(attributes) {
+		migrate( attributes ) {
 			let newPaddingVertical;
 			let newPaddingHorizontal;
-			if ('is-small' === attributes.paddingType) {
+			if ( 'is-small' === attributes.paddingType ) {
 				newPaddingVertical = 8;
 				newPaddingHorizontal = 8;
 			}
-			if ('is-large' === attributes.paddingType) {
+			if ( 'is-large' === attributes.paddingType ) {
 				newPaddingVertical = 48;
 				newPaddingHorizontal = 48;
 			}
@@ -113,7 +113,7 @@ export const deprecated27 = [
 			align: false,
 			className: false,
 		},
-		save({ attributes }) {
+		save( { attributes } ) {
 			const {
 				textColor,
 				customTextColor,
@@ -139,38 +139,38 @@ export const deprecated27 = [
 				animationInterval,
 			} = attributes;
 
-			const textClass = getColorClassName('color', textColor);
+			const textClass = getColorClassName( 'color', textColor );
 			const backgroundClass = getColorClassName(
 				'background-color',
 				backgroundColor
 			);
-			const fontSizeClass = getFontSizeClass(fontSize);
+			const fontSizeClass = getFontSizeClass( fontSize );
 
-			const wrapClasses = classnames('wp-block-button', {
-				[`has-text-align-${align}`]: align,
-				[fontSizeClass]: fontSizeClass,
-			});
+			const wrapClasses = classnames( 'wp-block-button', {
+				[ `has-text-align-${ align }` ]: align,
+				[ fontSizeClass ]: fontSizeClass,
+			} );
 
 			const linkClasses = classnames(
 				'wp-block-button__link',
 				'ystdb-button__link',
 				{
-					[textClass]: textClass,
+					[ textClass ]: textClass,
 					'has-text-color': textColor || customTextColor,
-					[backgroundClass]: backgroundClass,
+					[ backgroundClass ]: backgroundClass,
 					'has-background': backgroundColor || customBackgroundColor,
 					'no-border-radius': borderRadius === 0,
-					[paddingType]: paddingType,
-					[buttonType]: buttonType,
+					[ paddingType ]: paddingType,
+					[ buttonType ]: buttonType,
 					'has-animation': animationType && 'none' !== animationType,
-					[`has-animation--${animationType}`]:
+					[ `has-animation--${ animationType }` ]:
 						'none' !== animationType,
 				}
 			);
 
 			const wrapStyles = {
 				fontSize:
-					!fontSizeClass && customFontSize
+					! fontSizeClass && customFontSize
 						? customFontSize + 'px'
 						: undefined,
 			};
@@ -182,55 +182,55 @@ export const deprecated27 = [
 				borderRadius: borderRadius ? borderRadius + 'px' : undefined,
 				maxWidth:
 					buttonType && maxWidth
-						? `${maxWidth}${maxUnit}`
+						? `${ maxWidth }${ maxUnit }`
 						: undefined,
 				animationDuration:
 					'none' !== animationType && animationInterval
-						? `${animationInterval}s`
+						? `${ animationInterval }s`
 						: undefined,
 			};
 
 			return (
-				<div className={wrapClasses} style={wrapStyles}>
+				<div className={ wrapClasses } style={ wrapStyles }>
 					<a
-						href={url}
-						className={linkClasses}
-						style={linkStyles}
-						target={linkTarget}
-						rel={rel}
+						href={ url }
+						className={ linkClasses }
+						style={ linkStyles }
+						target={ linkTarget }
+						rel={ rel }
 					>
 						<span className="ystdb-button__link-content">
-							{!!iconLeft && (
+							{ !! iconLeft && (
 								<span
-									className={classnames(
+									className={ classnames(
 										'ystdb-button__icon',
 										'ystdb-button__icon--left',
 										{
-											[iconSizeLeft]: iconSizeLeft,
+											[ iconSizeLeft ]: iconSizeLeft,
 										}
-									)}
+									) }
 								>
-									<SVGIcon name={iconLeft} />
+									<SVGIcon name={ iconLeft } />
 								</span>
-							)}
+							) }
 							<RichText.Content
-								tagName={'span'}
-								value={text}
-								className={'ystdb-button__text'}
+								tagName={ 'span' }
+								value={ text }
+								className={ 'ystdb-button__text' }
 							/>
-							{!!iconRight && (
+							{ !! iconRight && (
 								<span
-									className={classnames(
+									className={ classnames(
 										'ystdb-button__icon',
 										'ystdb-button__icon--right',
 										{
-											[iconSizeRight]: iconSizeRight,
+											[ iconSizeRight ]: iconSizeRight,
 										}
-									)}
+									) }
 								>
-									<SVGIcon name={iconRight} />
+									<SVGIcon name={ iconRight } />
 								</span>
-							)}
+							) }
 						</span>
 					</a>
 				</div>

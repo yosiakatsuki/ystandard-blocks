@@ -12,13 +12,13 @@ import {
 import { paths } from './config';
 
 class HeadingToolbar extends Component {
-	createLevelControl(targetLevel, selectedLevel, onChange) {
+	createLevelControl( targetLevel, selectedLevel, onChange ) {
 		const isActive = targetLevel === selectedLevel;
 		return {
-			icon: this.getIcon(targetLevel, isActive),
-			title: `${__('Heading')} ${targetLevel}`,
+			icon: this.getIcon( targetLevel, isActive ),
+			title: `${ __( 'Heading' ) } ${ targetLevel }`,
 			isActive,
-			onClick: () => onChange(targetLevel),
+			onClick: () => onChange( targetLevel ),
 		};
 	}
 
@@ -34,49 +34,52 @@ class HeadingToolbar extends Component {
 		const dropdownMenu = () => {
 			return (
 				<ToolbarItem>
-					{(toolbarItemHTMLProps) => (
+					{ ( toolbarItemHTMLProps ) => (
 						<DropdownMenu
-							toggleProps={toolbarItemHTMLProps}
-							isCollapsed={isCollapsed}
-							icon={this.getIcon(selectedLevel)}
-							label={__('見出しレベル', 'ystandard-blocks')}
-							controls={range(minLevel, maxLevel).map((index) =>
+							toggleProps={ toolbarItemHTMLProps }
+							isCollapsed={ isCollapsed }
+							icon={ this.getIcon( selectedLevel ) }
+							label={ __( '見出しレベル', 'ystandard-blocks' ) }
+							controls={ range(
+								minLevel,
+								maxLevel
+							).map( ( index ) =>
 								this.createLevelControl(
 									index,
 									selectedLevel,
 									onChange
 								)
-							)}
+							) }
 						/>
-					)}
+					) }
 				</ToolbarItem>
 			);
 		};
 
 		const buttons = () => {
-			return range(minLevel, maxLevel).map((index) => {
+			return range( minLevel, maxLevel ).map( ( index ) => {
 				return (
 					<ToolbarButton
-						key={index}
-						{...this.createLevelControl(
+						key={ index }
+						{ ...this.createLevelControl(
 							index,
 							selectedLevel,
 							onChange
-						)}
+						) }
 					/>
 				);
-			});
+			} );
 		};
 
 		return (
 			<ToolbarGroup>
-				{isCollapsed ? dropdownMenu() : buttons()}
+				{ isCollapsed ? dropdownMenu() : buttons() }
 			</ToolbarGroup>
 		);
 	}
 
-	getIcon(level = 2, isPressed = false) {
-		if (!paths.hasOwnProperty(level)) {
+	getIcon( level = 2, isPressed = false ) {
+		if ( ! paths.hasOwnProperty( level ) ) {
 			return null;
 		}
 		return (
@@ -85,9 +88,9 @@ class HeadingToolbar extends Component {
 				height="20"
 				viewBox="0 0 20 20"
 				xmlns="http://www.w3.org/2000/svg"
-				isPressed={isPressed}
+				isPressed={ isPressed }
 			>
-				<Path d={paths[level]} />
+				<Path d={ paths[ level ] } />
 			</SVG>
 		);
 	}

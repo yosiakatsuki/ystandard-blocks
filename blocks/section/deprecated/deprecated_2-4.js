@@ -114,24 +114,24 @@ export const deprecated24 = [
 				default: 2,
 			},
 		},
-		migrate(attributes) {
+		migrate( attributes ) {
 			return {
 				...attributes,
 				backgroundType: attributes.backgroundImageURL
 					? 'image'
 					: undefined,
 				dividerTopReverse: 0 > attributes.dividerLevelTop,
-				dividerLevelTop: Math.abs(attributes.dividerLevelTop),
+				dividerLevelTop: Math.abs( attributes.dividerLevelTop ),
 				dividerBottomReverse: 0 > attributes.dividerLevelBottom,
-				dividerLevelBottom: Math.abs(attributes.dividerLevelBottom),
+				dividerLevelBottom: Math.abs( attributes.dividerLevelBottom ),
 			};
 		},
 		supports: {
-			align: ['wide', 'full'],
+			align: [ 'wide', 'full' ],
 			anchor: true,
 			className: false,
 		},
-		save({ attributes }) {
+		save( { attributes } ) {
 			const {
 				wrapperTag,
 				backgroundColor,
@@ -173,7 +173,7 @@ export const deprecated24 = [
 			/**
 			 * 色設定
 			 */
-			const textColorClass = getColorClassName('color', textColor);
+			const textColorClass = getColorClassName( 'color', textColor );
 			const backgroundClass = getColorClassName(
 				'background-color',
 				backgroundColor
@@ -201,12 +201,12 @@ export const deprecated24 = [
 			/**
 			 * セクションクラス名
 			 */
-			const sectionClass = classnames('ystdb-section', {
+			const sectionClass = classnames( 'ystdb-section', {
 				'has-background-image': backgroundImageURL,
 				'is-screen-height': screenHeightMode,
 				'has-animation': hasAnimation,
 				'has-parallax': backgroundImageParallax,
-			});
+			} );
 			const dataAnimation = hasAnimation ? animationType : undefined;
 			/**
 			 * セクションスタイル
@@ -219,7 +219,7 @@ export const deprecated24 = [
 				marginTop: marginTop + marginUnit,
 				marginBottom: marginBottom + marginUnit,
 				backgroundImage: backgroundImageURL
-					? `url("${backgroundImageURL}")`
+					? `url("${ backgroundImageURL }")`
 					: undefined,
 				minHeight: sectionMinHeight
 					? sectionMinHeight + 'px'
@@ -227,20 +227,20 @@ export const deprecated24 = [
 				paddingLeft: 0 < innerCustomWidth ? '1rem' : undefined,
 				paddingRight: 0 < innerCustomWidth ? '1rem' : undefined,
 				animationDuration: hasAnimation
-					? `${animationSpeed}s`
+					? `${ animationSpeed }s`
 					: undefined,
 			};
 
 			/**
 			 * 背景マスク
 			 */
-			const bgMaskClass = classnames('ystdb-section__bg', {
+			const bgMaskClass = classnames( 'ystdb-section__bg', {
 				'has-background': backgroundColor || customBackgroundColor,
-				[backgroundClass]: backgroundClass,
-			});
+				[ backgroundClass ]: backgroundClass,
+			} );
 			const bgMaskStyle = {
 				backgroundColor:
-					!backgroundClass && !customBackgroundColor
+					! backgroundClass && ! customBackgroundColor
 						? '#000'
 						: customBackgroundColor,
 				opacity: backgroundImageOpacity / 100,
@@ -249,10 +249,10 @@ export const deprecated24 = [
 			/**
 			 * インナー
 			 */
-			const innerClasses = classnames('ystdb-section__inner', {
+			const innerClasses = classnames( 'ystdb-section__inner', {
 				'has-text-color': textColorClass || customTextColor,
-				[textColorClass]: textColorClass,
-			});
+				[ textColorClass ]: textColorClass,
+			} );
 			const innerStyles = {
 				maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
 				marginRight: 'auto',
@@ -271,23 +271,27 @@ export const deprecated24 = [
 			) => {
 				const dividerClass = classnames(
 					'ystdb-section__divider',
-					`ystdb-section__divider--${position}`,
-					`ystdb-section__divider--${type}`
+					`ystdb-section__divider--${ position }`,
+					`ystdb-section__divider--${ type }`
 				);
-				const path = dividerPath(type, level);
-				const svgClass = classnames('ystdb-section__divider-image', {
-					[colorClass]: colorClass,
-				});
+				const path = dividerPath( type, level );
+				const svgClass = classnames( 'ystdb-section__divider-image', {
+					[ colorClass ]: colorClass,
+				} );
 
 				return (
-					<div className={dividerClass}>
+					<div className={ dividerClass }>
 						<SVG
-							className={svgClass}
+							className={ svgClass }
 							viewBox="0 0 100 100"
 							xmlns="http://www.w3.org/2000/svg"
 							preserveAspectRatio="none"
 						>
-							<Path d={path} strokewidth="0" fill={customColor} />
+							<Path
+								d={ path }
+								strokewidth="0"
+								fill={ customColor }
+							/>
 						</SVG>
 					</div>
 				);
@@ -295,45 +299,48 @@ export const deprecated24 = [
 
 			const dividerTop =
 				0 !== dividerLevelTop &&
-				(dividerColorTopClass || customDividerColorTop);
+				( dividerColorTopClass || customDividerColorTop );
 			const dividerBottom =
 				0 !== dividerLevelBottom &&
-				(dividerColorBottomClass || customDividerColorBottom);
+				( dividerColorBottomClass || customDividerColorBottom );
 
 			return (
 				<div
-					className={sectionClass}
-					style={sectionStyles}
-					data-animation={dataAnimation}
+					className={ sectionClass }
+					style={ sectionStyles }
+					data-animation={ dataAnimation }
 				>
-					{showBgMask && (
+					{ showBgMask && (
 						<div
-							className={bgMaskClass}
+							className={ bgMaskClass }
 							aria-hidden="true"
 							role="img"
-							style={bgMaskStyle}
+							style={ bgMaskStyle }
 						>
 							&nbsp;
 						</div>
-					)}
-					{dividerTop &&
+					) }
+					{ dividerTop &&
 						divider(
 							dividerTypeTop,
 							'top',
 							dividerLevelTop,
 							dividerColorTopClass,
 							customDividerColorTop
-						)}
-					{dividerBottom &&
+						) }
+					{ dividerBottom &&
 						divider(
 							dividerTypeBottom,
 							'bottom',
 							dividerLevelBottom,
 							dividerColorBottomClass,
 							customDividerColorBottom
-						)}
+						) }
 					<div className="ystdb-section__container">
-						<Wrapper className={innerClasses} style={innerStyles}>
+						<Wrapper
+							className={ innerClasses }
+							style={ innerStyles }
+						>
 							<InnerBlocks.Content />
 						</Wrapper>
 					</div>

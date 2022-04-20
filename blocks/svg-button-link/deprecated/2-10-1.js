@@ -84,10 +84,10 @@ export const deprecated2101 = [
 		supports: {
 			...blockSupports,
 		},
-		migrate(attributes) {
+		migrate( attributes ) {
 			let newFontSize = attributes.customFontSize;
-			if ('number' === typeof newFontSize) {
-				newFontSize = newFontSize.toString().replace('px', '') + 'px';
+			if ( 'number' === typeof newFontSize ) {
+				newFontSize = newFontSize.toString().replace( 'px', '' ) + 'px';
 			}
 			return {
 				...attributes,

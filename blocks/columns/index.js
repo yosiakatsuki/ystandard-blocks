@@ -7,17 +7,17 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { deprecated } from './deprecated/index';
 
-registerBlockType('ystdb/columns', {
+registerBlockType( 'ystdb/columns', {
 	apiVersion: 2,
-	title: __('カスタムカラム', 'ystandard-blocks'),
-	description: __('yStandard Blocks カラムブロック', 'ystandard-blocks'),
+	title: __( 'カスタムカラム', 'ystandard-blocks' ),
+	description: __( 'yStandard Blocks カラムブロック', 'ystandard-blocks' ),
 	icon: (
 		<Grid
-			stroke={ystdbConfig.color.iconForeground}
-			style={{ fill: 'none' }}
+			stroke={ ystdbConfig.color.iconForeground }
+			style={ { fill: 'none' } }
 		/>
 	),
-	keywords: [__('column'), __('カラム'), 'column', 'col'],
+	keywords: [ __( 'column' ), __( 'カラム' ), 'column', 'col' ],
 	category: ystdbConfig.category.common,
 	attributes,
 	supports,
@@ -25,4 +25,4 @@ registerBlockType('ystdb/columns', {
 	save,
 	deprecated,
 	example: {},
-});
+} );

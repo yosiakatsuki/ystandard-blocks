@@ -3,7 +3,7 @@
 @mixin controlsLabel($i) {
 	padding: 0.25em 0.5em;
 	background-color: global.$color__ystd_blue;
-	color: #ffffff;
+	color: #fff;
 
 	@if $i != 1 {
 		margin-top: 3em;
@@ -16,16 +16,21 @@
  */
 @for $i from 1 through 3 {
 	#customize-control-ystdb_inline_style_label_#{$i} {
+
 		label {
+
 			@include controlsLabel($i);
 		}
 	}
 }
+
 #customize-control-ystdb_inline_style_larger_label,
 #customize-control-ystdb_inline_style_smaller_label,
 #customize-control-ystdb_inline_style_larger_sp_label,
 #customize-control-ystdb_inline_style_smaller_sp_label {
+
 	label {
+
 		@include controlsLabel(2);
 	}
 }
@@ -35,12 +40,15 @@
  */
 @for $i from 1 through 30 {
 	#customize-control-ystdb_balloon_image_label#{$i} {
+
 		label {
+
 			@include controlsLabel($i);
 		}
 	}
 
 	#customize-control-ystdb_balloon_image_#{$i} {
+
 		img {
 			max-width: 100px;
 			border-radius: 50%;

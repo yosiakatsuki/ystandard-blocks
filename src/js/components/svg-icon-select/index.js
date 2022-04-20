@@ -22,51 +22,53 @@ class SVGIconSelect extends Component {
 
 		const iconBaseControlTitle =
 			iconControlTitle === undefined
-				? __('表示アイコン', 'ystandard-blocks')
+				? __( '表示アイコン', 'ystandard-blocks' )
 				: iconControlTitle;
 
 		return (
 			<div
-				className={classnames('ystdb-icon-select', {
-					[`align--${align}`]: align,
+				className={ classnames( 'ystdb-icon-select', {
+					[ `align--${ align }` ]: align,
 					'is-float': isFloat,
-				})}
+				} ) }
 			>
-				{customInfo && <div style={customInfoStyle}>{customInfo}</div>}
-				{!!onChangePosition && (
+				{ customInfo && (
+					<div style={ customInfoStyle }>{ customInfo }</div>
+				) }
+				{ !! onChangePosition && (
 					<BaseControl>
 						<div className="ystdb-inspector-controls__label">
-							{__('アイコン表示位置', 'ystandard-blocks')}
+							{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
 						</div>
-						<div className={'ystdb-icon-select__position'}>
+						<div className={ 'ystdb-icon-select__position' }>
 							<RadioControl
-								selected={iconPosition}
-								options={[
+								selected={ iconPosition }
+								options={ [
 									{
-										label: __('左', 'ystandard-blocks'),
+										label: __( '左', 'ystandard-blocks' ),
 										value: 'left',
 									},
 									{
-										label: __('右', 'ystandard-blocks'),
+										label: __( '右', 'ystandard-blocks' ),
 										value: 'right',
 									},
-								]}
-								onChange={onChangePosition}
+								] }
+								onChange={ onChangePosition }
 							/>
 						</div>
 					</BaseControl>
-				)}
+				) }
 				<BaseControl>
 					<div className="ystdb-inspector-controls__label">
-						{iconBaseControlTitle}
+						{ iconBaseControlTitle }
 					</div>
-					<div className={'ystdb-icon-select__picker'}>
+					<div className={ 'ystdb-icon-select__picker' }>
 						<IconSelect
-							selectedIcon={selectedIcon}
-							previewIcon={previewIcon}
-							onChange={(value) => {
-								onClickIcon(value);
-							}}
+							selectedIcon={ selectedIcon }
+							previewIcon={ previewIcon }
+							onChange={ ( value ) => {
+								onClickIcon( value );
+							} }
 						/>
 					</div>
 				</BaseControl>

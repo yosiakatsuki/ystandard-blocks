@@ -168,26 +168,26 @@ export const supports = {
 
 export const positions = [
 	{
-		label: __('下', 'ystandard-blocks'),
+		label: __( '下', 'ystandard-blocks' ),
 		value: 'bottom',
 	},
 	{
-		label: __('上', 'ystandard-blocks'),
+		label: __( '上', 'ystandard-blocks' ),
 		value: 'top',
 	},
 ];
 
 export const fontWeightList = [
 	{
-		label: __('指定なし', 'ystandard-blocks'),
+		label: __( '指定なし', 'ystandard-blocks' ),
 		value: '',
 	},
 	{
-		label: __('bold', 'ystandard-blocks'),
+		label: __( 'bold', 'ystandard-blocks' ),
 		value: '700',
 	},
 	{
-		label: __('normal', 'ystandard-blocks'),
+		label: __( 'normal', 'ystandard-blocks' ),
 		value: '400',
 	},
 ];

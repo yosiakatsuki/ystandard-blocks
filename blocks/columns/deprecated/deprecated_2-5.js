@@ -34,11 +34,11 @@ export const deprecated25 = [
 			},
 		},
 		supports: {
-			align: ['wide', 'full'],
+			align: [ 'wide', 'full' ],
 			className: false,
 			lightBlockWrapper: true,
 		},
-		save({ attributes }) {
+		save( { attributes } ) {
 			const {
 				colPc,
 				colTablet,
@@ -49,21 +49,19 @@ export const deprecated25 = [
 				removeMargin,
 			} = attributes;
 
-			const classes = classnames('ystdb-columns', {
-				[`has-${colMobile}-columns`]: colMobile,
-				[`has-${colTablet}-columns--tablet`]: colTablet,
-				[`has-${colPc}-columns--pc`]: colPc,
-				[`is-vertically-aligned-${verticalAlignment}`]:
-					verticalAlignment,
-				[`is-horizontally-aligned-${horizonAlignment}`]:
-					horizonAlignment,
+			const classes = classnames( 'ystdb-columns', {
+				[ `has-${ colMobile }-columns` ]: colMobile,
+				[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+				[ `has-${ colPc }-columns--pc` ]: colPc,
+				[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
+				[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
 				'is-reverse': reverse,
 				'is-no-margin': removeMargin,
-			});
+			} );
 
 			return (
 				<div className="ystdb-columns-wrap">
-					<div className={classes}>
+					<div className={ classes }>
 						<InnerBlocks.Content />
 					</div>
 				</div>

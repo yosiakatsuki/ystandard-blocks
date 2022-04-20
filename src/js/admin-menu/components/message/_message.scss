@@ -1,24 +1,24 @@
 @use "../../../../sass/global";
 
 .ystdb-component-message {
-  display: block;
-  margin: 0 0 1em;
-  font-size: 0.9em;
-  color: global.$color__text-light;
+	display: block;
+	margin: 0 0 1em;
+	font-size: 0.9em;
+	color: global.$color__text-light;
 
-  &.is-error {
-	color: global.$color__notice-error;
-  }
+	&.is-error {
+		color: global.$color__notice-error;
+	}
 
-  &.is-warning {
-	color: global.$color__notice-warning;
-  }
+	&.is-warning {
+		color: global.$color__notice-warning;
+	}
 
-  &.is-info {
-	color: global.$color__notice-info;
-  }
+	&.is-info {
+		color: global.$color__notice-info;
+	}
 
-  &.is-hide {
-	display: none;
-  }
+	&.is-hide {
+		display: none;
+	}
 }

@@ -1,50 +1,51 @@
 @use "../global";
 
 .ystdb-menu__nav {
-  display: none;
-  @media (min-width: 640px) {
-	display: block;
-	width: 160px;
-  }
+	display: none;
+
+	@media (min-width: 640px) {
+		display: block;
+		width: 160px;
+	}
 }
 
 .ystdb-menu__nav-list {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 
-  @media (min-width: 640px) {
-	flex-direction: column;
-  }
+	@media (min-width: 640px) {
+		flex-direction: column;
+	}
 }
 
 .ystdb-menu__nav-link {
-  display: block;
-  padding: .5em 0;
-  margin-right: 1em;
-  color: currentColor;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: all .3s;
-
-  &:hover {
+	display: block;
+	padding: 0.5em 0;
+	margin-right: 1em;
+	color: currentcolor;
 	text-decoration: none;
-	color: currentColor;
-  }
-
-  @media (min-width: 640px) {
-	margin-right: 0;
-	border-bottom: 0;
-	border-right: 2px solid transparent;
-	font-size: 0.85rem;
+	border-bottom: 2px solid transparent;
+	transition: all 0.3s;
 
 	&:hover {
-	  border-color: global.$color__ystd_blue;
+		text-decoration: none;
+		color: currentcolor;
 	}
-  }
 
-  &.is-active {
-	border-color: global.$color__ystd_blue;
-  }
+	@media (min-width: 640px) {
+		margin-right: 0;
+		border-bottom: 0;
+		border-right: 2px solid transparent;
+		font-size: 0.85rem;
+
+		&:hover {
+			border-color: global.$color__ystd_blue;
+		}
+	}
+
+	&.is-active {
+		border-color: global.$color__ystd_blue;
+	}
 }

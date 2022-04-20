@@ -1,14 +1,14 @@
 @use "../../../../sass/global";
 
 .ystdb-menu-component__tab {
-  margin-top: 1em;
+	margin-top: 1em;
 
-  .components-tab-panel__tabs {
-	justify-content: center;
-  }
+	.components-tab-panel__tabs {
+		justify-content: center;
+	}
 
-  .components-tab-panel__tab-content {
-	border: 1px solid global.$color__border-gray-light;
-	padding: 1em;
-  }
+	.components-tab-panel__tab-content {
+		border: 1px solid global.$color__border-gray-light;
+		padding: 1em;
+	}
 }

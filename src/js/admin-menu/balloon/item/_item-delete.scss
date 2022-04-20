@@ -2,30 +2,31 @@
 
 
 .ystdb-menu-balloon__item-delete {
-  margin-left: auto;
+	margin-left: auto;
 
-  .ystdb-menu-balloon__item-delete-button {
-	height: auto;
-	padding: .5em;
-	color: global.$color__text-light;
-  }
+	.ystdb-menu-balloon__item-delete-button {
+		height: auto;
+		padding: 0.5em;
+		color: global.$color__text-light;
+	}
 }
 
 .ystdb-menu-balloon__delete-modal {
-  .ystdb-menu-balloon__delete-modal-image {
-	margin: 0;
-	text-align: center;
 
-	img {
-	  width: 80px;
-	  height: 80px;
-	  object-fit: cover;
-	  border-radius: 50%;
+	.ystdb-menu-balloon__delete-modal-image {
+		margin: 0;
+		text-align: center;
+
+		img {
+			width: 80px;
+			height: 80px;
+			object-fit: cover;
+			border-radius: 50%;
+		}
 	}
-  }
 
-  .ystdb-menu-balloon__delete-modal-name {
-	margin: 1em 0 0;
-	text-align: center;
-  }
+	.ystdb-menu-balloon__delete-modal-name {
+		margin: 1em 0 0;
+		text-align: center;
+	}
 }

@@ -1,16 +1,15 @@
-const defaultConfig = require( "@wordpress/scripts/config/webpack.config" );
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
-	mode: 'production',
 	entry: {
-		'app': './src/js/app/app.js',
+		app: './src/js/app/app.js',
 		'app-ie': './src/js/app/app-ie.js',
 	},
 	output: {
 		filename: '[name].js',
-		path: `${ __dirname }/js/app`
+		path: `${ __dirname }/js/app`,
 	},
 	module: {
 		rules: [
@@ -21,18 +20,16 @@ module.exports = {
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: [
-								'@babel/env',
-							],
+							presets: [ '@babel/env' ],
 							targets: {
 								ie: '11',
-								esmodules: true
-							}
-						}
-					}
-				]
-			}
-		]
+								esmodules: true,
+							},
+						},
+					},
+				],
+			},
+		],
 	},
 	resolve: {
 		...defaultConfig.resolve,
@@ -42,6 +39,6 @@ module.exports = {
 			'@ystdb/components': path.resolve( __dirname, 'src/js/components' ),
 			'@ystdb/helper': path.resolve( __dirname, 'src/js/helper' ),
 			'@ystdb/util': path.resolve( __dirname, 'src/js/util' ),
-		}
+		},
 	},
 };

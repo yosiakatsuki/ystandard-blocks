@@ -1,14 +1,17 @@
 @use "../variable";
+
 @mixin media-breakpoint($name,$breakpoints: variable.$breakpoints) {
 	$breakpoint: map-get($breakpoints, $name);
 
 	@if $breakpoint {
+
 		@media (min-width: $breakpoint) {
 			@content;
 		}
 	} @else {
+
 		@warn "`#{$name}` is not found. "
-		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+			+ "Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
 
@@ -16,29 +19,33 @@
 	$breakpoint: map-get($breakpoints, $name);
 
 	@if $breakpoint {
+
 		@media (max-width: ($breakpoint - 1px)) {
 			@content;
 		}
 	} @else {
+
 		@warn "`#{$name}` is not found. "
-		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+			+ "Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
 
 @mixin media-breakpoint_between(
-  $name_up,
-  $name_down,
-  $breakpoints: variable.$breakpoints
+	$name_up,
+	$name_down,
+	$breakpoints: variable.$breakpoints
 ) {
 	$breakpoint_up: map-get($breakpoints, $name_up);
 	$breakpoint_down: map-get($breakpoints, $name_down);
 
 	@if ($breakpoint_up and $breakpoint_down) {
+
 		@media (min-width: $breakpoint_up) and (max-width: ($breakpoint_down - 1px)) {
 			@content;
 		}
 	} @else {
+
 		@warn "`#{$name_up}` is not found. "
-		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+			+ "Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }

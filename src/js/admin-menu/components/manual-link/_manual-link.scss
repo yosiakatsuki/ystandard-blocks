@@ -1,27 +1,29 @@
 .ystdb-component-manual-link {
-  margin-top: .5em;
-  margin-bottom: .5em;
-  font-size: 12px;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	font-size: 12px;
 
-  &.is-top-right {
-	height: 20px;
-	margin: 0 0 -20px;
-	text-align: right;
-  }
+	&.is-top-right {
+		height: 20px;
+		margin: 0 0 -20px;
+		text-align: right;
+	}
 
-  a {
-	display: inline-flex;
-	align-items: center;
-	text-decoration: none;
-  }
+	a {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+	}
 
-  svg {
-	display: block;
-  }
+	svg {
+		display: block;
+	}
 }
+
 .ystdb-component-manual-link__icon {
-  margin-right: .25em;
+	margin-right: 0.25em;
 }
+
 .ystdb-component-manual-link__text {
-  text-decoration: underline;
+	text-decoration: underline;
 }

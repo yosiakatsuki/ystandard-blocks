@@ -14,7 +14,6 @@ module.exports = {
 		"import/no-extraneous-dependencies": "off",
 		"@wordpress/no-unsafe-wp-apis": "off",
 	},
-	parser: "babel-eslint",
 	parserOptions: {
 		requireConfigFile: false
 	}
