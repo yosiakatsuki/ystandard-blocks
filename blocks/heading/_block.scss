@@ -12,7 +12,7 @@
 				font-size: var(--ys-font-mobile);
 			}
 
-			@include global.media-breakpoint_between(md, lg) {
+			@include global.media-breakpoint-between(md, lg) {
 				font-size: var(--ys-font-tablet);
 			}
 
@@ -78,7 +78,7 @@
 			font-size: var(--ys-font-mobile);
 		}
 
-		@include global.media-breakpoint_between(md, lg) {
+		@include global.media-breakpoint-between(md, lg) {
 			font-size: var(--ys-font-tablet);
 		}
 

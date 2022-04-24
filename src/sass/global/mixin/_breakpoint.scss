@@ -1,49 +1,72 @@
 @use "sass:map";
 @use "../variable";
+@use "../function";
 
 @mixin media-breakpoint($name,$breakpoints: variable.$breakpoints) {
-	$breakpoint: map.get($breakpoints, $name);
+  $breakpoint: map.get($breakpoints, $name);
 
-	@if $breakpoint {
+  @if $breakpoint {
 
-		@media (min-width: $breakpoint) {
-			@content;
-		}
-	} @else {
-
-		@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+	@media (min-width: $breakpoint) {
+	  @content;
 	}
+  } @else {
+
+	@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+  }
 }
 
 @mixin media-breakpoint-down($name,$breakpoints: variable.$breakpoints) {
-	$breakpoint: map.get($breakpoints, $name);
+  $breakpoint: map.get($breakpoints, $name);
 
-	@if $breakpoint {
+  @if $breakpoint {
 
-		@media (max-width: ($breakpoint - 1px)) {
-			@content;
-		}
-	} @else {
-
-		@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+	@media (max-width: ($breakpoint - 1px)) {
+	  @content;
 	}
+  } @else {
+
+	@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+  }
 }
 
-@mixin media-breakpoint_between(
-	$name_up,
-	$name_down,
-	$breakpoints: variable.$breakpoints
+@mixin media-breakpoint-between(
+  $name_up,
+  $name_down,
+  $breakpoints: variable.$breakpoints
 ) {
-	$breakpoint_up: map.get($breakpoints, $name_up);
-	$breakpoint_down: map.get($breakpoints, $name_down);
+  $breakpoint_up: map.get($breakpoints, $name_up);
+  $breakpoint_down: map.get($breakpoints, $name_down);
 
-	@if ($breakpoint_up and $breakpoint_down) {
+  @if ($breakpoint_up and $breakpoint_down) {
 
-		@media (min-width: $breakpoint_up) and (max-width: ($breakpoint_down - 1px)) {
-			@content;
-		}
-	} @else {
-
-		@warn "`#{$name_up}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+	@media (min-width: $breakpoint_up) and (max-width: ($breakpoint_down - 1px)) {
+	  @content;
 	}
+  } @else {
+
+	@warn "`#{$name_up}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+  }
+}
+
+@mixin media-breakpoint-only-mobile($editor:false) {
+  $breakpoint: function.get-breakpoint(sm, $editor);
+  @media (max-width: ($breakpoint - 1px)) {
+	@content;
+  }
+}
+
+@mixin media-breakpoint-only-tablet($editor:false) {
+  $breakpoint_up: function.get-breakpoint(sm, $editor);
+  $breakpoint_down: function.get-breakpoint(lg, $editor);
+  @media (min-width: $breakpoint_up) and (max-width: ($breakpoint_down - 1px)) {
+	@content;
+  }
+}
+
+@mixin media-breakpoint-only-pc($editor:false) {
+  $breakpoint: function.get-breakpoint(lg, $editor);
+  @media (min-width: $breakpoint) {
+	@content;
+  }
 }

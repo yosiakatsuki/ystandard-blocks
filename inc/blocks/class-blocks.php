@@ -113,8 +113,8 @@ class Blocks {
 				'style'        => $style,
 				'editor_style' => $editor_style,
 			];
-
 		}
+
 	}
 
 	/**
@@ -130,31 +130,31 @@ class Blocks {
 	 * ブロックの登録
 	 */
 	public function register_block() {
-		if ( ! is_admin() ) {
-			return;
-		}
-		/**
-		 * ブロック共通スクリプト
-		 */
-		$asset_file = include( YSTDB_PATH . '/js/blocks/block.asset.php' );
-		wp_enqueue_script(
-			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-			YSTDB_URL . '/js/blocks/block.js',
-			$asset_file['dependencies'],
-			$asset_file['version']
-		);
-		wp_localize_script(
-			Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-			'ystdb',
-			$this->create_block_config()
-		);
-		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations(
+		if ( is_admin() ) {
+			/**
+			 * ブロック共通スクリプト
+			 */
+			$asset_file = include( YSTDB_PATH . '/js/blocks/block.asset.php' );
+			wp_enqueue_script(
 				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-				Config::TEXT_DOMAIN,
-				YSTDB_PATH . '/languages'
+				YSTDB_URL . '/js/blocks/block.js',
+				$asset_file['dependencies'],
+				$asset_file['version']
 			);
+			wp_localize_script(
+				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
+				'ystdb',
+				$this->create_block_config()
+			);
+			if ( function_exists( 'wp_set_script_translations' ) ) {
+				wp_set_script_translations(
+					Config::BLOCK_EDITOR_SCRIPT_HANDLE,
+					Config::TEXT_DOMAIN,
+					YSTDB_PATH . '/languages'
+				);
+			}
 		}
+
 		foreach ( $this->register_blocks['normal'] as $block ) {
 			$handle              = 'ystandard-blocks-' . $block['name'];
 			$block_type          = Config::BLOCK_CATEGORY . '/' . $block['name'];
@@ -165,6 +165,7 @@ class Blocks {
 				$block['dependencies'],
 				$block['version']
 			);
+
 			if ( ! is_null( $block['style'] ) && ! is_admin() ) {
 				wp_register_style(
 					$block['style']['handle'],

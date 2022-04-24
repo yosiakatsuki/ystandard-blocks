@@ -1,60 +1,47 @@
 @use "../../src/sass/global";
 @use "sass:math";
 
-@mixin column($device:"",$reverse:false) {
+@mixin column($editor:false) {
+  @for $i from 1 through 6 {
+	$selector: #{"&.has-"}#{$i}#{"-columns"};
+	$mobile: #{$selector};
+	$tablet: #{$selector}#{"--tablet"};
+	$pc: #{$selector}#{"--pc"};
 
-	@for $i from 1 through 6 {
-		$column_margin: 2rem;
-		$minus: $column_margin *  math.div(($i - 1), $i);
-		$width: calc(#{global.decimal-floor((math.div(1, $i) * 100),2)}#{"%"} - #{$minus});
-		$selector: #{"&.has-"}#{$i}#{"-columns"};
-
-		@if "" != $device {
-			$selector: #{$selector}#{"--"}#{$device};
-		}
-
-		#{$selector} {
-
-			.ystdb-column {
-				flex: 0 0 $width;
-				width: $width;
-
-				@if 1 < $i {
-
-					&:nth-child(1n) {
-
-						@if true == $reverse {
-							margin-left: $column_margin;
-							$column_margin: 0;
-						}
-						margin-right: $column_margin;
-					}
-				}
-
-				&:nth-child(#{$i}#{"n"}) {
-					margin-right: 0;
-
-					@if true == $reverse {
-						margin-left: 0;
-					}
-				}
-			}
-
-			&.is-no-margin {
-
-				.ystdb-column {
-					flex: 0 0 calc(#{math.div(100% , $i)});
-					width: calc(#{math.div(100% , $i)});
-
-					&:nth-child(1n) {
-						margin-right: 0;
-
-						@if true == $reverse {
-							margin-left: 0;
-						}
-					}
-				}
-			}
-		}
+	@include global.media-breakpoint-only-mobile() {
+	  #{$mobile} {
+		@include column-width($i, $editor);
+	  }
 	}
+	@include global.media-breakpoint-only-tablet() {
+	  #{$tablet} {
+		@include column-width($i, $editor);
+	  }
+	}
+	@include global.media-breakpoint-only-pc() {
+	  #{$pc} {
+		@include column-width($i, $editor);
+	  }
+	}
+  }
+}
+
+@mixin column-width($i,$editor:false) {
+  $width: calc(#{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"} - var(--ystdb-column-gap) * #{global.decimal-ceil(math.div($i - 1, $i),2)});
+  $width_no_margin: #{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"};
+  $column_selector: ".ystdb-column";
+  @if true == $editor {
+	$column_selector : "> .block-editor-inner-blocks > .block-editor-block-list__layout [data-type=\"ystdb/column\"]";
+  }
+
+  #{$column_selector} {
+	flex: 0 0 $width;
+	width: $width;
+  }
+  &.is-no-margin {
+	#{$column_selector} {
+	  flex: 0 0 $width_no_margin;
+	  width: $width_no_margin;
+	}
+  }
 }

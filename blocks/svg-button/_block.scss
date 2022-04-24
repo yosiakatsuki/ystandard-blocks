@@ -95,7 +95,7 @@
 			font-size: var(--ys-font-mobile);
 		}
 
-		@include global.media-breakpoint_between(md, lg) {
+		@include global.media-breakpoint-between(md, lg) {
 			font-size: var(--ys-font-tablet);
 		}
 
@@ -132,7 +132,7 @@
 			}
 		}
 
-		@include global.media-breakpoint_between(md, lg) {
+		@include global.media-breakpoint-between(md, lg) {
 
 			&.is-block--tablet {
 				display: block;
@@ -153,7 +153,7 @@
 				padding-bottom: var(--ys-padding-vertical-mobile);
 			}
 
-			@include global.media-breakpoint_between(md, lg) {
+			@include global.media-breakpoint-between(md, lg) {
 				padding-top: var(--ys-padding-vertical-tablet);
 				padding-bottom: var(--ys-padding-vertical-tablet);
 			}
@@ -171,7 +171,7 @@
 				padding-left: var(--ys-padding-horizontal-mobile);
 			}
 
-			@include global.media-breakpoint_between(md, lg) {
+			@include global.media-breakpoint-between(md, lg) {
 				padding-right: var(--ys-padding-horizontal-tablet);
 				padding-left: var(--ys-padding-horizontal-tablet);
 			}

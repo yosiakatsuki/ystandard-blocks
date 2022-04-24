@@ -4,3 +4,4 @@ ystandard-blocks/
 /vendor/
 *.map
 temp/
+.wp-content/
