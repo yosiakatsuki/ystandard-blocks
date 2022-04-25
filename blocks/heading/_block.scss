@@ -3,7 +3,6 @@
 .ystdb-heading {
 	position: relative;
 
-
 	&.ys-is-font-responsive {
 
 		.ystdb-heading__text {
@@ -21,9 +20,6 @@
 			}
 		}
 	}
-}
-
-.ystdb-heading {
 
 	.ystdb-heading__text.is-clear-style:not([class*="is-style-ystdtb"]) {
 		position: relative;
@@ -87,6 +83,7 @@
 		}
 	}
 }
+
 // 親にテキストカラーが設定されているとき
 .has-text-color {
 

@@ -2,15 +2,19 @@
 @use "../variable";
 
 @function get-breakpoint($name,$editor:false) {
-  $breakpoints: variable.$breakpoints;
-  @if true == $editor {
-	$breakpoints: variable.$breakpoints_editor;
-  }
-  $breakpoint: map.get($breakpoints, $name);
-  @if $breakpoint {
-	@return $breakpoint;
-  } @else {
-	@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
-	@return false;
-  }
+	$breakpoints: variable.$breakpoints;
+
+	@if true == $editor {
+		$breakpoints: variable.$breakpoints_editor;
+	}
+	$breakpoint: map.get($breakpoints, $name);
+
+	@if $breakpoint {
+
+		@return $breakpoint;
+	} @else {
+
+		@warn "`#{$name}` is not found. Please make sure it is defined in `$breakpoints-setting` map.";
+		@return false;
+	}
 }

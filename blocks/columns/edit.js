@@ -3,30 +3,16 @@ import classnames from 'classnames';
  * WordPress.
  */
 import { withDispatch } from '@wordpress/data';
-import {
-	InspectorControls,
-	InnerBlocks,
-	useBlockProps,
-} from '@wordpress/block-editor';
-import {
-	PanelBody,
-	BaseControl,
-	RangeControl,
-	Button,
-	ToggleControl,
-} from '@wordpress/components';
-
-import { __ } from '@wordpress/i18n';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 /**
  * yStandard.
  */
-import { getNumber } from '@ystd/helper/number';
 
 /**
  * Block.
  */
 import { default as BlockControls } from './block-controls';
-import { paddingTypes } from './item/config';
+import { default as InspectorControls } from './inspector-controls';
 
 const ALLOWED_BLOCKS = [ 'ystdb/column' ];
 const TEMPLATE = [
@@ -36,20 +22,13 @@ const TEMPLATE = [
 ];
 
 function Columns( props ) {
-	const {
-		attributes,
-		setAttributes,
-		className,
-		updatePadding,
-		updateBoxShadow,
-	} = props;
+	const { attributes, className } = props;
 	const {
 		colPc,
 		colTablet,
 		colMobile,
 		verticalAlignment,
 		horizonAlignment,
-		reverse,
 		removeMargin,
 	} = attributes;
 
@@ -71,147 +50,7 @@ function Columns( props ) {
 	return (
 		<>
 			<BlockControls { ...props } />
-			<InspectorControls>
-				<PanelBody title={ __( 'カラム設定', 'ystandard-blocks' ) }>
-					<BaseControl
-						id={ 'column-count' }
-						label={ __( 'カラム数', 'ystandard-blocks' ) }
-					>
-						<RangeControl
-							label={ __( 'デスクトップ', 'ystandard-blocks' ) }
-							beforeIcon={ 'desktop' }
-							value={ colPc }
-							onChange={ ( value ) => {
-								setAttributes( {
-									colPc: getNumber( value, 3, 1, 6 ),
-								} );
-							} }
-							min={ 1 }
-							max={ 6 }
-						/>
-						<RangeControl
-							label={ __( 'タブレット', 'ystandard-blocks' ) }
-							beforeIcon={ 'tablet' }
-							value={ colTablet }
-							onChange={ ( value ) => {
-								setAttributes( {
-									colTablet: getNumber( value, 3, 1, 6 ),
-								} );
-							} }
-							min={ 1 }
-							max={ 6 }
-						/>
-						<RangeControl
-							label={ __( 'モバイル', 'ystandard-blocks' ) }
-							beforeIcon={ 'smartphone' }
-							value={ colMobile }
-							onChange={ ( value ) => {
-								setAttributes( {
-									colMobile: getNumber( value, 1, 1, 6 ),
-								} );
-							} }
-							min={ 1 }
-							max={ 6 }
-						/>
-					</BaseControl>
-					<BaseControl
-						id={ 'remove-margin' }
-						label={ __(
-							'カラム間の余白を削除',
-							'ystandard-blocks'
-						) }
-					>
-						<ToggleControl
-							label={ __( '余白なし', 'ystandard-blocks' ) }
-							checked={ removeMargin }
-							onChange={ () => {
-								setAttributes( {
-									removeMargin: ! removeMargin,
-								} );
-							} }
-						/>
-					</BaseControl>
-					<BaseControl
-						id={ 'column-reverse' }
-						label={ __(
-							'表示順序を逆順にする',
-							'ystandard-blocks'
-						) }
-					>
-						<div className="ystdb-inspector-controls__dscr margin-bottom">
-							※行内での表示が逆順になります。1行で複数列のカラムを表示するときに便利な設定です。
-							<br/>
-							※公開ページのみ逆順で表示され、編集画面では追加した順で表示されます。
-						</div>
-						<ToggleControl
-							label={ __( '逆順にする', 'ystandard-blocks' ) }
-							checked={ reverse }
-							onChange={ () => {
-								setAttributes( {
-									reverse: ! reverse,
-								} );
-							} }
-						/>
-					</BaseControl>
-				</PanelBody>
-				<PanelBody
-					title={ __( 'デザイン 一括設定', 'ystandard-blocks' ) }
-				>
-					<BaseControl
-						id={ 'padding' }
-						label={ __( '余白', 'ystandard-blocks' ) }
-					>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
-							<div className="ystdb-inspector-controls__horizon-buttons">
-								{ paddingTypes.map( ( item ) => {
-									return (
-										<Button
-											key={ item.value }
-											isSecondary
-											onClick={ () => {
-												updatePadding( {
-													paddingType: item.value,
-												} );
-											} }
-										>
-											<span>{ item.label }</span>
-										</Button>
-									);
-								} ) }
-							</div>
-						</div>
-					</BaseControl>
-					<BaseControl
-						id={ 'shadow' }
-						label={ __( '影', 'ystandard-blocks' ) }
-					>
-						<div className="ystdb-inspector-controls__horizon-buttons">
-							<Button
-								key={ 'shadow-on' }
-								isSecondary
-								onClick={ () => {
-									updateBoxShadow( true );
-								} }
-							>
-								{ __( 'ON', 'ystandard-blocks' ) }
-							</Button>
-							<Button
-								key={ 'shadow-off' }
-								isSecondary
-								onClick={ () => {
-									updateBoxShadow( false );
-								} }
-							>
-								{ __( 'OFF', 'ystandard-blocks' ) }
-							</Button>
-						</div>
-					</BaseControl>
-				</PanelBody>
-			</InspectorControls>
+			<InspectorControls { ...props } />
 
 			<div { ...blockProps }>
 				<div { ...columnsProps }>
@@ -224,7 +63,7 @@ function Columns( props ) {
 			</div>
 		</>
 	);
-};
+}
 
 const columnsEdit = withDispatch( ( dispatch, ownProps, registry ) => ( {
 	updatePadding( paddingType ) {

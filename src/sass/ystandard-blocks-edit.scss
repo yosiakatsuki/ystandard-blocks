@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @use "../js/components/svg-icon-select/edit" as svg-icon-select-components;
 @use "../js/components/media-upload-control/edit" as media-upload-control;
+@use "../js/components/edit" as components;
 @use "edit/component";
 
 // Blocks.

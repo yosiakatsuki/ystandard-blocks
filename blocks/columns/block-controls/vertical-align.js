@@ -35,7 +35,9 @@ const VerticalAlign = ( { attributes, setAttributes } ) => {
 	const selected = CONTROLS.filter( ( item ) => {
 		return verticalAlignment === item.name;
 	} );
-	const defaultControl = CONTROLS.filter( ( item ) => true === item.default )[ 0 ];
+	const defaultControl = CONTROLS.filter(
+		( item ) => true === item.default
+	)[ 0 ];
 	return (
 		<ToolbarGroup>
 			<ToolbarItem>

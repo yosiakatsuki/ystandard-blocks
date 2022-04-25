@@ -1527,17 +1527,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Notice = props => {
-  const {
+const Notice = _ref => {
+  let {
     children,
     type,
-    className
-  } = props;
+    className,
+    ...props
+  } = _ref;
   const noticeType = type || 'info';
-  const wrapClass = classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystdb-component-notice', className, `is-${noticeType}`);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: wrapClass
-  }, children);
+  const wrapProps = {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('ystd-component-notice', className, `is-${noticeType}`),
+    ...props
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", wrapProps, children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Notice);

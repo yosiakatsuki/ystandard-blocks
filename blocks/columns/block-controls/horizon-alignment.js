@@ -45,7 +45,11 @@ const HorizonAlignment = ( { attributes, setAttributes } ) => {
 					<DropdownMenu
 						toggleProps={ toolbarItemHTMLProps }
 						isCollapsed={ true }
-						icon={ selected.length > 0 ? selected[ 0 ].icon : defaultControl.icon }
+						icon={
+							selected.length > 0
+								? selected[ 0 ].icon
+								: defaultControl.icon
+						}
 						label={ __( '横位置', 'ystandard-blocks' ) }
 						controls={ CONTROLS.map( ( control ) => {
 							return {

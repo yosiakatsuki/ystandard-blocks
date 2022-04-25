@@ -1,5 +1,8 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
+/**
+ * WorPress.
+ */
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 export default function ( { attributes } ) {
 	const {
@@ -12,23 +15,25 @@ export default function ( { attributes } ) {
 		removeMargin,
 	} = attributes;
 
-	const classes = classnames( 'ystdb-columns', {
-		[ `has-${ colMobile }-columns` ]: colMobile,
-		[ `has-${ colTablet }-columns--tablet` ]: colTablet,
-		[ `has-${ colPc }-columns--pc` ]: colPc,
-		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-		[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
-		'is-reverse': reverse,
-		'is-no-margin': removeMargin,
-	} );
-
 	const blockProps = useBlockProps.save( {
 		className: 'ystdb-columns-wrap',
 	} );
 
+	const columnBlocksProps = {
+		className: classnames( 'ystdb-columns', {
+			[ `has-${ colMobile }-columns` ]: colMobile,
+			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+			[ `has-${ colPc }-columns--pc` ]: colPc,
+			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
+			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
+			'is-reverse': reverse,
+			'is-no-margin': removeMargin,
+		} ),
+	};
+
 	return (
 		<div { ...blockProps }>
-			<div className={ classes }>
+			<div { ...columnBlocksProps }>
 				<InnerBlocks.Content />
 			</div>
 		</div>

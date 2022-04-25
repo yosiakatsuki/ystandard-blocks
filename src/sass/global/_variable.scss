@@ -47,32 +47,32 @@ $color__notice-error: #ae3b43 !default;
 
 // SNSカラー
 $color__sns: (
-		"twitter" : #2b97f0,
-		"facebook" : #3b5a9b,
-		"google-plus" : #db2814,
-		"hatenabookmark" : #007ad2,
-		"rss" : #fb8501,
-		"feedly" : #8cba43,
-		"pocket" : #ea4654,
-		"instagram" : #3f729b,
-		"line" : #2cbf13,
-		"tumblr" : #35465c,
-		"youtube-play" : #cd201f,
-		"github" : #4183c4,
-		"pinterest" : #cb2027,
-		"linkedin" : #0e76a8,
-		"amazon": #ffa724
+	"twitter" : #2b97f0,
+	"facebook" : #3b5a9b,
+	"google-plus" : #db2814,
+	"hatenabookmark" : #007ad2,
+	"rss" : #fb8501,
+	"feedly" : #8cba43,
+	"pocket" : #ea4654,
+	"instagram" : #3f729b,
+	"line" : #2cbf13,
+	"tumblr" : #35465c,
+	"youtube-play" : #cd201f,
+	"github" : #4183c4,
+	"pinterest" : #cb2027,
+	"linkedin" : #0e76a8,
+	"amazon": #ffa724
 ) !default;
 
 $breakpoints: (
-		sm : 600px,
-		md : 600px, // 削除.
-		lg : 1025px,
+	sm : 600px,
+	md : 600px,
+	lg : 1	5px,
 ) !default;
 
 
 $breakpoints_editor: (
-		sm : 600px,
-		md : 782px,
-		lg : 1025px,
+	sm : 600px,
+	md : 782px,
+	lg : 1025px,
 ) !default;
