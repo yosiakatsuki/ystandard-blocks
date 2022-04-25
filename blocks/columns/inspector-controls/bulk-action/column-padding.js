@@ -1,6 +1,15 @@
+/**
+ * WordPress.
+ */
 import { BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+/**
+ * yStandard.
+ */
 import HorizonButtons from '@ystd/components/horizon-buttons';
+/**
+ * Block.
+ */
 import { paddingTypes } from '../../item/config';
 
 const ColumnPadding = ( props ) => {

@@ -6,14 +6,11 @@ const ColumnShadow = ( props ) => {
 	const { updateBoxShadow } = props;
 	const handleOnClick = ( value ) => {
 		updateBoxShadow( {
-			paddingType: value,
+			shadow: value,
 		} );
 	};
 	return (
-		<BaseControl
-			id={ 'padding' }
-			label={ __( '内側余白', 'ystandard-blocks' ) }
-		>
+		<BaseControl id={ 'shadow' } label={ __( '影', 'ystandard-blocks' ) }>
 			<HorizonButtons>
 				<Button
 					key={ 'shadow-on' }

@@ -66,22 +66,22 @@ function Columns( props ) {
 }
 
 const columnsEdit = withDispatch( ( dispatch, ownProps, registry ) => ( {
-	updatePadding( paddingType ) {
+	updatePadding( attributes ) {
 		const { clientId } = ownProps;
 		const { updateBlockAttributes } = dispatch( 'core/block-editor' );
 		const { getBlockOrder } = registry.select( 'core/block-editor' );
 		const innerBlockClientIds = getBlockOrder( clientId );
 		innerBlockClientIds.forEach( ( innerBlockClientId ) => {
-			updateBlockAttributes( innerBlockClientId, paddingType );
+			updateBlockAttributes( innerBlockClientId, attributes );
 		} );
 	},
-	updateBoxShadow( shadow ) {
+	updateBoxShadow( attributes ) {
 		const { clientId } = ownProps;
 		const { updateBlockAttributes } = dispatch( 'core/block-editor' );
 		const { getBlockOrder } = registry.select( 'core/block-editor' );
 		const innerBlockClientIds = getBlockOrder( clientId );
 		innerBlockClientIds.forEach( ( innerBlockClientId ) => {
-			updateBlockAttributes( innerBlockClientId, { shadow } );
+			updateBlockAttributes( innerBlockClientId, attributes );
 		} );
 	},
 } ) )( Columns );

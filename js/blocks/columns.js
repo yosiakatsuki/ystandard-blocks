@@ -471,7 +471,7 @@ function Columns(props) {
 }
 
 const columnsEdit = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.withDispatch)((dispatch, ownProps, registry) => ({
-  updatePadding(paddingType) {
+  updatePadding(attributes) {
     const {
       clientId
     } = ownProps;
@@ -483,11 +483,11 @@ const columnsEdit = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.withDispatch
     } = registry.select('core/block-editor');
     const innerBlockClientIds = getBlockOrder(clientId);
     innerBlockClientIds.forEach(innerBlockClientId => {
-      updateBlockAttributes(innerBlockClientId, paddingType);
+      updateBlockAttributes(innerBlockClientId, attributes);
     });
   },
 
-  updateBoxShadow(shadow) {
+  updateBoxShadow(attributes) {
     const {
       clientId
     } = ownProps;
@@ -499,9 +499,7 @@ const columnsEdit = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.withDispatch
     } = registry.select('core/block-editor');
     const innerBlockClientIds = getBlockOrder(clientId);
     innerBlockClientIds.forEach(innerBlockClientId => {
-      updateBlockAttributes(innerBlockClientId, {
-        shadow
-      });
+      updateBlockAttributes(innerBlockClientId, attributes);
     });
   }
 
@@ -528,7 +526,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _item_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../item/config */ "./blocks/columns/item/config.js");
 
 
+/**
+ * WordPress.
+ */
 
+
+/**
+ * yStandard.
+ */
+
+
+/**
+ * Block.
+ */
 
 
 
@@ -588,13 +598,13 @@ const ColumnShadow = props => {
 
   const handleOnClick = value => {
     updateBoxShadow({
-      paddingType: value
+      shadow: value
     });
   };
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
-    id: 'padding',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('内側余白', 'ystandard-blocks')
+    id: 'shadow',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('影', 'ystandard-blocks')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ystd_components_horizon_buttons__WEBPACK_IMPORTED_MODULE_3__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     key: 'shadow-on',
     isSecondary: true,
