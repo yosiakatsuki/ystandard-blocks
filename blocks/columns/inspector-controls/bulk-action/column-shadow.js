@@ -3,9 +3,9 @@ import { __ } from '@wordpress/i18n';
 import HorizonButtons from '@ystd/components/horizon-buttons';
 
 const ColumnShadow = ( props ) => {
-	const { updateBoxShadow } = props;
+	const { updateColumnAttributes } = props;
 	const handleOnClick = ( value ) => {
-		updateBoxShadow( {
+		updateColumnAttributes( {
 			shadow: value,
 		} );
 	};

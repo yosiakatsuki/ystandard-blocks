@@ -13,9 +13,9 @@ import HorizonButtons from '@ystd/components/horizon-buttons';
 import { paddingTypes } from '../../item/config';
 
 const ColumnPadding = ( props ) => {
-	const { updatePadding } = props;
+	const { updateColumnAttributes } = props;
 	const handleOnClick = ( value ) => {
-		updatePadding( {
+		updateColumnAttributes( {
 			paddingType: value,
 		} );
 	};

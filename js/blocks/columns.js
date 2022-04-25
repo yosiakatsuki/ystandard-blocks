@@ -471,23 +471,7 @@ function Columns(props) {
 }
 
 const columnsEdit = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.withDispatch)((dispatch, ownProps, registry) => ({
-  updatePadding(attributes) {
-    const {
-      clientId
-    } = ownProps;
-    const {
-      updateBlockAttributes
-    } = dispatch('core/block-editor');
-    const {
-      getBlockOrder
-    } = registry.select('core/block-editor');
-    const innerBlockClientIds = getBlockOrder(clientId);
-    innerBlockClientIds.forEach(innerBlockClientId => {
-      updateBlockAttributes(innerBlockClientId, attributes);
-    });
-  },
-
-  updateBoxShadow(attributes) {
+  updateColumnAttributes(attributes) {
     const {
       clientId
     } = ownProps;
@@ -544,11 +528,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const ColumnPadding = props => {
   const {
-    updatePadding
+    updateColumnAttributes
   } = props;
 
   const handleOnClick = value => {
-    updatePadding({
+    updateColumnAttributes({
       paddingType: value
     });
   };
@@ -593,11 +577,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const ColumnShadow = props => {
   const {
-    updateBoxShadow
+    updateColumnAttributes
   } = props;
 
   const handleOnClick = value => {
-    updateBoxShadow({
+    updateColumnAttributes({
       shadow: value
     });
   };
