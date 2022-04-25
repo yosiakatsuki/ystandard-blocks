@@ -33,7 +33,7 @@
 @mixin media-breakpoint-between(
 	$name_up,
 	$name_down,
-  $breakpoints: variable.$breakpoints
+	$breakpoints: variable.$breakpoints
 ) {
 	$breakpoint_up: map.get($breakpoints, $name_up);
 	$breakpoint_down: map.get($breakpoints, $name_down);
