@@ -1,26 +1,36 @@
+export const isNumber = ( value ) => {
+	return ! Number.isNaN( Number( value ) );
+};
 export const toNumber = ( value, defaultValue = undefined ) => {
-	if ( Number.isNaN( value ) ) {
+	const newValue = parseFloat( value );
+	if ( ! isNumber( newValue ) ) {
 		return defaultValue;
 	}
-
-	return Number( value );
+	return newValue;
+};
+export const toInt = ( value, defaultValue = undefined ) => {
+	const newValue = parseInt( value );
+	if ( ! isNumber( newValue ) ) {
+		return defaultValue;
+	}
+	return newValue;
 };
 
-export const getNumValue = (
+export const getNumber = (
 	value,
-	min = 0,
-	max = undefined,
-	defaultValue = undefined
+	defaultValue = undefined,
+	min = undefined,
+	max = undefined
 ) => {
-	const _value = toNumber( value, defaultValue );
-	if ( ! _value ) {
-		return min;
+	let _value = toNumber( value, defaultValue );
+	if ( ! isNumber( _value ) ) {
+		return defaultValue;
 	}
-	if ( _value < min ) {
-		return min;
+	if ( isNumber( min ) && min >= _value ) {
+		_value = min;
 	}
-	if ( !! max && _value > max ) {
-		return max;
+	if ( isNumber( max ) && max <= _value ) {
+		_value = max;
 	}
 	return _value;
 };

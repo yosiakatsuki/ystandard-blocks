@@ -1,34 +1,39 @@
 import classnames from 'classnames';
-import getNum from '../../src/js/util/_getNum';
-import {
-	allowedBlocks,
-	template,
-	alignmentsControls,
-	horizonAlignmentsControls,
-} from './config';
+/**
+ * WordPress.
+ */
 import { withDispatch } from '@wordpress/data';
 import {
-	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
 } from '@wordpress/block-editor';
-
-import { Fragment } from '@wordpress/element';
-
 import {
 	PanelBody,
 	BaseControl,
 	RangeControl,
-	ToolbarGroup,
-	ToolbarItem,
 	Button,
 	ToggleControl,
-	DropdownMenu,
 } from '@wordpress/components';
 
-import { __, _x } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+/**
+ * yStandard.
+ */
+import { getNumber } from '@ystd/helper/number';
+
+/**
+ * Block.
+ */
+import { default as BlockControls } from './block-controls';
 import { paddingTypes } from './item/config';
+
+const ALLOWED_BLOCKS = [ 'ystdb/column' ];
+const TEMPLATE = [
+	[ 'ystdb/column', {} ],
+	[ 'ystdb/column', {} ],
+	[ 'ystdb/column', {} ],
+];
 
 function Columns( props ) {
 	const {
@@ -48,107 +53,24 @@ function Columns( props ) {
 		removeMargin,
 	} = attributes;
 
-	const classes = classnames( 'ystdb-columns', {
-		[ `has-${ colMobile }-columns` ]: colMobile,
-		[ `has-${ colTablet }-columns--tablet` ]: colTablet,
-		[ `has-${ colPc }-columns--pc` ]: colPc,
-		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-		[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
-		'is-no-margin': removeMargin,
-	} );
-
 	const blockProps = useBlockProps( {
 		className: classnames( className, 'ystdb-columns-wrap' ),
 	} );
 
-	const DEFAULT_CONTROLS = [ 'top', 'center', 'bottom', 'last' ];
-	const DEFAULT_CONTROL = 'top';
-	const DEFAULT_HORIZON_CONTROLS = [ 'left', 'center', 'right', 'between' ];
-	const DEFAULT_HORIZON_CONTROL = 'left';
-
-	const activeAlignment = alignmentsControls[ verticalAlignment ];
-	const defaultAlignmentControl = alignmentsControls[ DEFAULT_CONTROL ];
-
-	const activeHorizonAlignment =
-		horizonAlignmentsControls[ horizonAlignment ];
-	const defaultHorizonAlignment =
-		horizonAlignmentsControls[ DEFAULT_HORIZON_CONTROL ];
+	const columnsProps = {
+		className: classnames( 'ystdb-columns', {
+			[ `has-${ colMobile }-columns` ]: colMobile,
+			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+			[ `has-${ colPc }-columns--pc` ]: colPc,
+			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
+			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
+			'is-no-margin': removeMargin,
+		} ),
+	};
 
 	return (
-		<Fragment>
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarItem>
-						{ ( toolbarItemHTMLProps ) => (
-							<DropdownMenu
-								toggleProps={ toolbarItemHTMLProps }
-								isCollapsed={ true }
-								icon={
-									activeAlignment
-										? activeAlignment.icon
-										: defaultAlignmentControl.icon
-								}
-								label={ _x(
-									'Change vertical alignment',
-									'Block vertical alignment setting label'
-								) }
-								controls={ DEFAULT_CONTROLS.map(
-									( control ) => {
-										return {
-											...alignmentsControls[ control ],
-											isActive:
-												verticalAlignment === control,
-											onClick: () =>
-												setAttributes( {
-													verticalAlignment:
-														verticalAlignment ===
-														control
-															? undefined
-															: control,
-												} ),
-										};
-									}
-								) }
-							/>
-						) }
-					</ToolbarItem>
-				</ToolbarGroup>
-				<ToolbarGroup>
-					<ToolbarItem>
-						{ ( toolbarItemHTMLProps ) => (
-							<DropdownMenu
-								toggleProps={ toolbarItemHTMLProps }
-								isCollapsed={ true }
-								icon={
-									activeHorizonAlignment
-										? activeHorizonAlignment.icon
-										: defaultHorizonAlignment.icon
-								}
-								label={ __( '横位置', 'ystandard-blocks' ) }
-								controls={ DEFAULT_HORIZON_CONTROLS.map(
-									( control ) => {
-										return {
-											...horizonAlignmentsControls[
-												control
-											],
-											isActive:
-												horizonAlignment === control,
-											onClick: () =>
-												setAttributes( {
-													horizonAlignment:
-														horizonAlignment ===
-														control
-															? undefined
-															: control,
-												} ),
-										};
-									}
-								) }
-							/>
-						) }
-					</ToolbarItem>
-				</ToolbarGroup>
-			</BlockControls>
+		<>
+			<BlockControls { ...props } />
 			<InspectorControls>
 				<PanelBody title={ __( 'カラム設定', 'ystandard-blocks' ) }>
 					<BaseControl
@@ -161,7 +83,7 @@ function Columns( props ) {
 							value={ colPc }
 							onChange={ ( value ) => {
 								setAttributes( {
-									colPc: getNum( value, 1, 6, 3 ),
+									colPc: getNumber( value, 3, 1, 6 ),
 								} );
 							} }
 							min={ 1 }
@@ -173,7 +95,7 @@ function Columns( props ) {
 							value={ colTablet }
 							onChange={ ( value ) => {
 								setAttributes( {
-									colTablet: getNum( value, 1, 6, 3 ),
+									colTablet: getNumber( value, 3, 1, 6 ),
 								} );
 							} }
 							min={ 1 }
@@ -185,7 +107,7 @@ function Columns( props ) {
 							value={ colMobile }
 							onChange={ ( value ) => {
 								setAttributes( {
-									colMobile: getNum( value, 1, 6, 1 ),
+									colMobile: getNumber( value, 1, 1, 6 ),
 								} );
 							} }
 							min={ 1 }
@@ -218,7 +140,7 @@ function Columns( props ) {
 					>
 						<div className="ystdb-inspector-controls__dscr margin-bottom">
 							※行内での表示が逆順になります。1行で複数列のカラムを表示するときに便利な設定です。
-							<br />
+							<br/>
 							※公開ページのみ逆順で表示され、編集画面では追加した順で表示されます。
 						</div>
 						<ToggleControl
@@ -292,17 +214,17 @@ function Columns( props ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<div className={ classes }>
+				<div { ...columnsProps }>
 					<InnerBlocks
-						allowedBlocks={ allowedBlocks }
-						template={ template }
+						allowedBlocks={ ALLOWED_BLOCKS }
+						template={ TEMPLATE }
 						templateLock={ false }
 					/>
 				</div>
 			</div>
-		</Fragment>
+		</>
 	);
-}
+};
 
 const columnsEdit = withDispatch( ( dispatch, ownProps, registry ) => ( {
 	updatePadding( paddingType ) {

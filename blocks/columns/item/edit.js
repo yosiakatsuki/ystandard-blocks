@@ -1,8 +1,11 @@
 import classnames from 'classnames';
-
+/**
+ * WordPress.
+ */
 import {
 	InnerBlocks,
 	InspectorControls,
+	useBlockProps,
 	withColors,
 	PanelColorSettings,
 } from '@wordpress/block-editor';
@@ -15,7 +18,12 @@ import {
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+/**
+ * yStandard.
+ */
+/**
+ * Block.
+ */
 import { paddingTypes } from './config';
 
 function ColumnEdit( props ) {
@@ -29,19 +37,20 @@ function ColumnEdit( props ) {
 	} = props;
 	const { shadow, paddingType } = attributes;
 
-	const classes = classnames( className, 'ystdb-column', {
-		'has-background': backgroundColor.color,
-		[ backgroundColor.class ]: backgroundColor.class,
-		'has-shadow': shadow,
-		[ paddingType ]: paddingType,
+	const blockProps = useBlockProps( {
+		className: classnames( 'ystdb-column', className, {
+			'has-background': backgroundColor.color,
+			[ backgroundColor.class ]: backgroundColor.class,
+			'has-shadow': shadow,
+			[ paddingType ]: paddingType,
+		} ),
+		style: {
+			backgroundColor: backgroundColor.color,
+		},
 	} );
 
-	const styles = {
-		backgroundColor: backgroundColor.color,
-	};
-
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<PanelColorSettings
 					title={ __( '色設定', 'ystandard-blocks' ) }
@@ -98,7 +107,7 @@ function ColumnEdit( props ) {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classes } style={ styles }>
+			<div { ...blockProps }>
 				<div className="ystdb-column-block-container">
 					<InnerBlocks
 						templateLock={ false }
@@ -110,7 +119,7 @@ function ColumnEdit( props ) {
 					/>
 				</div>
 			</div>
-		</Fragment>
+		</>
 	);
 }
 

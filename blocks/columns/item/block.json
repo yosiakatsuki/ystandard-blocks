@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/column",
+  "title": "カラム",
+  "description": "カスタムカラム用カラムブロック",
+  "attributes": {
+	"backgroundColor": {
+	  "type": "string"
+	},
+	"customBackgroundColor": {
+	  "type": "string"
+	},
+	"shadow": {
+	  "type": "boolean"
+	},
+	"paddingType": {
+	  "type": "string",
+	  "default": ""
+	}
+  },
+  "supports": {
+	"align": false,
+	"className": false,
+	"lightBlockWrapper": true
+  },
+  "parent": [
+	"ystdb/columns"
+  ]
+}

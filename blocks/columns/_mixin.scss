@@ -8,17 +8,17 @@
 	$tablet: #{$selector}#{"--tablet"};
 	$pc: #{$selector}#{"--pc"};
 
-	@include global.media-breakpoint-only-mobile() {
+	@include global.media-breakpoint-only-mobile($editor) {
 	  #{$mobile} {
 		@include column-width($i, $editor);
 	  }
 	}
-	@include global.media-breakpoint-only-tablet() {
+	@include global.media-breakpoint-only-tablet($editor) {
 	  #{$tablet} {
 		@include column-width($i, $editor);
 	  }
 	}
-	@include global.media-breakpoint-only-pc() {
+	@include global.media-breakpoint-only-pc($editor) {
 	  #{$pc} {
 		@include column-width($i, $editor);
 	  }
@@ -31,7 +31,7 @@
   $width_no_margin: #{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"};
   $column_selector: ".ystdb-column";
   @if true == $editor {
-	$column_selector : "> .block-editor-inner-blocks > .block-editor-block-list__layout [data-type=\"ystdb/column\"]";
+	$column_selector: "> .block-editor-inner-blocks > .block-editor-block-list__layout > .ystdb-column";
   }
 
   #{$column_selector} {
