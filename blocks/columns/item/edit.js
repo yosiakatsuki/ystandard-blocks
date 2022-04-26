@@ -3,8 +3,9 @@ import classnames from 'classnames';
  * WordPress.
  */
 import {
-	InnerBlocks,
+	useInnerBlocksProps,
 	useBlockProps,
+	InnerBlocks,
 	withColors,
 } from '@wordpress/block-editor';
 import { withSelect } from '@wordpress/data';
@@ -30,21 +31,21 @@ function ColumnEdit( props ) {
 		},
 	} );
 
+	const containerProps = { className: 'ystdb-column-block-container' };
+
+	const innerBlocksProps = useInnerBlocksProps( containerProps, {
+		templateLock: false,
+		renderAppender: hasChildBlocks
+			? undefined
+			: () => <InnerBlocks.ButtonBlockAppender />,
+	} );
+
 	return (
 		<>
 			<InspectorControls { ...props } />
 
 			<div { ...blockProps }>
-				<div className="ystdb-column-block-container">
-					<InnerBlocks
-						templateLock={ false }
-						renderAppender={
-							hasChildBlocks
-								? undefined
-								: () => <InnerBlocks.ButtonBlockAppender />
-						}
-					/>
-				</div>
+				<div { ...innerBlocksProps } />
 			</div>
 		</>
 	);

@@ -42,7 +42,6 @@
 	  "wide",
 	  "full"
 	],
-	"className": false,
-	"lightBlockWrapper": true
+	"className": false
   }
 }

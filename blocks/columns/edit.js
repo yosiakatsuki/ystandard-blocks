@@ -3,7 +3,7 @@ import classnames from 'classnames';
  * WordPress.
  */
 import { withDispatch } from '@wordpress/data';
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * yStandard.
  */
@@ -47,19 +47,20 @@ function Columns( props ) {
 		} ),
 	};
 
+	const innerBlocksProps = useInnerBlocksProps( columnsProps, {
+		allowedBlocks: ALLOWED_BLOCKS,
+		template: TEMPLATE,
+		templateLock: false,
+		orientation: 'horizontal',
+	} );
+
 	return (
 		<>
 			<BlockControls { ...props } />
 			<InspectorControls { ...props } />
 
 			<div { ...blockProps }>
-				<div { ...columnsProps }>
-					<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS }
-						template={ TEMPLATE }
-						templateLock={ false }
-					/>
-				</div>
+				<div { ...innerBlocksProps } />
 			</div>
 		</>
 	);

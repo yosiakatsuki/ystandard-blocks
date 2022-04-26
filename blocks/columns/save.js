@@ -2,7 +2,7 @@ import classnames from 'classnames';
 /**
  * WorPress.
  */
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
 export default function ( { attributes } ) {
 	const {
@@ -31,11 +31,11 @@ export default function ( { attributes } ) {
 		} ),
 	};
 
+	const innerBlocksProps = useInnerBlocksProps.save( columnBlocksProps );
+
 	return (
 		<div { ...blockProps }>
-			<div { ...columnBlocksProps }>
-				<InnerBlocks.Content />
-			</div>
+			<div { ...innerBlocksProps } />
 		</div>
 	);
 }

@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 import {
-	InnerBlocks,
+	useInnerBlocksProps,
 	getColorClassName,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -33,11 +33,13 @@ export default function save( { attributes } ) {
 		},
 	} );
 
+	const containerProps = { className: 'ystdb-column-block-container' };
+
+	const innerBlocksProps = useInnerBlocksProps.save( containerProps );
+
 	return (
 		<div { ...blockProps }>
-			<div className="ystdb-column-block-container">
-				<InnerBlocks.Content />
-			</div>
+			<div { ...innerBlocksProps } />
 		</div>
 	);
 }

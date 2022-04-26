@@ -84,12 +84,14 @@ function ColumnEdit(props) {
       backgroundColor: backgroundColor.color
     }
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector_controls__WEBPACK_IMPORTED_MODULE_5__["default"], props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "ystdb-column-block-container"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+  const containerProps = {
+    className: 'ystdb-column-block-container'
+  };
+  const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps)(containerProps, {
     templateLock: false,
     renderAppender: hasChildBlocks ? undefined : () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.ButtonBlockAppender, null)
-  }))));
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector_controls__WEBPACK_IMPORTED_MODULE_5__["default"], props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps)));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.compose)([(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.withColors)('backgroundColor'), (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)((select, ownProps) => {
@@ -334,9 +336,11 @@ function save(_ref) {
       backgroundColor: customBackgroundColor ? customBackgroundColor : undefined
     }
   });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "ystdb-column-block-container"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null)));
+  const containerProps = {
+    className: 'ystdb-column-block-container'
+  };
+  const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(containerProps);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", innerBlocksProps));
 }
 
 /***/ }),
@@ -1871,7 +1875,7 @@ module.exports = window["wp"]["i18n"];
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","apiVersion":2,"name":"ystdb/column","title":"カラム","description":"カスタムカラム用カラムブロック","attributes":{"backgroundColor":{"type":"string"},"customBackgroundColor":{"type":"string"},"shadow":{"type":"boolean"},"paddingType":{"type":"string","default":""}},"supports":{"align":false,"className":false,"lightBlockWrapper":true},"parent":["ystdb/columns"]}');
+module.exports = JSON.parse('{"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","apiVersion":2,"name":"ystdb/column","title":"カラム","description":"カスタムカラム用カラムブロック","attributes":{"backgroundColor":{"type":"string"},"customBackgroundColor":{"type":"string"},"shadow":{"type":"boolean"},"paddingType":{"type":"string","default":""}},"supports":{"align":false,"className":false},"parent":["ystdb/columns"]}');
 
 /***/ })
 

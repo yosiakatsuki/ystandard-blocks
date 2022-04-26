@@ -21,8 +21,7 @@
   },
   "supports": {
 	"align": false,
-	"className": false,
-	"lightBlockWrapper": true
+	"className": false
   },
   "parent": [
 	"ystdb/columns"
