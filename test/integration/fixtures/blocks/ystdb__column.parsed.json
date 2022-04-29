@@ -1,0 +1,23 @@
+[
+	{
+		"blockName": "ystdb/column",
+		"attrs": {},
+		"innerBlocks": [
+			{
+				"blockName": "core/paragraph",
+				"attrs": {},
+				"innerBlocks": [],
+				"innerHTML": "\n\t<p>Column 1</p>\n\t",
+				"innerContent": [
+					"\n\t<p>Column 1</p>\n\t"
+				]
+			}
+		],
+		"innerHTML": "\n<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\"></div></div>\n",
+		"innerContent": [
+			"\n<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\">",
+			null,
+			"</div></div>\n"
+		]
+	}
+]
