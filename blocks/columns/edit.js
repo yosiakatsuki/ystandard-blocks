@@ -2,12 +2,21 @@ import classnames from 'classnames';
 /**
  * WordPress.
  */
-import { withDispatch } from '@wordpress/data';
-import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import { withDispatch, useDispatch, useSelect } from '@wordpress/data';
+import {
+	useInnerBlocksProps,
+	useBlockProps,
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
+import {
+	createBlocksFromInnerBlocksTemplate,
+	store as blocksStore,
+} from '@wordpress/blocks';
 /**
  * yStandard.
  */
 import { getResponsiveGapStyle } from '@ystd/components/responsive-spacing';
+import BlockVariationPicker from '@ystd/components/block-variation-picker';
 /**
  * Block.
  */
@@ -22,7 +31,7 @@ const TEMPLATE = [
 	[ 'ystdb/column', {} ],
 ];
 
-function Columns( props ) {
+function ColumnsEditContainer( props ) {
 	const { attributes, className } = props;
 	const {
 		colPc,
@@ -70,16 +79,78 @@ function Columns( props ) {
 	);
 }
 
-const columnsEdit = withDispatch( ( dispatch, ownProps, registry ) => ( {
-	updateColumnAttributes( attributes ) {
-		const { clientId } = ownProps;
-		const { updateBlockAttributes } = dispatch( 'core/block-editor' );
-		const { getBlockOrder } = registry.select( 'core/block-editor' );
-		const innerBlockClientIds = getBlockOrder( clientId );
-		innerBlockClientIds.forEach( ( innerBlockClientId ) => {
-			updateBlockAttributes( innerBlockClientId, attributes );
-		} );
-	},
-} ) )( Columns );
+const ColumnsEditContainerWrapper = withDispatch(
+	( dispatch, ownProps, registry ) => ( {
+		updateColumnAttributes( attributes ) {
+			const { clientId } = ownProps;
+			const { updateBlockAttributes } = dispatch( 'core/block-editor' );
+			const { getBlockOrder } = registry.select( 'core/block-editor' );
+			const innerBlockClientIds = getBlockOrder( clientId );
+			innerBlockClientIds.forEach( ( innerBlockClientId ) => {
+				updateBlockAttributes( innerBlockClientId, attributes );
+			} );
+		},
+	} )
+)( ColumnsEditContainer );
 
-export default columnsEdit;
+function Placeholder( { clientId, name, setAttributes } ) {
+	const { blockType, defaultVariation, variations } = useSelect(
+		( select ) => {
+			const {
+				getBlockVariations,
+				getBlockType,
+				getDefaultBlockVariation,
+			} = select( blocksStore );
+
+			return {
+				blockType: getBlockType( name ),
+				defaultVariation: getDefaultBlockVariation( name, 'block' ),
+				variations: getBlockVariations( name, 'block' ),
+			};
+		},
+		[ name ]
+	);
+	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
+	const blockProps = useBlockProps();
+
+	return (
+		<div { ...blockProps }>
+			<BlockVariationPicker
+				icon={ blockType?.icon?.src }
+				label={ blockType?.title }
+				variations={ variations }
+				onSelect={ ( nextVariation = defaultVariation ) => {
+					if ( nextVariation.attributes ) {
+						setAttributes( nextVariation.attributes );
+					}
+					if ( nextVariation.innerBlocks ) {
+						replaceInnerBlocks(
+							clientId,
+							createBlocksFromInnerBlocksTemplate(
+								nextVariation.innerBlocks
+							),
+							true
+						);
+					}
+				} }
+				allowSkip
+			/>
+		</div>
+	);
+}
+
+const ColumnsEdit = ( props ) => {
+	const { clientId } = props;
+	const hasInnerBlocks = useSelect(
+		( select ) =>
+			select( blockEditorStore ).getBlocks( clientId ).length > 0,
+		[ clientId ]
+	);
+	const Component = hasInnerBlocks
+		? ColumnsEditContainerWrapper
+		: Placeholder;
+
+	return <Component { ...props } />;
+};
+
+export default ColumnsEdit;

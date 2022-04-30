@@ -16,6 +16,7 @@ import metadata from './block.json';
 import edit from './edit';
 import save from './save';
 import { deprecated } from './deprecated';
+import variations from './variations';
 
 export function registerColumns() {
 	const attributes = mergeDefaultAttributes(
@@ -43,6 +44,7 @@ export function registerColumns() {
 			save,
 			deprecated,
 			example: {},
+			variations,
 		},
 	} );
 }
