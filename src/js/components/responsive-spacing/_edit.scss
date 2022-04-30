@@ -1,0 +1,9 @@
+@use "block" with ($editor:true);
+
+.ystd-responsive-spacing-box-control {
+
+	.component-box-control__label {
+		font-size: 0.8em;
+		color: #757575;
+	}
+}

@@ -494,9 +494,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getProperty": function() { return /* binding */ getProperty; },
 /* harmony export */   "hasKey": function() { return /* binding */ hasKey; },
+/* harmony export */   "hasObjectKey": function() { return /* binding */ hasObjectKey; },
+/* harmony export */   "isObject": function() { return /* binding */ isObject; },
 /* harmony export */   "object2Array": function() { return /* binding */ object2Array; },
-/* harmony export */   "objectCopy": function() { return /* binding */ objectCopy; }
+/* harmony export */   "objectCopy": function() { return /* binding */ objectCopy; },
+/* harmony export */   "parseObject": function() { return /* binding */ parseObject; }
 /* harmony export */ });
+const isObject = value => {
+  return 'object' === typeof value;
+};
+const parseObject = value => {
+  if (!value || !isObject(value)) {
+    return undefined;
+  }
+
+  return 0 < Object.keys(value).length ? { ...value
+  } : undefined;
+};
+const hasObjectKey = (value, key) => {
+  if (!isObject(value)) {
+    return false;
+  }
+
+  return value.hasOwnProperty(key);
+}; // --- 移植前 ---.
+
 const object2Array = obj => {
   let result = { ...obj
   };

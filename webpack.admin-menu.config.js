@@ -17,6 +17,7 @@ module.exports = {
 			...defaultConfig.resolve.alias,
 			'@ystd/config': path.resolve( __dirname, 'src/js/config' ),
 			'@ystd/components': path.resolve( __dirname, 'src/js/components' ),
+			'@ystd/controls': path.resolve( __dirname, 'src/js/controls' ),
 			'@ystd/helper': path.resolve( __dirname, 'src/js/helper' ),
 			'@ystd/util': path.resolve( __dirname, 'src/js/util' ),
 		},

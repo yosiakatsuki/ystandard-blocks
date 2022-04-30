@@ -35,6 +35,9 @@
 	"removeMargin": {
 	  "type": "boolean",
 	  "default": false
+	},
+	"gap": {
+	  "type": "object"
 	}
   },
   "supports": {

@@ -1,3 +1,20 @@
+export const isObject = ( value ) => {
+	return 'object' === typeof value;
+};
+export const parseObject = ( value ) => {
+	if ( ! value || ! isObject( value ) ) {
+		return undefined;
+	}
+	return 0 < Object.keys( value ).length ? { ...value } : undefined;
+};
+export const hasObjectKey = ( value, key ) => {
+	if ( ! isObject( value ) ) {
+		return false;
+	}
+	return value.hasOwnProperty( key );
+};
+
+// --- 移植前 ---.
 export const object2Array = ( obj ) => {
 	let result = { ...obj };
 	if ( ! Array.isArray( result ) ) {

@@ -1,0 +1,22 @@
+@use "breakpoint";
+
+@mixin responsive-custom-property-component($property,$editor:false) {
+
+	@include breakpoint.media-breakpoint-only-pc($editor) {
+		[style*="--ystdb-#{$property}-desktop"] {
+			#{$property}: var(--ystdb-#{$property}-desktop) !important;
+		}
+	}
+
+	@include breakpoint.media-breakpoint-only-tablet($editor) {
+		[style*="--ystdb-#{$property}-tablet"] {
+			#{$property}: var(--ystdb-#{$property}-tablet) !important;
+		}
+	}
+
+	@include breakpoint.media-breakpoint-only-mobile($editor) {
+		[style*="--ystdb-#{$property}-mobile"] {
+			#{$property}: var(--ystdb-#{$property}-mobile) !important;
+		}
+	}
+}

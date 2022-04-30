@@ -1866,17 +1866,6 @@ module.exports = window["wp"]["element"];
 "use strict";
 module.exports = window["wp"]["i18n"];
 
-/***/ }),
-
-/***/ "./blocks/columns/item/block.json":
-/*!****************************************!*\
-  !*** ./blocks/columns/item/block.json ***!
-  \****************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('{"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","apiVersion":2,"name":"ystdb/column","title":"カラム","description":"カスタムカラム用カラムブロック","attributes":{"backgroundColor":{"type":"string"},"customBackgroundColor":{"type":"string"},"shadow":{"type":"boolean"},"paddingType":{"type":"string","default":""}},"supports":{"align":false,"className":false},"parent":["ystdb/columns"]}');
-
 /***/ })
 
 /******/ 	});
@@ -1960,7 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/columns.js");
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/columns.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -1969,7 +1958,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ystd_helper_attribute__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ystd/helper/attribute */ "./src/js/helper/attribute.js");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit */ "./blocks/columns/item/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./save */ "./blocks/columns/item/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./block.json */ "./blocks/columns/item/block.json");
 
 
 /**
@@ -1990,14 +1978,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+const metadata = {
+  $schema: "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  apiVersion: 2,
+  name: "ystdb/column",
+  title: "\u30AB\u30E9\u30E0",
+  description: "\u30AB\u30B9\u30BF\u30E0\u30AB\u30E9\u30E0\u7528\u30AB\u30E9\u30E0\u30D6\u30ED\u30C3\u30AF",
+  attributes: {
+    backgroundColor: {
+      type: "string"
+    },
+    customBackgroundColor: {
+      type: "string"
+    },
+    shadow: {
+      type: "boolean"
+    },
+    paddingType: {
+      type: "string",
+      "default": ""
+    }
+  },
+  supports: {
+    align: false,
+    className: false
+  },
+  parent: ["ystdb/columns"]
+};
 function registerColumn() {
-  const attributes = (0,_ystd_helper_attribute__WEBPACK_IMPORTED_MODULE_4__.mergeDefaultAttributes)(_block_json__WEBPACK_IMPORTED_MODULE_7__.name, _block_json__WEBPACK_IMPORTED_MODULE_7__.attributes);
-  (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_7__.name, { ..._block_json__WEBPACK_IMPORTED_MODULE_7__,
+  const attributes = (0,_ystd_helper_attribute__WEBPACK_IMPORTED_MODULE_4__.mergeDefaultAttributes)(metadata.name, metadata.attributes);
+  (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(metadata.name, { ...metadata,
     ...{
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('カラム', 'ystandard-blocks'),
       description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('yStandard Blocks カラムブロック', 'ystandard-blocks'),
-      icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_7__["default"], {
         stroke: _ystd_config_config_js__WEBPACK_IMPORTED_MODULE_3__.ystdbConfig.color.iconForeground,
         style: {
           fill: 'none'

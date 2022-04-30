@@ -491,12 +491,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./src/js/admin-menu/inline-style/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/download.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus-circle.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/desktop.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tablet.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/download.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus-circle.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/desktop.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tablet.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ystd_helper_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ystd/helper/config */ "./src/js/helper/config.js");
@@ -504,10 +504,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_color_palette_color_palette__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/color-palette/color-palette */ "./src/js/admin-menu/components/color-palette/color-palette.js");
 /* harmony import */ var _components_button_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/button/button */ "./src/js/admin-menu/components/button/button.js");
 /* harmony import */ var _function__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./function */ "./src/js/admin-menu/inline-style/function.js");
-/* harmony import */ var _schema_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./schema.json */ "./src/js/admin-menu/inline-style/schema.json");
-/* harmony import */ var _components_message__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/message */ "./src/js/admin-menu/components/message/index.js");
-/* harmony import */ var _ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ystd/helper/object */ "./src/js/helper/object.js");
-/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/save.js");
+/* harmony import */ var _components_message__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/message */ "./src/js/admin-menu/components/message/index.js");
+/* harmony import */ var _ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ystd/helper/object */ "./src/js/helper/object.js");
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/save.js");
 
 
 
@@ -518,7 +517,128 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+const schema = {
+  inlineStyle: {
+    buttons: [{
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#f2d9db",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ceecfd",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ffedcc",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }],
+    items: {
+      schema: {
+        name: "",
+        label: "",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      larger: {
+        name: "larger",
+        label: "\u5C11\u3057\u5927\u304D\u304F",
+        enable: true,
+        style: {
+          "font-size": "1.2em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      smaller: {
+        name: "smaller",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F",
+        enable: true,
+        style: {
+          "font-size": "0.8em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      "larger-sp": {
+        name: "larger-sp",
+        label: "\u5C11\u3057\u5927\u304D\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "1.2em"
+        },
+        customCss: "",
+        lock: false
+      },
+      "smaller-sp": {
+        name: "smaller-sp",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "0.8em"
+        },
+        customCss: "",
+        lock: false
+      },
+      nowrap: {
+        name: "nowrap",
+        label: "\u6539\u884C\u3057\u306A\u3044",
+        enable: true,
+        style: {
+          "white-space": "nowrap"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      }
+    }
+  }
+};
 
 
 
@@ -551,7 +671,7 @@ const ButtonItems = () => {
 
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
-  const isNothingItems = 0 >= (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.object2Array)(items).length;
+  const isNothingItems = 0 >= (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.object2Array)(items).length;
 
   const getItemList = () => {
     const _items = Object.entries({ ...items
@@ -581,7 +701,7 @@ const ButtonItems = () => {
       return undefined;
     }
 
-    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(items, search);
+    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(items, search);
   };
 
   const checkSlug = function (text) {
@@ -616,13 +736,13 @@ const ButtonItems = () => {
 
   const getCurrentOption = function (name) {
     let defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
-    const currentOption = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(items, selectedItem);
-    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(currentOption, name, defaultValue);
+    const currentOption = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(items, selectedItem);
+    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(currentOption, name, defaultValue);
   };
 
   const addInlineItem = (slug, label) => {
     const newValue = { ...items,
-      [slug]: { ..._schema_json__WEBPACK_IMPORTED_MODULE_8__.inlineStyle.items.schema,
+      [slug]: { ...schema.inlineStyle.items.schema,
         ...{
           name: slug,
           label
@@ -644,8 +764,8 @@ const ButtonItems = () => {
     const newValue = { ...items
     };
 
-    if ((0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.hasKey)(newValue, selectedItem)) {
-      newValue[selectedItem] = { ...(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(items, selectedItem),
+    if ((0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.hasKey)(newValue, selectedItem)) {
+      newValue[selectedItem] = { ...(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(items, selectedItem),
         ...value
       };
     }
@@ -655,7 +775,7 @@ const ButtonItems = () => {
 
   const updateInlineItemStyle = function (value) {
     let device = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'style';
-    const currentStyle = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)((0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(items, selectedItem), device);
+    const currentStyle = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)((0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(items, selectedItem), device);
     updateInlineItem({
       [device]: { ...currentStyle,
         ...value
@@ -664,7 +784,7 @@ const ButtonItems = () => {
   };
 
   const importInitialItems = () => {
-    const newValue = _schema_json__WEBPACK_IMPORTED_MODULE_8__.inlineStyle.items;
+    const newValue = schema.inlineStyle.items;
     delete newValue.schema;
     setItems(newValue);
     updateOption({
@@ -692,9 +812,9 @@ const ButtonItems = () => {
     isPrimary: true,
     disabled: isUpdating,
     onClick: importInitialItems
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: 'ystdb-button-icon',
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"]
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), ' ', "\u521D\u671F\u8A2D\u5B9A\u3092\u30A4\u30F3\u30DD\u30FC\u30C8")), !isNothingItems && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
     label: "\u30B9\u30BF\u30A4\u30EB",
     value: selectedItem,
@@ -706,9 +826,9 @@ const ButtonItems = () => {
     isPrimary: true,
     disabled: !!selectedItem || isUpdating,
     onClick: openAddStyleModal
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: 'ystdb-button-icon',
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"]
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), ' ', "\u30B9\u30BF\u30A4\u30EB\u8FFD\u52A0"))))), selectedItem && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: '基本設定'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
@@ -742,8 +862,8 @@ const ButtonItems = () => {
     className: "ystdb-component-responsive__container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('style', {}), 'font-size'),
     onChange: value => {
@@ -754,8 +874,8 @@ const ButtonItems = () => {
     units: fontUnit
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('tabletStyle', {}), 'font-size'),
     onChange: value => {
@@ -766,8 +886,8 @@ const ButtonItems = () => {
     units: fontUnit
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_16__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('mobileStyle', {}), 'font-size'),
     onChange: value => {
@@ -843,7 +963,7 @@ const ButtonItems = () => {
       });
     },
     disabled: isUpdating
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: 'ystdb-button-icon',
     style: {
       fill: 'none'
@@ -875,7 +995,7 @@ const ButtonItems = () => {
       checkSlug(value, true);
       setNewStyleSlug(value);
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_message__WEBPACK_IMPORTED_MODULE_9__.ErrorMessage, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_message__WEBPACK_IMPORTED_MODULE_8__.ErrorMessage, {
     isShow: !!newStyleSlugErrorMessage
   }, newStyleSlugErrorMessage), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     label: "\u8868\u793A\u540D",
@@ -884,7 +1004,7 @@ const ButtonItems = () => {
       setNewStyleLabel(value);
       setNewStyleLabelErrorMessage('');
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_message__WEBPACK_IMPORTED_MODULE_9__.ErrorMessage, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_message__WEBPACK_IMPORTED_MODULE_8__.ErrorMessage, {
     isShow: !!newStyleLabelErrorMessage
   }, newStyleLabelErrorMessage)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-components-section"
@@ -1029,13 +1149,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _components_notification_notification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/notification/notification */ "./src/js/admin-menu/components/notification/notification.js");
-/* harmony import */ var _schema_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./schema.json */ "./src/js/admin-menu/inline-style/schema.json");
-/* harmony import */ var _toolbar_buttons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./toolbar-buttons */ "./src/js/admin-menu/inline-style/toolbar-buttons.js");
-/* harmony import */ var _button_items__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./button-items */ "./src/js/admin-menu/inline-style/button-items.js");
-/* harmony import */ var _ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ystd/helper/admin-menu */ "./src/js/helper/admin-menu.js");
-/* harmony import */ var _ystd_components_notice_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ystd/components/notice/index */ "./src/js/components/notice/index.js");
-/* harmony import */ var _components_manual_link__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/manual-link */ "./src/js/admin-menu/components/manual-link/index.js");
-/* harmony import */ var _ystd_helper_config__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ystd/helper/config */ "./src/js/helper/config.js");
+/* harmony import */ var _toolbar_buttons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./toolbar-buttons */ "./src/js/admin-menu/inline-style/toolbar-buttons.js");
+/* harmony import */ var _button_items__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./button-items */ "./src/js/admin-menu/inline-style/button-items.js");
+/* harmony import */ var _ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ystd/helper/admin-menu */ "./src/js/helper/admin-menu.js");
+/* harmony import */ var _ystd_components_notice_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ystd/components/notice/index */ "./src/js/components/notice/index.js");
+/* harmony import */ var _components_manual_link__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/manual-link */ "./src/js/admin-menu/components/manual-link/index.js");
+/* harmony import */ var _ystd_helper_config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ystd/helper/config */ "./src/js/helper/config.js");
 
 
 
@@ -1043,7 +1162,128 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+const schema = {
+  inlineStyle: {
+    buttons: [{
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#f2d9db",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ceecfd",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ffedcc",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }],
+    items: {
+      schema: {
+        name: "",
+        label: "",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      larger: {
+        name: "larger",
+        label: "\u5C11\u3057\u5927\u304D\u304F",
+        enable: true,
+        style: {
+          "font-size": "1.2em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      smaller: {
+        name: "smaller",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F",
+        enable: true,
+        style: {
+          "font-size": "0.8em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      "larger-sp": {
+        name: "larger-sp",
+        label: "\u5C11\u3057\u5927\u304D\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "1.2em"
+        },
+        customCss: "",
+        lock: false
+      },
+      "smaller-sp": {
+        name: "smaller-sp",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "0.8em"
+        },
+        customCss: "",
+        lock: false
+      },
+      nowrap: {
+        name: "nowrap",
+        label: "\u6539\u884C\u3057\u306A\u3044",
+        enable: true,
+        style: {
+          "white-space": "nowrap"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      }
+    }
+  }
+};
 
 
 
@@ -1063,9 +1303,9 @@ const InlineStyle = () => {
       title: 'その他スタイル'
     }
   };
-  const options = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.getOption)('inlineStyle', false, (0,_ystd_helper_config__WEBPACK_IMPORTED_MODULE_12__.getBlockEditorConfig)('inlineStyle', _schema_json__WEBPACK_IMPORTED_MODULE_6__.inlineStyle));
-  const needMigration = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.getConfig)('needMigration', false);
-  const migrationPage = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.getConfig)('migrationPage', '#');
+  const options = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.getOption)('inlineStyle', false, (0,_ystd_helper_config__WEBPACK_IMPORTED_MODULE_11__.getBlockEditorConfig)('inlineStyle', schema.inlineStyle));
+  const needMigration = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.getConfig)('needMigration', false);
+  const migrationPage = (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.getConfig)('migrationPage', '#');
   const [buttons, setButtons] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(options.buttons);
   const [items, setItems] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(options.items);
   const [isUpdating, setIsUpdating] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -1089,11 +1329,11 @@ const InlineStyle = () => {
       ...updateData
     };
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
-      path: (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.getEndpoint)('update'),
+      path: (0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.getEndpoint)('update'),
       method: 'POST',
       data
     }).then(response => {
-      if ((0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.isApiSuccess)(response.status)) {
+      if ((0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.isApiSuccess)(response.status)) {
         (0,_components_notification_notification__WEBPACK_IMPORTED_MODULE_5__.notifySuccess)(message);
       } else {
         /* eslint-disable no-console */
@@ -1118,12 +1358,12 @@ const InlineStyle = () => {
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-menu__wrap"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_manual_link__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_manual_link__WEBPACK_IMPORTED_MODULE_10__["default"], {
     url: 'https://wp-ystandard.com/manual/ystdb-inline-style/',
     topRight: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
     className: "ystdb-menu__content-title"
-  }, "\u30A4\u30F3\u30E9\u30A4\u30F3\u30B9\u30BF\u30A4\u30EB"), needMigration && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ystd_components_notice_index__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, "\u30A4\u30F3\u30E9\u30A4\u30F3\u30B9\u30BF\u30A4\u30EB"), needMigration && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ystd_components_notice_index__WEBPACK_IMPORTED_MODULE_9__["default"], {
     type: "warning"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "\u65E7\u8A2D\u5B9A\u304C\u898B\u3064\u304B\u308A\u307E\u3057\u305F\u3002\u300C", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: migrationPage
@@ -1153,10 +1393,10 @@ const InlineStyle = () => {
       setIsUpdating,
       updateOption
     }
-  }, tabs.toolbarButtons.name === tab.name && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_toolbar_buttons__WEBPACK_IMPORTED_MODULE_7__["default"], null), tabs.toolbarItems.name === tab.name && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_button_items__WEBPACK_IMPORTED_MODULE_8__["default"], null))))));
+  }, tabs.toolbarButtons.name === tab.name && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_toolbar_buttons__WEBPACK_IMPORTED_MODULE_6__["default"], null), tabs.toolbarItems.name === tab.name && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_button_items__WEBPACK_IMPORTED_MODULE_7__["default"], null))))));
 };
 
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InlineStyle, null), document.getElementById((0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_9__.getConfig)('pageId')));
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InlineStyle, null), document.getElementById((0,_ystd_helper_admin_menu__WEBPACK_IMPORTED_MODULE_8__.getConfig)('pageId')));
 
 /***/ }),
 
@@ -1171,10 +1411,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./src/js/admin-menu/inline-style/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/desktop.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tablet.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/desktop.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tablet.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ystd_helper_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ystd/helper/config */ "./src/js/helper/config.js");
@@ -1182,10 +1422,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_preview_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/preview/index */ "./src/js/admin-menu/components/preview/index.js");
 /* harmony import */ var _components_color_palette_color_palette__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/color-palette/color-palette */ "./src/js/admin-menu/components/color-palette/color-palette.js");
 /* harmony import */ var _components_button_button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/button/button */ "./src/js/admin-menu/components/button/button.js");
-/* harmony import */ var _schema_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./schema.json */ "./src/js/admin-menu/inline-style/schema.json");
-/* harmony import */ var _function__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./function */ "./src/js/admin-menu/inline-style/function.js");
-/* harmony import */ var _ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ystd/helper/object */ "./src/js/helper/object.js");
-/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/save.js");
+/* harmony import */ var _function__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./function */ "./src/js/admin-menu/inline-style/function.js");
+/* harmony import */ var _ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ystd/helper/object */ "./src/js/helper/object.js");
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/icons/save.js");
 
 
 
@@ -1196,7 +1435,128 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+const schema = {
+  inlineStyle: {
+    buttons: [{
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#f2d9db",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ceecfd",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }, {
+      enable: true,
+      style: {
+        "font-size": "",
+        "font-weight": "",
+        color: "",
+        "@markerColor": "#ffedcc",
+        "@markerOpacity": 60,
+        "@markerWeight": 30,
+        background: "linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)"
+      },
+      tabletStyle: {},
+      mobileStyle: {},
+      customCss: "",
+      lock: false
+    }],
+    items: {
+      schema: {
+        name: "",
+        label: "",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      larger: {
+        name: "larger",
+        label: "\u5C11\u3057\u5927\u304D\u304F",
+        enable: true,
+        style: {
+          "font-size": "1.2em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      smaller: {
+        name: "smaller",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F",
+        enable: true,
+        style: {
+          "font-size": "0.8em"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      },
+      "larger-sp": {
+        name: "larger-sp",
+        label: "\u5C11\u3057\u5927\u304D\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "1.2em"
+        },
+        customCss: "",
+        lock: false
+      },
+      "smaller-sp": {
+        name: "smaller-sp",
+        label: "\u5C11\u3057\u5C0F\u3055\u304F(SP)",
+        enable: true,
+        style: {},
+        tabletStyle: {},
+        mobileStyle: {
+          "font-size": "0.8em"
+        },
+        customCss: "",
+        lock: false
+      },
+      nowrap: {
+        name: "nowrap",
+        label: "\u6539\u884C\u3057\u306A\u3044",
+        enable: true,
+        style: {
+          "white-space": "nowrap"
+        },
+        tabletStyle: {},
+        mobileStyle: {},
+        customCss: "",
+        lock: false
+      }
+    }
+  }
+};
 
 
 
@@ -1221,7 +1581,7 @@ const ToolbarButtons = () => {
   const getDefaultStyle = function (name) {
     let defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
     let device = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'style';
-    const style = _schema_json__WEBPACK_IMPORTED_MODULE_8__.inlineStyle.buttons[currentButtonIndex][device];
+    const style = schema.inlineStyle.buttons[currentButtonIndex][device];
 
     if (!style || !style.hasOwnProperty(name)) {
       return defaultValue;
@@ -1231,14 +1591,14 @@ const ToolbarButtons = () => {
   };
 
   const getCurrentValue = key => {
-    const current = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(buttons, currentButtonIndex);
-    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(current, key);
+    const current = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(buttons, currentButtonIndex);
+    return (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(current, key);
   };
 
   const updateButtonsOption = value => {
     setButtons({ ...buttons,
       ...{
-        [currentButtonIndex]: { ...(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(buttons, currentButtonIndex),
+        [currentButtonIndex]: { ...(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(buttons, currentButtonIndex),
           ...value
         }
       }
@@ -1258,7 +1618,7 @@ const ToolbarButtons = () => {
   const resetOption = () => {
     const newValue = { ...buttons,
       ...{
-        [currentButtonIndex]: { ..._schema_json__WEBPACK_IMPORTED_MODULE_8__.inlineStyle.buttons[currentButtonIndex]
+        [currentButtonIndex]: { ...schema.inlineStyle.buttons[currentButtonIndex]
         }
       }
     };
@@ -1268,11 +1628,11 @@ const ToolbarButtons = () => {
 
   const getMarkerStyle = () => {
     const style = getCurrentValue('style');
-    let weight = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(style, '@markerWeight', 30);
+    let weight = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(style, '@markerWeight', 30);
     weight = weight ? 100 - weight : '';
-    let opacity = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(style, '@markerOpacity', 60);
+    let opacity = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(style, '@markerOpacity', 60);
     opacity = opacity ? opacity / 100 : '';
-    let color = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_10__.getProperty)(style, '@markerColor');
+    let color = (0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.getProperty)(style, '@markerColor');
     color = color ? (0,_ystd_helper_color__WEBPACK_IMPORTED_MODULE_4__.hex2rgb)(color) : '';
 
     if (!weight || !opacity || !color) {
@@ -1332,10 +1692,10 @@ const ToolbarButtons = () => {
     className: "ystdb-component-responsive__container"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), 'font-size', getDefaultStyle('font-size')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-size', getDefaultStyle('font-size')),
     onChange: value => {
       updateButtonsStyle({
         'font-size': value
@@ -1344,10 +1704,10 @@ const ToolbarButtons = () => {
     units: fontUnit
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('tabletStyle'), 'font-size', getDefaultStyle('font-size', undefined, 'tabletStyle')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('tabletStyle'), 'font-size', getDefaultStyle('font-size', undefined, 'tabletStyle')),
     onChange: value => {
       updateButtonsStyle({
         'font-size': value
@@ -1356,10 +1716,10 @@ const ToolbarButtons = () => {
     units: fontUnit
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-component-responsive__item"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"]
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('mobileStyle'), 'font-size', getDefaultStyle('font-size', undefined, 'mobileStyle')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('mobileStyle'), 'font-size', getDefaultStyle('font-size', undefined, 'mobileStyle')),
     onChange: value => {
       updateButtonsStyle({
         'font-size': value
@@ -1370,7 +1730,7 @@ const ToolbarButtons = () => {
     id: 'font-weight',
     label: '太さ'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), 'font-weight', getDefaultStyle('font-weight')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-weight', getDefaultStyle('font-weight')),
     options: (0,_ystd_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontWeight'),
     onChange: value => {
       updateButtonsStyle({
@@ -1381,7 +1741,7 @@ const ToolbarButtons = () => {
     id: 'font-style',
     label: 'スタイル'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), 'font-style', getDefaultStyle('font-style')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-style', getDefaultStyle('font-style')),
     options: (0,_ystd_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontStyle'),
     onChange: value => {
       updateButtonsStyle({
@@ -1399,7 +1759,7 @@ const ToolbarButtons = () => {
         color
       });
     },
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), 'color', getDefaultStyle('color'))
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'color', getDefaultStyle('color'))
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: 'マーカー'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
@@ -1412,12 +1772,12 @@ const ToolbarButtons = () => {
         ...getMarkerStyle()
       });
     },
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), '@markerColor', getDefaultStyle('@markerColor'))
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), '@markerColor', getDefaultStyle('@markerColor'))
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
     id: 'marker-opacity',
     label: '濃さ(%)'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), '@markerOpacity', getDefaultStyle('@markerOpacity')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), '@markerOpacity', getDefaultStyle('@markerOpacity')),
     onChange: value => {
       updateButtonsStyle({
         '@markerOpacity': value,
@@ -1430,7 +1790,7 @@ const ToolbarButtons = () => {
     id: 'marker-weight',
     label: '太さ(%)'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), '@markerWeight', getDefaultStyle('@markerWeight')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), '@markerWeight', getDefaultStyle('@markerWeight')),
     onChange: value => {
       updateButtonsStyle({
         '@markerWeight': value,
@@ -1447,7 +1807,7 @@ const ToolbarButtons = () => {
     label: 'フォント(font-family)'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     placeholder: 'sans-serif',
-    value: (0,_function__WEBPACK_IMPORTED_MODULE_9__.getStyle)(getCurrentValue('style'), 'font-family', getDefaultStyle('font-family')),
+    value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-family', getDefaultStyle('font-family')),
     onChange: value => {
       updateButtonsStyle({
         'font-family': value
@@ -1461,7 +1821,7 @@ const ToolbarButtons = () => {
       updateOption();
     },
     disabled: isUpdating
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_feather__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: 'ystdb-button-icon',
     style: {
       fill: 'none'
@@ -1859,9 +2219,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getProperty": function() { return /* binding */ getProperty; },
 /* harmony export */   "hasKey": function() { return /* binding */ hasKey; },
+/* harmony export */   "hasObjectKey": function() { return /* binding */ hasObjectKey; },
+/* harmony export */   "isObject": function() { return /* binding */ isObject; },
 /* harmony export */   "object2Array": function() { return /* binding */ object2Array; },
-/* harmony export */   "objectCopy": function() { return /* binding */ objectCopy; }
+/* harmony export */   "objectCopy": function() { return /* binding */ objectCopy; },
+/* harmony export */   "parseObject": function() { return /* binding */ parseObject; }
 /* harmony export */ });
+const isObject = value => {
+  return 'object' === typeof value;
+};
+const parseObject = value => {
+  if (!value || !isObject(value)) {
+    return undefined;
+  }
+
+  return 0 < Object.keys(value).length ? { ...value
+  } : undefined;
+};
+const hasObjectKey = (value, key) => {
+  if (!isObject(value)) {
+    return false;
+  }
+
+  return value.hasOwnProperty(key);
+}; // --- 移植前 ---.
+
 const object2Array = obj => {
   let result = { ...obj
   };
@@ -4893,17 +5275,6 @@ function _extends() {
 
   return _extends.apply(this, arguments);
 }
-
-/***/ }),
-
-/***/ "./src/js/admin-menu/inline-style/schema.json":
-/*!****************************************************!*\
-  !*** ./src/js/admin-menu/inline-style/schema.json ***!
-  \****************************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('{"inlineStyle":{"buttons":[{"enable":true,"style":{"font-size":"","font-weight":"","color":"","@markerColor":"#f2d9db","@markerOpacity":60,"@markerWeight":30,"background":"linear-gradient(transparent 75%, rgba(218,98,114, 0.3) 75%)"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false},{"enable":true,"style":{"font-size":"","font-weight":"","color":"","@markerColor":"#ceecfd","@markerOpacity":60,"@markerWeight":30,"background":"linear-gradient(transparent 75%, rgba(69,161,207, 0.3) 75%)"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false},{"enable":true,"style":{"font-size":"","font-weight":"","color":"","@markerColor":"#ffedcc","@markerOpacity":60,"@markerWeight":30,"background":"linear-gradient(transparent 75%, rgba(255,238,85, 0.3) 75%)"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false}],"items":{"schema":{"name":"","label":"","enable":true,"style":{},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false},"larger":{"name":"larger","label":"少し大きく","enable":true,"style":{"font-size":"1.2em"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false},"smaller":{"name":"smaller","label":"少し小さく","enable":true,"style":{"font-size":"0.8em"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false},"larger-sp":{"name":"larger-sp","label":"少し大きく(SP)","enable":true,"style":{},"tabletStyle":{},"mobileStyle":{"font-size":"1.2em"},"customCss":"","lock":false},"smaller-sp":{"name":"smaller-sp","label":"少し小さく(SP)","enable":true,"style":{},"tabletStyle":{},"mobileStyle":{"font-size":"0.8em"},"customCss":"","lock":false},"nowrap":{"name":"nowrap","label":"改行しない","enable":true,"style":{"white-space":"nowrap"},"tabletStyle":{},"mobileStyle":{},"customCss":"","lock":false}}}}');
 
 /***/ })
 
