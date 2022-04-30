@@ -1,0 +1,23 @@
+[
+	{
+		"blockName": "ystdb/column",
+		"attrs": {
+			"paddingType": "is-padding-large"
+		},
+		"innerBlocks": [
+			{
+				"blockName": "core/paragraph",
+				"attrs": {},
+				"innerBlocks": [],
+				"innerHTML": "\n\t<p>Column Padding Large</p>\n\t",
+				"innerContent": ["\n\t<p>Column Padding Large</p>\n\t"]
+			}
+		],
+		"innerHTML": "\n<div class=\"ystdb-column is-padding-large\"><div class=\"ystdb-column-block-container\"></div></div>\n",
+		"innerContent": [
+			"\n<div class=\"ystdb-column is-padding-large\"><div class=\"ystdb-column-block-container\">",
+			null,
+			"</div></div>\n"
+		]
+	}
+]
