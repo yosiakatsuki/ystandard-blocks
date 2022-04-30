@@ -19,7 +19,7 @@ $editor: false !default;
  * Columns
  */
 .ystdb-columns {
-	--ystdb-column-row-gap: 1.5rem;
+	--ystdb-column-row-gap: 2rem;
 	--ystdb-column-column-gap: 2rem;
 	display: flex;
 	flex-wrap: wrap;
@@ -28,6 +28,7 @@ $editor: false !default;
 	@include mixin.column();
 
 	&[style*="--ystdb-gap-desktop"] {
+
 		@include global.media-breakpoint-only-pc($editor) {
 			--ystdb-column-row-gap: var(--ystdb-gap-desktop);
 			--ystdb-column-column-gap: var(--ystdb-gap-desktop);
@@ -35,18 +36,21 @@ $editor: false !default;
 	}
 
 	&[style*="--ystdb-row-gap-desktop"] {
+
 		@include global.media-breakpoint-only-pc($editor) {
 			--ystdb-column-row-gap: var(--ystdb-row-gap-desktop);
 		}
 	}
 
 	&[style*="--ystdb-column-gap-desktop"] {
+
 		@include global.media-breakpoint-only-pc($editor) {
 			--ystdb-column-column-gap: var(--ystdb-column-gap-desktop);
 		}
 	}
 
 	&[style*="--ystdb-gap-tablet"] {
+
 		@include global.media-breakpoint-only-tablet($editor) {
 			--ystdb-column-row-gap: var(--ystdb-gap-tablet);
 			--ystdb-column-column-gap: var(--ystdb-gap-tablet);
@@ -54,18 +58,21 @@ $editor: false !default;
 	}
 
 	&[style*="--ystdb-row-gap-tablet"] {
+
 		@include global.media-breakpoint-only-tablet($editor) {
 			--ystdb-column-row-gap: var(--ystdb-row-gap-tablet);
 		}
 	}
 
 	&[style*="--ystdb-column-gap-tablet"] {
+
 		@include global.media-breakpoint-only-tablet($editor) {
 			--ystdb-column-gap: var(--ystdb-column-gap-tablet);
 		}
 	}
 
 	&[style*="--ystdb-gap-mobile"] {
+
 		@include global.media-breakpoint-only-mobile($editor) {
 			--ystdb-column-row-gap: var(--ystdb-gap-mobile);
 			--ystdb-column-column-gap: var(--ystdb-gap-mobile);
@@ -73,12 +80,14 @@ $editor: false !default;
 	}
 
 	&[style*="--ystdb-row-gap-mobile"] {
+
 		@include global.media-breakpoint-only-mobile($editor) {
 			--ystdb-column-row-gap: var(--ystdb-row-gap-mobile);
 		}
 	}
 
 	&[style*="--ystdb-column-gap-mobile"] {
+
 		@include global.media-breakpoint-only-mobile($editor) {
 			--ystdb-column-column-gap: var(--ystdb-column-gap-mobile);
 		}
