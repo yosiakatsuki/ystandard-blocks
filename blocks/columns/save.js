@@ -6,7 +6,10 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * yStandard.
  */
-import { getResponsiveGapStyle } from '@ystd/components/responsive-spacing';
+import {
+	getResponsiveGapStyle,
+	getResponsiveMarginStyle,
+} from '@ystd/components/responsive-spacing';
 import { getColumnGapCustomProperty } from './functions/gap';
 
 export default function ( { attributes } ) {
@@ -18,6 +21,7 @@ export default function ( { attributes } ) {
 		horizonAlignment,
 		reverse,
 		gap,
+		margin,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -36,6 +40,7 @@ export default function ( { attributes } ) {
 		style: {
 			...getColumnGapCustomProperty( gap ),
 			...getResponsiveGapStyle( gap ),
+			...getResponsiveMarginStyle( margin ),
 		},
 	};
 

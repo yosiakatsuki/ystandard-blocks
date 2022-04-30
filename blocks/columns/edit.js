@@ -15,7 +15,10 @@ import {
 /**
  * yStandard.
  */
-import { getResponsiveGapStyle } from '@ystd/components/responsive-spacing';
+import {
+	getResponsiveGapStyle,
+	getResponsiveMarginStyle,
+} from '@ystd/components/responsive-spacing';
 import BlockVariationPicker from '@ystd/components/block-variation-picker';
 /**
  * Block.
@@ -40,6 +43,7 @@ function ColumnsEditContainer( props ) {
 		verticalAlignment,
 		horizonAlignment,
 		gap,
+		margin,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -57,6 +61,7 @@ function ColumnsEditContainer( props ) {
 		style: {
 			...getColumnGapCustomProperty( gap ),
 			...getResponsiveGapStyle( gap ),
+			...getResponsiveMarginStyle( margin ),
 		},
 	};
 

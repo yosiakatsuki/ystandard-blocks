@@ -3,6 +3,7 @@ import PanelColumns from './columns';
 import PanelGap from './gap';
 import PanelLayout from './layout';
 import PanelBulkAction from './bulk-action';
+import PanelMargin from './margin';
 
 const ColumnsInspectorControls = ( props ) => {
 	return (
@@ -10,6 +11,7 @@ const ColumnsInspectorControls = ( props ) => {
 			<PanelColumns { ...props } />
 			<PanelGap { ...props } />
 			<PanelLayout { ...props } />
+			<PanelMargin { ...props } />
 			<PanelBulkAction { ...props } />
 		</InspectorControls>
 	);

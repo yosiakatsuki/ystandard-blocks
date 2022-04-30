@@ -38,6 +38,9 @@
 	},
 	"gap": {
 	  "type": "object"
+	},
+	"margin": {
+	  "type": "object"
 	}
   },
   "supports": {
