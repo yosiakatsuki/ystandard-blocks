@@ -1,3 +1,3 @@
-import { deprecated25 } from './deprecated_2-5';
+import { deprecated34 } from './deprecated_3-4';
 
-export const deprecated = [ ...deprecated25 ];
+export const deprecated = [ ...deprecated34 ];

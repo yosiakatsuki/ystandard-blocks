@@ -1,4 +1,4 @@
-import { ystdbConfig } from '../../src/js/config/config';
+import { ystdbConfig } from '@ystd/config/config.js';
 import classnames from 'classnames';
 
 import {
@@ -20,8 +20,8 @@ import {
 	RadioControl,
 	Button,
 	ColorPalette,
-	ServerSideRender,
 } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
 
 import { cardTypes, imageSizes, imageTypes, imageAlignList } from './config';
 

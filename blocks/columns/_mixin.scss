@@ -33,7 +33,7 @@
 }
 
 @mixin column-width($i,$editor:false) {
-	$width: calc(#{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"} - var(--ystdb-column-gap) * #{global.decimal-ceil(math.div($i - 1, $i),2)});
+	$width: calc(#{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"} - var(--ystdb-column-column-gap) * #{global.decimal-ceil(math.div($i - 1, $i),2)});
 	$width_no_margin: #{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"};
 	$column_selector: ".ystdb-column";
 

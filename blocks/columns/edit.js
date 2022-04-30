@@ -7,12 +7,13 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * yStandard.
  */
-
+import { getResponsiveGapStyle } from '@ystd/components/responsive-spacing';
 /**
  * Block.
  */
 import { default as BlockControls } from './block-controls';
 import { default as InspectorControls } from './inspector-controls';
+import { getColumnGapCustomProperty } from './functions/gap';
 
 const ALLOWED_BLOCKS = [ 'ystdb/column' ];
 const TEMPLATE = [
@@ -29,7 +30,7 @@ function Columns( props ) {
 		colMobile,
 		verticalAlignment,
 		horizonAlignment,
-		removeMargin,
+		gap,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -43,8 +44,11 @@ function Columns( props ) {
 			[ `has-${ colPc }-columns--pc` ]: colPc,
 			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
-			'is-no-margin': removeMargin,
 		} ),
+		style: {
+			...getColumnGapCustomProperty( gap ),
+			...getResponsiveGapStyle( gap ),
+		},
 	};
 
 	const innerBlocksProps = useInnerBlocksProps( columnsProps, {

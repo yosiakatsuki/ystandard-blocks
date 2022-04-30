@@ -3,6 +3,11 @@ import classnames from 'classnames';
  * WorPress.
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+/**
+ * yStandard.
+ */
+import { getResponsiveGapStyle } from '@ystd/components/responsive-spacing';
+import { getColumnGapCustomProperty } from './functions/gap';
 
 export default function ( { attributes } ) {
 	const {
@@ -12,7 +17,7 @@ export default function ( { attributes } ) {
 		verticalAlignment,
 		horizonAlignment,
 		reverse,
-		removeMargin,
+		gap,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -27,8 +32,11 @@ export default function ( { attributes } ) {
 			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
 			'is-reverse': reverse,
-			'is-no-margin': removeMargin,
 		} ),
+		style: {
+			...getColumnGapCustomProperty( gap ),
+			...getResponsiveGapStyle( gap ),
+		},
 	};
 
 	const innerBlocksProps = useInnerBlocksProps.save( columnBlocksProps );
