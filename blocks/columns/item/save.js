@@ -15,6 +15,7 @@ import {
 	getResponsiveWidthStyle,
 	getResponsiveValueStyle,
 } from '@ystd/components/responsive-values';
+import { getAutoWidthClasses } from './function/auto-width';
 
 export default function save( { attributes } ) {
 	const {
@@ -23,6 +24,7 @@ export default function save( { attributes } ) {
 		customBackgroundColor,
 		padding,
 		width,
+		isAutoWidth,
 	} = attributes;
 
 	const backgroundClass = getColorClassName(
@@ -35,6 +37,8 @@ export default function save( { attributes } ) {
 			'has-background': backgroundClass || customBackgroundColor,
 			[ backgroundClass ]: backgroundClass,
 			'has-shadow': shadow,
+			'has-column-width': !! width,
+			...getAutoWidthClasses( isAutoWidth ),
 		} ),
 		style: {
 			backgroundColor: customBackgroundColor

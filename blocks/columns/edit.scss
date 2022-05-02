@@ -2,6 +2,7 @@
 @use "mixin";
 @use "sass:math";
 @use "block";
+@use "item/deprecated/edit" as column-deprecated;
 
 /**
  * Columns
@@ -160,6 +161,11 @@
 				display: none;
 			}
 		}
+	}
+
+	&[class*="is-auto-width"] + .block-list-appender {
+		width: 100%;
+		flex-basis: 100%;
 	}
 }
 

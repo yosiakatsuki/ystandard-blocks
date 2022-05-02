@@ -1,12 +1,19 @@
 import classnames from 'classnames';
 
+export const noticeType = {
+	info: 'info',
+	warning: 'warning',
+	error: 'error',
+	help: 'help',
+};
+
 const Notice = ( { children, type, className, ...props } ) => {
-	const noticeType = type || 'info';
+	const _noticeType = type || 'info';
 	const wrapProps = {
 		className: classnames(
 			'ystd-component-notice',
 			className,
-			`is-${ noticeType }`
+			`is-${ _noticeType }`
 		),
 		...props,
 	};

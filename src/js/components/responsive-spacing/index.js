@@ -3,6 +3,7 @@ import { camelCase } from 'lodash';
  * WordPress.
  */
 import { _x } from '@wordpress/i18n';
+import { BaseControl } from '@wordpress/components';
 /**
  * yStandard.
  */
@@ -56,7 +57,7 @@ const ResponsiveSpacing = ( props ) => {
 		);
 	};
 	return (
-		<>
+		<BaseControl>
 			<ResponsiveTab label={ label }>
 				{ ( tab ) => {
 					return (
@@ -131,7 +132,7 @@ const ResponsiveSpacing = ( props ) => {
 				mobile={ getSpacingInfo( valueMobile ) }
 				style={ { marginTop: 0 } }
 			/>
-		</>
+		</BaseControl>
 	);
 };
 export default ResponsiveSpacing;

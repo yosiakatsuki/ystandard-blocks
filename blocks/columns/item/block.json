@@ -19,6 +19,9 @@
 	},
 	"width": {
 	  "type": "object"
+	},
+	"isAutoWidth": {
+	  "type": "object"
 	}
   },
   "supports": {

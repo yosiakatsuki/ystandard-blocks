@@ -2,6 +2,7 @@ import { camelCase } from 'lodash';
 /**
  * WordPress
  */
+import { BaseControl } from '@wordpress/components';
 import { _x } from '@wordpress/i18n';
 /**
  * yStandard
@@ -50,7 +51,7 @@ const ResponsiveValues = ( { label, values, onChange, units = undefined } ) => {
 		);
 	};
 	return (
-		<>
+		<BaseControl>
 			<ResponsiveTab label={ label }>
 				{ ( tab ) => {
 					return (
@@ -133,7 +134,7 @@ const ResponsiveValues = ( { label, values, onChange, units = undefined } ) => {
 				tablet={ valueTablet }
 				mobile={ valueMobile }
 			/>
-		</>
+		</BaseControl>
 	);
 };
 export default ResponsiveValues;
