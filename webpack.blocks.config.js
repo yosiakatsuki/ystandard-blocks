@@ -35,4 +35,5 @@ module.exports = {
 			'@ystd/util': path.resolve( __dirname, 'src/js/util' ),
 		},
 	},
+	cache: false,
 };
