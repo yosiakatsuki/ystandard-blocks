@@ -1,3 +1,4 @@
+import { camelCase } from 'lodash';
 /**
  * WordPress.
  */
@@ -149,7 +150,7 @@ const getResponsiveSpacingCustomProperty = ( value, suffix = '' ) => {
 		Object.keys( spacing ).map( ( key ) => {
 			const propertyName = _isResponsive
 				? `${ prefix }-${ key }${ _suffix }-${ device }`
-				: key;
+				: camelCase( key );
 			result = {
 				...result,
 				[ propertyName ]: spacing[ key ],
@@ -181,7 +182,7 @@ const getResponsiveGapCustomProperty = ( value, suffix = '' ) => {
 		Object.keys( parsedGap ).map( ( key ) => {
 			const propertyName = _isResponsive
 				? `${ prefix }-${ key }${ _suffix }-${ device }`
-				: key;
+				: camelCase( key );
 			result = {
 				...result,
 				[ propertyName ]: parsedGap[ key ],

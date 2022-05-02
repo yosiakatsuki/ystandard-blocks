@@ -5,10 +5,10 @@ import classnames from 'classnames';
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 import metadata from './block.json';
 
-export const deprecated34 = [
+// eslint-disable-next-line camelcase
+export const deprecated_34__migrationRemoveMargin = [
 	{
-		attributes: metadata.attributes,
-		supports: metadata.supports,
+		...metadata,
 		migrate( attributes ) {
 			let newAttributes = attributes;
 			newAttributes = migrateRemoveMargin( newAttributes );

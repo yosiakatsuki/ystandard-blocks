@@ -1,3 +1,4 @@
-import { deprecated34 } from './deprecated_3-4';
+/* eslint-disable camelcase */
+import { deprecated_34__migrationRemoveMargin } from './deprecated_3-4__migration-remove-margin';
 
-export const deprecated = [ ...deprecated34 ];
+export const deprecated = [ ...deprecated_34__migrationRemoveMargin ];

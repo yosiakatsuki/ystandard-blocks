@@ -8,26 +8,29 @@ import {
 	InnerBlocks,
 	withColors,
 } from '@wordpress/block-editor';
-import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 /**
  * yStandard.
  */
+import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
+/**
+ * Block.
+ */
 import { default as InspectorControls } from './inspector-controls';
 
 function ColumnEdit( props ) {
-	const { attributes, backgroundColor, hasChildBlocks, className } = props;
-	const { shadow, paddingType } = attributes;
+	const { attributes, backgroundColor, className } = props;
+	const { shadow, padding } = attributes;
 
 	const blockProps = useBlockProps( {
 		className: classnames( 'ystdb-column', className, {
 			'has-background': backgroundColor.color,
 			[ backgroundColor.class ]: backgroundColor.class,
 			'has-shadow': shadow,
-			[ paddingType ]: paddingType,
 		} ),
 		style: {
 			backgroundColor: backgroundColor.color,
+			...getResponsivePaddingStyle( padding ),
 		},
 	} );
 
@@ -35,9 +38,7 @@ function ColumnEdit( props ) {
 
 	const innerBlocksProps = useInnerBlocksProps( containerProps, {
 		templateLock: false,
-		renderAppender: hasChildBlocks
-			? undefined
-			: () => <InnerBlocks.ButtonBlockAppender />,
+		renderAppender: () => <InnerBlocks.ButtonBlockAppender />,
 	} );
 
 	return (
@@ -51,14 +52,4 @@ function ColumnEdit( props ) {
 	);
 }
 
-export default compose( [
-	withColors( 'backgroundColor' ),
-	withSelect( ( select, ownProps ) => {
-		const { clientId } = ownProps;
-		const { getBlockOrder } = select( 'core/block-editor' );
-
-		return {
-			hasChildBlocks: getBlockOrder( clientId ).length > 0,
-		};
-	} ),
-] )( ColumnEdit );
+export default compose( [ withColors( 'backgroundColor' ) ] )( ColumnEdit );

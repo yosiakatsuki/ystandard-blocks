@@ -1,45 +1,29 @@
 /**
  * WordPress.
  */
-import { BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useState } from '@wordpress/element';
+
 /**
  * yStandard.
  */
-import HorizonButtons from '@ystd/components/horizon-buttons';
-/**
- * Block.
- */
-import { paddingTypes } from '../../item/config';
+import ResponsivePaddingControl from '@ystd/controls/responsive-padding-control';
 
 const ColumnPadding = ( props ) => {
 	const { updateColumnAttributes } = props;
-	const handleOnClick = ( value ) => {
+	const [ padding, setPadding ] = useState();
+	const handlePaddingOnChange = ( value ) => {
 		updateColumnAttributes( {
-			paddingType: value,
+			padding: value,
 		} );
+		setPadding( value );
 	};
 	return (
-		<BaseControl
-			id={ 'padding' }
-			label={ __( '内側余白', 'ystandard-blocks' ) }
-		>
-			<HorizonButtons>
-				{ paddingTypes.map( ( item ) => {
-					return (
-						<Button
-							key={ item.value }
-							isSecondary
-							onClick={ () => {
-								handleOnClick( item.value );
-							} }
-						>
-							<span>{ item.label }</span>
-						</Button>
-					);
-				} ) }
-			</HorizonButtons>
-		</BaseControl>
+		<ResponsivePaddingControl
+			label={ __( '内側余白(padding)', 'ystandard-blocks' ) }
+			values={ padding }
+			onChange={ handlePaddingOnChange }
+		/>
 	);
 };
 export default ColumnPadding;

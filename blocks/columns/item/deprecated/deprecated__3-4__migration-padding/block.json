@@ -14,8 +14,9 @@
 	"shadow": {
 	  "type": "boolean"
 	},
-	"padding": {
-	  "type": "object"
+	"paddingType": {
+	  "type": "string",
+	  "default": ""
 	}
   },
   "supports": {

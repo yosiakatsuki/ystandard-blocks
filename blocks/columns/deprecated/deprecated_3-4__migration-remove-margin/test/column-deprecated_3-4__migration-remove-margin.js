@@ -1,6 +1,6 @@
 import { migrateRemoveMargin } from '../index';
 
-describe( 'color', () => {
+describe( 'migrateRemoveMargin', () => {
 	test( 'migrateRemoveMargin has no margin', () => {
 		const attributes = {
 			removeMargin: true,

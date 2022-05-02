@@ -1,17 +1,23 @@
 import classnames from 'classnames';
-
+/**
+ * WordPress.
+ */
 import {
 	useInnerBlocksProps,
 	getColorClassName,
 	useBlockProps,
 } from '@wordpress/block-editor';
+/**
+ * yStandard.
+ */
+import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
 
 export default function save( { attributes } ) {
 	const {
 		shadow,
 		backgroundColor,
 		customBackgroundColor,
-		paddingType,
+		padding,
 	} = attributes;
 
 	const backgroundClass = getColorClassName(
@@ -24,12 +30,12 @@ export default function save( { attributes } ) {
 			'has-background': backgroundClass || customBackgroundColor,
 			[ backgroundClass ]: backgroundClass,
 			'has-shadow': shadow,
-			[ paddingType ]: paddingType,
 		} ),
 		style: {
 			backgroundColor: customBackgroundColor
 				? customBackgroundColor
 				: undefined,
+			...getResponsivePaddingStyle( padding ),
 		},
 	} );
 

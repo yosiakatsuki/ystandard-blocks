@@ -15,6 +15,7 @@ import { mergeDefaultAttributes } from '@ystd/helper/attribute';
 import edit from './edit';
 import save from './save';
 import metadata from './block.json';
+import { deprecated } from './deprecated';
 
 export function registerColumn() {
 	const attributes = mergeDefaultAttributes(
@@ -41,6 +42,7 @@ export function registerColumn() {
 			edit,
 			save,
 			example: {},
+			deprecated,
 		},
 	} );
 }
