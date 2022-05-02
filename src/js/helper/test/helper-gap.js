@@ -61,4 +61,15 @@ describe( 'gap', () => {
 		};
 		expect( getGapProperty( gap ) ).toBeUndefined();
 	} );
+	test( 'getGapProperty - undefined responsive', () => {
+		const responsive = {
+			desktop: {
+				top: '10px',
+				right: '10px',
+				bottom: '10px',
+				left: '10px',
+			},
+		};
+		expect( getGapProperty( responsive?.tablet ) ).toBeUndefined();
+	} );
 } );

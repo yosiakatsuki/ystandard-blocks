@@ -24,6 +24,12 @@ export const getSpacingProps = ( type, value ) => {
 			[ `${ type }` ]: `${ top } ${ right } ${ bottom }`,
 		};
 	}
+	// 全部あるけどバラバラ.
+	if ( !! top && !! right && !! left && !! bottom ) {
+		return {
+			[ `${ type }` ]: `${ top } ${ right } ${ bottom } ${ left }`,
+		};
+	}
 	let result = {};
 	if ( top ) {
 		result = {

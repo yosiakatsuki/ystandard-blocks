@@ -136,66 +136,80 @@ const ResponsiveSpacing = ( props ) => {
 };
 export default ResponsiveSpacing;
 
-const getResponsiveSpacingCustomProperty = ( value, suffix = '' ) => {
-	const prefix = '--ystdb';
-	const _suffix = suffix ? `-${ suffix }` : '';
-	if ( ! value || 'object' !== typeof value ) {
-		return undefined;
-	}
-	const getProperty = ( spacing, device, _isResponsive = true ) => {
-		if ( ! spacing || 'object' !== typeof spacing ) {
-			return undefined;
-		}
-		let result = {};
-		Object.keys( spacing ).map( ( key ) => {
-			const propertyName = _isResponsive
-				? `${ prefix }-${ key }${ _suffix }-${ device }`
-				: camelCase( key );
-			result = {
-				...result,
-				[ propertyName ]: spacing[ key ],
-			};
-			return true;
-		} );
-		return result;
-	};
-	return {
-		...getProperty( value?.desktop, 'desktop', isResponsive( value ) ),
-		...getProperty( value?.tablet, 'tablet' ),
-		...getProperty( value?.mobile, 'mobile' ),
-	};
-};
-
-const getResponsiveGapCustomProperty = ( value, suffix = '' ) => {
+const getCustomProperty = (
+	value,
+	device,
+	_isResponsive = true,
+	suffix = ''
+) => {
 	const prefix = '--ystdb';
 	const _suffix = suffix ? `-${ suffix }` : '';
 	if ( ! isObject( value ) ) {
 		return undefined;
 	}
-	const _isResponsive = isResponsive( value );
-	const getProperty = ( gap, device ) => {
-		if ( ! isObject( gap ) ) {
-			return undefined;
-		}
-		const parsedGap = getGapProperty( gap );
-		let result = {};
-		Object.keys( parsedGap ).map( ( key ) => {
-			const propertyName = _isResponsive
-				? `${ prefix }-${ key }${ _suffix }-${ device }`
-				: camelCase( key );
-			result = {
-				...result,
-				[ propertyName ]: parsedGap[ key ],
-			};
-			return true;
-		} );
+	let result = {};
+	Object.keys( value ).map( ( key ) => {
+		const propertyName = _isResponsive
+			? `${ prefix }-${ key }${ _suffix }-${ device }`
+			: camelCase( key );
+		result = {
+			...result,
+			[ propertyName ]: value[ key ],
+		};
+		return true;
+	} );
+	return result;
+};
 
-		return result;
-	};
+const getResponsiveSpacingCustomProperty = ( value, suffix = '' ) => {
+	if ( ! isObject( value ) ) {
+		return undefined;
+	}
 	return {
-		...getProperty( value?.desktop, 'desktop' ),
-		...getProperty( value?.tablet, 'tablet' ),
-		...getProperty( value?.mobile, 'mobile' ),
+		...getCustomProperty(
+			value?.desktop,
+			'desktop',
+			isResponsive( value ),
+			suffix
+		),
+		...getCustomProperty(
+			value?.tablet,
+			'tablet',
+			isResponsive( value ),
+			suffix
+		),
+		...getCustomProperty(
+			value?.mobile,
+			'mobile',
+			isResponsive( value ),
+			suffix
+		),
+	};
+};
+
+const getResponsiveGapCustomProperty = ( value, suffix = '' ) => {
+	if ( ! isObject( value ) ) {
+		return undefined;
+	}
+	return {
+		...getCustomProperty(
+			getGapProperty( value?.desktop ),
+			'desktop',
+			isResponsive( value ),
+			suffix
+		),
+		...getCustomProperty(
+			getGapProperty( value?.tablet ),
+			'tablet',
+			isResponsive( value ),
+			suffix
+		),
+		...getCustomProperty(
+			getGapProperty( value?.mobile ),
+			'mobile',
+			isResponsive( value ),
+			suffix
+		),
 	};
 };
 

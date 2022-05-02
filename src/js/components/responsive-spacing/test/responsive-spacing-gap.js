@@ -1,5 +1,8 @@
 import { getResponsiveGapStyle } from '../index';
 
+/**
+ * test : gap style
+ */
 describe( 'gap style', () => {
 	test( 'getResponsiveGapStyle only desktop', () => {
 		const attr = {
@@ -64,8 +67,8 @@ describe( 'gap style', () => {
 			},
 		};
 		expect( getResponsiveGapStyle( attr ) ).toEqual( {
-			'row-gap': '30px',
-			'column-gap': '10px',
+			rowGap: '30px',
+			columnGap: '10px',
 		} );
 	} );
 	test( 'getResponsiveGapStyle row - column responsive', () => {
