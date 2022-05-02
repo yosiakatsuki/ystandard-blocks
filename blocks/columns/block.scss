@@ -180,3 +180,5 @@ $editor: false !default;
 		box-shadow: 0 3px 15px rgba(189, 195, 199, 0.7);
 	}
 }
+
+@include global.responsive-custom-property-component("flex-basis", $editor);

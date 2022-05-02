@@ -16,6 +16,9 @@
 	},
 	"padding": {
 	  "type": "object"
+	},
+	"width": {
+	  "type": "object"
 	}
   },
   "supports": {

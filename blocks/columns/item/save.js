@@ -11,6 +11,10 @@ import {
  * yStandard.
  */
 import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
+import {
+	getResponsiveWidthStyle,
+	getResponsiveValueStyle,
+} from '@ystd/components/responsive-values';
 
 export default function save( { attributes } ) {
 	const {
@@ -18,6 +22,7 @@ export default function save( { attributes } ) {
 		backgroundColor,
 		customBackgroundColor,
 		padding,
+		width,
 	} = attributes;
 
 	const backgroundClass = getColorClassName(
@@ -36,6 +41,8 @@ export default function save( { attributes } ) {
 				? customBackgroundColor
 				: undefined,
 			...getResponsivePaddingStyle( padding ),
+			...getResponsiveWidthStyle( width ),
+			...getResponsiveValueStyle( 'flex-basis', width ),
 		},
 	} );
 

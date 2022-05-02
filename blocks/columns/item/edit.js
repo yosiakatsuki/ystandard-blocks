@@ -13,6 +13,10 @@ import { compose } from '@wordpress/compose';
  * yStandard.
  */
 import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
+import {
+	getResponsiveValueStyle,
+	getResponsiveWidthStyle,
+} from '@ystd/components/responsive-values';
 /**
  * Block.
  */
@@ -20,7 +24,7 @@ import { default as InspectorControls } from './inspector-controls';
 
 function ColumnEdit( props ) {
 	const { attributes, backgroundColor, className } = props;
-	const { shadow, padding } = attributes;
+	const { shadow, padding, width } = attributes;
 
 	const blockProps = useBlockProps( {
 		className: classnames( 'ystdb-column', className, {
@@ -31,6 +35,8 @@ function ColumnEdit( props ) {
 		style: {
 			backgroundColor: backgroundColor.color,
 			...getResponsivePaddingStyle( padding ),
+			...getResponsiveWidthStyle( width ),
+			...getResponsiveValueStyle( 'flex-basis', width ),
 		},
 	} );
 

@@ -1574,42 +1574,10 @@ const ResponsiveSpacing = props => {
 
 /* harmony default export */ __webpack_exports__["default"] = (ResponsiveSpacing);
 
-const getResponsiveSpacingCustomProperty = function (value) {
-  let suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  const prefix = '--ystdb';
+const getCustomProperty = function (value, device) {
+  let _isResponsive = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-  const _suffix = suffix ? `-${suffix}` : '';
-
-  if (!value || 'object' !== typeof value) {
-    return undefined;
-  }
-
-  const getProperty = function (spacing, device) {
-    let _isResponsive = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-    if (!spacing || 'object' !== typeof spacing) {
-      return undefined;
-    }
-
-    let result = {};
-    Object.keys(spacing).map(key => {
-      const propertyName = _isResponsive ? `${prefix}-${key}${_suffix}-${device}` : (0,lodash__WEBPACK_IMPORTED_MODULE_1__.camelCase)(key);
-      result = { ...result,
-        [propertyName]: spacing[key]
-      };
-      return true;
-    });
-    return result;
-  };
-
-  return { ...getProperty(value === null || value === void 0 ? void 0 : value.desktop, 'desktop', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value)),
-    ...getProperty(value === null || value === void 0 ? void 0 : value.tablet, 'tablet'),
-    ...getProperty(value === null || value === void 0 ? void 0 : value.mobile, 'mobile')
-  };
-};
-
-const getResponsiveGapCustomProperty = function (value) {
-  let suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  let suffix = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
   const prefix = '--ystdb';
 
   const _suffix = suffix ? `-${suffix}` : '';
@@ -1618,28 +1586,40 @@ const getResponsiveGapCustomProperty = function (value) {
     return undefined;
   }
 
-  const _isResponsive = (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value);
+  let result = {};
+  Object.keys(value).map(key => {
+    const propertyName = _isResponsive ? `${prefix}-${key}${_suffix}-${device}` : (0,lodash__WEBPACK_IMPORTED_MODULE_1__.camelCase)(key);
+    result = { ...result,
+      [propertyName]: value[key]
+    };
+    return true;
+  });
+  return result;
+};
 
-  const getProperty = (gap, device) => {
-    if (!(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.isObject)(gap)) {
-      return undefined;
-    }
+const getResponsiveSpacingCustomProperty = function (value) {
+  let suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-    const parsedGap = (0,_ystd_helper_gap_js__WEBPACK_IMPORTED_MODULE_10__.getGapProperty)(gap);
-    let result = {};
-    Object.keys(parsedGap).map(key => {
-      const propertyName = _isResponsive ? `${prefix}-${key}${_suffix}-${device}` : (0,lodash__WEBPACK_IMPORTED_MODULE_1__.camelCase)(key);
-      result = { ...result,
-        [propertyName]: parsedGap[key]
-      };
-      return true;
-    });
-    return result;
+  if (!(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.isObject)(value)) {
+    return undefined;
+  }
+
+  return { ...getCustomProperty(value === null || value === void 0 ? void 0 : value.desktop, 'desktop', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix),
+    ...getCustomProperty(value === null || value === void 0 ? void 0 : value.tablet, 'tablet', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix),
+    ...getCustomProperty(value === null || value === void 0 ? void 0 : value.mobile, 'mobile', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix)
   };
+};
 
-  return { ...getProperty(value === null || value === void 0 ? void 0 : value.desktop, 'desktop'),
-    ...getProperty(value === null || value === void 0 ? void 0 : value.tablet, 'tablet'),
-    ...getProperty(value === null || value === void 0 ? void 0 : value.mobile, 'mobile')
+const getResponsiveGapCustomProperty = function (value) {
+  let suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  if (!(0,_ystd_helper_object__WEBPACK_IMPORTED_MODULE_9__.isObject)(value)) {
+    return undefined;
+  }
+
+  return { ...getCustomProperty((0,_ystd_helper_gap_js__WEBPACK_IMPORTED_MODULE_10__.getGapProperty)(value === null || value === void 0 ? void 0 : value.desktop), 'desktop', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix),
+    ...getCustomProperty((0,_ystd_helper_gap_js__WEBPACK_IMPORTED_MODULE_10__.getGapProperty)(value === null || value === void 0 ? void 0 : value.tablet), 'tablet', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix),
+    ...getCustomProperty((0,_ystd_helper_gap_js__WEBPACK_IMPORTED_MODULE_10__.getGapProperty)(value === null || value === void 0 ? void 0 : value.mobile), 'mobile', (0,_ystd_helper_responsive__WEBPACK_IMPORTED_MODULE_7__.isResponsive)(value), suffix)
   };
 };
 
@@ -2481,6 +2461,13 @@ const getSpacingProps = (type, value) => {
   if (!!top && !!right && right === left && !!bottom) {
     return {
       [`${type}`]: `${top} ${right} ${bottom}`
+    };
+  } // 全部あるけどバラバラ.
+
+
+  if (!!top && !!right && !!left && !!bottom) {
+    return {
+      [`${type}`]: `${top} ${right} ${bottom} ${left}`
     };
   }
 
