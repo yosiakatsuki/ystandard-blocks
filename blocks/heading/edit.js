@@ -914,7 +914,10 @@ function customHeading( props ) {
 							identifier="content"
 							tagName={ TagName }
 							className={ textClass }
-							placeholder={ __( 'Write heading…' ) }
+							placeholder={ __(
+								'見出しテキスト…',
+								'ystandard-blocks'
+							) }
 							value={ content }
 							style={ styles }
 							onChange={ ( value ) => {
