@@ -184,21 +184,21 @@ $editor: false !default;
 		&.is-auto-width-desktop {
 
 			@include global.media-breakpoint-only-pc() {
-				flex-grow: 1;
+				flex: 1 1 0;
 			}
 		}
 
 		&.is-auto-width-tablet {
 
 			@include global.media-breakpoint-only-tablet() {
-				flex-grow: 1;
+				flex: 1 1 0;
 			}
 		}
 
 		&.is-auto-width-mobile {
 
 			@include global.media-breakpoint-only-mobile() {
-				flex-grow: 1;
+				flex: 1 1 0;
 			}
 		}
 	}
