@@ -2,16 +2,14 @@
 @use "block";
 
 
-[data-type="ystdb/section"] {
-
-	.ystdb-section {
-		overflow: unset;
-	}
+.ystdb-section {
 
 	.ystdb-section__inner {
 
-		> .block-editor-inner-blocks > .block-editor-block-list__layout > .block-list-appender {
-			max-width: 830px;
+		> .block-list-appender {
+			position: relative;
+			max-width: var(--ystd-content-default-width, 830px);
+			margin-top: 1em !important;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -21,14 +19,8 @@
 
 		.ystdb-section__inner {
 
-			> .block-editor-inner-blocks {
-
-				> .block-editor-block-list__layout {
-
-					> * {
-						max-width: none;
-					}
-				}
+			> * {
+				max-width: none;
 			}
 		}
 	}

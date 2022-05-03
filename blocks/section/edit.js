@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import { select } from '@wordpress/data';
-import { Fragment } from '@wordpress/element';
 import { compose, withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import {
@@ -8,7 +7,7 @@ import {
 	BlockControls,
 	ContrastChecker,
 	withColors,
-	InnerBlocks,
+	useInnerBlocksProps,
 	__experimentalUseGradient,
 	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
 	useBlockProps,
@@ -312,34 +311,6 @@ const SectionEdit = ( props ) => {
 			...backgroundImageStyles,
 		};
 	}
-	/**
-	 * インナー
-	 */
-	const innerClasses = classnames( 'ystdb-section__inner', {
-		'has-text-color': textColor.color,
-		[ textColor.class ]: textColor.class,
-	} );
-	const innerStyles = {
-		maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
-		marginRight: 'auto',
-		marginLeft: 'auto',
-		paddingLeft:
-			0 === paddingLeft && ! paddingLeftResponsive
-				? undefined
-				: getMargin(
-						paddingLeftResponsive,
-						paddingLeft,
-						paddingLeftMobile
-				  ),
-		paddingRight:
-			0 === paddingRight && ! paddingRightResponsive
-				? undefined
-				: getMargin(
-						paddingRightResponsive,
-						paddingRight,
-						paddingRightMobile
-				  ),
-	};
 
 	const divider = ( attr ) => {
 		const {
@@ -386,12 +357,45 @@ const SectionEdit = ( props ) => {
 		);
 	};
 
+	/**
+	 * Block Props.
+	 */
 	const blockProps = useBlockProps( {
 		className: sectionClass,
 		style: sectionStyles,
 	} );
+	/**
+	 * InnerBlocks Props.
+	 */
+	const innerBlocksProps = useInnerBlocksProps( {
+		className: classnames( 'ystdb-section__inner', {
+			'has-text-color': textColor.color,
+			[ textColor.class ]: textColor.class,
+		} ),
+		style: {
+			maxWidth: innerCustomWidth !== 0 ? innerCustomWidth : undefined,
+			marginRight: 'auto',
+			marginLeft: 'auto',
+			paddingLeft:
+				0 === paddingLeft && ! paddingLeftResponsive
+					? undefined
+					: getMargin(
+							paddingLeftResponsive,
+							paddingLeft,
+							paddingLeftMobile
+					  ),
+			paddingRight:
+				0 === paddingRight && ! paddingRightResponsive
+					? undefined
+					: getMargin(
+							paddingRightResponsive,
+							paddingRight,
+							paddingRightMobile
+					  ),
+		},
+	} );
 	return (
-		<Fragment>
+		<>
 			<BlockControls>
 				<ToolbarControls.ContainerFluid { ...props } />
 			</BlockControls>
@@ -1926,12 +1930,10 @@ const SectionEdit = ( props ) => {
 						levelMobile: dividerLevelBottomMobile,
 					} ) }
 				<div className="ystdb-section__container">
-					<Wrapper className={ innerClasses } style={ innerStyles }>
-						<InnerBlocks />
-					</Wrapper>
+					<Wrapper { ...innerBlocksProps } />
 				</div>
 			</div>
-		</Fragment>
+		</>
 	);
 };
 

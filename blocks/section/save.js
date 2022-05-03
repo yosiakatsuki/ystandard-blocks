@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import {
 	getColorClassName,
-	InnerBlocks,
+	useInnerBlocksProps,
 	__experimentalGetGradientClass,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -301,29 +301,6 @@ export default function save( props ) {
 		};
 	}
 
-	/**
-	 * インナー
-	 */
-	const innerClasses = classnames( 'ystdb-section__inner', {
-		'has-text-color': textColorClass || customTextColor,
-		[ textColorClass ]: textColorClass,
-	} );
-	const innerStyles = {
-		maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
-		marginRight: 'auto',
-		marginLeft: 'auto',
-		paddingLeft: getMargin(
-			paddingLeftResponsive,
-			paddingLeft,
-			paddingLeftMobile
-		),
-		paddingRight: getMargin(
-			paddingRightResponsive,
-			paddingRight,
-			paddingRightMobile
-		),
-	};
-
 	const innerClampData = {
 		'padding-left': paddingLeftResponsive
 			? `${ paddingLeft }${ paddingUnit }`
@@ -404,6 +381,32 @@ export default function save( props ) {
 		...getDataClamp( sectionClampData ),
 	} );
 
+	/**
+	 * インナー
+	 */
+	const innerBlocksProps = useInnerBlocksProps.save( {
+		className: classnames( 'ystdb-section__inner', {
+			'has-text-color': textColorClass || customTextColor,
+			[ textColorClass ]: textColorClass,
+		} ),
+		style: {
+			maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
+			marginRight: 'auto',
+			marginLeft: 'auto',
+			paddingLeft: getMargin(
+				paddingLeftResponsive,
+				paddingLeft,
+				paddingLeftMobile
+			),
+			paddingRight: getMargin(
+				paddingRightResponsive,
+				paddingRight,
+				paddingRightMobile
+			),
+		},
+		...getDataClamp( innerClampData ),
+	} );
+
 	return (
 		<div { ...blockProps }>
 			{ isVideoBackground && (
@@ -465,13 +468,7 @@ export default function save( props ) {
 					levelMobile: dividerLevelBottomMobile,
 				} ) }
 			<div className="ystdb-section__container">
-				<Wrapper
-					className={ innerClasses }
-					style={ innerStyles }
-					{ ...getDataClamp( innerClampData ) }
-				>
-					<InnerBlocks.Content />
-				</Wrapper>
+				<Wrapper { ...innerBlocksProps } />
 			</div>
 		</div>
 	);
