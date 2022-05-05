@@ -1,0 +1,16 @@
+@use "../../../sass/global";
+
+.ystd-control-label {
+	display: block;
+	margin: 0.25rem 0;
+	padding: 0;
+
+	&.is-small {
+		color: global.$color__text-light;
+		font-size: 0.7rem;
+	}
+
+	&.is-bold {
+		font-weight: global.$font__weight_bold;
+	}
+}

@@ -50,6 +50,7 @@ import convertPHPObject2JS from '../../src/js/util/_convertPHPObject2JS';
 import * as BlockOptions from './inspector-controls';
 import * as ToolbarControls from './block-controls';
 import { getBorderProperty } from './function/border';
+import PanelContentWidth from './inspector-controls/content-width';
 
 const SectionEdit = ( props ) => {
 	const {
@@ -1644,61 +1645,7 @@ const SectionEdit = ( props ) => {
 							/>
 						</BaseControl>
 					</PanelBody>
-					<PanelBody
-						title={ __( 'コンテンツ幅設定', 'ystandard-blocks' ) }
-						initialOpen={ false }
-					>
-						<div className={ `ystdb-info__label` }>
-							かんたん設定
-						</div>
-						<div
-							className={
-								'ystdb-btn-selector components-base-control'
-							}
-						>
-							{ marginType.innerWidth.map( ( item ) => {
-								return (
-									<Button
-										key={ item.value }
-										isSecondary
-										onClick={ () => {
-											setAttributes( {
-												innerCustomWidth: item.num,
-											} );
-										} }
-									>
-										<span>{ item.label }</span>
-									</Button>
-								);
-							} ) }
-						</div>
-						<RangeControl
-							label={ __(
-								'コンテンツ部分の最大幅',
-								'ystandard-blocks'
-							) }
-							value={ innerCustomWidth }
-							onChange={ ( value ) =>
-								setAttributes( {
-									innerCustomWidth: getNum(
-										value,
-										0,
-										1920,
-										0
-									),
-								} )
-							}
-							min={ 0 }
-							max={ 1920 }
-							step={ 16 }
-							allowReset={ true }
-						/>
-						<p>
-							<span className={ `ystdb-info__small` }>
-								※最大幅の指定をしない場合は0にしてください。
-							</span>
-						</p>
-					</PanelBody>
+					<PanelContentWidth { ...props } />
 					<PanelBody
 						title={ __( 'セクション高さ設定', 'ystandard-blocks' ) }
 						initialOpen={ false }
