@@ -2,12 +2,11 @@
   "port": 10010,
   "core": "https://ja.wordpress.org/latest-ja.zip",
   "themes": [
-	"../ystandard"
+	"https://wp-ystandard.com/download/ystandard/v4/ystandard.zip"
   ],
   "plugins": [
 	".",
-	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip",
-	"../ystandard-toolbox"
+	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip"
   ],
   "env": {
 	"tests": {

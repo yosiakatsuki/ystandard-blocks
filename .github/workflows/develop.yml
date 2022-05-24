@@ -15,7 +15,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.3
+          php-version: 7.4
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
@@ -37,9 +37,6 @@ jobs:
       - name: Composer install
         run: composer install --optimize-autoloader --prefer-dist
 
-      - name: phpcs tests
-        run: composer phpcs
-
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -56,7 +53,7 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: npm run lint
+      - name: lint
         run: npm run lint
 
       - name: Notify Lint
@@ -106,7 +103,7 @@ jobs:
         if: failure()
 
   test:
-    name: test
+    name: UnitTest
     needs: [ lint ,codeCheck ]
     runs-on: ubuntu-latest
     steps:

@@ -26,5 +26,10 @@
   "scripts": {
 	"test": "phpunit",
 	"phpcs": "phpcs --standard=./.phpcs.xml.dist"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
