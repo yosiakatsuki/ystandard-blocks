@@ -130,14 +130,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Start wp-env
-        run: wp-env start
-
       - name: Test
         run: npm run test
-
-      - name: Stop wp-env
-        run: wp-env stop
 
       - name: Failed Test
         uses: 8398a7/action-slack@v3.8.0
