@@ -5,6 +5,10 @@
 
 	.ystdb-card__edit {
 		background-color: global.$color__bg-gray-light;
+
+		* {
+			box-sizing: border-box;
+		}
 	}
 }
 
