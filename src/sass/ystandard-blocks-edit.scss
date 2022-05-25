@@ -20,6 +20,7 @@
 @use "../../blocks/balloon/inspector-controls";
 
 .wp-block {
+
 	&[class*="ystdb-"] {
 		box-sizing: border-box;
 	}
