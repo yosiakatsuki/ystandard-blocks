@@ -13,6 +13,7 @@ import { getBlockEditorConfig } from '@ystd/helper/config';
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 import { Icon, edit } from '@wordpress/icons';
+import { yStandardIcon } from '@ystd/components/ystandard-icon';
 
 const buttonTitle = __( '[ys]インラインスタイル', 'ystandard-blocks' );
 const SLOT_NAME = 'ystdb.InlineStyle.Items';
@@ -48,7 +49,7 @@ registerFormatType( 'ystdb/inline-style-items', {
 							<ToolbarItem>
 								{ ( toggleProps ) => (
 									<DropdownMenu
-										icon="edit"
+										icon={ <Icon icon={ yStandardIcon } /> }
 										label={ buttonTitle }
 										toggleProps={ {
 											...toggleProps,
