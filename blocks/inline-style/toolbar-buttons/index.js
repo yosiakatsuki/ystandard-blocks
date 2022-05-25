@@ -35,8 +35,7 @@ buttons.map( ( button, index ) => {
 								<div
 									className={ classnames(
 										'ystdb-inline-style-toolbar',
-										`inline-style-${ buttonNo }`,
-										className
+										`inline-style-${ buttonNo }`
 									) }
 								>
 									<ToolbarGroup>
@@ -47,6 +46,12 @@ buttons.map( ( button, index ) => {
 											isActive={ isActive }
 										/>
 									</ToolbarGroup>
+									<div
+										className={ classnames(
+											'ystdb-inline-style-toolbar__marker',
+											className
+										) }
+									/>
 								</div>
 							</div>
 						</BlockFormatControls>
