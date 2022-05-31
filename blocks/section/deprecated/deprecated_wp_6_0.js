@@ -13,8 +13,8 @@ import {
 	dividerPath,
 } from '../config';
 import { getBackgroundPosition, getBackgroundSize } from '../shared';
-import getCssClamp from '@ystd/util/_getCssClamp';
-import getDataClamp from '@ystd/util/_getDataClamp';
+import getCssClamp from '@aktk/util/_getCssClamp';
+import getDataClamp from '@aktk/util/_getDataClamp';
 import { getBorderProperty } from '../function/border';
 
 export const deprecated_wp60 = [

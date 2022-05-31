@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import SVGIcon from '@ystd/components/svg-icon';
+import SVGIcon from '@aktk/components/svg-icon';
 import { getColorClassName, getFontSizeClass } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
