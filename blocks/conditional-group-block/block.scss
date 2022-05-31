@@ -1,0 +1,25 @@
+@use "../../src/sass/global";
+
+.ystdb-conditional-group {
+	@include global.media-breakpoint-only-mobile() {
+
+		&.ystdb-hide--sp {
+			display: none !important;
+		}
+	}
+
+	@include global.media-breakpoint-only-tablet() {
+
+		&.ystdb-hide--md {
+			display: none !important;
+		}
+	}
+
+	@include global.media-breakpoint-only-pc() {
+
+		&.ystdb-hide--lg {
+			display: none !important;
+		}
+	}
+}
+

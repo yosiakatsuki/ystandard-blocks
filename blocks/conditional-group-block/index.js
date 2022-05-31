@@ -1,35 +1,42 @@
-import { ystdbConfig } from '../../src/js/config/config';
+import { Maximize } from 'react-feather';
+/**
+ * WordPress.
+ */
+import { registerBlockType } from '@wordpress/blocks';
+/**
+ * yStandard.
+ */
+import { ystdbConfig } from '@aktk/config/config.js';
+import { mergeDefaultAttributes } from '@aktk/helper/attribute';
+/**
+ * Block
+ */
+import metadata from './block.json';
 import edit from './edit';
 import save from './save';
-import { Maximize } from 'react-feather';
-import { attributes, supports } from './config';
-import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
 
-registerBlockType( 'ystdb/conditional-group-block', {
-	title: __( '条件付きグループブロック', 'ystandard-blocks' ),
-	description: __(
-		'条件により表示・非表示を切り替えできるグループブロック',
-		'ystandard-blocks'
-	),
-	icon: (
-		<Maximize
-			stroke={ ystdbConfig.color.iconForeground }
-			style={ { fill: 'none' } }
-		/>
-	),
-	keywords: [
-		__( 'cgb', 'ystandard-blocks' ),
-		__( '条件付きグループブロック', 'ystandard-blocks' ),
-		__( 'conditional group block', 'ystandard-blocks' ),
-		__( 'グループブロック', 'ystandard-blocks' ),
-		'cgb',
-		'conditional group block',
-	],
-	category: ystdbConfig.category.common,
-	attributes,
-	supports,
-	edit,
-	save,
-	example: {},
-} );
+export function registerGroupBlock() {
+	const attributes = mergeDefaultAttributes(
+		metadata.name,
+		metadata.attributes
+	);
+
+	registerBlockType( metadata.name, {
+		...metadata,
+		...{
+			icon: (
+				<Maximize
+					stroke={ ystdbConfig.color.iconForeground }
+					style={ { fill: 'none' } }
+				/>
+			),
+			category: ystdbConfig.category.common,
+			attributes,
+			edit,
+			save,
+			example: {},
+		},
+	} );
+}
+
+registerGroupBlock();

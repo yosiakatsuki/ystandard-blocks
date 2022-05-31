@@ -100,7 +100,7 @@ class Conditional_Group_Block_Block extends Dynamic_Block {
 		}
 
 		return sprintf(
-			'<div class="%s"><div class="wp-block-group__inner-container ystdb-conditional-group__inner">%s</div></div>',
+			'<div class="%s"><div class="ystdb-conditional-group__inner">%s</div></div>',
 			trim( implode( ' ', $class ) ),
 			$content
 		);
