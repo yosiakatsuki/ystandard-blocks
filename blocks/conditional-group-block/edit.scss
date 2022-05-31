@@ -11,6 +11,7 @@
 }
 
 .ystdb-conditional-group {
+
 	@include global.media-breakpoint-only-mobile() {
 
 		&.ystdb-hide--sp {
