@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { Grid } from 'react-feather';
-import { ystdbConfig } from '@ystd/config';
+import { ystdbConfig } from '@aktk/config';
 
 const icon = (
 	<Grid

@@ -5,7 +5,7 @@ import {
 	AlignCenter,
 	AlignBottom,
 	AlignLastBlockBottom,
-} from '@ystd/components/icons';
+} from '@aktk/components/icons';
 
 const VerticalAlign = ( { attributes, setAttributes } ) => {
 	const CONTROLS = [

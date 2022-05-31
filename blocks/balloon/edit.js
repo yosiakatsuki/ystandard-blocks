@@ -36,8 +36,8 @@ import { compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
 import ManualLink from '../../src/js/admin-menu/components/manual-link';
-import { getBlockEditorConfig, getComponentConfig } from '@ystd/helper/config';
-import HorizonButtons from '@ystd/components/horizon-buttons';
+import { getBlockEditorConfig, getComponentConfig } from '@aktk/helper/config';
+import HorizonButtons from '@aktk/components/horizon-buttons';
 
 function Balloon( props ) {
 	const {

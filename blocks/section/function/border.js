@@ -1,4 +1,4 @@
-import { toNumber } from '@ystd/helper/number';
+import { toNumber } from '@aktk/helper/number';
 
 export const getBorderProperty = ( attributes ) => {
 	const { borderSize, borderStyle, customBorderColor } = attributes;

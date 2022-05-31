@@ -1,4 +1,4 @@
-import { getResponsiveValue } from '@ystd/helper/responsive';
+import { getResponsiveValue } from '@aktk/helper/responsive';
 
 export const getAutoWidthClasses = ( isAutoWidth ) => {
 	const desktop = getResponsiveValue( isAutoWidth, 'desktop' );

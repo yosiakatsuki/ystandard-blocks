@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import ResponsiveValues from '@ystd/components/responsive-values';
+import ResponsiveValues from '@aktk/components/responsive-values';
 
 const Width = ( { attributes, setAttributes } ) => {
 	const { width } = attributes;

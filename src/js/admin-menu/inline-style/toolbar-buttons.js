@@ -13,8 +13,8 @@ import {
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
-import { getComponentConfig } from '@ystd/helper/config';
-import { hex2rgb } from '@ystd/helper/color';
+import { getComponentConfig } from '@aktk/helper/config';
+import { hex2rgb } from '@aktk/helper/color';
 
 import Preview from '../components/preview/index';
 import ColorPalette from '../components/color-palette/color-palette';
@@ -26,7 +26,7 @@ import {
 
 import schema from './schema.json';
 import { getStyle } from './function';
-import { getProperty } from '@ystd/helper/object';
+import { getProperty } from '@aktk/helper/object';
 import { Save } from 'react-feather';
 
 const ToolbarButtons = () => {

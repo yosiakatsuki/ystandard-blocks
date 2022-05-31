@@ -7,7 +7,7 @@ import { sortOption } from '../functions';
 import DeleteItemButton from './delete-item-button';
 import classnames from 'classnames';
 import AvatarMediaUpload from './avatar-media-upload';
-import { toBool } from '@ystd/helper/boolean';
+import { toBool } from '@aktk/helper/boolean';
 
 const BalloonItem = ( props ) => {
 	const { index } = props;

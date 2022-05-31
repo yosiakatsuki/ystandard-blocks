@@ -1,7 +1,7 @@
 import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import Notice from '@ystd/components/notice';
+import Notice from '@aktk/components/notice';
 
 const PanelLayout = ( { attributes, setAttributes } ) => {
 	const { reverse } = attributes;

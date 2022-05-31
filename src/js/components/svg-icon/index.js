@@ -1,6 +1,6 @@
 import { Component } from '@wordpress/element';
 import classnames from 'classnames';
-import { getIconSvg } from '@ystd/util/icons';
+import { getIconSvg } from '@aktk/util/icons';
 
 /**
  * SVGIcon

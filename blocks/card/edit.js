@@ -1,4 +1,4 @@
-import { ystdbConfig } from '@ystd/config/config.js';
+import { ystdbConfig } from '@aktk/config/config.js';
 import classnames from 'classnames';
 
 import {

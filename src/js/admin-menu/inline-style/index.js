@@ -18,11 +18,11 @@ import {
 	getEndpoint,
 	getOption,
 	isApiSuccess,
-} from '@ystd/helper/admin-menu';
+} from '@aktk/helper/admin-menu';
 
-import Notice from '@ystd/components/notice/index';
+import Notice from '@aktk/components/notice/index';
 import ManualLink from '../components/manual-link';
-import { getBlockEditorConfig } from '@ystd/helper/config';
+import { getBlockEditorConfig } from '@aktk/helper/config';
 
 export const InlineStyleContext = createContext();
 

@@ -1,5 +1,5 @@
 import { PanelBody } from '@wordpress/components';
-import ResponsiveGapControl from '@ystd/controls/responsive-gap-control';
+import ResponsiveGapControl from '@aktk/controls/responsive-gap-control';
 import { __ } from '@wordpress/i18n';
 
 const PanelGap = ( { attributes, setAttributes } ) => {

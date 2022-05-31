@@ -1,8 +1,8 @@
 import { BaseControl } from '@wordpress/components';
-import ResponsiveSpacing from '@ystd/components/responsive-spacing';
+import ResponsiveSpacing from '@aktk/components/responsive-spacing';
 import { __ } from '@wordpress/i18n';
 
-import { getResponsiveValues } from '@ystd/helper/responsive';
+import { getResponsiveValues } from '@aktk/helper/responsive';
 
 const ResponsivePaddingControl = ( { label, values, onChange, ...props } ) => {
 	const handleOnChange = ( newValue ) => {

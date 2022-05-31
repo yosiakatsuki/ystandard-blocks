@@ -7,22 +7,22 @@ import { BaseControl } from '@wordpress/components';
 /**
  * yStandard.
  */
-import BoxControl from '@ystd/components/box-control';
-import ResponsiveTab, { tabType } from '@ystd/components/responsive-tab';
-import ResponsiveValuesInfo from '@ystd/components/responsive-values-info';
-import { getComponentConfig } from '@ystd/helper/config';
+import BoxControl from '@aktk/components/box-control';
+import ResponsiveTab, { tabType } from '@aktk/components/responsive-tab';
+import ResponsiveValuesInfo from '@aktk/components/responsive-values-info';
+import { getComponentConfig } from '@aktk/helper/config';
 import {
 	getResponsiveValue,
 	isResponsive,
 	parseResponsiveValues,
-} from '@ystd/helper/responsive';
+} from '@aktk/helper/responsive';
 import {
 	getSpacingInfo,
 	getSpacingProps,
 	parseSpacing,
-} from '@ystd/helper/spacing';
-import { isObject, parseObject } from '@ystd/helper/object';
-import { getGapProperty } from '@ystd/helper/gap.js';
+} from '@aktk/helper/spacing';
+import { isObject, parseObject } from '@aktk/helper/object';
+import { getGapProperty } from '@aktk/helper/gap.js';
 
 const ResponsiveSpacing = ( props ) => {
 	const { label, values, onChange, units, inputProps, splitOnAxis } = props;

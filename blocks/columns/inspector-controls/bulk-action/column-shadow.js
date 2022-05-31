@@ -1,6 +1,6 @@
 import { BaseControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import HorizonButtons from '@ystd/components/horizon-buttons';
+import HorizonButtons from '@aktk/components/horizon-buttons';
 
 const ColumnShadow = ( props ) => {
 	const { updateColumnAttributes } = props;

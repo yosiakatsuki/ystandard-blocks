@@ -33,13 +33,13 @@ import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
 import { positions, cssUnit, fontWeightList } from './config';
-import getNum from '@ystd/util/_getNum';
-import ResponsiveFontSizeControl from '@ystd/components/responsive-font-size/index';
+import getNum from '@aktk/util/_getNum';
+import ResponsiveFontSizeControl from '@aktk/components/responsive-font-size/index';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '@ystd/components/responsive-font-size/functions';
-import HorizonButtons from '@ystd/components/horizon-buttons';
+} from '@aktk/components/responsive-font-size/functions';
+import HorizonButtons from '@aktk/components/horizon-buttons';
 
 function customHeading( props ) {
 	const {

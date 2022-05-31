@@ -1,4 +1,4 @@
-import { getProperty } from '@ystd/helper/object';
+import { getProperty } from '@aktk/helper/object';
 
 export const getStyle = ( styles, name, defaultStyle = undefined ) => {
 	return getProperty( styles, name, defaultStyle );

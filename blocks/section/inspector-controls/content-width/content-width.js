@@ -6,12 +6,12 @@ import { __, _x } from '@wordpress/i18n';
 /**
  * yStandard
  */
-import ControlLabel from '@ystd/components/control-label';
-import HorizonButtons from '@ystd/components/horizon-buttons';
+import ControlLabel from '@aktk/components/control-label';
+import HorizonButtons from '@aktk/components/horizon-buttons';
 /**
  * Block
  */
-import { getNumber } from '@ystd/helper/number.js';
+import { getNumber } from '@aktk/helper/number.js';
 
 const PRESET = [
 	{

@@ -6,8 +6,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard
  */
-import ResponsiveSpacing from '@ystd/components/responsive-spacing';
-import { getResponsiveValues } from '@ystd/helper/responsive';
+import ResponsiveSpacing from '@aktk/components/responsive-spacing';
+import { getResponsiveValues } from '@aktk/helper/responsive';
 
 const ResponsiveGapControl = ( { label, values, onChange, ...props } ) => {
 	const handleOnChange = ( newValue ) => {

@@ -1,6 +1,6 @@
-import SVGIconSelect from '@ystd/components/svg-icon-select/index';
-import { getIconSvg } from '@ystd/util/icons';
-import { ystdbConfig } from '@ystd/config/config';
+import SVGIconSelect from '@aktk/components/svg-icon-select/index';
+import { getIconSvg } from '@aktk/util/icons';
+import { ystdbConfig } from '@aktk/config/config';
 
 import {
 	BlockControls,
@@ -31,7 +31,7 @@ import {
 import { withState, compose } from '@wordpress/compose';
 
 import { __, _x } from '@wordpress/i18n';
-import HorizonButtons from '@ystd/components/horizon-buttons';
+import HorizonButtons from '@aktk/components/horizon-buttons';
 
 const SVGButtonLinkEdit = ( props ) => {
 	const {

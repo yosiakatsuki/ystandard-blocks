@@ -5,9 +5,9 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import ResponsiveToggle from '@ystd/components/responsive-toggle';
-import Notice, { noticeType } from '@ystd/components/notice';
-import { isObject } from '@ystd/helper/object.js';
+import ResponsiveToggle from '@aktk/components/responsive-toggle';
+import Notice, { noticeType } from '@aktk/components/notice';
+import { isObject } from '@aktk/helper/object.js';
 
 const AutoWidth = ( { attributes, setAttributes } ) => {
 	const { isAutoWidth, width } = attributes;

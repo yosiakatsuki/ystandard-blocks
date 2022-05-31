@@ -4,7 +4,7 @@ import { Button, Modal } from '@wordpress/components';
 
 import './_item-delete.scss';
 import { BalloonContext } from '../index';
-import { getComponentConfig } from '@ystd/helper/config';
+import { getComponentConfig } from '@aktk/helper/config';
 import { CancelButton, DeleteButton } from '../../components/button/button';
 
 const DeleteItemButton = ( props ) => {

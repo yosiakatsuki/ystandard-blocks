@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import ResponsivePaddingControl from '@ystd/controls/responsive-padding-control';
+import ResponsivePaddingControl from '@aktk/controls/responsive-padding-control';
 
 const PanelPadding = ( { attributes, setAttributes } ) => {
 	const { padding } = attributes;

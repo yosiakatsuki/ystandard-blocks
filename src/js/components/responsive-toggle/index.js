@@ -6,12 +6,12 @@ import { _x } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import ResponsiveTab, { tabType } from '@ystd/components/responsive-tab';
+import ResponsiveTab, { tabType } from '@aktk/components/responsive-tab';
 import {
 	getResponsiveValue,
 	parseResponsiveValues,
-} from '@ystd/helper/responsive';
-import ResponsiveValuesInfo from '@ystd/components/responsive-values-info';
+} from '@aktk/helper/responsive';
+import ResponsiveValuesInfo from '@aktk/components/responsive-values-info';
 
 const ResponsiveToggle = ( {
 	panelLabel,

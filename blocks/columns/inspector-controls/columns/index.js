@@ -1,6 +1,6 @@
 import { PanelBody, BaseControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { getNumber } from '@ystd/helper/number.js';
+import { getNumber } from '@aktk/helper/number.js';
 
 const PanelColumns = ( { attributes, setAttributes } ) => {
 	const { colPc, colTablet, colMobile } = attributes;

@@ -7,7 +7,7 @@ import { useState } from '@wordpress/element';
 /**
  * yStandard.
  */
-import ResponsivePaddingControl from '@ystd/controls/responsive-padding-control';
+import ResponsivePaddingControl from '@aktk/controls/responsive-padding-control';
 
 const ColumnPadding = ( props ) => {
 	const { updateColumnAttributes } = props;

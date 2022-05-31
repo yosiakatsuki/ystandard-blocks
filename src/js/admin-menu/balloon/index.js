@@ -8,7 +8,7 @@ import {
 	getEndpoint,
 	getOption,
 	isApiSuccess,
-} from '@ystd/helper/admin-menu';
+} from '@aktk/helper/admin-menu';
 import {
 	NotificationContainer,
 	notifyError,

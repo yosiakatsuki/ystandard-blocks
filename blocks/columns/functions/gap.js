@@ -1,5 +1,5 @@
-import { isResponsive } from '@ystd/helper/responsive.js';
-import { getGapProperty } from '@ystd/helper/gap.js';
+import { isResponsive } from '@aktk/helper/responsive.js';
+import { getGapProperty } from '@aktk/helper/gap.js';
 
 export function getColumnGapCustomProperty( gap ) {
 	if ( isResponsive( gap ) || ! gap?.desktop ) {

@@ -8,12 +8,12 @@ import {
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { BlockFormatControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { getProperty } from '@ystd/helper/object';
-import { getBlockEditorConfig } from '@ystd/helper/config';
+import { getProperty } from '@aktk/helper/object';
+import { getBlockEditorConfig } from '@aktk/helper/config';
 import classnames from 'classnames';
 import { Fragment } from '@wordpress/element';
 import { Icon, edit } from '@wordpress/icons';
-import { yStandardIcon } from '@ystd/components/ystandard-icon';
+import { yStandardIcon } from '@aktk/components/ystandard-icon';
 
 const buttonTitle = __( '[ys]インラインスタイル', 'ystandard-blocks' );
 const SLOT_NAME = 'ystdb.InlineStyle.Items';

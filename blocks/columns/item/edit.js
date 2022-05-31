@@ -12,11 +12,11 @@ import { compose } from '@wordpress/compose';
 /**
  * yStandard.
  */
-import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
+import { getResponsivePaddingStyle } from '@aktk/components/responsive-spacing';
 import {
 	getResponsiveValueStyle,
 	getResponsiveWidthStyle,
-} from '@ystd/components/responsive-values';
+} from '@aktk/components/responsive-values';
 /**
  * Block.
  */

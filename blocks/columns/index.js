@@ -7,8 +7,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import { ystdbConfig } from '@ystd/config/config.js';
-import { mergeDefaultAttributes } from '@ystd/helper/attribute';
+import { ystdbConfig } from '@aktk/config/config.js';
+import { mergeDefaultAttributes } from '@aktk/helper/attribute';
 /**
  * Block
  */

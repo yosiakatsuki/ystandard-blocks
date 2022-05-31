@@ -18,8 +18,8 @@ import {
 import {
 	getResponsiveGapStyle,
 	getResponsiveMarginStyle,
-} from '@ystd/components/responsive-spacing';
-import BlockVariationPicker from '@ystd/components/block-variation-picker';
+} from '@aktk/components/responsive-spacing';
+import BlockVariationPicker from '@aktk/components/block-variation-picker';
 /**
  * Block.
  */

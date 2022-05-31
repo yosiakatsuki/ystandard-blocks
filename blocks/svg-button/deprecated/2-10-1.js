@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import SVGIcon from '@ystd/components/svg-icon';
+import SVGIcon from '@aktk/components/svg-icon';
 
 import {
 	RichText,
@@ -9,12 +9,12 @@ import {
 import {
 	getPaddingResponsiveClass,
 	getPaddingResponsiveStyle,
-} from '@ystd/components/responsive-number-control/functions';
+} from '@aktk/components/responsive-number-control/functions';
 import {
 	getFontResponsiveClass,
 	getFontResponsiveStyle,
-} from '@ystd/components/responsive-font-size/functions';
-import getDataProperty from '@ystd/util/_getResponsivPropertye';
+} from '@aktk/components/responsive-font-size/functions';
+import getDataProperty from '@aktk/util/_getResponsivPropertye';
 
 export const blockAttributes = {
 	text: {

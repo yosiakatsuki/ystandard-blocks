@@ -10,11 +10,11 @@ import {
 /**
  * yStandard.
  */
-import { getResponsivePaddingStyle } from '@ystd/components/responsive-spacing';
+import { getResponsivePaddingStyle } from '@aktk/components/responsive-spacing';
 import {
 	getResponsiveWidthStyle,
 	getResponsiveValueStyle,
-} from '@ystd/components/responsive-values';
+} from '@aktk/components/responsive-values';
 import { getAutoWidthClasses } from './function/auto-width';
 
 export default function save( { attributes } ) {

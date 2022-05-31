@@ -1,5 +1,5 @@
 import { PanelBody } from '@wordpress/components';
-import ResponsiveMarginControl from '@ystd/controls/responsive-margin-control';
+import ResponsiveMarginControl from '@aktk/controls/responsive-margin-control';
 import { __ } from '@wordpress/i18n';
 
 const PanelMargin = ( { attributes, setAttributes } ) => {
