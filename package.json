@@ -65,9 +65,14 @@
     "export:clean:mkdir": "npm run cli 'mkdir -p .wp-content/uploads'",
     "export:clean": "run-s export:clean:remove export:clean:mkdir",
     "export": "npm run export:clean && run-p export:uploads export:db",
-    "import:uploads": "npm run cli 'cp -r .wp-content/uploads wp-content'",
+	"import:uploads": "npm run cli 'cp -r .wp-content/uploads wp-content'",
     "import:db": "npm run wp 'db import .wp-content/db.sql'",
     "import": "run-s import:*",
+	"theme:clean": "rimraf .wp-content/themes",
+	"theme:mkdir": "mkdir -p .wp-content/themes",
+	"theme:copy": "rsync -a --exclude='.*' --exclude='node_modules' --exclude='vendor' ../ystandard .wp-content/themes",
+	"theme:import": "npm run cli 'cp -rf .wp-content/themes/ystandard wp-content/themes'",
+	"theme": "run-s theme:clean theme:mkdir theme:copy theme:import theme:clean",
     "prepare": "husky install"
   },
   "repository": {
