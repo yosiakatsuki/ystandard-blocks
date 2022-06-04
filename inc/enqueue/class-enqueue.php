@@ -9,6 +9,7 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\helper\Helper_CSS;
 
 defined( 'ABSPATH' ) || die();
@@ -43,7 +44,7 @@ class Enqueue {
 		/**
 		 * AMP対応
 		 */
-		if ( Utility::is_amp() ) {
+		if ( Helper_Amp::is_amp() ) {
 			wp_add_inline_style(
 				Config::CSS_HANDLE,
 				$this->get_fallback_animation_css()
@@ -55,7 +56,7 @@ class Enqueue {
 	 * Enqueue Scripts.
 	 */
 	public function enqueue_scripts() {
-		if ( Utility::is_amp() ) {
+		if ( Helper_Amp::is_amp() ) {
 			return;
 		}
 		wp_enqueue_script(
@@ -72,7 +73,7 @@ class Enqueue {
 	 * Noscriptで出力するCSS
 	 */
 	public function noscript_styles() {
-		if ( Utility::is_amp() ) {
+		if ( Helper_Amp::is_amp() ) {
 			return;
 		}
 		printf(

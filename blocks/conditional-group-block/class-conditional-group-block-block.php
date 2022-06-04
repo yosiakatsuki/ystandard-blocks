@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_Amp;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -92,10 +94,10 @@ class Conditional_Group_Block_Block extends Dynamic_Block {
 		/**
 		 * AMP判定
 		 */
-		if ( Utility::is_amp() && $attributes['hideAMP'] ) {
+		if ( Helper_Amp::is_amp() && $attributes['hideAMP'] ) {
 			return '';
 		}
-		if ( ! Utility::is_amp() && $attributes['onlyAMP'] ) {
+		if ( ! Helper_Amp::is_amp() && $attributes['onlyAMP'] ) {
 			return '';
 		}
 

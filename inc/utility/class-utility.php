@@ -66,19 +66,6 @@ class Utility {
 	}
 
 	/**
-	 * AMP判定
-	 *
-	 * @return bool
-	 */
-	public static function is_amp() {
-		if ( function_exists( 'ys_is_amp' ) ) {
-			return ys_is_amp();
-		}
-
-		return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
-	}
-
-	/**
 	 * Polyfillが必要か
 	 *
 	 * @return bool

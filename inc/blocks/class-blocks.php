@@ -9,6 +9,7 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\helper\Helper_Version;
 
 defined( 'ABSPATH' ) || die();
@@ -201,6 +202,7 @@ class Blocks {
 				'isYSTD'    => Utility::is_ystandard() ? '1' : '',
 				'homeUrl'   => home_url(),
 				'pluginUrl' => YSTDB_URL,
+				'useAmp'    => Helper_Amp::use_amp_plugin(),
 			]
 		);
 	}
