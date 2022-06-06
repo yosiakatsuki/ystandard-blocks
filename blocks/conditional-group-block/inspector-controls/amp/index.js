@@ -1,21 +1,21 @@
-import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
+import { BaseControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 /**
  * yStandard Blocks.
  */
 import Notice from '@aktk/components/notice';
 import { getBlockEditorConfig } from '@aktk/helper/config';
+import Panel from '@aktk/components/panel';
 
 const PanelAmp = ( { attributes, setAttributes } ) => {
 	const { hideAMP, onlyAMP } = attributes;
 	const useAmp = getBlockEditorConfig( 'useAmp' );
-	console.log( { useAmp } );
 	return (
 		<>
 			{ !! useAmp && (
-				<PanelBody
+				<Panel
 					title={ __( 'AMP 表示・非表示 設定', 'ystandard-blocks' ) }
-					initialOpen={ true }
+					initialOpen={ hideAMP || onlyAMP }
 				>
 					<BaseControl>
 						<Notice type={ 'help' }>
@@ -47,7 +47,7 @@ const PanelAmp = ( { attributes, setAttributes } ) => {
 							} }
 						/>
 					</BaseControl>
-				</PanelBody>
+				</Panel>
 			) }
 		</>
 	);

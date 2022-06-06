@@ -23,6 +23,16 @@
 	  "type": "boolean",
 	  "default": false
 	},
+	"taxFilterType": {
+	  "type": "string",
+	  "default": "only"
+	},
+	"taxonomy": {
+	  "type": "string"
+	},
+	"terms": {
+	  "type": "array"
+	},
 	"hideAMP": {
 	  "type": "boolean",
 	  "default": false

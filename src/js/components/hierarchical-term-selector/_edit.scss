@@ -1,0 +1,16 @@
+.aktk-hierarchical-terms-list {
+	max-height: 14em;
+	overflow: auto;
+	padding: 6px;
+	margin: -6px;
+}
+.aktk-hierarchical-terms-list__choice {
+	margin-bottom: 8px;
+	.components-base-control {
+		margin: 0;
+	}
+}
+.aktk-hierarchical-terms-list__subchoices {
+	margin-top: 8px;
+	margin-left: 16px;
+}

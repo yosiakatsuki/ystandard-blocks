@@ -37,27 +37,37 @@ class Conditional_Group_Block_Block extends Dynamic_Block {
 	 * @var array
 	 */
 	protected $block_attributes = [
-		'className' => [
+		'className'     => [
 			'type'    => 'string',
 			'default' => '',
 		],
-		'hideSp'    => [
+		'hideSp'        => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'hideMd'    => [
+		'hideMd'        => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'hideLg'    => [
+		'hideLg'        => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'hideAMP'   => [
+		'hideAMP'       => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'onlyAMP'   => [
+		'taxFilterType' => [
+			'type'    => 'string',
+			'default' => 'only',
+		],
+		'taxonomy'      => [
+			'type' => 'string',
+		],
+		'terms'         => [
+			'type' => 'array',
+		],
+		'onlyAMP'       => [
 			'type'    => 'boolean',
 			'default' => false,
 		],

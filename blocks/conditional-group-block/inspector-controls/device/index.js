@@ -1,14 +1,20 @@
-import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
+/**
+ * WordPress
+ */
+import { BaseControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
+/**
+ * yStandard
+ */
 import Notice from '@aktk/components/notice';
+import Panel from '@aktk/components/panel';
 
 const PanelDevice = ( { attributes, setAttributes } ) => {
 	const { hideSp, hideMd, hideLg } = attributes;
 	return (
-		<PanelBody
+		<Panel
 			title={ __( '画面サイズ別非表示設定', 'ystandard-blocks' ) }
-			initialOpen={ true }
+			initialOpen={ hideSp || hideMd || hideLg }
 		>
 			<BaseControl>
 				<Notice type={ 'help' }>
@@ -49,7 +55,7 @@ const PanelDevice = ( { attributes, setAttributes } ) => {
 					} }
 				/>
 			</BaseControl>
-		</PanelBody>
+		</Panel>
 	);
 };
 export default PanelDevice;

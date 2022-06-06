@@ -2304,20 +2304,20 @@ const hasObjectKey = (value, key) => {
   }
 
   return value.hasOwnProperty(key);
-}; // --- 移植前 ---.
-
+};
 const object2Array = obj => {
   let result = { ...obj
   };
 
-  if (!Array.isArray(result)) {
+  if (isObject(result)) {
     result = Object.entries(result).map(value => {
       return value[1];
     });
   }
 
   return result;
-};
+}; // --- 移植前 ---.
+
 const hasKey = (obj, key) => {
   if (!obj || 'object' !== typeof obj) {
     return false;
