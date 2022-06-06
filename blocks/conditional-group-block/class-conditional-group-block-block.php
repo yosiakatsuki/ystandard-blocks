@@ -74,6 +74,14 @@ class Conditional_Group_Block_Block extends Dynamic_Block {
 	];
 
 	/**
+	 * Attributes.
+	 *
+	 * @var array
+	 */
+	private $attributes;
+
+
+	/**
 	 * Card constructor.
 	 */
 	function __construct() {
@@ -91,32 +99,107 @@ class Conditional_Group_Block_Block extends Dynamic_Block {
 	 * @return false|string
 	 */
 	public function render( $attributes, $content = null ) {
+		$this->attributes = $attributes;
 		/**
 		 * クラス作成
 		 */
-		$class   = [
+		$this->class_names = [
 			'ystdb-conditional-group',
 			$attributes['className'],
 		];
-		$class[] = $attributes['hideSp'] ? 'ystdb-hide--sp' : '';
-		$class[] = $attributes['hideMd'] ? 'ystdb-hide--md' : '';
-		$class[] = $attributes['hideLg'] ? 'ystdb-hide--lg' : '';
+		/**
+		 * デバイス別
+		 */
+		$this->device();
+		/**
+		 * タクソノミー
+		 */
+		if ( ! $this->taxonomy() ) {
+			return '';
+		}
 		/**
 		 * AMP判定
 		 */
-		if ( Helper_Amp::is_amp() && $attributes['hideAMP'] ) {
-			return '';
-		}
-		if ( ! Helper_Amp::is_amp() && $attributes['onlyAMP'] ) {
+		if ( ! $this->amp() ) {
 			return '';
 		}
 
 		return sprintf(
 			'<div class="%s"><div class="ystdb-conditional-group__inner">%s</div></div>',
-			trim( implode( ' ', $class ) ),
+			trim( implode( ' ', $this->class_names ) ),
 			$content
 		);
 
+	}
+
+	/**
+	 * デバイス別
+	 *
+	 * @return void
+	 */
+	private function device() {
+		$this->class_names[] = $this->attributes['hideSp'] ? 'ystdb-hide--sp' : '';
+		$this->class_names[] = $this->attributes['hideMd'] ? 'ystdb-hide--md' : '';
+		$this->class_names[] = $this->attributes['hideLg'] ? 'ystdb-hide--lg' : '';
+	}
+
+	/**
+	 * タクソノミー
+	 *
+	 * @return bool
+	 */
+	private function taxonomy() {
+		$filter_type     = $this->attributes['taxFilterType'];
+		$filter_taxonomy = $this->attributes['taxonomy'];
+		$filter_terms    = $this->attributes['terms'];
+		// 設定がなければ絞り込みなし.
+		if ( ! $filter_taxonomy || ! $filter_terms ) {
+			return true;
+		}
+		// タームがついていないときの動作.
+		$result = 'only' === $filter_type ? false : true;
+
+		if ( ! is_singular() && ! is_tax() && ! is_category() && ! is_tag() ) {
+			return $result;
+		}
+		global $post;
+		$terms_ids = [];
+		if ( is_tax() || is_category() || is_tag() ) {
+			$term = get_queried_object();
+			if ( $term ) {
+				$terms_ids = [ $term->term_id ];
+			}
+		}
+		if ( is_singular() ) {
+			$terms = get_the_terms( $post, $filter_taxonomy );
+			if ( $terms ) {
+				$terms_ids = array_column( $terms, 'term_id' );
+			}
+		}
+
+		foreach ( $filter_terms as $value ) {
+			if ( in_array( $value, $terms_ids, true ) ) {
+				return ! $result;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * AMP
+	 *
+	 * @return bool
+	 */
+	private function amp() {
+		if ( Helper_Amp::is_amp() && $this->attributes['hideAMP'] ) {
+			return false;
+		}
+		if ( ! Helper_Amp::is_amp() && $this->attributes['onlyAMP'] ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
