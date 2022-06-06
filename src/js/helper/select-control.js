@@ -9,3 +9,13 @@ export function addDefaultSelect( options ) {
 	];
 	return ! options ? defaultSelect : [ ...defaultSelect, ...options ];
 }
+
+export function addDefaultCustomSelect( options ) {
+	const defaultSelect = [
+		{
+			key: '',
+			name: __( '--選択--', 'ystandard-toolbox' ),
+		},
+	];
+	return ! options ? defaultSelect : [ ...defaultSelect, ...options ];
+}

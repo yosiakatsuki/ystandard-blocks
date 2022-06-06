@@ -1,13 +1,13 @@
 /**
  * WordPress.
  */
-import { SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 /**
  * yStandard
  */
-import { addDefaultSelect } from '@aktk/helper/select-control';
+import CustomSelectControl from '@aktk/components/custom-select-control';
+import { addDefaultCustomSelect } from '@aktk/helper/select-control';
 
 const TaxonomySelect = ( {
 	label,
@@ -35,15 +35,15 @@ const TaxonomySelect = ( {
 		true === allTaxonomies
 			? getTaxonomyNames( taxonomy ) || []
 			: selectedPostType?.taxonomies || [];
-	const options = addDefaultSelect( [
+	const options = addDefaultCustomSelect( [
 		...taxonomies.map( ( item ) => {
 			const _taxonomy = taxonomy.filter( ( filterItem ) => {
 				return item === filterItem?.slug;
 			} );
 			if ( _taxonomy ) {
 				return {
-					value: _taxonomy[ 0 ].slug,
-					label: _taxonomy[ 0 ].name,
+					key: _taxonomy[ 0 ].slug,
+					name: _taxonomy[ 0 ].name,
 				};
 			}
 			return {};
@@ -53,7 +53,7 @@ const TaxonomySelect = ( {
 		onChange( newValue );
 	};
 	return (
-		<SelectControl
+		<CustomSelectControl
 			label={ label }
 			value={ value }
 			options={ options }
