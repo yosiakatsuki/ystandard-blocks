@@ -35,6 +35,7 @@
 			opacity: 0.6;
 		}
 	}
+
 	> .ystdb-conditional-group__inner {
 
 		> .block-list-appender {
@@ -42,6 +43,7 @@
 			width: 100%;
 		}
 	}
+
 	&:not(.is-selected):not(.has-child-selected) {
 
 		> .ystdb-conditional-group__inner {
