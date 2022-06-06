@@ -3,11 +3,13 @@
  */
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
+import { __ } from '@wordpress/i18n';
 /**
  * yStandard
  */
 import CustomSelectControl from '@aktk/components/custom-select-control';
 import { addDefaultCustomSelect } from '@aktk/helper/select-control';
+import Notice from '@aktk/components/notice';
 
 const TaxonomySelect = ( {
 	label,
@@ -44,6 +46,7 @@ const TaxonomySelect = ( {
 				return {
 					key: _taxonomy[ 0 ].slug,
 					name: _taxonomy[ 0 ].name,
+					style: { fontSize: '1em' },
 				};
 			}
 			return {};
@@ -53,12 +56,23 @@ const TaxonomySelect = ( {
 		onChange( newValue );
 	};
 	return (
-		<CustomSelectControl
-			label={ label }
-			value={ value }
-			options={ options }
-			onChange={ handleOnChange }
-		/>
+		<>
+			<CustomSelectControl
+				className={ 'aktk-taxonomy-select' }
+				label={ label }
+				value={ value }
+				options={ options }
+				onChange={ handleOnChange }
+			/>
+			{ 1 >= options.length && (
+				<Notice type={ 'help' }>
+					{ __(
+						'分類の取得・表示には時間がかかることがあります。「選択」以外の分類が表示されない場合、この案内が消えるまで少しお待ち下さい。',
+						'ystandard-blocks'
+					) }
+				</Notice>
+			) }
+		</>
 	);
 };
 export default TaxonomySelect;

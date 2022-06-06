@@ -15,6 +15,7 @@ export function addDefaultCustomSelect( options ) {
 		{
 			key: '',
 			name: __( '--選択--', 'ystandard-toolbox' ),
+			style: { fontSize: '1em' },
 		},
 	];
 	return ! options ? defaultSelect : [ ...defaultSelect, ...options ];

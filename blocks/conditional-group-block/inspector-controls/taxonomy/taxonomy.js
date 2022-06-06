@@ -17,7 +17,7 @@ const Taxonomy = ( { attributes, setAttributes } ) => {
 	return (
 		<BaseControl>
 			<TaxonomySelect
-				label={ __( 'タクソノミー', 'ystandard-blocks' ) }
+				label={ __( '分類', 'ystandard-blocks' ) }
 				value={ taxonomy }
 				onChange={ handleOnChange }
 				allTaxonomies={ true }

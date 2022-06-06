@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "yStandard用ブロック追加プラグイン",
   "scripts": {
+	"open:site": "open http://localhost:10010/",
 	"activate:theme": "wp-env run cli 'wp theme activate ystandard'",
 	"start:update": "wp-env start --xdebug=debug,develop -- --update && npm run activate:theme && npm run import",
 	"start": "wp-env start --xdebug=debug,develop && npm run import && open http://localhost:10010/",
