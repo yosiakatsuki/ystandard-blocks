@@ -35,4 +35,20 @@
 			opacity: 0.6;
 		}
 	}
+	> .ystdb-conditional-group__inner {
+
+		> .block-list-appender {
+			position: relative;
+			width: 100%;
+		}
+	}
+	&:not(.is-selected):not(.has-child-selected) {
+
+		> .ystdb-conditional-group__inner {
+
+			> .block-list-appender {
+				display: none;
+			}
+		}
+	}
 }
