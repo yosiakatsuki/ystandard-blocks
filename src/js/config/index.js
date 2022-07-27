@@ -55,8 +55,7 @@ export const ystdbConfig = {
 	},
 	component: {
 		defaultAvatar: {
-			url:
-				'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp',
+			url: 'https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp',
 		},
 		fontWeight: [
 			{

@@ -69,14 +69,12 @@ export const inlineStyle = () => {
 				return 100 !== markWeight ? '-0.2em' : undefined;
 			},
 			updateColor( index ) {
-				this.inline[ `color${ index }` ] = this.inline[
-					`color${ index }`
-				].hex;
+				this.inline[ `color${ index }` ] =
+					this.inline[ `color${ index }` ].hex;
 			},
 			updateMakerColor( index ) {
-				this.inline[ `markColor${ index }` ] = this.inline[
-					`markColor${ index }`
-				].hex;
+				this.inline[ `markColor${ index }` ] =
+					this.inline[ `markColor${ index }` ].hex;
 			},
 		},
 	} );

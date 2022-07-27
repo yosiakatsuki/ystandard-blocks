@@ -10,9 +10,8 @@ import { CancelButton, DeleteButton } from '../../components/button/button';
 const DeleteItemButton = ( props ) => {
 	const { index, item } = props;
 
-	const { balloons, setBalloons, isUpdating, updateOption } = useContext(
-		BalloonContext
-	);
+	const { balloons, setBalloons, isUpdating, updateOption } =
+		useContext( BalloonContext );
 
 	const avatar = ! item?.image
 		? getComponentConfig( 'defaultAvatar' ).url

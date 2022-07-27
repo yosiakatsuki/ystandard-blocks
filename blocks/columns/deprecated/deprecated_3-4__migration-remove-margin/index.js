@@ -34,16 +34,17 @@ export const deprecated_34__migrationRemoveMargin = [
 					[ `has-${ colMobile }-columns` ]: colMobile,
 					[ `has-${ colTablet }-columns--tablet` ]: colTablet,
 					[ `has-${ colPc }-columns--pc` ]: colPc,
-					[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-					[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
+					[ `is-vertically-aligned-${ verticalAlignment }` ]:
+						verticalAlignment,
+					[ `is-horizontally-aligned-${ horizonAlignment }` ]:
+						horizonAlignment,
 					'is-reverse': reverse,
 					'is-no-margin': removeMargin,
 				} ),
 			};
 
-			const innerBlocksProps = useInnerBlocksProps.save(
-				columnBlocksProps
-			);
+			const innerBlocksProps =
+				useInnerBlocksProps.save( columnBlocksProps );
 
 			return (
 				<div { ...blockProps }>

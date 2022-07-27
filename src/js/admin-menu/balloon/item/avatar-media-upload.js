@@ -4,14 +4,8 @@ import { getComponentConfig } from '@aktk/helper/config';
 import './_avatar-media-upload.scss';
 
 const AvatarMediaUpload = ( props ) => {
-	const {
-		onSelect,
-		onClickAvatarDelete,
-		type,
-		imageId,
-		imageUrl,
-		name,
-	} = props;
+	const { onSelect, onClickAvatarDelete, type, imageId, imageUrl, name } =
+		props;
 
 	const defaultAvatar = getComponentConfig( 'defaultAvatar' ).url;
 

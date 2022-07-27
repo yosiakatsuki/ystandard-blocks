@@ -40,15 +40,13 @@ class HeadingToolbar extends Component {
 							isCollapsed={ isCollapsed }
 							icon={ this.getIcon( selectedLevel ) }
 							label={ __( '見出しレベル', 'ystandard-blocks' ) }
-							controls={ range(
-								minLevel,
-								maxLevel
-							).map( ( index ) =>
-								this.createLevelControl(
-									index,
-									selectedLevel,
-									onChange
-								)
+							controls={ range( minLevel, maxLevel ).map(
+								( index ) =>
+									this.createLevelControl(
+										index,
+										selectedLevel,
+										onChange
+									)
 							) }
 						/>
 					) }

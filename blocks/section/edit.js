@@ -133,11 +133,8 @@ const SectionEdit = ( props ) => {
 		animationDelay,
 		containerFluid,
 	} = attributes;
-	const {
-		gradientClass,
-		gradientValue,
-		setGradient,
-	} = __experimentalUseGradient();
+	const { gradientClass, gradientValue, setGradient } =
+		__experimentalUseGradient();
 
 	const { colors } = select( 'core/block-editor' ).getSettings();
 
@@ -888,7 +885,8 @@ const SectionEdit = ( props ) => {
 										} );
 									}
 									setAttributes( {
-										useCustomOverlaySize: ! useCustomOverlaySize,
+										useCustomOverlaySize:
+											! useCustomOverlaySize,
 									} );
 								} }
 							/>
@@ -916,7 +914,8 @@ const SectionEdit = ( props ) => {
 																0
 														  );
 												setAttributes( {
-													overlaySizeX: newValue.toString(),
+													overlaySizeX:
+														newValue.toString(),
 												} );
 											} }
 											min={ 0 }
@@ -953,7 +952,8 @@ const SectionEdit = ( props ) => {
 																0
 														  );
 												setAttributes( {
-													overlaySizeY: newValue.toString(),
+													overlaySizeY:
+														newValue.toString(),
 												} );
 											} }
 											min={ 0 }
@@ -1001,7 +1001,8 @@ const SectionEdit = ( props ) => {
 																0
 														  );
 												setAttributes( {
-													overlayPositionValueX: newValue.toString(),
+													overlayPositionValueX:
+														newValue.toString(),
 												} );
 											} }
 											min={ 0 }
@@ -1045,7 +1046,8 @@ const SectionEdit = ( props ) => {
 																0
 														  );
 												setAttributes( {
-													overlayPositionValueY: newValue.toString(),
+													overlayPositionValueY:
+														newValue.toString(),
 												} );
 											} }
 											min={ 0 }
@@ -1086,7 +1088,8 @@ const SectionEdit = ( props ) => {
 										checked={ useDarkImagePreview }
 										onChange={ () => {
 											setState( {
-												useDarkImagePreview: ! useDarkImagePreview,
+												useDarkImagePreview:
+													! useDarkImagePreview,
 											} );
 										} }
 									/>
@@ -1111,7 +1114,8 @@ const SectionEdit = ( props ) => {
 											} );
 										} }
 										className={ classnames( {
-											'dark-focal-point-picker': useDarkImagePreview,
+											'dark-focal-point-picker':
+												useDarkImagePreview,
 										} ) }
 									/>
 								</BaseControl>
@@ -1128,8 +1132,10 @@ const SectionEdit = ( props ) => {
 											} );
 											if ( 'custom' !== type ) {
 												setAttributes( {
-													backgroundImageSizeX: undefined,
-													backgroundImageSizeY: undefined,
+													backgroundImageSizeX:
+														undefined,
+													backgroundImageSizeY:
+														undefined,
 													backgroundImageSizeUnitX:
 														'px',
 													backgroundImageSizeUnitY:
@@ -1162,7 +1168,8 @@ const SectionEdit = ( props ) => {
 																		0
 																  );
 														setAttributes( {
-															backgroundImageSizeX: newValue.toString(),
+															backgroundImageSizeX:
+																newValue.toString(),
 														} );
 													} }
 													min={ 0 }
@@ -1181,7 +1188,8 @@ const SectionEdit = ( props ) => {
 													}
 													onChange={ ( type ) => {
 														setAttributes( {
-															backgroundImageSizeUnitX: type,
+															backgroundImageSizeUnitX:
+																type,
 														} );
 													} }
 												/>
@@ -1208,7 +1216,8 @@ const SectionEdit = ( props ) => {
 																		0
 																  );
 														setAttributes( {
-															backgroundImageSizeY: newValue.toString(),
+															backgroundImageSizeY:
+																newValue.toString(),
 														} );
 													} }
 													min={ 0 }
@@ -1227,7 +1236,8 @@ const SectionEdit = ( props ) => {
 													}
 													onChange={ ( type ) => {
 														setAttributes( {
-															backgroundImageSizeUnitY: type,
+															backgroundImageSizeUnitY:
+																type,
 														} );
 													} }
 												/>
@@ -1267,7 +1277,8 @@ const SectionEdit = ( props ) => {
 										checked={ backgroundImageParallax }
 										onChange={ () => {
 											setAttributes( {
-												backgroundImageParallax: ! backgroundImageParallax,
+												backgroundImageParallax:
+													! backgroundImageParallax,
 											} );
 										} }
 									/>
@@ -1303,7 +1314,8 @@ const SectionEdit = ( props ) => {
 											} );
 										}
 										setAttributes( {
-											backgroundImageOnOverlay: ! backgroundImageOnOverlay,
+											backgroundImageOnOverlay:
+												! backgroundImageOnOverlay,
 										} );
 									} }
 								/>
@@ -1325,11 +1337,8 @@ const SectionEdit = ( props ) => {
 										}
 										onChange={ ( value ) =>
 											setAttributes( {
-												backgroundImageOnOverlayOpacity: getNum(
-													value,
-													0,
-													100
-												),
+												backgroundImageOnOverlayOpacity:
+													getNum( value, 0, 100 ),
 											} )
 										}
 										min={ 0 }
@@ -1362,7 +1371,8 @@ const SectionEdit = ( props ) => {
 																	...convertPHPObject2JS(
 																		item.value
 																	),
-																	backgroundImageURL: imageUrl,
+																	backgroundImageURL:
+																		imageUrl,
 																} );
 																setState( {
 																	useDarkImagePreview:
@@ -1372,9 +1382,10 @@ const SectionEdit = ( props ) => {
 															style={ {
 																...item.style,
 																backgroundImage: `url('${ imageUrl }')`,
-																backgroundColor: item.useDarkPreview
-																	? DARK_IMAGE_PREVIEW_COLOR
-																	: undefined,
+																backgroundColor:
+																	item.useDarkPreview
+																		? DARK_IMAGE_PREVIEW_COLOR
+																		: undefined,
 															} }
 														>
 															<span
@@ -1591,7 +1602,8 @@ const SectionEdit = ( props ) => {
 								}
 								onChange={ () => {
 									setAttributes( {
-										dividerBottomReverse: ! dividerBottomReverse,
+										dividerBottomReverse:
+											! dividerBottomReverse,
 									} );
 								} }
 							/>

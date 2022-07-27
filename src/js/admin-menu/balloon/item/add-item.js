@@ -10,9 +10,8 @@ import { ErrorMessage } from '../../components/message';
 import { schema } from '../functions';
 
 const AddItem = () => {
-	const { balloons, setBalloons, updateOption, isUpdating } = useContext(
-		BalloonContext
-	);
+	const { balloons, setBalloons, updateOption, isUpdating } =
+		useContext( BalloonContext );
 
 	const [ isModalOpen, setIsModalOpen ] = useState( false );
 

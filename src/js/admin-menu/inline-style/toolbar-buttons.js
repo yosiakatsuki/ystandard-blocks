@@ -30,13 +30,8 @@ import { getProperty } from '@aktk/helper/object';
 import { Save } from 'react-feather';
 
 const ToolbarButtons = () => {
-	const {
-		options,
-		buttons,
-		setButtons,
-		isUpdating,
-		updateOption,
-	} = useContext( InlineStyleContext );
+	const { options, buttons, setButtons, isUpdating, updateOption } =
+		useContext( InlineStyleContext );
 
 	const fontUnit = getComponentConfig( 'fontUnit' );
 
@@ -188,7 +183,8 @@ const ToolbarButtons = () => {
 														) => {
 															updateButtonsStyle(
 																{
-																	'font-size': value,
+																	'font-size':
+																		value,
 																}
 															);
 														} }
@@ -214,7 +210,8 @@ const ToolbarButtons = () => {
 														) => {
 															updateButtonsStyle(
 																{
-																	'font-size': value,
+																	'font-size':
+																		value,
 																},
 																'tabletStyle'
 															);
@@ -241,7 +238,8 @@ const ToolbarButtons = () => {
 														) => {
 															updateButtonsStyle(
 																{
-																	'font-size': value,
+																	'font-size':
+																		value,
 																},
 																'mobileStyle'
 															);
@@ -452,7 +450,8 @@ const ToolbarButtons = () => {
 													onClick={ () => {
 														updateOption(
 															{
-																buttons: resetOption(),
+																buttons:
+																	resetOption(),
 															},
 															'設定を初期化しました。'
 														);

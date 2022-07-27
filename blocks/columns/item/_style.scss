@@ -7,6 +7,7 @@
 	z-index: 1;
 
 	&:focus {
+
 		.ystdb-column__link-screen-reader-text {
 			top: calc(100% + 0.5em);
 			left: 0;
@@ -16,7 +17,7 @@
 			font-size: 12px;
 			font-weight: 400;
 			padding: 0.5em 1.5em;
-			background: rgba(#fff,0.2);
+			background: rgba(#fff, 0.2);
 			color: #2271b1;
 			z-index: 100000;
 			line-height: normal;
@@ -25,6 +26,7 @@
 		}
 	}
 }
+
 .ystdb-column__link-screen-reader-text {
 	position: absolute;
 	top: -1000em;

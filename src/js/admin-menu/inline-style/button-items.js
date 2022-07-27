@@ -47,13 +47,10 @@ const ButtonItems = () => {
 
 	const [ isAddStyleModalOpen, setIsAddStyleModalOpen ] = useState( false );
 	const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState( false );
-	const [ newStyleSlugErrorMessage, setNewStyleSlugErrorMessage ] = useState(
-		''
-	);
-	const [
-		newStyleLabelErrorMessage,
-		setNewStyleLabelErrorMessage,
-	] = useState( '' );
+	const [ newStyleSlugErrorMessage, setNewStyleSlugErrorMessage ] =
+		useState( '' );
+	const [ newStyleLabelErrorMessage, setNewStyleLabelErrorMessage ] =
+		useState( '' );
 	const [ disableAddStyle, setDisableAddStyle ] = useState( false );
 	const [ newStyleSlug, setNewStyleSlug ] = useState( '' );
 	const [ newStyleLabel, setNewStyleLabel ] = useState( '' );
@@ -331,7 +328,8 @@ const ButtonItems = () => {
 													onChange={ ( value ) => {
 														updateInlineItemStyle(
 															{
-																'font-size': value,
+																'font-size':
+																	value,
 															},
 															'tabletStyle'
 														);
@@ -352,7 +350,8 @@ const ButtonItems = () => {
 													onChange={ ( value ) => {
 														updateInlineItemStyle(
 															{
-																'font-size': value,
+																'font-size':
+																	value,
 															},
 															'mobileStyle'
 														);
@@ -550,9 +549,8 @@ const ButtonItems = () => {
 										<UpdateButton
 											isPrimary
 											onClick={ () => {
-												const check = checkSlug(
-													newStyleSlug
-												);
+												const check =
+													checkSlug( newStyleSlug );
 												if ( ! newStyleLabel ) {
 													setNewStyleLabelErrorMessage(
 														'表示名を入力してください。'

@@ -33,8 +33,10 @@ export default function ( { attributes } ) {
 			[ `has-${ colMobile }-columns` ]: colMobile,
 			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
 			[ `has-${ colPc }-columns--pc` ]: colPc,
-			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment,
+			[ `is-vertically-aligned-${ verticalAlignment }` ]:
+				verticalAlignment,
+			[ `is-horizontally-aligned-${ horizonAlignment }` ]:
+				horizonAlignment,
 			'is-reverse': reverse,
 		} ),
 		style: {
