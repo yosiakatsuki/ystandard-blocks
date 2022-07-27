@@ -3,7 +3,7 @@
 @use "sass:math";
 @use "block";
 @use "item/deprecated/edit" as column-deprecated;
-
+@use "item/editor" as column-editor-style;
 
 /**
  * Columns

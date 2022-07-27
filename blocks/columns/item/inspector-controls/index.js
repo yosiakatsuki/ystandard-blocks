@@ -1,18 +1,20 @@
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls as WPInspectorControls } from '@wordpress/block-editor';
 import PanelBackground from './background';
 import PanelPadding from './padding';
 import PanelShadow from './shadow';
 import PanelSize from './size';
+import PanelLink from './link';
 
-const ColumnInspectorControls = ( props ) => {
+const InspectorControls = ( props ) => {
 	return (
-		<InspectorControls>
+		<WPInspectorControls>
 			<PanelBackground { ...props } />
 			<PanelSize { ...props } />
 			<PanelPadding { ...props } />
 			<PanelShadow { ...props } />
-		</InspectorControls>
+			<PanelLink { ...props } />
+		</WPInspectorControls>
 	);
 };
 
-export default ColumnInspectorControls;
+export default InspectorControls;

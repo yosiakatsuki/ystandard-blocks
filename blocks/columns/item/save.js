@@ -25,6 +25,10 @@ export default function save( { attributes } ) {
 		padding,
 		width,
 		isAutoWidth,
+		linkTarget,
+		rel,
+		url,
+		screenReaderText,
 	} = attributes;
 
 	const backgroundClass = getColorClassName(
@@ -50,13 +54,29 @@ export default function save( { attributes } ) {
 		},
 	} );
 
-	const containerProps = { className: 'ystdb-column-block-container' };
+	const containerProps = {
+		className: 'ystdb-column-block-container',
+	};
 
 	const innerBlocksProps = useInnerBlocksProps.save( containerProps );
 
 	return (
 		<div { ...blockProps }>
 			<div { ...innerBlocksProps } />
+			{ !! url && (
+				<a
+					href={ url }
+					className="ystdb-column__link"
+					target={ linkTarget }
+					rel={ rel }
+				>
+					{ screenReaderText && (
+						<span className="ystdb-column__link-screen-reader-text">
+							{ screenReaderText }
+						</span>
+					) }
+				</a>
+			) }
 		</div>
 	);
 }

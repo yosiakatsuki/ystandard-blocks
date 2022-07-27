@@ -3,6 +3,7 @@
 @use "mixin";
 @use "deprecated/block" as columns-deprecated;
 @use "item/deprecated/block" as column-deprecated;
+@use "item/style" as column-front-style;
 
 $editor: false !default;
 
@@ -168,6 +169,7 @@ $editor: false !default;
 }
 
 .ystdb-column {
+	position: relative;
 	margin: 0;
 	min-width: 0;
 

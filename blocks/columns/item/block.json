@@ -22,6 +22,29 @@
 	},
 	"isAutoWidth": {
 	  "type": "object"
+	},
+	"url": {
+	  "type": "string",
+	  "source": "attribute",
+	  "selector": ".ystdb-column__link",
+	  "attribute": "href"
+	},
+	"linkTarget": {
+	  "type": "string",
+	  "source": "attribute",
+	  "selector": ".ystdb-column__link",
+	  "attribute": "target"
+	},
+	"rel": {
+	  "type": "string",
+	  "source": "attribute",
+	  "selector": ".ystdb-column__link",
+	  "attribute": "rel"
+	},
+	"screenReaderText": {
+	  "type": "string",
+	  "source": "text",
+	  "selector": ".ystdb-column__link-screen-reader-text"
 	}
   },
   "supports": {
