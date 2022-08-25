@@ -69,7 +69,7 @@ $editor: false !default;
 	&[style*="--ystdb-column-gap-tablet"] {
 
 		@include global.media-breakpoint-only-tablet($editor) {
-			--ystdb-column-gap: var(--ystdb-column-gap-tablet);
+			--ystdb-column-column-gap: var(--ystdb-column-gap-tablet);
 		}
 	}
 
