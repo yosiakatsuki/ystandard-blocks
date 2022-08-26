@@ -1,14 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
-  "apiVersion": 2,
-  "name": "ystdb/columns",
-  "title": "カスタムカラム",
-  "description": "モバイル・タブレット・PCでカラム数を変更できるカラムブロック",
-  "keywords": [
-	"column",
-	"カラム",
-	"col"
-  ],
   "attributes": {
 	"colPc": {
 	  "type": "number",
@@ -37,6 +27,9 @@
 	  "default": false
 	},
 	"gap": {
+	  "type": "object"
+	},
+	"margin": {
 	  "type": "object"
 	}
   },

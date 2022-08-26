@@ -1,1 +1,10 @@
-[]
+[
+	{
+		"name": "ystdb/column",
+		"isValid": true,
+		"attributes": {
+			"className": "is-padding-small"
+		},
+		"innerBlocks": []
+	}
+]

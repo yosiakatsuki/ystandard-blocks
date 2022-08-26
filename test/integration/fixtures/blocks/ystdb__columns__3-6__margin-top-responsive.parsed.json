@@ -1,7 +1,21 @@
 [
 	{
 		"blockName": "ystdb/columns",
-		"attrs": {},
+		"attrs": {
+			"colPc": 2,
+			"colTablet": 2,
+			"margin": {
+				"desktop": {
+					"top": "10px"
+				},
+				"tablet": {
+					"top": "20px"
+				},
+				"mobile": {
+					"top": "30px"
+				}
+			}
+		},
 		"innerBlocks": [
 			{
 				"blockName": "ystdb/column",
@@ -11,9 +25,9 @@
 						"blockName": "core/paragraph",
 						"attrs": {},
 						"innerBlocks": [],
-						"innerHTML": "\n\t\t<p>Column 1</p>\n\t\t",
+						"innerHTML": "\n\t\t<p>カラム 1</p>\n\t\t",
 						"innerContent": [
-							"\n\t\t<p>Column 1</p>\n\t\t"
+							"\n\t\t<p>カラム 1</p>\n\t\t"
 						]
 					}
 				],
@@ -32,30 +46,9 @@
 						"blockName": "core/paragraph",
 						"attrs": {},
 						"innerBlocks": [],
-						"innerHTML": "\n\t\t<p>Column 2</p>\n\t\t",
+						"innerHTML": "\n\t\t<p>カラム 2</p>\n\t\t",
 						"innerContent": [
-							"\n\t\t<p>Column 2</p>\n\t\t"
-						]
-					}
-				],
-				"innerHTML": "\n\t<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\"></div></div>\n\t",
-				"innerContent": [
-					"\n\t<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\">",
-					null,
-					"</div></div>\n\t"
-				]
-			},
-			{
-				"blockName": "ystdb/column",
-				"attrs": {},
-				"innerBlocks": [
-					{
-						"blockName": "core/paragraph",
-						"attrs": {},
-						"innerBlocks": [],
-						"innerHTML": "\n\t\t<p>Column 3</p>\n\t\t",
-						"innerContent": [
-							"\n\t\t<p>Column 3</p>\n\t\t"
+							"\n\t\t<p>カラム 2</p>\n\t\t"
 						]
 					}
 				],
@@ -67,11 +60,9 @@
 				]
 			}
 		],
-		"innerHTML": "\n<div class=\"ystdb-columns-wrap\"><div class=\"ystdb-columns has-1-columns has-3-columns--tablet has-3-columns--pc\">\n\n\t\n\n\t</div></div>\n",
+		"innerHTML": "\n<div class=\"ystdb-columns-wrap\"><div class=\"ystdb-columns has-1-columns has-2-columns--tablet has-2-columns--pc\" style=\"--ystdb-margin-top-desktop:10px;--ystdb-margin-top-tablet:20px;--ystdb-margin-top-mobile:30px\">\n\n\t</div></div>\n",
 		"innerContent": [
-			"\n<div class=\"ystdb-columns-wrap\"><div class=\"ystdb-columns has-1-columns has-3-columns--tablet has-3-columns--pc\">",
-			null,
-			"\n\n\t",
+			"\n<div class=\"ystdb-columns-wrap\"><div class=\"ystdb-columns has-1-columns has-2-columns--tablet has-2-columns--pc\" style=\"--ystdb-margin-top-desktop:10px;--ystdb-margin-top-tablet:20px;--ystdb-margin-top-mobile:30px\">",
 			null,
 			"\n\n\t",
 			null,

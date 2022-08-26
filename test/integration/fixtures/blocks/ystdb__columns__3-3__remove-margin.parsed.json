@@ -14,7 +14,9 @@
 						"attrs": {},
 						"innerBlocks": [],
 						"innerHTML": "\n\t\t<p>Column 1</p>\n\t\t",
-						"innerContent": ["\n\t\t<p>Column 1</p>\n\t\t"]
+						"innerContent": [
+							"\n\t\t<p>Column 1</p>\n\t\t"
+						]
 					}
 				],
 				"innerHTML": "\n\t<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\"></div></div>\n\t",
@@ -33,7 +35,9 @@
 						"attrs": {},
 						"innerBlocks": [],
 						"innerHTML": "\n\t\t<p>Column 2</p>\n\t\t",
-						"innerContent": ["\n\t\t<p>Column 2</p>\n\t\t"]
+						"innerContent": [
+							"\n\t\t<p>Column 2</p>\n\t\t"
+						]
 					}
 				],
 				"innerHTML": "\n\t<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\"></div></div>\n\t",
@@ -52,7 +56,9 @@
 						"attrs": {},
 						"innerBlocks": [],
 						"innerHTML": "\n\t\t<p>Column 3</p>\n\t\t",
-						"innerContent": ["\n\t\t<p>Column 3</p>\n\t\t"]
+						"innerContent": [
+							"\n\t\t<p>Column 3</p>\n\t\t"
+						]
 					}
 				],
 				"innerHTML": "\n\t<div class=\"ystdb-column\"><div class=\"ystdb-column-block-container\"></div></div>\n\t",

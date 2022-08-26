@@ -26,6 +26,9 @@ export default function ( { attributes } ) {
 
 	const blockProps = useBlockProps.save( {
 		className: 'ystdb-columns-wrap',
+		style: {
+			...getResponsiveMarginStyle( margin ),
+		},
 	} );
 
 	const columnBlocksProps = {
@@ -42,7 +45,6 @@ export default function ( { attributes } ) {
 		style: {
 			...getColumnGapCustomProperty( gap ),
 			...getResponsiveGapStyle( gap ),
-			...getResponsiveMarginStyle( margin ),
 		},
 	};
 

@@ -1,1 +1,33 @@
-[]
+[
+	{
+		"name": "ystdb/columns",
+		"isValid": true,
+		"attributes": {
+			"colPc": 3,
+			"colTablet": 3,
+			"colMobile": 1,
+			"reverse": false,
+			"removeMargin": false
+		},
+		"innerBlocks": [
+			{
+				"name": "ystdb/column",
+				"isValid": true,
+				"attributes": {},
+				"innerBlocks": []
+			},
+			{
+				"name": "ystdb/column",
+				"isValid": true,
+				"attributes": {},
+				"innerBlocks": []
+			},
+			{
+				"name": "ystdb/column",
+				"isValid": true,
+				"attributes": {},
+				"innerBlocks": []
+			}
+		]
+	}
+]

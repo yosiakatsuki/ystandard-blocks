@@ -48,6 +48,9 @@ function ColumnsEditContainer( props ) {
 
 	const blockProps = useBlockProps( {
 		className: classnames( className, 'ystdb-columns-wrap' ),
+		style: {
+			...getResponsiveMarginStyle( margin ),
+		},
 	} );
 
 	const columnsProps = {
@@ -63,7 +66,6 @@ function ColumnsEditContainer( props ) {
 		style: {
 			...getColumnGapCustomProperty( gap ),
 			...getResponsiveGapStyle( gap ),
-			...getResponsiveMarginStyle( margin ),
 		},
 	};
 

@@ -3,26 +3,18 @@
 		"name": "ystdb/columns",
 		"isValid": true,
 		"attributes": {
-			"colPc": 3,
-			"colTablet": 3,
+			"colPc": 2,
+			"colTablet": 2,
 			"colMobile": 1,
 			"reverse": false,
-			"gap": {
+			"removeMargin": false,
+			"margin": {
 				"desktop": {
-					"top": "0px",
-					"right": "0px",
-					"bottom": "0px",
-					"left": "0px"
+					"top": "10px"
 				}
 			}
 		},
 		"innerBlocks": [
-			{
-				"name": "ystdb/column",
-				"isValid": true,
-				"attributes": {},
-				"innerBlocks": []
-			},
 			{
 				"name": "ystdb/column",
 				"isValid": true,
