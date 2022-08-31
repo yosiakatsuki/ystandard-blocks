@@ -27,7 +27,7 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 
 	return (
 		<PanelBody
-			title={ __( 'リンク設定β', 'ystandard-blocks' ) }
+			title={ __( 'リンク設定(β)', 'ystandard-blocks' ) }
 			initialOpen={ false }
 		>
 			<BaseControl>
