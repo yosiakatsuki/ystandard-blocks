@@ -11,6 +11,7 @@ module.exports = {
 	testPathIgnorePatterns: [
 		'/.git/',
 		'/node_modules/',
+		'/integration/',
 		'<rootDir>/js/',
 		'<rootDir>/library/',
 		'<rootDir>/vendor/',
