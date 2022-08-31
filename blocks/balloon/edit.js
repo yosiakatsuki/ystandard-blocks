@@ -1,11 +1,7 @@
 import classnames from 'classnames';
-import {
-	alignmentsControls,
-	balloonTypes,
-	balloonPositions,
-	avatarSizes,
-} from './config';
-
+/**
+ * WordPress.
+ */
 import {
 	RichText,
 	BlockControls,
@@ -16,10 +12,7 @@ import {
 	ContrastChecker,
 	MediaUpload,
 } from '@wordpress/block-editor';
-import { select } from '@wordpress/data';
-
 import { Fragment } from '@wordpress/element';
-
 import {
 	PanelBody,
 	BaseControl,
@@ -29,15 +22,25 @@ import {
 	ToolbarGroup,
 	ToolbarItem,
 	DropdownMenu,
-	ColorPalette,
 } from '@wordpress/components';
-
 import { compose } from '@wordpress/compose';
-
 import { __, _x } from '@wordpress/i18n';
+/**
+ * Plugin.
+ */
 import ManualLink from '../../src/js/admin-menu/components/manual-link';
 import { getBlockEditorConfig, getComponentConfig } from '@aktk/helper/config';
 import HorizonButtons from '@aktk/components/horizon-buttons';
+import ColorPaletteControl from '@aktk/components/color-palette-control';
+/**
+ * Block.
+ */
+import {
+	alignmentsControls,
+	balloonTypes,
+	balloonPositions,
+	avatarSizes,
+} from './config';
 
 function Balloon( props ) {
 	const {
@@ -84,8 +87,6 @@ function Balloon( props ) {
 
 	const activeAlignment = alignmentsControls[ verticalAlign ];
 	const defaultAlignmentControl = alignmentsControls[ DEFAULT_CONTROL ];
-
-	const { colors } = select( 'core/block-editor' ).getSettings();
 
 	const wrapClasses = classnames( className, 'ystdb-balloon', {
 		[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
@@ -481,26 +482,30 @@ function Balloon( props ) {
 						id={ 'avatar-border-color' }
 						label={ __( 'アバター画像枠色', 'ystandard-blocks' ) }
 					>
-						<ColorPalette
-							colors={ colors }
-							disableCustomColors={ false }
+						<ColorPaletteControl
+							label={ __(
+								'アバター画像枠色',
+								'ystandard-blocks'
+							) }
+							value={ avatarBorderColor.color }
 							onChange={ ( color ) => {
 								setAvatarBorderColor( color );
 							} }
-							value={ avatarBorderColor.color }
 						/>
 					</BaseControl>
 					<BaseControl
 						id={ 'avatar-text-color' }
 						label={ __( 'アバター名文字色', 'ystandard-blocks' ) }
 					>
-						<ColorPalette
-							colors={ colors }
-							disableCustomColors={ false }
+						<ColorPaletteControl
+							label={ __(
+								'アバター名文字色',
+								'ystandard-blocks'
+							) }
+							value={ avatarNameColor.color }
 							onChange={ ( color ) => {
 								setAvatarNameColor( color );
 							} }
-							value={ avatarNameColor.color }
 						/>
 					</BaseControl>
 				</PanelBody>
@@ -518,29 +523,27 @@ function Balloon( props ) {
 						id={ 'balloon-background' }
 						label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
 					>
-						<ColorPalette
-							colors={ colors }
-							disableCustomColors={ false }
+						<ColorPaletteControl
+							label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
+							value={ backgroundColor.color }
 							onChange={ ( color ) => {
 								setBackgroundColor( color );
 								if ( ! isSerifBorder ) {
 									setBalloonBorderColor( color );
 								}
 							} }
-							value={ backgroundColor.color }
 						/>
 					</BaseControl>
 					<BaseControl
 						id={ 'balloon-text-color' }
 						label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
 					>
-						<ColorPalette
-							colors={ colors }
-							disableCustomColors={ false }
+						<ColorPaletteControl
+							label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
+							value={ textColor.color }
 							onChange={ ( color ) => {
 								setTextColor( color );
 							} }
-							value={ textColor.color }
 						/>
 						<ContrastChecker
 							backgroundColor={ backgroundColor.color }
@@ -556,13 +559,15 @@ function Balloon( props ) {
 									'ystandard-blocks'
 								) }
 							>
-								<ColorPalette
-									colors={ colors }
-									disableCustomColors={ false }
+								<ColorPaletteControl
+									label={ __(
+										'吹き出し枠線色',
+										'ystandard-blocks'
+									) }
+									value={ balloonBorderColor.color }
 									onChange={ ( color ) => {
 										setBalloonBorderColor( color );
 									} }
-									value={ balloonBorderColor.color }
 								/>
 							</BaseControl>
 							<BaseControl>

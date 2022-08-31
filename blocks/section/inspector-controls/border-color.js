@@ -1,23 +1,21 @@
-import { BaseControl, ColorPalette } from '@wordpress/components';
-import { select } from '@wordpress/data';
+import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 const BorderColor = ( props ) => {
 	const { borderColor, setBorderColor } = props;
-	const { colors } = select( 'core/block-editor' ).getSettings();
 
 	return (
 		<BaseControl
 			id={ 'border-color' }
 			label={ __( '枠線色', 'ystandard-blocks' ) }
 		>
-			<ColorPalette
-				colors={ colors }
-				disableCustomColors={ false }
+			<ColorPaletteControl
+				label={ __( '枠線色', 'ystandard-blocks' ) }
+				value={ borderColor.color }
 				onChange={ ( color ) => {
 					setBorderColor( color );
 				} }
-				value={ borderColor.color }
 			/>
 		</BaseControl>
 	);

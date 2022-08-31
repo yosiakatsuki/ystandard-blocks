@@ -1,5 +1,7 @@
 import classnames from 'classnames';
-
+/**
+ * WordPress.
+ */
 import {
 	RichText,
 	BlockControls,
@@ -10,8 +12,6 @@ import {
 	withFontSizes,
 } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
-import HeadingToolbar from './heading-toolbar';
-import { select } from '@wordpress/data';
 
 import { Fragment } from '@wordpress/element';
 
@@ -19,7 +19,6 @@ import {
 	PanelBody,
 	BaseControl,
 	ToggleControl,
-	ColorPalette,
 	RangeControl,
 	SelectControl,
 	Button,
@@ -32,7 +31,9 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
-import { positions, cssUnit, fontWeightList } from './config';
+/**
+ * Plugin.
+ */
 import getNum from '@aktk/util/_getNum';
 import ResponsiveFontSizeControl from '@aktk/components/responsive-font-size/index';
 import {
@@ -40,6 +41,12 @@ import {
 	getFontResponsiveStyle,
 } from '@aktk/components/responsive-font-size/functions';
 import HorizonButtons from '@aktk/components/horizon-buttons';
+import ColorPaletteControl from '@aktk/components/color-palette-control';
+/**
+ * Blocks.
+ */
+import { positions, cssUnit, fontWeightList } from './config';
+import HeadingToolbar from './heading-toolbar';
 
 function customHeading( props ) {
 	const {
@@ -97,7 +104,6 @@ function customHeading( props ) {
 	} = attributes;
 
 	const TagName = 'h' + level;
-	const { colors } = select( 'core/block-editor' ).getSettings();
 	const showSubText = isSelected || '' !== subText;
 
 	const MARGIN_MIN_SIZE = -120;
@@ -419,15 +425,14 @@ function customHeading( props ) {
 					initialOpen={ true }
 				>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'Text Color' ) }
+						{ __( '文字色', 'ystandard-blocks' ) }
 					</div>
-					<ColorPalette
-						colors={ colors }
-						disableCustomColors={ false }
+					<ColorPaletteControl
+						label={ __( '文字色', 'ystandard-blocks' ) }
+						value={ textColor.color }
 						onChange={ ( color ) => {
 							setTextColor( color );
 						} }
-						value={ textColor.color }
 					/>
 					<div className="ystdb-inspector-controls__label">
 						{ __( '文字サイズ', 'ystandard-blocks' ) }
@@ -670,13 +675,15 @@ function customHeading( props ) {
 					<div className="ystdb-inspector-controls__label">
 						{ __( 'サブテキスト文字の色', 'ystandard-blocks' ) }
 					</div>
-					<ColorPalette
-						colors={ colors }
-						disableCustomColors={ false }
+					<ColorPaletteControl
+						label={ __(
+							'サブテキスト文字の色',
+							'ystandard-blocks'
+						) }
+						value={ subTextColor.color }
 						onChange={ ( color ) => {
 							setSubTextColor( color );
 						} }
-						value={ subTextColor.color }
 					/>
 					<div className="ystdb-inspector-controls__label">
 						{ __( 'サブテキスト文字サイズ', 'ystandard-blocks' ) }
@@ -825,13 +832,12 @@ function customHeading( props ) {
 					<div className="ystdb-inspector-controls__label">
 						{ __( '区切り線の色', 'ystandard-blocks' ) }
 					</div>
-					<ColorPalette
-						colors={ colors }
-						disableCustomColors={ false }
+					<ColorPaletteControl
+						label={ __( '区切り線の色', 'ystandard-blocks' ) }
+						value={ dividerColor.color }
 						onChange={ ( color ) => {
 							setDividerColor( color );
 						} }
-						value={ dividerColor.color }
 					/>
 					<div className="ystdb-inspector-controls__label">
 						{ __( '区切り線用画像', 'ystandard-blocks' ) }

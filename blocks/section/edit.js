@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import { select } from '@wordpress/data';
 import { compose, withState } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import {
@@ -19,7 +18,6 @@ import {
 	Button,
 	SVG,
 	Path,
-	ColorPalette,
 	ToggleControl,
 	SelectControl,
 	FocalPointPicker,
@@ -51,6 +49,7 @@ import * as BlockOptions from './inspector-controls';
 import * as ToolbarControls from './block-controls';
 import { getBorderProperty } from './function/border';
 import PanelContentWidth from './inspector-controls/content-width';
+import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 const SectionEdit = ( props ) => {
 	const {
@@ -135,8 +134,6 @@ const SectionEdit = ( props ) => {
 	} = attributes;
 	const { gradientClass, gradientValue, setGradient } =
 		__experimentalUseGradient();
-
-	const { colors } = select( 'core/block-editor' ).getSettings();
 
 	const rangeStep = 1;
 	const rangeMax = 200;
@@ -1434,13 +1431,12 @@ const SectionEdit = ( props ) => {
 							id={ 'text-color' }
 							label={ __( '文字色', 'ystandard-blocks' ) }
 						>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __( '文字色', 'ystandard-blocks' ) }
+								value={ textColor.color }
 								onChange={ ( color ) => {
 									setTextColor( color );
 								} }
-								value={ textColor.color }
 							/>
 							<ContrastChecker
 								backgroundColor={ backgroundColor.color }
@@ -1539,13 +1535,12 @@ const SectionEdit = ( props ) => {
 							id={ 'divider-top-color' }
 							label={ __( '色', 'ystandard-blocks' ) }
 						>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __( '色', 'ystandard-blocks' ) }
+								value={ dividerColorTop.color }
 								onChange={ ( color ) => {
 									setDividerColorTop( color );
 								} }
-								value={ dividerColorTop.color }
 							/>
 						</BaseControl>
 					</PanelBody>
@@ -1647,13 +1642,12 @@ const SectionEdit = ( props ) => {
 							id={ 'divider-bottom-color' }
 							label={ __( '色', 'ystandard-blocks' ) }
 						>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __( '色', 'ystandard-blocks' ) }
+								value={ dividerColorBottom.color }
 								onChange={ ( color ) => {
 									setDividerColorBottom( color );
 								} }
-								value={ dividerColorBottom.color }
 							/>
 						</BaseControl>
 					</PanelBody>

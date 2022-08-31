@@ -1,15 +1,14 @@
-import { ystdbConfig } from '@aktk/config/config.js';
 import classnames from 'classnames';
-
+/**
+ * WordPress.
+ */
 import {
 	URLInput,
 	InspectorControls,
 	withColors,
 	MediaUpload,
 } from '@wordpress/block-editor';
-
 import { Fragment } from '@wordpress/element';
-
 import {
 	PanelBody,
 	BaseControl,
@@ -19,16 +18,17 @@ import {
 	RangeControl,
 	RadioControl,
 	Button,
-	ColorPalette,
 } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
+import { compose } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
+/**
+ * Blocks.
+ */
+import { ystdbConfig } from '@aktk/config/config.js';
+import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 import { cardTypes, imageSizes, imageTypes, imageAlignList } from './config';
-
-import { compose } from '@wordpress/compose';
-import { select } from '@wordpress/data';
-
-import { __ } from '@wordpress/i18n';
 
 const cardEdit = ( props ) => {
 	const {
@@ -66,8 +66,6 @@ const cardEdit = ( props ) => {
 	} = attributes;
 
 	const ALLOWED_MEDIA_TYPES = [ 'image' ];
-
-	const { colors } = select( 'core/block-editor' ).getSettings();
 
 	const selectedCardType = cardType ? cardType : 'horizon';
 	const selectedImageType = imageType ? imageType : 'fitText';
@@ -198,24 +196,28 @@ const cardEdit = ( props ) => {
 							<div className="ystdb-inspector-controls__label">
 								{ __( 'カード背景色', 'ystandard-blocks' ) }
 							</div>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __(
+									'カード背景色',
+									'ystandard-blocks'
+								) }
+								value={ backgroundColor.color }
 								onChange={ ( color ) => {
 									setBackgroundColor( color );
 								} }
-								value={ backgroundColor.color }
 							/>
 							<div className="ystdb-inspector-controls__label">
 								{ __( 'カード枠線', 'ystandard-blocks' ) }
 							</div>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __(
+									'カード枠線色',
+									'ystandard-blocks'
+								) }
+								value={ borderColor.color }
 								onChange={ ( color ) => {
 									setBorderColor( color );
 								} }
-								value={ borderColor.color }
 							/>
 						</BaseControl>
 					</PanelBody>
@@ -241,13 +243,15 @@ const cardEdit = ( props ) => {
 							<div className="ystdb-inspector-controls__label">
 								{ __( 'タイトル文字色', 'ystandard-blocks' ) }
 							</div>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __(
+									'タイトル文字色',
+									'ystandard-blocks'
+								) }
+								value={ titleColor.color }
 								onChange={ ( color ) => {
 									setTitleColor( color );
 								} }
-								value={ titleColor.color }
 							/>
 						</BaseControl>
 					</PanelBody>
@@ -414,13 +418,15 @@ const cardEdit = ( props ) => {
 							<div className="ystdb-inspector-controls__label">
 								{ __( '概要 文字色', 'ystandard-blocks' ) }
 							</div>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __(
+									'概要 文字色',
+									'ystandard-blocks'
+								) }
+								value={ dscrColor.color }
 								onChange={ ( color ) => {
 									setDscrColor( color );
 								} }
-								value={ dscrColor.color }
 							/>
 						</BaseControl>
 					</PanelBody>
@@ -444,13 +450,15 @@ const cardEdit = ( props ) => {
 							<div className="ystdb-inspector-controls__label">
 								{ __( 'ドメイン 文字色', 'ystandard-blocks' ) }
 							</div>
-							<ColorPalette
-								colors={ colors }
-								disableCustomColors={ false }
+							<ColorPaletteControl
+								label={ __(
+									'ドメイン 文字色',
+									'ystandard-blocks'
+								) }
+								value={ domainColor.color }
 								onChange={ ( color ) => {
 									setDomainColor( color );
 								} }
-								value={ domainColor.color }
 							/>
 						</BaseControl>
 					</PanelBody>

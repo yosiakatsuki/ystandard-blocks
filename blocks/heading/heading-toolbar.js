@@ -16,7 +16,7 @@ class HeadingToolbar extends Component {
 		const isActive = targetLevel === selectedLevel;
 		return {
 			icon: this.getIcon( targetLevel, isActive ),
-			title: `${ __( 'Heading' ) } ${ targetLevel }`,
+			title: `${ __( '見出し', 'ystandard-blocks' ) } ${ targetLevel }`,
 			isActive,
 			onClick: () => onChange( targetLevel ),
 		};
