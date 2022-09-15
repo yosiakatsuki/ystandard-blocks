@@ -228,6 +228,9 @@ class Card_Block extends Dynamic_Block {
 		if ( ! shortcode_exists( 'ystdb_card' ) ) {
 			add_shortcode( 'ystdb_card', [ $this, 'do_shortcode' ] );
 		}
+		add_filter( 'ys_editor_blog_card_embed_css', [ $this, 'add_editor_embed_css' ] );
+		add_filter( 'ys_cache_count_key__blog_card', [ $this, 'blog_card_cache_key' ] );
+		add_filter( 'ys_cache_delete_key__blog_card', [ $this, 'blog_card_cache_key' ] );
 	}
 
 	/**
@@ -283,6 +286,22 @@ class Card_Block extends Dynamic_Block {
 		);
 
 		return $this->render( $args );
+	}
+
+	/**
+	 * ブロックエディターでのブログカード展開用CSS追加
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_editor_embed_css( $css ) {
+		$path = YSTDB_PATH . '/css/blocks/card/block.css';
+		if ( file_exists( $path ) ) {
+			$css .= file_get_contents( $path );
+		}
+
+		return $css;
 	}
 
 	/**
@@ -831,6 +850,19 @@ class Card_Block extends Dynamic_Block {
 	 */
 	private function is_horizon( $type ) {
 		return 'horizon' === $type || 'fixed-horizon' === $type;
+	}
+
+	/**
+	 * キャッシュ管理画面用 キャッシュキー
+	 *
+	 * @param string $key Key.
+	 *
+	 * @return string
+	 */
+	public function blog_card_cache_key( $key ) {
+		$key = self::CACHE_KEY;
+
+		return $key;
 	}
 }
 
