@@ -87,6 +87,9 @@ export const attributes = {
 	customDomainColor: {
 		type: 'string',
 	},
+	caption: {
+		type: 'string',
+	},
 };
 /**
  * supports

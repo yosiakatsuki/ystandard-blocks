@@ -7,6 +7,7 @@ import {
 	InspectorControls,
 	withColors,
 	MediaUpload,
+	RichText,
 } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import {
@@ -63,6 +64,7 @@ const cardEdit = ( props ) => {
 		dscrCharCount,
 		dscr,
 		showDomain,
+		caption,
 	} = attributes;
 
 	const ALLOWED_MEDIA_TYPES = [ 'image' ];
@@ -466,7 +468,7 @@ const cardEdit = ( props ) => {
 
 				<div className={ classnames( 'ystdb-card__edit' ) }>
 					{ ( isSelected || ! url ) && (
-						<Fragment>
+						<div className={ 'ystdb-card__edit-container' }>
 							<URLInput
 								label={ __(
 									'リンクを作成するURLを入力',
@@ -484,19 +486,36 @@ const cardEdit = ( props ) => {
 								isFullWidth
 								hasBorder
 							/>
-						</Fragment>
+						</div>
 					) }
 					{ !! url && (
-						<div
-							className={ classnames( 'ystdb-card__preview', {
-								'is-rendered': url,
-							} ) }
-						>
-							<ServerSideRender
-								block="ystdb/card"
-								attributes={ attributes }
-							/>
-						</div>
+						<>
+							<div
+								className={ classnames( 'ystdb-card__preview', {
+									'is-rendered': url,
+								} ) }
+							>
+								<ServerSideRender
+									block="ystdb/card"
+									attributes={ attributes }
+								/>
+								{ ( ! RichText.isEmpty( caption ) ||
+									isSelected ) && (
+									<RichText
+										tagName="div"
+										className={
+											'ystdb-card__caption is-editor'
+										}
+										placeholder={ __( 'キャプション' ) }
+										value={ caption }
+										onChange={ ( value ) => {
+											setAttributes( { caption: value } );
+										} }
+										allowedFormats={ false }
+									/>
+								) }
+							</div>
+						</>
 					) }
 				</div>
 			</Fragment>

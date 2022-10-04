@@ -7,7 +7,6 @@
 	border-style: solid;
 	border-color: global.$color__border-gray-light;
 
-
 	&.is-horizon,
 	&.is-fixed-horizon {
 		width: 100%;
@@ -165,4 +164,13 @@
 	margin-top: 1em;
 	font-size: 0.5em;
 	color: var(--font-gray);
+}
+
+.ystdb-card__caption {
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	color: var(--font-gray);
+	font-style: italic;
+	font-size: .9em;
+	text-align: center;
 }

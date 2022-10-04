@@ -115,6 +115,9 @@ class Card_Block extends Dynamic_Block {
 		'customDomainColor'     => [
 			'type' => 'string',
 		],
+		'caption'               => [
+			'type' => 'string',
+		],
 	];
 
 	/**
@@ -198,6 +201,7 @@ class Card_Block extends Dynamic_Block {
 		'customDscrColor'       => 'custom_dscr_color',
 		'domainColor'           => 'domain_color',
 		'customDomainColor'     => 'custom_domain_color',
+		'caption'               => 'caption',
 	];
 
 	/**
@@ -465,6 +469,11 @@ class Card_Block extends Dynamic_Block {
 		$args['domain_style'] = Utility::get_style_attr( $style );
 
 		/**
+		 * キャプション
+		 */
+		$caption = isset( $args['caption'] ) ? $args['caption'] : '';
+
+		/**
 		 * HTML作成
 		 */
 		$output = $this->get_template_part( $args, 'template-parts/ystdb/card' );
@@ -496,7 +505,16 @@ class Card_Block extends Dynamic_Block {
 			</div>
 		</div>
 		<?php
-		return ob_get_clean();
+		$blog_card = ob_get_clean();
+		if ( ! empty( $caption ) ) {
+			$blog_card = sprintf(
+				'<div class="ystdb-card__wrap">%s<div class="ystdb-card__caption">%s</div></div>',
+				$blog_card,
+				esc_html( $caption )
+			);
+		}
+
+		return $blog_card;
 	}
 
 	/**
