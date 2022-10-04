@@ -4,10 +4,12 @@
 .is-selected {
 
 	.ystdb-card__edit {
+
 		* {
 			box-sizing: border-box;
 		}
 	}
+
 	.ystdb-card__edit-container {
 		background-color: global.$color__bg-gray-light;
 	}
@@ -39,6 +41,7 @@
 			display: none;
 		}
 	}
+
 	.ystdb-card__caption {
 		display: none;
 
