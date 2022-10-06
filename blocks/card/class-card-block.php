@@ -507,10 +507,11 @@ class Card_Block extends Dynamic_Block {
 		<?php
 		$blog_card = ob_get_clean();
 		if ( ! empty( $caption ) ) {
+			$caption   = nl2br( esc_html( wp_strip_all_tags( $caption ) ) );
 			$blog_card = sprintf(
 				'<div class="ystdb-card__wrap">%s<div class="ystdb-card__caption">%s</div></div>',
 				$blog_card,
-				esc_html( $caption )
+				$caption
 			);
 		}
 

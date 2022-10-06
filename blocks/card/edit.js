@@ -7,7 +7,6 @@ import {
 	InspectorControls,
 	withColors,
 	MediaUpload,
-	RichText,
 } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import {
@@ -464,6 +463,26 @@ const cardEdit = ( props ) => {
 							/>
 						</BaseControl>
 					</PanelBody>
+					<PanelBody
+						initialOpen={ false }
+						title={ __( 'キャプション', 'ystandard-blocks' ) }
+					>
+						<BaseControl>
+							<TextareaControl
+								value={ caption }
+								onChange={ ( value ) => {
+									setAttributes( { caption: value } );
+								} }
+								help={
+									<div className={ `ystdb-info__small` }>
+										カード下に表示されるキャプションテキストを設定できます。
+										<br />
+										※HTMLは使用できません。HTMLを入力しても表示時に削除されます。
+									</div>
+								}
+							/>
+						</BaseControl>
+					</PanelBody>
 				</InspectorControls>
 
 				<div className={ classnames( 'ystdb-card__edit' ) }>
@@ -499,21 +518,6 @@ const cardEdit = ( props ) => {
 									block="ystdb/card"
 									attributes={ attributes }
 								/>
-								{ ( ! RichText.isEmpty( caption ) ||
-									isSelected ) && (
-									<RichText
-										tagName="div"
-										className={
-											'ystdb-card__caption is-editor'
-										}
-										placeholder={ __( 'キャプション' ) }
-										value={ caption }
-										onChange={ ( value ) => {
-											setAttributes( { caption: value } );
-										} }
-										allowedFormats={ false }
-									/>
-								) }
 							</div>
 						</>
 					) }
