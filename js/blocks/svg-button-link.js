@@ -326,7 +326,7 @@ const SVGButtonLinkEdit = props => {
         isPreview: true
       });
     }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Preview'))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Disabled.Consumer, null, () => isPreview ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('プレビュー', 'ystandard-blocks'))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Disabled.Consumer, null, () => isPreview ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: 'ystdb-btn-link__preview'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default()), {
     block: "ystdb/svg-button-link",
@@ -340,7 +340,7 @@ const SVGButtonLinkEdit = props => {
     placeholder: 'HTMLを入力...',
     "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('HTML')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.PanelColorSettings, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Color settings', 'ystandard-blocks'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('色設定', 'ystandard-blocks'),
     initialOpen: true,
     colorSettings: [{
       value: backgroundColor.color,
@@ -356,7 +356,7 @@ const SVGButtonLinkEdit = props => {
       onChange: color => {
         setTextColor(color);
       },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Text Color', 'ystandard-blocks')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('文字色', 'ystandard-blocks')
     }]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('枠線設定', 'ystandard-blocks')

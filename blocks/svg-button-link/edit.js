@@ -102,7 +102,9 @@ const SVGButtonLinkEdit = ( props ) => {
 								setState( { isPreview: true } );
 							} }
 						>
-							<span>{ __( 'Preview' ) }</span>
+							<span>
+								{ __( 'プレビュー', 'ystandard-blocks' ) }
+							</span>
 						</ToolbarButton>
 					</ToolbarGroup>
 				</BlockControls>
@@ -130,7 +132,7 @@ const SVGButtonLinkEdit = ( props ) => {
 				</Disabled.Consumer>
 				<InspectorControls>
 					<PanelColorSettings
-						title={ __( 'Color settings', 'ystandard-blocks' ) }
+						title={ __( '色設定', 'ystandard-blocks' ) }
 						initialOpen={ true }
 						colorSettings={ [
 							{
@@ -151,7 +153,7 @@ const SVGButtonLinkEdit = ( props ) => {
 								onChange: ( color ) => {
 									setTextColor( color );
 								},
-								label: __( 'Text Color', 'ystandard-blocks' ),
+								label: __( '文字色', 'ystandard-blocks' ),
 							},
 						] }
 					/>
