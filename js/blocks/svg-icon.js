@@ -289,18 +289,32 @@ function svgIcon(props) {
       });
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.PanelColorSettings, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Color settings', 'ystandard-blocks'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('色設定', 'ystandard-blocks'),
     initialOpen: true,
     colorSettings: [{
       value: textColor.color,
       onChange: color => {
         setTextColor(color);
       },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Text Color', 'ystandard-blocks')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('文字色', 'ystandard-blocks')
     }]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('サイズ設定', 'ystandard-blocks')
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('アイコン設定', 'ystandard-blocks')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.BaseControl, {
+    id: 'icon',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('アイコン', 'ystandard-blocks')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon_select_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    panelTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('アイコン選択', 'ystandard-blocks'),
+    iconControlTitle: '',
+    selectedIcon: icon,
+    onClickIcon: value => {
+      setAttributes({
+        icon: value
+      });
+    },
+    align: 'center',
+    isFloat: true
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('アイコンサイズ', 'ystandard-blocks'),
     value: fontSize.size,
     onChange: font => {
@@ -316,9 +330,22 @@ function svgIcon(props) {
       });
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Link settings')
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Open in new tab'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('リンク設定', 'ystandard-blocks')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.URLInput, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('リンク', 'ystandard-blocks'),
+    className: "ystdb-icon__link",
+    value: url
+    /* eslint-disable jsx-a11y/no-autofocus */,
+    autoFocus: false
+    /* eslint-enable jsx-a11y/no-autofocus */,
+    onChange: value => setAttributes({
+      url: value
+    }),
+    disableSuggestions: !isSelected,
+    isFullWidth: true,
+    hasBorder: true
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('新しいタブで開く', 'ystandard-blocks'),
     onChange: value => {
       const newLinkTarget = value ? '_blank' : undefined;
       let updatedRel = rel;
@@ -334,7 +361,7 @@ function svgIcon(props) {
     },
     checked: linkTarget === '_blank'
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Link rel'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('リンクrel', 'ystandard-blocks'),
     value: rel || '',
     onChange: value => {
       setAttributes({
@@ -350,33 +377,13 @@ function svgIcon(props) {
     className: 'ystdb-icon__select--no-icon'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: 'info'
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "\u30A2\u30A4\u30B3\u30F3\u3092\u9078\u629E"))), !!isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "ystdb-icon__select-start"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon_select_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    panelTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('アイコン選択', 'ystandard-blocks'),
-    iconControlTitle: '',
-    selectedIcon: icon,
-    onClickIcon: value => {
-      setAttributes({
-        icon: value
-      });
-    },
-    align: 'center',
-    isFloat: true
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.URLInput, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_8__.__)('Link'),
-    className: "ystdb-icon__link",
-    value: url
-    /* eslint-disable jsx-a11y/no-autofocus */,
-    autoFocus: false
-    /* eslint-enable jsx-a11y/no-autofocus */,
-    onChange: value => setAttributes({
-      url: value
-    }),
-    disableSuggestions: !isSelected,
-    isFullWidth: true,
-    hasBorder: true
-  })));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      fontSize: '12px',
+      lineHeight: 1.2,
+      marginTop: '0.5em'
+    }
+  }, "\u300C\u30A2\u30A4\u30B3\u30F3\u8A2D\u5B9A\u300D\u304B\u3089", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "\u30A2\u30A4\u30B3\u30F3\u3092\u9078\u629E"))));
 }
 /* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_7__.compose)([(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.withColors)({
   textColor: 'color'

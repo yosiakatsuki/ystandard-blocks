@@ -18,6 +18,7 @@ import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
+	BaseControl,
 	ToggleControl,
 	TextControl,
 	SelectControl,
@@ -66,7 +67,7 @@ function svgIcon( props ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Color settings', 'ystandard-blocks' ) }
+					title={ __( '色設定', 'ystandard-blocks' ) }
 					initialOpen={ true }
 					colorSettings={ [
 						{
@@ -74,11 +75,29 @@ function svgIcon( props ) {
 							onChange: ( color ) => {
 								setTextColor( color );
 							},
-							label: __( 'Text Color', 'ystandard-blocks' ),
+							label: __( '文字色', 'ystandard-blocks' ),
 						},
 					] }
 				/>
-				<PanelBody title={ __( 'サイズ設定', 'ystandard-blocks' ) }>
+				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
+					<BaseControl
+						id={ 'icon' }
+						label={ __( 'アイコン', 'ystandard-blocks' ) }
+					>
+						<SVGIconSelect
+							panelTitle={ __(
+								'アイコン選択',
+								'ystandard-blocks'
+							) }
+							iconControlTitle={ '' }
+							selectedIcon={ icon }
+							onClickIcon={ ( value ) => {
+								setAttributes( { icon: value } );
+							} }
+							align={ 'center' }
+							isFloat={ true }
+						/>
+					</BaseControl>
 					<FontSizePicker
 						label={ __( 'アイコンサイズ', 'ystandard-blocks' ) }
 						value={ fontSize.size }
@@ -95,9 +114,23 @@ function svgIcon( props ) {
 						} }
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Link settings' ) }>
+				<PanelBody title={ __( 'リンク設定', 'ystandard-blocks' ) }>
+					<URLInput
+						label={ __( 'リンク', 'ystandard-blocks' ) }
+						className="ystdb-icon__link"
+						value={ url }
+						/* eslint-disable jsx-a11y/no-autofocus */
+						autoFocus={ false }
+						/* eslint-enable jsx-a11y/no-autofocus */
+						onChange={ ( value ) =>
+							setAttributes( { url: value } )
+						}
+						disableSuggestions={ ! isSelected }
+						isFullWidth
+						hasBorder
+					/>
 					<ToggleControl
-						label={ __( 'Open in new tab' ) }
+						label={ __( '新しいタブで開く', 'ystandard-blocks' ) }
 						onChange={ ( value ) => {
 							const newLinkTarget = value ? '_blank' : undefined;
 
@@ -119,7 +152,7 @@ function svgIcon( props ) {
 						checked={ linkTarget === '_blank' }
 					/>
 					<TextControl
-						label={ __( 'Link rel' ) }
+						label={ __( 'リンクrel', 'ystandard-blocks' ) }
 						value={ rel || '' }
 						onChange={ ( value ) => {
 							setAttributes( { rel: value } );
@@ -134,44 +167,20 @@ function svgIcon( props ) {
 				) : (
 					<div className={ 'ystdb-icon__select--no-icon' }>
 						<SVGIcon name={ 'info' } />
-						<div>アイコンを選択</div>
+						<div
+							style={ {
+								fontSize: '12px',
+								lineHeight: 1.2,
+								marginTop: '0.5em',
+							} }
+						>
+							「アイコン設定」から
+							<br />
+							アイコンを選択
+						</div>
 					</div>
 				) }
 			</div>
-
-			{ !! isSelected && (
-				<div>
-					<div className="ystdb-icon__select-start">
-						<SVGIconSelect
-							panelTitle={ __(
-								'アイコン選択',
-								'ystandard-blocks'
-							) }
-							iconControlTitle={ '' }
-							selectedIcon={ icon }
-							onClickIcon={ ( value ) => {
-								setAttributes( { icon: value } );
-							} }
-							align={ 'center' }
-							isFloat={ true }
-						/>
-					</div>
-					<URLInput
-						label={ __( 'Link' ) }
-						className="ystdb-icon__link"
-						value={ url }
-						/* eslint-disable jsx-a11y/no-autofocus */
-						autoFocus={ false }
-						/* eslint-enable jsx-a11y/no-autofocus */
-						onChange={ ( value ) =>
-							setAttributes( { url: value } )
-						}
-						disableSuggestions={ ! isSelected }
-						isFullWidth
-						hasBorder
-					/>
-				</div>
-			) }
 		</Fragment>
 	);
 }
