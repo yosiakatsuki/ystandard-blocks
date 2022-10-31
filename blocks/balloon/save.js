@@ -5,6 +5,15 @@ import {
 	getFontSizeClass,
 	RichText,
 } from '@wordpress/block-editor';
+import { getBlockEditorConfig } from '@aktk/helper/config.js';
+
+export const getBalloonBackground = ( type, backgroundColor ) => {
+	const balloonOption = getBlockEditorConfig( 'balloonOption', {} );
+	if ( 'serif-border' === type && ! backgroundColor ) {
+		return balloonOption.contentBackground;
+	}
+	return backgroundColor;
+};
 
 export default function save( { attributes } ) {
 	const {
@@ -137,7 +146,10 @@ export default function save( { attributes } ) {
 	 * @type {{backgroundColor: *}}
 	 */
 	const balloonBodyStyles = {
-		backgroundColor: customBackgroundColor,
+		backgroundColor: getBalloonBackground(
+			balloonType,
+			customBackgroundColor
+		),
 		borderColor: customBalloonBorderColor,
 		borderWidth: isSerifBorder ? balloonBorderWidth : undefined,
 	};
@@ -171,9 +183,12 @@ export default function save( { attributes } ) {
 		'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
 	} );
 
-	const serifTrianglePosition = 6 - balloonBorderWidth;
+	const serifTrianglePosition = 7 - balloonBorderWidth;
 	const serifTriangleStyle = {
-		backgroundColor: customBackgroundColor,
+		backgroundColor: getBalloonBackground(
+			balloonType,
+			customBackgroundColor
+		),
 		borderColor: customBalloonBorderColor,
 		borderWidth: balloonBorderWidth,
 		right:

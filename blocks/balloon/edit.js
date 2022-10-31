@@ -41,6 +41,7 @@ import {
 	balloonPositions,
 	avatarSizes,
 } from './config';
+import { getBalloonBackground } from './save';
 
 function Balloon( props ) {
 	const {
@@ -82,7 +83,6 @@ function Balloon( props ) {
 
 	const defaultAvatar = getComponentConfig( 'defaultAvatar' ).url;
 	const balloonImages = getBlockEditorConfig( 'balloonImages', [] );
-	const balloonOption = getBlockEditorConfig( 'balloonOption', {} );
 	const isSerifBorder = 'serif-border' === balloonType;
 
 	const activeAlignment = alignmentsControls[ verticalAlign ];
@@ -163,7 +163,10 @@ function Balloon( props ) {
 	 * @type {{backgroundColor: *}}
 	 */
 	const balloonBodyStyles = {
-		backgroundColor: backgroundColor.color,
+		backgroundColor: getBalloonBackground(
+			balloonType,
+			backgroundColor.color
+		),
 		borderColor: balloonBorderColor.color,
 		borderWidth: isSerifBorder ? balloonBorderWidth : undefined,
 	};
@@ -198,7 +201,10 @@ function Balloon( props ) {
 
 	const serifTrianglePosition = 6 - balloonBorderWidth;
 	const serifTriangleStyle = {
-		backgroundColor: backgroundColor.color,
+		backgroundColor: getBalloonBackground(
+			balloonType,
+			backgroundColor.color
+		),
 		borderColor: balloonBorderColor.color,
 		borderWidth: balloonBorderWidth,
 		right:
@@ -328,21 +334,21 @@ function Balloon( props ) {
 										}
 										isPrimary={ balloonType === item.value }
 										onClick={ () => {
-											if (
-												'serif-border' === item.value &&
-												'serif-border' !== balloonType
-											) {
-												setBackgroundColor(
-													balloonOption.contentBackground
-												);
-											}
-											if (
-												'serif-border' !== item.value
-											) {
-												setBalloonBorderColor(
-													backgroundColor.color
-												);
-											}
+											// if (
+											// 	'serif-border' === item.value &&
+											// 	'serif-border' !== balloonType
+											// ) {
+											// 	setBackgroundColor(
+											// 		balloonOption.contentBackground
+											// 	);
+											// }
+											// if (
+											// 	'serif-border' !== item.value
+											// ) {
+											// 	setBalloonBorderColor(
+											// 		backgroundColor.color
+											// 	);
+											// }
 											setAttributes( {
 												balloonType: item.value,
 											} );
@@ -354,6 +360,89 @@ function Balloon( props ) {
 							} ) }
 						</HorizonButtons>
 					</BaseControl>
+					<BaseControl
+						id={ 'balloon-font-size' }
+						label={ __( '文字サイズ', 'ystandard-blocks' ) }
+					>
+						<FontSizePicker
+							__nextHasNoMarginBottom
+							value={ fontSize.size }
+							onChange={ ( font ) => {
+								setFontSize( font );
+							} }
+						/>
+					</BaseControl>
+					<BaseControl
+						id={ 'balloon-background' }
+						label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
+					>
+						<ColorPaletteControl
+							label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
+							value={ backgroundColor.color }
+							onChange={ ( color ) => {
+								setBackgroundColor( color );
+								if ( ! isSerifBorder ) {
+									setBalloonBorderColor( color );
+								}
+							} }
+						/>
+					</BaseControl>
+					<BaseControl
+						id={ 'balloon-text-color' }
+						label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
+					>
+						<ColorPaletteControl
+							label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
+							value={ textColor.color }
+							onChange={ ( color ) => {
+								setTextColor( color );
+							} }
+						/>
+						<ContrastChecker
+							backgroundColor={ backgroundColor.color }
+							textColor={ textColor.color }
+						/>
+					</BaseControl>
+					{ isSerifBorder && (
+						<>
+							<BaseControl
+								id={ 'serif-border-color' }
+								label={ __(
+									'吹き出し枠線色',
+									'ystandard-blocks'
+								) }
+							>
+								<ColorPaletteControl
+									label={ __(
+										'吹き出し枠線色',
+										'ystandard-blocks'
+									) }
+									value={ balloonBorderColor.color }
+									onChange={ ( color ) => {
+										setBalloonBorderColor( color );
+									} }
+								/>
+							</BaseControl>
+							<BaseControl>
+								<RangeControl
+									value={ balloonBorderWidth }
+									label={ __(
+										'吹き出し枠線太さ',
+										'ystandard-blocks'
+									) }
+									min={ 1 }
+									max={ 4 }
+									initialPosition={ 1 }
+									allowReset
+									onChange={ ( value ) => {
+										setAttributes( {
+											balloonBorderWidth: value,
+										} );
+									} }
+								/>
+							</BaseControl>
+						</>
+					) }
 				</PanelBody>
 				<PanelBody
 					title={ __( '登録済みアバター画像', 'ystandard-blocks' ) }
@@ -508,88 +597,6 @@ function Balloon( props ) {
 							} }
 						/>
 					</BaseControl>
-				</PanelBody>
-				<PanelBody title={ __( '吹き出し設定', 'ystandard-blocks' ) }>
-					<BaseControl>
-						<FontSizePicker
-							label={ __( '文字サイズ', 'ystandard-blocks' ) }
-							value={ fontSize.size }
-							onChange={ ( font ) => {
-								setFontSize( font );
-							} }
-						/>
-					</BaseControl>
-					<BaseControl
-						id={ 'balloon-background' }
-						label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
-					>
-						<ColorPaletteControl
-							label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
-							value={ backgroundColor.color }
-							onChange={ ( color ) => {
-								setBackgroundColor( color );
-								if ( ! isSerifBorder ) {
-									setBalloonBorderColor( color );
-								}
-							} }
-						/>
-					</BaseControl>
-					<BaseControl
-						id={ 'balloon-text-color' }
-						label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
-					>
-						<ColorPaletteControl
-							label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
-							value={ textColor.color }
-							onChange={ ( color ) => {
-								setTextColor( color );
-							} }
-						/>
-						<ContrastChecker
-							backgroundColor={ backgroundColor.color }
-							textColor={ textColor.color }
-						/>
-					</BaseControl>
-					{ isSerifBorder && (
-						<>
-							<BaseControl
-								id={ 'serif-border-color' }
-								label={ __(
-									'吹き出し枠線色',
-									'ystandard-blocks'
-								) }
-							>
-								<ColorPaletteControl
-									label={ __(
-										'吹き出し枠線色',
-										'ystandard-blocks'
-									) }
-									value={ balloonBorderColor.color }
-									onChange={ ( color ) => {
-										setBalloonBorderColor( color );
-									} }
-								/>
-							</BaseControl>
-							<BaseControl>
-								<RangeControl
-									value={ balloonBorderWidth }
-									label={ __(
-										'吹き出し枠線太さ',
-										'ystandard-blocks'
-									) }
-									min={ 1 }
-									max={ 4 }
-									initialPosition={ 1 }
-									allowReset
-									onChange={ ( value ) => {
-										setAttributes( {
-											balloonBorderWidth: value,
-										} );
-									} }
-								/>
-							</BaseControl>
-						</>
-					) }
 				</PanelBody>
 			</InspectorControls>
 
