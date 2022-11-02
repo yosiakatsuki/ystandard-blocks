@@ -37,13 +37,15 @@
 }
 
 .ystdb-icon__link {
+
 	.components-base-control__label {
 		display: block;
 		color: #666 !important;
 		font-size: 0.8em;
 		text-align: left !important;
 	}
-	input[type=text].block-editor-url-input__input {
+
+	input[type="text"].block-editor-url-input__input {
 		border: 1px solid #757575;
 	}
 }
