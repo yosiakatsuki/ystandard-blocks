@@ -1,0 +1,66 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "preserve",
+        "target": "esnext",
+        "module": "esnext",
+		"lib": [
+            "dom",
+            "esnext"
+        ],
+        "declaration": true,
+        "declarationMap": true,
+        "composite": true,
+        "emitDeclarationOnly": true,
+        "isolatedModules": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "importsNotUsedAsValues": "error",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./",
+        "paths": {
+            "@aktk/function/*": [
+                "src/block-function/*"
+            ],
+            "@aktk/config/*": [
+                "src/js/config/*"
+            ],
+            "@aktk/components/*": [
+                "src/block-components/*"
+            ],
+            "@aktk/controls/*": [
+                "src/block-controls/*"
+            ],
+            "@aktk/api": [
+                "src/block-api/index"
+            ],
+            "@aktk/api/*": [
+                "src/block-api/*"
+            ],
+            "@aktk/helper/*": [
+                "src/js/helper/*"
+            ],
+            "@aktk/plugin-settings/components/*": [
+                "src/plugin-settings/components/*"
+            ],
+            "@aktk/plugin-settings/function/*": [
+                "src/plugin-settings/function/*"
+            ]
+        },
+		"typeRoots": [
+            "./src/types",
+            "./node_modules/@types"
+        ],
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+}
