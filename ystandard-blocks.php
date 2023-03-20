@@ -3,15 +3,15 @@
  * Plugin Name: yStandard Blocks
  * Plugin URI: https://wp-ystandard.com/
  * Description: 無料WordPressテーマ「yStandard」用ブロック追加プラグイン.
- * Version: 3.8.1
+ * Version: 3.9.0-beta-1
  * Author: yosiakatsuki
  * Author URI: https://yosiakatsuki.net
  * License: GPL-2.0 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: ystandard-blocks
  * Domain Path: languages
- * Requires PHP: 7.3.0
- * Requires at least: 5.9
+ * Requires PHP: 7.4.0
+ * Requires at least: 6.1
  * Update URI : https://wp-ystandard.com/plugins/ystandard-blocks/
  *
  * @package yStandard_blocks
