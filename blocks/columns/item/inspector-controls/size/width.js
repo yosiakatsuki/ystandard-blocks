@@ -7,18 +7,18 @@ import { __ } from '@wordpress/i18n';
  */
 import ResponsiveValues from '@aktk/components/responsive-values';
 
-const Width = ( { attributes, setAttributes } ) => {
+const Width = ({ attributes, setAttributes }) => {
 	const { width } = attributes;
-	const handleWidthOnChange = ( value ) => {
-		setAttributes( {
+	const handleWidthOnChange = (value) => {
+		setAttributes({
 			width: value,
-		} );
+		});
 	};
 	return (
 		<ResponsiveValues
-			label={ __( 'カラム幅', 'ystandard-blocks' ) }
-			values={ width }
-			onChange={ handleWidthOnChange }
+			label={__('カラム幅', 'ystandard-blocks')}
+			values={width}
+			onChange={handleWidthOnChange}
 		/>
 	);
 };

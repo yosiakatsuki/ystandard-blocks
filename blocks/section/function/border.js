@@ -1,15 +1,15 @@
 import { toNumber } from '@aktk/helper/number';
 
-export const getBorderProperty = ( attributes ) => {
+export const getBorderProperty = (attributes) => {
 	const { borderSize, borderStyle, customBorderColor } = attributes;
 
-	const borderSizeNum = toNumber( parseInt( borderSize ), undefined );
+	const borderSizeNum = toNumber(parseInt(borderSize), undefined);
 	const style = borderStyle ?? 'solid';
 
-	if ( ! borderSizeNum ) {
+	if (!borderSizeNum) {
 		return undefined;
 	}
-	if ( ! customBorderColor ) {
+	if (!customBorderColor) {
 		return {
 			borderWidth: borderSize,
 			borderStyle: style,
@@ -17,6 +17,6 @@ export const getBorderProperty = ( attributes ) => {
 	}
 
 	return {
-		border: `${ borderSize } ${ style } ${ customBorderColor }`.trim(),
+		border: `${borderSize} ${style} ${customBorderColor}`.trim(),
 	};
 };

@@ -22,7 +22,7 @@ export const attributes = {
 		source: 'attribute',
 		selector: '.ystdb-balloon__avatar-image',
 		attribute: 'src',
-		default: getComponentConfig( 'defaultAvatar' ).url,
+		default: getComponentConfig('defaultAvatar').url,
 	},
 	avatarAlt: {
 		type: 'string',
@@ -105,37 +105,37 @@ export const supports = {
 
 export const balloonTypes = [
 	{
-		label: __( '会話', 'ystandard-blocks' ),
+		label: __('会話', 'ystandard-blocks'),
 		value: 'serif',
 	},
 	{
-		label: __( '会話(枠線)', 'ystandard-blocks' ),
+		label: __('会話(枠線)', 'ystandard-blocks'),
 		value: 'serif-border',
 	},
 	{
-		label: __( '考え中', 'ystandard-blocks' ),
+		label: __('考え中', 'ystandard-blocks'),
 		value: 'think',
 	},
 ];
 
 export const balloonPositions = [
 	{
-		label: __( '右', 'ystandard-blocks' ),
+		label: __('右', 'ystandard-blocks'),
 		value: 'right',
 	},
 	{
-		label: __( '左', 'ystandard-blocks' ),
+		label: __('左', 'ystandard-blocks'),
 		value: 'left',
 	},
 ];
 
 export const avatarSizes = [
 	{
-		label: __( '小', 'ystandard-blocks' ),
+		label: __('小', 'ystandard-blocks'),
 		value: 'small',
 	},
 	{
-		label: __( '大', 'ystandard-blocks' ),
+		label: __('大', 'ystandard-blocks'),
 		value: 'large',
 	},
 ];
@@ -179,14 +179,14 @@ export const alignTop = (
 export const alignmentsControls = {
 	top: {
 		icon: alignTop,
-		title: _x( '上揃え', 'ystandard-blocks' ),
+		title: _x('上揃え', 'ystandard-blocks'),
 	},
 	center: {
 		icon: alignCenter,
-		title: _x( '中央揃え', 'ystandard-blocks' ),
+		title: _x('中央揃え', 'ystandard-blocks'),
 	},
 	bottom: {
 		icon: alignBottom,
-		title: _x( '下揃え', 'ystandard-blocks' ),
+		title: _x('下揃え', 'ystandard-blocks'),
 	},
 };

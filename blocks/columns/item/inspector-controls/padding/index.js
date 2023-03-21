@@ -8,18 +8,18 @@ import { __ } from '@wordpress/i18n';
  */
 import ResponsivePaddingControl from '@aktk/controls/responsive-padding-control';
 
-const PanelPadding = ( { attributes, setAttributes } ) => {
+const PanelPadding = ({ attributes, setAttributes }) => {
 	const { padding } = attributes;
-	const handlePaddingOnChange = ( value ) => {
-		setAttributes( {
+	const handlePaddingOnChange = (value) => {
+		setAttributes({
 			padding: value,
-		} );
+		});
 	};
 	return (
-		<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
+		<PanelBody title={__('余白設定', 'ystandard-blocks')}>
 			<ResponsivePaddingControl
-				values={ padding }
-				onChange={ handlePaddingOnChange }
+				values={padding}
+				onChange={handlePaddingOnChange}
 			/>
 		</PanelBody>
 	);

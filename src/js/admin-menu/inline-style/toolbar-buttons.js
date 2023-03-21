@@ -31,145 +31,144 @@ import { Save } from 'react-feather';
 
 const ToolbarButtons = () => {
 	const { options, buttons, setButtons, isUpdating, updateOption } =
-		useContext( InlineStyleContext );
+		useContext(InlineStyleContext);
 
-	const fontUnit = getComponentConfig( 'fontUnit' );
+	const fontUnit = getComponentConfig('fontUnit');
 
-	const [ currentButtonIndex, setCurrentButtonIndex ] = useState( 0 );
-	const [ isDeleteModalOpen, setIsDeleteModalOpen ] = useState( false );
-	const previewText = `インラインスタイル${ currentButtonIndex + 1 }`;
+	const [currentButtonIndex, setCurrentButtonIndex] = useState(0);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const previewText = `インラインスタイル${currentButtonIndex + 1}`;
 
-	const openDeleteModal = () => setIsDeleteModalOpen( true );
-	const closeDeleteModal = () => setIsDeleteModalOpen( false );
+	const openDeleteModal = () => setIsDeleteModalOpen(true);
+	const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
 	const getDefaultStyle = (
 		name,
 		defaultValue = undefined,
 		device = 'style'
 	) => {
-		const style =
-			schema.inlineStyle.buttons[ currentButtonIndex ][ device ];
-		if ( ! style || ! style.hasOwnProperty( name ) ) {
+		const style = schema.inlineStyle.buttons[currentButtonIndex][device];
+		if (!style || !style.hasOwnProperty(name)) {
 			return defaultValue;
 		}
-		return style[ name ];
+		return style[name];
 	};
 
-	const getCurrentValue = ( key ) => {
-		const current = getProperty( buttons, currentButtonIndex );
-		return getProperty( current, key );
+	const getCurrentValue = (key) => {
+		const current = getProperty(buttons, currentButtonIndex);
+		return getProperty(current, key);
 	};
 
-	const updateButtonsOption = ( value ) => {
-		setButtons( {
+	const updateButtonsOption = (value) => {
+		setButtons({
 			...buttons,
 			...{
-				[ currentButtonIndex ]: {
-					...getProperty( buttons, currentButtonIndex ),
+				[currentButtonIndex]: {
+					...getProperty(buttons, currentButtonIndex),
 					...value,
 				},
 			},
-		} );
+		});
 	};
 
-	const updateButtonsStyle = ( value, device = 'style' ) => {
-		const currentStyle = getCurrentValue( device );
-		updateButtonsOption( {
-			[ device ]: {
+	const updateButtonsStyle = (value, device = 'style') => {
+		const currentStyle = getCurrentValue(device);
+		updateButtonsOption({
+			[device]: {
 				...currentStyle,
 				...value,
 			},
-		} );
+		});
 	};
 
 	const resetOption = () => {
 		const newValue = {
 			...buttons,
 			...{
-				[ currentButtonIndex ]: {
-					...schema.inlineStyle.buttons[ currentButtonIndex ],
+				[currentButtonIndex]: {
+					...schema.inlineStyle.buttons[currentButtonIndex],
 				},
 			},
 		};
-		setButtons( newValue );
+		setButtons(newValue);
 		return newValue;
 	};
 
 	const getMarkerStyle = () => {
-		const style = getCurrentValue( 'style' );
-		let weight = getProperty( style, '@markerWeight', 30 );
+		const style = getCurrentValue('style');
+		let weight = getProperty(style, '@markerWeight', 30);
 		weight = weight ? 100 - weight : '';
-		let opacity = getProperty( style, '@markerOpacity', 60 );
+		let opacity = getProperty(style, '@markerOpacity', 60);
 		opacity = opacity ? opacity / 100 : '';
-		let color = getProperty( style, '@markerColor' );
-		color = color ? hex2rgb( color ) : '';
-		if ( ! weight || ! opacity || ! color ) {
+		let color = getProperty(style, '@markerColor');
+		color = color ? hex2rgb(color) : '';
+		if (!weight || !opacity || !color) {
 			return { background: undefined };
 		}
-		const rgb = `${ color[ 0 ] },${ color[ 1 ] },${ color[ 2 ] }`;
+		const rgb = `${color[0]},${color[1]},${color[2]}`;
 		return {
-			background: `linear-gradient(transparent ${ weight }%, rgba(${ rgb }, ${ opacity }) ${ weight }%)`,
+			background: `linear-gradient(transparent ${weight}%, rgba(${rgb}, ${opacity}) ${weight}%)`,
 		};
 	};
 
-	const previewStyle = getCurrentValue( 'enable' )
+	const previewStyle = getCurrentValue('enable')
 		? {
-				...getCurrentValue( 'style' ),
+				...getCurrentValue('style'),
 				...getMarkerStyle(),
 		  }
 		: {};
-	const previewClassName = `ystdb-inline--${ currentButtonIndex + 1 }`;
+	const previewClassName = `ystdb-inline--${currentButtonIndex + 1}`;
 
 	return (
 		<>
 			<div className="ystdb-menu-toolbar-buttons__select">
 				<div className="ystdb__horizon-buttons">
-					{ options.buttons.map( ( item, index ) => {
+					{options.buttons.map((item, index) => {
 						return (
 							<Button
-								key={ index }
-								isSecondary={ currentButtonIndex !== index }
-								isPrimary={ currentButtonIndex === index }
-								onClick={ () => {
-									setCurrentButtonIndex( index );
-								} }
+								key={index}
+								isSecondary={currentButtonIndex !== index}
+								isPrimary={currentButtonIndex === index}
+								onClick={() => {
+									setCurrentButtonIndex(index);
+								}}
 							>
-								{ `ボタン ${ index + 1 }` }
+								{`ボタン ${index + 1}`}
 							</Button>
 						);
-					} ) }
+					})}
 				</div>
 				<div className="ystdb-components-section">
 					<div className="ystdb-menu-component-columns is-reverse">
 						<div className="ystdb-menu-component-columns__item">
-							<PanelBody title={ '基本設定' }>
+							<PanelBody title={'基本設定'}>
 								<BaseControl
-									id={ 'enable' }
-									label={ 'ボタンの有効化' }
+									id={'enable'}
+									label={'ボタンの有効化'}
 								>
 									<ToggleControl
-										label={ 'ボタンを有効にする' }
-										checked={ getCurrentValue( 'enable' ) }
-										onChange={ ( value ) => {
-											updateButtonsOption( {
+										label={'ボタンを有効にする'}
+										checked={getCurrentValue('enable')}
+										onChange={(value) => {
+											updateButtonsOption({
 												enable: value,
-											} );
-										} }
+											});
+										}}
 									/>
 								</BaseControl>
 							</PanelBody>
-							{ getCurrentValue( 'enable' ) && (
+							{getCurrentValue('enable') && (
 								<>
-									<PanelBody title={ '大きさ・スタイル' }>
+									<PanelBody title={'大きさ・スタイル'}>
 										<BaseControl
-											id={ 'font-size' }
-											label={ 'サイズ' }
+											id={'font-size'}
+											label={'サイズ'}
 										>
 											<div className="ystdb-component-responsive__container">
 												<div className="ystdb-component-responsive__item">
-													<Icon icon={ desktop } />
+													<Icon icon={desktop} />
 													<UnitControl
-														value={ getStyle(
+														value={getStyle(
 															getCurrentValue(
 																'style'
 															),
@@ -177,24 +176,20 @@ const ToolbarButtons = () => {
 															getDefaultStyle(
 																'font-size'
 															)
-														) }
-														onChange={ (
-															value
-														) => {
-															updateButtonsStyle(
-																{
-																	'font-size':
-																		value,
-																}
-															);
-														} }
-														units={ fontUnit }
+														)}
+														onChange={(value) => {
+															updateButtonsStyle({
+																'font-size':
+																	value,
+															});
+														}}
+														units={fontUnit}
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
-													<Icon icon={ tablet } />
+													<Icon icon={tablet} />
 													<UnitControl
-														value={ getStyle(
+														value={getStyle(
 															getCurrentValue(
 																'tabletStyle'
 															),
@@ -204,10 +199,8 @@ const ToolbarButtons = () => {
 																undefined,
 																'tabletStyle'
 															)
-														) }
-														onChange={ (
-															value
-														) => {
+														)}
+														onChange={(value) => {
 															updateButtonsStyle(
 																{
 																	'font-size':
@@ -215,14 +208,14 @@ const ToolbarButtons = () => {
 																},
 																'tabletStyle'
 															);
-														} }
-														units={ fontUnit }
+														}}
+														units={fontUnit}
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
-													<Icon icon={ mobile } />
+													<Icon icon={mobile} />
 													<UnitControl
-														value={ getStyle(
+														value={getStyle(
 															getCurrentValue(
 																'mobileStyle'
 															),
@@ -232,10 +225,8 @@ const ToolbarButtons = () => {
 																undefined,
 																'mobileStyle'
 															)
-														) }
-														onChange={ (
-															value
-														) => {
+														)}
+														onChange={(value) => {
 															updateButtonsStyle(
 																{
 																	'font-size':
@@ -243,211 +234,211 @@ const ToolbarButtons = () => {
 																},
 																'mobileStyle'
 															);
-														} }
-														units={ fontUnit }
+														}}
+														units={fontUnit}
 													/>
 												</div>
 											</div>
 										</BaseControl>
 										<BaseControl
-											id={ 'font-weight' }
-											label={ '太さ' }
+											id={'font-weight'}
+											label={'太さ'}
 										>
 											<SelectControl
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+												value={getStyle(
+													getCurrentValue('style'),
 													'font-weight',
 													getDefaultStyle(
 														'font-weight'
 													)
-												) }
-												options={ getComponentConfig(
+												)}
+												options={getComponentConfig(
 													'fontWeight'
-												) }
-												onChange={ ( value ) => {
-													updateButtonsStyle( {
+												)}
+												onChange={(value) => {
+													updateButtonsStyle({
 														'font-weight': value,
-													} );
-												} }
+													});
+												}}
 											/>
 										</BaseControl>
 										<BaseControl
-											id={ 'font-style' }
-											label={ 'スタイル' }
+											id={'font-style'}
+											label={'スタイル'}
 										>
 											<SelectControl
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+												value={getStyle(
+													getCurrentValue('style'),
 													'font-style',
 													getDefaultStyle(
 														'font-style'
 													)
-												) }
-												options={ getComponentConfig(
+												)}
+												options={getComponentConfig(
 													'fontStyle'
-												) }
-												onChange={ ( value ) => {
-													updateButtonsStyle( {
+												)}
+												onChange={(value) => {
+													updateButtonsStyle({
 														'font-style': value,
-													} );
-												} }
+													});
+												}}
 											/>
 										</BaseControl>
 									</PanelBody>
-									<PanelBody title={ '色' }>
+									<PanelBody title={'色'}>
 										<BaseControl
-											id={ 'font-color' }
-											label={ '文字色' }
+											id={'font-color'}
+											label={'文字色'}
 										>
 											<ColorPalette
-												onChange={ ( color ) => {
-													updateButtonsStyle( {
+												onChange={(color) => {
+													updateButtonsStyle({
 														color,
-													} );
-												} }
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+													});
+												}}
+												value={getStyle(
+													getCurrentValue('style'),
 													'color',
-													getDefaultStyle( 'color' )
-												) }
+													getDefaultStyle('color')
+												)}
 											/>
 										</BaseControl>
 									</PanelBody>
-									<PanelBody title={ 'マーカー' }>
+									<PanelBody title={'マーカー'}>
 										<BaseControl
-											id={ 'marker-color' }
-											label={ '色' }
+											id={'marker-color'}
+											label={'色'}
 										>
 											<ColorPalette
-												onChange={ ( color ) => {
-													updateButtonsStyle( {
+												onChange={(color) => {
+													updateButtonsStyle({
 														'@markerColor': color,
 														...getMarkerStyle(),
-													} );
-												} }
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+													});
+												}}
+												value={getStyle(
+													getCurrentValue('style'),
 													'@markerColor',
 													getDefaultStyle(
 														'@markerColor'
 													)
-												) }
+												)}
 											/>
 										</BaseControl>
 										<BaseControl
-											id={ 'marker-opacity' }
-											label={ '濃さ(%)' }
+											id={'marker-opacity'}
+											label={'濃さ(%)'}
 										>
 											<RangeControl
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+												value={getStyle(
+													getCurrentValue('style'),
 													'@markerOpacity',
 													getDefaultStyle(
 														'@markerOpacity'
 													)
-												) }
-												onChange={ ( value ) => {
-													updateButtonsStyle( {
+												)}
+												onChange={(value) => {
+													updateButtonsStyle({
 														'@markerOpacity': value,
 														...getMarkerStyle(),
-													} );
-												} }
-												min={ 10 }
-												max={ 100 }
+													});
+												}}
+												min={10}
+												max={100}
 											/>
 										</BaseControl>
 										<BaseControl
-											id={ 'marker-weight' }
-											label={ '太さ(%)' }
+											id={'marker-weight'}
+											label={'太さ(%)'}
 										>
 											<RangeControl
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+												value={getStyle(
+													getCurrentValue('style'),
 													'@markerWeight',
 													getDefaultStyle(
 														'@markerWeight'
 													)
-												) }
-												onChange={ ( value ) => {
-													updateButtonsStyle( {
+												)}
+												onChange={(value) => {
+													updateButtonsStyle({
 														'@markerWeight': value,
 														...getMarkerStyle(),
-													} );
-												} }
-												min={ 5 }
-												max={ 95 }
+													});
+												}}
+												min={5}
+												max={95}
 											/>
 										</BaseControl>
 									</PanelBody>
 									<PanelBody
-										title={ '上級者向け設定' }
-										initialOpen={ false }
+										title={'上級者向け設定'}
+										initialOpen={false}
 									>
 										<BaseControl
-											id={ 'font-family' }
-											label={ 'フォント(font-family)' }
+											id={'font-family'}
+											label={'フォント(font-family)'}
 										>
 											<TextControl
-												placeholder={ 'sans-serif' }
-												value={ getStyle(
-													getCurrentValue( 'style' ),
+												placeholder={'sans-serif'}
+												value={getStyle(
+													getCurrentValue('style'),
 													'font-family',
 													getDefaultStyle(
 														'font-family'
 													)
-												) }
-												onChange={ ( value ) => {
-													updateButtonsStyle( {
+												)}
+												onChange={(value) => {
+													updateButtonsStyle({
 														'font-family': value,
-													} );
-												} }
+													});
+												}}
 											/>
 										</BaseControl>
 									</PanelBody>
 								</>
-							) }
+							)}
 							<div className="ystdb-components-section">
 								<UpdateButton
-									key={ 'update' }
-									onClick={ () => {
+									key={'update'}
+									onClick={() => {
 										updateOption();
-									} }
-									disabled={ isUpdating }
+									}}
+									disabled={isUpdating}
 								>
 									<Save
-										className={ 'ystdb-button-icon' }
-										style={ { fill: 'none' } }
-									/>{ ' ' }
+										className={'ystdb-button-icon'}
+										style={{ fill: 'none' }}
+									/>{' '}
 									設定を保存
 								</UpdateButton>
 							</div>
 							<div className="ystdb-components-section">
 								<DeleteButton
 									isSmall
-									onClick={ () => {
+									onClick={() => {
 										openDeleteModal();
-									} }
-									disabled={ isUpdating }
+									}}
+									disabled={isUpdating}
 								>
 									設定を初期化
 								</DeleteButton>
 							</div>
-							{ isDeleteModalOpen && (
+							{isDeleteModalOpen && (
 								<Modal
 									title="確認"
-									onRequestClose={ closeDeleteModal }
-									shouldCloseOnClickOutside={ false }
-									isDismissible={ false }
+									onRequestClose={closeDeleteModal}
+									shouldCloseOnClickOutside={false}
+									isDismissible={false}
 								>
-									<p>{ `ボタン ${
+									<p>{`ボタン ${
 										currentButtonIndex + 1
-									} を初期化しますか？` }</p>
+									} を初期化しますか？`}</p>
 									<div className="ystdb-components-section">
 										<div className="ystdb-menu-component-columns">
 											<div className="ystdb-menu-component-columns__item">
 												<DeleteButton
 													isPrimary
-													onClick={ () => {
+													onClick={() => {
 														updateOption(
 															{
 																buttons:
@@ -456,8 +447,8 @@ const ToolbarButtons = () => {
 															'設定を初期化しました。'
 														);
 														closeDeleteModal();
-													} }
-													disabled={ isUpdating }
+													}}
+													disabled={isUpdating}
 												>
 													初期化
 												</DeleteButton>
@@ -465,7 +456,7 @@ const ToolbarButtons = () => {
 											<div className="ystdb-menu-component-columns__item">
 												<CancelButton
 													isSecondary
-													onClick={ closeDeleteModal }
+													onClick={closeDeleteModal}
 												>
 													キャンセル
 												</CancelButton>
@@ -473,16 +464,16 @@ const ToolbarButtons = () => {
 										</div>
 									</div>
 								</Modal>
-							) }
+							)}
 						</div>
 						<div className="ystdb-menu-component-columns__item">
 							<Preview>
 								<span
-									className={ previewClassName }
-									style={ previewStyle }
+									className={previewClassName}
+									style={previewStyle}
 									contentEditable="true"
 								>
-									{ previewText }
+									{previewText}
 								</span>
 							</Preview>
 						</div>

@@ -7,15 +7,15 @@ import {
 } from '@wordpress/block-editor';
 import { getBlockEditorConfig } from '@aktk/helper/config.js';
 
-export const getBalloonBackground = ( type, backgroundColor ) => {
-	const balloonOption = getBlockEditorConfig( 'balloonOption', {} );
-	if ( 'serif-border' === type && ! backgroundColor ) {
+export const getBalloonBackground = (type, backgroundColor) => {
+	const balloonOption = getBlockEditorConfig('balloonOption', {});
+	if ('serif-border' === type && !backgroundColor) {
 		return balloonOption.contentBackground;
 	}
 	return backgroundColor;
 };
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		className,
 		textColor,
@@ -43,14 +43,14 @@ export default function save( { attributes } ) {
 		verticalAlign,
 	} = attributes;
 
-	const avatarNameColorClass = getColorClassName( 'color', avatarNameColor );
+	const avatarNameColorClass = getColorClassName('color', avatarNameColor);
 	const avatarBorderColorClass = getColorClassName(
 		'border-color',
 		avatarBorderColor
 	);
 
-	const textClass = getColorClassName( 'color', textColor );
-	const fontSizeClass = getFontSizeClass( fontSize );
+	const textClass = getColorClassName('color', textColor);
+	const fontSizeClass = getFontSizeClass(fontSize);
 	const backgroundColorClass = getColorClassName(
 		'background-color',
 		backgroundColor
@@ -67,30 +67,30 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const wrapClasses = classnames( className, 'ystdb-balloon', {
-		[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
-		[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
-	} );
+	const wrapClasses = classnames(className, 'ystdb-balloon', {
+		[`is-vertically-aligned-${verticalAlign}`]: verticalAlign,
+		[`is-balloon-position-${balloonPosition}`]: balloonPosition,
+	});
 
 	/**
 	 * アバター画像カラムクラス
 	 *
 	 * @type {string}
 	 */
-	const avatarWrapClasses = classnames( 'ystdb-balloon__avatar', {
-		[ `is-size-${ avatarSize }` ]: avatarSize,
-	} );
+	const avatarWrapClasses = classnames('ystdb-balloon__avatar', {
+		[`is-size-${avatarSize}`]: avatarSize,
+	});
 
 	/**
 	 * アバター画像クラス
 	 *
 	 * @type {string}
 	 */
-	const avatarClasses = classnames( 'ystdb-balloon__avatar-image', {
+	const avatarClasses = classnames('ystdb-balloon__avatar-image', {
 		'has-border-color': avatarBorderColorClass || customAvatarBorderColor,
-		[ avatarBorderColorClass ]: avatarBorderColorClass,
+		[avatarBorderColorClass]: avatarBorderColorClass,
 		'has-border': 0 < avatarBorderWidth,
-	} );
+	});
 
 	/**
 	 * アバター画像スタイル
@@ -112,10 +112,10 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const avatarNameClass = classnames( 'ystdb-balloon__name', {
-		[ avatarNameColorClass ]: avatarNameColorClass,
+	const avatarNameClass = classnames('ystdb-balloon__name', {
+		[avatarNameColorClass]: avatarNameColorClass,
 		'has-text-color': customAvatarNameColor || avatarNameColorClass,
-	} );
+	});
 	/**
 	 * アバター名スタイル
 	 *
@@ -130,15 +130,15 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const balloonBodyClass = classnames( 'ystdb-balloon__body', {
-		[ backgroundColorClass ]: backgroundColorClass,
+	const balloonBodyClass = classnames('ystdb-balloon__body', {
+		[backgroundColorClass]: backgroundColorClass,
 		'has-background': backgroundColorClass || customBackgroundColor,
-		[ balloonBorderColorClass ]: balloonBorderColorClass,
+		[balloonBorderColorClass]: balloonBorderColorClass,
 		'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
-		[ `is-${ verticalAlign }` ]: verticalAlign,
-		[ `is-${ balloonPosition }` ]: balloonPosition,
-		[ `is-${ balloonType }` ]: balloonType,
-	} );
+		[`is-${verticalAlign}`]: verticalAlign,
+		[`is-${balloonPosition}`]: balloonPosition,
+		[`is-${balloonType}`]: balloonType,
+	});
 
 	/**
 	 * 吹き出しスタイル
@@ -159,11 +159,11 @@ export default function save( { attributes } ) {
 	 *
 	 * @type {string}
 	 */
-	const textClasses = classnames( 'ystdb-balloon__text', {
-		[ textClass ]: textClass,
+	const textClasses = classnames('ystdb-balloon__text', {
+		[textClass]: textClass,
 		'has-text-color': textColor || customTextColor,
-		[ fontSizeClass ]: fontSizeClass,
-	} );
+		[fontSizeClass]: fontSizeClass,
+	});
 
 	/**
 	 * 吹き出しテキストスタイル
@@ -172,16 +172,15 @@ export default function save( { attributes } ) {
 	 */
 	const textStyles = {
 		color: textClass ? undefined : customTextColor,
-		fontSize:
-			! fontSizeClass && customFontSize ? customFontSize : undefined,
+		fontSize: !fontSizeClass && customFontSize ? customFontSize : undefined,
 	};
 
-	const serifTriangleClass = classnames( 'ystdb-balloon__serif-triangle', {
-		[ backgroundColorClass ]: backgroundColorClass,
+	const serifTriangleClass = classnames('ystdb-balloon__serif-triangle', {
+		[backgroundColorClass]: backgroundColorClass,
 		'has-background': backgroundColorClass || customBackgroundColor,
-		[ balloonBorderColorClass ]: balloonBorderColorClass,
+		[balloonBorderColorClass]: balloonBorderColorClass,
 		'has-border-color': balloonBorderColorClass || customBalloonBorderColor,
-	} );
+	});
 
 	const serifTrianglePosition = 7 - balloonBorderWidth;
 	const serifTriangleStyle = {
@@ -193,46 +192,46 @@ export default function save( { attributes } ) {
 		borderWidth: balloonBorderWidth,
 		right:
 			'right' === balloonPosition
-				? `calc(100% - ${ serifTrianglePosition }px)`
+				? `calc(100% - ${serifTrianglePosition}px)`
 				: undefined,
 		left:
 			'left' === balloonPosition
-				? `calc(100% - ${ serifTrianglePosition }px)`
+				? `calc(100% - ${serifTrianglePosition}px)`
 				: undefined,
 	};
 
 	return (
-		<div className={ wrapClasses }>
-			<figure className={ avatarWrapClasses }>
+		<div className={wrapClasses}>
+			<figure className={avatarWrapClasses}>
 				<img
-					className={ avatarClasses }
-					style={ avatarStyle }
-					src={ avatarURL }
-					alt={ avatarAltText }
+					className={avatarClasses}
+					style={avatarStyle}
+					src={avatarURL}
+					alt={avatarAltText}
 				/>
-				{ avatarName && (
+				{avatarName && (
 					<figcaption
-						className={ avatarNameClass }
-						style={ avatarNameStyles }
+						className={avatarNameClass}
+						style={avatarNameStyles}
 					>
-						{ avatarName }
+						{avatarName}
 					</figcaption>
-				) }
+				)}
 			</figure>
-			<div className={ balloonBodyClass } style={ balloonBodyStyles }>
+			<div className={balloonBodyClass} style={balloonBodyStyles}>
 				<RichText.Content
-					tagName={ 'p' }
-					className={ textClasses }
-					style={ textStyles }
-					value={ text }
+					tagName={'p'}
+					className={textClasses}
+					style={textStyles}
+					value={text}
 				/>
-				{ isSerifBorder && (
+				{isSerifBorder && (
 					<div
-						className={ serifTriangleClass }
-						style={ serifTriangleStyle }
+						className={serifTriangleClass}
+						style={serifTriangleStyle}
 						aria-hidden
 					/>
-				) }
+				)}
 			</div>
 		</div>
 	);

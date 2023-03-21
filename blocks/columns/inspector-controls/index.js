@@ -5,14 +5,14 @@ import PanelLayout from './layout';
 import PanelBulkAction from './bulk-action';
 import PanelMargin from './margin';
 
-const ColumnsInspectorControls = ( props ) => {
+const ColumnsInspectorControls = (props) => {
 	return (
 		<InspectorControls>
-			<PanelColumns { ...props } />
-			<PanelGap { ...props } />
-			<PanelLayout { ...props } />
-			<PanelMargin { ...props } />
-			<PanelBulkAction { ...props } />
+			<PanelColumns {...props} />
+			<PanelGap {...props} />
+			<PanelLayout {...props} />
+			<PanelMargin {...props} />
+			<PanelBulkAction {...props} />
 		</InspectorControls>
 	);
 };

@@ -48,7 +48,7 @@ import ColorPaletteControl from '@aktk/components/color-palette-control';
 import { positions, cssUnit, fontWeightList } from './config';
 import HeadingToolbar from './heading-toolbar';
 
-function customHeading( props ) {
+function customHeading(props) {
 	const {
 		textColor,
 		setTextColor,
@@ -127,17 +127,17 @@ function customHeading( props ) {
 	 *
 	 * @type {string}
 	 */
-	const editorClasses = classnames( 'ystdb-heading__editor' );
+	const editorClasses = classnames('ystdb-heading__editor');
 
 	/**
 	 * 見出し
 	 *
 	 * @type {string}
 	 */
-	const headingClasses = classnames( className, 'ystdb-heading', {
-		[ `has-text-align-${ align }` ]: align,
-		[ textColor.class ]: textColor.class,
-		[ fontSize.class ]: fontSize.class && ! useFontSizeResponsive,
+	const headingClasses = classnames(className, 'ystdb-heading', {
+		[`has-text-align-${align}`]: align,
+		[textColor.class]: textColor.class,
+		[fontSize.class]: fontSize.class && !useFontSizeResponsive,
 		'has-border': subTextBorderHeight && subTextBorderWidth,
 		'has-sub-text': subText,
 		...getFontResponsiveClass(
@@ -146,53 +146,51 @@ function customHeading( props ) {
 			fontSizeTablet,
 			fontSizeMobile
 		),
-	} );
+	});
 
-	const getVerticalMargin = ( margin, unit ) => {
-		if ( '' === margin || ! parseFloat( margin ) ) {
+	const getVerticalMargin = (margin, unit) => {
+		if ('' === margin || !parseFloat(margin)) {
 			return undefined;
 		}
-		if ( 0 > parseFloat( margin ) ) {
-			return `calc(${ margin }${ unit } - ${ MARGIN_NEGATIVE_ADD })`;
+		if (0 > parseFloat(margin)) {
+			return `calc(${margin}${unit} - ${MARGIN_NEGATIVE_ADD})`;
 		}
-		return `${ margin }${ unit }`;
+		return `${margin}${unit}`;
 	};
 
 	const headingStyles = {
-		marginTop: getVerticalMargin( marginTop, marginTopUnit ),
+		marginTop: getVerticalMargin(marginTop, marginTopUnit),
 		marginRight:
 			'' !== marginRight ? marginRight + marginRightUnit : undefined,
-		marginBottom: getVerticalMargin( marginBottom, marginBottomUnit ),
+		marginBottom: getVerticalMargin(marginBottom, marginBottomUnit),
 		marginLeft: '' !== marginLeft ? marginLeft + marginLeftUnit : undefined,
-		...getFontResponsiveStyle( {
+		...getFontResponsiveStyle({
 			isResponsive: useFontSizeResponsive,
 			desktop: fontSizeDesktop,
 			tablet: fontSizeTablet,
 			mobile: fontSizeMobile,
-		} ),
+		}),
 	};
 
 	const styles = {
 		color: textColor.color,
 		fontSize:
-			fontSize.size && ! useFontSizeResponsive
-				? fontSize.size
-				: undefined,
-		fontWeight: !! fontWeight ? fontWeight : undefined,
+			fontSize.size && !useFontSizeResponsive ? fontSize.size : undefined,
+		fontWeight: !!fontWeight ? fontWeight : undefined,
 		letterSpacing:
-			!! letterSpacing && 0 < letterSpacing
-				? `${ letterSpacing }em`
+			!!letterSpacing && 0 < letterSpacing
+				? `${letterSpacing}em`
 				: undefined,
 	};
-	const textClass = classnames( 'ystdb-heading__text', {
+	const textClass = classnames('ystdb-heading__text', {
 		'is-clear-style': clearStyle,
-	} );
+	});
 
 	/**
 	 * 線
 	 */
 	const divider = () => {
-		if ( 0 === subTextBorderHeight || 0 === subTextBorderWidth ) {
+		if (0 === subTextBorderHeight || 0 === subTextBorderWidth) {
 			return null;
 		}
 		const svg = () => {
@@ -213,15 +211,15 @@ function customHeading( props ) {
 			};
 			return (
 				<SVG
-					className={ 'ystdb-heading__line' }
-					width={ subTextBorderWidth }
-					height={ subTextBorderHeight }
-					viewBox={ `0 0 ${ subTextBorderWidth } ${ subTextBorderHeight }` }
+					className={'ystdb-heading__line'}
+					width={subTextBorderWidth}
+					height={subTextBorderHeight}
+					viewBox={`0 0 ${subTextBorderWidth} ${subTextBorderHeight}`}
 					xmlns="http://www.w3.org/2000/svg"
-					style={ lineStyle }
+					style={lineStyle}
 				>
 					<Path
-						d={ `m0 0 h ${ subTextBorderWidth } v ${ subTextBorderHeight } h -${ subTextBorderWidth } z` }
+						d={`m0 0 h ${subTextBorderWidth} v ${subTextBorderHeight} h -${subTextBorderWidth} z`}
 					/>
 				</SVG>
 			);
@@ -246,16 +244,16 @@ function customHeading( props ) {
 			};
 			return (
 				<img
-					className={ 'ystdb-heading__line' }
-					src={ dividerImageURL }
-					width={ subTextBorderWidth }
-					height={ subTextBorderHeight }
-					alt={ dividerImageAlt }
-					style={ lineStyle }
+					className={'ystdb-heading__line'}
+					src={dividerImageURL}
+					width={subTextBorderWidth}
+					height={subTextBorderHeight}
+					alt={dividerImageAlt}
+					style={lineStyle}
 				/>
 			);
 		};
-		return !! dividerImageURL ? image() : svg();
+		return !!dividerImageURL ? image() : svg();
 	};
 
 	/**
@@ -264,7 +262,7 @@ function customHeading( props ) {
 	 * @return {*} サブテキスト.
 	 */
 	const editSubText = () => {
-		const padding = `calc(.25em + ${ subTextBorderHeight }px)`;
+		const padding = `calc(.25em + ${subTextBorderHeight}px)`;
 
 		const wrapStyle = {
 			marginBottom:
@@ -284,22 +282,22 @@ function customHeading( props ) {
 			textAlign: align,
 			width: 'auto',
 			height: 'auto',
-			fontWeight: !! subTextFontWeight ? subTextFontWeight : undefined,
+			fontWeight: !!subTextFontWeight ? subTextFontWeight : undefined,
 			letterSpacing:
-				!! subTextLetterSpacing && 0 < subTextLetterSpacing
-					? `${ subTextLetterSpacing }em`
+				!!subTextLetterSpacing && 0 < subTextLetterSpacing
+					? `${subTextLetterSpacing}em`
 					: undefined,
 		};
 
-		if ( useSubTextSizeResponsive ) {
+		if (useSubTextSizeResponsive) {
 			textStyle = {
 				...textStyle,
-				...getFontResponsiveStyle( {
+				...getFontResponsiveStyle({
 					isResponsive: useSubTextSizeResponsive,
 					desktop: subTextSizeDesktop,
 					tablet: subTextSizeTablet,
 					mobile: subTextSizeMobile,
-				} ),
+				}),
 			};
 		} else {
 			textStyle = {
@@ -323,20 +321,20 @@ function customHeading( props ) {
 
 		return (
 			<Fragment>
-				<div className={ subTextClass } style={ wrapStyle }>
-					{ showSubText && (
+				<div className={subTextClass} style={wrapStyle}>
+					{showSubText && (
 						<TextControl
-							value={ subText }
-							style={ textStyle }
-							onChange={ ( value ) => {
-								setAttributes( {
+							value={subText}
+							style={textStyle}
+							onChange={(value) => {
+								setAttributes({
 									subText: value,
-								} );
-							} }
-							placeholder={ 'サブテキスト...' }
-							aria-label={ __( 'Sub Text' ) }
+								});
+							}}
+							placeholder={'サブテキスト...'}
+							aria-label={__('Sub Text')}
 						/>
-					) }
+					)}
 				</div>
 			</Fragment>
 		);
@@ -346,40 +344,40 @@ function customHeading( props ) {
 	 *
 	 * @param {Object} obj
 	 */
-	const mediaUploadRender = ( obj ) => {
-		if ( 0 === dividerImageID ) {
+	const mediaUploadRender = (obj) => {
+		if (0 === dividerImageID) {
 			return (
-				<Button isSecondary onClick={ obj.open }>
-					{ __( '画像を選択', 'ystandard-blocks' ) }
+				<Button isSecondary onClick={obj.open}>
+					{__('画像を選択', 'ystandard-blocks')}
 				</Button>
 			);
 		}
 		return (
 			<div>
 				<Button
-					onClick={ obj.open }
-					className={ 'ystdb-mediaupload__preview' }
-					style={ { padding: 0 } }
+					onClick={obj.open}
+					className={'ystdb-mediaupload__preview'}
+					style={{ padding: 0 }}
 				>
-					<img src={ dividerImageURL } alt={ dividerImageAlt } />
+					<img src={dividerImageURL} alt={dividerImageAlt} />
 				</Button>
 				<Button
 					isSecondary
-					onClick={ () => {
-						setAttributes( {
+					onClick={() => {
+						setAttributes({
 							dividerImageURL: '',
 							dividerImageID: 0,
-						} );
-					} }
+						});
+					}}
 				>
-					{ __( '画像をクリア', 'ystandard-blocks' ) }
+					{__('画像をクリア', 'ystandard-blocks')}
 				</Button>
 			</div>
 		);
 	};
 
-	const getMarginStep = ( unit ) => {
-		if ( 'em' === unit || 'rem' === unit ) {
+	const getMarginStep = (unit) => {
+		if ('em' === unit || 'rem' === unit) {
 			return 0.1;
 		}
 		return 1;
@@ -389,66 +387,64 @@ function customHeading( props ) {
 		<Fragment>
 			<BlockControls>
 				<HeadingToolbar
-					minLevel={ 2 }
-					maxLevel={ 5 }
-					selectedLevel={ level }
-					onChange={ ( newLevel ) =>
-						setAttributes( { level: newLevel } )
-					}
+					minLevel={2}
+					maxLevel={5}
+					selectedLevel={level}
+					onChange={(newLevel) => setAttributes({ level: newLevel })}
 				/>
 				<AlignmentToolbar
-					value={ align }
-					onChange={ ( nextAlign ) => {
-						setAttributes( { align: nextAlign } );
-					} }
+					value={align}
+					onChange={(nextAlign) => {
+						setAttributes({ align: nextAlign });
+					}}
 				/>
 			</BlockControls>
 
 			<InspectorControls>
 				<PanelBody
-					title={ __( '見出しレベル', 'ystandard-blocks' ) }
-					initialOpen={ true }
+					title={__('見出しレベル', 'ystandard-blocks')}
+					initialOpen={true}
 				>
 					<HeadingToolbar
-						isCollapsed={ false }
-						minLevel={ 1 }
-						maxLevel={ 7 }
-						selectedLevel={ level }
-						onChange={ ( newLevel ) =>
-							setAttributes( { level: newLevel } )
+						isCollapsed={false}
+						minLevel={1}
+						maxLevel={7}
+						selectedLevel={level}
+						onChange={(newLevel) =>
+							setAttributes({ level: newLevel })
 						}
 					/>
 				</PanelBody>
 
 				<PanelBody
-					title={ __( '色・サイズ', 'ystandard-blocks' ) }
-					initialOpen={ true }
+					title={__('色・サイズ', 'ystandard-blocks')}
+					initialOpen={true}
 				>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '文字色', 'ystandard-blocks' ) }
+						{__('文字色', 'ystandard-blocks')}
 					</div>
 					<ColorPaletteControl
-						label={ __( '文字色', 'ystandard-blocks' ) }
-						value={ textColor.color }
-						onChange={ ( color ) => {
-							setTextColor( color );
-						} }
+						label={__('文字色', 'ystandard-blocks')}
+						value={textColor.color}
+						onChange={(color) => {
+							setTextColor(color);
+						}}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '文字サイズ', 'ystandard-blocks' ) }
+						{__('文字サイズ', 'ystandard-blocks')}
 					</div>
 					<ResponsiveFontSizeControl
-						id={ 'font-size' }
-						useResponsive={ useFontSizeResponsive }
-						fontSize={ fontSize }
-						onChangeFontSizePicker={ ( font ) => {
-							setFontSize( font );
-						} }
-						changeResponsiveMode={ ( value ) => {
-							if ( value ) {
-								setAttributes( {
+						id={'font-size'}
+						useResponsive={useFontSizeResponsive}
+						fontSize={fontSize}
+						onChangeFontSizePicker={(font) => {
+							setFontSize(font);
+						}}
+						changeResponsiveMode={(value) => {
+							if (value) {
+								setAttributes({
 									fontSizeDesktop:
-										! fontSizeDesktop && fontSize.size
+										!fontSizeDesktop && fontSize.size
 											? fontSize.size
 											: getNum(
 													fontSizeDesktop,
@@ -457,7 +453,7 @@ function customHeading( props ) {
 													null
 											  ),
 									fontSizeTablet:
-										! fontSizeTablet && fontSize.size
+										!fontSizeTablet && fontSize.size
 											? fontSize.size
 											: getNum(
 													fontSizeTablet,
@@ -466,7 +462,7 @@ function customHeading( props ) {
 													null
 											  ),
 									fontSizeMobile:
-										! fontSizeMobile && fontSize.size
+										!fontSizeMobile && fontSize.size
 											? fontSize.size
 											: getNum(
 													fontSizeMobile,
@@ -474,232 +470,227 @@ function customHeading( props ) {
 													200,
 													null
 											  ),
-								} );
+								});
 							}
-							setAttributes( { useFontSizeResponsive: value } );
-						} }
-						desktopValue={ fontSizeDesktop }
-						desktopOnChange={ ( value ) => {
-							setAttributes( {
-								fontSizeDesktop: getNum( value, 0, 200, null ),
-							} );
-						} }
-						desktopUnit={ 'px' }
-						tabletValue={ fontSizeTablet }
-						tabletOnChange={ ( value ) =>
-							setAttributes( {
-								fontSizeTablet: getNum( value, 0, 200, null ),
-							} )
+							setAttributes({ useFontSizeResponsive: value });
+						}}
+						desktopValue={fontSizeDesktop}
+						desktopOnChange={(value) => {
+							setAttributes({
+								fontSizeDesktop: getNum(value, 0, 200, null),
+							});
+						}}
+						desktopUnit={'px'}
+						tabletValue={fontSizeTablet}
+						tabletOnChange={(value) =>
+							setAttributes({
+								fontSizeTablet: getNum(value, 0, 200, null),
+							})
 						}
-						tabletUnit={ 'px' }
-						mobileValue={ fontSizeMobile }
-						mobileOnChange={ ( value ) =>
-							setAttributes( {
-								fontSizeMobile: getNum( value, 0, 200, null ),
-							} )
+						tabletUnit={'px'}
+						mobileValue={fontSizeMobile}
+						mobileOnChange={(value) =>
+							setAttributes({
+								fontSizeMobile: getNum(value, 0, 200, null),
+							})
 						}
-						mobileUnit={ 'px' }
+						mobileUnit={'px'}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '太さ', 'ystandard-blocks' ) }
+						{__('太さ', 'ystandard-blocks')}
 					</div>
 					<SelectControl
-						value={ fontWeight }
-						options={ fontWeightList }
-						onChange={ ( type ) => {
-							setAttributes( {
+						value={fontWeight}
+						options={fontWeightList}
+						onChange={(type) => {
+							setAttributes({
 								fontWeight: type,
-							} );
-						} }
+							});
+						}}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'Letter Spacing', 'ystandard-blocks' ) }
+						{__('Letter Spacing', 'ystandard-blocks')}
 					</div>
 					<NumberControl
-						value={ letterSpacing }
-						onChange={ ( value ) => {
-							setAttributes( {
-								letterSpacing: getNum( value, 0, 1, null ),
-							} );
-						} }
-						min={ 0 }
-						max={ 1 }
-						step={ 0.01 }
+						value={letterSpacing}
+						onChange={(value) => {
+							setAttributes({
+								letterSpacing: getNum(value, 0, 1, null),
+							});
+						}}
+						min={0}
+						max={1}
+						step={0.01}
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( '余白', 'ystandard-blocks' ) }
-					initialOpen={ false }
+					title={__('余白', 'ystandard-blocks')}
+					initialOpen={false}
 				>
 					<div className="ystdb-inspector-controls__columns has-unit-select">
-						<span>{ __( '上', 'ystandard-blocks' ) }</span>
+						<span>{__('上', 'ystandard-blocks')}</span>
 						<NumberControl
-							value={ marginTop }
-							onChange={ ( value ) => {
+							value={marginTop}
+							onChange={(value) => {
 								const newValue =
 									'' === value
 										? ''
-										: getNum( value, -120, 120, 0 );
-								setAttributes( {
+										: getNum(value, -120, 120, 0);
+								setAttributes({
 									marginTop: newValue.toString(),
-								} );
-							} }
-							min={ MARGIN_MIN_SIZE }
-							max={ 120 }
-							step={ getMarginStep( marginTopUnit ) }
-							style={ { flexGrow: 1 } }
+								});
+							}}
+							min={MARGIN_MIN_SIZE}
+							max={120}
+							step={getMarginStep(marginTopUnit)}
+							style={{ flexGrow: 1 }}
 						/>
 						<SelectControl
-							value={ marginTopUnit }
-							options={ cssUnit }
-							onChange={ ( type ) => {
-								setAttributes( {
+							value={marginTopUnit}
+							options={cssUnit}
+							onChange={(type) => {
+								setAttributes({
 									marginTopUnit: type,
-								} );
-							} }
+								});
+							}}
 						/>
 					</div>
 					<div className="ystdb-inspector-controls__columns has-unit-select">
-						<span>{ __( '右', 'ystandard-blocks' ) }</span>
+						<span>{__('右', 'ystandard-blocks')}</span>
 						<NumberControl
-							value={ marginRight }
-							onChange={ ( value ) => {
+							value={marginRight}
+							onChange={(value) => {
 								const newValue =
 									'' === value
 										? ''
-										: getNum( value, -120, 120, 0 );
-								setAttributes( {
+										: getNum(value, -120, 120, 0);
+								setAttributes({
 									marginRight: newValue.toString(),
-								} );
-							} }
-							min={ MARGIN_MIN_SIZE }
-							max={ 120 }
-							step={ getMarginStep( marginRightUnit ) }
-							style={ { flexGrow: 1 } }
+								});
+							}}
+							min={MARGIN_MIN_SIZE}
+							max={120}
+							step={getMarginStep(marginRightUnit)}
+							style={{ flexGrow: 1 }}
 						/>
 						<SelectControl
-							value={ marginRightUnit }
-							options={ cssUnit }
-							onChange={ ( type ) => {
-								setAttributes( {
+							value={marginRightUnit}
+							options={cssUnit}
+							onChange={(type) => {
+								setAttributes({
 									marginRightUnit: type,
-								} );
-							} }
+								});
+							}}
 						/>
 					</div>
 					<div className="ystdb-inspector-controls__columns has-unit-select">
-						<span>{ __( '下', 'ystandard-blocks' ) }</span>
+						<span>{__('下', 'ystandard-blocks')}</span>
 						<NumberControl
-							value={ marginBottom }
-							onChange={ ( value ) => {
+							value={marginBottom}
+							onChange={(value) => {
 								const newValue =
 									'' === value
 										? ''
-										: getNum( value, -120, 120, 0 );
-								setAttributes( {
+										: getNum(value, -120, 120, 0);
+								setAttributes({
 									marginBottom: newValue.toString(),
-								} );
-							} }
-							min={ MARGIN_MIN_SIZE }
-							max={ 120 }
-							step={ getMarginStep( marginBottomUnit ) }
-							style={ { flexGrow: 1 } }
+								});
+							}}
+							min={MARGIN_MIN_SIZE}
+							max={120}
+							step={getMarginStep(marginBottomUnit)}
+							style={{ flexGrow: 1 }}
 						/>
 						<SelectControl
-							value={ marginBottomUnit }
-							options={ cssUnit }
-							onChange={ ( type ) => {
-								setAttributes( {
+							value={marginBottomUnit}
+							options={cssUnit}
+							onChange={(type) => {
+								setAttributes({
 									marginBottomUnit: type,
-								} );
-							} }
+								});
+							}}
 						/>
 					</div>
 					<div className="ystdb-inspector-controls__columns has-unit-select">
-						<span>{ __( '左', 'ystandard-blocks' ) }</span>
+						<span>{__('左', 'ystandard-blocks')}</span>
 						<NumberControl
-							value={ marginLeft }
-							onChange={ ( value ) => {
+							value={marginLeft}
+							onChange={(value) => {
 								const newValue =
 									'' === value
 										? ''
-										: getNum( value, -120, 120, 0 );
-								setAttributes( {
+										: getNum(value, -120, 120, 0);
+								setAttributes({
 									marginLeft: newValue.toString(),
-								} );
-							} }
-							min={ MARGIN_MIN_SIZE }
-							max={ 120 }
-							step={ getMarginStep( marginLeftUnit ) }
-							style={ { flexGrow: 1 } }
+								});
+							}}
+							min={MARGIN_MIN_SIZE}
+							max={120}
+							step={getMarginStep(marginLeftUnit)}
+							style={{ flexGrow: 1 }}
 						/>
 						<SelectControl
-							value={ marginLeftUnit }
-							options={ cssUnit }
-							onChange={ ( type ) => {
-								setAttributes( {
+							value={marginLeftUnit}
+							options={cssUnit}
+							onChange={(type) => {
+								setAttributes({
 									marginLeftUnit: type,
-								} );
-							} }
+								});
+							}}
 						/>
 					</div>
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'サブテキスト', 'ystandard-blocks' ) }
-					initialOpen={ false }
+					title={__('サブテキスト', 'ystandard-blocks')}
+					initialOpen={false}
 				>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'サブテキストの位置', 'ystandard-blocks' ) }
+						{__('サブテキストの位置', 'ystandard-blocks')}
 					</div>
 					<HorizonButtons>
-						{ positions.map( ( item ) => {
+						{positions.map((item) => {
 							return (
 								<Button
-									key={ item.value }
-									isSecondary={
-										subTextPosition !== item.value
-									}
-									isPrimary={ subTextPosition === item.value }
-									onClick={ () => {
-										setAttributes( {
+									key={item.value}
+									isSecondary={subTextPosition !== item.value}
+									isPrimary={subTextPosition === item.value}
+									onClick={() => {
+										setAttributes({
 											subTextPosition: item.value,
-										} );
-									} }
+										});
+									}}
 								>
-									<span>{ item.label }</span>
+									<span>{item.label}</span>
 								</Button>
 							);
-						} ) }
+						})}
 					</HorizonButtons>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'サブテキスト文字の色', 'ystandard-blocks' ) }
+						{__('サブテキスト文字の色', 'ystandard-blocks')}
 					</div>
 					<ColorPaletteControl
-						label={ __(
-							'サブテキスト文字の色',
-							'ystandard-blocks'
-						) }
-						value={ subTextColor.color }
-						onChange={ ( color ) => {
-							setSubTextColor( color );
-						} }
+						label={__('サブテキスト文字の色', 'ystandard-blocks')}
+						value={subTextColor.color}
+						onChange={(color) => {
+							setSubTextColor(color);
+						}}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'サブテキスト文字サイズ', 'ystandard-blocks' ) }
+						{__('サブテキスト文字サイズ', 'ystandard-blocks')}
 					</div>
 					<ResponsiveFontSizeControl
-						id={ 'sub-text-size' }
-						useResponsive={ useSubTextSizeResponsive }
-						fontSize={ subTextSize }
-						onChangeFontSizePicker={ ( font ) => {
-							setSubTextSize( font );
-						} }
-						changeResponsiveMode={ ( value ) => {
-							if ( value ) {
-								setAttributes( {
+						id={'sub-text-size'}
+						useResponsive={useSubTextSizeResponsive}
+						fontSize={subTextSize}
+						onChangeFontSizePicker={(font) => {
+							setSubTextSize(font);
+						}}
+						changeResponsiveMode={(value) => {
+							if (value) {
+								setAttributes({
 									subTextSizeDesktop:
-										! subTextSizeDesktop && subTextSize.size
+										!subTextSizeDesktop && subTextSize.size
 											? subTextSize.size
 											: getNum(
 													subTextSizeDesktop,
@@ -708,7 +699,7 @@ function customHeading( props ) {
 													null
 											  ),
 									subTextSizeTablet:
-										! subTextSizeTablet && subTextSize.size
+										!subTextSizeTablet && subTextSize.size
 											? subTextSize.size
 											: getNum(
 													subTextSizeTablet,
@@ -717,7 +708,7 @@ function customHeading( props ) {
 													null
 											  ),
 									subTextSizeMobile:
-										! subTextSizeMobile && subTextSize.size
+										!subTextSizeMobile && subTextSize.size
 											? subTextSize.size
 											: getNum(
 													subTextSizeMobile,
@@ -725,228 +716,208 @@ function customHeading( props ) {
 													200,
 													null
 											  ),
-								} );
+								});
 							}
-							setAttributes( {
+							setAttributes({
 								useSubTextSizeResponsive: value,
-							} );
-						} }
-						desktopValue={ subTextSizeDesktop }
-						desktopOnChange={ ( value ) =>
-							setAttributes( {
-								subTextSizeDesktop: getNum(
-									value,
-									0,
-									200,
-									null
-								),
-							} )
+							});
+						}}
+						desktopValue={subTextSizeDesktop}
+						desktopOnChange={(value) =>
+							setAttributes({
+								subTextSizeDesktop: getNum(value, 0, 200, null),
+							})
 						}
-						desktopUnit={ 'px' }
-						tabletValue={ subTextSizeTablet }
-						tabletOnChange={ ( value ) =>
-							setAttributes( {
-								subTextSizeTablet: getNum(
-									value,
-									0,
-									200,
-									null
-								),
-							} )
+						desktopUnit={'px'}
+						tabletValue={subTextSizeTablet}
+						tabletOnChange={(value) =>
+							setAttributes({
+								subTextSizeTablet: getNum(value, 0, 200, null),
+							})
 						}
-						tabletUnit={ 'px' }
-						mobileValue={ subTextSizeMobile }
-						mobileOnChange={ ( value ) =>
-							setAttributes( {
-								subTextSizeMobile: getNum(
-									value,
-									0,
-									200,
-									null
-								),
-							} )
+						tabletUnit={'px'}
+						mobileValue={subTextSizeMobile}
+						mobileOnChange={(value) =>
+							setAttributes({
+								subTextSizeMobile: getNum(value, 0, 200, null),
+							})
 						}
-						mobileUnit={ 'px' }
+						mobileUnit={'px'}
 					/>
 
 					<div className="ystdb-inspector-controls__label">
-						{ __( '太さ', 'ystandard-blocks' ) }
+						{__('太さ', 'ystandard-blocks')}
 					</div>
 					<SelectControl
-						value={ subTextFontWeight }
-						options={ fontWeightList }
-						onChange={ ( type ) => {
-							setAttributes( {
+						value={subTextFontWeight}
+						options={fontWeightList}
+						onChange={(type) => {
+							setAttributes({
 								subTextFontWeight: type,
-							} );
-						} }
+							});
+						}}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( 'Letter Spacing', 'ystandard-blocks' ) }
+						{__('Letter Spacing', 'ystandard-blocks')}
 					</div>
 					<NumberControl
-						value={ subTextLetterSpacing }
-						onChange={ ( value ) => {
-							setAttributes( {
-								subTextLetterSpacing: getNum(
-									value,
-									0,
-									1,
-									null
-								),
-							} );
-						} }
-						min={ 0 }
-						max={ 1 }
-						step={ 0.01 }
+						value={subTextLetterSpacing}
+						onChange={(value) => {
+							setAttributes({
+								subTextLetterSpacing: getNum(value, 0, 1, null),
+							});
+						}}
+						min={0}
+						max={1}
+						step={0.01}
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( '区切り線', 'ystandard-blocks' ) }
-					initialOpen={ false }
+					title={__('区切り線', 'ystandard-blocks')}
+					initialOpen={false}
 				>
 					<RangeControl
-						label={ __( '線の長さ(px)', 'ystandard-blocks' ) }
-						value={ subTextBorderWidth }
-						onChange={ ( value ) =>
-							setAttributes( {
-								subTextBorderWidth: getNum( value, 0, 1000, 0 ),
-							} )
+						label={__('線の長さ(px)', 'ystandard-blocks')}
+						value={subTextBorderWidth}
+						onChange={(value) =>
+							setAttributes({
+								subTextBorderWidth: getNum(value, 0, 1000, 0),
+							})
 						}
-						min={ 0 }
-						max={ 1000 }
-						step={ 1 }
+						min={0}
+						max={1000}
+						step={1}
 					/>
 					<RangeControl
-						label={ __( '線の太さ(px)', 'ystandard-blocks' ) }
-						value={ subTextBorderHeight }
-						onChange={ ( value ) =>
-							setAttributes( {
-								subTextBorderHeight: getNum( value, 0, 10, 0 ),
-							} )
+						label={__('線の太さ(px)', 'ystandard-blocks')}
+						value={subTextBorderHeight}
+						onChange={(value) =>
+							setAttributes({
+								subTextBorderHeight: getNum(value, 0, 10, 0),
+							})
 						}
-						min={ 0 }
-						max={ 10 }
-						step={ 1 }
+						min={0}
+						max={10}
+						step={1}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '区切り線の色', 'ystandard-blocks' ) }
+						{__('区切り線の色', 'ystandard-blocks')}
 					</div>
 					<ColorPaletteControl
-						label={ __( '区切り線の色', 'ystandard-blocks' ) }
-						value={ dividerColor.color }
-						onChange={ ( color ) => {
-							setDividerColor( color );
-						} }
+						label={__('区切り線の色', 'ystandard-blocks')}
+						value={dividerColor.color}
+						onChange={(color) => {
+							setDividerColor(color);
+						}}
 					/>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '区切り線用画像', 'ystandard-blocks' ) }
+						{__('区切り線用画像', 'ystandard-blocks')}
 					</div>
 					<MediaUpload
-						onSelect={ ( media ) => {
-							setAttributes( {
+						onSelect={(media) => {
+							setAttributes({
 								dividerImageURL: media.url,
 								dividerImageID: media.id,
 								dividerImageAlt: media.alt,
-							} );
-						} }
-						type={ [ 'image' ] }
-						value={ dividerImageID }
-						render={ mediaUploadRender }
+							});
+						}}
+						type={['image']}
+						value={dividerImageID}
+						render={mediaUploadRender}
 					/>
-					<span className={ `ystdb-info__small` }>
-						{ __(
+					<span className={`ystdb-info__small`}>
+						{__(
 							'※画像を指定した場合、区切り線の色設定は無視されます。',
 							'ystandard-blocks'
-						) }
+						)}
 					</span>
 					<div className="ystdb-inspector-controls__label">
-						{ __( '区切り線の上下余白', 'ystandard-blocks' ) }
+						{__('区切り線の上下余白', 'ystandard-blocks')}
 					</div>
 					<RangeControl
-						label={ __( '上側の余白(px)', 'ystandard-blocks' ) }
-						value={ dividerMarginTop }
-						onChange={ ( value ) =>
-							setAttributes( {
-								dividerMarginTop: getNum( value, 0, 100, 0 ),
-							} )
+						label={__('上側の余白(px)', 'ystandard-blocks')}
+						value={dividerMarginTop}
+						onChange={(value) =>
+							setAttributes({
+								dividerMarginTop: getNum(value, 0, 100, 0),
+							})
 						}
-						min={ 0 }
-						max={ 100 }
-						step={ 1 }
-						allowReset={ true }
+						min={0}
+						max={100}
+						step={1}
+						allowReset={true}
 					/>
 					<RangeControl
-						label={ __( '下側の余白(px)', 'ystandard-blocks' ) }
-						value={ dividerMarginBottom }
-						onChange={ ( value ) =>
-							setAttributes( {
-								dividerMarginBottom: getNum( value, 0, 100, 0 ),
-							} )
+						label={__('下側の余白(px)', 'ystandard-blocks')}
+						value={dividerMarginBottom}
+						onChange={(value) =>
+							setAttributes({
+								dividerMarginBottom: getNum(value, 0, 100, 0),
+							})
 						}
-						min={ 0 }
-						max={ 100 }
-						step={ 1 }
-						allowReset={ true }
+						min={0}
+						max={100}
+						step={1}
+						allowReset={true}
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'スタイル削除', 'ystandard-blocks' ) }
-					initialOpen={ false }
+					title={__('スタイル削除', 'ystandard-blocks')}
+					initialOpen={false}
 				>
 					<BaseControl>
 						<ToggleControl
-							label={ __(
+							label={__(
 								'テーマの見出しスタイルをクリアする',
 								'ystandard-blocks'
-							) }
-							checked={ clearStyle }
-							onChange={ () => {
-								setAttributes( {
-									clearStyle: ! clearStyle,
-								} );
-							} }
+							)}
+							checked={clearStyle}
+							onChange={() => {
+								setAttributes({
+									clearStyle: !clearStyle,
+								});
+							}}
 						/>
 					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ editorClasses }>
-				<div className={ headingClasses } style={ headingStyles }>
-					<div className={ `ystdb-heading__container` }>
-						{ 'top' === subTextPosition && editSubText() }
-						{ 'top' === subTextPosition && divider() }
+			<div className={editorClasses}>
+				<div className={headingClasses} style={headingStyles}>
+					<div className={`ystdb-heading__container`}>
+						{'top' === subTextPosition && editSubText()}
+						{'top' === subTextPosition && divider()}
 						<RichText
 							identifier="content"
-							tagName={ TagName }
-							className={ textClass }
-							placeholder={ __(
+							tagName={TagName}
+							className={textClass}
+							placeholder={__(
 								'見出しテキスト…',
 								'ystandard-blocks'
-							) }
-							value={ content }
-							style={ styles }
-							onChange={ ( value ) => {
-								setAttributes( {
+							)}
+							value={content}
+							style={styles}
+							onChange={(value) => {
+								setAttributes({
 									content: value,
-								} );
-							} }
-							onMerge={ mergeBlocks }
-							onSplit={ ( value ) => {
-								if ( ! value ) {
-									return createBlock( 'core/paragraph' );
+								});
+							}}
+							onMerge={mergeBlocks}
+							onSplit={(value) => {
+								if (!value) {
+									return createBlock('core/paragraph');
 								}
 
-								return createBlock( 'ystdb/heading', {
+								return createBlock('ystdb/heading', {
 									...attributes,
 									content: value,
-								} );
-							} }
-							onReplace={ onReplace }
-							onRemove={ () => onReplace( [] ) }
+								});
+							}}
+							onReplace={onReplace}
+							onRemove={() => onReplace([])}
 						/>
-						{ 'bottom' === subTextPosition && divider() }
-						{ 'bottom' === subTextPosition && editSubText() }
+						{'bottom' === subTextPosition && divider()}
+						{'bottom' === subTextPosition && editSubText()}
 					</div>
 				</div>
 			</div>
@@ -954,11 +925,11 @@ function customHeading( props ) {
 	);
 }
 
-export default compose( [
-	withColors( {
+export default compose([
+	withColors({
 		textColor: 'color',
 		subTextColor: 'color',
 		dividerColor: 'fill',
-	} ),
-	withFontSizes( 'fontSize', 'subTextSize' ),
-] )( customHeading );
+	}),
+	withFontSizes('fontSize', 'subTextSize'),
+])(customHeading);

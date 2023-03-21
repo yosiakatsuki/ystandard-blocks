@@ -45,6 +45,7 @@
   "supports": {
 	"className": false,
 	"html": false,
-	"align": false
+	"align": false,
+	"ystdtdHiddenBySize": false
   }
 }

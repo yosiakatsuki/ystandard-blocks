@@ -3,7 +3,7 @@ import '@wordpress/block-editor';
 import { getColorSetting } from '@aktk/helper/color';
 import ColorDropdown from '@aktk/components/color-dropdown';
 
-const ColorPaletteControl = ( {
+const ColorPaletteControl = ({
 	value,
 	onChange,
 	colors,
@@ -11,28 +11,28 @@ const ColorPaletteControl = ( {
 	key,
 	position = 'bottom left',
 	...props
-} ) => {
+}) => {
 	const _colors = colors ?? getColorSetting();
 
-	const handleOnChange = ( color ) => {
-		onChange( color );
+	const handleOnChange = (color) => {
+		onChange(color);
 	};
 
 	return (
 		<>
 			<ColorDropdown
-				key={ key }
-				label={ label }
-				value={ value }
-				position={ position }
-				renderContent={ () => (
+				key={key}
+				label={label}
+				value={value}
+				position={position}
+				renderContent={() => (
 					<ColorPalette
-						colors={ _colors }
-						onChange={ handleOnChange }
-						value={ value }
-						{ ...props }
+						colors={_colors}
+						onChange={handleOnChange}
+						value={value}
+						{...props}
 					/>
-				) }
+				)}
 			/>
 		</>
 	);

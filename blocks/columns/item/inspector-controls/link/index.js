@@ -5,73 +5,64 @@ import { __ } from '@wordpress/i18n';
 import LinkControl from '@aktk/components/link-control';
 import Notice, { noticeType } from '@aktk/components/notice';
 
-const PanelLink = ( { attributes, setAttributes } ) => {
+const PanelLink = ({ attributes, setAttributes }) => {
 	const { linkTarget, rel, url, screenReaderText } = attributes;
 
-	const handleOnLinkChange = ( newValue ) => {
-		setAttributes( newValue );
+	const handleOnLinkChange = (newValue) => {
+		setAttributes(newValue);
 	};
 
 	const onSetLinkRel = useCallback(
-		( value ) => {
-			setAttributes( { rel: value } );
+		(value) => {
+			setAttributes({ rel: value });
 		},
-		[ setAttributes ]
+		[setAttributes]
 	);
 	const onSetScreenReaderText = useCallback(
-		( value ) => {
-			setAttributes( { screenReaderText: value } );
+		(value) => {
+			setAttributes({ screenReaderText: value });
 		},
-		[ setAttributes ]
+		[setAttributes]
 	);
 
 	return (
 		<PanelBody
-			title={ __( 'リンク設定(β)', 'ystandard-blocks' ) }
-			initialOpen={ false }
+			title={__('リンク設定(β)', 'ystandard-blocks')}
+			initialOpen={false}
 		>
 			<BaseControl>
-				<Notice
-					type={ noticeType.warning }
-					style={ { fontSize: '12px' } }
-				>
+				<Notice type={noticeType.warning} style={{ fontSize: '12px' }}>
 					<div>
-						{ __(
+						{__(
 							'リンクの設定をした場合、公開ページでカラム内のテキストを選択できない状態になります。',
 							'ystandard-blocks'
-						) }
+						)}
 					</div>
 					<div>
-						{ __(
-							'※この機能は現在β版機能です。',
-							'ystandard-blocks'
-						) }
+						{__('※この機能は現在β版機能です。', 'ystandard-blocks')}
 					</div>
 				</Notice>
 			</BaseControl>
 			<BaseControl>
 				<LinkControl
-					value={ { url, linkTarget, rel } }
-					onChange={ handleOnLinkChange }
+					value={{ url, linkTarget, rel }}
+					onChange={handleOnLinkChange}
 				/>
 			</BaseControl>
 			<BaseControl>
 				<TextControl
-					className={ 'ystdb-column-editor__link-rel' }
-					label={ __( 'リンク rel 属性', 'ystandard-blocks' ) }
-					value={ rel || '' }
-					onChange={ onSetLinkRel }
+					className={'ystdb-column-editor__link-rel'}
+					label={__('リンク rel 属性', 'ystandard-blocks')}
+					value={rel || ''}
+					onChange={onSetLinkRel}
 				/>
 			</BaseControl>
 			<BaseControl>
 				<TextControl
-					className={ 'ystdb-column-editor__link-rel' }
-					label={ __(
-						'スクリーンリーダーテキスト',
-						'ystandard-blocks'
-					) }
-					value={ screenReaderText || '' }
-					onChange={ onSetScreenReaderText }
+					className={'ystdb-column-editor__link-rel'}
+					label={__('スクリーンリーダーテキスト', 'ystandard-blocks')}
+					value={screenReaderText || ''}
+					onChange={onSetScreenReaderText}
 				/>
 			</BaseControl>
 		</PanelBody>

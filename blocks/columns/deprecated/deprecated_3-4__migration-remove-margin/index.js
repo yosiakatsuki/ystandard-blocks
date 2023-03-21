@@ -10,12 +10,12 @@ export const deprecated_34__migrationRemoveMargin = [
 	{
 		attributes: metadata.attributes,
 		supports: metadata.supports,
-		migrate( attributes ) {
+		migrate(attributes) {
 			let newAttributes = attributes;
-			newAttributes = migrateRemoveMargin( newAttributes );
+			newAttributes = migrateRemoveMargin(newAttributes);
 			return newAttributes;
 		},
-		save( { attributes } ) {
+		save({ attributes }) {
 			const {
 				colPc,
 				colTablet,
@@ -26,39 +26,39 @@ export const deprecated_34__migrationRemoveMargin = [
 				removeMargin,
 			} = attributes;
 
-			const blockProps = useBlockProps.save( {
+			const blockProps = useBlockProps.save({
 				className: 'ystdb-columns-wrap',
-			} );
+			});
 
 			const columnBlocksProps = {
-				className: classnames( 'ystdb-columns', {
-					[ `has-${ colMobile }-columns` ]: colMobile,
-					[ `has-${ colTablet }-columns--tablet` ]: colTablet,
-					[ `has-${ colPc }-columns--pc` ]: colPc,
-					[ `is-vertically-aligned-${ verticalAlignment }` ]:
+				className: classnames('ystdb-columns', {
+					[`has-${colMobile}-columns`]: colMobile,
+					[`has-${colTablet}-columns--tablet`]: colTablet,
+					[`has-${colPc}-columns--pc`]: colPc,
+					[`is-vertically-aligned-${verticalAlignment}`]:
 						verticalAlignment,
-					[ `is-horizontally-aligned-${ horizonAlignment }` ]:
+					[`is-horizontally-aligned-${horizonAlignment}`]:
 						horizonAlignment,
 					'is-reverse': reverse,
 					'is-no-margin': removeMargin,
-				} ),
+				}),
 			};
 
 			const innerBlocksProps =
-				useInnerBlocksProps.save( columnBlocksProps );
+				useInnerBlocksProps.save(columnBlocksProps);
 
 			return (
-				<div { ...blockProps }>
-					<div { ...innerBlocksProps } />
+				<div {...blockProps}>
+					<div {...innerBlocksProps} />
 				</div>
 			);
 		},
 	},
 ];
 
-export function migrateRemoveMargin( attributes ) {
+export function migrateRemoveMargin(attributes) {
 	let newAttributes = attributes;
-	if ( !! newAttributes?.removeMargin ) {
+	if (!!newAttributes?.removeMargin) {
 		newAttributes = {
 			...newAttributes,
 			...{
@@ -74,14 +74,11 @@ export function migrateRemoveMargin( attributes ) {
 		};
 		delete newAttributes.removeMargin;
 	}
-	if ( newAttributes?.className ) {
+	if (newAttributes?.className) {
 		newAttributes = {
 			...newAttributes,
 			...{
-				className: newAttributes.className.replace(
-					'is-no-margin',
-					''
-				),
+				className: newAttributes.className.replace('is-no-margin', ''),
 			},
 		};
 	}

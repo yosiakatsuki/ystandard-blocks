@@ -4,9 +4,9 @@ const transforms = {
 	from: [
 		{
 			type: 'block',
-			blocks: [ 'core/button' ],
-			transform: ( attributes ) => {
-				return createBlock( 'ystdb/svg-button', {
+			blocks: ['core/button'],
+			transform: (attributes) => {
+				return createBlock('ystdb/svg-button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
 					align: attributes.align,
@@ -19,14 +19,14 @@ const transforms = {
 					rel: attributes.rel,
 					fontSize: attributes.fontSize,
 					customFontSize: attributes.customFontSize,
-				} );
+				});
 			},
 		},
 		{
 			type: 'block',
-			blocks: [ 'ystdb/ys-btn' ],
-			transform: ( attributes ) => {
-				return createBlock( 'ystdb/svg-button', {
+			blocks: ['ystdb/ys-btn'],
+			transform: (attributes) => {
+				return createBlock('ystdb/svg-button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
 					iconSizeLeft: attributes.iconSizeLeft,
@@ -47,16 +47,16 @@ const transforms = {
 					maxUnit: attributes.maxUnit,
 					animationType: attributes.animationType,
 					animationInterval: attributes.animationInterval,
-				} );
+				});
 			},
 		},
 	],
 	to: [
 		{
 			type: 'block',
-			blocks: [ 'core/button' ],
-			transform: ( attributes ) => {
-				return createBlock( 'core/button', {
+			blocks: ['core/button'],
+			transform: (attributes) => {
+				return createBlock('core/button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
 					align: attributes.align,
@@ -67,7 +67,7 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-				} );
+				});
 			},
 		},
 	],

@@ -10,10 +10,10 @@ import {
 export const deprecated__34__migrationPadding = [
 	{
 		...metadata,
-		migrate( attributes ) {
-			return migratePadding( attributes );
+		migrate(attributes) {
+			return migratePadding(attributes);
 		},
-		save( { attributes } ) {
+		save({ attributes }) {
 			const {
 				shadow,
 				backgroundColor,
@@ -26,37 +26,37 @@ export const deprecated__34__migrationPadding = [
 				backgroundColor
 			);
 
-			const blockProps = useBlockProps.save( {
-				className: classnames( 'ystdb-column', {
+			const blockProps = useBlockProps.save({
+				className: classnames('ystdb-column', {
 					'has-background': backgroundClass || customBackgroundColor,
-					[ backgroundClass ]: backgroundClass,
+					[backgroundClass]: backgroundClass,
 					'has-shadow': shadow,
-					[ paddingType ]: paddingType,
-				} ),
+					[paddingType]: paddingType,
+				}),
 				style: {
 					backgroundColor: customBackgroundColor
 						? customBackgroundColor
 						: undefined,
 				},
-			} );
+			});
 
 			const containerProps = {
 				className: 'ystdb-column-block-container',
 			};
 
-			const innerBlocksProps = useInnerBlocksProps.save( containerProps );
+			const innerBlocksProps = useInnerBlocksProps.save(containerProps);
 
 			return (
-				<div { ...blockProps }>
-					<div { ...innerBlocksProps } />
+				<div {...blockProps}>
+					<div {...innerBlocksProps} />
 				</div>
 			);
 		},
 	},
 ];
 
-export function migratePadding( attributes ) {
-	if ( ! attributes?.paddingType ) {
+export function migratePadding(attributes) {
+	if (!attributes?.paddingType) {
 		return attributes;
 	}
 	let newAttributes = attributes;
@@ -64,27 +64,27 @@ export function migratePadding( attributes ) {
 		'is-padding-small': '1rem',
 		'is-padding-large': '1.5rem',
 	};
-	Object.keys( oldPadding ).map( ( key ) => {
-		if ( key === newAttributes?.paddingType ) {
+	Object.keys(oldPadding).map((key) => {
+		if (key === newAttributes?.paddingType) {
 			newAttributes = {
 				...newAttributes,
 				padding: {
 					desktop: {
-						top: oldPadding[ key ],
-						right: oldPadding[ key ],
-						bottom: oldPadding[ key ],
-						left: oldPadding[ key ],
+						top: oldPadding[key],
+						right: oldPadding[key],
+						bottom: oldPadding[key],
+						left: oldPadding[key],
 					},
 				},
 			};
 			delete newAttributes.paddingType;
-			if ( newAttributes?.className ) {
+			if (newAttributes?.className) {
 				newAttributes.className = newAttributes.className
-					.replace( key, '' )
+					.replace(key, '')
 					.trim();
 			}
 		}
 		return true;
-	} );
+	});
 	return newAttributes;
 }

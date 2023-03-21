@@ -5,14 +5,14 @@ import PanelShadow from './shadow';
 import PanelSize from './size';
 import PanelLink from './link';
 
-const InspectorControls = ( props ) => {
+const InspectorControls = (props) => {
 	return (
 		<WPInspectorControls>
-			<PanelBackground { ...props } />
-			<PanelSize { ...props } />
-			<PanelPadding { ...props } />
-			<PanelShadow { ...props } />
-			<PanelLink { ...props } />
+			<PanelBackground {...props} />
+			<PanelSize {...props} />
+			<PanelPadding {...props} />
+			<PanelShadow {...props} />
+			<PanelLink {...props} />
 		</WPInspectorControls>
 	);
 };

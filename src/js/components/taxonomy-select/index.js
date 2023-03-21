@@ -11,67 +11,67 @@ import CustomSelectControl from '@aktk/components/custom-select-control';
 import { addDefaultCustomSelect } from '@aktk/helper/select-control';
 import Notice from '@aktk/components/notice';
 
-const TaxonomySelect = ( {
+const TaxonomySelect = ({
 	label,
 	value,
 	postType,
 	onChange,
 	allTaxonomies,
-} ) => {
-	const { selectedPostType, taxonomy } = useSelect( ( select ) => {
-		const { getPostType, getTaxonomies } = select( coreStore );
-		const _taxonomies = getTaxonomies( { per_page: -1 } ) || [];
+}) => {
+	const { selectedPostType, taxonomy } = useSelect((select) => {
+		const { getPostType, getTaxonomies } = select(coreStore);
+		const _taxonomies = getTaxonomies({ per_page: -1 }) || [];
 		return {
-			selectedPostType: getPostType( postType ),
-			taxonomy: _taxonomies.filter( ( item ) => {
+			selectedPostType: getPostType(postType),
+			taxonomy: _taxonomies.filter((item) => {
 				return item?.visibility?.show_ui;
-			} ),
+			}),
 		};
-	} );
-	const getTaxonomyNames = ( taxonomies ) => {
-		return taxonomies.map( ( item ) => {
+	});
+	const getTaxonomyNames = (taxonomies) => {
+		return taxonomies.map((item) => {
 			return item?.slug;
-		} );
+		});
 	};
 	const taxonomies =
 		true === allTaxonomies
-			? getTaxonomyNames( taxonomy ) || []
+			? getTaxonomyNames(taxonomy) || []
 			: selectedPostType?.taxonomies || [];
-	const options = addDefaultCustomSelect( [
-		...taxonomies.map( ( item ) => {
-			const _taxonomy = taxonomy.filter( ( filterItem ) => {
+	const options = addDefaultCustomSelect([
+		...taxonomies.map((item) => {
+			const _taxonomy = taxonomy.filter((filterItem) => {
 				return item === filterItem?.slug;
-			} );
-			if ( _taxonomy ) {
+			});
+			if (_taxonomy) {
 				return {
-					key: _taxonomy[ 0 ].slug,
-					name: _taxonomy[ 0 ].name,
+					key: _taxonomy[0].slug,
+					name: _taxonomy[0].name,
 					style: { fontSize: '1em' },
 				};
 			}
 			return {};
-		} ),
-	] );
-	const handleOnChange = ( newValue ) => {
-		onChange( newValue );
+		}),
+	]);
+	const handleOnChange = (newValue) => {
+		onChange(newValue);
 	};
 	return (
 		<>
 			<CustomSelectControl
-				className={ 'aktk-taxonomy-select' }
-				label={ label }
-				value={ value }
-				options={ options }
-				onChange={ handleOnChange }
+				className={'aktk-taxonomy-select'}
+				label={label}
+				value={value}
+				options={options}
+				onChange={handleOnChange}
 			/>
-			{ 1 >= options.length && (
-				<Notice type={ 'help' }>
-					{ __(
+			{1 >= options.length && (
+				<Notice type={'help'}>
+					{__(
 						'分類の取得・表示には時間がかかることがあります。「選択」以外の分類が表示されない場合、この案内が消えるまで少しお待ち下さい。',
 						'ystandard-blocks'
-					) }
+					)}
 				</Notice>
-			) }
+			)}
 		</>
 	);
 };

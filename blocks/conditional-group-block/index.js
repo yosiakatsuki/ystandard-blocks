@@ -11,6 +11,7 @@ import { mergeDefaultAttributes } from '@aktk/helper/attribute';
 /**
  * Block
  */
+// @ts-ignore
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
@@ -21,13 +22,13 @@ export function registerGroupBlock() {
 		metadata.attributes
 	);
 
-	registerBlockType( metadata.name, {
+	registerBlockType(metadata.name, {
 		...metadata,
 		...{
 			icon: (
 				<Maximize
-					stroke={ ystdbConfig.color.iconForeground }
-					style={ { fill: 'none' } }
+					stroke={ystdbConfig.color.iconForeground}
+					style={{ fill: 'none' }}
 				/>
 			),
 			category: ystdbConfig.category.common,
@@ -36,7 +37,7 @@ export function registerGroupBlock() {
 			save,
 			example: {},
 		},
-	} );
+	});
 }
 
 registerGroupBlock();

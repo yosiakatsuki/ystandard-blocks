@@ -13,21 +13,21 @@ import { useSelect } from '@wordpress/data';
  */
 import GroupInspectorControls from './inspector-controls';
 
-const ConditionalGroupEdit = ( props ) => {
-	const { hasInnerBlocks } = useSelect( ( select ) => {
-		const { getBlock } = select( 'core/block-editor' );
+const ConditionalGroupEdit = (props) => {
+	const { hasInnerBlocks } = useSelect((select) => {
+		const { getBlock } = select('core/block-editor');
 
-		const block = getBlock( props?.clientId );
+		const block = getBlock(props?.clientId);
 		return {
 			hasInnerBlocks: block && block.innerBlocks.length,
 		};
-	} );
-	const blockProps = useBlockProps( {
-		className: classnames( 'ystdb-conditional-group' ),
-	} );
+	});
+	const blockProps = useBlockProps({
+		className: classnames('ystdb-conditional-group'),
+	});
 	const innerBlocksProps = useInnerBlocksProps(
 		{
-			className: classnames( 'ystdb-conditional-group__inner' ),
+			className: classnames('ystdb-conditional-group__inner'),
 		},
 		{
 			renderAppender: hasInnerBlocks
@@ -38,10 +38,10 @@ const ConditionalGroupEdit = ( props ) => {
 
 	return (
 		<>
-			<GroupInspectorControls { ...props } />
+			<GroupInspectorControls {...props} />
 
-			<div { ...blockProps }>
-				<div { ...innerBlocksProps } />
+			<div {...blockProps}>
+				<div {...innerBlocksProps} />
 			</div>
 		</>
 	);

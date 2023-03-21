@@ -17,7 +17,7 @@ import {
 } from '@aktk/components/responsive-values';
 import { getAutoWidthClasses } from './function/auto-width';
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		shadow,
 		backgroundColor,
@@ -36,47 +36,47 @@ export default function save( { attributes } ) {
 		backgroundColor
 	);
 
-	const blockProps = useBlockProps.save( {
-		className: classnames( 'ystdb-column', {
+	const blockProps = useBlockProps.save({
+		className: classnames('ystdb-column', {
 			'has-background': backgroundClass || customBackgroundColor,
-			[ backgroundClass ]: backgroundClass,
+			[backgroundClass]: backgroundClass,
 			'has-shadow': shadow,
-			'has-column-width': !! width,
-			...getAutoWidthClasses( isAutoWidth ),
-		} ),
+			'has-column-width': !!width,
+			...getAutoWidthClasses(isAutoWidth),
+		}),
 		style: {
 			backgroundColor: customBackgroundColor
 				? customBackgroundColor
 				: undefined,
-			...getResponsivePaddingStyle( padding ),
-			...getResponsiveWidthStyle( width ),
-			...getResponsiveValueStyle( 'flex-basis', width ),
+			...getResponsivePaddingStyle(padding),
+			...getResponsiveWidthStyle(width),
+			...getResponsiveValueStyle('flex-basis', width),
 		},
-	} );
+	});
 
 	const containerProps = {
 		className: 'ystdb-column-block-container',
 	};
 
-	const innerBlocksProps = useInnerBlocksProps.save( containerProps );
+	const innerBlocksProps = useInnerBlocksProps.save(containerProps);
 
 	return (
-		<div { ...blockProps }>
-			<div { ...innerBlocksProps } />
-			{ !! url && (
+		<div {...blockProps}>
+			<div {...innerBlocksProps} />
+			{!!url && (
 				<a
-					href={ url }
+					href={url}
 					className="ystdb-column__link"
-					target={ linkTarget }
-					rel={ rel }
+					target={linkTarget}
+					rel={rel}
 				>
-					{ screenReaderText && (
+					{screenReaderText && (
 						<span className="ystdb-column__link-screen-reader-text">
-							{ screenReaderText }
+							{screenReaderText}
 						</span>
-					) }
+					)}
 				</a>
-			) }
+			)}
 		</div>
 	);
 }

@@ -24,18 +24,18 @@ export function registerColumns() {
 		metadata.attributes
 	);
 
-	registerBlockType( metadata.name, {
+	registerBlockType(metadata.name, {
 		...metadata,
 		...{
-			title: __( 'カスタムカラム', 'ystandard-blocks' ),
+			title: __('カスタムカラム', 'ystandard-blocks'),
 			description: __(
 				'モバイル・タブレット・PCでカラム数を変更できるカラムブロック',
 				'ystandard-blocks'
 			),
 			icon: (
 				<Grid
-					stroke={ ystdbConfig.color.iconForeground }
-					style={ { fill: 'none' } }
+					stroke={ystdbConfig.color.iconForeground}
+					style={{ fill: 'none' }}
 				/>
 			),
 			category: ystdbConfig.category.common,
@@ -46,7 +46,7 @@ export function registerColumns() {
 			example: {},
 			variations,
 		},
-	} );
+	});
 }
 
 registerColumns();

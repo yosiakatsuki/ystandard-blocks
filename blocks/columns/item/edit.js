@@ -23,42 +23,42 @@ import {
 import { default as InspectorControls } from './inspector-controls';
 import { getAutoWidthClasses } from './function/auto-width';
 
-function ColumnEdit( props ) {
+function ColumnEdit(props) {
 	const { attributes, backgroundColor, className } = props;
 	const { shadow, padding, width, isAutoWidth } = attributes;
 
-	const blockProps = useBlockProps( {
-		className: classnames( 'ystdb-column', className, {
+	const blockProps = useBlockProps({
+		className: classnames('ystdb-column', className, {
 			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
+			[backgroundColor.class]: backgroundColor.class,
 			'has-shadow': shadow,
-			'has-column-width': !! width,
-			...getAutoWidthClasses( isAutoWidth ),
-		} ),
+			'has-column-width': !!width,
+			...getAutoWidthClasses(isAutoWidth),
+		}),
 		style: {
 			backgroundColor: backgroundColor.color,
-			...getResponsivePaddingStyle( padding ),
-			...getResponsiveWidthStyle( width ),
-			...getResponsiveValueStyle( 'flex-basis', width ),
+			...getResponsivePaddingStyle(padding),
+			...getResponsiveWidthStyle(width),
+			...getResponsiveValueStyle('flex-basis', width),
 		},
-	} );
+	});
 
 	const containerProps = { className: 'ystdb-column-block-container' };
 
-	const innerBlocksProps = useInnerBlocksProps( containerProps, {
+	const innerBlocksProps = useInnerBlocksProps(containerProps, {
 		templateLock: false,
 		renderAppender: () => <InnerBlocks.ButtonBlockAppender />,
-	} );
+	});
 
 	return (
 		<>
-			<InspectorControls { ...props } />
+			<InspectorControls {...props} />
 
-			<div { ...blockProps }>
-				<div { ...innerBlocksProps } />
+			<div {...blockProps}>
+				<div {...innerBlocksProps} />
 			</div>
 		</>
 	);
 }
 
-export default compose( [ withColors( 'backgroundColor' ) ] )( ColumnEdit );
+export default compose([withColors('backgroundColor')])(ColumnEdit);

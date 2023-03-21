@@ -7,50 +7,50 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 
 const buttons = getProperty(
-	getBlockEditorConfig( 'inlineStyle', {} ),
+	getBlockEditorConfig('inlineStyle', {}),
 	'buttons',
 	[]
 );
 
-buttons.map( ( button, index ) => {
-	const isEnable = getProperty( button, 'enable', true );
+buttons.map((button, index) => {
+	const isEnable = getProperty(button, 'enable', true);
 	const buttonNo = index + 1;
-	const title = __( '[ys]マーカー', 'ystandard-blocks' );
-	const name = `ystdb/inline-style-${ buttonNo }`;
-	const className = `ystdb-inline--${ buttonNo }`;
+	const title = __('[ys]マーカー', 'ystandard-blocks');
+	const name = `ystdb/inline-style-${buttonNo}`;
+	const className = `ystdb-inline--${buttonNo}`;
 	const icon = 'admin-customizer';
-	if ( isEnable ) {
-		registerFormatType( name, {
-			title: `${ title } ${ buttonNo }`,
+	if (isEnable) {
+		registerFormatType(name, {
+			title: `${title} ${buttonNo}`,
 			tagName: 'span',
 			className,
-			edit( props ) {
+			edit(props) {
 				const { value, isActive, onChange } = props;
 				const onToggle = () =>
-					onChange( toggleFormat( value, { type: name } ) );
+					onChange(toggleFormat(value, { type: name }));
 				return (
 					<>
 						<BlockFormatControls>
 							<div className="editor-format-toolbar block-editor-format-toolbar">
 								<div
-									className={ classnames(
+									className={classnames(
 										'ystdb-inline-style-toolbar',
-										`inline-style-${ buttonNo }`
-									) }
+										`inline-style-${buttonNo}`
+									)}
 								>
 									<ToolbarGroup>
 										<ToolbarButton
-											icon={ icon }
-											title={ `${ title } ${ buttonNo }` }
-											onClick={ onToggle }
-											isActive={ isActive }
+											icon={icon}
+											title={`${title} ${buttonNo}`}
+											onClick={onToggle}
+											isActive={isActive}
 										/>
 									</ToolbarGroup>
 									<div
-										className={ classnames(
+										className={classnames(
 											'ystdb-inline-style-toolbar__marker',
 											className
-										) }
+										)}
 									/>
 								</div>
 							</div>
@@ -58,7 +58,7 @@ buttons.map( ( button, index ) => {
 					</>
 				);
 			},
-		} );
+		});
 	}
 	return true;
-} );
+});

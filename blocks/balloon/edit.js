@@ -43,7 +43,7 @@ import {
 } from './config';
 import { getBalloonBackground } from './save';
 
-function Balloon( props ) {
+function Balloon(props) {
 	const {
 		textColor,
 		backgroundColor,
@@ -77,40 +77,40 @@ function Balloon( props ) {
 		verticalAlign,
 	} = attributes;
 
-	const ALLOWED_MEDIA_TYPES = [ 'image' ];
-	const DEFAULT_CONTROLS = [ 'top', 'center', 'bottom' ];
+	const ALLOWED_MEDIA_TYPES = ['image'];
+	const DEFAULT_CONTROLS = ['top', 'center', 'bottom'];
 	const DEFAULT_CONTROL = 'top';
 
-	const defaultAvatar = getComponentConfig( 'defaultAvatar' ).url;
-	const balloonImages = getBlockEditorConfig( 'balloonImages', [] );
+	const defaultAvatar = getComponentConfig('defaultAvatar').url;
+	const balloonImages = getBlockEditorConfig('balloonImages', []);
 	const isSerifBorder = 'serif-border' === balloonType;
 
-	const activeAlignment = alignmentsControls[ verticalAlign ];
-	const defaultAlignmentControl = alignmentsControls[ DEFAULT_CONTROL ];
+	const activeAlignment = alignmentsControls[verticalAlign];
+	const defaultAlignmentControl = alignmentsControls[DEFAULT_CONTROL];
 
-	const wrapClasses = classnames( className, 'ystdb-balloon', {
-		[ `is-vertically-aligned-${ verticalAlign }` ]: verticalAlign,
-		[ `is-balloon-position-${ balloonPosition }` ]: balloonPosition,
-	} );
+	const wrapClasses = classnames(className, 'ystdb-balloon', {
+		[`is-vertically-aligned-${verticalAlign}`]: verticalAlign,
+		[`is-balloon-position-${balloonPosition}`]: balloonPosition,
+	});
 
 	/**
 	 * アバター画像カラムクラス
 	 *
 	 * @type {string}
 	 */
-	const avatarWrapClasses = classnames( 'ystdb-balloon__avatar', {
-		[ `is-size-${ avatarSize }` ]: avatarSize,
-	} );
+	const avatarWrapClasses = classnames('ystdb-balloon__avatar', {
+		[`is-size-${avatarSize}`]: avatarSize,
+	});
 
 	/**
 	 * アバター名クラス
 	 *
 	 * @type {string}
 	 */
-	const avatarNameClass = classnames( 'ystdb-balloon__name', {
+	const avatarNameClass = classnames('ystdb-balloon__name', {
 		'has-text-color': avatarNameColor.color,
-		[ avatarNameColor.class ]: avatarNameColor.class,
-	} );
+		[avatarNameColor.class]: avatarNameColor.class,
+	});
 	/**
 	 * アバター名スタイル
 	 *
@@ -125,11 +125,11 @@ function Balloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const avatarClasses = classnames( 'ystdb-balloon__avatar-image', {
+	const avatarClasses = classnames('ystdb-balloon__avatar-image', {
 		'has-border-color': avatarBorderColor.color,
-		[ avatarBorderColor.class ]: avatarBorderColor.class,
+		[avatarBorderColor.class]: avatarBorderColor.class,
 		'has-border': 0 < avatarBorderWidth,
-	} );
+	});
 
 	/**
 	 * アバター画像スタイル
@@ -147,15 +147,15 @@ function Balloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const balloonBodyClass = classnames( 'ystdb-balloon__body', {
-		[ backgroundColor.class ]: backgroundColor.class,
+	const balloonBodyClass = classnames('ystdb-balloon__body', {
+		[backgroundColor.class]: backgroundColor.class,
 		'has-background': backgroundColor.color,
-		[ balloonBorderColor.class ]: balloonBorderColor.class,
+		[balloonBorderColor.class]: balloonBorderColor.class,
 		'has-border-color': balloonBorderColor.color,
-		[ `is-${ verticalAlign }` ]: verticalAlign,
-		[ `is-${ balloonPosition }` ]: balloonPosition,
-		[ `is-${ balloonType }` ]: balloonType,
-	} );
+		[`is-${verticalAlign}`]: verticalAlign,
+		[`is-${balloonPosition}`]: balloonPosition,
+		[`is-${balloonType}`]: balloonType,
+	});
 
 	/**
 	 * 吹き出しスタイル
@@ -176,11 +176,11 @@ function Balloon( props ) {
 	 *
 	 * @type {string}
 	 */
-	const textClasses = classnames( 'ystdb-ystdb-balloon__text', {
-		[ textColor.class ]: textColor.class,
+	const textClasses = classnames('ystdb-ystdb-balloon__text', {
+		[textColor.class]: textColor.class,
 		'has-text-color': textColor.color,
-		[ fontSize.class ]: fontSize.class,
-	} );
+		[fontSize.class]: fontSize.class,
+	});
 
 	/**
 	 * 吹き出しテキストスタイル
@@ -192,12 +192,12 @@ function Balloon( props ) {
 		fontSize: fontSize.size ? fontSize.size : undefined,
 	};
 
-	const serifTriangleClass = classnames( 'ystdb-balloon__serif-triangle', {
-		[ backgroundColor.class ]: backgroundColor.class,
+	const serifTriangleClass = classnames('ystdb-balloon__serif-triangle', {
+		[backgroundColor.class]: backgroundColor.class,
 		'has-background': backgroundColor.color,
-		[ balloonBorderColor.class ]: balloonBorderColor.class,
+		[balloonBorderColor.class]: balloonBorderColor.class,
 		'has-border-color': balloonBorderColor.color,
-	} );
+	});
 
 	const serifTrianglePosition = 6 - balloonBorderWidth;
 	const serifTriangleStyle = {
@@ -209,11 +209,11 @@ function Balloon( props ) {
 		borderWidth: balloonBorderWidth,
 		right:
 			'right' === balloonPosition
-				? `calc(100% - ${ serifTrianglePosition }px)`
+				? `calc(100% - ${serifTrianglePosition}px)`
 				: undefined,
 		left:
 			'left' === balloonPosition
-				? `calc(100% - ${ serifTrianglePosition }px)`
+				? `calc(100% - ${serifTrianglePosition}px)`
 				: undefined,
 	};
 
@@ -222,33 +222,33 @@ function Balloon( props ) {
 	 *
 	 * @param {Object} obj
 	 */
-	const mediaUploadRender = ( obj ) => {
-		if ( ! avatarURL || defaultAvatar === avatarURL ) {
+	const mediaUploadRender = (obj) => {
+		if (!avatarURL || defaultAvatar === avatarURL) {
 			return (
-				<div className={ avatarClasses } style={ avatarStyle }>
+				<div className={avatarClasses} style={avatarStyle}>
 					<Button
-						onClick={ obj.open }
-						className={ 'ystdb-mediaupload__preview is-no-image' }
+						onClick={obj.open}
+						className={'ystdb-mediaupload__preview is-no-image'}
 					>
-						<img src={ defaultAvatar } alt={ '' } />
+						<img src={defaultAvatar} alt={''} />
 					</Button>
 				</div>
 			);
 		}
 		return (
-			<div className={ avatarClasses } style={ avatarStyle }>
+			<div className={avatarClasses} style={avatarStyle}>
 				<Button
-					onClick={ () => {
-						setAttributes( {
+					onClick={() => {
+						setAttributes({
 							avatarID: 0,
 							avatarURL: '',
 							avatarAlt: '',
-						} );
-					} }
-					className={ 'ystdb-mediaupload__preview is-show-text' }
-					style={ { padding: 0 } }
+						});
+					}}
+					className={'ystdb-mediaupload__preview is-show-text'}
+					style={{ padding: 0 }}
 				>
-					<img src={ avatarURL } alt={ avatarAlt } />
+					<img src={avatarURL} alt={avatarAlt} />
 				</Button>
 			</div>
 		);
@@ -258,82 +258,75 @@ function Balloon( props ) {
 		<Fragment>
 			<BlockControls>
 				<ToolbarGroup>
-					<ToolbarItem
-						label={ _x( '縦位置の変更', 'ystandard-blocks' ) }
-					>
-						{ ( toolbarItemHTMLProps ) => (
+					<ToolbarItem label={_x('縦位置の変更', 'ystandard-blocks')}>
+						{(toolbarItemHTMLProps) => (
 							<DropdownMenu
-								toggleProps={ toolbarItemHTMLProps }
-								isCollapsed={ true }
+								toggleProps={toolbarItemHTMLProps}
+								isCollapsed={true}
 								icon={
 									activeAlignment
 										? activeAlignment.icon
 										: defaultAlignmentControl.icon
 								}
-								controls={ DEFAULT_CONTROLS.map(
-									( control ) => {
-										return {
-											...alignmentsControls[ control ],
-											isActive: verticalAlign === control,
-											onClick: () =>
-												setAttributes( {
-													verticalAlign:
-														verticalAlign ===
-														control
-															? undefined
-															: control,
-												} ),
-										};
-									}
-								) }
+								controls={DEFAULT_CONTROLS.map((control) => {
+									return {
+										...alignmentsControls[control],
+										isActive: verticalAlign === control,
+										onClick: () =>
+											setAttributes({
+												verticalAlign:
+													verticalAlign === control
+														? undefined
+														: control,
+											}),
+									};
+								})}
 							/>
-						) }
+						)}
 					</ToolbarItem>
 				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( '吹き出し設定', 'ystandard-blocks' ) }>
+				<PanelBody title={__('吹き出し設定', 'ystandard-blocks')}>
 					<BaseControl
-						id={ 'balloon-position' }
-						label={ __( '吹き出しの向き', 'ystandard-blocks' ) }
+						id={'balloon-position'}
+						label={__('吹き出しの向き', 'ystandard-blocks')}
 					>
 						<HorizonButtons>
-							{ balloonPositions.map( ( item ) => {
+							{balloonPositions.map((item) => {
 								return (
 									<Button
-										key={ item.value }
+										key={item.value}
 										isSecondary={
 											balloonPosition !== item.value
 										}
 										isPrimary={
 											balloonPosition === item.value
 										}
-										onClick={ () => {
-											setAttributes( {
+										onClick={() => {
+											setAttributes({
 												balloonPosition: item.value,
-											} );
-										} }
+											});
+										}}
 									>
-										{ item.label }
+										{item.label}
 									</Button>
 								);
-							} ) }
+							})}
 						</HorizonButtons>
 					</BaseControl>
 					<BaseControl
-						id={ 'balloon-type' }
-						label={ __( '吹き出しタイプ', 'ystandard-blocks' ) }
+						id={'balloon-type'}
+						label={__('吹き出しタイプ', 'ystandard-blocks')}
 					>
 						<HorizonButtons>
-							{ balloonTypes.map( ( item ) => {
+							{balloonTypes.map((item) => {
 								return (
 									<Button
-										key={ item.value }
-										isSecondary={
-											balloonType !== item.value
-										}
-										isPrimary={ balloonType === item.value }
-										onClick={ () => {
+										key={item.value}
+										isSecondary={balloonType !== item.value}
+										isPrimary={balloonType === item.value}
+										onClick={() => {
 											// if (
 											// 	'serif-border' === item.value &&
 											// 	'serif-border' !== balloonType
@@ -349,106 +342,103 @@ function Balloon( props ) {
 											// 		backgroundColor.color
 											// 	);
 											// }
-											setAttributes( {
+											setAttributes({
 												balloonType: item.value,
-											} );
-										} }
+											});
+										}}
 									>
-										{ item.label }
+										{item.label}
 									</Button>
 								);
-							} ) }
+							})}
 						</HorizonButtons>
 					</BaseControl>
 					<BaseControl
-						id={ 'balloon-font-size' }
-						label={ __( '文字サイズ', 'ystandard-blocks' ) }
+						id={'balloon-font-size'}
+						label={__('文字サイズ', 'ystandard-blocks')}
 					>
 						<FontSizePicker
 							__nextHasNoMarginBottom
-							value={ fontSize.size }
-							onChange={ ( font ) => {
-								setFontSize( font );
-							} }
+							value={fontSize.size}
+							onChange={(font) => {
+								setFontSize(font);
+							}}
 						/>
 					</BaseControl>
 					<BaseControl
-						id={ 'balloon-background' }
-						label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
+						id={'balloon-background'}
+						label={__('吹き出し背景色', 'ystandard-blocks')}
 					>
 						<ColorPaletteControl
-							label={ __( '吹き出し背景色', 'ystandard-blocks' ) }
-							value={ backgroundColor.color }
-							onChange={ ( color ) => {
-								setBackgroundColor( color );
-								if ( ! isSerifBorder ) {
-									setBalloonBorderColor( color );
+							label={__('吹き出し背景色', 'ystandard-blocks')}
+							value={backgroundColor.color}
+							onChange={(color) => {
+								setBackgroundColor(color);
+								if (!isSerifBorder) {
+									setBalloonBorderColor(color);
 								}
-							} }
+							}}
 						/>
 					</BaseControl>
 					<BaseControl
-						id={ 'balloon-text-color' }
-						label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
+						id={'balloon-text-color'}
+						label={__('吹き出し文字色', 'ystandard-blocks')}
 					>
 						<ColorPaletteControl
-							label={ __( '吹き出し文字色', 'ystandard-blocks' ) }
-							value={ textColor.color }
-							onChange={ ( color ) => {
-								setTextColor( color );
-							} }
+							label={__('吹き出し文字色', 'ystandard-blocks')}
+							value={textColor.color}
+							onChange={(color) => {
+								setTextColor(color);
+							}}
 						/>
 						<ContrastChecker
-							backgroundColor={ backgroundColor.color }
-							textColor={ textColor.color }
+							backgroundColor={backgroundColor.color}
+							textColor={textColor.color}
 						/>
 					</BaseControl>
-					{ isSerifBorder && (
+					{isSerifBorder && (
 						<>
 							<BaseControl
-								id={ 'serif-border-color' }
-								label={ __(
-									'吹き出し枠線色',
-									'ystandard-blocks'
-								) }
+								id={'serif-border-color'}
+								label={__('吹き出し枠線色', 'ystandard-blocks')}
 							>
 								<ColorPaletteControl
-									label={ __(
+									label={__(
 										'吹き出し枠線色',
 										'ystandard-blocks'
-									) }
-									value={ balloonBorderColor.color }
-									onChange={ ( color ) => {
-										setBalloonBorderColor( color );
-									} }
+									)}
+									value={balloonBorderColor.color}
+									onChange={(color) => {
+										setBalloonBorderColor(color);
+									}}
 								/>
 							</BaseControl>
 							<BaseControl>
 								<RangeControl
-									value={ balloonBorderWidth }
-									label={ __(
+									value={balloonBorderWidth}
+									label={__(
 										'吹き出し枠線太さ',
 										'ystandard-blocks'
-									) }
-									min={ 1 }
-									max={ 4 }
-									initialPosition={ 1 }
+									)}
+									min={1}
+									max={4}
+									initialPosition={1}
 									allowReset
-									onChange={ ( value ) => {
-										setAttributes( {
+									onChange={(value) => {
+										setAttributes({
 											balloonBorderWidth: value,
-										} );
-									} }
+										});
+									}}
 								/>
 							</BaseControl>
 						</>
-					) }
+					)}
 				</PanelBody>
 				<PanelBody
-					title={ __( '登録済みアバター画像', 'ystandard-blocks' ) }
+					title={__('登録済みアバター画像', 'ystandard-blocks')}
 				>
 					<BaseControl>
-						{ 0 >= balloonImages.length ? (
+						{0 >= balloonImages.length ? (
 							<div>
 								<p>登録済みのアバター画像はありません。</p>
 								<p>
@@ -462,205 +452,192 @@ function Balloon( props ) {
 								/>
 							</div>
 						) : (
-							<div className={ 'ystdb-avatar-list' }>
-								{ balloonImages.map( ( item ) => {
+							<div className={'ystdb-avatar-list'}>
+								{balloonImages.map((item) => {
 									return (
 										<Button
-											key={ item.id }
+											key={item.id}
 											isPrimary={
 												avatarID === item.id &&
 												avatarName === item.name
 											}
-											onClick={ () => {
-												setAttributes( {
+											onClick={() => {
+												setAttributes({
 													avatarID: item.id,
 													avatarName: item.name,
 													avatarURL: item.url,
 													avatarAlt: item.name,
-												} );
-											} }
+												});
+											}}
 										>
 											<span>
 												<img
 													className={
 														'ystdb-avatar-list__image'
 													}
-													src={ item.url }
-													alt={ item.name }
+													src={item.url}
+													alt={item.name}
 												/>
-												{ !! item.name && (
+												{!!item.name && (
 													<span
 														className={
 															'ystdb-avatar-list__name'
 														}
 													>
-														{ item.name }
+														{item.name}
 													</span>
-												) }
+												)}
 											</span>
 										</Button>
 									);
-								} ) }
+								})}
 							</div>
-						) }
+						)}
 					</BaseControl>
 				</PanelBody>
-				<PanelBody title={ __( 'アバター設定', 'ystandard-blocks' ) }>
+				<PanelBody title={__('アバター設定', 'ystandard-blocks')}>
 					<BaseControl
-						id={ 'avatar-size' }
-						label={ __( 'アバターサイズ', 'ystandard-blocks' ) }
+						id={'avatar-size'}
+						label={__('アバターサイズ', 'ystandard-blocks')}
 					>
 						<HorizonButtons>
-							{ avatarSizes.map( ( item ) => {
+							{avatarSizes.map((item) => {
 								return (
 									<Button
-										key={ item.value }
-										isSecondary={
-											avatarSize !== item.value
-										}
-										isPrimary={ avatarSize === item.value }
-										onClick={ () => {
-											setAttributes( {
+										key={item.value}
+										isSecondary={avatarSize !== item.value}
+										isPrimary={avatarSize === item.value}
+										onClick={() => {
+											setAttributes({
 												avatarSize: item.value,
-											} );
-										} }
+											});
+										}}
 									>
-										<span>{ item.label }</span>
+										<span>{item.label}</span>
 									</Button>
 								);
-							} ) }
+							})}
 						</HorizonButtons>
 					</BaseControl>
 					<BaseControl>
 						<RangeControl
-							value={ avatarBorderRadius }
-							label={ __(
-								'アバター画像の角丸',
-								'ystandard-blocks'
-							) }
-							min={ 0 }
-							max={ 100 }
-							initialPosition={ 40 }
+							value={avatarBorderRadius}
+							label={__('アバター画像の角丸', 'ystandard-blocks')}
+							min={0}
+							max={100}
+							initialPosition={40}
 							allowReset
-							onChange={ ( value ) => {
-								setAttributes( {
+							onChange={(value) => {
+								setAttributes({
 									avatarBorderRadius: value,
-								} );
-							} }
+								});
+							}}
 						/>
 					</BaseControl>
 					<BaseControl>
 						<RangeControl
-							value={ avatarBorderWidth }
-							label={ __(
+							value={avatarBorderWidth}
+							label={__(
 								'アバター画像の枠線太さ',
 								'ystandard-blocks'
-							) }
-							min={ 0 }
-							max={ 10 }
-							initialPosition={ 0 }
+							)}
+							min={0}
+							max={10}
+							initialPosition={0}
 							allowReset
-							onChange={ ( value ) => {
-								setAttributes( {
+							onChange={(value) => {
+								setAttributes({
 									avatarBorderWidth: value,
-								} );
-							} }
+								});
+							}}
 						/>
 					</BaseControl>
 					<BaseControl
-						id={ 'avatar-border-color' }
-						label={ __( 'アバター画像枠色', 'ystandard-blocks' ) }
+						id={'avatar-border-color'}
+						label={__('アバター画像枠色', 'ystandard-blocks')}
 					>
 						<ColorPaletteControl
-							label={ __(
-								'アバター画像枠色',
-								'ystandard-blocks'
-							) }
-							value={ avatarBorderColor.color }
-							onChange={ ( color ) => {
-								setAvatarBorderColor( color );
-							} }
+							label={__('アバター画像枠色', 'ystandard-blocks')}
+							value={avatarBorderColor.color}
+							onChange={(color) => {
+								setAvatarBorderColor(color);
+							}}
 						/>
 					</BaseControl>
 					<BaseControl
-						id={ 'avatar-text-color' }
-						label={ __( 'アバター名文字色', 'ystandard-blocks' ) }
+						id={'avatar-text-color'}
+						label={__('アバター名文字色', 'ystandard-blocks')}
 					>
 						<ColorPaletteControl
-							label={ __(
-								'アバター名文字色',
-								'ystandard-blocks'
-							) }
-							value={ avatarNameColor.color }
-							onChange={ ( color ) => {
-								setAvatarNameColor( color );
-							} }
+							label={__('アバター名文字色', 'ystandard-blocks')}
+							value={avatarNameColor.color}
+							onChange={(color) => {
+								setAvatarNameColor(color);
+							}}
 						/>
 					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ wrapClasses }>
-				<figure className={ avatarWrapClasses }>
+			<div className={wrapClasses}>
+				<figure className={avatarWrapClasses}>
 					<MediaUpload
-						onSelect={ ( media ) => {
-							setAttributes( {
+						onSelect={(media) => {
+							setAttributes({
 								avatarURL: media.url,
 								avatarID: media.id,
 								avatarAlt: media.alt,
-							} );
-						} }
-						type={ ALLOWED_MEDIA_TYPES }
-						value={ avatarID }
-						render={ mediaUploadRender }
+							});
+						}}
+						type={ALLOWED_MEDIA_TYPES}
+						value={avatarID}
+						render={mediaUploadRender}
 					/>
-					{ ( isSelected || avatarName ) && (
-						<figcaption className={ avatarNameClass }>
+					{(isSelected || avatarName) && (
+						<figcaption className={avatarNameClass}>
 							<TextControl
-								value={ avatarName }
-								className={ 'ystdb-balloon__name--edit' }
-								onChange={ ( value ) => {
-									setAttributes( {
+								value={avatarName}
+								className={'ystdb-balloon__name--edit'}
+								onChange={(value) => {
+									setAttributes({
 										avatarName: value,
-									} );
-								} }
-								style={ avatarNameStyles }
-								placeholder={ '名前...' }
-								aria-label={ __( 'Name' ) }
+									});
+								}}
+								style={avatarNameStyles}
+								placeholder={'名前...'}
+								aria-label={__('Name')}
 							/>
 						</figcaption>
-					) }
+					)}
 				</figure>
-				<div className={ balloonBodyClass } style={ balloonBodyStyles }>
+				<div className={balloonBodyClass} style={balloonBodyStyles}>
 					<RichText
-						tagName={ 'p' }
-						placeholder={ __( 'Add text…' ) }
-						value={ text }
-						onChange={ ( value ) =>
-							setAttributes( { text: value } )
-						}
-						className={ textClasses }
-						style={ textStyles }
+						tagName={'p'}
+						placeholder={__('Add text…')}
+						value={text}
+						onChange={(value) => setAttributes({ text: value })}
+						className={textClasses}
+						style={textStyles}
 					/>
-					{ isSerifBorder && (
+					{isSerifBorder && (
 						<div
-							className={ serifTriangleClass }
-							style={ serifTriangleStyle }
+							className={serifTriangleClass}
+							style={serifTriangleStyle}
 							aria-hidden
 						/>
-					) }
+					)}
 				</div>
 			</div>
 		</Fragment>
 	);
 }
 
-export default compose( [
-	withColors( 'backgroundColor', {
+export default compose([
+	withColors('backgroundColor', {
 		textColor: 'color',
 		avatarNameColor: 'color',
 		avatarBorderColor: 'borderColor',
 		balloonBorderColor: 'borderColor',
-	} ),
-	withFontSizes( 'fontSize' ),
-] )( Balloon );
+	}),
+	withFontSizes('fontSize'),
+])(Balloon);

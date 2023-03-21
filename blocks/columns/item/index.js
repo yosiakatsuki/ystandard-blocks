@@ -23,18 +23,18 @@ export function registerColumn() {
 		metadata.attributes
 	);
 
-	registerBlockType( metadata.name, {
+	registerBlockType(metadata.name, {
 		...metadata,
 		...{
-			title: __( 'カラム', 'ystandard-blocks' ),
+			title: __('カラム', 'ystandard-blocks'),
 			description: __(
 				'yStandard Blocks カラムブロック',
 				'ystandard-blocks'
 			),
 			icon: (
 				<Columns
-					stroke={ ystdbConfig.color.iconForeground }
-					style={ { fill: 'none' } }
+					stroke={ystdbConfig.color.iconForeground}
+					style={{ fill: 'none' }}
 				/>
 			),
 			category: ystdbConfig.category.common,
@@ -44,7 +44,7 @@ export function registerColumn() {
 			example: {},
 			deprecated,
 		},
-	} );
+	});
 }
 
 registerColumn();

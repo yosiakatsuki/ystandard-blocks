@@ -11,7 +11,7 @@ import SVGIcon from '../svg-icon';
 import getNum from '../../util/_getNum';
 
 class ResponsiveNumberControl extends Component {
-	getUnit( unit ) {
+	getUnit(unit) {
 		const DEFAULT_UNIT = 'px';
 
 		return undefined === unit ? DEFAULT_UNIT : unit;
@@ -46,7 +46,7 @@ class ResponsiveNumberControl extends Component {
 		const controlStep = undefined === step ? 1 : step;
 
 		const toggleUseResponsive = () => {
-			changeResponsiveMode( ! useResponsive );
+			changeResponsiveMode(!useResponsive);
 		};
 
 		return (
@@ -54,171 +54,163 @@ class ResponsiveNumberControl extends Component {
 				<div className="ystdb-responsive-range">
 					<div className="ystdb-responsive-range__title">
 						<span className="components-base-control__label">
-							{ label }
+							{label}
 						</span>
 						<div className="ystdb-responsive-range__toggle">
 							<Button
-								className={ classnames( {
+								className={classnames({
 									'is-use-responsive': useResponsive,
-								} ) }
-								onClick={ toggleUseResponsive }
+								})}
+								onClick={toggleUseResponsive}
 							>
-								<SVGIcon name={ 'settings' } />
+								<SVGIcon name={'settings'} />
 							</Button>
 						</div>
 					</div>
 
 					<div className="ystdb-responsive-range__content">
-						{ ! useResponsive ? (
+						{!useResponsive ? (
 							<>
 								<div className="ystdb-inspector-controls__columns is-center">
 									<NumberControl
-										value={ desktopValue }
-										onChange={ ( value ) => {
+										value={desktopValue}
+										onChange={(value) => {
 											const newValue = getNum(
 												value,
 												controlMin,
 												controlMax,
 												null
 											);
-											desktopOnChange( newValue );
-										} }
-										min={ controlMin }
-										max={ controlMax }
+											desktopOnChange(newValue);
+										}}
+										min={controlMin}
+										max={controlMax}
 										step={
 											undefined === controlStep
 												? 1
 												: controlStep
 										}
-										style={ { flexGrow: 1 } }
+										style={{ flexGrow: 1 }}
 									/>
-									{ !! unitOptions ? (
+									{!!unitOptions ? (
 										<SelectControl
-											value={ desktopUnit }
-											options={ unitOptions }
-											onChange={ ( value ) => {
-												desktopUnitOnChange( value );
-											} }
+											value={desktopUnit}
+											options={unitOptions}
+											onChange={(value) => {
+												desktopUnitOnChange(value);
+											}}
 										/>
 									) : (
-										<span>
-											{ this.getUnit( desktopUnit ) }
-										</span>
-									) }
+										<span>{this.getUnit(desktopUnit)}</span>
+									)}
 								</div>
 							</>
 						) : (
 							<Fragment>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={ 'desktop' } />
+									<Icon icon={'desktop'} />
 									<NumberControl
-										value={ desktopValue }
-										onChange={ ( value ) => {
+										value={desktopValue}
+										onChange={(value) => {
 											const newValue = getNum(
 												value,
 												controlMin,
 												controlMax,
 												null
 											);
-											desktopOnChange( newValue );
-										} }
-										min={ controlMin }
-										max={ controlMax }
+											desktopOnChange(newValue);
+										}}
+										min={controlMin}
+										max={controlMax}
 										step={
 											undefined === controlStep
 												? 1
 												: controlStep
 										}
-										style={ { flexGrow: 1 } }
+										style={{ flexGrow: 1 }}
 									/>
-									{ !! unitOptions ? (
+									{!!unitOptions ? (
 										<SelectControl
-											value={ desktopUnit }
-											options={ unitOptions }
-											onChange={ ( value ) => {
-												desktopUnitOnChange( value );
-											} }
+											value={desktopUnit}
+											options={unitOptions}
+											onChange={(value) => {
+												desktopUnitOnChange(value);
+											}}
 										/>
 									) : (
-										<span>
-											{ this.getUnit( desktopUnit ) }
-										</span>
-									) }
+										<span>{this.getUnit(desktopUnit)}</span>
+									)}
 								</div>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={ 'tablet' } />
+									<Icon icon={'tablet'} />
 									<NumberControl
-										value={ tabletValue }
-										onChange={ ( value ) => {
+										value={tabletValue}
+										onChange={(value) => {
 											const newValue = getNum(
 												value,
 												controlMin,
 												controlMax,
 												null
 											);
-											tabletOnChange( newValue );
-										} }
-										min={ controlMin }
-										max={ controlMax }
+											tabletOnChange(newValue);
+										}}
+										min={controlMin}
+										max={controlMax}
 										step={
 											undefined === controlStep
 												? 1
 												: controlStep
 										}
-										style={ { flexGrow: 1 } }
+										style={{ flexGrow: 1 }}
 									/>
-									{ !! unitOptions ? (
+									{!!unitOptions ? (
 										<SelectControl
-											value={ tabletUnit }
-											options={ unitOptions }
-											onChange={ ( value ) => {
-												tabletUnitOnChange( value );
-											} }
+											value={tabletUnit}
+											options={unitOptions}
+											onChange={(value) => {
+												tabletUnitOnChange(value);
+											}}
 										/>
 									) : (
-										<span>
-											{ this.getUnit( tabletUnit ) }
-										</span>
-									) }
+										<span>{this.getUnit(tabletUnit)}</span>
+									)}
 								</div>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={ 'smartphone' } />
+									<Icon icon={'smartphone'} />
 									<NumberControl
-										value={ mobileValue }
-										onChange={ ( value ) => {
+										value={mobileValue}
+										onChange={(value) => {
 											const newValue = getNum(
 												value,
 												controlMin,
 												controlMax,
 												null
 											);
-											mobileOnChange( newValue );
-										} }
-										min={ controlMin }
-										max={ controlMax }
+											mobileOnChange(newValue);
+										}}
+										min={controlMin}
+										max={controlMax}
 										step={
 											undefined === controlStep
 												? 1
 												: controlStep
 										}
-										style={ { flexGrow: 1 } }
+										style={{ flexGrow: 1 }}
 									/>
-									{ !! unitOptions ? (
+									{!!unitOptions ? (
 										<SelectControl
-											value={ mobileUnit }
-											options={ unitOptions }
-											onChange={ ( value ) => {
-												mobileUnitOnChange( value );
-											} }
+											value={mobileUnit}
+											options={unitOptions}
+											onChange={(value) => {
+												mobileUnitOnChange(value);
+											}}
 										/>
 									) : (
-										<span>
-											{ this.getUnit( mobileUnit ) }
-										</span>
-									) }
+										<span>{this.getUnit(mobileUnit)}</span>
+									)}
 								</div>
 							</Fragment>
-						) }
+						)}
 					</div>
 				</div>
 			</BaseControl>
