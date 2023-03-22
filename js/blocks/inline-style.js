@@ -136,7 +136,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const buttonTitle = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('[ys]インラインスタイル', 'ystandard-blocks');
 const SLOT_NAME = 'ystdb.InlineStyle.Items';
 const items = (0,_aktk_helper_object__WEBPACK_IMPORTED_MODULE_5__.getProperty)((0,_aktk_helper_config__WEBPACK_IMPORTED_MODULE_6__.getBlockEditorConfig)('inlineStyle', {}), 'items', []);
@@ -212,7 +211,9 @@ Object.keys(items).map(key => {
       const titleClass = classnames__WEBPACK_IMPORTED_MODULE_7___default()('ystdb-inline-style-items-button', formatClassName);
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Fill, {
         name: SLOT_NAME
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton
+      // @ts-ignore
+      , {
         title: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
           className: titleClass
         }, item.label),

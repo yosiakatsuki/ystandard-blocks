@@ -11,7 +11,6 @@ import { __ } from '@wordpress/i18n';
 import { getProperty } from '@aktk/helper/object';
 import { getBlockEditorConfig } from '@aktk/helper/config';
 import classnames from 'classnames';
-import { Fragment } from '@wordpress/element';
 import { Icon, edit } from '@wordpress/icons';
 import { yStandardIcon } from '@aktk/components/ystandard-icon';
 
@@ -90,9 +89,10 @@ Object.keys(items).map((key) => {
 				formatClassName
 			);
 			return (
-				<Fragment>
+				<>
 					<Fill name={SLOT_NAME}>
 						<ToolbarButton
+							// @ts-ignore
 							title={
 								<span className={titleClass}>{item.label}</span>
 							}
@@ -101,7 +101,7 @@ Object.keys(items).map((key) => {
 							onClick={onClick}
 						/>
 					</Fill>
-				</Fragment>
+				</>
 			);
 		},
 	});
