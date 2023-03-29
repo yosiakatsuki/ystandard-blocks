@@ -1,12 +1,15 @@
 module.exports = {
 	plugins: [
-		require( 'autoprefixer' )( { grid: 'autoplace' } ),
-		require( 'cssnano' )( {
+		require('autoprefixer')({ grid: 'autoplace' }),
+		require('cssnano')({
 			preset: [
 				'default',
-				{ minifyFontValues: { removeQuotes: false } },
+				{
+					minifyFontValues: { removeQuotes: false },
+					colormin: false,
+				},
 			],
-		} ),
-		require( 'css-declaration-sorter' )( { order: 'smacss' } ),
+		}),
+		require('css-declaration-sorter')({ order: 'smacss' }),
 	],
 };
