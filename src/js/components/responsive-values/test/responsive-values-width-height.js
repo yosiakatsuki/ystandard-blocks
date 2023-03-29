@@ -1,4 +1,5 @@
-import { getResponsiveWidthStyle, getResponsiveHeightStyle } from '../index';
+// @ts-nocheck
+import { getResponsiveWidthStyle, getResponsiveHeightStyle } from '../util';
 
 /**
  * Width

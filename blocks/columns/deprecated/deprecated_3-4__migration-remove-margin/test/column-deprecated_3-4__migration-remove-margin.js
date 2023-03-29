@@ -1,4 +1,4 @@
-import { migrateRemoveMargin } from '../index';
+import { migrateRemoveMargin } from '../util';
 
 describe('migrateRemoveMargin', () => {
 	test('migrateRemoveMargin has no margin', () => {

@@ -1,4 +1,5 @@
-import { getResponsiveGapStyle } from '../index';
+// @ts-nocheck
+import { getResponsiveGapStyle } from '../util';
 
 /**
  * test : gap style

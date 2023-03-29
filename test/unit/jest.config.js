@@ -7,7 +7,9 @@ module.exports = {
 	transform: {
 		'^.+\\.js$': 'babel-jest',
 	},
-	testURL: 'http://localhost:10010/',
+	testEnvironmentOptions: {
+		url: 'http://localhost:10010/',
+	},
 	testPathIgnorePatterns: [
 		'/.git/',
 		'/node_modules/',

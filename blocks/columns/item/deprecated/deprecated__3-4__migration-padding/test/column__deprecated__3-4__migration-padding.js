@@ -1,4 +1,4 @@
-import { migratePadding } from '../index';
+import { migratePadding } from '../util';
 
 describe('migratePadding', () => {
 	test('migratePadding is-small', () => {

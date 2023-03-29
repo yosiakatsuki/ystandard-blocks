@@ -92,6 +92,8 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@emotion/babel-plugin": "^11.10.6",
+    "@types/jest": "^29.5.0",
+    "@types/lodash": "^4.14.192",
     "@types/wordpress__blocks": "^12.5.0",
     "@wordpress/block-editor": "^11.6.0",
     "@wordpress/block-serialization-default-parser": "^4.29.0",

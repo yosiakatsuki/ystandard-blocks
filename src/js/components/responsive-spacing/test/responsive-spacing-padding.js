@@ -1,4 +1,5 @@
-import { getResponsivePaddingStyle } from '../index';
+// @ts-nocheck
+import { getResponsivePaddingStyle } from '../util';
 
 /**
  * test : padding style
