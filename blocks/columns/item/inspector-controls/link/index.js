@@ -27,7 +27,7 @@ const PanelLink = ({ attributes, setAttributes }) => {
 
 	return (
 		<PanelBody
-			title={__('リンク設定(β)', 'ystandard-blocks')}
+			title={__('リンク設定', 'ystandard-blocks')}
 			initialOpen={false}
 		>
 			<BaseControl>
@@ -37,9 +37,6 @@ const PanelLink = ({ attributes, setAttributes }) => {
 							'リンクの設定をした場合、公開ページでカラム内のテキストを選択できない状態になります。',
 							'ystandard-blocks'
 						)}
-					</div>
-					<div>
-						{__('※この機能は現在β版機能です。', 'ystandard-blocks')}
 					</div>
 				</Notice>
 			</BaseControl>
