@@ -1,3 +1,4 @@
+// @ts-nocheck
 import classnames from 'classnames';
 /**
  * WordPress.
@@ -347,7 +348,7 @@ function customHeading(props) {
 	const mediaUploadRender = (obj) => {
 		if (0 === dividerImageID) {
 			return (
-				<Button isSecondary onClick={obj.open}>
+				<Button variant="secondary" onClick={obj.open}>
 					{__('画像を選択', 'ystandard-blocks')}
 				</Button>
 			);
@@ -362,7 +363,7 @@ function customHeading(props) {
 					<img src={dividerImageURL} alt={dividerImageAlt} />
 				</Button>
 				<Button
-					isSecondary
+					variant="secondary"
 					onClick={() => {
 						setAttributes({
 							dividerImageURL: '',

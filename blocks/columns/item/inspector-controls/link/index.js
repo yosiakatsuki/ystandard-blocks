@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback } from '@wordpress/element';
 import { PanelBody, BaseControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
