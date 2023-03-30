@@ -11,10 +11,9 @@
 		}
 
 		.components-base-control {
-			margin-top: 32px;
 
-			&:first-of-type {
-				margin-top: 16px;
+			+ .components-base-control {
+				margin-top: 32px;
 			}
 
 			&:last-child {
@@ -32,9 +31,14 @@
 		.components-base-control__label + .components-base-control {
 			margin-top: 0;
 		}
+
 	}
 
 	.components-panel__body-title {
 		border-bottom: 1px solid global.$color__border-gray-light;
+
+		+ .components-base-control {
+			margin-top: 16px;
+		}
 	}
 }
