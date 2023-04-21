@@ -4,7 +4,7 @@ module.exports = {
 	...defaultConfig,
 	globals: {
 		// @ts-ignore
-		...defaultConfig?.globals,
+		...defaultConfig.globals,
 		ystdb: true,
 		ystdbOption: true,
 		ystdbIconList: true,
@@ -12,7 +12,7 @@ module.exports = {
 	},
 	rules: {
 		// @ts-ignore
-		...defaultConfig?.rules,
+		...defaultConfig.rules,
 		'import/no-unresolved': 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'@wordpress/no-unsafe-wp-apis': 'off',

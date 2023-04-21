@@ -11,6 +11,9 @@ import CustomSelectControl from '@aktk/components/custom-select-control';
 import { addDefaultCustomSelect } from '@aktk/helper/select-control';
 import Notice from '@aktk/components/notice';
 
+/**
+ * @deprecated
+ */
 const TaxonomySelect = ({
 	label,
 	value,

@@ -12,11 +12,12 @@ export const getDefaultAttributes = () => {
 };
 
 /**
- * @param {Object} name
+ * PHPから拡張したデフォルト値をセットする.
+ *
+ * @param {string} name
  * @param {Object} attributes
- * @deprecated
  */
-export const mergeDefaultAttributes = (name, attributes) => {
+export const mergeDefaultAttributes = (name: string, attributes: object) => {
 	const defaultAttributes = getDefaultAttributes();
 	if (!defaultAttributes) {
 		return attributes;
@@ -24,9 +25,11 @@ export const mergeDefaultAttributes = (name, attributes) => {
 	if (!defaultAttributes.hasOwnProperty(name)) {
 		return attributes;
 	}
+	// @ts-ignore
 	const blockDefaultAttr = defaultAttributes[name];
 	Object.keys(blockDefaultAttr).map((key) => {
 		if (attributes.hasOwnProperty(key)) {
+			// @ts-ignore
 			attributes[key].default = blockDefaultAttr[key];
 		}
 		return blockDefaultAttr;

@@ -1,5 +1,7 @@
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
-const path = require( 'path' );
+// @ts-ignore
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const v2Config = require('./webpack.blocks.v2.config');
+const path = require('path');
 
 module.exports = {
 	...defaultConfig,
@@ -14,25 +16,25 @@ module.exports = {
 		heading: './blocks/heading/index.js',
 		balloon: './blocks/balloon/index.js',
 		card: './blocks/card/index.js',
-		'conditional-group-block': './blocks/conditional-group-block/index.js',
 		'inline-style': './blocks/inline-style/index.js',
 	},
 	output: {
 		filename: '[name].js',
-		path: `${ __dirname }/js/blocks`,
+		path: `${__dirname}/js/blocks`,
 	},
 	module: {
-		rules: [ ...defaultConfig.module.rules ],
+		rules: [...defaultConfig.module.rules],
 	},
 	resolve: {
 		...defaultConfig.resolve,
 		alias: {
 			...defaultConfig.resolve.alias,
-			'@aktk/config': path.resolve( __dirname, 'src/js/config' ),
-			'@aktk/components': path.resolve( __dirname, 'src/js/components' ),
-			'@aktk/controls': path.resolve( __dirname, 'src/js/controls' ),
-			'@aktk/helper': path.resolve( __dirname, 'src/js/helper' ),
-			'@aktk/util': path.resolve( __dirname, 'src/js/util' ),
+			...v2Config.resolve.alias,
+			'@aktk/config': path.resolve(__dirname, 'src/js/config'),
+			'@aktk/components': path.resolve(__dirname, 'src/js/components'),
+			'@aktk/controls': path.resolve(__dirname, 'src/js/controls'),
+			'@aktk/helper': path.resolve(__dirname, 'src/js/helper'),
+			'@aktk/util': path.resolve(__dirname, 'src/js/util'),
 		},
 	},
 	cache: false,

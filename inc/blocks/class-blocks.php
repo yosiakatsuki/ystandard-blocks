@@ -43,6 +43,8 @@ class Blocks {
 			add_filter( 'block_categories', [ $this, 'add_block_categories' ] );
 		}
 		$this->load_files();
+		$this->init_blocks();
+		// 以下は徐々に移行する.
 		$this->init();
 		add_action( 'init', [ $this, 'require_dynamic_block_file' ] );
 		add_action( 'init', [ $this, 'register_block' ] );
@@ -115,7 +117,18 @@ class Blocks {
 				'editor_style' => $editor_style,
 			];
 		}
+	}
 
+	/**
+	 * ブロックのファイル読み込み
+	 *
+	 * @return void
+	 */
+	private function init_blocks() {
+		$blocks = glob( YSTDB_PATH . '/build/blocks/**/index.php' );
+		foreach ( $blocks as $file ) {
+			require_once $file;
+		}
 	}
 
 	/**
@@ -273,6 +286,7 @@ class Blocks {
 	 * ファイルの読み込み
 	 */
 	private function load_files() {
+		require_once __DIR__ . '/class-block-utility.php';
 		require_once __DIR__ . '/class-dynamic-block.php';
 		require_once __DIR__ . '/class-color-palette.php';
 		require_once __DIR__ . '/class-font-size.php';

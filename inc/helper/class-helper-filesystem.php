@@ -33,15 +33,55 @@ class Helper_Filesystem {
 	 * @return string
 	 */
 	public static function file_get_contents( $file ) {
-		$filesystem_direct = self::init_filesystem();
-		$content           = false;
-		if ( $filesystem_direct ) {
-			$content = $filesystem_direct->get_contents( $file );
-		}
-		global $wp_filesystem;
-		$wp_filesystem = self::$filesystem;
 
-		return $content;
+		return self::get_contents( $file );
+	}
+
+	/**
+	 * ファイル取得.
+	 *
+	 * @param string $path file path.
+	 *
+	 * @return false|string
+	 */
+	private static function get_contents( $path ) {
+		if ( ! file_exists( $path ) ) {
+			return '';
+		}
+
+		return file_get_contents( $path );
+	}
+
+	/**
+	 * Jsonファイルの中身を取得
+	 *
+	 * @param string $path json file path.
+	 *
+	 * @return array|mixed
+	 */
+	public static function get_json_file_contents( $path ) {
+		$contents = self::file_get_contents( $path );
+		if ( ! $contents ) {
+			return [];
+		}
+		$json = json_decode( $contents, true );
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			return [];
+		}
+		if ( is_null( $json ) ) {
+			return [];
+		}
+
+		return $json;
+	}
+
+	/**
+	 * WP_Filesystem_Directを使用
+	 *
+	 * @return string
+	 */
+	public static function filesystem_direct() {
+		return 'direct';
 	}
 
 	/**
@@ -57,22 +97,13 @@ class Helper_Filesystem {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 		}
 
-		add_filter( 'filesystem_method', [ '\ystandard_blocks\helper\Helper_Filesystem', 'filesystem_direct' ] );
+		add_filter( 'filesystem_method', [ '\ystandard_toolbox\Filesystem', 'filesystem_direct' ] );
 
 		WP_Filesystem();
 
-		remove_filter( 'filesystem_method', [ '\ystandard_blocks\helper\Helper_Filesystem', 'filesystem_direct' ] );
+		remove_filter( 'filesystem_method', [ '\ystandard_toolbox\Filesystem', 'filesystem_direct' ] );
 
 		return $wp_filesystem;
-	}
-
-	/**
-	 * WP_Filesystem_Directを使用
-	 *
-	 * @return string
-	 */
-	public static function filesystem_direct() {
-		return 'direct';
 	}
 
 }

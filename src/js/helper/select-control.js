@@ -1,5 +1,8 @@
 import { __ } from '@wordpress/i18n';
 
+/**
+ * @deprecated
+ */
 export function addDefaultSelect(options) {
 	const defaultSelect = [
 		{
@@ -10,6 +13,9 @@ export function addDefaultSelect(options) {
 	return !options ? defaultSelect : [...defaultSelect, ...options];
 }
 
+/**
+ * @deprecated
+ */
 export function addDefaultCustomSelect(options) {
 	const defaultSelect = [
 		{

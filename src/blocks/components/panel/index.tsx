@@ -4,16 +4,13 @@
 import { PanelBody } from '@wordpress/components';
 import { useMemo } from '@wordpress/element';
 
-/**
- * @param {object} props
- * @param {string} props.title
- * @param {boolean|function} props.initialOpen
- * @param {JSX.Element} props.children
- * @returns {JSX.Element}
- * @constructor
- * @deprecated
- */
-const Panel = ({ title, initialOpen, children }) => {
+interface PanelProps {
+	title: string;
+	initialOpen: (() => boolean) | boolean;
+	children: React.ReactNode;
+}
+
+export default function Panel({ title, initialOpen, children }: PanelProps) {
 	const _initialOpen = useMemo(() => {
 		if ('function' === typeof initialOpen) {
 			return initialOpen();
@@ -25,5 +22,4 @@ const Panel = ({ title, initialOpen, children }) => {
 			{children}
 		</PanelBody>
 	);
-};
-export default Panel;
+}
