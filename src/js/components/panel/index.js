@@ -5,12 +5,12 @@ import { PanelBody } from '@wordpress/components';
 import { useMemo } from '@wordpress/element';
 
 /**
- * @param {object} props
- * @param {string} props.title
- * @param {boolean|function} props.initialOpen
- * @param {JSX.Element} props.children
- * @returns {JSX.Element}
- * @constructor
+ * @param {Object}             props
+ * @param {string}             props.title
+ * @param {boolean | Function} props.initialOpen
+ * @param {JSX.Element}        props.children
+ * @return {JSX.Element}
+ * @class
  * @deprecated
  */
 const Panel = ({ title, initialOpen, children }) => {

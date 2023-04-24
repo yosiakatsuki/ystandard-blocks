@@ -2,6 +2,7 @@ import classnames from 'classnames';
 
 /**
  * 通知タイプ
+ *
  * @type {{help: string, warning: string, error: string, info: string}}
  * @deprecated
  */
@@ -14,12 +15,13 @@ export const noticeType = {
 
 /**
  * 通知コンポーネント
- * @param {object} props
+ *
+ * @param {Object}      props
  * @param {JSX.Element} props.children
- * @param {string} props.type
- * @param {string} props.className
- * @returns {JSX.Element}
- * @constructor
+ * @param {string}      props.type
+ * @param {string}      props.className
+ * @return {JSX.Element}
+ * @class
  * @deprecated
  */
 const Notice = ({ children, type, className, ...props }) => {

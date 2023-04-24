@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 /**
+ * @param options
  * @deprecated
  */
 export function addDefaultSelect(options) {
@@ -14,6 +15,7 @@ export function addDefaultSelect(options) {
 }
 
 /**
+ * @param options
  * @deprecated
  */
 export function addDefaultCustomSelect(options) {

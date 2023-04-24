@@ -17,6 +17,7 @@ require_once __DIR__ . '/helper/class-helper-filesystem.php';
 require_once __DIR__ . '/helper/class-helper-css.php';
 require_once __DIR__ . '/helper/class-helper-conversion.php';
 require_once __DIR__ . '/helper/class-helper-amp.php';
+require_once __DIR__ . '/helper/class-boolean.php';
 require_once __DIR__ . '/admin/class-notice.php';
 require_once __DIR__ . '/migration/class-migration.php';
 require_once __DIR__ . '/option/class-option.php';

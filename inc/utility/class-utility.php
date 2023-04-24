@@ -126,6 +126,7 @@ class Utility {
 	 * @param mixed $var var.
 	 *
 	 * @return bool
+	 * @deprecated to Helper/Boolean::to_bool()
 	 */
 	public static function to_bool( $var ) {
 		if ( true === $var || 'true' === $var || 1 === $var || '1' === $var ) {

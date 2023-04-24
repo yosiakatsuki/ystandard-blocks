@@ -12,6 +12,12 @@ import { addDefaultCustomSelect } from '@aktk/helper/select-control';
 import Notice from '@aktk/components/notice';
 
 /**
+ * @param root0
+ * @param root0.label
+ * @param root0.value
+ * @param root0.postType
+ * @param root0.onChange
+ * @param root0.allTaxonomies
  * @deprecated
  */
 const TaxonomySelect = ({

@@ -34,6 +34,10 @@
     "terms": {
       "type": "array"
     },
+    "applyChildren": {
+      "type": "boolean",
+      "default": false
+    },
     "hideAMP": {
       "type": "boolean",
       "default": false

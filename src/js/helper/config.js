@@ -13,8 +13,9 @@ export const getComponentConfig = (name) => {
 
 /**
  * ブロックエディター設定取得
+ *
  * @param {string} name
- * @param {any} defaultValue
+ * @param {any}    defaultValue
  * @return {any}
  * @deprecated
  */

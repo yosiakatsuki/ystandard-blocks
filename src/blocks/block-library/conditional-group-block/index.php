@@ -8,6 +8,7 @@
 namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_Amp;
+use ystandard_blocks\helper\Boolean;
 
 defined( 'ABSPATH' ) || die();
 
@@ -117,6 +118,7 @@ class Conditional_Group_Block_Block {
 		$filter_type     = $attributes['taxFilterType'];
 		$filter_taxonomy = $attributes['taxonomy'];
 		$filter_terms    = $attributes['terms'];
+		$apply_children  = $attributes['applyChildren'];
 		// 設定がなければ絞り込みなし.
 		if ( ! $filter_taxonomy || ! $filter_terms ) {
 			return true;
@@ -127,6 +129,19 @@ class Conditional_Group_Block_Block {
 		if ( ! is_singular() && ! is_tax() && ! is_category() && ! is_tag() ) {
 			return $result;
 		}
+
+		if ( Boolean::to_bool( $apply_children ) ) {
+			$taxonomy = get_taxonomy( $filter_taxonomy );
+			if ( $taxonomy && $taxonomy->hierarchical ) {
+				foreach ( $filter_terms as $value ) {
+					$term_children = get_term_children( $value, $filter_taxonomy );
+					if ( $term_children ) {
+						$filter_terms = array_merge( $filter_terms, $term_children );
+					}
+				}
+			}
+		}
+
 		global $post;
 		$terms_ids = [];
 		if ( is_tax() || is_category() || is_tag() ) {
@@ -187,4 +202,5 @@ class Conditional_Group_Block_Block {
 		return $this->render( $args, $content );
 	}
 }
+
 new Conditional_Group_Block_Block();

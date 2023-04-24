@@ -14,6 +14,7 @@ import Panel from '@aktk/blocks/components/panel';
 import FilterType from './filter-type';
 import Taxonomy from './taxonomy';
 import Terms from './terms';
+import ApplyChildren from './apply-children';
 
 const PanelTaxonomy = (props: BlockEditProps<BlockAttributes>) => {
 	const { attributes } = props;
@@ -26,6 +27,7 @@ const PanelTaxonomy = (props: BlockEditProps<BlockAttributes>) => {
 			<FilterType {...props} />
 			<Taxonomy {...props} />
 			<Terms {...props} />
+			<ApplyChildren {...props} />
 		</Panel>
 	);
 };
