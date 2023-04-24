@@ -15,7 +15,7 @@ import { COLOR, CATEGORY } from '@aktk/blocks/config';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
-import './style-index.scss';
+import './style.scss';
 
 export function registerGroupBlock() {
 	const attributes = mergeDefaultAttributes(
@@ -23,6 +23,7 @@ export function registerGroupBlock() {
 		metadata.attributes
 	);
 
+	// @ts-ignore
 	registerBlockType(metadata.name, {
 		...metadata,
 		...{

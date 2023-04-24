@@ -15,7 +15,7 @@ import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
  * Block.
  */
 import GroupInspectorControls from './inspector-controls';
-import './index.scss';
+import './editor.scss';
 
 export default function ConditionalGroupEdit(
 	props: BlockEditProps<BlockAttributes>

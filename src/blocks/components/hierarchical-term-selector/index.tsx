@@ -19,6 +19,11 @@ import {
 	isEmptyArray,
 } from '@aktk/blocks/util';
 
+/**
+ * Components.
+ */
+import './index.scss';
+
 export interface HierarchicalTermSelectorProps {
 	taxonomy: string;
 	selectedTerms: string[];
