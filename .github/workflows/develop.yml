@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     name: lint
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           ref: 'develop'
 
@@ -23,22 +23,11 @@ jobs:
       - name: Check PHP Version
         run: php -v
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
       - name: Composer install
         run: composer install --optimize-autoloader --prefer-dist
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -57,7 +46,7 @@ jobs:
         run: npm run lint
 
       - name: Notify Lint
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: Failure lint
@@ -76,7 +65,7 @@ jobs:
     name: PHP Error Check (PHP ${{ matrix.php }})
     needs: [ lint ]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           ref: 'develop'
 
@@ -92,7 +81,7 @@ jobs:
         run: bash bin/php-l.sh
 
       - name: Error Check
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "Failure : Error Check"
@@ -107,26 +96,15 @@ jobs:
     needs: [ lint ,codeCheck ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           ref: 'develop'
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -148,7 +126,7 @@ jobs:
         run: npm run test
 
       - name: Failed Test
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "Failure : Test"
@@ -163,12 +141,12 @@ jobs:
     needs: [ lint ,codeCheck, test ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         with:
           ref: 'develop'
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -202,7 +180,7 @@ jobs:
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
 
       - name: Notify Release
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "[yStandard Blocks]開発バージョンのアップデート準備OK！"
