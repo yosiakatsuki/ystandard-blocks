@@ -16,6 +16,8 @@ module.exports = {
 		'import/no-unresolved': 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'@wordpress/no-unsafe-wp-apis': 'off',
+		'jsdoc/require-returns-description': 'off',
+		'jsdoc/require-param-type': 'off',
 	},
 	parserOptions: {
 		requireConfigFile: false,

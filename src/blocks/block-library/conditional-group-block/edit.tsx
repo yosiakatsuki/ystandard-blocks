@@ -10,7 +10,6 @@ import {
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
-import { useCallback } from '@wordpress/element';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 /**
  * Block.
@@ -22,19 +21,16 @@ export default function ConditionalGroupEdit(
 	props: BlockEditProps<BlockAttributes>
 ) {
 	const { clientId } = props;
-	const { hasInnerBlocks } = useCallback(
+	// @ts-expect-error
+	const { hasInnerBlocks } = useSelect((select) => {
 		// @ts-expect-error
-		useSelect((select) => {
-			// @ts-expect-error
-			const { getBlock } = select(blockEditorStore);
+		const { getBlock } = select(blockEditorStore);
 
-			const block = getBlock(clientId);
-			return {
-				hasInnerBlocks: block && block.innerBlocks.length,
-			};
-		}),
-		[clientId]
-	);
+		const block = getBlock(clientId);
+		return {
+			hasInnerBlocks: block && block.innerBlocks.length,
+		};
+	});
 	const blockProps = useBlockProps({
 		className: classnames('ystdb-conditional-group'),
 	});

@@ -33,7 +33,7 @@ export default function TaxonomySelect({
 	// @ts-expect-error
 	const { selectedPostType, taxonomy, hasResolved } = useSelect((select) => {
 		// @ts-expect-error
-		const { getPostType, getTaxonomies, hasResolved } = select(coreStore);
+		const { getPostType, getTaxonomies } = select(coreStore);
 		const _taxonomies = getTaxonomies({ per_page: -1 }) || [];
 		// @ts-expect-error
 		const hasResolvedPostType = select(coreStore).hasFinishedResolution(

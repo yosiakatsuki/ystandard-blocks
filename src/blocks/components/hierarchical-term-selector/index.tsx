@@ -30,7 +30,7 @@ export default function HierarchicalTermSelector({
 	selectedTerms,
 	onChange,
 }: HierarchicalTermSelectorProps) {
-	const _selectedTerms = selectedTerms || [];
+	const _selectedTerms = useMemo(() => selectedTerms || [], [selectedTerms]);
 	// @ts-expect-error
 	const { availableTerms, hasResolved } = useSelect((select) => {
 		// @ts-expect-error
@@ -52,7 +52,7 @@ export default function HierarchicalTermSelector({
 	});
 	const termsTree = useMemo(
 		() => sortBySelected(buildTermsTree(availableTerms), _selectedTerms),
-		[availableTerms, taxonomy]
+		[availableTerms, _selectedTerms]
 	);
 	// @ts-expect-error
 	const onChangeCheckbox = (termId) => {

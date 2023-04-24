@@ -25,7 +25,7 @@
   },
   "scripts": {
 	"test": "phpunit",
-	"phpcs": "phpcs --standard=./.phpcs.xml.dist"
+	"phpcs": "phpcs -s --standard=./.phpcs.xml.dist"
   },
   "config": {
     "allow-plugins": {

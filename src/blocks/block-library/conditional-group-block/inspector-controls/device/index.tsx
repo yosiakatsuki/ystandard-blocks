@@ -13,10 +13,11 @@ import Notice from '@aktk/blocks/components/notice';
 
 /**
  * 画面サイズ別非表示設定
- * @param {object} props
- * @param {object} props.attributes
- * @param {function} props.setAttributes
- * @constructor
+ *
+ * @param {Object}   props
+ * @param {Object}   props.attributes
+ * @param {Function} props.setAttributes
+ * @class
  */
 const PanelDevice = ({
 	attributes,

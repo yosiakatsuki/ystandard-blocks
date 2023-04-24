@@ -16,7 +16,7 @@ export default function Panel({ title, initialOpen, children }: PanelProps) {
 			return initialOpen();
 		}
 		return initialOpen;
-	}, []);
+	}, [initialOpen]);
 	return (
 		<PanelBody title={title} initialOpen={_initialOpen}>
 			{children}
