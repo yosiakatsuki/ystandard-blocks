@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * 数字変換
  *
@@ -5,6 +6,7 @@
  * @param {number} min
  * @param {number} max
  * @param {number} defaultValue
+ * @deprecated
  */
 export default function getNum(
 	value,

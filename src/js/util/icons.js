@@ -2,6 +2,7 @@
  * アイコンのリストを取得
  *
  * @return {Array} アイコン一覧.
+ * @deprecated @aktk/components/icon に移行.
  */
 export function getIcons() {
 	return window.ystdbIconList;
@@ -12,6 +13,7 @@ export function getIcons() {
  *
  * @param {string} iconName アイコン名.
  * @return {undefined|string} アイコンSVG.
+ * @deprecated @aktk/components/icon に移行.
  */
 export function getIconSvg(iconName) {
 	const name = migrateOldSNSIconName(iconName);
@@ -29,6 +31,7 @@ export function getIconSvg(iconName) {
  *
  * @param {string} name SNSアイコン名
  * @return {string} アイコン名.
+ * @deprecated 旧SNSアイコン名は使用しない.
  */
 export function migrateOldSNSIconName(name) {
 	if (!name) {

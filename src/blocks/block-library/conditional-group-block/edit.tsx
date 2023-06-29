@@ -3,7 +3,6 @@ import classnames from 'classnames';
  * WordPress.
  */
 import {
-	// @ts-expect-error
 	useInnerBlocksProps,
 	useBlockProps,
 	InnerBlocks,

@@ -17,7 +17,7 @@ import {
 	sortBySelected,
 	buildTermsTree,
 	isEmptyArray,
-} from '@aktk/blocks/util';
+} from '@aktk/blocks/utils';
 
 /**
  * Components.

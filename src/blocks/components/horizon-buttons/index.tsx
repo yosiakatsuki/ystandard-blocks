@@ -1,9 +1,9 @@
 import './index.scss';
 
-export default function HorizonButtons({
-	children,
-}: {
+interface HorizonButtonsProps {
 	children: React.ReactNode;
-}) {
-	return <div className="ystdb__horizon-buttons">{children}</div>;
+}
+
+export default function HorizonButtons(props: HorizonButtonsProps) {
+	return <div className="ystdb__horizon-buttons">{props.children}</div>;
 }

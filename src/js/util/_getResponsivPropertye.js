@@ -1,3 +1,7 @@
+// @ts-nocheck
+/**
+ * @deprecated
+ */
 export default function getDataProperty(props) {
 	for (const key in props) {
 		if (undefined === props[key] || null === props[key]) {
