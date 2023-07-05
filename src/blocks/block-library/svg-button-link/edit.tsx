@@ -1,7 +1,6 @@
-import SVGIconSelect from '@aktk/components/svg-icon-select/index';
-import { getIconSvg } from '@aktk/util/icons';
-import { ystdbConfig } from '@aktk/config/config';
-
+/**
+ * WordPress dependencies.
+ */
 import {
 	BlockControls,
 	PlainText,
@@ -11,10 +10,10 @@ import {
 	withColors,
 	FontSizePicker,
 	withFontSizes,
+	useBlockProps,
 } from '@wordpress/block-editor';
+// @ts-expect-error
 import ServerSideRender from '@wordpress/server-side-render';
-
-import { Fragment } from '@wordpress/element';
 
 import {
 	Disabled,
@@ -27,12 +26,57 @@ import {
 	ToolbarGroup,
 	ToolbarButton,
 } from '@wordpress/components';
-
-import { withState, compose } from '@wordpress/compose';
-
+import { useState } from '@wordpress/element';
+import { compose } from '@wordpress/compose';
 import { __, _x } from '@wordpress/i18n';
-import HorizonButtons from '@aktk/components/horizon-buttons';
+/**
+ * Plugin dependencies.
+ */
+import HorizonButtons from '@aktk/blocks/components/horizon-buttons';
+import SvgIconSelect from '@aktk/blocks/components/svg-icon-select';
+import { getIconSvg } from '@aktk/blocks/utils/icon';
 
+/**
+ * Block.
+ */
+import './style-editor.scss';
+
+const ICON_SIZES = [
+	{
+		value: 'is-small',
+		label: __('小', 'ystandard-blocks'),
+	},
+	{
+		value: '',
+		label: __('中', 'ystandard-blocks'),
+	},
+	{
+		value: 'is-large',
+		label: __('大', 'ystandard-blocks'),
+	},
+];
+
+const PADDING_TYPES = [
+	{
+		value: 'is-small',
+		label: __('小', 'ystandard-blocks'),
+	},
+	{
+		value: '',
+		label: __('中', 'ystandard-blocks'),
+	},
+	{
+		value: 'is-large',
+		label: __('大', 'ystandard-blocks'),
+	},
+];
+
+const ANIMATION_TYPES = [
+	{ label: __('なし', 'ystandard-blocks'), value: 'none' },
+	{ label: __('キラキラ', 'ystandard-blocks'), value: 'shine' },
+];
+
+// @ts-expect-error
 const SVGButtonLinkEdit = (props) => {
 	const {
 		backgroundColor,
@@ -41,8 +85,6 @@ const SVGButtonLinkEdit = (props) => {
 		setTextColor,
 		attributes,
 		setAttributes,
-		setState,
-		isPreview,
 		fontSize,
 		setFontSize,
 	} = props;
@@ -62,10 +104,12 @@ const SVGButtonLinkEdit = (props) => {
 		animationInterval,
 	} = attributes;
 
+	const [isPreview, setIsPreview] = useState(false);
+
 	const maxWidthUnitMaximum = 'px' === maxUnit ? 1200 : 100;
 	const maxWidthValue = '%' === maxUnit && 100 < maxWidth ? 100 : maxWidth;
 
-	const convertIconSize = (size) => {
+	const convertIconSize = (size: string) => {
 		if ('fa-xs' === size) {
 			return 'is-small';
 		}
@@ -75,9 +119,14 @@ const SVGButtonLinkEdit = (props) => {
 		return size;
 	};
 
+	const blockProps = useBlockProps({
+		className: 'wp-block-html',
+	});
+
 	return (
-		<div className={'wp-block-html'}>
-			<Fragment>
+		<div {...blockProps}>
+			<>
+				{/* @ts-expect-error */}
 				<BlockControls>
 					<AlignmentToolbar
 						value={align}
@@ -90,7 +139,7 @@ const SVGButtonLinkEdit = (props) => {
 							className={`components-tab-button`}
 							isPressed={!isPreview}
 							onClick={() => {
-								setState({ isPreview: false });
+								setIsPreview(false);
 							}}
 						>
 							<span>HTML</span>
@@ -99,13 +148,14 @@ const SVGButtonLinkEdit = (props) => {
 							className={`components-tab-button`}
 							isPressed={isPreview}
 							onClick={() => {
-								setState({ isPreview: true });
+								setIsPreview(true);
 							}}
 						>
 							<span>{__('プレビュー', 'ystandard-blocks')}</span>
 						</ToolbarButton>
 					</ToolbarGroup>
 				</BlockControls>
+
 				<Disabled.Consumer>
 					{() =>
 						isPreview ? (
@@ -119,9 +169,9 @@ const SVGButtonLinkEdit = (props) => {
 							<PlainText
 								className={'ystdb-btn-link__input'}
 								value={content}
-								onChange={(value) =>
-									setAttributes({ content: value })
-								}
+								onChange={(value) => {
+									setAttributes({ content: value });
+								}}
 								placeholder={'HTMLを入力...'}
 								aria-label={__('HTML')}
 							/>
@@ -135,6 +185,7 @@ const SVGButtonLinkEdit = (props) => {
 						colorSettings={[
 							{
 								value: backgroundColor.color,
+								//@ts-expect-error
 								onChange: (newColor) => {
 									setAttributes({
 										customGradient: undefined,
@@ -148,6 +199,7 @@ const SVGButtonLinkEdit = (props) => {
 							},
 							{
 								value: textColor.color,
+								//@ts-expect-error
 								onChange: (color) => {
 									setTextColor(color);
 								},
@@ -159,11 +211,9 @@ const SVGButtonLinkEdit = (props) => {
 						<RangeControl
 							value={borderRadius}
 							label={__('枠線の角丸', 'ystandard-blocks')}
-							min={ystdbConfig.button.borderRadiusMin}
-							max={ystdbConfig.button.borderRadiusMax}
-							initialPosition={
-								ystdbConfig.button.borderRadiusInitialPosition
-							}
+							min={0}
+							max={100}
+							initialPosition={4}
 							allowReset
 							onChange={(value) => {
 								setAttributes({ borderRadius: value });
@@ -171,38 +221,35 @@ const SVGButtonLinkEdit = (props) => {
 						/>
 					</PanelBody>
 					<PanelBody title={__('アイコン設定', 'ystandard-blocks')}>
-						<SVGIconSelect
+						<SvgIconSelect
 							iconControlTitle={__(
 								'左アイコン',
 								'ystandard-blocks'
 							)}
 							selectedIcon={iconLeft}
+							// @ts-ignore
 							onClickIcon={(value) => {
-								setAttributes({ iconLeft: value });
 								setAttributes({
+									iconLeft: value,
 									iconLeftSVG: getIconSvg(value),
 								});
 							}}
 						/>
-						<BaseControl>
+						<BaseControl id={'left-icon-size'}>
 							<div className="ystdb-inspector-controls__label">
 								{_x('左アイコンサイズ', 'ystandard-blocks')}
 							</div>
 							<HorizonButtons>
-								{ystdbConfig.icon.size.map((item) => {
+								{ICON_SIZES.map((item) => {
+									const variant =
+										convertIconSize(iconSizeLeft) ===
+										item.value
+											? 'primary'
+											: 'secondary';
 									return (
 										<Button
 											key={item.value}
-											isSecondary={
-												convertIconSize(
-													iconSizeLeft
-												) !== item.value
-											}
-											isPrimary={
-												convertIconSize(
-													iconSizeLeft
-												) === item.value
-											}
+											variant={variant}
 											onClick={() => {
 												setAttributes({
 													iconSizeLeft: item.value,
@@ -215,38 +262,35 @@ const SVGButtonLinkEdit = (props) => {
 								})}
 							</HorizonButtons>
 						</BaseControl>
-						<SVGIconSelect
+						<SvgIconSelect
 							iconControlTitle={__(
 								'右アイコン',
 								'ystandard-blocks'
 							)}
 							selectedIcon={iconRight}
+							// @ts-ignore
 							onClickIcon={(value) => {
-								setAttributes({ iconRight: value });
 								setAttributes({
+									iconRight: value,
 									iconRightSVG: getIconSvg(value),
 								});
 							}}
 						/>
-						<BaseControl>
+						<BaseControl id={'right-icon-sizr'}>
 							<div className="ystdb-inspector-controls__label">
 								{_x('右アイコンサイズ', 'ystandard-blocks')}
 							</div>
 							<HorizonButtons>
-								{ystdbConfig.icon.size.map((item) => {
+								{ICON_SIZES.map((item) => {
+									const variant =
+										convertIconSize(iconSizeRight) ===
+										item.value
+											? 'primary'
+											: 'secondary';
 									return (
 										<Button
 											key={item.value}
-											isSecondary={
-												convertIconSize(
-													iconSizeRight
-												) !== item.value
-											}
-											isPrimary={
-												convertIconSize(
-													iconSizeRight
-												) === item.value
-											}
+											variant={variant}
 											onClick={() => {
 												setAttributes({
 													iconSizeRight: item.value,
@@ -262,10 +306,11 @@ const SVGButtonLinkEdit = (props) => {
 					</PanelBody>
 
 					<PanelBody title={__('文字設定', 'ystandard-blocks')}>
-						<BaseControl>
+						<BaseControl id={'font-size'}>
 							<FontSizePicker
 								label={__('文字サイズ', 'ystandard-blocks')}
 								value={fontSize.size}
+								// @ts-expect-error
 								onChange={(font) => {
 									setFontSize(font);
 								}}
@@ -273,7 +318,7 @@ const SVGButtonLinkEdit = (props) => {
 						</BaseControl>
 					</PanelBody>
 					<PanelBody title={__('余白設定', 'ystandard-blocks')}>
-						<BaseControl>
+						<BaseControl id={'padding'}>
 							<span className={`ystdb-info__small`}>
 								ボタン内側の余白を設定できます。
 							</span>
@@ -282,16 +327,15 @@ const SVGButtonLinkEdit = (props) => {
 									'ystdb-btn-selector components-base-control'
 								}
 							>
-								{ystdbConfig.button.paddingTypes.map((item) => {
+								{PADDING_TYPES.map((item) => {
+									const variant =
+										paddingType === item.value
+											? 'primary'
+											: 'secondary';
 									return (
 										<Button
 											key={item.value}
-											isSecondary={
-												paddingType !== item.value
-											}
-											isPrimary={
-												paddingType === item.value
-											}
+											variant={variant}
 											onClick={() => {
 												setAttributes({
 													paddingType: item.value,
@@ -308,7 +352,7 @@ const SVGButtonLinkEdit = (props) => {
 					<PanelBody
 						title={__('ブロックボタン設定', 'ystandard-blocks')}
 					>
-						<BaseControl>
+						<BaseControl id={'block'}>
 							<ToggleControl
 								label={__(
 									'ボタンをブロック型にする',
@@ -356,14 +400,14 @@ const SVGButtonLinkEdit = (props) => {
 					<PanelBody
 						title={__('アニメーション設定', 'ystandard-blocks')}
 					>
-						<BaseControl>
+						<BaseControl id={'animation'}>
 							<RadioControl
 								label={__(
 									'アニメーション種類',
 									'ystandard-blocks'
 								)}
 								selected={animationType}
-								options={ystdbConfig.button.animationTypes}
+								options={ANIMATION_TYPES}
 								onChange={(option) => {
 									setAttributes({ animationType: option });
 								}}
@@ -387,13 +431,12 @@ const SVGButtonLinkEdit = (props) => {
 						</BaseControl>
 					</PanelBody>
 				</InspectorControls>
-			</Fragment>
+			</>
 		</div>
 	);
 };
-
+// @ts-expect-error
 export default compose([
 	withColors('backgroundColor', { textColor: 'color' }),
-	withState({ isPreview: false, styles: '' }),
 	withFontSizes('fontSize'),
 ])(SVGButtonLinkEdit);

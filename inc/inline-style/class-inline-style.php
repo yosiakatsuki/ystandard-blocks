@@ -11,6 +11,7 @@ namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_CSS;
 use ystandard_blocks\helper\Helper_Debug;
+use ystandard_blocks\utils\File;
 
 defined( 'ABSPATH' ) || die();
 
@@ -130,12 +131,8 @@ class Inline_Style {
 		if ( ! empty( $this->default_option ) ) {
 			return;
 		}
-		$default = json_decode(
-			helper\Helper_Filesystem::file_get_contents(
-				YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json'
-			),
-			true
-		);
+		$path    = YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json';
+		$default = File::get_json_file_contents( $path );
 		unset( $default['inlineStyle']['items']['schema'] );
 		// デフォルト取得.
 		$this->default_option = $default;

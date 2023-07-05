@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\utils\Types;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -112,7 +114,7 @@ class Option {
 	public static function get_option_by_bool( $section, $name, $default ) {
 		$option = self::get_option( $section, $name, $default );
 
-		return Utility::to_bool( $option );
+		return Types::to_bool( $option );
 	}
 
 	/**

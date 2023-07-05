@@ -1,6 +1,6 @@
 <?php
 /**
- * Utility (徐々にHelper/**へ分割予定)
+ * Utility (徐々にUtils/**へ移行)
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
@@ -66,15 +66,6 @@ class Utility {
 	}
 
 	/**
-	 * Polyfillが必要か
-	 *
-	 * @return bool
-	 */
-	public static function need_polyfill() {
-		return ( self::is_ie() || self::is_edge() );
-	}
-
-	/**
 	 * IEチェック
 	 *
 	 * @return bool
@@ -126,7 +117,7 @@ class Utility {
 	 * @param mixed $var var.
 	 *
 	 * @return bool
-	 * @deprecated to Helper/Boolean::to_bool()
+	 * @deprecated to Utils/Types::to_bool
 	 */
 	public static function to_bool( $var ) {
 		if ( true === $var || 'true' === $var || 1 === $var || '1' === $var ) {
@@ -179,64 +170,6 @@ class Utility {
 		}
 
 		return esc_attr( $classes );
-	}
-
-
-	/**
-	 * 色クラス名を取得
-	 *
-	 * @param string $name 名前.
-	 * @param string $type タイプ.
-	 *
-	 * @return string
-	 */
-	public static function get_color_class_name( $name, $type ) {
-		return "has-${name}-${type}";
-	}
-
-	/**
-	 * Alignクラス取得
-	 *
-	 * @param string $align align.
-	 *
-	 * @return string
-	 */
-	public static function get_align_class( $align ) {
-		if ( ! $align ) {
-			return '';
-		}
-
-		return "has-text-align-${align}";
-	}
-
-	/**
-	 * フォントサイズ取得
-	 *
-	 * @param int $custom_font_size font size.
-	 *
-	 * @return string
-	 */
-	public static function get_font_size_style( $custom_font_size ) {
-		if ( ! $custom_font_size ) {
-			return '';
-		}
-
-		return "font-size:${custom_font_size}px";
-	}
-
-	/**
-	 * フォントサイズ指定クラス取得
-	 *
-	 * @param string $font_size font size slug.
-	 *
-	 * @return string
-	 */
-	public static function get_font_size_class( $font_size ) {
-		if ( ! $font_size ) {
-			return '';
-		}
-
-		return "has-${font_size}-font-size";
 	}
 
 	/**

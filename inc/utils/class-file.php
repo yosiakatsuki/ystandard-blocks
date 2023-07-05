@@ -1,30 +1,20 @@
 <?php
 /**
- * File System
+ * ファイル入出力.
  *
  * @package ystandard_blocks
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-namespace ystandard_blocks\helper;
+namespace ystandard_blocks\utils;
 
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class Filesystem
- *
- * @package ystandard_blocks
+ * Class File.
  */
-class Helper_Filesystem {
-
-	/**
-	 * 変数 wp_filesystem の退避用
-	 *
-	 * @var \WP_Filesystem_Base
-	 */
-	private static $filesystem;
-
+class File {
 	/**
 	 * ファイル内容の取得
 	 *
@@ -49,7 +39,23 @@ class Helper_Filesystem {
 			return '';
 		}
 
-		return file_get_contents( $path );
+		$file_contents = '';
+
+		try {
+			$file_contents = file_get_contents( $path );
+		} catch ( \Exception $e ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				throw new \Exception(
+					sprintf(
+						'ファイルの読み込みに失敗しました。 path: %s, message: %s',
+						$path,
+						$e->getMessage()
+					)
+				);
+			}
+		}
+
+		return $file_contents;
 	}
 
 	/**
@@ -74,36 +80,4 @@ class Helper_Filesystem {
 
 		return $json;
 	}
-
-	/**
-	 * WP_Filesystem_Directを使用
-	 *
-	 * @return string
-	 */
-	public static function filesystem_direct() {
-		return 'direct';
-	}
-
-	/**
-	 * ファイルシステムの初期化
-	 *
-	 * @return \WP_Filesystem_Direct
-	 */
-	public static function init_filesystem() {
-		global $wp_filesystem;
-		self::$filesystem = $wp_filesystem;
-
-		if ( empty( $wp_filesystem ) ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
-		}
-
-		add_filter( 'filesystem_method', [ '\ystandard_toolbox\Filesystem', 'filesystem_direct' ] );
-
-		WP_Filesystem();
-
-		remove_filter( 'filesystem_method', [ '\ystandard_toolbox\Filesystem', 'filesystem_direct' ] );
-
-		return $wp_filesystem;
-	}
-
 }

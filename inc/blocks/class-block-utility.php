@@ -9,7 +9,8 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_Filesystem;
+use ystandard_blocks\utils\File;
+use ystandard_blocks\utils\Types;
 
 defined( 'ABSPATH' ) || die();
 
@@ -32,7 +33,7 @@ class Block_Utility {
 				$attributes[ $key ] = isset( $item['default'] ) ? $item['default'] : null;
 			}
 			if ( isset( $item['type'] ) && 'bool' === $item['type'] ) {
-				$attributes[ $key ] = Utility::to_bool( $attributes[ $key ] );
+				$attributes[ $key ] = Types::to_bool( $attributes[ $key ] );
 			}
 		}
 
@@ -73,7 +74,7 @@ class Block_Utility {
 		if ( ! is_file( $file_path ) ) {
 			return [];
 		}
-		$metadata = Helper_Filesystem::get_json_file_contents( $file_path );
+		$metadata = File::get_json_file_contents( $file_path );
 		if ( ! is_array( $metadata ) ) {
 			return [];
 		}
