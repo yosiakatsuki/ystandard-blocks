@@ -1,5 +1,6 @@
 // @ts-nocheck
 /**
+ * @param props
  * @deprecated
  */
 export function getDeprecatedPaddingResponsiveClass(props) {
@@ -21,6 +22,7 @@ export function getDeprecatedPaddingResponsiveClass(props) {
 }
 
 /**
+ * @param props
  * @deprecated
  */
 export function getDeprecatedPaddingResponsiveStyle(props) {

@@ -1,4 +1,5 @@
 /**
+ * @param props
  * @deprecated
  */
 // @ts-ignore

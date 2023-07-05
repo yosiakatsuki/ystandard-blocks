@@ -24,6 +24,7 @@ function getUnit(unit: string) {
 }
 
 /**
+ * @param props
  * @deprecated
  */
 // @ts-ignore

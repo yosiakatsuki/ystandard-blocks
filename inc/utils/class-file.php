@@ -32,7 +32,7 @@ class File {
 	 *
 	 * @param string $path file path.
 	 *
-	 * @return false|string
+	 * @return false|string|\WP_Error
 	 */
 	private static function get_contents( $path ) {
 		if ( ! file_exists( $path ) ) {
@@ -44,15 +44,7 @@ class File {
 		try {
 			$file_contents = file_get_contents( $path );
 		} catch ( \Exception $e ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				throw new \Exception(
-					sprintf(
-						'ファイルの読み込みに失敗しました。 path: %s, message: %s',
-						$path,
-						$e->getMessage()
-					)
-				);
-			}
+			return new \WP_Error( 'file_get_contents', $e->getMessage() );
 		}
 
 		return $file_contents;

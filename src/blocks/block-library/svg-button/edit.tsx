@@ -30,7 +30,7 @@ import {
 import URLInput from '@aktk/blocks/components/url-input';
 
 // @ts-ignore
-function svgButton(props) {
+function SvgButton(props) {
 	const {
 		textColor,
 		backgroundColor,
@@ -266,4 +266,4 @@ function svgButton(props) {
 export default compose([
 	withColors('backgroundColor', { textColor: 'color' }),
 	withFontSizes('fontSize'),
-])(svgButton);
+])(SvgButton);

@@ -43,6 +43,7 @@ interface ResponsiveFontSizeControlProps {
 }
 
 /**
+ * @param props
  * @deprecated
  */
 export default function ResponsiveDeprecatedFontSizeControl(

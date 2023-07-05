@@ -1,5 +1,9 @@
 // @ts-nocheck
 /**
+ * @param isResponsive
+ * @param desktop
+ * @param tablet
+ * @param mobile
  * @deprecated
  */
 export function getDeprecatedFontResponsiveClass(
@@ -23,6 +27,7 @@ export function getDeprecatedFontResponsiveClass(
 }
 
 /**
+ * @param props
  * @deprecated
  */
 export function getDeprecatedFontResponsiveStyle(props) {

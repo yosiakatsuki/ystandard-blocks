@@ -1,5 +1,6 @@
 // @ts-nocheck
 /**
+ * @param props
  * @deprecated
  */
 export default function getDataProperty(props) {

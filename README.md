@@ -32,6 +32,9 @@
 
 ## 更新履歴
 
+### v3.11.0 :
+- [修正] カスタムボタン、ボタン型リンクボタンブロックの非推奨化
+
 ### v3.10.1 : 2023/05/19
 - [修正] 編集画面内のリンクの色が変わらない点の修正
 
@@ -466,25 +469,25 @@ License: W3C Software and Document License Source : <https://github.com/w3c/Inte
 
 ### Feather
 
-License: MIT  
+License: MIT
 Source : <https://github.com/feathericons/feather>
 
 ### React Feather Icons
 
-License: MIT  
+License: MIT
 Source : <https://github.com/feathericons/react-feather>
 
 ### Simple Icons
 
-License: CC0 - 1.0  
+License: CC0 - 1.0
 Source : <https://github.com/simple-icons/simple-icons>
 
 ### React-Toastify
 
-License: MIT  
+License: MIT
 Source : <https://github.com/fkhadra/react-toastify>
 
 ### \_decimal.scss
 
-License: MIT License  
+License: MIT License
 Source : <https://gist.github.com/terkel/4373420>
