@@ -33,7 +33,7 @@ import { __, _x } from '@wordpress/i18n';
  * Plugin dependencies.
  */
 import HorizonButtons from '@aktk/blocks/components/horizon-buttons';
-import SvgIconSelect from '@aktk/blocks/components/svg-icon-select';
+import SvgIconSelect from '@aktk/blocks/deprecated/components/svg-icon-select';
 import { getIconSvg } from '@aktk/blocks/utils/icon';
 
 /**

@@ -10,6 +10,12 @@ import { RadioControl, BaseControl } from '@wordpress/components';
 import IconSelect from './icon-select';
 import './index.scss';
 
+/**
+ *
+ * @param props
+ * @constructor
+ * @deprecated
+ */
 // @ts-ignore
 export default function SvgIconSelect(props) {
 	const {

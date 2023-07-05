@@ -6,7 +6,7 @@ import { BaseControl, Button, PanelBody } from '@wordpress/components';
 /**
  * Plugin dependencies.
  */
-import SvgIconSelect from '@aktk/blocks/components/svg-icon-select';
+import SvgIconSelect from '@aktk/blocks/deprecated/components/svg-icon-select';
 import HorizonButtons from '@aktk/blocks/components/horizon-buttons';
 
 /**
