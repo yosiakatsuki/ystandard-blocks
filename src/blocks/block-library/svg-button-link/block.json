@@ -5,12 +5,7 @@
 	"title": "【非推奨】ボタン型リンク",
 	"description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。今後廃止予定です。",
 	"version": "2.0.0",
-	"keywords": [
-		"btn",
-		"button",
-		"ボタン",
-		"アイコン"
-	],
+	"keywords": [],
 	"attributes": {
 		"content": {
 			"type": "string"

@@ -5,12 +5,7 @@
   "title": "【非推奨】カスタムボタン",
   "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。「[YS]ボタン」ブロックをご利用ください。",
   "version": "2.0.0",
-  "keywords": [
-    "btn",
-    "button",
-    "ボタン",
-    "アイコン"
-  ],
+  "keywords": [],
   "attributes": {
     "text": {
       "type": "string",
