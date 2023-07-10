@@ -2,7 +2,7 @@
  * WordPress
  */
 import { PanelBody } from '@wordpress/components';
-import { useMemo } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 
 interface PanelProps {
 	title: string;
@@ -10,15 +10,31 @@ interface PanelProps {
 	children: React.ReactNode;
 }
 
-export default function Panel({ title, initialOpen, children }: PanelProps) {
-	const _initialOpen = useMemo(() => {
+export default function Panel(props: PanelProps) {
+	const { title, initialOpen, children } = props;
+	const [panelOpen, setPanelOpen] = useState(false);
+
+	const setInitialOpen = () => {
 		if ('function' === typeof initialOpen) {
-			return initialOpen();
+			setPanelOpen(initialOpen());
 		}
-		return initialOpen;
+		setPanelOpen(initialOpen);
+	};
+
+	useEffect(() => {
+		setInitialOpen();
+	}, []);
+
+	useEffect(() => {
+		setInitialOpen();
 	}, [initialOpen]);
+
+	const togglePanel = () => {
+		setPanelOpen(!panelOpen);
+	};
+
 	return (
-		<PanelBody title={title} initialOpen={_initialOpen}>
+		<PanelBody title={title} initialOpen={panelOpen} onToggle={togglePanel}>
 			{children}
 		</PanelBody>
 	);

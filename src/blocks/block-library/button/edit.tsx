@@ -43,7 +43,7 @@ function Edit(props) {
 
 	return (
 		<>
-			<InspectorControls />
+			<InspectorControls {...props} />
 
 			<div {...useBlockProps({})}>
 				<div {...wrapProps}>

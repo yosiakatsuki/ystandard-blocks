@@ -1,3 +1,5 @@
+import { isObject } from 'lodash';
+
 export const getDefaultAttributes = () => {
 	if (
 		!window.ystdtbBlockEditor ||
@@ -36,3 +38,21 @@ export const mergeDefaultAttributes = (name: string, attributes: object) => {
 	});
 	return attributes;
 };
+
+export function parseObjectAttributes(value: object) {
+	let result = {};
+	// undefinedを削除する.
+	try {
+		result = JSON.parse(JSON.stringify(value));
+	} catch (error) {
+		result = {};
+	}
+	if (!isObject(result)) {
+		return undefined;
+	}
+	console.log({ result });
+	if (0 >= Object.keys(result).length) {
+		return undefined;
+	}
+	return result;
+}
