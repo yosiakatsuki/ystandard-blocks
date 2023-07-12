@@ -50,7 +50,6 @@ export function parseObjectAttributes(value: object) {
 	if (!isObject(result)) {
 		return undefined;
 	}
-	console.log({ result });
 	if (0 >= Object.keys(result).length) {
 		return undefined;
 	}

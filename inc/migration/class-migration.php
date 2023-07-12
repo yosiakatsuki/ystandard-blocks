@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -73,7 +73,7 @@ class Migration {
 			$marker       = sprintf(
 				'linear-gradient(transparent %s, rgba(%s, %s) %s)',
 				( 100 - $mark_weight ) . '%',
-				implode( ',', Helper_CSS::hex_2_rgb( $mark_color ) ),
+				implode( ',', Styles::hex_2_rgb( $mark_color ) ),
 				$mark_opacity / 100,
 				( 100 - $mark_weight ) . '%'
 			);

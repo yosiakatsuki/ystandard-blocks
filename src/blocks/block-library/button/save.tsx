@@ -11,7 +11,7 @@ import { getLinkClasses, getWrapClasses } from './utils';
 
 // @ts-expect-error
 function Save({ attributes }) {
-	const { content } = attributes;
+	const { content, url } = attributes;
 	const blockProps = useBlockProps.save({
 		className: getWrapClasses({}),
 	});
@@ -19,7 +19,7 @@ function Save({ attributes }) {
 	return (
 		<>
 			<div {...blockProps}>
-				<a href={''} className={linkClasses}>
+				<a href={url} className={linkClasses}>
 					<RichText.Content
 						tagName={'span'}
 						value={content}

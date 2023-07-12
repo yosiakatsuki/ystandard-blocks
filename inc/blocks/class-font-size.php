@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -78,7 +78,7 @@ class Font_Size {
 			$result .= "${prefix}.has-{$value['slug']}-font-size{font-size:${size};}";
 		}
 
-		return Helper_CSS::minify( $result );
+		return Styles::minify( $result );
 	}
 }
 

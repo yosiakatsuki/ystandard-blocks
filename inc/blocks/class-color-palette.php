@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -102,7 +102,7 @@ class Color_Palette {
 			}
 		}
 
-		return Helper_CSS::minify( implode( ' ', $css ) );
+		return Styles::minify( implode( ' ', $css ) );
 	}
 
 	/**

@@ -50,7 +50,7 @@ function Edit(props) {
 					<div {...linkProps}>
 						<RichText
 							tagName={'span'}
-							placeholder={__('テキスト...', 'ystandard-blocks')}
+							placeholder={__('テキスト…', 'ystandard-blocks')}
 							value={content}
 							onChange={(value) =>
 								setAttributes({ content: value })

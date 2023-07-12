@@ -10,7 +10,7 @@
 namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_Amp;
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -78,7 +78,7 @@ class Enqueue {
 		}
 		printf(
 			'<noscript><style>%s</style></noscript>' . PHP_EOL,
-			Helper_CSS::minify( self::get_fallback_animation_css() )
+			Styles::minify( self::get_fallback_animation_css() )
 		);
 	}
 

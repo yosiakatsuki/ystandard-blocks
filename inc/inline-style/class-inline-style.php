@@ -11,6 +11,7 @@ namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_CSS;
 use ystandard_blocks\helper\Helper_Debug;
+use ystandard_blocks\utils\Styles;
 use ystandard_blocks\utils\File;
 
 defined( 'ABSPATH' ) || die();
@@ -292,14 +293,14 @@ class Inline_Style {
 			$result .= sprintf( $selector_format, implode( ';', $css ) );
 		}
 		if ( ! empty( $tablet_css ) ) {
-			$result .= Helper_CSS::add_media_query(
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $tablet_css ) ),
 				'',
 				'md'
 			);
 		}
 		if ( ! empty( $mobile_css ) ) {
-			$result .= Helper_CSS::add_media_query(
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $mobile_css ) ),
 				'',
 				'sm'

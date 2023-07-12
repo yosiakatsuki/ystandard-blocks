@@ -12,7 +12,6 @@ import { parseObjectAttributes } from '@aktk/blocks/utils';
 // @ts-expect-error
 export function Width(props) {
 	const { attributes, setAttributes } = props;
-	console.log({ attributes });
 	const { style = {} } = attributes;
 
 	const handleOnChange = (value: string) => {

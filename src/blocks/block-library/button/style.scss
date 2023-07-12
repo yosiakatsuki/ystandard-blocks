@@ -30,6 +30,7 @@
 .ystdb-custom-button__link {
 	display: var(--ystdb-button-display);
 	align-items: center;
+	justify-content: center;
 	background-color: var(--ystdb-button-background-color);
 
 	border-width: var(--ystdb-button-border-width);
@@ -45,9 +46,10 @@
 	text-decoration: var(--ystdb-button-text-decoration);
 
 	box-shadow: var(--ystdb-button-box-shadow);
-	transition: all .3s;
+	transition: all 0.3s;
 
 	&:hover {
+
 		@media (hover: hover) {
 			color: var(--ystdb-button-text-color);
 			background-color: var(--ystdb-button-background-color);
@@ -55,13 +57,5 @@
 			box-shadow: var(--ystdb-button-hover-box-shadow);
 		}
 	}
-
-}
-
-.ystdb-custom-button {
-
-}
-
-.ystdb-custom-button__link {
 
 }

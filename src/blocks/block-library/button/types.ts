@@ -9,7 +9,7 @@ export interface ButtonHoverAnimation {
 
 export interface ButtonStyle {
 	padding?: ResponsiveSpacing;
-	responsiveFontSize?: ResponsiveFontSize;
+	fontSize?: ResponsiveFontSize;
 	width?: ResponsiveValues;
 	hoverAnimation?: ButtonHoverAnimation;
 }

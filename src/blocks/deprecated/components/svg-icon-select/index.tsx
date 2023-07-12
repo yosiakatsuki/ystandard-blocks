@@ -13,7 +13,7 @@ import './index.scss';
 /**
  *
  * @param props
- * @constructor
+ * @class
  * @deprecated
  */
 // @ts-ignore
