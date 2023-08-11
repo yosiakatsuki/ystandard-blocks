@@ -15,8 +15,14 @@ import { __ } from '@wordpress/i18n';
  * Block
  */
 import { InspectorControls } from './inspector-controls';
-import { getLinkClasses, getWrapClasses } from './utils';
+import {
+	getLinkClasses,
+	getWrapClasses,
+	parseInlineStyles,
+	parseLinkInlineStyles,
+} from './utils';
 import './style-editor.scss';
+import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
 
 // @ts-expect-error
 function Edit(props) {
@@ -28,13 +34,15 @@ function Edit(props) {
 		isSelected,
 		fontSize,
 		className,
+		clientId,
 	} = props;
 
-	const { content } = attributes;
+	const { content, style } = attributes;
 
 	const wrapProps = {
 		className: getWrapClasses({
-			[className]: true,
+			[`ystdb-block-${clientId}`]: true,
+			[className]: !!className,
 		}),
 	};
 	const linkProps = {
@@ -62,6 +70,11 @@ function Edit(props) {
 					</div>
 				</div>
 			</div>
+			<InlineStyleCss
+				clientId={clientId}
+				styles={parseLinkInlineStyles(style)}
+				selector={'.ystdb-custom-button__link'}
+			/>
 		</>
 	);
 }

@@ -1,16 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
   "apiVersion": 2,
-  "name": "ystdb/svg-button",
-  "title": "【非推奨】カスタムボタン",
-  "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。「[YS]ボタン」ブロックをご利用ください。",
+  "name": "ystdb/svg-button-link",
+  "title": "【非推奨】ボタン型リンク",
+  "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。今後廃止予定です。",
   "version": "2.0.0",
   "keywords": [],
   "attributes": {
-    "text": {
-      "type": "string",
-      "source": "html",
-      "selector": ".ystdb-button__text"
+    "content": {
+      "type": "string"
     },
     "borderRadius": {
       "type": "number",
@@ -19,11 +17,17 @@
     "iconLeft": {
       "type": "string"
     },
+    "iconLeftSVG": {
+      "type": "string"
+    },
     "iconSizeLeft": {
       "type": "string",
       "default": ""
     },
     "iconRight": {
+      "type": "string"
+    },
+    "iconRightSVG": {
       "type": "string"
     },
     "iconSizeRight": {
@@ -64,21 +68,12 @@
     "fontSizeDesktop": {
       "type": "number"
     },
-    "url": {
-      "type": "string"
-    },
-    "linkTarget": {
-      "type": "string"
-    },
-    "rel": {
-      "type": "string",
-      "source": "attribute",
-      "selector": "a",
-      "attribute": "rel"
-    },
     "paddingType": {
       "type": "string",
       "default": ""
+    },
+    "buttonType": {
+      "type": "string"
     },
     "isPaddingVerticalResponsive": {
       "type": "boolean"
@@ -132,7 +127,8 @@
   },
   "supports": {
     "className": false,
-    "align": false
+    "align": false,
+    "html": false
   },
   "styles": [
     {

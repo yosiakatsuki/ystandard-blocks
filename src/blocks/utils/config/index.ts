@@ -1,4 +1,7 @@
-export function getBlockEditorConfig(name: string, defaultValue = undefined) {
+export function getBlockEditorConfig(
+	name: string,
+	defaultValue: unknown = undefined
+) {
 	if (!window.ystdb || 'object' !== typeof window.ystdb) {
 		return defaultValue;
 	}

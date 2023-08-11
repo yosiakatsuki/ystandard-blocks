@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/custom-button",
+  "title": "ボタン",
+  "description": "アイコンや余白等を設定できるボタン",
+  "version": "2.0.0",
+  "keywords": [
+    "btn",
+    "button",
+    "ボタン",
+    "アイコン"
+  ],
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ystdb-custom-button__content"
+    },
+    "url": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "href"
+    },
+    "linkTarget": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "target"
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "rel"
+    },
+    "iconLeft": {
+      "type": "string"
+    },
+    "iconSizeLeft": {
+      "type": "string"
+    },
+    "iconRight": {
+      "type": "string"
+    },
+    "iconSizeRight": {
+      "type": "string"
+    },
+    "iconPosition": {
+      "type": "string"
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "customBorderColor": {
+      "type": "string"
+    },
+    "borderRadius": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "customFontSize": {
+      "type": "string"
+    },
+    "animation": {
+      "type": "object"
+    },
+    "style": {
+      "type": "object"
+    }
+  },
+  "supports": {
+    "className": false,
+    "align": false
+  },
+  "textdomain": "ystandard-toolbox",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

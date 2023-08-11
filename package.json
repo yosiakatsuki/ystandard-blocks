@@ -51,7 +51,7 @@
 		"fixtures:regenerate": "npm run fixtures:clean && npm run fixtures:generate",
 		"fixtures": "npm run fixtures:regenerate test/integration/full-content/full-content.test.js",
 		"test-unit": "wp-scripts test-unit-js --config test/unit/jest.config.js",
-		"test-unit-block": "npm run build:block && wp-scripts test-unit-js --config test/unit/jest.config.js test/integration/full-content/full-content.test.js",
+		"test-full-content-block": "npm run build:block && wp-scripts test-unit-js --config test/unit/jest.config.js test/integration/full-content/full-content.test.js",
 		"test-unit-php": "wp-env start && wp-env run phpunit \"phpunit -c /var/www/html/wp-content/plugins/ystandard-blocks/phpunit.xml.dist --verbose\"",
 		"test": "npm run test-unit && npm run test-unit-php",
 		"zip:copy:base": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/phpunit' --exclude='/test' --exclude='/src' --exclude='package*.json' --exclude='/blocks' --exclude='/temp' --exclude='tsconfig.json' --exclude='ystandard-blocks*.json' . ystandard-blocks",

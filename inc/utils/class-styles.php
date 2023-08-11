@@ -70,7 +70,7 @@ class Styles {
 	public static function get_breakpoints_min_width_size( $value ) {
 		$float_value = (float) $value;
 		$unit        = str_replace( (string) $float_value, '', $value );
-		if ( ! empty( $unit ) && 'px' !== $unit ) {
+		if ( ! empty( $unit ) && ( 'em' === $unit || 'rem' === $unit ) ) {
 			$base  = self::get_breakpoints_base_size();
 			$value = ( $float_value + ( 1 / $base ) );
 		} else {

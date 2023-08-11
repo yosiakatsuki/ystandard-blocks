@@ -11,6 +11,7 @@ namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\helper\Helper_Version;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -148,18 +149,13 @@ class Blocks {
 			/**
 			 * ブロック共通スクリプト
 			 */
-			$asset_file = include( YSTDB_PATH . '/js/blocks/block.asset.php' );
-			wp_enqueue_script(
-				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-				YSTDB_URL . '/js/blocks/block.js',
-				$asset_file['dependencies'],
-				$asset_file['version']
-			);
+			wp_register_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE, false );
 			wp_localize_script(
 				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
 				'ystdb',
 				$this->create_block_config()
 			);
+			wp_enqueue_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE );
 			if ( function_exists( 'wp_set_script_translations' ) ) {
 				wp_set_script_translations(
 					Config::BLOCK_EDITOR_SCRIPT_HANDLE,
@@ -211,11 +207,13 @@ class Blocks {
 		return apply_filters(
 			'ystdb_block_config',
 			[
-				'yStandard' => Utility::is_ystandard() ? '1' : '', // TODO:廃止予定.
-				'isYSTD'    => Utility::is_ystandard() ? '1' : '',
-				'homeUrl'   => home_url(),
-				'pluginUrl' => YSTDB_URL,
-				'useAmp'    => Helper_Amp::use_amp_plugin(),
+				'yStandard'      => Utility::is_ystandard() ? '1' : '', // TODO:廃止予定.
+				'isYSTD'         => Utility::is_ystandard() ? '1' : '',
+				'homeUrl'        => home_url(),
+				'pluginUrl'      => YSTDB_URL,
+				'useAmp'         => Helper_Amp::use_amp_plugin(),
+				'breakpoint'     => Styles::get_breakpoints(),
+				'breakpointBase' => Styles::get_breakpoints_base_size(),
 			]
 		);
 	}
