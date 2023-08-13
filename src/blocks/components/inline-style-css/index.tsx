@@ -2,7 +2,7 @@ import { addMediaQueryMobile, addMediaQueryTablet, getCSS } from './util';
 import type { InlineStyleCssProps } from './types';
 
 export function InlineStyleCss(props: InlineStyleCssProps) {
-	const { styles, clientId, selector = '' } = props;
+	const { styles = {}, clientId, selector = '' } = props;
 	const { desktop, tablet, mobile } = styles;
 
 	let style = '';
