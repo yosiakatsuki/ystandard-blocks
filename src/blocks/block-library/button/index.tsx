@@ -29,9 +29,12 @@ export function registerCustomButtonBlock() {
 		...metadata,
 		...{
 			icon: (
-				<Link2 stroke={COLOR.iconForeground} style={{ fill: 'none' }} />
+				<Link2
+					stroke={COLOR.iconBetaForeground}
+					style={{ fill: 'none' }}
+				/>
 			),
-			category: CATEGORY.common,
+			category: CATEGORY.beta,
 			attributes,
 			edit,
 			save,

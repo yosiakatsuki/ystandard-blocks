@@ -29,12 +29,9 @@ export function registerSvgButtonBlock() {
 		...metadata,
 		...{
 			icon: (
-				<Link2
-					stroke={COLOR.iconDeprecatedForeground}
-					style={{ fill: 'none' }}
-				/>
+				<Link2 stroke={COLOR.iconForeground} style={{ fill: 'none' }} />
 			),
-			category: CATEGORY.deprecated,
+			category: CATEGORY.common,
 			attributes,
 			edit,
 			save,

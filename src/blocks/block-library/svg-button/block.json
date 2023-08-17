@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
   "apiVersion": 2,
   "name": "ystdb/svg-button",
-  "title": "【非推奨】カスタムボタン",
-  "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。「[YS]ボタン」ブロックをご利用ください。",
+  "title": "カスタムボタン",
+  "description": "ボタンブロック",
   "version": "2.0.0",
   "keywords": [],
   "attributes": {
