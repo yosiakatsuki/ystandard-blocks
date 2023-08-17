@@ -7,12 +7,20 @@ import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/type
 /**
  * Block dependencies.
  */
-import type { ButtonStyle } from './types';
+import type { Attributes, ButtonStyle } from './types';
 import { isObject } from 'lodash';
 import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values/util';
 
-export function getWrapClasses(classes: object) {
-	return classnames('ystdb-custom-button', { ...classes });
+export function getWrapClasses(attributes: Attributes) {
+	const className = attributes?.className || '';
+	return classnames(
+		'ystdb-custom-button',
+		`ystdb-block-${attributes?.clientId}`,
+		{
+			[className]: attributes?.className,
+			[`is-type--${attributes?.buttonType}`]: attributes?.buttonType,
+		}
+	);
 }
 
 export function getLinkClasses(classes: object) {

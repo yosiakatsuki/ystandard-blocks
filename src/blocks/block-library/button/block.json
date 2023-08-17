@@ -12,6 +12,9 @@
 		"アイコン"
 	],
 	"attributes": {
+		"buttonType": {
+			"type": "string"
+		},
 		"content": {
 			"type": "string",
 			"source": "html",

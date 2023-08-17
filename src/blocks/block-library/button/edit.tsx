@@ -41,8 +41,9 @@ function Edit(props) {
 
 	const wrapProps = {
 		className: getWrapClasses({
-			[`ystdb-block-${clientId}`]: true,
-			[className]: !!className,
+			clientId,
+			className,
+			...attributes,
 		}),
 	};
 	const linkProps = {

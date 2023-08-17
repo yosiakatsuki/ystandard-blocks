@@ -12,9 +12,11 @@ import { getLinkClasses, getWrapClasses } from './utils';
 // @ts-expect-error
 function Save({ attributes }) {
 	const { content, url } = attributes;
+
 	const blockProps = useBlockProps.save({
-		className: getWrapClasses({}),
+		className: getWrapClasses({ ...attributes }),
 	});
+
 	const linkClasses = getLinkClasses({});
 	return (
 		<>
