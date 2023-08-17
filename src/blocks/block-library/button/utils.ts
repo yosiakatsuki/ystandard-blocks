@@ -32,7 +32,7 @@ export function getLinkClasses(classes: object) {
 export function parseInlineStyles(
 	styles: ButtonStyle
 ): InlineStyles | undefined {
-	let result = {};
+	const result = {};
 
 	if (!isObject(styles)) {
 		return undefined;
