@@ -10,20 +10,24 @@ import { UNITS_SIZE } from '@aktk/blocks/config';
 export interface ValueInputProps {
 	label?: string;
 	value: string;
-	onChange: (value: string) => void;
+	onChange: (value: string | undefined) => void;
 	units?: Array<{ value: string; label: string; default?: number }>;
 }
 
-// @ts-expect-error
-export function ValueInput(props) {
+export function ValueInput(props: ValueInputProps) {
 	const { label, value, onChange, units = UNITS_SIZE } = props;
+
+	const handleOnChange = (newValue: string | undefined) => {
+		const _value = !newValue ? undefined : newValue;
+		onChange(_value);
+	};
 
 	return (
 		<>
 			<WPUnitControl
 				label={label}
 				value={value}
-				onChange={onChange}
+				onChange={handleOnChange}
 				units={units}
 			/>
 		</>

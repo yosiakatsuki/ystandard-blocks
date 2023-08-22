@@ -14,7 +14,7 @@ export function Width(props) {
 	const { attributes, setAttributes } = props;
 	const { style = {} } = attributes;
 
-	const handleOnChange = (value: string) => {
+	const handleOnChange = (value: string | undefined) => {
 		const newStyle = {
 			...style,
 			...{

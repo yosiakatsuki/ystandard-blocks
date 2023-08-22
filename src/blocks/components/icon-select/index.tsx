@@ -1,12 +1,7 @@
 /**
  * WordPress dependencies.
  */
-import {
-	BaseControl,
-	Button,
-	TextControl,
-	Popover,
-} from '@wordpress/components';
+import { Button, TextControl, Popover } from '@wordpress/components';
 import { useMemo, useCallback, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -15,6 +10,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { SvgIcon } from '@aktk/blocks/components/svg-icon';
 import { getFilteredIcons } from '@aktk/blocks/utils/icon';
+import { ComponentLabel } from '@aktk/blocks/components/label';
 
 /**
  * Internal dependencies.
@@ -24,7 +20,7 @@ import './icon-select.scss';
 export interface IconSelectProps {
 	icon: string;
 	label?: string;
-	onChange: (value: string) => void;
+	onChange: (value: string | undefined) => void;
 }
 
 export function IconSelect(props: IconSelectProps) {
@@ -37,14 +33,15 @@ export function IconSelect(props: IconSelectProps) {
 		: __('アイコン選択', 'ystandard-blocks');
 
 	return (
-		<BaseControl
-			id={'icon-select'}
-			className={'ystd-component__icon-select'}
-		>
+		<div className={'ystd-component__icon-select'}>
 			<>
-				{label && <div className={'font-bold mb-2'}>{label}</div>}
-				{/* @ts-expect-error */}
-				<div className={'flex gap-4'} ref={setPopoverAnchor}>
+				{label && <ComponentLabel>{label}</ComponentLabel>}
+
+				<div
+					className={'flex gap-4 items-center'}
+					// @ts-expect-error
+					ref={setPopoverAnchor}
+				>
 					<div className="w-8 h-8 flex justify-center items-center bg-gray-300">
 						<PreviewIcon icon={icon} />
 					</div>
@@ -56,6 +53,15 @@ export function IconSelect(props: IconSelectProps) {
 						}}
 					>
 						{buttonText}
+					</Button>
+					<Button
+						variant={'tertiary'}
+						onClick={() => {
+							onChange(undefined);
+						}}
+						isSmall
+					>
+						{__('クリア', 'ystandard-blocks')}
 					</Button>
 				</div>
 				{isOpen && (
@@ -89,7 +95,7 @@ export function IconSelect(props: IconSelectProps) {
 					</Popover>
 				)}
 			</>
-		</BaseControl>
+		</div>
 	);
 }
 

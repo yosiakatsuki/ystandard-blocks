@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classnames from 'classnames/dedupe';
 /**
  * Plugin dependencies.
  */
@@ -13,20 +13,24 @@ import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values
 
 export function getWrapClasses(attributes: Attributes) {
 	const className = attributes?.className || '';
-	return classnames(
-		'ystdb-custom-button',
-		`ystdb-block-${attributes?.clientId}`,
-		{
-			[className]: attributes?.className,
-			[`is-type--${attributes?.buttonType}`]: attributes?.buttonType,
-		}
-	);
+	return classnames('ystdb-custom-button', {
+		[`ystdb-block-${attributes?.clientId}`]: attributes?.clientId,
+		[className]: attributes?.className,
+		[`is-type--${attributes?.buttonType}`]: attributes?.buttonType,
+	});
 }
 
-export function getLinkClasses(classes: object) {
+export function getLinkClasses(attributes: Attributes) {
+	const className = attributes?.className || '';
 	return classnames('ystdb-custom-button__link', {
-		...classes,
+		[className]: attributes?.className,
 	});
+}
+
+export function getLinkStyles(attributes: Attributes) {
+	return {
+		[`--ystdb-button-justify`]: attributes?.iconPosition,
+	};
 }
 
 export function parseInlineStyles(

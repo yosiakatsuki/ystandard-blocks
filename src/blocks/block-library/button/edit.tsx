@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 /**
  * WordPress dependencies.
  */
@@ -12,17 +11,23 @@ import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
 /**
+ * Plugin dependencies.
+ */
+import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
+import { SvgIcon } from '@aktk/blocks/components/svg-icon';
+
+/**
  * Block
  */
 import { InspectorControls } from './inspector-controls';
 import {
 	getLinkClasses,
+	getLinkStyles,
 	getWrapClasses,
-	parseInlineStyles,
 	parseLinkInlineStyles,
 } from './utils';
+import { Icon } from './icon';
 import './style-editor.scss';
-import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
 
 // @ts-expect-error
 function Edit(props) {
@@ -37,7 +42,8 @@ function Edit(props) {
 		clientId,
 	} = props;
 
-	const { content, style } = attributes;
+	const { content, style, iconLeft, iconSizeLeft, iconRight, iconSizeRight } =
+		attributes;
 
 	const wrapProps = {
 		className: getWrapClasses({
@@ -47,7 +53,8 @@ function Edit(props) {
 		}),
 	};
 	const linkProps = {
-		className: getLinkClasses({}),
+		className: getLinkClasses(attributes),
+		style: getLinkStyles(attributes),
 	};
 
 	return (
@@ -56,7 +63,13 @@ function Edit(props) {
 
 			<div {...useBlockProps({})}>
 				<div {...wrapProps}>
+					{/* @ts-expect-error */}
 					<div {...linkProps}>
+						<Icon
+							hasIcon={iconLeft || iconRight}
+							icon={iconLeft}
+							size={iconSizeLeft}
+						/>
 						<RichText
 							tagName={'span'}
 							placeholder={__('テキスト…', 'ystandard-blocks')}
@@ -67,6 +80,11 @@ function Edit(props) {
 							// @ts-ignore
 							withoutInteractiveFormatting
 							className={'ystdb-custom-button__content'}
+						/>
+						<Icon
+							hasIcon={iconLeft || iconRight}
+							icon={iconRight}
+							size={iconSizeRight}
 						/>
 					</div>
 				</div>

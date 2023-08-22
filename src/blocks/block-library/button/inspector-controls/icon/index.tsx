@@ -11,6 +11,8 @@ import Panel from '@aktk/blocks/components/panel';
  * Internal dependencies.
  */
 import { IconLeft } from './icon-left';
+import { IconRight } from './icon-right';
+import { IconPosition } from './position';
 
 // @ts-expect-error
 export function Icon(props) {
@@ -18,6 +20,8 @@ export function Icon(props) {
 		<>
 			<Panel title={__('アイコン', 'ystandard-blocks')}>
 				<IconLeft {...props} />
+				<IconRight {...props} />
+				<IconPosition {...props} />
 			</Panel>
 		</>
 	);

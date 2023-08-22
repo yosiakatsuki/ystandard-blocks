@@ -12,24 +12,24 @@ import { ComponentContainer } from '@aktk/blocks/components/component-container'
 import { IconSize } from './size';
 
 //@ts-expect-error
-export function IconLeft(props) {
+export function IconRight(props) {
 	const { attributes, setAttributes } = props;
-	const { iconLeft, iconSizeLeft } = attributes;
+	const { iconRight, iconSizeRight } = attributes;
 
 	return (
-		<BaseControl id={'left-icon'}>
+		<BaseControl id={'right-icon'}>
 			<ComponentContainer>
 				<IconSelect
-					label={__('左アイコン', 'ystandard-blocks')}
-					icon={iconLeft}
+					label={__('右アイコン', 'ystandard-blocks')}
+					icon={iconRight}
 					onChange={(value: string | undefined) => {
-						setAttributes({ iconLeft: value });
+						setAttributes({ iconRight: value });
 					}}
 				/>
 				<IconSize
-					size={iconSizeLeft}
+					size={iconSizeRight}
 					onChange={(value: string | undefined) => {
-						setAttributes({ iconSizeLeft: value });
+						setAttributes({ iconSizeRight: value });
 					}}
 				/>
 			</ComponentContainer>
