@@ -13,23 +13,29 @@ import { getIconSvg } from '@aktk/blocks/utils/icon';
 export interface SvgIconProps {
 	name?: string;
 	svg?: string;
+	fallback?: React.ReactNode;
 }
 
 export function SvgIcon(props: SvgIconProps) {
-	const { name = '' } = props;
+	const { name = '', fallback } = props;
 
-	const svg = useMemo(() => {
-		return getIconSvg(name);
-	}, [name]);
+	const Content = useMemo(() => {
+		const svg = getIconSvg(name);
+		return <IconHTML svg={svg} name={name} fallback={fallback} />;
+	}, [name, fallback]);
 
-	return <IconHTML svg={svg} name={name} />;
+	return <>{Content}</>;
 }
 
-SvgIcon.Content = IconHTML;
-
 function IconHTML(props: SvgIconProps) {
-	const { name = '', svg = '' } = props;
+	const { name = '', svg = '', fallback } = props;
 	const iconSvg = svg || getIconSvg(name);
+	const FallBack = () => {
+		if (iconSvg || !fallback) {
+			return <></>;
+		}
+		return <>{fallback}</>;
+	};
 	return (
 		<>
 			{iconSvg && (
@@ -40,6 +46,9 @@ function IconHTML(props: SvgIconProps) {
 					dangerouslySetInnerHTML={{ __html: iconSvg }}
 				/>
 			)}
+			<FallBack />
 		</>
 	);
 }
+
+SvgIcon.Content = IconHTML;

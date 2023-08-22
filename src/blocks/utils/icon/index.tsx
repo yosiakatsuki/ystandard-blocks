@@ -1,3 +1,5 @@
+import { useMemo } from '@wordpress/element';
+
 export interface Icon {
 	name: string;
 	icon: string;
@@ -11,9 +13,25 @@ export type IconList = Icon[];
  *
  * @return {IconList} アイコン一覧.
  */
-export function getIcons() {
-	// @ts-ignore
+export function getIcons(): IconList {
+	// @ts-expect-error
 	return window?.ystdbIconList || [];
+}
+
+export function getFilteredIcons(name: string): IconList {
+	const icons = getIcons();
+	if (!icons) {
+		return [];
+	}
+
+	return useMemo(() => {
+		if (!name) {
+			return icons;
+		}
+		return icons.filter((icon: Icon) => {
+			return icon.name.indexOf(name) > -1;
+		});
+	}, [name]);
 }
 
 /**

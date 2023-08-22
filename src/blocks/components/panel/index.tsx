@@ -6,7 +6,7 @@ import { useEffect, useState } from '@wordpress/element';
 
 interface PanelProps {
 	title: string;
-	initialOpen: (() => boolean) | boolean;
+	initialOpen?: (() => boolean) | boolean;
 	children: React.ReactNode;
 }
 
@@ -18,7 +18,7 @@ export default function Panel(props: PanelProps) {
 		if ('function' === typeof initialOpen) {
 			setPanelOpen(initialOpen());
 		}
-		setPanelOpen(initialOpen);
+		setPanelOpen(initialOpen ?? false);
 	};
 
 	useEffect(() => {
