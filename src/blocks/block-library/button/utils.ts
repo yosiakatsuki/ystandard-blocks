@@ -21,15 +21,18 @@ export function getWrapClasses(attributes: Attributes) {
 }
 
 export function getLinkClasses(attributes: Attributes) {
-	const className = attributes?.className || '';
+	const { className = '', textColor = '' } = attributes;
+
 	return classnames('ystdb-custom-button__link', {
-		[className]: attributes?.className,
+		[className]: !!className,
+		[textColor]: !!textColor,
 	});
 }
 
 export function getLinkStyles(attributes: Attributes) {
 	return {
 		[`--ystdb-button-justify`]: attributes?.iconPosition,
+		color: attributes?.textColor,
 	};
 }
 

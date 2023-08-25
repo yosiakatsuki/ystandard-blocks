@@ -15,19 +15,35 @@ import { Icon } from './icon';
 
 // @ts-expect-error
 function Save({ attributes }) {
-	const { content, url, iconLeft, iconSizeLeft, iconRight, iconSizeRight } =
-		attributes;
+	const {
+		content,
+		url,
+		iconLeft,
+		iconSizeLeft,
+		iconRight,
+		iconSizeRight,
+		textColor,
+		customTextColor,
+	} = attributes;
 
 	const blockProps = useBlockProps.save({
 		className: getWrapClasses({ ...attributes }),
 	});
 
-	const linkClasses = getLinkClasses(attributes);
-	const linkStyles = getLinkStyles(attributes);
+	const textColorClass = getColorClassName('color', attributes?.textColor);
+	const textColorStyle = !textColorClass ? customTextColor : undefined;
+
+	const linkClasses = getLinkClasses({
+		...attributes,
+		textColor: textColorClass,
+	});
+	const linkStyles = getLinkStyles({
+		...attributes,
+		textColor: textColorStyle,
+	});
 	return (
 		<>
 			<div {...blockProps}>
-				{/* @ts-expect-error */}
 				<a href={url} className={linkClasses} style={linkStyles}>
 					<Icon.Content
 						hasIcon={iconLeft || iconRight}

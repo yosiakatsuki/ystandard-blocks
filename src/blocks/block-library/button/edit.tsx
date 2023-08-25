@@ -14,7 +14,6 @@ import { __ } from '@wordpress/i18n';
  * Plugin dependencies.
  */
 import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
 
 /**
  * Block
@@ -54,16 +53,17 @@ function Edit(props) {
 	};
 	const linkProps = {
 		className: getLinkClasses(attributes),
-		style: getLinkStyles(attributes),
+		style: getLinkStyles({
+			...attributes,
+			textColor: textColor?.color,
+		}),
 	};
-
 	return (
 		<>
 			<InspectorControls {...props} />
 
 			<div {...useBlockProps({})}>
 				<div {...wrapProps}>
-					{/* @ts-expect-error */}
 					<div {...linkProps}>
 						<Icon
 							hasIcon={iconLeft || iconRight}
