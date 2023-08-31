@@ -9,7 +9,7 @@ import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/type
  */
 import type { Attributes, ButtonStyle } from './types';
 import { isObject } from 'lodash';
-import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values/util';
+import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values';
 
 export function getWrapClasses(attributes: Attributes) {
 	const className = attributes?.className || '';
@@ -21,11 +21,12 @@ export function getWrapClasses(attributes: Attributes) {
 }
 
 export function getLinkClasses(attributes: Attributes) {
-	const { className = '', textColor = '' } = attributes;
+	const { className = '', textColor = '', fontSize = '' } = attributes;
 
 	return classnames('ystdb-custom-button__link', {
 		[className]: !!className,
 		[textColor]: !!textColor,
+		[fontSize]: !!fontSize,
 	});
 }
 
@@ -33,6 +34,7 @@ export function getLinkStyles(attributes: Attributes) {
 	return {
 		[`--ystdb-button-justify`]: attributes?.iconPosition,
 		color: attributes?.textColor,
+		fontSize: attributes?.fontSize,
 	};
 }
 
@@ -61,7 +63,14 @@ export function parseLinkInlineStyles(
 	if (styles?.width) {
 		result = {
 			...result,
-			...parseResponsiveValues({ desktop: { width: styles?.width } }),
+			width: parseResponsiveValues(styles?.width),
+		};
+	}
+	// font-size
+	if (styles?.fontSize) {
+		result = {
+			...result,
+			fontSize: parseResponsiveValues(styles?.fontSize),
 		};
 	}
 

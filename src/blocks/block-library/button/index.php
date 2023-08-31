@@ -39,8 +39,8 @@ class Button_Block {
 		if ( self::BLOCK_NAME !== $block['blockName'] ) {
 			return $block_content;
 		}
-		$attributes = Block_Utility::get_block_style( $block );
-		if ( empty( $attributes ) ) {
+		$styles = Block_Utility::get_block_style( $block );
+		if ( empty( $styles ) ) {
 			return $block_content;
 		}
 
@@ -51,7 +51,12 @@ class Button_Block {
 		$css = '';
 		// Width.
 		$css .= $this->get_width_css(
-			$attributes,
+			$styles,
+			"{$css_class} .ystdb-custom-button__link"
+		);
+		// Font Size.
+		$css .= $this->get_font_size_css(
+			$styles,
 			"{$css_class} .ystdb-custom-button__link"
 		);
 
@@ -66,20 +71,41 @@ class Button_Block {
 	/**
 	 * Width.
 	 *
-	 * @param array  $attributes Attributes.
-	 * @param string $selector   Selector.
+	 * @param array  $styles   Attributes.
+	 * @param string $selector Selector.
 	 *
 	 * @return string
 	 */
-	public function get_width_css( $attributes, $selector ) {
+	public function get_width_css( $styles, $selector ) {
 
-		if ( ! isset( $attributes['width'] ) ) {
+		if ( ! isset( $styles['width'] ) ) {
 			return '';
 		}
 
 		return Block_Utility::compile_block_inline_css(
 			$selector,
-			Styles::parse_responsive_values( 'width', $attributes['width'] )
+			Styles::parse_responsive_values( 'width', $styles['width'] )
+		);
+	}
+
+	/**
+	 * Font Size.
+	 *
+	 * @param array  $styles   Attributes.
+	 * @param string $selector Selector.
+	 *
+	 * @return string
+	 */
+	public function get_font_size_css( $styles, $selector ) {
+
+		$property = 'fontSize';
+		if ( ! isset( $styles[ $property ] ) ) {
+			return '';
+		}
+
+		return Block_Utility::compile_block_inline_css(
+			$selector,
+			Styles::parse_responsive_values( $property, $styles[ $property ] )
 		);
 	}
 

@@ -271,17 +271,17 @@ class Styles {
 		$has_tablet  = self::has_responsive_style( 'tablet', $styles, false );
 		$has_mobile  = self::has_responsive_style( 'mobile', $styles, false );
 		if ( $has_desktop ) {
-			$_styles['desktop'] = $styles['desktop'];
+			$_styles['desktop'][ $property ] = $styles['desktop'];
 		}
 		if ( $has_tablet ) {
-			$_styles['tablet'] = $styles['tablet'];
+			$_styles['tablet'][ $property ] = $styles['tablet'];
 		}
 		if ( $has_mobile ) {
-			$_styles['mobile'] = $styles['mobile'];
+			$_styles['mobile'][ $property ] = $styles['mobile'];
 		}
 		// 何もなければdesktopに入れる.
 		if ( ! $has_desktop && ! $has_tablet && ! $has_mobile ) {
-			$_styles['desktop'] = [ $property => $styles ];
+			$_styles['desktop'] = [ _wp_to_kebab_case( $property ) => $styles ];
 		}
 
 		return $_styles;

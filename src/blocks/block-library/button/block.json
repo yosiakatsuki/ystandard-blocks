@@ -80,6 +80,9 @@
 		"fontSize": {
 			"type": "string"
 		},
+		"fontSizeSlug": {
+			"type": "string"
+		},
 		"customFontSize": {
 			"type": "string"
 		},

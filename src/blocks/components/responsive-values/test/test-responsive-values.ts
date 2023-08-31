@@ -1,4 +1,4 @@
-import { parseResponsiveValues } from '../util';
+import { parseResponsiveValues } from '../utils';
 
 describe('parseResponsiveValues', () => {
 	// @ts-ignore
@@ -9,7 +9,6 @@ describe('parseResponsiveValues', () => {
 		expect(parseResponsiveValues(111)).toStrictEqual({
 			desktop: 111,
 		});
-		// @ts-expect-error
 		expect(parseResponsiveValues(undefined)).toBeUndefined();
 	});
 	// @ts-expect-error

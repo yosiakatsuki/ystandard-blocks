@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
  */
 import Panel from '@aktk/blocks/components/panel';
 import { TextColor } from './text-color';
+import { FontSize } from './font-size';
 
 // @ts-expect-error
 export function Typography(props) {
@@ -14,6 +15,7 @@ export function Typography(props) {
 		<>
 			<Panel title={__('テキスト', 'ystandard-blocks')}>
 				<TextColor {...props} />
+				<FontSize {...props} />
 			</Panel>
 		</>
 	);

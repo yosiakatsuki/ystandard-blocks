@@ -1,5 +1,51 @@
 import { isObject, kebabCase } from 'lodash';
-import { getBlockEditorConfig } from '@aktk/blocks/utils';
+import { getBlockEditorConfig, removeUndefined } from '@aktk/blocks/utils';
+import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/types';
+
+export function parseInlineStyleProps(styles: object): InlineStyles {
+	let result = {};
+
+	if (!isObject(styles)) {
+		return result as InlineStyles;
+	}
+
+	let desktop = {};
+	let tablet = {};
+	let mobile = {};
+
+	for (const [key, value] of Object.entries(styles)) {
+		if (!isObject(value)) {
+			desktop = {
+				...desktop,
+				[key]: value,
+			};
+		} else {
+			const _value = value as InlineStyles;
+			if (_value?.desktop) {
+				desktop = {
+					...desktop,
+					[key]: _value.desktop,
+				};
+			}
+			if (_value?.tablet) {
+				tablet = {
+					...tablet,
+					[key]: _value.tablet,
+				};
+			}
+			if (_value?.mobile) {
+				mobile = {
+					...mobile,
+					[key]: _value.mobile,
+				};
+			}
+		}
+	}
+
+	result = removeUndefined({ desktop, tablet, mobile });
+
+	return result as InlineStyles;
+}
 
 export function getCSS(
 	styles: object,

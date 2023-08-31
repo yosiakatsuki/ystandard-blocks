@@ -6,6 +6,7 @@ import classnames from 'classnames';
  * WordPress dependencies.
  */
 import {
+	BaseControl,
 	Button,
 	ColorIndicator,
 	Dropdown,
@@ -114,19 +115,21 @@ export function ColorGradientSettingsDropdown(
 	return (
 		<>
 			{colorGradientSettings.hasColorsOrGradients && (
-				<Dropdown
-					// @ts-expect-error
-					popoverProps={popoverProps}
-					className="block-editor-tools-panel-color-gradient-settings__dropdown"
-					renderToggle={renderToggle(toggleSettings)}
-					renderContent={() => (
-						<DropdownContentWrapper paddingSize="none">
-							<div className="block-editor-panel-color-gradient-settings__dropdown-content">
-								<ColorGradientControl {...controlProps} />
-							</div>
-						</DropdownContentWrapper>
-					)}
-				/>
+				<BaseControl id={'color-gradient-settings-dropdown'}>
+					<Dropdown
+						// @ts-expect-error
+						popoverProps={popoverProps}
+						className="block-editor-tools-panel-color-gradient-settings__dropdown"
+						renderToggle={renderToggle(toggleSettings)}
+						renderContent={() => (
+							<DropdownContentWrapper paddingSize="none">
+								<div className="block-editor-panel-color-gradient-settings__dropdown-content">
+									<ColorGradientControl {...controlProps} />
+								</div>
+							</DropdownContentWrapper>
+						)}
+					/>
+				</BaseControl>
 			)}
 		</>
 	);

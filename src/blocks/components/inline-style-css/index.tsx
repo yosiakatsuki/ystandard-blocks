@@ -1,11 +1,16 @@
-import { addMediaQueryMobile, addMediaQueryTablet, getCSS } from './util';
+import {
+	addMediaQueryMobile,
+	addMediaQueryTablet,
+	getCSS,
+	parseInlineStyleProps,
+} from './util';
 import type { InlineStyleCssProps } from './types';
 
 export function InlineStyleCss(props: InlineStyleCssProps) {
 	const { styles = {}, clientId, selector = '' } = props;
-	const { desktop, tablet, mobile } = styles;
-
+	const { desktop, tablet, mobile } = parseInlineStyleProps(styles);
 	let style = '';
+	console.log({ styles: parseInlineStyleProps(styles) });
 
 	if (desktop) {
 		style += getCSS(desktop, clientId, selector);

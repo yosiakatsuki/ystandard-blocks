@@ -1,12 +1,7 @@
 /**
  * WordPress dependencies.
  */
-import {
-	useBlockProps,
-	RichText,
-	withColors,
-	withFontSizes,
-} from '@wordpress/block-editor';
+import { useBlockProps, RichText, withColors } from '@wordpress/block-editor';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -14,6 +9,7 @@ import { __ } from '@wordpress/i18n';
  * Plugin dependencies.
  */
 import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
+import { getFontSize } from '@aktk/blocks/components/font-size-edit';
 
 /**
  * Block
@@ -35,14 +31,20 @@ function Edit(props) {
 		backgroundColor,
 		attributes,
 		setAttributes,
-		isSelected,
-		fontSize,
 		className,
 		clientId,
 	} = props;
 
-	const { content, style, iconLeft, iconSizeLeft, iconRight, iconSizeRight } =
-		attributes;
+	const {
+		content,
+		style,
+		iconLeft,
+		iconSizeLeft,
+		iconRight,
+		iconSizeRight,
+		fontSize,
+		customFontSize,
+	} = attributes;
 
 	const wrapProps = {
 		className: getWrapClasses({
@@ -52,10 +54,14 @@ function Edit(props) {
 		}),
 	};
 	const linkProps = {
-		className: getLinkClasses(attributes),
+		className: getLinkClasses({
+			...attributes,
+			fontSize: getFontSize(customFontSize, fontSize)?.className,
+		}),
 		style: getLinkStyles({
 			...attributes,
 			textColor: textColor?.color,
+			fontSize: getFontSize(customFontSize, fontSize)?.size,
 		}),
 	};
 	return (
@@ -99,7 +105,6 @@ function Edit(props) {
 }
 
 // @ts-expect-error
-export default compose([
-	withColors('backgroundColor', { textColor: 'color' }),
-	withFontSizes('fontSize'),
-])(Edit);
+export default compose([withColors('backgroundColor', { textColor: 'color' })])(
+	Edit
+);

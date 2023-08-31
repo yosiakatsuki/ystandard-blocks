@@ -4,9 +4,14 @@
 import {
 	RichText,
 	getColorClassName,
-	getFontSizeClass,
 	useBlockProps,
 } from '@wordpress/block-editor';
+
+/**
+ * Plugin dependencies.
+ */
+import { getFontSize } from '@aktk/blocks/components/font-size-edit';
+
 /**
  * Block.
  */
@@ -24,22 +29,26 @@ function Save({ attributes }) {
 		iconSizeRight,
 		textColor,
 		customTextColor,
+		fontSize,
+		customFontSize,
 	} = attributes;
 
 	const blockProps = useBlockProps.save({
 		className: getWrapClasses({ ...attributes }),
 	});
 
-	const textColorClass = getColorClassName('color', attributes?.textColor);
+	const textColorClass = getColorClassName('color', textColor);
 	const textColorStyle = !textColorClass ? customTextColor : undefined;
 
 	const linkClasses = getLinkClasses({
 		...attributes,
 		textColor: textColorClass,
+		fontSize: getFontSize(customFontSize, fontSize)?.className,
 	});
 	const linkStyles = getLinkStyles({
 		...attributes,
 		textColor: textColorStyle,
+		fontSize: getFontSize(customFontSize, fontSize)?.size,
 	});
 	return (
 		<>

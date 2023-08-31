@@ -16,7 +16,7 @@ export function TextColor(props) {
 			<ColorGradientSettingsDropdown
 				colorValue={textColor.color}
 				onChange={setTextColor}
-				label={'文字色'}
+				label={__('文字色', 'ystandard-blocks')}
 				disableGradient={true}
 			/>
 		</>

@@ -5,7 +5,7 @@ export type InlineStyles = {
 };
 
 export interface InlineStyleCssProps {
-	styles?: InlineStyles;
+	styles?: object;
 	clientId: string;
 	selector?: string;
 }
