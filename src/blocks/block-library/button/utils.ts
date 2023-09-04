@@ -44,9 +44,9 @@ export function getLinkClasses(attributes: LinkClasses) {
 	return classnames('ystdb-custom-button__link', {
 		[className]: !!className,
 		[textColorClass]: !!textColor,
-		[fontSize]: !!fontSize,
+		[`${fontSize}`]: !!fontSize,
 		[backgroundColorClass]: !!backgroundColor,
-		[gradientClass]: !!gradientClass,
+		[`${gradientClass}`]: !!gradientClass,
 		...getBlockStyleClasses({
 			textColor: textColor || attributes?.customTextColor,
 			backgroundColor:
@@ -63,6 +63,7 @@ export function getLinkStyles(attributes: Attributes) {
 		fontSize,
 		customBackgroundColor,
 		customGradient,
+		borderRadius,
 	} = attributes;
 	return {
 		[`--ystdb-button-justify`]: iconPosition,
@@ -70,6 +71,7 @@ export function getLinkStyles(attributes: Attributes) {
 		fontSize: fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
+		borderRadius: borderRadius,
 	};
 }
 
