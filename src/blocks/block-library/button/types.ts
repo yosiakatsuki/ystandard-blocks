@@ -16,6 +16,8 @@ export interface Attributes {
 	textAlign?: string;
 	backgroundColor?: string;
 	customBackgroundColor?: string;
+	gradient?: string;
+	customGradient?: string;
 	textColor?: string;
 	customTextColor?: string;
 	borderColor?: string;

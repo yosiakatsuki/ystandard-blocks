@@ -3,8 +3,9 @@
  */
 import {
 	RichText,
-	getColorClassName,
 	useBlockProps,
+	// @ts-expect-error
+	__experimentalGetGradientClass as getGradientClass,
 } from '@wordpress/block-editor';
 
 /**
@@ -17,37 +18,33 @@ import { getFontSize } from '@aktk/blocks/components/font-size-edit';
  */
 import { getLinkClasses, getLinkStyles, getWrapClasses } from './utils';
 import { Icon } from './icon';
+import type { Attributes } from './types';
 
 // @ts-expect-error
 function Save({ attributes }) {
 	const {
-		content,
+		content = '',
 		url,
 		iconLeft,
 		iconSizeLeft,
 		iconRight,
 		iconSizeRight,
-		textColor,
-		customTextColor,
 		fontSize,
 		customFontSize,
-	} = attributes;
+		gradient,
+	} = attributes as Attributes;
 
 	const blockProps = useBlockProps.save({
 		className: getWrapClasses({ ...attributes }),
 	});
 
-	const textColorClass = getColorClassName('color', textColor);
-	const textColorStyle = !textColorClass ? customTextColor : undefined;
-
 	const linkClasses = getLinkClasses({
 		...attributes,
-		textColor: textColorClass,
 		fontSize: getFontSize(customFontSize, fontSize)?.className,
+		gradientClass: getGradientClass(gradient),
 	});
 	const linkStyles = getLinkStyles({
 		...attributes,
-		textColor: textColorStyle,
 		fontSize: getFontSize(customFontSize, fontSize)?.size,
 	});
 	return (
@@ -55,7 +52,7 @@ function Save({ attributes }) {
 			<div {...blockProps}>
 				<a href={url} className={linkClasses} style={linkStyles}>
 					<Icon.Content
-						hasIcon={iconLeft || iconRight}
+						hasIcon={!!iconLeft || !!iconRight}
 						icon={iconLeft}
 						size={iconSizeLeft}
 					/>
@@ -65,7 +62,7 @@ function Save({ attributes }) {
 						className={'ystdb-custom-button__content'}
 					/>
 					<Icon.Content
-						hasIcon={iconLeft || iconRight}
+						hasIcon={!!iconLeft || !!iconRight}
 						icon={iconRight}
 						size={iconSizeRight}
 					/>

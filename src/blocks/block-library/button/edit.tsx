@@ -1,7 +1,13 @@
 /**
  * WordPress dependencies.
  */
-import { useBlockProps, RichText, withColors } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	RichText,
+	withColors,
+	// @ts-expect-error
+	__experimentalUseGradient,
+} from '@wordpress/block-editor';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -26,6 +32,8 @@ import './style-editor.scss';
 
 // @ts-expect-error
 function Edit(props) {
+	const { gradientClass, gradientValue, setGradient } =
+		__experimentalUseGradient();
 	const {
 		textColor,
 		backgroundColor,
@@ -57,16 +65,25 @@ function Edit(props) {
 		className: getLinkClasses({
 			...attributes,
 			fontSize: getFontSize(customFontSize, fontSize)?.className,
+			gradientClass: gradientClass,
 		}),
 		style: getLinkStyles({
 			...attributes,
 			textColor: textColor?.color,
+			backgroundColor: backgroundColor?.color,
 			fontSize: getFontSize(customFontSize, fontSize)?.size,
+			customGradient: gradientValue,
 		}),
 	};
+	const inspectorControlsProps = {
+		...props,
+		gradientValue,
+		setGradient,
+	};
+
 	return (
 		<>
-			<InspectorControls {...props} />
+			<InspectorControls {...inspectorControlsProps} />
 
 			<div {...useBlockProps({})}>
 				<div {...wrapProps}>

@@ -37,6 +37,8 @@ export function ButtonTypePanel(props) {
 						},
 					]}
 					useDefaultItem={false}
+					// @ts-expect-error
+					__nextUnconstrainedWidth
 				/>
 			</Panel>
 		</>

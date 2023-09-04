@@ -116,29 +116,36 @@ class Color_Palette {
 	 * @return string
 	 */
 	public static function create_color_palette_css( $slug, $color, $args, $prefix = '' ) {
-		$color_name  = $slug;
-		$color_class = "has-${color_name}-" . $args['palette'];
-		$property    = $args['property'];
-		$state       = isset( $args['state'] ) && ! empty( $args['state'] ) ? ':' . $args['state'] : '';
+		$color_name        = $slug;
+		$color_class       = "has-{$color_name}-" . $args['palette'];
+		$property          = $args['property'];
+		$has_state         = isset( $args['state'] ) && ! empty( $args['state'] );
+		$state             = $has_state ? ':' . $args['state'] : '';
+		$custom_prop       = [];
+		$custom_prop_state = $has_state ? '--' . $args['state'] : '';
 
 		// 色指定.
-		$color_class_section = "${prefix} .${color_class}${state}";
+		$color_class_section = "{$prefix} .{$color_class}{$state}";
 		// 条件付き.
 		if ( is_array( $args['conditional'] ) ) {
 			foreach ( $args['conditional'] as $conditional ) {
 				$conditional_class           = 'has-' . $conditional;
-				$conditional_class_section[] = "${prefix} .${conditional_class}.${color_class}${state}";
+				$conditional_class_section[] = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
+				$custom_prop[]               = "--ystdb--{$conditional}{$custom_prop_state}:{$color}";
 			}
 			$conditional_class_section = implode( ',', $conditional_class_section );
 		} else {
 			$conditional_class         = 'has-' . $args['conditional'];
-			$conditional_class_section = "${prefix} .${conditional_class}.${color_class}${state}";
+			$conditional_class_section = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
+			$custom_prop[]             = "--ystdb--{$property}{$custom_prop_state}:{$color}";
 		}
+		$custom_prop = implode( ';', $custom_prop );
 
 		return "
-			${color_class_section},
-			${conditional_class_section}{
-				${property}:${color};
+			{$color_class_section},
+			{$conditional_class_section}{
+				{$property}:{$color};
+				{$custom_prop};
 			}
 		";
 	}
@@ -154,7 +161,13 @@ class Color_Palette {
 			[
 				'color'            => [
 					'property'    => 'color',
-					'conditional' => [ 'text-color', 'has-inline-color' ],
+					'conditional' => 'text-color',
+					'palette'     => 'color',
+					'state'       => [ 'hover' ],
+				],
+				'inline-color'     => [
+					'property'    => 'color',
+					'conditional' => 'inline-color',
 					'palette'     => 'color',
 					'state'       => [ 'hover' ],
 				],

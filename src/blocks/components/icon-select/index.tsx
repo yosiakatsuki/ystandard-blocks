@@ -79,7 +79,7 @@ export function IconSelect(props: IconSelectProps) {
 									value={filter}
 									onChange={setFilter}
 									placeholder={__(
-										'絞り込み...',
+										'絞り込み…',
 										'ystandard-blocks'
 									)}
 								/>

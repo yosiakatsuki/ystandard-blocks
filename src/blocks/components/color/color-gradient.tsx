@@ -18,8 +18,6 @@ import {
 	// @ts-expect-error
 	__experimentalColorGradientControl as ColorGradientControl,
 	// @ts-expect-error
-	__experimentalUseGradient,
-	// @ts-expect-error
 	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
 } from '@wordpress/block-editor';
 
@@ -33,6 +31,8 @@ interface ColorGradientSettingsDropdownProps {
 	onChange: (color: Color) => void;
 	label: string;
 	disableGradient?: boolean;
+	gradientValue?: string;
+	setGradient?: (newGradientValue: string) => void;
 }
 
 const LabeledColorIndicator = ({
@@ -94,22 +94,30 @@ export function ColorGradientSettingsDropdown(
 		offset: 36,
 		shift: true,
 	};
-	const { colorValue, label, onChange, disableGradient = false } = props;
+	const {
+		colorValue,
+		label,
+		onChange,
+		disableGradient = false,
+		gradientValue,
+		setGradient,
+	} = props;
 	const colorGradientSettings = useMultipleOriginColorsAndGradients();
-	const { gradientValue, setGradient } = __experimentalUseGradient();
+
 	const controlProps = {
 		clearable: false,
-		colorValue: colorValue,
-		gradientValue: gradientValue,
-		label: label,
+		colorValue,
+		gradientValue,
+		label,
 		onColorChange: onChange,
 		onGradientChange: !disableGradient ? setGradient : undefined,
 		showTitle: false,
 		...colorGradientSettings,
 	};
+
 	const toggleSettings = {
 		colorValue: gradientValue ?? colorValue,
-		label: label,
+		label,
 	};
 
 	return (
