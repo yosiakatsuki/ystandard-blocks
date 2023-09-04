@@ -2,44 +2,46 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
+import { BaseControl } from '@wordpress/components';
 /**
  * Plugin dependencies.
  */
 import Panel from '@aktk/blocks/components/panel';
-import CustomSelectControl from '@aktk/blocks/components/custom-select-control';
+import { ButtonGrid } from '@aktk/blocks/components/button-grid';
 
 // @ts-expect-error
 export function ButtonTypePanel(props) {
 	const { attributes, setAttributes } = props;
 	const { buttonType } = attributes;
 	const handleOnchange = (value: string) => {
-		setAttributes({ buttonType: value });
+		setAttributes({ buttonType: value || undefined });
 	};
 	return (
 		<>
-			<Panel title={__('タイプ', 'ystandard-blocks')} initialOpen={true}>
-				<CustomSelectControl
-					label={__('ボタンタイプ', 'ystandard-blocks')}
-					value={buttonType}
-					onChange={handleOnchange}
-					options={[
-						{
-							key: '',
-							name: __('デフォルト', 'ystandard-toolbox'),
-						},
-						{
-							key: 'outline',
-							name: __('アウトライン', 'ystandard-toolbox'),
-						},
-						{
-							key: 'link',
-							name: __('リンク', 'ystandard-toolbox'),
-						},
-					]}
-					useDefaultItem={false}
-					// @ts-expect-error
-					__nextUnconstrainedWidth
-				/>
+			<Panel
+				title={__('ボタンタイプ', 'ystandard-blocks')}
+				initialOpen={true}
+			>
+				<BaseControl id={'button-type'} className="">
+					<ButtonGrid
+						current={buttonType || ''}
+						onChange={handleOnchange}
+						buttons={[
+							{
+								value: '',
+								label: __('デフォルト', 'ystandard-toolbox'),
+							},
+							{
+								value: 'outline',
+								label: __('アウトライン', 'ystandard-toolbox'),
+							},
+							{
+								value: 'link',
+								label: __('リンク', 'ystandard-toolbox'),
+							},
+						]}
+					/>
+				</BaseControl>
 			</Panel>
 		</>
 	);
