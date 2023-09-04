@@ -6,11 +6,12 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
 /**
  * Block.
  */
-import { SizePanel } from './size';
 import { ButtonTypePanel } from './button-type';
-import { Icon } from './icon';
+import { Link } from './link';
 import { Typography } from './typography';
 import { Background } from './background';
+import { Icon } from './icon';
+import { SizePanel } from './size';
 
 // @ts-ignore
 export function InspectorControls(props) {
@@ -18,10 +19,11 @@ export function InspectorControls(props) {
 		<>
 			<WPInspectorControls>
 				<ButtonTypePanel {...props} />
+				<Link {...props} />
 				<Typography {...props} />
 				<Background {...props} />
-				<SizePanel {...props} />
 				<Icon {...props} />
+				<SizePanel {...props} />
 			</WPInspectorControls>
 		</>
 	);

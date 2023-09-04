@@ -32,6 +32,8 @@ function Save({ attributes }) {
 		fontSize,
 		customFontSize,
 		gradient,
+		linkTarget,
+		rel,
 	} = attributes as Attributes;
 
 	const blockProps = useBlockProps.save({
@@ -50,7 +52,13 @@ function Save({ attributes }) {
 	return (
 		<>
 			<div {...blockProps}>
-				<a href={url} className={linkClasses} style={linkStyles}>
+				<a
+					href={url}
+					className={linkClasses}
+					style={linkStyles}
+					target={linkTarget}
+					rel={rel}
+				>
 					<Icon.Content
 						hasIcon={!!iconLeft || !!iconRight}
 						icon={iconLeft}
