@@ -68,10 +68,10 @@ export function getLinkStyles(attributes: Attributes) {
 	return {
 		[`--ystdb-button-justify`]: iconPosition,
 		color: customTextColor,
-		fontSize: fontSize,
+		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
-		borderRadius: borderRadius,
+		borderRadius,
 	};
 }
 

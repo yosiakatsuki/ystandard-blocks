@@ -65,7 +65,7 @@ function Edit(props) {
 		className: getLinkClasses({
 			...attributes,
 			fontSize: getFontSize(customFontSize, fontSize)?.className,
-			gradientClass: gradientClass,
+			gradientClass,
 		}),
 		style: getLinkStyles({
 			...attributes,
