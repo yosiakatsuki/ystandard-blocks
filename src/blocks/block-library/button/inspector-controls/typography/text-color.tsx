@@ -14,6 +14,7 @@ export function TextColor(props) {
 	return (
 		<>
 			<ColorGradientSettingsDropdown
+				controlLabel={__('文字色', 'ystandard-blocks')}
 				colorValue={textColor.color}
 				onChange={setTextColor}
 				label={__('文字色', 'ystandard-blocks')}

@@ -1,4 +1,8 @@
 /**
+ * WordPress dependencies.
+ */
+import { __ } from '@wordpress/i18n';
+/**
  * Plugin dependencies.
  */
 import {
@@ -36,6 +40,7 @@ export function FontSize(props) {
 	return (
 		<>
 			<ResponsiveFontSizeSelect
+				label={__('文字サイズ', 'ystandard-blocks')}
 				value={customFontSize || fontSize}
 				onPickerChange={(size, slug) => {
 					setAttributes({

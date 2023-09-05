@@ -26,6 +26,7 @@ type Color = {
 };
 
 interface ColorGradientSettingsDropdownProps {
+	controlLabel?: string;
 	clearable?: boolean;
 	colorValue: Color;
 	onChange: (color: Color) => void;
@@ -95,6 +96,7 @@ export function ColorGradientSettingsDropdown(
 		shift: true,
 	};
 	const {
+		controlLabel,
 		colorValue,
 		label,
 		onChange,
@@ -123,7 +125,10 @@ export function ColorGradientSettingsDropdown(
 	return (
 		<>
 			{colorGradientSettings.hasColorsOrGradients && (
-				<BaseControl id={'color-gradient-settings-dropdown'}>
+				<BaseControl
+					id={'color-gradient-settings-dropdown'}
+					label={controlLabel}
+				>
 					<Dropdown
 						// @ts-expect-error
 						popoverProps={popoverProps}
