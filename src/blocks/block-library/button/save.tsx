@@ -56,8 +56,8 @@ function Save({ attributes }) {
 					href={url}
 					className={linkClasses}
 					style={linkStyles}
-					target={linkTarget}
-					rel={rel}
+					target={linkTarget || undefined}
+					rel={rel || undefined}
 				>
 					<Icon.Content
 						hasIcon={!!iconLeft || !!iconRight}

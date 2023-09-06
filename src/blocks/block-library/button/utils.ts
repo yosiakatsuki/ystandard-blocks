@@ -1,17 +1,23 @@
 import classnames from 'classnames/dedupe';
+import { isObject } from 'lodash';
+
+/**
+ * WordPress dependencies.
+ */
+import { getColorClassName } from '@wordpress/block-editor';
+
 /**
  * Plugin dependencies.
  */
 import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/types';
+import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values';
+import { getBlockStyleClasses } from '@aktk/blocks/components/block-classes';
+import { getBorderRadiusStyles } from '@aktk/blocks/components/border-radius-control';
 
 /**
  * Block dependencies.
  */
 import type { Attributes, ButtonStyle } from './types';
-import { isObject } from 'lodash';
-import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values';
-import { getBlockStyleClasses } from '@aktk/blocks/components/block-classes';
-import { getColorClassName } from '@wordpress/block-editor';
 
 export function getWrapClasses(attributes: Attributes) {
 	const className = attributes?.className || '';
@@ -65,13 +71,16 @@ export function getLinkStyles(attributes: Attributes) {
 		customGradient,
 		borderRadius,
 	} = attributes;
+
+	let borderRadiusStyles = getBorderRadiusStyles(borderRadius);
+
 	return {
 		[`--ystdb-button-justify`]: iconPosition,
 		color: customTextColor,
 		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
-		borderRadius,
+		...borderRadiusStyles,
 	};
 }
 

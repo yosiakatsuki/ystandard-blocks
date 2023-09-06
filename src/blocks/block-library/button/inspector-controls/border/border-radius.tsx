@@ -5,26 +5,24 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin dependencies.
  */
-import {
-	ValueInput,
-	ValueInputOnChange,
-} from '@aktk/blocks/components/value-input';
+import { BorderRadiusControl } from '@aktk/blocks/components/border-radius-control';
 
 // @ts-expect-error
 export function BorderRadius(props) {
 	const { attributes, setAttributes } = props;
 	const { borderRadius } = attributes;
 
-	const handleOnChange: ValueInputOnChange = (value) => {
+	// @ts-expect-error
+	const handleOnChange = (value) => {
 		setAttributes({ borderRadius: value || undefined });
 	};
+	const borderRadiusValue = borderRadius?.borderRadius || borderRadius;
 
 	return (
 		<>
-			<ValueInput
-				label={__('角丸', 'ystandard-blocks')}
-				value={borderRadius}
+			<BorderRadiusControl
 				onChange={handleOnChange}
+				values={borderRadiusValue}
 			/>
 		</>
 	);
