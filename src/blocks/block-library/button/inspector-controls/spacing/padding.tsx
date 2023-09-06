@@ -10,7 +10,7 @@ import { SpacingSize } from '@aktk/blocks/components/spacing-size';
 // @ts-expect-error
 export function Padding(props) {
 	const handleOnChange = (value) => {
-		console.log({ padding: value });
+		// console.log({ padding: value });
 	};
 	return (
 		<>

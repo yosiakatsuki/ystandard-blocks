@@ -89,8 +89,7 @@ const renderToggle =
 export function ColorGradientSettingsDropdown(
 	props: ColorGradientSettingsDropdownProps
 ) {
-	let popoverProps;
-	popoverProps = {
+	const popoverProps = {
 		placement: 'left-start',
 		offset: 36,
 		shift: true,

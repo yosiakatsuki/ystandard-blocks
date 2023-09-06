@@ -1,5 +1,3 @@
-import { useMemo } from '@wordpress/element';
-
 export interface Icon {
 	name: string;
 	icon: string;
@@ -23,15 +21,9 @@ export function getFilteredIcons(name: string): IconList {
 	if (!icons) {
 		return [];
 	}
-
-	return useMemo(() => {
-		if (!name) {
-			return icons;
-		}
-		return icons.filter((icon: Icon) => {
-			return icon.name.indexOf(name) > -1;
-		});
-	}, [name]);
+	return icons.filter((icon: Icon) => {
+		return icon.name.indexOf(name) > -1;
+	});
 }
 
 /**

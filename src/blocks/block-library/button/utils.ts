@@ -72,7 +72,7 @@ export function getLinkStyles(attributes: Attributes) {
 		borderRadius,
 	} = attributes;
 
-	let borderRadiusStyles = getBorderRadiusStyles(borderRadius);
+	const borderRadiusStyles = getBorderRadiusStyles(borderRadius);
 
 	return {
 		[`--ystdb-button-justify`]: iconPosition,

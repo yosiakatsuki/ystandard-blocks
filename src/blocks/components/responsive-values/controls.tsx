@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 /**
- * @WordPress dependencies.
+ * WordPress dependencies.
  */
 import {
 	Button,

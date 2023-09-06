@@ -17,7 +17,7 @@ export function getBorderRadiusStyles(
 	// 固定値はborderRadiusで返す.
 	if (isString(borderRadius)) {
 		return {
-			borderRadius: borderRadius,
+			borderRadius,
 		};
 	}
 	// borderRadiusの指定があればそれだけ返す.

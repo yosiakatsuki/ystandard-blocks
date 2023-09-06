@@ -124,7 +124,9 @@ interface IconButtonsProps {
 
 function IconButtons(props: IconButtonsProps) {
 	const { icon, onChange, filter = '' } = props;
-	const icons = getFilteredIcons(filter);
+	const icons = useMemo(() => {
+		return getFilteredIcons(filter);
+	}, [filter]);
 	const handleOnChange = useCallback(
 		(value: string) => {
 			const _value = value === icon ? '' : value;
@@ -141,6 +143,7 @@ function IconButtons(props: IconButtonsProps) {
 						icon === item.name ? 'primary' : 'secondary';
 					return (
 						<Button
+							key={item.name}
 							variant={variant}
 							onClick={() => handleOnChange(item.name)}
 							className={'flex justify-center items-center'}
