@@ -41,7 +41,7 @@ class Admin_Menu {
 	 * @return bool
 	 */
 	public static function is_current_admin_page( $slug, $hook_suffix ) {
-		return "ystandard-blocks_page_${slug}" === $hook_suffix;
+		return "ystandard-blocks_page_{$slug}" === $hook_suffix;
 	}
 
 	/**
@@ -52,22 +52,22 @@ class Admin_Menu {
 	 * @param array  $config Config.
 	 */
 	public static function enqueue_admin_scripts( $name, $route, $config = [] ) {
-		$css_url  = YSTDB_URL . "/js/admin-menu/${name}.css";
-		$css_path = YSTDB_PATH . "/js/admin-menu/${name}.css";
+		$css_url  = YSTDB_URL . "/js/admin-menu/{$name}.css";
+		$css_path = YSTDB_PATH . "/js/admin-menu/{$name}.css";
 
 		wp_enqueue_style( 'wp-components' );
 		wp_enqueue_media();
 
 		if ( file_exists( $css_path ) ) {
 			wp_enqueue_style(
-				"ystandard-blocks-admin-menu-${name}-style",
+				"ystandard-blocks-admin-menu-{$name}-style",
 				$css_url,
 				[ 'wp-components' ]
 			);
 		}
 
-		$asset_file    = include( YSTDB_PATH . "/js/admin-menu/${name}.asset.php" );
-		$script_handle = "ystandard-blocks-admin-menu-${name}-script";
+		$asset_file    = include( YSTDB_PATH . "/js/admin-menu/{$name}.asset.php" );
+		$script_handle = "ystandard-blocks-admin-menu-{$name}-script";
 		// 追加スクリプト.
 		$asset_file['dependencies'] = array_merge(
 			$asset_file['dependencies'],
@@ -75,7 +75,7 @@ class Admin_Menu {
 		);
 		wp_enqueue_script(
 			$script_handle,
-			YSTDB_URL . "/js/admin-menu/${name}.js",
+			YSTDB_URL . "/js/admin-menu/{$name}.js",
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			true

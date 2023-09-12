@@ -184,7 +184,7 @@ class Utility {
 			return '';
 		}
 
-		return "color:${color}";
+		return "color:{$color}";
 	}
 
 	/**
@@ -199,7 +199,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-color";
+		return "has-{$color}-color";
 	}
 
 	/**
@@ -214,7 +214,7 @@ class Utility {
 			return '';
 		}
 
-		return "background-color:${color}";
+		return "background-color:{$color}";
 	}
 
 	/**
@@ -229,7 +229,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-background-color";
+		return "has-{$color}-background-color";
 	}
 
 	/**
@@ -244,7 +244,7 @@ class Utility {
 			return '';
 		}
 
-		return "border-color:${color}";
+		return "border-color:{$color}";
 	}
 
 	/**
@@ -259,7 +259,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-border-color";
+		return "has-{$color}-border-color";
 	}
 
 
@@ -278,7 +278,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${name}";
+		return "has-{$name}";
 	}
 
 	/**

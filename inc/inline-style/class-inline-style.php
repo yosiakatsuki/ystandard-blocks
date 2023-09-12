@@ -9,7 +9,6 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
 use ystandard_blocks\helper\Helper_Debug;
 use ystandard_blocks\utils\Styles;
 use ystandard_blocks\utils\File;
@@ -273,37 +272,33 @@ class Inline_Style {
 		$css             = [];
 		$tablet_css      = [];
 		$mobile_css      = [];
-		$selector_format = "${selector}{%s;}";
+		$selector_format = "{$selector}{%s;}";
 		foreach ( $style as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$css[] = "{$prop}:{$value}";
 			}
 		}
 		foreach ( $tablet as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$tablet_css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$tablet_css[] = "{$prop}:{$value}";
 			}
 		}
 		foreach ( $mobile as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$mobile_css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$mobile_css[] = "{$prop}:{$value}";
 			}
 		}
 		if ( ! empty( $css ) ) {
 			$result .= sprintf( $selector_format, implode( ';', $css ) );
 		}
 		if ( ! empty( $tablet_css ) ) {
-			$result .= Styles::add_media_query(
+			$result .= Styles::add_media_query_tablet(
 				sprintf( $selector_format, implode( ';', $tablet_css ) ),
-				'',
-				'md'
 			);
 		}
 		if ( ! empty( $mobile_css ) ) {
-			$result .= Styles::add_media_query(
+			$result .= Styles::add_media_query_mobile(
 				sprintf( $selector_format, implode( ';', $mobile_css ) ),
-				'',
-				'sm'
 			);
 		}
 

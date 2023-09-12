@@ -45,7 +45,7 @@ class Notice {
 		if ( $wpautop ) {
 			$content = wpautop( $content );
 		}
-		echo "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		echo "<div class=\"notice notice-{$type} is-dismissible\">{$content}</div>";
 	}
 
 	/**
@@ -98,7 +98,7 @@ class Notice {
 		if ( $wpautop ) {
 			$content = wpautop( $content );
 		}
-		echo "<div class=\"notice\">${content}</div>";
+		echo "<div class=\"notice\">{$content}</div>";
 	}
 
 }

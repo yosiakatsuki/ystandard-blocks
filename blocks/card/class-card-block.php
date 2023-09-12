@@ -347,7 +347,7 @@ class Card_Block extends Dynamic_Block {
 			$rel = ' rel="' . $this->params['rel'] . '"';
 		}
 
-		return "<a class=\"${class}\" href=\"${url}\" ${target}${rel}>${url}</a>";
+		return "<a class=\"{$class}\" href=\"{$url}\" {$target}{$rel}>{$url}</a>";
 	}
 
 	/**

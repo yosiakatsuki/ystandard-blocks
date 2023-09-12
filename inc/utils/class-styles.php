@@ -148,11 +148,11 @@ class Styles {
 		}
 		if ( array_key_exists( $min, $breakpoints ) ) {
 			$breakpoint = $breakpoints[ $min ];
-			$min        = "(min-width: ${breakpoint}px)";
+			$min        = "(min-width: {$breakpoint}px)";
 		}
 		if ( array_key_exists( $max, $breakpoints ) ) {
 			$breakpoint = $breakpoints[ $max ] - 1;
-			$max        = "(max-width: ${breakpoint}px)";
+			$max        = "(max-width: {$breakpoint}px)";
 		}
 		$breakpoint = $min . $max;
 		if ( '' !== $min && '' !== $max ) {

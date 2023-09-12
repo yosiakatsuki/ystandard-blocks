@@ -29,7 +29,7 @@ class Option {
 	 * @return string
 	 */
 	public static function get_option_name( $section, $name ) {
-		return Config::OPTION_NAME . "[${section}][${name}]";
+		return Config::OPTION_NAME . "[{$section}][{$name}]";
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Option {
 
 		$section = empty( $section ) ? '' : $section . '_';
 
-		return apply_filters( "ystdb_get_default_${section}${name}", $default, $name, $section );
+		return apply_filters( "ystdb_get_default_{$section}{$name}", $default, $name, $section );
 	}
 
 	/**

@@ -72,12 +72,12 @@ class Blocks {
 				continue;
 			}
 
-			$asset = include( YSTDB_PATH . "/js/blocks/${name}.asset.php" );
+			$asset = include( YSTDB_PATH . "/js/blocks/{$name}.asset.php" );
 			// ダイナミックブロック判定.
-			$render = YSTDB_PATH . "/blocks/${name}/class-${name}-block.php";
+			$render = YSTDB_PATH . "/blocks/{$name}/class-{$name}-block.php";
 			$type   = file_exists( $render ) ? 'dynamic' : 'normal';
 			// ブロック固有の処理読み込み.
-			$block_php = YSTDB_PATH . "/blocks/${name}/class-${name}.php";
+			$block_php = YSTDB_PATH . "/blocks/{$name}/class-{$name}.php";
 			if ( is_file( $block_php ) ) {
 				require_once $block_php;
 			}
@@ -89,19 +89,19 @@ class Blocks {
 			if ( 'normal' === $type ) {
 				// スクリプト関連.
 				$style      = null;
-				$style_path = YSTDB_PATH . "/css/blocks/${name}/block.css";
+				$style_path = YSTDB_PATH . "/css/blocks/{$name}/block.css";
 				if ( is_file( $style_path ) ) {
 					$style = [
-						'handle' => "ystdb-block-style-${name}",
+						'handle' => "ystdb-block-style-{$name}",
 						'src'    => $this->replace_path_to_url( $style_path ),
 						'var'    => filemtime( $style_path ),
 					];
 				}
 				$editor_style      = null;
-				$editor_style_path = YSTDB_PATH . "/css/blocks/${name}/edit.css";
+				$editor_style_path = YSTDB_PATH . "/css/blocks/{$name}/edit.css";
 				if ( is_file( $editor_style_path ) ) {
 					$editor_style = [
-						'handle' => "ystdb-block-editor-style-${name}",
+						'handle' => "ystdb-block-editor-style-{$name}",
 						'src'    => $this->replace_path_to_url( $editor_style_path ),
 						'var'    => filemtime( $editor_style_path ),
 					];
