@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin dependencies.
  */
-import { SpacingSize } from '@aktk/blocks/components/spacing-size';
+import { SpacingSize } from '@aktk/blocks/components/spacing-size-control';
 
 // @ts-expect-error
 export function Padding(props) {

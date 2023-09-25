@@ -18,6 +18,7 @@ import { getBorderRadiusStyles } from '@aktk/blocks/components/border-radius-con
  * Block dependencies.
  */
 import type { Attributes, ButtonStyle } from './types';
+import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
 
 export function getWrapClasses(attributes: Attributes) {
 	const className = attributes?.className || '';
@@ -70,6 +71,7 @@ export function getLinkStyles(attributes: Attributes) {
 		customBackgroundColor,
 		customGradient,
 		borderRadius,
+		border,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles(borderRadius);
@@ -81,6 +83,7 @@ export function getLinkStyles(attributes: Attributes) {
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
 		...borderRadiusStyles,
+		...getBorderStyles(border),
 	};
 }
 

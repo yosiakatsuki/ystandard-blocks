@@ -1,0 +1,1 @@
+export { useColorPalette } from './colors';

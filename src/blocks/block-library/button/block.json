@@ -53,7 +53,7 @@
 		"iconPosition": {
 			"type": "string"
 		},
-		"textAlign": {
+		"align": {
 			"type": "string"
 		},
 		"backgroundColor": {
@@ -74,19 +74,13 @@
 		"customTextColor": {
 			"type": "string"
 		},
-		"borderColor": {
-			"type": "string"
-		},
-		"customBorderColor": {
-			"type": "string"
+		"border": {
+			"type": "object"
 		},
 		"borderRadius": {
 			"type": "object"
 		},
 		"fontSize": {
-			"type": "string"
-		},
-		"fontSizeSlug": {
 			"type": "string"
 		},
 		"customFontSize": {

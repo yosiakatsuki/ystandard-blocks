@@ -20,7 +20,7 @@ export interface Attributes {
 	customGradient?: string;
 	textColor?: string;
 	customTextColor?: string;
-	borderColor?: string;
+	border?: object;
 	customBorderColor?: string;
 	borderRadius?: string;
 	fontSize?: string;
