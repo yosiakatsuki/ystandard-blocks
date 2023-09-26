@@ -14,21 +14,16 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin dependencies.
  */
-import { InlineStyleCss } from '@aktk/blocks/components/inline-style-css';
 import { getFontSize } from '@aktk/blocks/components/font-size-edit';
 
 /**
  * Block
  */
 import { InspectorControls } from './inspector-controls';
-import {
-	getLinkClasses,
-	getLinkStyles,
-	getWrapClasses,
-	parseLinkInlineStyles,
-} from './utils';
+import { getLinkClasses, getLinkStyles, getWrapClasses } from './utils';
 import { Icon } from './icon';
 import './style-editor.scss';
+import type { Attributes } from '@aktk/blocks/block-library/button/types';
 
 // @ts-expect-error
 function Edit(props) {
@@ -45,14 +40,13 @@ function Edit(props) {
 
 	const {
 		content,
-		style,
 		iconLeft,
 		iconSizeLeft,
 		iconRight,
 		iconSizeRight,
 		fontSize,
 		customFontSize,
-	} = attributes;
+	} = attributes as unknown as Attributes;
 
 	const wrapProps = {
 		className: getWrapClasses({
@@ -89,14 +83,14 @@ function Edit(props) {
 				<div {...wrapProps}>
 					<div {...linkProps}>
 						<Icon
-							hasIcon={iconLeft || iconRight}
+							hasIcon={!!iconLeft || !!iconRight}
 							icon={iconLeft}
 							size={iconSizeLeft}
 						/>
 						<RichText
 							tagName={'span'}
 							placeholder={__('テキスト…', 'ystandard-blocks')}
-							value={content}
+							value={content || ''}
 							onChange={(value) =>
 								setAttributes({ content: value })
 							}
@@ -105,18 +99,13 @@ function Edit(props) {
 							className={'ystdb-custom-button__content'}
 						/>
 						<Icon
-							hasIcon={iconLeft || iconRight}
+							hasIcon={!!iconLeft || !!iconRight}
 							icon={iconRight}
 							size={iconSizeRight}
 						/>
 					</div>
 				</div>
 			</div>
-			<InlineStyleCss
-				clientId={clientId}
-				styles={parseLinkInlineStyles(style)}
-				selector={'.ystdb-custom-button__link'}
-			/>
 		</>
 	);
 }

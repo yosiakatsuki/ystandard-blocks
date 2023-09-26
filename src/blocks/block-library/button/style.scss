@@ -1,68 +1,72 @@
 :root {
-	--ystdb-button-align: flex-start;
+	--ystdb--button--align: flex-start;
 
-	--ystdb-button-text-color: var(--ystd-button-text-color, #fff);
-	--ystdb-button-background-color: var(--ystd-button-background-color, #222);
-	--ystdb-button-font-size: var(--ystd-button-font-size, #222);
-	--ystdb-button-font-weight: var(--ystd-button-font-weight, normal);
-	--ystdb-button-border-width: var(--ystd-button-border-width, 0);
-	--ystdb-button-border-color: var(--ystd-button-border-color, var(--ystdb-button-background-color));
-	--ystdb-button-border-style: var(--ystd-button-border-style, solid);
-	--ystdb-button-border-radius: var(--ystd-button-border-radius, 999px);
-	--ystdb-button-display: inline-flex; //var(--ystd-button-display, inline-flex);
-	--ystdb-button-justify: center; //var(--ystd-button-justify, center);
-	--ystdb-button-gap: 0.5em; //var(--ystd-button-gap, 0.5em);
-	--ystdb-button-padding-y: var(--ystd-button-padding-y, 0.25em);
-	--ystdb-button-padding-x: var(--ystd-button-padding-x, 2em);
-	--ystdb-button-box-shadow: none; //var(--ystd-button-box-shadow, none);
-	--ystdb-button-text-decoration: var(--ystd-button-text-decoration, none);
+	--ystdb--button--text-color: var(--ystd-button-text-color, #fff);
+	--ystdb--button--background-color: var(--ystd-button-background-color, #222);
+	--ystdb--button--font-size: var(--ystd-button-font-size, #222);
+	--ystdb--button--font-weight: var(--ystd-button-font-weight, normal);
+	--ystdb--button--border-width: var(--ystd-button-border-width, 0);
+	--ystdb--button--border-color: var(--ystd-button-border-color, var(--ystdb--button--background-color));
+	--ystdb--button--border-style: var(--ystd-button-border-style, solid);
+	--ystdb--button--border-radius: var(--ystd-button-border-radius, 999px);
+	--ystdb--button--display: inline-flex; //var(--ystd-button-display, inline-flex);
+	--ystdb--button--justify: center; //var(--ystd-button-justify, center);
+	--ystdb--button--gap: 0.5em; //var(--ystd-button-gap, 0.5em);
+	--ystdb--button--padding-y: var(--ystd-button-padding-y, 0.25em);
+	--ystdb--button--padding-x: var(--ystd-button-padding-x, 2em);
+	--ystdb--button--box-shadow: none; //var(--ystd-button-box-shadow, none);
+	--ystdb--button--text-decoration: var(--ystd-button-text-decoration, none);
 
-	--ystdb-button-hover-text-color: var(--ystdb-button-background-color);
-	--ystdb-button-hover-background-color: var(--ystdb-button-text-color);
-	--ystdb-button-hover-border-color: var(--ystdb-button-background-color);
-	--ystdb-button-hover-box-shadow-default: 3px 3px 6px rgba(0, 0, 0, 0.2);
-	--ystdb-button-hover-box-shadow: var(--ystd-button-hover-box-shadow, var(--ystdb-button-hover-box-shadow-default));
+	--ystdb--button--hover---text-color: var(--ystdb--button--background-color);
+	--ystdb--button--hover--background-color: var(--ystdb--button--text-color);
+	--ystdb--button--hover--border-color: var(--ystdb--button--background-color);
+	--ystdb--button--hover--box-shadow-default: 3px 3px 6px rgba(0, 0, 0, 0.2);
+	--ystdb--button--hover--box-shadow: var(--ystd-button-hover--box-shadow, var(--ystdb--button--hover--box-shadow-default));
 }
 
 :where(.ystdb-custom-button) {
 	display: flex;
-	justify-content: var(--ystdb-button-align);
+	justify-content: var(--ystdb--button--align);
 }
 
 .ystdb-custom-button__link {
-	display: var(--ystdb-button-display);
+	display: var(--ystdb--button--display);
 	align-items: center;
-	justify-content: var(--ystdb-button-justify);
-	gap: var(--ystdb-button-gap);
-	background-color: var(--ystdb-button-background-color);
+	justify-content: var(--ystdb--button--justify);
+	gap: var(--ystdb--button--gap);
+	background-color: var(--ystdb--button--background-color);
 
 	// yStandard v5以降で有効にする
-	//border-width: var(--ystdb-button-border-width);
-	//border-color: var(--ystdb-button-border-color);
-	//border-style: var(--ystdb-button-border-style);
-	border-radius: var(--ystdb-button-border-radius);
+	//border-width: var(--ystdb--button--border-width);
+	//border-color: var(--ystdb--button--border-color);
+	//border-style: var(--ystdb--button--border-style);
+	border-radius: var(--ystdb--button--border-radius);
 
-	padding: var(--ystdb-button-padding-y) var(--ystdb-button-padding-x);
+	padding: var(--ystdb--button--padding-y) var(--ystdb--button--padding-x);
 
-	color: var(--ystdb-button-text-color);
-	font-size: var(--ystdb-button-font-size);
-	font-weight: var(--ystdb-button-font-weight);
-	text-decoration: var(--ystdb-button-text-decoration);
+	color: var(--ystdb--button--text-color);
+	font-size: var(--ystdb--button--font-size);
+	font-weight: var(--ystdb--button--font-weight);
+	text-decoration: var(--ystdb--button--text-decoration);
 
-	box-shadow: var(--ystdb-button-box-shadow);
+	box-shadow: var(--ystdb--button--box-shadow);
 	transition: all 0.3s;
 
 	&:hover {
 
 		@media (hover: hover) {
-			color: var(--ystdb-button-text-color);
-			background-color: var(--ystdb-button-background-color);
-			border-color: var(--ystdb-button-hover-border-color);
-			box-shadow: var(--ystdb-button-hover-box-shadow);
+			color: var(--ystdb--button--text-color);
+			background-color: var(--ystdb--button--background-color);
+			border-color: var(--ystdb--button--hover--border-color);
+			box-shadow: var(--ystdb--button--hover--box-shadow);
 		}
 	}
 
-	:where(.ys-icon),
+	:where(.ys-icon) {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+	}
 	:where(.ys-icon svg) {
 		display: block;
 	}

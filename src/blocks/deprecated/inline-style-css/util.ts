@@ -70,9 +70,9 @@ export function getCSS(
 
 export function getBreakpoint(type: string): string {
 	const breakpoint = getBlockEditorConfig('breakpoint', {
-		mobile: '37.5em',
-		tablet: '48em',
-		desktop: '64em',
+		mobile: '600px',
+		tablet: '768px',
+		desktop: '1024px',
 	});
 
 	if (!isObject(breakpoint)) {
@@ -91,8 +91,10 @@ export function addMediaQueryMobile(css: string) {
 		return '';
 	}
 	const breakpoint = getBreakpoint('mobile');
+	const unit = breakpoint.replace(parseFloat(breakpoint).toString(), '');
+	const mobile = calcResponsiveBorderSize(breakpoint, unit);
 
-	return `@media (max-width:${breakpoint}) { ${css} }`;
+	return `@media (max-width:${mobile}) { ${css} }`;
 }
 
 export function addMediaQueryTablet(css: string) {
@@ -100,15 +102,28 @@ export function addMediaQueryTablet(css: string) {
 		return '';
 	}
 	let mobile = getBreakpoint('mobile');
-	const desktop = getBreakpoint('desktop');
-	const breakpointBase = getBlockEditorConfig('breakpointBase', 16);
 
-	const unit = mobile.replace(parseFloat(mobile).toString(), '');
+	const desktop = getBreakpoint('desktop');
+	const unit = desktop.replace(parseFloat(desktop).toString(), '');
+	const _desktop = calcResponsiveBorderSize(desktop, unit);
+
+	return `@media (min-width:${mobile}) and (max-width:${_desktop}) { ${css} }`;
+}
+
+export function addMediaQueryDesktop(css: string) {
+	if (!css) {
+		return '';
+	}
+	const breakpoint = getBreakpoint('desktop');
+
+	return `@media (min-width:${breakpoint}) { ${css} }`;
+}
+
+export function calcResponsiveBorderSize(value: string, unit: string) {
+	const breakpointBase = getBlockEditorConfig('breakpointBase', 16);
 	// 単位がem or remの場合.
 	if ('em' === unit || 'rem' === unit) {
-		const _mobile = parseFloat(mobile) + 1 / breakpointBase;
-		mobile = `${_mobile}${unit}`;
+		return parseFloat(value) - 1 / breakpointBase;
 	}
-
-	return `@media (min-width;${mobile}) AND (max-width:${desktop}) { ${css} }`;
+	return parseFloat(value) - 1;
 }

@@ -1,6 +1,7 @@
 import {
 	addMediaQueryMobile,
 	addMediaQueryTablet,
+	addMediaQueryDesktop,
 	getCSS,
 	parseInlineStyleProps,
 } from './util';
@@ -12,7 +13,7 @@ export function InlineStyleCss(props: InlineStyleCssProps) {
 	let style = '';
 
 	if (desktop) {
-		style += getCSS(desktop, clientId, selector);
+		style += addMediaQueryDesktop(getCSS(desktop, clientId, selector));
 	}
 	if (tablet) {
 		style += addMediaQueryTablet(getCSS(tablet, clientId, selector));

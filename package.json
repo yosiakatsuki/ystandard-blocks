@@ -42,6 +42,7 @@
 		"clean:css": "rimraf css",
 		"clean:js": "rimraf js",
 		"clean:zip": "rimraf ystandard-blocks.zip",
+		"clean:cache": "rimraf node_modules/.cache",
 		"clean": "run-p clean:*",
 		"fixtures:clean": "rimraf \"test/integration/fixtures/blocks/*.+(json|serialized.html)\"",
 		"fixtures:generate": "cross-env GENERATE_MISSING_FIXTURES=y npm run test-unit-block test/integration/full-content/ && npm run format test/integration/fixtures/blocks/*.json",

@@ -25,6 +25,11 @@ export interface Attributes {
 	borderRadius?: string;
 	fontSize?: string;
 	customFontSize?: string;
+	responsiveFontSize: ResponsiveFontSize;
+	padding?: object;
+	responsivePadding?: ResponsiveSpacing;
+	width?: string;
+	responsiveWidth?: ResponsiveValues;
 	animation?: Animation;
 	style?: ButtonStyle;
 	className?: string;
@@ -37,8 +42,5 @@ export interface ButtonHoverAnimation {
 }
 
 export interface ButtonStyle {
-	padding?: ResponsiveSpacing;
-	fontSize?: ResponsiveFontSize;
-	width?: ResponsiveValues;
 	hoverAnimation?: ButtonHoverAnimation;
 }

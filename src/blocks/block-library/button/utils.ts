@@ -9,16 +9,21 @@ import { getColorClassName } from '@wordpress/block-editor';
 /**
  * Plugin dependencies.
  */
-import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/types';
-import { parseResponsiveValues } from '@aktk/blocks/components/responsive-values';
+import {
+	parseResponsiveValues,
+	getResponsiveCustomPropName,
+	ResponsiveValues,
+} from '@aktk/blocks/components/responsive-values';
 import { getBlockStyleClasses } from '@aktk/blocks/components/block-classes';
 import { getBorderRadiusStyles } from '@aktk/blocks/components/border-radius-control';
+import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
+import type { ResponsiveFontSize } from '@aktk/blocks/components/responsive-font-size';
+import type { ResponsiveSpacing } from '@aktk/blocks/components/responsive-spacing/types';
 
 /**
  * Block dependencies.
  */
-import type { Attributes, ButtonStyle } from './types';
-import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
+import type { Attributes } from './types';
 
 export function getWrapClasses(attributes: Attributes) {
 	const className = attributes?.className || '';
@@ -72,35 +77,43 @@ export function getLinkStyles(attributes: Attributes) {
 		customGradient,
 		borderRadius,
 		border,
+		responsiveFontSize,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles(borderRadius);
 
+	const types = ['desktop', 'tablet', 'mobile'] as const;
+	const responsiveStyles = types.reduce((acc, type) => {
+		const fontSize = responsiveFontSize?.[type];
+		if (fontSize) {
+			acc[getResponsiveCustomPropName('button--font-size', type)] =
+				fontSize;
+		}
+		return acc;
+	}, {} as Record<string, string>);
+
 	return {
 		[`--ystdb-button-justify`]: iconPosition,
+		[getResponsiveCustomPropName('button--font-size', 'desktop')]:
+			responsiveFontSize?.desktop,
 		color: customTextColor,
 		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
 		...borderRadiusStyles,
 		...getBorderStyles(border),
+		...responsiveStyles,
 	};
 }
 
-export function parseInlineStyles(
-	styles: ButtonStyle
-): InlineStyles | undefined {
-	const result = {};
-
-	if (!isObject(styles)) {
-		return undefined;
-	}
-
-	return result as unknown as InlineStyles;
-}
+export type parseLinkInlineStylesTypes = {
+	responsiveFontSize?: ResponsiveFontSize;
+	responsiveWidth?: ResponsiveValues;
+	responsivePadding?: ResponsiveSpacing;
+};
 
 export function parseLinkInlineStyles(
-	styles: ButtonStyle
+	styles: parseLinkInlineStylesTypes
 ): InlineStyles | undefined {
 	let result = {};
 
@@ -109,17 +122,17 @@ export function parseLinkInlineStyles(
 	}
 
 	// width.
-	if (styles?.width) {
+	if (styles?.responsiveWidth) {
 		result = {
 			...result,
-			width: parseResponsiveValues(styles?.width),
+			width: parseResponsiveValues(styles?.responsiveWidth),
 		};
 	}
 	// font-size
-	if (styles?.fontSize) {
+	if (styles?.responsiveFontSize) {
 		result = {
 			...result,
-			fontSize: parseResponsiveValues(styles?.fontSize),
+			fontSize: parseResponsiveValues(styles?.responsiveFontSize),
 		};
 	}
 

@@ -31,3 +31,10 @@ export function parseResponsiveValues(values: ParseResponsiveValuesProps) {
 	}
 	return removeUndefined(result);
 }
+
+export function getResponsiveCustomPropName(
+	name: string,
+	type: 'mobile' | 'tablet' | 'desktop'
+) {
+	return `--ystdb--${type}--${name}`;
+}

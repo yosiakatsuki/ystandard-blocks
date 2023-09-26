@@ -1,3 +1,3 @@
 export type { ResponsiveValues, ResponsiveValuesUnit } from './types';
-export { parseResponsiveValues } from './utils';
+export { parseResponsiveValues, getResponsiveCustomPropName } from './utils';
 export { ResponsiveValuesControl } from './controls';

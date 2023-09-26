@@ -9,33 +9,19 @@ import {
 	ResponsiveFontSizeSelect,
 	ResponsiveFontSize,
 } from '@aktk/blocks/components/responsive-font-size';
-import { parseObjectAttributes } from '@aktk/blocks/utils';
-
-/**
- * Internal dependencies.
- */
-import type { ButtonStyle } from '../../types';
 
 // @ts-expect-error
 export function FontSize(props) {
 	const { attributes, setAttributes } = props;
-	const { style = {} as ButtonStyle, fontSize, customFontSize } = attributes;
+	const { fontSize, customFontSize, responsiveFontSize } = attributes;
 	const handleOnResponsiveChange = (
 		value: ResponsiveFontSize | undefined
 	) => {
-		const newStyle = {
-			...style,
-			...{
-				fontSize: value || undefined,
-			},
-		};
-		setAttributes({ style: parseObjectAttributes(newStyle) });
-		if (value) {
-			setAttributes({
-				customFontSize: undefined,
-				fontSize: undefined,
-			});
-		}
+		setAttributes({
+			responsiveFontSize: value,
+			customFontSize: undefined,
+			fontSize: undefined,
+		});
 	};
 	return (
 		<>
@@ -46,9 +32,10 @@ export function FontSize(props) {
 					setAttributes({
 						customFontSize: size,
 						fontSize: slug,
+						responsiveFontSize: undefined,
 					});
 				}}
-				responsiveValue={style?.fontSize}
+				responsiveValue={responsiveFontSize}
 				onResponsiveChange={handleOnResponsiveChange}
 			/>
 		</>

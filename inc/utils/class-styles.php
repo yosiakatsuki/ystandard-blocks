@@ -25,9 +25,9 @@ class Styles {
 		'sm'      => 600,
 		'md'      => 769,
 		'lg'      => 1025,
-		'mobile'  => '37.5em',
-		'tablet'  => '48em', // 使わないかも.
-		'desktop' => '64em',
+		'mobile'  => '600px',
+		'tablet'  => '768px', // 使わないかも.
+		'desktop' => '1024px',
 	];
 
 	/**
@@ -61,23 +61,29 @@ class Styles {
 	}
 
 	/**
-	 * ブレークポイントmin-widthに指定する値の取得.
+	 * ブレークポイントmin-widthに指定する値の取得.get_breakpoints_min_width_size
 	 *
 	 * @param string|int $value 値.
 	 *
 	 * @return string
 	 */
-	public static function get_breakpoints_min_width_size( $value ) {
+	public static function get_breakpoints_calc_width_size( $value, $minus = true ) {
 		$float_value = (float) $value;
 		$unit        = str_replace( (string) $float_value, '', $value );
+		$base        = self::get_breakpoints_base_size();
+		$calc        = $minus ? - 1 : 1;
 		if ( ! empty( $unit ) && ( 'em' === $unit || 'rem' === $unit ) ) {
-			$base  = self::get_breakpoints_base_size();
-			$value = ( $float_value + ( 1 / $base ) );
+			$value = ( $float_value + ( 1 / $base ) * $calc );
 		} else {
-			$value = (int) $float_value + 1;
+			$value = (int) $float_value + 1 * $calc;
 		}
 
-		return "{$value}{$unit}";
+		return apply_filters(
+			'ystdb_get_breakpoints_min_width_size',
+			"{$value}{$unit}",
+			$value,
+			$base
+		);
 	}
 
 
@@ -119,13 +125,34 @@ class Styles {
 		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'desktop', $breakpoints ) ) {
 			return $css;
 		}
-		$min = self::get_breakpoints_min_width_size( $breakpoints['mobile'] );
-		$max = $breakpoints['desktop'];
+		$min = $breakpoints['mobile'];
+		$max = self::get_breakpoints_calc_width_size( $breakpoints['desktop'] );
 
 		return sprintf(
 			'@media (min-width:%s) AND (max-width:%s) {%s}',
 			$min,
 			$max,
+			$css
+		);
+	}
+
+	/**
+	 * モバイル用ブレークポイントの追加.
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public static function add_media_query_desktop( $css ) {
+		$breakpoints = self::get_breakpoints();
+		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'desktop', $breakpoints ) ) {
+			return $css;
+		}
+		$breakpoint = $breakpoints['desktop'];
+
+		return sprintf(
+			'@media (min-width:%s) {%s}',
+			$breakpoint,
 			$css
 		);
 	}
@@ -168,6 +195,41 @@ class Styles {
 			$breakpoint,
 			$css
 		);
+	}
+
+	/**
+	 * レスポンシブ指定のカスタムプロパティ名を取得.
+	 *
+	 * @param string $name カスタムプロパティ名.
+	 * @param string $type タイプ(mobile,tablet,desktop).
+	 *
+	 * @return string
+	 */
+	public static function get_responsive_custom_prop_name( $name, $type ) {
+		return "--ystdb--{$type}--{$name}";
+	}
+
+	/**
+	 * レスポンシブ指定のCSSを作成.
+	 *
+	 * @param array $args {
+	 *                    selector : string,
+	 *                    prop_name : string,
+	 *                    property : string,
+	 *                    type : string
+	 *                    } オプション.
+	 *
+	 * @return string
+	 */
+	public static function get_responsive_custom_prop_css( $args ) {
+		$selector  = $args['selector'];
+		$prop_name = $args['prop_name'];
+		$property  = $args['property'];
+		$type      = $args['type'];
+		// カスタムプロパティ作成.
+		$custom_prop = self::get_responsive_custom_prop_name( $prop_name, $type );
+
+		return "{$selector}[style*=\"{$custom_prop}\"]{{$property}:var({$custom_prop}) !important;}";
 	}
 
 	/**
