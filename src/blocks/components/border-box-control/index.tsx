@@ -30,7 +30,8 @@ export interface BorderBoxControlProps {
 import './style-editor.scss';
 
 export function BorderBoxControl(props: BorderBoxControlProps) {
-	const { colors = useColorPalette(), label, onChange, value } = props;
+	const colorPalette = useColorPalette();
+	const { colors = colorPalette, label, onChange, value } = props;
 
 	return (
 		<WPBorderBoxControl

@@ -13,23 +13,14 @@ export function getBorderStyles(
 	}
 	if (isBorder(value)) {
 		return getCSSBorderStyle(value as Border, borderStyle);
-	} else {
-		const borders = value as Borders;
-		return {
-			...getCSSBorderStyle(borders?.top as Border, borderStyle, 'top'),
-			...getCSSBorderStyle(
-				borders?.right as Border,
-				borderStyle,
-				'right'
-			),
-			...getCSSBorderStyle(
-				borders?.bottom as Border,
-				borderStyle,
-				'bottom'
-			),
-			...getCSSBorderStyle(borders?.left as Border, borderStyle, 'left'),
-		};
 	}
+	const borders = value as Borders;
+	return {
+		...getCSSBorderStyle(borders?.top as Border, borderStyle, 'top'),
+		...getCSSBorderStyle(borders?.right as Border, borderStyle, 'right'),
+		...getCSSBorderStyle(borders?.bottom as Border, borderStyle, 'bottom'),
+		...getCSSBorderStyle(borders?.left as Border, borderStyle, 'left'),
+	};
 }
 
 function isBorder(value: Border | Borders) {
