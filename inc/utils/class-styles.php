@@ -64,6 +64,7 @@ class Styles {
 	 * ブレークポイントmin-widthに指定する値の取得.get_breakpoints_min_width_size
 	 *
 	 * @param string|int $value 値.
+	 * @param boolean    $minus マイナスするか.
 	 *
 	 * @return string
 	 */

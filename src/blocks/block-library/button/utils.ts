@@ -77,10 +77,10 @@ export function getLinkStyles(attributes: Attributes) {
 
 	const types = ['desktop', 'tablet', 'mobile'] as const;
 	const responsiveStyles = types.reduce((acc, type) => {
-		const fontSize = responsiveFontSize?.[type];
-		if (fontSize) {
+		const _fontSize = responsiveFontSize?.[type];
+		if (_fontSize) {
 			acc[getResponsiveCustomPropName('button--font-size', type)] =
-				fontSize;
+				_fontSize;
 		}
 		return acc;
 	}, {} as Record<string, string>);
