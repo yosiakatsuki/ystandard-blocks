@@ -1,6 +1,6 @@
 import { isObject, kebabCase } from 'lodash';
 import { getBlockEditorConfig, removeUndefined } from '@aktk/blocks/utils';
-import type { InlineStyles } from '@aktk/blocks/components/inline-style-css/types';
+import type { InlineStyles } from '@aktk/blocks/deprecated/inline-style-css/types';
 
 export function parseInlineStyleProps(styles: object): InlineStyles {
 	let result = {};
@@ -101,7 +101,7 @@ export function addMediaQueryTablet(css: string) {
 	if (!css) {
 		return '';
 	}
-	let mobile = getBreakpoint('mobile');
+	const mobile = getBreakpoint('mobile');
 
 	const desktop = getBreakpoint('desktop');
 	const unit = desktop.replace(parseFloat(desktop).toString(), '');

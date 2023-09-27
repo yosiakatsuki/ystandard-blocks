@@ -1,5 +1,4 @@
 import classnames from 'classnames/dedupe';
-import { isObject } from 'lodash';
 
 /**
  * WordPress dependencies.
@@ -9,16 +8,10 @@ import { getColorClassName } from '@wordpress/block-editor';
 /**
  * Plugin dependencies.
  */
-import {
-	parseResponsiveValues,
-	getResponsiveCustomPropName,
-	ResponsiveValues,
-} from '@aktk/blocks/components/responsive-values';
+import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-values';
 import { getBlockStyleClasses } from '@aktk/blocks/components/block-classes';
 import { getBorderRadiusStyles } from '@aktk/blocks/components/border-radius-control';
 import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
-import type { ResponsiveFontSize } from '@aktk/blocks/components/responsive-font-size';
-import type { ResponsiveSpacing } from '@aktk/blocks/components/responsive-spacing/types';
 
 /**
  * Block dependencies.
@@ -104,37 +97,4 @@ export function getLinkStyles(attributes: Attributes) {
 		...getBorderStyles(border),
 		...responsiveStyles,
 	};
-}
-
-export type parseLinkInlineStylesTypes = {
-	responsiveFontSize?: ResponsiveFontSize;
-	responsiveWidth?: ResponsiveValues;
-	responsivePadding?: ResponsiveSpacing;
-};
-
-export function parseLinkInlineStyles(
-	styles: parseLinkInlineStylesTypes
-): InlineStyles | undefined {
-	let result = {};
-
-	if (!isObject(styles)) {
-		return undefined;
-	}
-
-	// width.
-	if (styles?.responsiveWidth) {
-		result = {
-			...result,
-			width: parseResponsiveValues(styles?.responsiveWidth),
-		};
-	}
-	// font-size
-	if (styles?.responsiveFontSize) {
-		result = {
-			...result,
-			fontSize: parseResponsiveValues(styles?.responsiveFontSize),
-		};
-	}
-
-	return result as unknown as InlineStyles;
 }
