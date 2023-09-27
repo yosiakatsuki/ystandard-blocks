@@ -71,17 +71,33 @@ export function getLinkStyles(attributes: Attributes) {
 		borderRadius,
 		border,
 		responsiveFontSize,
+		responsivePadding,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles(borderRadius);
 
 	const types = ['desktop', 'tablet', 'mobile'] as const;
+	const position = ['top', 'right', 'bottom', 'left'] as const;
+
+	// レスポンシブ指定のあるスタイルを生成.
 	const responsiveStyles = types.reduce((acc, type) => {
+		// font-size.
 		const _fontSize = responsiveFontSize?.[type];
 		if (_fontSize) {
 			acc[getResponsiveCustomPropName('button--font-size', type)] =
 				_fontSize;
 		}
+		// padding.
+		const _padding = responsivePadding?.[type];
+		position.forEach((pos) => {
+			const paddingValue = _padding?.[pos];
+			if (paddingValue) {
+				acc[
+					getResponsiveCustomPropName(`button--padding-${pos}`, type)
+				] = paddingValue;
+			}
+		});
+
 		return acc;
 	}, {} as Record<string, string>);
 

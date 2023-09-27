@@ -1,20 +1,7 @@
+import type { SpacingValue } from '@aktk/blocks/components/spacing-size-control';
+
 export interface ResponsiveSpacing {
-	desktop?: {
-		top?: string;
-		right?: string;
-		bottom?: string;
-		left?: string;
-	};
-	tablet?: {
-		top?: string;
-		right?: string;
-		bottom?: string;
-		left?: string;
-	};
-	mobile?: {
-		top?: string;
-		right?: string;
-		bottom?: string;
-		left?: string;
-	};
+	desktop?: SpacingValue;
+	tablet?: SpacingValue;
+	mobile?: SpacingValue;
 }

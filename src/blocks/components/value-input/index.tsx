@@ -4,7 +4,6 @@
 import {
 	__experimentalUnitControl as WPUnitControl,
 	Button,
-	BaseControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 /**
@@ -34,7 +33,8 @@ export function ValueInput(props: ValueInputProps) {
 	};
 
 	return (
-		<BaseControl id={'value-input'} label={label}>
+		<div className={'m-0'}>
+			{label && <span className={'block text-[11px] mb-2'}>{label}</span>}
 			<div className="flex gap-2 items-center">
 				<WPUnitControl
 					value={value}
@@ -50,6 +50,6 @@ export function ValueInput(props: ValueInputProps) {
 					{__('クリア', 'ystandard-blocks')}
 				</Button>
 			</div>
-		</BaseControl>
+		</div>
 	);
 }
