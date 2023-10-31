@@ -508,17 +508,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _aktk_util_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @aktk/util/icons */ "./src/js/util/icons.js");
-/* harmony import */ var _aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @aktk/components/svg-icon */ "./src/js/components/svg-icon/index.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
-
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _aktk_util_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @aktk/util/icons */ "./src/js/util/icons.js");
+/* harmony import */ var _aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @aktk/components/svg-icon */ "./src/js/components/svg-icon/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -531,11 +528,10 @@ class IconSelect extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Compone
     const {
       selectedIcon,
       onChange,
-      isOpen,
-      previewIcon,
-      setState
+      previewIcon
     } = this.props;
-    const iconList = (0,_aktk_util_icons__WEBPACK_IMPORTED_MODULE_5__.getIcons)();
+    const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const iconList = (0,_aktk_util_icons__WEBPACK_IMPORTED_MODULE_4__.getIcons)();
     const isPreview = false === previewIcon ? previewIcon : true;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: 'ys-icon-picker'
@@ -543,65 +539,57 @@ class IconSelect extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Compone
       className: 'ys-icon-picker__selected'
     }, isPreview && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: 'ys-icon-picker__preview'
-    }, !!selectedIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, !!selectedIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
       name: selectedIcon
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()({
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
         'is-open': isOpen
       }),
       isSecondary: true,
       onClick: () => {
-        setState({
-          isOpen: !isOpen
-        });
+        setIsOpen(!isOpen);
       },
       style: {
         minWidth: '110px',
         textAlign: 'center',
         justifyContent: 'center'
       }
-    }, isOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('閉じる', 'ystandard-blocks')), !isOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('アイコン選択', 'ystandard-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    }, isOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('閉じる', 'ystandard-blocks')), !isOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('アイコン選択', 'ystandard-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
       className: 'ys-icon-picker__remove',
       disabled: !selectedIcon,
       isSmall: true,
       isSecondary: true,
       onClick: () => {
         onChange('');
-        setState({
-          isOpen: false
-        });
+        setIsOpen(false);
       }
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('リセット', 'ystandard-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()('ys-icon-picker__list', {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('リセット', 'ystandard-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('ys-icon-picker__list', {
         'is-open': isOpen
       })
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ys-icon-picker__list-container"
     }, iconList.map(icon => {
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         key: icon.name,
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(`ys-icon-picker__icon`, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(`ys-icon-picker__icon`, {
           'is-selected': selectedIcon === icon.name
         }),
         onClick: () => {
           if (selectedIcon === icon.name) {
             onChange('');
-            setState({
-              isOpen: false
-            });
+            setIsOpen(false);
           } else {
             onChange(icon.name);
           }
         }
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
         name: icon.name
       }));
     }))));
   }
 }
-/* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.compose)([(0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.withState)({
-  isOpen: false
-})])(IconSelect));
+/* harmony default export */ __webpack_exports__["default"] = (IconSelect);
 
 /***/ }),
 

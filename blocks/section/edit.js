@@ -1,5 +1,6 @@
 import classnames from 'classnames';
-import { compose, withState } from '@wordpress/compose';
+import { useState } from '@wordpress/element';
+import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
@@ -64,9 +65,6 @@ const SectionEdit = (props) => {
 		dividerColorBottom,
 		setDividerColorBottom,
 		borderColor,
-		setState,
-		previewAnimation,
-		useDarkImagePreview,
 		className,
 	} = props;
 	const {
@@ -132,6 +130,10 @@ const SectionEdit = (props) => {
 		animationDelay,
 		containerFluid,
 	} = attributes;
+
+	const [previewAnimation, setPreviewAnimation] = useState(false);
+	const [useDarkImagePreview, setUseDarkImagePreview] = useState(false);
+
 	const { gradientClass, gradientValue, setGradient } =
 		__experimentalUseGradient();
 
@@ -1074,10 +1076,9 @@ const SectionEdit = (props) => {
 										)}
 										checked={useDarkImagePreview}
 										onChange={() => {
-											setState({
-												useDarkImagePreview:
-													!useDarkImagePreview,
-											});
+											setUseDarkImagePreview(
+												!useDarkImagePreview
+											);
 										}}
 									/>
 								</BaseControl>
@@ -1343,10 +1344,9 @@ const SectionEdit = (props) => {
 																	backgroundImageURL:
 																		imageUrl,
 																});
-																setState({
-																	useDarkImagePreview:
-																		item.useDarkPreview,
-																});
+																setUseDarkImagePreview(
+																	item.useDarkPreview
+																);
 															}}
 															style={{
 																...item.style,
@@ -1713,15 +1713,15 @@ const SectionEdit = (props) => {
 								key={'check-animation'}
 								isPrimary
 								onClick={() => {
-									setState({
-										previewAnimation: !previewAnimation,
-									});
+									setPreviewAnimation(!previewAnimation);
 									if (!previewAnimation) {
-										setTimeout(() => {
-											setState({
-												previewAnimation: false,
-											});
-										}, (animationDelay + animationSpeed) * 1000);
+										setTimeout(
+											() => {
+												setPreviewAnimation(false);
+											},
+											(animationDelay + animationSpeed) *
+												1000
+										);
 									}
 								}}
 							>
@@ -1844,9 +1844,5 @@ export default compose([
 		dividerColorTop: 'fill',
 		dividerColorBottom: 'fill',
 		borderColor: 'borderColor',
-	}),
-	withState({
-		previewAnimation: false,
-		useDarkImagePreview: false,
 	}),
 ])(SectionEdit);

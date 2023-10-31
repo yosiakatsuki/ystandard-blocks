@@ -1,5 +1,4 @@
-import { Component } from '@wordpress/element';
-import { withState, compose } from '@wordpress/compose';
+import { Component, useState } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import classnames from 'classnames';
 import { getIcons } from '@aktk/util/icons';
@@ -8,8 +7,9 @@ import { __ } from '@wordpress/i18n';
 
 class IconSelect extends Component {
 	render() {
-		const { selectedIcon, onChange, isOpen, previewIcon, setState } =
-			this.props;
+		const { selectedIcon, onChange, previewIcon } = this.props;
+
+		const [isOpen, setIsOpen] = useState(false);
 
 		const iconList = getIcons();
 		const isPreview = false === previewIcon ? previewIcon : true;
@@ -28,7 +28,7 @@ class IconSelect extends Component {
 						})}
 						isSecondary
 						onClick={() => {
-							setState({ isOpen: !isOpen });
+							setIsOpen(!isOpen);
 						}}
 						style={{
 							minWidth: '110px',
@@ -52,7 +52,7 @@ class IconSelect extends Component {
 						isSecondary
 						onClick={() => {
 							onChange('');
-							setState({ isOpen: false });
+							setIsOpen(false);
 						}}
 					>
 						{__('リセット', 'ystandard-blocks')}
@@ -78,7 +78,7 @@ class IconSelect extends Component {
 									onClick={() => {
 										if (selectedIcon === icon.name) {
 											onChange('');
-											setState({ isOpen: false });
+											setIsOpen(false);
 										} else {
 											onChange(icon.name);
 										}
@@ -95,4 +95,4 @@ class IconSelect extends Component {
 	}
 }
 
-export default compose([withState({ isOpen: false })])(IconSelect);
+export default IconSelect;
