@@ -177,4 +177,4 @@ class Button_Block {
 	}
 }
 
-new Button_Block();
+// 3.12.0で追加予定.

@@ -34,7 +34,7 @@ import { __, _x } from '@wordpress/i18n';
  */
 import HorizonButtons from '@aktk/blocks/components/horizon-buttons';
 import SvgIconSelect from '@aktk/blocks/deprecated/components/svg-icon-select';
-import { getIconSvg } from '@aktk/blocks/utils/icon';
+import { getIconSvg } from '@aktk/block-components/utils/icon';
 
 /**
  * Block.
@@ -192,10 +192,7 @@ const SVGButtonLinkEdit = (props) => {
 									});
 									setBackgroundColor(newColor);
 								},
-								label: __(
-									'Background Color',
-									'ystandard-blocks'
-								),
+								label: __('背景色', 'ystandard-blocks'),
 							},
 							{
 								value: textColor.color,
@@ -314,6 +311,7 @@ const SVGButtonLinkEdit = (props) => {
 								onChange={(font) => {
 									setFontSize(font);
 								}}
+								__nextHasNoMarginBottom
 							/>
 						</BaseControl>
 					</PanelBody>

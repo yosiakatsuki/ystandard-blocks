@@ -264,20 +264,25 @@ class Blocks {
 	 * @return array
 	 */
 	public function add_block_categories( $categories ) {
-		$categories[] = [
+		$blocks_categories   = [];
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY,
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
 		];
-		$categories[] = [
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY_BETA,
 			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
 		];
-		$categories[] = [
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY_DEPRECATED,
 			'title' => __( '[ys]yStandard Blocks(非推奨)', 'ystandard-blocks' ),
 		];
 
-		return $categories;
+		if ( apply_filters( 'ystdb_block_category_top', false ) ) {
+			return array_merge( $blocks_categories, $categories );
+		}
+
+		return array_merge( $categories, $blocks_categories );
 	}
 
 	/**

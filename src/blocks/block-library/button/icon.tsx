@@ -1,4 +1,4 @@
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 
 interface IconProps {
 	hasIcon?: boolean;

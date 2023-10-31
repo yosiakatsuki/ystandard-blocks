@@ -8,8 +8,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin.
  */
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
-import { getFilteredIcons } from '@aktk/blocks/utils/icon';
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
+import { getFilteredIcons } from '@aktk/block-components/utils/icon';
 import { ComponentLabel } from '@aktk/blocks/components/label';
 
 /**

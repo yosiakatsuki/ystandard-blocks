@@ -8,7 +8,7 @@ import { useMemo } from '@wordpress/element';
 /**
  * Plugin.
  */
-import { getIconSvg } from '@aktk/blocks/utils/icon';
+import { getIconSvg } from '@aktk/block-components/utils/icon';
 
 export interface SvgIconProps {
 	name?: string;

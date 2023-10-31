@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin dependencies.
  */
-import { IconSelect } from '@aktk/blocks/components/icon-select';
+import { IconSelect } from '@aktk/block-components/components/icon-select';
 import { ComponentContainer } from '@aktk/blocks/components/component-container';
 import { IconSize } from './size';
 

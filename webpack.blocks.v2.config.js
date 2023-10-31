@@ -9,6 +9,10 @@ module.exports = {
 		alias: {
 			...defaultConfig.resolve.alias,
 			'@aktk/blocks': path.resolve(__dirname, 'src/blocks'),
+			'@aktk/block-components': path.resolve(
+				__dirname,
+				'src/aktk-block-components'
+			),
 		},
 	},
 	cache: false,

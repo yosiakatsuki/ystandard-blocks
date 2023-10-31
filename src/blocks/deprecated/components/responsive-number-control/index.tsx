@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { FiSettings } from 'react-icons/fi';
 /**
  * WordPress dependencies.
  */
@@ -12,7 +13,6 @@ import {
 /**
  * Plugin dependencies.
  */
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
 import { toNumber } from '@aktk/blocks/utils/number';
 
 export * from './functions';
@@ -74,7 +74,7 @@ export default function ResponsiveDeprecatedNumberControl(props) {
 							})}
 							onClick={toggleUseResponsive}
 						>
-							<SvgIcon name={'settings'} />
+							<FiSettings size={14} />
 						</Button>
 					</div>
 				</div>

@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { FiSettings } from 'react-icons/fi';
 /**
  * WordPress dependencies.
  */
@@ -13,7 +14,6 @@ import { FontSizePicker } from '@wordpress/block-editor';
 /**
  * Plugin dependencies.
  */
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
 
 /**
  * Component.
@@ -94,7 +94,7 @@ export default function ResponsiveDeprecatedFontSizeControl(
 							})}
 							onClick={toggleUseResponsive}
 						>
-							<SvgIcon name={'settings'} />
+							<FiSettings size={14} />
 						</Button>
 					</div>
 				</div>
@@ -110,6 +110,7 @@ export default function ResponsiveDeprecatedFontSizeControl(
 								onChange={(font) => {
 									onChangeFontSizePicker(font);
 								}}
+								__nextHasNoMarginBottom
 							/>
 						</>
 					) : (

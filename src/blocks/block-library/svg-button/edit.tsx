@@ -17,7 +17,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { BlockControls } from './block-controls';
 import { InspectorControls } from './inspector-controls';
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 import {
 	getDeprecatedFontResponsiveClass,

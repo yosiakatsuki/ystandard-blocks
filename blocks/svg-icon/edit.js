@@ -96,6 +96,7 @@ function svgIcon(props) {
 						/>
 					</BaseControl>
 					<FontSizePicker
+						__nextHasNoMarginBottom
 						label={__('アイコンサイズ', 'ystandard-blocks')}
 						value={fontSize.size}
 						onChange={(font) => {

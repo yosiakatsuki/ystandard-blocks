@@ -8,8 +8,8 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin.
  */
-import { getIcons } from '@aktk/blocks/utils/icon';
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
+import { getIcons } from '@aktk/block-components/utils/icon';
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 
 // @ts-ignore
 export default function IconSelect(props) {

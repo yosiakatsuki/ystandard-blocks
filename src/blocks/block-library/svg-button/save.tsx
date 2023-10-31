@@ -19,7 +19,7 @@ import {
 	getDeprecatedPaddingResponsiveClass,
 	getDeprecatedPaddingResponsiveStyle,
 } from '@aktk/blocks/deprecated/components/responsive-number-control';
-import { SvgIcon } from '@aktk/blocks/components/svg-icon';
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 import getDeprecatedDataProperty from '@aktk/blocks/deprecated/utils/responsive';
 
 // @ts-ignore

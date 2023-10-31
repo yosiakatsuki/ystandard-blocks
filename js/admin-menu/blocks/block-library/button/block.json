@@ -53,7 +53,7 @@
     "iconPosition": {
       "type": "string"
     },
-    "textAlign": {
+    "align": {
       "type": "string"
     },
     "backgroundColor": {
@@ -62,26 +62,38 @@
     "customBackgroundColor": {
       "type": "string"
     },
+    "gradient": {
+      "type": "string"
+    },
+    "customGradient": {
+      "type": "string"
+    },
     "textColor": {
       "type": "string"
     },
     "customTextColor": {
       "type": "string"
     },
-    "borderColor": {
-      "type": "string"
-    },
-    "customBorderColor": {
-      "type": "string"
+    "border": {
+      "type": "object"
     },
     "borderRadius": {
-      "type": "string"
+      "type": "object"
     },
     "fontSize": {
       "type": "string"
     },
     "customFontSize": {
       "type": "string"
+    },
+    "responsiveFontSize": {
+      "type": "object"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "responsivePadding": {
+      "type": "object"
     },
     "animation": {
       "type": "object"
