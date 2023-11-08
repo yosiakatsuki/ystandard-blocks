@@ -6,7 +6,7 @@ import {
 	useBlockProps,
 	RichText,
 	withColors,
-	withFontSizes,
+	withFontSizes
 } from '@wordpress/block-editor';
 import { ToggleControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
@@ -21,16 +21,16 @@ import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 import {
 	getDeprecatedFontResponsiveClass,
-	getDeprecatedFontResponsiveStyle,
+	getDeprecatedFontResponsiveStyle
 } from '@aktk/blocks/deprecated/components/responsive-font-size';
 import {
 	getDeprecatedPaddingResponsiveClass,
-	getDeprecatedPaddingResponsiveStyle,
+	getDeprecatedPaddingResponsiveStyle
 } from '@aktk/blocks/deprecated/components/responsive-number-control';
 import URLInput from '@aktk/blocks/components/url-input';
 
 // @ts-ignore
-function SvgButton(props) {
+function SvgButton( props ) {
 	const {
 		textColor,
 		backgroundColor,
@@ -38,7 +38,6 @@ function SvgButton(props) {
 		setAttributes,
 		isSelected,
 		fontSize,
-		className,
 	} = props;
 
 	const {
@@ -70,37 +69,37 @@ function SvgButton(props) {
 		maxWidth,
 		maxUnit,
 		animationType,
-		animationInterval,
+		animationInterval
 	} = attributes;
 
-	const wrapClasses = classnames(className, 'wp-block-button', {
-		[`has-text-align-${align}`]: align,
-		[fontSize.class]: fontSize.class && !isFontSizeResponsive,
+	const wrapClasses = classnames( attributes?.className, 'wp-block-button', {
+		[ `has-text-align-${ align }` ]: align,
+		[ fontSize.class ]: fontSize.class && !isFontSizeResponsive,
 		...getDeprecatedFontResponsiveClass(
 			isFontSizeResponsive,
 			fontSizeDesktop,
 			fontSizeTablet,
 			fontSizeMobile
-		),
-	});
+		)
+	} );
 	const wrapStyles = {
 		fontSize:
 			fontSize.size && !isFontSizeResponsive ? fontSize.size : undefined,
-		...getDeprecatedFontResponsiveStyle({
+		...getDeprecatedFontResponsiveStyle( {
 			isResponsive: isFontSizeResponsive,
 			desktop: fontSizeDesktop,
 			tablet: fontSizeTablet,
-			mobile: fontSizeMobile,
-		}),
+			mobile: fontSizeMobile
+		} )
 	};
 
 	const linkClasses = classnames(
 		'wp-block-button__link',
 		'ystdb-button__link',
 		{
-			[textColor.class]: textColor.class,
+			[ textColor.class ]: textColor.class,
 			'has-text-color': textColor.class,
-			[backgroundColor.class]: backgroundColor.class,
+			[ backgroundColor.class ]: backgroundColor.class,
 			'has-background': backgroundColor.class,
 			'is-block':
 				buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile,
@@ -110,21 +109,21 @@ function SvgButton(props) {
 			'is-vertical-padding-responsive': isPaddingVerticalResponsive,
 			'is-horizontal-padding-responsive': isPaddingHorizontalResponsive,
 			'has-animation': animationType && 'none' !== animationType,
-			[`has-animation--${animationType}`]: 'none' !== animationType,
-			...getDeprecatedPaddingResponsiveClass({
+			[ `has-animation--${ animationType }` ]: 'none' !== animationType,
+			...getDeprecatedPaddingResponsiveClass( {
 				isResponsive: isPaddingVerticalResponsive,
 				desktop: paddingVerticalDesktop,
 				tablet: paddingVerticalTablet,
 				mobile: paddingVerticalMobile,
-				prefix: 'vertical',
-			}),
-			...getDeprecatedPaddingResponsiveClass({
+				prefix: 'vertical'
+			} ),
+			...getDeprecatedPaddingResponsiveClass( {
 				isResponsive: isPaddingHorizontalResponsive,
 				desktop: paddingHorizontalDesktop,
 				tablet: paddingHorizontalTablet,
 				mobile: paddingHorizontalMobile,
-				prefix: 'horizontal',
-			}),
+				prefix: 'horizontal'
+			} )
 		}
 	);
 
@@ -135,11 +134,11 @@ function SvgButton(props) {
 		maxWidth:
 			(buttonBlockDesktop || buttonBlockTablet || buttonBlockMobile) &&
 			maxWidth
-				? `${maxWidth}${maxUnit}`
+				? `${ maxWidth }${ maxUnit }`
 				: undefined,
 		animationDuration:
 			'none' !== animationType && animationInterval
-				? `${animationInterval}s`
+				? `${ animationInterval }s`
 				: undefined,
 		paddingTop:
 			!isPaddingVerticalResponsive && paddingVerticalDesktop
@@ -157,90 +156,91 @@ function SvgButton(props) {
 			!isPaddingHorizontalResponsive && paddingHorizontalDesktop
 				? paddingHorizontalDesktop
 				: undefined,
-		...getDeprecatedPaddingResponsiveStyle({
+		...getDeprecatedPaddingResponsiveStyle( {
 			isResponsive: isPaddingVerticalResponsive,
 			desktop: paddingVerticalDesktop,
 			tablet: paddingVerticalTablet,
 			mobile: paddingVerticalMobile,
-			prefix: 'vertical',
-		}),
-		...getDeprecatedPaddingResponsiveStyle({
+			prefix: 'vertical'
+		} ),
+		...getDeprecatedPaddingResponsiveStyle( {
 			isResponsive: isPaddingHorizontalResponsive,
 			desktop: paddingHorizontalDesktop,
 			tablet: paddingHorizontalTablet,
 			mobile: paddingHorizontalMobile,
-			prefix: 'horizontal',
-		}),
+			prefix: 'horizontal'
+		} )
 	};
 
-	const blockProps = useBlockProps({});
+	const blockProps = useBlockProps( {} );
 
 	return (
 		<>
-			<BlockControls {...props} />
-			<InspectorControls {...props} />
-			<div {...blockProps}>
-				<div className={wrapClasses} style={wrapStyles}>
-					<span className={linkClasses} style={linkStyles}>
+			<BlockControls { ...props } />
+			<InspectorControls { ...props } />
+			<div { ...blockProps }>
+				<div className={ wrapClasses } style={ wrapStyles }>
+					<span className={ linkClasses } style={ linkStyles }>
 						<span className="ystdb-button__link-content">
-							{!!iconLeft && (
+							{ !!iconLeft && (
 								<span
-									className={classnames(
+									className={ classnames(
 										'ystdb-button__icon',
 										'ystdb-button__icon--left',
 										{
-											[iconSizeLeft]: iconSizeLeft,
+											[ iconSizeLeft ]: iconSizeLeft
 										}
-									)}
+									) }
 								>
-									<SvgIcon name={iconLeft} />
+									<SvgIcon name={ iconLeft } />
 								</span>
-							)}
+							) }
 							<RichText
-								tagName={'span'}
-								placeholder={__('Add text…')}
-								value={text}
-								onChange={(value) =>
-									setAttributes({ text: value })
+								tagName={ 'span' }
+								placeholder={ __( 'Add text…' ) }
+								value={ text }
+								onChange={ ( value ) =>
+									setAttributes( { text: value } )
 								}
 								// @ts-ignore
 								withoutInteractiveFormatting
-								className={'ystdb-button__text'}
+								className={ 'ystdb-button__text' }
 							/>
-							{!!iconRight && (
+							{ !!iconRight && (
 								<span
-									className={classnames(
+									className={ classnames(
 										'ystdb-button__icon',
 										'ystdb-button__icon--right',
 										{
-											[iconSizeRight]: iconSizeRight,
+											[ iconSizeRight ]: iconSizeRight
 										}
-									)}
+									) }
 								>
-									<SvgIcon name={iconRight} />
+									<SvgIcon name={ iconRight } />
 								</span>
-							)}
+							) }
 						</span>
 					</span>
 				</div>
 
-				{!!isSelected && (
-					<div className={'p-3'}>
+				{ !!isSelected && (
+					<div className={ 'py-3' }>
 						<URLInput
-							label={__('リンク', 'ystandard-blocks')}
-							value={url}
-							onChange={(value) => setAttributes({ url: value })}
-							disableSuggestions={!isSelected}
+							label={ __( 'リンク', 'ystandard-blocks' ) }
+							value={ url }
+							onChange={ ( value ) => setAttributes( { url: value } ) }
+							disableSuggestions={ !isSelected }
 						/>
 
 						<ToggleControl
-							label={__('新しいタブで開く', 'ystandard-blocks')}
-							onChange={(value) => {
+							className={ 'mt-2' }
+							label={ __( '新しいタブで開く', 'ystandard-blocks' ) }
+							onChange={ ( value ) => {
 								const newLinkTarget = value
 									? '_blank'
 									: undefined;
 								let updatedRel = rel;
-								if (newLinkTarget && !rel) {
+								if ( newLinkTarget && !rel ) {
 									updatedRel = BUTTON_NEW_TAB_REL;
 								} else if (
 									!newLinkTarget &&
@@ -248,22 +248,22 @@ function SvgButton(props) {
 								) {
 									updatedRel = undefined;
 								}
-								setAttributes({
+								setAttributes( {
 									linkTarget: newLinkTarget,
-									rel: updatedRel,
-								});
-							}}
-							checked={linkTarget === '_blank'}
+									rel: updatedRel
+								} );
+							} }
+							checked={ linkTarget === '_blank' }
 						/>
 					</div>
-				)}
+				) }
 			</div>
 		</>
 	);
 }
 
 // @ts-ignore
-export default compose([
-	withColors('backgroundColor', { textColor: 'color' }),
-	withFontSizes('fontSize'),
-])(SvgButton);
+export default compose( [
+	withColors( 'backgroundColor', { textColor: 'color' } ),
+	withFontSizes( 'fontSize' )
+] )( SvgButton );
