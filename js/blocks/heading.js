@@ -3177,7 +3177,8 @@ class ResponsiveFontSizeControl extends _wordpress_element__WEBPACK_IMPORTED_MOD
       value: fontSize.size,
       onChange: font => {
         onChangeFontSizePicker(font);
-      }
+      },
+      __nextHasNoMarginBottom: true
     })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "ystdb-inspector-controls__columns is-center"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {

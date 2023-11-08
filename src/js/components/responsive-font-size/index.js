@@ -73,6 +73,7 @@ class ResponsiveFontSizeControl extends Component {
 									onChange={(font) => {
 										onChangeFontSizePicker(font);
 									}}
+									__nextHasNoMarginBottom
 								/>
 							</>
 						) : (
