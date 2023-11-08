@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const NEW_TAB_REL = 'noreferrer noopener';
+const NEW_TAB_REL = "noreferrer noopener";
 function svgIcon(props) {
   const {
     textColor,
@@ -272,7 +272,7 @@ function svgIcon(props) {
     rel,
     linkTarget
   } = attributes;
-  const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'ystdb-icon', {
+  const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, "ystdb-icon", {
     [`has-text-align-${align}`]: align,
     [textColor.class]: textColor.class,
     [fontSize.class]: fontSize.class,
@@ -290,40 +290,44 @@ function svgIcon(props) {
       });
     }
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.PanelColorSettings, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('色設定', 'ystandard-blocks'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("色設定", "ystandard-blocks"),
     initialOpen: true,
     colorSettings: [{
       value: textColor.color,
       onChange: color => {
         setTextColor(color);
       },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('文字色', 'ystandard-blocks')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("文字色", "ystandard-blocks")
     }]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('アイコン設定', 'ystandard-blocks')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("アイコン設定", "ystandard-blocks")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.BaseControl, {
-    id: 'icon',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('アイコン', 'ystandard-blocks')
+    id: "icon",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("アイコン", "ystandard-blocks")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon_select_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    panelTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('アイコン選択', 'ystandard-blocks'),
-    iconControlTitle: '',
+    panelTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("アイコン選択", "ystandard-blocks"),
+    iconControlTitle: "",
     selectedIcon: icon,
     onClickIcon: value => {
       setAttributes({
         icon: value
       });
     },
-    align: 'center',
+    align: "center",
     isFloat: true
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
     __nextHasNoMarginBottom: true,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('アイコンサイズ', 'ystandard-blocks'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("アイコンサイズ", "ystandard-blocks"),
     value: fontSize.size,
     onChange: font => {
       setFontSize(font);
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('アイコン倍率', 'ystandard-blocks'),
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      marginTop: "1.5em"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("アイコン倍率", "ystandard-blocks"),
     value: iconSize,
     options: _config__WEBPACK_IMPORTED_MODULE_4__.sizing,
     onChange: size => {
@@ -331,10 +335,10 @@ function svgIcon(props) {
         iconSize: size
       });
     }
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('リンク設定', 'ystandard-blocks')
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("リンク設定", "ystandard-blocks")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.URLInput, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('リンク', 'ystandard-blocks'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("リンク", "ystandard-blocks"),
     className: "ystdb-icon__link",
     value: url
     /* eslint-disable jsx-a11y/no-autofocus */,
@@ -345,11 +349,12 @@ function svgIcon(props) {
     }),
     disableSuggestions: !isSelected,
     isFullWidth: true,
-    hasBorder: true
+    hasBorder: true,
+    __nextHasNoMarginBottom: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('新しいタブで開く', 'ystandard-blocks'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("新しいタブで開く", "ystandard-blocks"),
     onChange: value => {
-      const newLinkTarget = value ? '_blank' : undefined;
+      const newLinkTarget = value ? "_blank" : undefined;
       let updatedRel = rel;
       if (newLinkTarget && !rel) {
         updatedRel = NEW_TAB_REL;
@@ -361,10 +366,10 @@ function svgIcon(props) {
         rel: updatedRel
       });
     },
-    checked: linkTarget === '_blank'
+    checked: linkTarget === "_blank"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)('リンクrel', 'ystandard-blocks'),
-    value: rel || '',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__.__)("リンクrel", "ystandard-blocks"),
+    value: rel || "",
     onChange: value => {
       setAttributes({
         rel: value
@@ -376,20 +381,20 @@ function svgIcon(props) {
   }, !!icon ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: icon
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: 'ystdb-icon__select--no-icon'
+    className: "ystdb-icon__select--no-icon"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_svg_icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: 'info'
+    name: "info"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
-      fontSize: '12px',
+      fontSize: "12px",
       lineHeight: 1.2,
-      marginTop: '0.5em'
+      marginTop: "0.5em"
     }
   }, "\u300C\u30A2\u30A4\u30B3\u30F3\u8A2D\u5B9A\u300D\u304B\u3089", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "\u30A2\u30A4\u30B3\u30F3\u3092\u9078\u629E"))));
 }
 /* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_8__.compose)([(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.withColors)({
-  textColor: 'color'
-}), (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.withFontSizes)('fontSize')])(svgIcon));
+  textColor: "color"
+}), (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.withFontSizes)("fontSize")])(svgIcon));
 
 /***/ }),
 
