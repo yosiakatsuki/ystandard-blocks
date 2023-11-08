@@ -2935,7 +2935,7 @@ const ColorDropdown = ({
   key,
   value,
   label,
-  position = 'bottom left',
+  position = 'bottom-start',
   renderContent
 }) => {
   const _buttonLabel = label !== null && label !== void 0 ? label : '色';
@@ -2945,7 +2945,9 @@ const ColorDropdown = ({
     className: "block-editor-panel-color-gradient-settings__item-group"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dropdown, {
     key: key,
-    position: position,
+    popoverProps: {
+      placement: position
+    },
     className: "block-editor-panel-color-gradient-settings__dropdown",
     contentClassName: "block-editor-panel-color-gradient-settings__dropdown-content",
     style: {
@@ -2999,7 +3001,7 @@ const ColorPaletteControl = ({
   colors,
   label,
   key,
-  position = 'bottom left',
+  position = 'bottom-start',
   ...props
 }) => {
   const _colors = colors !== null && colors !== void 0 ? colors : (0,_aktk_helper_color__WEBPACK_IMPORTED_MODULE_3__.getColorSetting)();
