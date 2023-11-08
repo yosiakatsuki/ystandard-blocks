@@ -80,26 +80,32 @@ export function getLinkStyles(attributes: Attributes) {
 	const position = ['top', 'right', 'bottom', 'left'] as const;
 
 	// レスポンシブ指定のあるスタイルを生成.
-	const responsiveStyles = types.reduce((acc, type) => {
-		// font-size.
-		const _fontSize = responsiveFontSize?.[type];
-		if (_fontSize) {
-			acc[getResponsiveCustomPropName('button--font-size', type)] =
-				_fontSize;
-		}
-		// padding.
-		const _padding = responsivePadding?.[type];
-		position.forEach((pos) => {
-			const paddingValue = _padding?.[pos];
-			if (paddingValue) {
-				acc[
-					getResponsiveCustomPropName(`button--padding-${pos}`, type)
-				] = paddingValue;
+	const responsiveStyles = types.reduce(
+		(acc, type) => {
+			// font-size.
+			const _fontSize = responsiveFontSize?.[type];
+			if (_fontSize) {
+				acc[getResponsiveCustomPropName('button--font-size', type)] =
+					_fontSize;
 			}
-		});
+			// padding.
+			const _padding = responsivePadding?.[type];
+			position.forEach((pos) => {
+				const paddingValue = _padding?.[pos];
+				if (paddingValue) {
+					acc[
+						getResponsiveCustomPropName(
+							`button--padding-${pos}`,
+							type
+						)
+					] = paddingValue;
+				}
+			});
 
-		return acc;
-	}, {} as Record<string, string>);
+			return acc;
+		},
+		{} as Record<string, string>
+	);
 
 	return {
 		[`--ystdb-button-justify`]: iconPosition,
