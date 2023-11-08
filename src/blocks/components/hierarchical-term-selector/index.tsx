@@ -38,7 +38,6 @@ export default function HierarchicalTermSelector({
 	const _selectedTerms = useMemo(() => selectedTerms || [], [selectedTerms]);
 	// @ts-expect-error
 	const { availableTerms, hasResolved } = useSelect((select) => {
-		// @ts-expect-error
 		const { getEntityRecords } = select(coreStore);
 		const _terms =
 			getEntityRecords('taxonomy', taxonomy, {
@@ -47,7 +46,6 @@ export default function HierarchicalTermSelector({
 		return {
 			availableTerms: _terms || [],
 			hasResolved:
-				// @ts-expect-error
 				select(coreStore).hasFinishedResolution('getEntityRecords', [
 					'taxonomy',
 					taxonomy,
