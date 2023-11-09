@@ -5,6 +5,7 @@
     <rule ref="WordPress-Core">
         <exclude name="Generic.Files.EndFileNewline.NotFound"/>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
     </rule>
     <rule ref="WordPress.Files.FileName.InvalidClassFileName">
      <exclude-pattern>/src/blocks/*</exclude-pattern>

@@ -223,11 +223,11 @@ class SVG_Button_Link_Block {
 	 * クラス一覧作成
 	 *
 	 * @param array  $classes classes.
-	 * @param string $default default class.
+	 * @param string $default_value default class.
 	 *
 	 * @return string
 	 */
-	private function get_class_names( $classes = [], $default = '' ) {
+	private function get_class_names( $classes = [], $default_value = '' ) {
 		if ( empty( $classes ) ) {
 			return '';
 		}

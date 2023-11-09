@@ -66,7 +66,7 @@ class Admin_Menu {
 			);
 		}
 
-		$asset_file    = include( YSTDB_PATH . "/js/admin-menu/{$name}.asset.php" );
+		$asset_file    = include YSTDB_PATH . "/js/admin-menu/{$name}.asset.php";
 		$script_handle = "ystandard-blocks-admin-menu-{$name}-script";
 		// 追加スクリプト.
 		$asset_file['dependencies'] = array_merge(

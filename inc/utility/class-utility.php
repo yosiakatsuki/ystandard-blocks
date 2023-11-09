@@ -37,16 +37,16 @@ class Utility {
 	/**
 	 * テーマバージョン取得
 	 *
-	 * @param boolean $parent 親テーマ情報かどうか.
+	 * @param boolean $parent_theme 親テーマ情報かどうか.
 	 *
 	 * @return string
 	 */
-	public static function get_theme_version( $parent = false ) {
+	public static function get_theme_version( $parent_theme = false ) {
 		/**
 		 * 子テーマ情報
 		 */
 		$theme = wp_get_theme();
-		if ( $parent && get_template() !== get_stylesheet() ) {
+		if ( $parent_theme && get_template() !== get_stylesheet() ) {
 			/**
 			 * 親テーマ情報
 			 */
@@ -114,13 +114,13 @@ class Utility {
 	/**
 	 * Boolに変換
 	 *
-	 * @param mixed $var var.
+	 * @param mixed $value var.
 	 *
 	 * @return bool
 	 * @deprecated to Utils/Types::to_bool
 	 */
-	public static function to_bool( $var ) {
-		if ( true === $var || 'true' === $var || 1 === $var || '1' === $var ) {
+	public static function to_bool( $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
 			return true;
 		}
 
@@ -153,11 +153,11 @@ class Utility {
 	 * クラス一覧作成
 	 *
 	 * @param array  $classes classes.
-	 * @param string $default default class.
+	 * @param string $default_value default class.
 	 *
 	 * @return string
 	 */
-	public static function get_class_names( $classes = [], $default = '' ) {
+	public static function get_class_names( $classes = [], $default_value = '' ) {
 		if ( empty( $classes ) ) {
 			return '';
 		}
@@ -263,18 +263,17 @@ class Utility {
 	}
 
 
-
 	/**
 	 * [has-]クラス名作成
 	 *
 	 * @param string $name   class name.
-	 * @param string $class  class.
+	 * @param string $class_name  class.
 	 * @param string $custom custom value.
 	 *
 	 * @return string
 	 */
-	public static function get_has_class( $name, $class, $custom ) {
-		if ( empty( $class ) && empty( $custom ) ) {
+	public static function get_has_class( $name, $class_name, $custom ) {
+		if ( empty( $class_name ) && empty( $custom ) ) {
 			return '';
 		}
 
@@ -302,17 +301,17 @@ class Utility {
 	 * サイズ関連のサニタイズ
 	 *
 	 * @param string $number  数値.
-	 * @param int    $default 初期値.
+	 * @param int    $default_value 初期値.
 	 * @param int    $max     最大.
 	 * @param int    $min     最小.
 	 */
-	public static function sanitize_size( $number, $default, $max = 200, $min = 60 ) {
+	public static function sanitize_size( $number, $default_value, $max = 200, $min = 60 ) {
 
 		if ( ! is_numeric( $number ) ) {
-			return $default;
+			return $default_value;
 		}
 		if ( $number < $min || $number > $max ) {
-			return $default;
+			return $default_value;
 		}
 
 		return $number;

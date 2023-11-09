@@ -135,12 +135,12 @@ class Block_Utility {
 	/**
 	 * CSS指定用クラス.
 	 *
-	 * @param string $class Class Name.
+	 * @param string $class_name Class Name.
 	 *
 	 * @return string
 	 */
-	public static function get_css_container_class( $class ) {
-		return ".{$class}.{$class}";
+	public static function get_css_container_class( $class_name ) {
+		return ".{$class_name}.{$class_name}";
 	}
 
 

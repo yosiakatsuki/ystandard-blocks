@@ -72,7 +72,7 @@ class Blocks {
 				continue;
 			}
 
-			$asset = include( YSTDB_PATH . "/js/blocks/{$name}.asset.php" );
+			$asset = include YSTDB_PATH . "/js/blocks/{$name}.asset.php";
 			// ダイナミックブロック判定.
 			$render = YSTDB_PATH . "/blocks/{$name}/class-{$name}-block.php";
 			$type   = file_exists( $render ) ? 'dynamic' : 'normal';
@@ -137,7 +137,7 @@ class Blocks {
 	 */
 	public function require_dynamic_block_file() {
 		foreach ( $this->register_blocks['dynamic'] as $block ) {
-			require_once( $block['render'] );
+			require_once $block['render'];
 		}
 	}
 

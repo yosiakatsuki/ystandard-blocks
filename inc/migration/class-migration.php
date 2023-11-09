@@ -57,7 +57,7 @@ class Migration {
 			3 => '#FFEE55',
 		];
 
-		for ( $i = 1; $i <= 3; $i ++ ) {
+		for ( $i = 1; $i <= 3; $i++ ) {
 			$font_size = ( Option::get_option_by_number( $section, 'font_size_' . $i, 100 ) / 100 );
 			$color     = Option::get_option( $section, 'color_' . $i, '#222222' );
 			$default   = Option::get_default_option( $section, 'color_' . $i, '#222222' );

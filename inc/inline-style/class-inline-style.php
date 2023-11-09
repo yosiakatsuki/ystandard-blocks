@@ -198,7 +198,7 @@ class Inline_Style {
 		$option = $this->get_buttons_option();
 		// CSS作成.
 		$result = '';
-		for ( $i = 0; $i < 3; $i ++ ) {
+		for ( $i = 0; $i < 3; $i++ ) {
 			$prefix       = empty( $prefix ) ? '' : trim( $prefix ) . ' ';
 			$selector     = $prefix . self::CLASS_PREFIX . ( $i + 1 );
 			$style        = [];

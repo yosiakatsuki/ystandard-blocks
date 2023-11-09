@@ -161,13 +161,13 @@ class Styles {
 
 	/**
 	 * メディアクエリを追加
+	 * ※今後、この関数はadd_media_query_mobile, add_media_query_tablet, add_media_query_desktopに置き換えの予定です
 	 *
 	 * @param string $css Styles.
 	 * @param string $min Breakpoint.
 	 * @param string $max Breakpoint.
 	 *
 	 * @return string
-	 * @deprecated 3.11.0 add_media_query_mobile, add_media_query_tablet, add_media_query_desktopを使用すること.
 	 */
 	public static function add_media_query( $css, $min = '', $max = '' ) {
 		$breakpoints = self::get_breakpoints();
@@ -377,5 +377,4 @@ class Styles {
 
 		return $result;
 	}
-
 }
