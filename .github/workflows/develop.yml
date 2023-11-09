@@ -15,7 +15,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
@@ -61,7 +61,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: [ '5.6', '7.2', '7.3', '7.4' ]
+        php: [ '7.2', '7.4', '8.1', '8.2' ]
     name: PHP Error Check (PHP ${{ matrix.php }})
     needs: [ lint ]
     steps:
