@@ -25,7 +25,7 @@ class Styles {
 		'sm'      => 600,
 		'md'      => 769,
 		'lg'      => 1025,
-		'mobile'  => '600px',
+		'mobile'  => '640px',
 		'tablet'  => '768px', // 使わないかも.
 		'desktop' => '1024px',
 	];
@@ -117,6 +117,7 @@ class Styles {
 	 * @return string
 	 */
 	public static function add_media_query_tablet( $css ) {
+
 		$breakpoints = self::get_breakpoints();
 		// モバイルのチェック.
 		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'mobile', $breakpoints ) ) {

@@ -292,13 +292,19 @@ class Inline_Style {
 			$result .= sprintf( $selector_format, implode( ';', $css ) );
 		}
 		if ( ! empty( $tablet_css ) ) {
-			$result .= Styles::add_media_query_tablet(
+			// TODO:v5対応 add_media_query_tabletにする.
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $tablet_css ) ),
+				'',
+				'md'
 			);
 		}
 		if ( ! empty( $mobile_css ) ) {
-			$result .= Styles::add_media_query_mobile(
+			// TODO:v5対応 add_media_query_mobileにする.
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $mobile_css ) ),
+				'',
+				'sm'
 			);
 		}
 
