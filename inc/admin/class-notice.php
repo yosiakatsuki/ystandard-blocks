@@ -26,12 +26,12 @@ class Notice {
 	/**
 	 * アクションのセット
 	 *
-	 * @param callable $function      Function.
+	 * @param callable $callback      Function.
 	 * @param int      $priority      Priority.
 	 * @param int      $accepted_args Args.
 	 */
-	public static function set_notice( $function, $priority = 10, $accepted_args = 1 ) {
-		add_action( self::ACTION, $function, $priority, $accepted_args );
+	public static function set_notice( $callback, $priority = 10, $accepted_args = 1 ) {
+		add_action( self::ACTION, $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Notice {
 		if ( $wpautop ) {
 			$content = wpautop( $content );
 		}
-		echo "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		echo "<div class=\"notice notice-{$type} is-dismissible\">{$content}</div>";
 	}
 
 	/**
@@ -98,7 +98,6 @@ class Notice {
 		if ( $wpautop ) {
 			$content = wpautop( $content );
 		}
-		echo "<div class=\"notice\">${content}</div>";
+		echo "<div class=\"notice\">{$content}</div>";
 	}
-
 }

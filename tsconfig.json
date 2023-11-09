@@ -29,6 +29,9 @@
             "@aktk/blocks/*": [
                 "src/blocks/*"
             ],
+            "@aktk/block-components/*": [
+                "src/aktk-block-components/*"
+            ],
         },
 		"typeRoots": [
             "./src/types",

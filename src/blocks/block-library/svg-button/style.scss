@@ -1,0 +1,208 @@
+@use "../../../sass/global";
+
+.ystdb-button__icon {
+	line-height: 1;
+
+	svg {
+		display: block;
+
+		&[fill="none"] {
+			fill: none;
+		}
+
+		&[fill="currentColor"] {
+			fill: currentcolor;
+		}
+
+		&[stroke="none"] {
+			stroke: none;
+		}
+
+		&[stroke="currentColor"] {
+			stroke: currentcolor;
+		}
+	}
+}
+
+.ystdb-button__icon--left {
+	margin-right: 0.5em;
+}
+
+.ystdb-button__icon--right {
+	margin-left: 0.5em;
+}
+
+.ystdb-button__link-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ystdb-button__link {
+	cursor: pointer;
+
+	.ystdb-button__text {
+		line-height: 1.3;
+	}
+
+	&.has-animation {
+		position: relative;
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -50%;
+			left: 0;
+			width: 50px;
+			height: 150%;
+			background-color: #fff;
+			transform: rotate(45deg);
+			animation-duration: inherit;
+			animation-iteration-count: infinite;
+			opacity: 0;
+		}
+
+		&.has-animation--shine::before {
+			animation-name: shine;
+		}
+	}
+
+	.ystdb-button__icon.fa-xs,
+	.ystdb-button__icon.is-small {
+
+		svg {
+			width: 0.75em;
+			height: 0.75em;
+		}
+	}
+
+	.ystdb-button__icon.fa-2x,
+	.ystdb-button__icon.is-large {
+
+		svg {
+			width: 2em;
+			height: 2em;
+		}
+	}
+}
+
+.wp-block-button {
+
+	&.ys-is-font-responsive {
+
+		@include global.media-breakpoint-down(md) {
+			font-size: var(--ys-font-mobile);
+		}
+
+		@include global.media-breakpoint-between(md, lg) {
+			font-size: var(--ys-font-tablet);
+		}
+
+		@include global.media-breakpoint(lg) {
+			font-size: var(--ys-font-desktop);
+		}
+	}
+
+	.ystdb-button__link {
+
+		&.is-small {
+			padding: 0.25rem 1rem;
+		}
+
+		&.is-large {
+			padding: 0.75rem 2.5rem;
+		}
+
+		&.is-block {
+			margin-right: auto;
+			margin-left: auto;
+			text-align: center;
+
+			// 下位互換.
+			&:not(.is-block--mobile):not(.is-block--tablet):not(.is-block--desktop) {
+				display: block;
+			}
+		}
+
+		@include global.media-breakpoint-down(md) {
+
+			&.is-block--mobile {
+				display: block;
+			}
+		}
+
+		@include global.media-breakpoint-between(md, lg) {
+
+			&.is-block--tablet {
+				display: block;
+			}
+		}
+
+		@include global.media-breakpoint(lg) {
+
+			&.is-block--desktop {
+				display: block;
+			}
+		}
+
+		&.is-vertical-padding-responsive {
+
+			@include global.media-breakpoint-down(md) {
+				padding-top: var(--ys-padding-vertical-mobile);
+				padding-bottom: var(--ys-padding-vertical-mobile);
+			}
+
+			@include global.media-breakpoint-between(md, lg) {
+				padding-top: var(--ys-padding-vertical-tablet);
+				padding-bottom: var(--ys-padding-vertical-tablet);
+			}
+
+			@include global.media-breakpoint(lg) {
+				padding-top: var(--ys-padding-vertical-desktop);
+				padding-bottom: var(--ys-padding-vertical-desktop);
+			}
+		}
+
+		&.is-horizontal-padding-responsive {
+
+			@include global.media-breakpoint-down(md) {
+				padding-right: var(--ys-padding-horizontal-mobile);
+				padding-left: var(--ys-padding-horizontal-mobile);
+			}
+
+			@include global.media-breakpoint-between(md, lg) {
+				padding-right: var(--ys-padding-horizontal-tablet);
+				padding-left: var(--ys-padding-horizontal-tablet);
+			}
+
+			@include global.media-breakpoint(lg) {
+				padding-right: var(--ys-padding-horizontal-desktop);
+				padding-left: var(--ys-padding-horizontal-desktop);
+			}
+		}
+	}
+}
+
+@keyframes shine {
+
+	0% {
+		transform: scale(0) rotate(45deg);
+		opacity: 0;
+	}
+
+	80% {
+		transform: scale(0) rotate(45deg);
+		opacity: 0.3;
+	}
+
+	81% {
+		transform: scale(4) rotate(45deg);
+		opacity: 0.6;
+	}
+
+	100% {
+		transform: scale(80) rotate(45deg);
+		opacity: 0;
+	}
+}

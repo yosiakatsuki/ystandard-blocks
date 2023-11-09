@@ -36,7 +36,6 @@ class Kses {
 		$attr[] = 'opacity';
 
 		return $attr;
-
 	}
 }
 

@@ -6,7 +6,7 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Plugin.
  */
-import { mergeDefaultAttributes } from '@aktk/blocks/util/attributes';
+import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 import { COLOR, CATEGORY } from '@aktk/blocks/config';
 /**
  * Block

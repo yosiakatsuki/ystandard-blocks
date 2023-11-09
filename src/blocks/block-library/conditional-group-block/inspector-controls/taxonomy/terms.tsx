@@ -19,7 +19,6 @@ export default function Terms(props: BlockEditProps<BlockAttributes>) {
 	const { taxonomy, terms } = attributes;
 	// @ts-expect-error
 	const { taxonomyLabel } = useSelect((select) => {
-		// @ts-expect-error
 		const { getTaxonomy } = select(coreStore);
 		const selectedTaxonomy = getTaxonomy(taxonomy);
 

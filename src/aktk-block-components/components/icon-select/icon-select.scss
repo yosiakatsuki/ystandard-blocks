@@ -1,0 +1,22 @@
+.ystd-component__icon-select {
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.ystd-component__icon-select,
+.ystd-component__icon-select__icon-list {
+
+	.ys-icon:not(.sns-icon) svg {
+		fill: none;
+		stroke: currentcolor;
+	}
+}
+
+.ystd-component__icon-select__popover {
+
+	.components-popover__content {
+		width: 100%;
+	}
+}

@@ -9,7 +9,7 @@ const ColorPaletteControl = ({
 	colors,
 	label,
 	key,
-	position = 'bottom left',
+	position = 'bottom-start',
 	...props
 }) => {
 	const _colors = colors ?? getColorSetting();

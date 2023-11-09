@@ -18,6 +18,7 @@ module.exports = {
 		'@wordpress/no-unsafe-wp-apis': 'off',
 		'jsdoc/require-returns-description': 'off',
 		'jsdoc/require-param-type': 'off',
+		'react-hooks/exhaustive-deps': 'off',
 	},
 	parserOptions: {
 		requireConfigFile: false,

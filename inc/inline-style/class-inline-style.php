@@ -9,8 +9,9 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
 use ystandard_blocks\helper\Helper_Debug;
+use ystandard_blocks\utils\Styles;
+use ystandard_blocks\utils\File;
 
 defined( 'ABSPATH' ) || die();
 
@@ -130,12 +131,8 @@ class Inline_Style {
 		if ( ! empty( $this->default_option ) ) {
 			return;
 		}
-		$default = json_decode(
-			helper\Helper_Filesystem::file_get_contents(
-				YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json'
-			),
-			true
-		);
+		$path    = YSTDB_PATH . '/assets/admin-menu/inline-style/schema.json';
+		$default = File::get_json_file_contents( $path );
 		unset( $default['inlineStyle']['items']['schema'] );
 		// デフォルト取得.
 		$this->default_option = $default;
@@ -201,7 +198,7 @@ class Inline_Style {
 		$option = $this->get_buttons_option();
 		// CSS作成.
 		$result = '';
-		for ( $i = 0; $i < 3; $i ++ ) {
+		for ( $i = 0; $i < 3; $i++ ) {
 			$prefix       = empty( $prefix ) ? '' : trim( $prefix ) . ' ';
 			$selector     = $prefix . self::CLASS_PREFIX . ( $i + 1 );
 			$style        = [];
@@ -275,34 +272,36 @@ class Inline_Style {
 		$css             = [];
 		$tablet_css      = [];
 		$mobile_css      = [];
-		$selector_format = "${selector}{%s;}";
+		$selector_format = "{$selector}{%s;}";
 		foreach ( $style as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$css[] = "{$prop}:{$value}";
 			}
 		}
 		foreach ( $tablet as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$tablet_css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$tablet_css[] = "{$prop}:{$value}";
 			}
 		}
 		foreach ( $mobile as $prop => $value ) {
-			if ( '' !== $value && '@' !== substr( $prop, 0, 1 ) ) {
-				$mobile_css[] = "${prop}:${value}";
+			if ( '' !== $value && ! str_starts_with( $prop, '@' ) ) {
+				$mobile_css[] = "{$prop}:{$value}";
 			}
 		}
 		if ( ! empty( $css ) ) {
 			$result .= sprintf( $selector_format, implode( ';', $css ) );
 		}
 		if ( ! empty( $tablet_css ) ) {
-			$result .= Helper_CSS::add_media_query(
+			// TODO:v5対応 add_media_query_tabletにする.
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $tablet_css ) ),
 				'',
 				'md'
 			);
 		}
 		if ( ! empty( $mobile_css ) ) {
-			$result .= Helper_CSS::add_media_query(
+			// TODO:v5対応 add_media_query_mobileにする.
+			$result .= Styles::add_media_query(
 				sprintf( $selector_format, implode( ';', $mobile_css ) ),
 				'',
 				'sm'

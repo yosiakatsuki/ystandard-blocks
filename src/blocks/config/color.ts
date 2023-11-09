@@ -1,4 +1,5 @@
 export const COLOR = {
 	iconForeground: '#4190be',
-	iconDeprecatedForeground: '#be4141',
+	iconBetaForeground: '#ba41be',
+	iconDeprecatedForeground: '#dcd1d1',
 };

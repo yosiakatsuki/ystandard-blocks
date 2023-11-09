@@ -133,7 +133,7 @@ const cardEdit = (props) => {
 						<BaseControl>
 							<URLInput
 								label={__('Link')}
-								className="ystdb-card__url-input"
+								className="ystdb-card__url-input is-use-inspector-control"
 								value={url}
 								/* eslint-disable jsx-a11y/no-autofocus */
 								autoFocus={false}
@@ -144,6 +144,7 @@ const cardEdit = (props) => {
 								disableSuggestions={!isSelected}
 								isFullWidth
 								hasBorder
+								__nextHasNoMarginBottom
 							/>
 						</BaseControl>
 						<BaseControl>
@@ -481,6 +482,7 @@ const cardEdit = (props) => {
 								disableSuggestions={!isSelected}
 								isFullWidth
 								hasBorder
+								__nextHasNoMarginBottom
 							/>
 						</div>
 					)}

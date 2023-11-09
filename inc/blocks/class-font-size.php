@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -73,12 +73,12 @@ class Font_Size {
 		$result = '';
 		foreach ( $font_size[0] as $value ) {
 			$unit = isset( $value['unit'] ) ? $value['unit'] : 'px';
-			$size = is_numeric( $value['size'] ) ? "{$value['size']}${unit}" : $value['size'];
+			$size = is_numeric( $value['size'] ) ? "{$value['size']}{$unit}" : $value['size'];
 			// CSS.
-			$result .= "${prefix}.has-{$value['slug']}-font-size{font-size:${size};}";
+			$result .= "{$prefix}.has-{$value['slug']}-font-size{font-size:{$size};}";
 		}
 
-		return Helper_CSS::minify( $result );
+		return Styles::minify( $result );
 	}
 }
 

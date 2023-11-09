@@ -9,7 +9,7 @@
 
 namespace ystandard_blocks;
 
-use ystandard_blocks\helper\Helper_CSS;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -57,7 +57,7 @@ class Migration {
 			3 => '#FFEE55',
 		];
 
-		for ( $i = 1; $i <= 3; $i ++ ) {
+		for ( $i = 1; $i <= 3; $i++ ) {
 			$font_size = ( Option::get_option_by_number( $section, 'font_size_' . $i, 100 ) / 100 );
 			$color     = Option::get_option( $section, 'color_' . $i, '#222222' );
 			$default   = Option::get_default_option( $section, 'color_' . $i, '#222222' );
@@ -73,7 +73,7 @@ class Migration {
 			$marker       = sprintf(
 				'linear-gradient(transparent %s, rgba(%s, %s) %s)',
 				( 100 - $mark_weight ) . '%',
-				implode( ',', Helper_CSS::hex_2_rgb( $mark_color ) ),
+				implode( ',', Styles::hex_2_rgb( $mark_color ) ),
 				$mark_opacity / 100,
 				( 100 - $mark_weight ) . '%'
 			);

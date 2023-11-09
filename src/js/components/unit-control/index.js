@@ -1,5 +1,13 @@
 import { __experimentalUnitControl as WPUnitControl } from '@wordpress/components';
 
+/**
+ * @param root0
+ * @param root0.label
+ * @param root0.value
+ * @param root0.onChange
+ * @param root0.units
+ * @deprecated
+ */
 const UnitControl = ({ label, value, onChange, units, ...props }) => {
 	return (
 		<WPUnitControl

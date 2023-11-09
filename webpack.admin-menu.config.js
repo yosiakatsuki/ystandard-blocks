@@ -1,5 +1,6 @@
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
-const path = require( 'path' );
+// @ts-ignore
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require('path');
 
 module.exports = {
 	...defaultConfig,
@@ -9,17 +10,17 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].js',
-		path: `${ __dirname }/js/admin-menu`,
+		path: `${__dirname}/js/admin-menu`,
 	},
 	resolve: {
 		...defaultConfig.resolve,
 		alias: {
 			...defaultConfig.resolve.alias,
-			'@aktk/config': path.resolve( __dirname, 'src/js/config' ),
-			'@aktk/components': path.resolve( __dirname, 'src/js/components' ),
-			'@aktk/controls': path.resolve( __dirname, 'src/js/controls' ),
-			'@aktk/helper': path.resolve( __dirname, 'src/js/helper' ),
-			'@aktk/util': path.resolve( __dirname, 'src/js/util' ),
+			'@aktk/config': path.resolve(__dirname, 'src/js/config'),
+			'@aktk/components': path.resolve(__dirname, 'src/js/components'),
+			'@aktk/controls': path.resolve(__dirname, 'src/js/controls'),
+			'@aktk/helper': path.resolve(__dirname, 'src/js/helper'),
+			'@aktk/util': path.resolve(__dirname, 'src/js/util'),
 		},
 	},
 	performance: {

@@ -97,7 +97,7 @@ abstract class Dynamic_Block {
 			$slug
 		);
 		ob_start();
-		include( $view );
+		include $view;
 
 		return ob_get_clean();
 	}
@@ -121,7 +121,7 @@ abstract class Dynamic_Block {
 		if ( is_file( YSTDB_PATH . "/js/blocks/{$this->block_name}.js" ) ) {
 			$handle = "ystandard-blocks-{$this->block_name}";
 			// 依存関係.
-			$asset = include( YSTDB_PATH . "/js/blocks/{$this->block_name}.asset.php" );
+			$asset = include YSTDB_PATH . "/js/blocks/{$this->block_name}.asset.php";
 			// 登録.
 			wp_register_script(
 				"ystandard-blocks-{$this->block_name}",
@@ -193,7 +193,7 @@ abstract class Dynamic_Block {
 		}
 
 		ob_start();
-		include( $located );
+		include $located;
 
 		return ob_get_clean();
 	}
@@ -221,17 +221,17 @@ abstract class Dynamic_Block {
 	/**
 	 * クラス名追加.
 	 *
-	 * @param string|array $class Class Names.
+	 * @param string|array $class_name Class Names.
 	 * @param bool         $flag  Flag.
 	 *
 	 * @return void
 	 */
-	protected function add_class_name( $class, $flag = true ) {
-		if ( ! is_array( $class ) ) {
-			$class = explode( ' ', $class );
+	protected function add_class_name( $class_name, $flag = true ) {
+		if ( ! is_array( $class_name ) ) {
+			$class_name = explode( ' ', $class_name );
 		}
 		if ( $flag ) {
-			$this->class_names = array_unique( array_merge( $this->class_names, $class ) );
+			$this->class_names = array_unique( array_merge( $this->class_names, $class_name ) );
 		}
 	}
 

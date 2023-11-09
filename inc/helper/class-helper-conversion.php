@@ -20,12 +20,12 @@ class Helper_Conversion {
 	/**
 	 * Boolに変換
 	 *
-	 * @param mixed $var var.
+	 * @param mixed $value var.
 	 *
 	 * @return bool
 	 */
-	public static function to_bool( $var ) {
-		if ( true === $var || 'true' === $var || 1 === $var || '1' === $var ) {
+	public static function to_bool( $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
 			return true;
 		}
 

@@ -52,7 +52,7 @@ class Icon {
 	 */
 	private function get_icons() {
 
-		$icons = include( YSTDB_PATH . '/library/svg-icons/svg-icons.php' );
+		$icons = include YSTDB_PATH . '/library/svg-icons/svg-icons.php';
 		// カスタムアイコン.
 		$custom_icons = apply_filters( 'ys_get_custom_icon', [] );
 

@@ -96,20 +96,23 @@ function svgIcon(props) {
 						/>
 					</BaseControl>
 					<FontSizePicker
+						__nextHasNoMarginBottom
 						label={__('アイコンサイズ', 'ystandard-blocks')}
 						value={fontSize.size}
 						onChange={(font) => {
 							setFontSize(font);
 						}}
 					/>
-					<SelectControl
-						label={__('アイコン倍率', 'ystandard-blocks')}
-						value={iconSize}
-						options={sizing}
-						onChange={(size) => {
-							setAttributes({ iconSize: size });
-						}}
-					/>
+					<div style={{ marginTop: '1.5em' }}>
+						<SelectControl
+							label={__('アイコン倍率', 'ystandard-blocks')}
+							value={iconSize}
+							options={sizing}
+							onChange={(size) => {
+								setAttributes({ iconSize: size });
+							}}
+						/>
+					</div>
 				</PanelBody>
 				<PanelBody title={__('リンク設定', 'ystandard-blocks')}>
 					<URLInput
@@ -123,6 +126,7 @@ function svgIcon(props) {
 						disableSuggestions={!isSelected}
 						isFullWidth
 						hasBorder
+						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
 						label={__('新しいタブで開く', 'ystandard-blocks')}

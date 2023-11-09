@@ -15,7 +15,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
@@ -61,7 +61,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: [ '5.6', '7.2', '7.3', '7.4' ]
+        php: [ '7.2', '7.4', '8.1', '8.2' ]
     name: PHP Error Check (PHP ${{ matrix.php }})
     needs: [ lint ]
     steps:
@@ -179,13 +179,12 @@ jobs:
           LOCAL_DIR: upload
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
 
-      - name: Notify Release
-        uses: 8398a7/action-slack@v3
+      - name: Notify Deployment Develop Version for Discord
+        uses: sarisia/actions-status-discord@v1
         with:
-          status: ${{ job.status }}
-          author_name: "[yStandard Blocks]開発バージョンのアップデート準備OK！"
-          fields: repo,message
+          nodetail: true
+          title: "[yStandard Blocks]開発バージョンのアップデート準備OK！"
+          color: 0x059669
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: success()

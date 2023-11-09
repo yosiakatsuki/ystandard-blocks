@@ -47,13 +47,12 @@ jobs:
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
           ARGS: --verbose
 
-      - name: Notify Release
-        uses: 8398a7/action-slack@v3
+      - name: Notify Deployment Develop Version for Discord
+        uses: sarisia/actions-status-discord@v1
         with:
-          status: ${{ job.status }}
-          author_name: "[yStandard Blocks]新バージョンのアップデート準備OK！"
-          fields: repo,message
+          nodetail: true
+          title: "[yStandard Blocks]新バージョンのアップデート準備OK！"
+          color: 0x059669
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: success()

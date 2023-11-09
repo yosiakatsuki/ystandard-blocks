@@ -11,6 +11,7 @@ namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\helper\Helper_Version;
+use ystandard_blocks\utils\Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -71,12 +72,12 @@ class Blocks {
 				continue;
 			}
 
-			$asset = include( YSTDB_PATH . "/js/blocks/${name}.asset.php" );
+			$asset = include YSTDB_PATH . "/js/blocks/{$name}.asset.php";
 			// ダイナミックブロック判定.
-			$render = YSTDB_PATH . "/blocks/${name}/class-${name}-block.php";
+			$render = YSTDB_PATH . "/blocks/{$name}/class-{$name}-block.php";
 			$type   = file_exists( $render ) ? 'dynamic' : 'normal';
 			// ブロック固有の処理読み込み.
-			$block_php = YSTDB_PATH . "/blocks/${name}/class-${name}.php";
+			$block_php = YSTDB_PATH . "/blocks/{$name}/class-{$name}.php";
 			if ( is_file( $block_php ) ) {
 				require_once $block_php;
 			}
@@ -88,19 +89,19 @@ class Blocks {
 			if ( 'normal' === $type ) {
 				// スクリプト関連.
 				$style      = null;
-				$style_path = YSTDB_PATH . "/css/blocks/${name}/block.css";
+				$style_path = YSTDB_PATH . "/css/blocks/{$name}/block.css";
 				if ( is_file( $style_path ) ) {
 					$style = [
-						'handle' => "ystdb-block-style-${name}",
+						'handle' => "ystdb-block-style-{$name}",
 						'src'    => $this->replace_path_to_url( $style_path ),
 						'var'    => filemtime( $style_path ),
 					];
 				}
 				$editor_style      = null;
-				$editor_style_path = YSTDB_PATH . "/css/blocks/${name}/edit.css";
+				$editor_style_path = YSTDB_PATH . "/css/blocks/{$name}/edit.css";
 				if ( is_file( $editor_style_path ) ) {
 					$editor_style = [
-						'handle' => "ystdb-block-editor-style-${name}",
+						'handle' => "ystdb-block-editor-style-{$name}",
 						'src'    => $this->replace_path_to_url( $editor_style_path ),
 						'var'    => filemtime( $editor_style_path ),
 					];
@@ -136,7 +137,7 @@ class Blocks {
 	 */
 	public function require_dynamic_block_file() {
 		foreach ( $this->register_blocks['dynamic'] as $block ) {
-			require_once( $block['render'] );
+			require_once $block['render'];
 		}
 	}
 
@@ -148,18 +149,13 @@ class Blocks {
 			/**
 			 * ブロック共通スクリプト
 			 */
-			$asset_file = include( YSTDB_PATH . '/js/blocks/block.asset.php' );
-			wp_enqueue_script(
-				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
-				YSTDB_URL . '/js/blocks/block.js',
-				$asset_file['dependencies'],
-				$asset_file['version']
-			);
+			wp_register_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE, false );
 			wp_localize_script(
 				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
 				'ystdb',
 				$this->create_block_config()
 			);
+			wp_enqueue_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE );
 			if ( function_exists( 'wp_set_script_translations' ) ) {
 				wp_set_script_translations(
 					Config::BLOCK_EDITOR_SCRIPT_HANDLE,
@@ -211,11 +207,13 @@ class Blocks {
 		return apply_filters(
 			'ystdb_block_config',
 			[
-				'yStandard' => Utility::is_ystandard() ? '1' : '', // TODO:廃止予定.
-				'isYSTD'    => Utility::is_ystandard() ? '1' : '',
-				'homeUrl'   => home_url(),
-				'pluginUrl' => YSTDB_URL,
-				'useAmp'    => Helper_Amp::use_amp_plugin(),
+				'yStandard'      => Utility::is_ystandard() ? '1' : '', // TODO:廃止予定.
+				'isYSTD'         => Utility::is_ystandard() ? '1' : '',
+				'homeUrl'        => home_url(),
+				'pluginUrl'      => YSTDB_URL,
+				'useAmp'         => Helper_Amp::use_amp_plugin(),
+				'breakpoint'     => Styles::get_breakpoints(),
+				'breakpointBase' => Styles::get_breakpoints_base_size(),
 			]
 		);
 	}
@@ -266,20 +264,25 @@ class Blocks {
 	 * @return array
 	 */
 	public function add_block_categories( $categories ) {
-		$categories[] = [
+		$blocks_categories   = [];
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY,
 			'title' => __( '[ys]yStandard Blocks', 'ystandard-blocks' ),
 		];
-		$categories[] = [
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY_BETA,
 			'title' => __( '[ys]yStandard Blocks Beta', 'ystandard-blocks' ),
 		];
-		$categories[] = [
+		$blocks_categories[] = [
 			'slug'  => Config::BLOCK_CATEGORY_DEPRECATED,
 			'title' => __( '[ys]yStandard Blocks(非推奨)', 'ystandard-blocks' ),
 		];
 
-		return $categories;
+		if ( apply_filters( 'ystdb_block_category_top', false ) ) {
+			return array_merge( $blocks_categories, $categories );
+		}
+
+		return array_merge( $categories, $blocks_categories );
 	}
 
 	/**

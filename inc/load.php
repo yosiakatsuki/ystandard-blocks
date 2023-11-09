@@ -10,11 +10,10 @@
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/config/class-config.php';
+require_once __DIR__ . '/utils/load.php';
 require_once __DIR__ . '/utility/class-utility.php';
 require_once __DIR__ . '/helper/class-helper-version.php';
 require_once __DIR__ . '/helper/class-helper-debug.php';
-require_once __DIR__ . '/helper/class-helper-filesystem.php';
-require_once __DIR__ . '/helper/class-helper-css.php';
 require_once __DIR__ . '/helper/class-helper-conversion.php';
 require_once __DIR__ . '/helper/class-helper-amp.php';
 require_once __DIR__ . '/helper/class-boolean.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * Utility (徐々にHelper/**へ分割予定)
+ * Utility (徐々にUtils/**へ移行)
  *
  * @package yStandard_blocks
  * @author  yosiakatsuki
@@ -37,16 +37,16 @@ class Utility {
 	/**
 	 * テーマバージョン取得
 	 *
-	 * @param boolean $parent 親テーマ情報かどうか.
+	 * @param boolean $parent_theme 親テーマ情報かどうか.
 	 *
 	 * @return string
 	 */
-	public static function get_theme_version( $parent = false ) {
+	public static function get_theme_version( $parent_theme = false ) {
 		/**
 		 * 子テーマ情報
 		 */
 		$theme = wp_get_theme();
-		if ( $parent && get_template() !== get_stylesheet() ) {
+		if ( $parent_theme && get_template() !== get_stylesheet() ) {
 			/**
 			 * 親テーマ情報
 			 */
@@ -63,15 +63,6 @@ class Utility {
 	 */
 	public static function is_ystandard() {
 		return 'ystandard' === get_template();
-	}
-
-	/**
-	 * Polyfillが必要か
-	 *
-	 * @return bool
-	 */
-	public static function need_polyfill() {
-		return ( self::is_ie() || self::is_edge() );
 	}
 
 	/**
@@ -123,13 +114,13 @@ class Utility {
 	/**
 	 * Boolに変換
 	 *
-	 * @param mixed $var var.
+	 * @param mixed $value var.
 	 *
 	 * @return bool
-	 * @deprecated to Helper/Boolean::to_bool()
+	 * @deprecated to Utils/Types::to_bool
 	 */
-	public static function to_bool( $var ) {
-		if ( true === $var || 'true' === $var || 1 === $var || '1' === $var ) {
+	public static function to_bool( $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
 			return true;
 		}
 
@@ -162,11 +153,11 @@ class Utility {
 	 * クラス一覧作成
 	 *
 	 * @param array  $classes classes.
-	 * @param string $default default class.
+	 * @param string $default_value default class.
 	 *
 	 * @return string
 	 */
-	public static function get_class_names( $classes = [], $default = '' ) {
+	public static function get_class_names( $classes = [], $default_value = '' ) {
 		if ( empty( $classes ) ) {
 			return '';
 		}
@@ -181,64 +172,6 @@ class Utility {
 		return esc_attr( $classes );
 	}
 
-
-	/**
-	 * 色クラス名を取得
-	 *
-	 * @param string $name 名前.
-	 * @param string $type タイプ.
-	 *
-	 * @return string
-	 */
-	public static function get_color_class_name( $name, $type ) {
-		return "has-${name}-${type}";
-	}
-
-	/**
-	 * Alignクラス取得
-	 *
-	 * @param string $align align.
-	 *
-	 * @return string
-	 */
-	public static function get_align_class( $align ) {
-		if ( ! $align ) {
-			return '';
-		}
-
-		return "has-text-align-${align}";
-	}
-
-	/**
-	 * フォントサイズ取得
-	 *
-	 * @param int $custom_font_size font size.
-	 *
-	 * @return string
-	 */
-	public static function get_font_size_style( $custom_font_size ) {
-		if ( ! $custom_font_size ) {
-			return '';
-		}
-
-		return "font-size:${custom_font_size}px";
-	}
-
-	/**
-	 * フォントサイズ指定クラス取得
-	 *
-	 * @param string $font_size font size slug.
-	 *
-	 * @return string
-	 */
-	public static function get_font_size_class( $font_size ) {
-		if ( ! $font_size ) {
-			return '';
-		}
-
-		return "has-${font_size}-font-size";
-	}
-
 	/**
 	 * テキストカラースタイル取得
 	 *
@@ -251,7 +184,7 @@ class Utility {
 			return '';
 		}
 
-		return "color:${color}";
+		return "color:{$color}";
 	}
 
 	/**
@@ -266,7 +199,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-color";
+		return "has-{$color}-color";
 	}
 
 	/**
@@ -281,7 +214,7 @@ class Utility {
 			return '';
 		}
 
-		return "background-color:${color}";
+		return "background-color:{$color}";
 	}
 
 	/**
@@ -296,7 +229,7 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-background-color";
+		return "has-{$color}-background-color";
 	}
 
 	/**
@@ -311,7 +244,7 @@ class Utility {
 			return '';
 		}
 
-		return "border-color:${color}";
+		return "border-color:{$color}";
 	}
 
 	/**
@@ -326,26 +259,25 @@ class Utility {
 			return '';
 		}
 
-		return "has-${color}-border-color";
+		return "has-{$color}-border-color";
 	}
-
 
 
 	/**
 	 * [has-]クラス名作成
 	 *
 	 * @param string $name   class name.
-	 * @param string $class  class.
+	 * @param string $class_name  class.
 	 * @param string $custom custom value.
 	 *
 	 * @return string
 	 */
-	public static function get_has_class( $name, $class, $custom ) {
-		if ( empty( $class ) && empty( $custom ) ) {
+	public static function get_has_class( $name, $class_name, $custom ) {
+		if ( empty( $class_name ) && empty( $custom ) ) {
 			return '';
 		}
 
-		return "has-${name}";
+		return "has-{$name}";
 	}
 
 	/**
@@ -369,17 +301,17 @@ class Utility {
 	 * サイズ関連のサニタイズ
 	 *
 	 * @param string $number  数値.
-	 * @param int    $default 初期値.
+	 * @param int    $default_value 初期値.
 	 * @param int    $max     最大.
 	 * @param int    $min     最小.
 	 */
-	public static function sanitize_size( $number, $default, $max = 200, $min = 60 ) {
+	public static function sanitize_size( $number, $default_value, $max = 200, $min = 60 ) {
 
 		if ( ! is_numeric( $number ) ) {
-			return $default;
+			return $default_value;
 		}
 		if ( $number < $min || $number > $max ) {
-			return $default;
+			return $default_value;
 		}
 
 		return $number;

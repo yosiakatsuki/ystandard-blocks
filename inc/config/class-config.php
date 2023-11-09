@@ -101,5 +101,4 @@ class Config {
 	 * 旧設定プレフィックス
 	 */
 	const OPTION_PREFIX = 'ystdb_';
-
 }

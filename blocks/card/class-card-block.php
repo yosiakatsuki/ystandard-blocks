@@ -228,7 +228,7 @@ class Card_Block extends Dynamic_Block {
 	/**
 	 * Card constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		if ( ! shortcode_exists( 'ystdb_card' ) ) {
 			add_shortcode( 'ystdb_card', [ $this, 'do_shortcode' ] );
 		}
@@ -347,7 +347,7 @@ class Card_Block extends Dynamic_Block {
 			$rel = ' rel="' . $this->params['rel'] . '"';
 		}
 
-		return "<a class=\"${class}\" href=\"${url}\" ${target}${rel}>${url}</a>";
+		return "<a class=\"{$class}\" href=\"{$url}\" {$target}{$rel}>{$url}</a>";
 	}
 
 	/**

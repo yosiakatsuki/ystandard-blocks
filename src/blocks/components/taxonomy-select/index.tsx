@@ -32,15 +32,12 @@ export default function TaxonomySelect({
 }: TaxonomySelectProps) {
 	// @ts-expect-error
 	const { selectedPostType, taxonomy, hasResolved } = useSelect((select) => {
-		// @ts-expect-error
 		const { getPostType, getTaxonomies } = select(coreStore);
 		const _taxonomies = getTaxonomies({ per_page: -1 }) || [];
-		// @ts-expect-error
 		const hasResolvedPostType = select(coreStore).hasFinishedResolution(
 			'getPostType',
 			[postType]
 		);
-		// @ts-expect-error
 		const hasResolvedTaxonomies = select(coreStore).hasFinishedResolution(
 			'getTaxonomies',
 			[{ per_page: -1 }]
@@ -89,6 +86,7 @@ export default function TaxonomySelect({
 	const handleOnChange = (newValue: string) => {
 		onChange(newValue);
 	};
+
 	return (
 		<>
 			{hasResolved ? (
@@ -100,6 +98,8 @@ export default function TaxonomySelect({
 							value={value}
 							options={options}
 							onChange={handleOnChange}
+							// @ts-ignore
+							__nextUnconstrainedWidth
 						/>
 					) : (
 						<Notice type={'help'}>

@@ -10,6 +10,9 @@ import { FontSizePicker } from '@wordpress/block-editor';
 import { Fragment, Component } from '@wordpress/element';
 import SVGIcon from '../svg-icon';
 
+/**
+ * @deprecated
+ */
 class ResponsiveFontSizeControl extends Component {
 	render() {
 		const {
@@ -70,6 +73,7 @@ class ResponsiveFontSizeControl extends Component {
 									onChange={(font) => {
 										onChangeFontSizePicker(font);
 									}}
+									__nextHasNoMarginBottom
 								/>
 							</>
 						) : (

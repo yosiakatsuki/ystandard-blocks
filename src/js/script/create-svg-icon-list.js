@@ -2,10 +2,12 @@
  * SVGアイコンのリストを作成するスクリプト
  */
 const fs = require('fs');
+// @ts-expect-error
 const feather = require('feather-icons');
 const outputPath = './library/svg-icons/svg-icons.php';
 const icons = [];
 const {
+	siX,
 	siTwitter,
 	siFacebook,
 	siHatenabookmark,
@@ -24,8 +26,9 @@ const {
 	siTumblr,
 	siAmazon,
 	siDiscord,
-} = require('simple-icons/icons');
+} = require('simple-icons');
 const snsIcons = [
+	siX,
 	siTwitter,
 	siFacebook,
 	siHatenabookmark,
