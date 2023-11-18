@@ -17,6 +17,9 @@ import {
 } from '@aktk/helper/responsive';
 import { getSpacingInfo, parseSpacing } from '@aktk/helper/spacing';
 
+/**
+ * @deprecated v3.12.0
+ */
 export const ResponsiveSpacing = (props) => {
 	const { label, values, onChange, units, inputProps, splitOnAxis } = props;
 

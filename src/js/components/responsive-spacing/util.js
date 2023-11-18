@@ -6,6 +6,9 @@ import { isResponsive, parseResponsiveValues } from '@aktk/helper/responsive';
 import { getGapProperty } from '@aktk/helper/gap';
 import { getSpacingProps } from '@aktk/helper/spacing';
 
+/**
+ * @deprecated v3.12.0
+ */
 const getCustomProperty = (
 	value,
 	device,
@@ -31,6 +34,9 @@ const getCustomProperty = (
 	return result;
 };
 
+/**
+ * @deprecated v3.12.0
+ */
 const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
 	if (!isObject(value)) {
 		return undefined;
@@ -57,6 +63,9 @@ const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
 	};
 };
 
+/**
+ * @deprecated v3.12.0
+ */
 const getResponsiveGapCustomProperty = (value, suffix = '') => {
 	if (!isObject(value)) {
 		return undefined;
@@ -83,6 +92,9 @@ const getResponsiveGapCustomProperty = (value, suffix = '') => {
 	};
 };
 
+/**
+ * @deprecated v3.12.0
+ */
 export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
 	const parsedValue = parseResponsiveValues({
 		desktop: getSpacingProps(type, values?.desktop),
@@ -92,12 +104,23 @@ export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
 
 	return parseObject(getResponsiveSpacingCustomProperty(parsedValue, suffix));
 };
+
+/**
+ * @deprecated v3.12.0
+ */
 export const getResponsiveGapStyle = (values, suffix = '') => {
 	return parseObject(getResponsiveGapCustomProperty(values, suffix));
 };
+
+/**
+ * @deprecated v3.12.0
+ */
 export const getResponsivePaddingStyle = (values, suffix = '') => {
 	return getResponsiveSpacingStyle('padding', values, suffix);
 };
+/**
+ * @deprecated
+ */
 export const getResponsiveMarginStyle = (values, suffix = '') => {
 	return getResponsiveSpacingStyle('margin', values, suffix);
 };

@@ -32,6 +32,9 @@
             "@aktk/block-components/*": [
                 "src/aktk-block-components/*"
             ],
+            "@aktk/blocks-old/*": [
+                "src/js/*"
+            ],
         },
 		"typeRoots": [
             "./src/types",

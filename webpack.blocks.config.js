@@ -8,8 +8,6 @@ module.exports = {
 	entry: {
 		block: './src/js/block/block.js',
 		'svg-icon': './blocks/svg-icon/index.js',
-		columns: './blocks/columns/index.js',
-		column: './blocks/columns/item/index.js',
 		section: './blocks/section/index.js',
 		heading: './blocks/heading/index.js',
 		balloon: './blocks/balloon/index.js',

@@ -328,7 +328,7 @@ function Balloon(props) {
 										isPrimary={balloonType === item.value}
 										onClick={() => {
 											// if (
-											// 	'serif-border' === item.value &&
+											// 	'serif-border' === column.value &&
 											// 	'serif-border' !== balloonType
 											// ) {
 											// 	setBackgroundColor(
@@ -336,7 +336,7 @@ function Balloon(props) {
 											// 	);
 											// }
 											// if (
-											// 	'serif-border' !== item.value
+											// 	'serif-border' !== column.value
 											// ) {
 											// 	setBalloonBorderColor(
 											// 		backgroundColor.color

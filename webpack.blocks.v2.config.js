@@ -13,6 +13,7 @@ module.exports = {
 				__dirname,
 				'src/aktk-block-components'
 			),
+			'@aktk/blocks-old': path.resolve(__dirname, 'src/js'),
 		},
 	},
 	cache: false,

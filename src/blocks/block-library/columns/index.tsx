@@ -7,16 +7,18 @@ import { __ } from '@wordpress/i18n';
 /**
  * yStandard.
  */
-import { ystdbConfig } from '@aktk/config/config.js';
-import { mergeDefaultAttributes } from '@aktk/helper/attribute';
+import { mergeDefaultAttributes } from '@aktk/blocks/utils';
+import { COLOR, CATEGORY } from '@aktk/blocks/config';
 /**
  * Block
  */
+// @ts-ignore
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
 import { deprecated } from './deprecated';
 import variations from './variations';
+import './style.scss';
 
 export function registerColumns() {
 	const attributes = mergeDefaultAttributes(
@@ -24,29 +26,25 @@ export function registerColumns() {
 		metadata.attributes
 	);
 
-	registerBlockType(metadata.name, {
+	// @ts-ignore
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
-			title: __('カスタムカラム', 'ystandard-blocks'),
-			description: __(
-				'モバイル・タブレット・PCでカラム数を変更できるカラムブロック',
-				'ystandard-blocks'
-			),
 			icon: (
 				<Grid
-					stroke={ystdbConfig.color.iconForeground}
-					style={{ fill: 'none' }}
+					stroke={ COLOR.iconForeground }
+					style={ { fill: 'none' } }
 				/>
 			),
-			category: ystdbConfig.category.common,
+			category: CATEGORY.common,
 			attributes,
 			edit,
 			save,
 			deprecated,
 			example: {},
-			variations,
-		},
-	});
+			variations
+		}
+	} );
 }
 
 registerColumns();

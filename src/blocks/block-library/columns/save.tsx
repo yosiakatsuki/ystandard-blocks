@@ -9,9 +9,10 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 import {
 	getResponsiveGapStyle,
 	getResponsiveMarginStyle,
-} from '@aktk/components/responsive-spacing';
+} from '@aktk/blocks-old/components/responsive-spacing';
 import { getColumnGapCustomProperty } from './functions/gap';
 
+// @ts-ignore
 export default function ({ attributes }) {
 	const {
 		colPc,

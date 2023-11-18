@@ -1,10 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { Grid } from 'react-feather';
-import { ystdbConfig } from '@aktk/config';
+import { COLOR } from '@aktk/blocks/config';
 
 const icon = (
 	<Grid
-		stroke={ystdbConfig.color.iconForeground}
+		stroke={COLOR.iconForeground}
 		strokeWidth={'1px'}
 		style={{ fill: 'none' }}
 	/>

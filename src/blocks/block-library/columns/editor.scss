@@ -1,8 +1,7 @@
-@use "../../src/sass/global";
+@use "../../../sass/global";
 @use "mixin";
 @use "sass:math";
-@use "block";
-@use "item/deprecated/edit" as column-deprecated;
+@use "deprecated/block";
 
 /**
  * Columns

@@ -286,7 +286,7 @@ const ButtonItems = () => {
 							<>
 								<PanelBody title={'大きさ・スタイル'}>
 									<BaseControl
-										id={'item-font-size'}
+										id={'column-font-size'}
 										label={'サイズ'}
 									>
 										<div className="ystdb-component-responsive__container">

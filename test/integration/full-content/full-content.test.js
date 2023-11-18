@@ -35,7 +35,7 @@ import {
 const blockBasenames = getAvailableBlockFixturesBasenames();
 
 import { registerColumns } from '../../../blocks/columns';
-import { registerColumn } from '../../../blocks/columns/item';
+import { registerColumn } from '../../../blocks/columns/column';
 
 /**
  * Returns only the properties of the block that

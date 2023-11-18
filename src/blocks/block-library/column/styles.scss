@@ -1,3 +1,5 @@
+@use "deprecated/block" as column-deprecated;
+
 .ystdb-column__link {
 	position: absolute;
 	top: 0;
