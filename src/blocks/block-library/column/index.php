@@ -1,6 +1,6 @@
 <?php
 /**
- * Columns Block
+ * Column Block
  *
  * @package ystandard-blocks
  */
@@ -10,9 +10,9 @@ namespace ystandard_blocks;
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class Columns Block.
+ * Class Column Block.
  */
-class Columns_Block {
+class Column_Block {
 
 	/**
 	 * Constructor.
@@ -31,4 +31,4 @@ class Columns_Block {
 	}
 }
 
-new Columns_Block();
+new Column_Block();
