@@ -6,18 +6,18 @@ import { withDispatch, useDispatch, useSelect } from '@wordpress/data';
 import {
 	useInnerBlocksProps,
 	useBlockProps,
-	store as blockEditorStore
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 import {
 	createBlocksFromInnerBlocksTemplate,
-	store as blocksStore
+	store as blocksStore,
 } from '@wordpress/blocks';
 /**
  * yStandard.
  */
 import {
 	getResponsiveGapStyle,
-	getResponsiveMarginStyle
+	getResponsiveMarginStyle,
 } from '@aktk/blocks-old/components/responsive-spacing';
 import BlockVariationPicker from '@aktk/block-components/block-variation-picker';
 /**
@@ -28,15 +28,15 @@ import { default as InspectorControls } from './inspector-controls';
 import { getColumnGapCustomProperty } from './functions/gap';
 import './editor.scss';
 
-const ALLOWED_BLOCKS = [ 'ystdb/column' ];
+const ALLOWED_BLOCKS = ['ystdb/column'];
 const TEMPLATE = [
-	[ 'ystdb/column', {} ],
-	[ 'ystdb/column', {} ],
-	[ 'ystdb/column', {} ]
+	['ystdb/column', {}],
+	['ystdb/column', {}],
+	['ystdb/column', {}],
 ];
 
 // @ts-ignore
-function ColumnsEditContainer( props ) {
+function ColumnsEditContainer(props) {
 	const { attributes, className } = props;
 	const {
 		colPc,
@@ -45,45 +45,45 @@ function ColumnsEditContainer( props ) {
 		verticalAlignment,
 		horizonAlignment,
 		gap,
-		margin
+		margin,
 	} = attributes;
 
-	const blockProps = useBlockProps( {
-		className: classnames( className, 'ystdb-columns-wrap' ),
+	const blockProps = useBlockProps({
+		className: classnames(className, 'ystdb-columns-wrap'),
 		style: {
-			...getResponsiveMarginStyle( margin )
-		}
-	} );
+			...getResponsiveMarginStyle(margin),
+		},
+	});
 
 	const columnsProps = {
-		className: classnames( 'ystdb-columns', {
-			[ `has-${ colMobile }-columns` ]: colMobile,
-			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
-			[ `has-${ colPc }-columns--pc` ]: colPc,
-			[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-			[ `is-horizontally-aligned-${ horizonAlignment }` ]: horizonAlignment
-		} ),
+		className: classnames('ystdb-columns', {
+			[`has-${colMobile}-columns`]: colMobile,
+			[`has-${colTablet}-columns--tablet`]: colTablet,
+			[`has-${colPc}-columns--pc`]: colPc,
+			[`is-vertically-aligned-${verticalAlignment}`]: verticalAlignment,
+			[`is-horizontally-aligned-${horizonAlignment}`]: horizonAlignment,
+		}),
 		style: {
-			...getColumnGapCustomProperty( gap ),
-			...getResponsiveGapStyle( gap )
-		}
+			...getColumnGapCustomProperty(gap),
+			...getResponsiveGapStyle(gap),
+		},
 	};
 
-	const innerBlocksProps = useInnerBlocksProps( columnsProps, {
+	const innerBlocksProps = useInnerBlocksProps(columnsProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
 		// @ts-ignore
 		template: TEMPLATE,
 		templateLock: false,
-		orientation: 'horizontal'
-	} );
+		orientation: 'horizontal',
+	});
 
 	return (
 		<>
-			<BlockControls { ...props } />
-			<InspectorControls { ...props } />
+			<BlockControls {...props} />
+			<InspectorControls {...props} />
 
-			<div { ...blockProps }>
-				<div { ...innerBlocksProps } />
+			<div {...blockProps}>
+				<div {...innerBlocksProps} />
 			</div>
 		</>
 	);
@@ -92,56 +92,56 @@ function ColumnsEditContainer( props ) {
 // @ts-ignore
 const ColumnsEditContainerWrapper = withDispatch(
 	// @ts-ignore
-	( dispatch, ownProps, registry ) => ({
+	(dispatch, ownProps, registry) => ({
 		// @ts-ignore
-		updateColumnAttributes( attributes ) {
+		updateColumnAttributes(attributes) {
 			const { clientId } = ownProps;
-			const { updateBlockAttributes } = dispatch( 'core/block-editor' );
-			const { getBlockOrder } = registry.select( 'core/block-editor' );
-			const innerBlockClientIds = getBlockOrder( clientId );
+			const { updateBlockAttributes } = dispatch('core/block-editor');
+			const { getBlockOrder } = registry.select('core/block-editor');
+			const innerBlockClientIds = getBlockOrder(clientId);
 			// @ts-ignore
-			innerBlockClientIds.forEach( ( innerBlockClientId ) => {
-				updateBlockAttributes( innerBlockClientId, attributes );
-			} );
-		}
+			innerBlockClientIds.forEach((innerBlockClientId) => {
+				updateBlockAttributes(innerBlockClientId, attributes);
+			});
+		},
 	})
-)( ColumnsEditContainer );
+)(ColumnsEditContainer);
 
 // @ts-ignore
-function Placeholder( { clientId, name, setAttributes } ) {
+function Placeholder({ clientId, name, setAttributes }) {
 	const { blockType, defaultVariation, variations } = useSelect(
-		( select ) => {
+		(select) => {
 			const {
 				// @ts-ignore
 				getBlockVariations,
 				// @ts-ignore
 				getBlockType,
 				// @ts-ignore
-				getDefaultBlockVariation
-			} = select( blocksStore );
+				getDefaultBlockVariation,
+			} = select(blocksStore);
 
 			return {
-				blockType: getBlockType( name ),
-				defaultVariation: getDefaultBlockVariation( name, 'block' ),
-				variations: getBlockVariations( name, 'block' )
+				blockType: getBlockType(name),
+				defaultVariation: getDefaultBlockVariation(name, 'block'),
+				variations: getBlockVariations(name, 'block'),
 			};
 		},
-		[ name ]
+		[name]
 	);
-	const { replaceInnerBlocks } = useDispatch( blockEditorStore );
+	const { replaceInnerBlocks } = useDispatch(blockEditorStore);
 	const blockProps = useBlockProps();
 
 	return (
-		<div { ...blockProps }>
+		<div {...blockProps}>
 			<BlockVariationPicker
-				icon={ blockType?.icon?.src }
-				label={ blockType?.title }
-				variations={ variations }
-				onSelect={ ( nextVariation = defaultVariation ) => {
-					if ( nextVariation.attributes ) {
-						setAttributes( nextVariation.attributes );
+				icon={blockType?.icon?.src}
+				label={blockType?.title}
+				variations={variations}
+				onSelect={(nextVariation = defaultVariation) => {
+					if (nextVariation.attributes) {
+						setAttributes(nextVariation.attributes);
 					}
-					if ( nextVariation.innerBlocks ) {
+					if (nextVariation.innerBlocks) {
 						replaceInnerBlocks(
 							clientId,
 							createBlocksFromInnerBlocksTemplate(
@@ -150,7 +150,7 @@ function Placeholder( { clientId, name, setAttributes } ) {
 							true
 						);
 					}
-				} }
+				}}
 				allowSkip
 			/>
 		</div>
@@ -158,18 +158,18 @@ function Placeholder( { clientId, name, setAttributes } ) {
 }
 
 // @ts-ignore
-const ColumnsEdit = ( props ) => {
+const ColumnsEdit = (props) => {
 	const { clientId } = props;
 	const hasInnerBlocks = useSelect(
 		// @ts-ignore
-		( select ) => select( blockEditorStore ).getBlocks( clientId ).length > 0,
-		[ clientId ]
+		(select) => select(blockEditorStore).getBlocks(clientId).length > 0,
+		[clientId]
 	);
 	const Component = hasInnerBlocks
 		? ColumnsEditContainerWrapper
 		: Placeholder;
 
-	return <Component { ...props } />;
+	return <Component {...props} />;
 };
 
 export default ColumnsEdit;

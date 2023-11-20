@@ -7,6 +7,10 @@ import { getGapProperty } from '@aktk/helper/gap';
 import { getSpacingProps } from '@aktk/helper/spacing';
 
 /**
+ * @param      value
+ * @param      device
+ * @param      _isResponsive
+ * @param      suffix
  * @deprecated v3.12.0
  */
 const getCustomProperty = (
@@ -35,6 +39,8 @@ const getCustomProperty = (
 };
 
 /**
+ * @param      value
+ * @param      suffix
  * @deprecated v3.12.0
  */
 const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
@@ -64,6 +70,8 @@ const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
 };
 
 /**
+ * @param      value
+ * @param      suffix
  * @deprecated v3.12.0
  */
 const getResponsiveGapCustomProperty = (value, suffix = '') => {
@@ -93,6 +101,9 @@ const getResponsiveGapCustomProperty = (value, suffix = '') => {
 };
 
 /**
+ * @param      type
+ * @param      values
+ * @param      suffix
  * @deprecated v3.12.0
  */
 export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
@@ -106,6 +117,8 @@ export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
 };
 
 /**
+ * @param      values
+ * @param      suffix
  * @deprecated v3.12.0
  */
 export const getResponsiveGapStyle = (values, suffix = '') => {
@@ -113,12 +126,16 @@ export const getResponsiveGapStyle = (values, suffix = '') => {
 };
 
 /**
+ * @param      values
+ * @param      suffix
  * @deprecated v3.12.0
  */
 export const getResponsivePaddingStyle = (values, suffix = '') => {
 	return getResponsiveSpacingStyle('padding', values, suffix);
 };
 /**
+ * @param values
+ * @param suffix
  * @deprecated
  */
 export const getResponsiveMarginStyle = (values, suffix = '') => {

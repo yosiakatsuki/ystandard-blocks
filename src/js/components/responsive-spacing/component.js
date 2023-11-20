@@ -18,6 +18,7 @@ import {
 import { getSpacingInfo, parseSpacing } from '@aktk/helper/spacing';
 
 /**
+ * @param      props
  * @deprecated v3.12.0
  */
 export const ResponsiveSpacing = (props) => {

@@ -26,23 +26,20 @@ export function registerColumns() {
 	);
 
 	// @ts-ignore
-	registerBlockType( metadata.name, {
+	registerBlockType(metadata.name, {
 		...metadata,
 		...{
 			icon: (
-				<Grid
-					stroke={ COLOR.iconForeground }
-					style={ { fill: 'none' } }
-				/>
+				<Grid stroke={COLOR.iconForeground} style={{ fill: 'none' }} />
 			),
 			category: CATEGORY.common,
 			attributes,
 			edit,
 			save,
 			example: {},
-			variations
-		}
-	} );
+			variations,
+		},
+	});
 }
 
 registerColumns();
