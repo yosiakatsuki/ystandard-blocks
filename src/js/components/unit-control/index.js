@@ -8,6 +8,7 @@ import { __experimentalUnitControl as WPUnitControl } from '@wordpress/component
  * @param root0.units
  * @deprecated
  */
+// @ts-ignore
 const UnitControl = ({ label, value, onChange, units, ...props }) => {
 	return (
 		<WPUnitControl

@@ -18,7 +18,7 @@ import {
 import {
 	getResponsiveGapStyle,
 	getResponsiveMarginStyle,
-} from '@aktk/blocks-old/components/responsive-spacing';
+} from '@aktk/blocks/deprecated/components/responsive-spacing';
 import BlockVariationPicker from '@aktk/block-components/block-variation-picker';
 /**
  * Block.
@@ -26,7 +26,7 @@ import BlockVariationPicker from '@aktk/block-components/block-variation-picker'
 import { default as BlockControls } from './block-controls';
 import { default as InspectorControls } from './inspector-controls';
 import { getColumnGapCustomProperty } from './functions/gap';
-import './editor.scss';
+import './style-editor.scss';
 
 const ALLOWED_BLOCKS = ['ystdb/column'];
 const TEMPLATE = [

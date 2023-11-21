@@ -4,6 +4,9 @@ export const responsiveKeys = {
 	mobile: 'mobile',
 };
 
+/**
+ * @deprecated 旧関数
+ */
 export const isResponsive = (values) => {
 	if (!values || 'object' !== typeof values) {
 		return false;
@@ -11,6 +14,9 @@ export const isResponsive = (values) => {
 	return values.hasOwnProperty('tablet') || values.hasOwnProperty('mobile');
 };
 
+/**
+ * @deprecated 旧関数
+ */
 export const getResponsiveValue = (values, key) => {
 	if (!values || 'object' !== typeof values) {
 		return undefined;
@@ -22,6 +28,9 @@ export const getResponsiveValue = (values, key) => {
 	return result;
 };
 
+/**
+ * @deprecated 旧関数
+ */
 export const getResponsiveValues = (values) => {
 	if (!values || 'object' !== typeof values) {
 		return undefined;
@@ -48,6 +57,9 @@ export const getResponsiveValues = (values) => {
 	return 0 < Object.keys(result).length ? result : undefined;
 };
 
+/**
+ * @deprecated 旧関数
+ */
 export const parseResponsiveValues = (values, arrowFalsy = false) => {
 	if (!values || 'object' !== typeof values) {
 		return undefined;

@@ -19,7 +19,7 @@ import save from './save';
 import variations from './variations';
 import './style.scss';
 
-export function registerColumns() {
+export function registerColumnsBlock() {
 	const attributes = mergeDefaultAttributes(
 		metadata.name,
 		metadata.attributes
@@ -42,4 +42,4 @@ export function registerColumns() {
 	});
 }
 
-registerColumns();
+registerColumnsBlock();

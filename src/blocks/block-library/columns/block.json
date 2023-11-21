@@ -5,49 +5,53 @@
   "title": "カスタムカラム",
   "description": "モバイル・タブレット・PCでカラム数を変更できるカラムブロック",
   "keywords": [
-	"column",
-	"カラム",
-	"col"
+    "column",
+    "カラム",
+    "col"
   ],
   "attributes": {
-	"colPc": {
-	  "type": "number",
-	  "default": 3
-	},
-	"colTablet": {
-	  "type": "number",
-	  "default": 3
-	},
-	"colMobile": {
-	  "type": "number",
-	  "default": 1
-	},
-	"verticalAlignment": {
-	  "type": "string"
-	},
-	"horizonAlignment": {
-	  "type": "string"
-	},
-	"reverse": {
-	  "type": "boolean",
-	  "default": false
-	},
-	"removeMargin": {
-	  "type": "boolean",
-	  "default": false
-	},
-	"gap": {
-	  "type": "object"
-	},
-	"margin": {
-	  "type": "object"
-	}
+    "colPc": {
+      "type": "number",
+      "default": 3
+    },
+    "colTablet": {
+      "type": "number",
+      "default": 3
+    },
+    "colMobile": {
+      "type": "number",
+      "default": 1
+    },
+    "verticalAlignment": {
+      "type": "string"
+    },
+    "horizonAlignment": {
+      "type": "string"
+    },
+    "reverse": {
+      "type": "boolean",
+      "default": false
+    },
+    "removeMargin": {
+      "type": "boolean",
+      "default": false
+    },
+    "gap": {
+      "type": "object"
+    },
+    "margin": {
+      "type": "object"
+    }
   },
   "supports": {
-	"align": [
-	  "wide",
-	  "full"
-	],
-	"className": false
-  }
+    "align": [
+      "wide",
+      "full"
+    ],
+    "className": false
+  },
+  "textdomain": "ystandard-toolbox",
+  "editorScript": "file:./index.tsx",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
 }

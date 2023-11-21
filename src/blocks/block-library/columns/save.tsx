@@ -9,7 +9,7 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 import {
 	getResponsiveGapStyle,
 	getResponsiveMarginStyle,
-} from '@aktk/blocks-old/components/responsive-spacing';
+} from '@aktk/blocks/deprecated/components/responsive-spacing';
 import { getColumnGapCustomProperty } from './functions/gap';
 
 // @ts-ignore

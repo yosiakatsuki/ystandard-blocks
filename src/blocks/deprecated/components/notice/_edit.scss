@@ -1,0 +1,46 @@
+:root {
+	--ystd-notice-text-color: #666;
+	--ystd-notice-info-color-bg: #c8eae4;
+	--ystd-notice-info-color-text: #007660;
+	--ystd-notice-warning-color-bg: #ffedcc;
+	--ystd-notice-warning-color-text: #e29e21;
+	--ystd-notice-error-color-bg: #f2d9db;
+	--ystd-notice-error-color-text: #ae3b43;
+	--ystd-notice-help-color-bg: transparent;
+	--ystd-notice-help-color-text: #999;
+}
+
+.ystd-component-notice {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid currentcolor;
+
+	ul {
+		list-style: disc;
+		margin-left: 1.5em;
+	}
+
+	&.is-info {
+		background-color: var(--ystd-notice-info-color-bg);
+		color: var(--ystd-notice-info-color-text);
+	}
+
+	&.is-warning {
+		background-color: var(--ystd-notice-warning-color-bg);
+		color: var(--ystd-notice-warning-color-text);
+	}
+
+	&.is-error {
+		background-color: var(--ystd-notice-error-color-bg);
+		color: var(--ystd-notice-error-color-text);
+	}
+
+	&.is-help {
+		padding: 8px 0;
+		margin: 0;
+		font-size: 0.9em;
+		border: 0;
+		background-color: var(--ystd-notice-help-color-bg);
+		color: var(--ystd-notice-help-color-text);
+	}
+}

@@ -1,0 +1,61 @@
+.ystd-responsive-tab {
+
+	.ystd-responsive-tab__label {
+
+		&.is-bold {
+			font-weight: 700;
+		}
+	}
+
+	.ystd-responsive-tab__panel {
+
+		&.has-label {
+			margin-top: -20px;
+		}
+
+		.components-tab-panel__tabs {
+			justify-content: flex-end;
+		}
+
+		.components-tab-panel__tab-content {
+			margin-top: 16px;
+		}
+	}
+
+	.ystd-responsive-tab__tab-button {
+		height: auto;
+		padding: 5px;
+		background-color: #f1f1f1;
+		margin-right: 4px;
+		border-radius: 50%;
+		box-shadow: none;
+		border: 1px solid #aaa;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+
+		&:focus,
+		&.is-active:focus {
+			box-shadow: none;
+		}
+
+		&.is-active {
+			background-color: var(--wp-admin-theme-color);
+			border-color: var(--wp-admin-theme-color);
+			color: #fff;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		svg {
+			fill: none;
+			stroke: currentcolor;
+			width: 12px;
+			height: 12px;
+		}
+	}
+}

@@ -1,3 +1,6 @@
+/**
+ * @deprecated @aktk/block-componentsを使うこと
+ */
 export const UNITS_SIZE = [
 	{ value: 'px', label: 'px' },
 	{ value: '%', label: '%' },
