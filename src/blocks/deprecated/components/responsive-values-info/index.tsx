@@ -2,6 +2,10 @@ import { Monitor, Smartphone, Tablet } from 'react-feather';
 import './_edit.scss';
 
 /**
+ * @param      root0
+ * @param      root0.desktop
+ * @param      root0.tablet
+ * @param      root0.mobile
  * @deprecated 置き換え予定
  */
 // @ts-ignore

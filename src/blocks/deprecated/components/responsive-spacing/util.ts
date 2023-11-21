@@ -2,7 +2,10 @@
 
 import { camelCase } from 'lodash';
 import { isObject, parseObject } from '@aktk/blocks/deprecated/utils/object';
-import { isResponsive, parseResponsiveValues } from '@aktk/blocks/deprecated/utils/responsive';
+import {
+	isResponsive,
+	parseResponsiveValues,
+} from '@aktk/blocks/deprecated/utils/responsive';
 import { getGapProperty } from '@aktk/blocks/deprecated/utils/gap';
 import { getSpacingProps } from '@aktk/blocks/deprecated/utils/spacing';
 

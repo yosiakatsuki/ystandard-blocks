@@ -11,7 +11,9 @@ import { UNITS_SIZE } from '@aktk/block-components/config';
 /**
  * yStandard
  */
-import ResponsiveTab, { tabType } from '@aktk/blocks/deprecated/components/responsive-tab';
+import ResponsiveTab, {
+	tabType,
+} from '@aktk/blocks/deprecated/components/responsive-tab';
 import {
 	getResponsiveValue,
 	parseResponsiveValues,

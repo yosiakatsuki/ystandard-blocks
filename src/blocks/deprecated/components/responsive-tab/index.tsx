@@ -13,6 +13,11 @@ export const tabType = {
 };
 
 /**
+ * @param      root0
+ * @param      root0.label
+ * @param      root0.activeClass
+ * @param      root0.onSelect
+ * @param      root0.children
  * @deprecated 置き換え予定
  */
 // @ts-ignore

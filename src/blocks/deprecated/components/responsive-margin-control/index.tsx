@@ -12,45 +12,49 @@ import { getResponsiveValues } from '@aktk/blocks-old/helper/responsive';
 
 /**
  *
- * @param label
- * @param values
- * @param onChange
- * @param min
- * @param props
- * @returns {JSX.Element}
- * @constructor
+ * @param  label.label
+ * @param  label
+ * @param  values
+ * @param  onChange
+ * @param  min
+ * @param  props
+ * @param  label.values
+ * @param  label.onChange
+ * @param  label.min
+ * @return {JSX.Element}
+ * @class
  * @deprecated Old
  */
-const ResponsiveMarginControl = ( {
-                                    // @ts-ignore
-                                    label,
-                                    // @ts-ignore
-                                    values,
-                                    // @ts-ignore
-                                    onChange,
-                                    min = -9999,
-                                    ...props
-                                  } ) => {
-  // @ts-ignores
-  const handleOnChange = ( newValue ) => {
-    onChange( getResponsiveValues( newValue ) );
-  };
+const ResponsiveMarginControl = ({
+	// @ts-ignore
+	label,
+	// @ts-ignore
+	values,
+	// @ts-ignore
+	onChange,
+	min = -9999,
+	...props
+}) => {
+	// @ts-ignores
+	const handleOnChange = (newValue) => {
+		onChange(getResponsiveValues(newValue));
+	};
 
-  return (
-    <BaseControl>
-      <ResponsiveSpacing
-        { ...props }
-        label={
-          label ? label : __( '外側余白(margin)', 'ystandard-toolbox' )
-        }
-        values={ values }
-        onChange={ handleOnChange }
-        inputProps={ {
-          min
-        } }
-      />
-    </BaseControl>
-  );
+	return (
+		<BaseControl>
+			<ResponsiveSpacing
+				{...props}
+				label={
+					label ? label : __('外側余白(margin)', 'ystandard-toolbox')
+				}
+				values={values}
+				onChange={handleOnChange}
+				inputProps={{
+					min,
+				}}
+			/>
+		</BaseControl>
+	);
 };
 
 export default ResponsiveMarginControl;

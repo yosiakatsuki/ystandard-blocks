@@ -1,4 +1,6 @@
 /**
+ * @param      root0
+ * @param      root0.children
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -61,6 +63,8 @@ export const Flex = ({ children, ...props }) => {
 };
 
 /**
+ * @param      root0
+ * @param      root0.children
  * @deprecated 置き換え予定
  */
 // @ts-ignore

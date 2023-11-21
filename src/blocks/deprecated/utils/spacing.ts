@@ -1,4 +1,6 @@
 /**
+ * @param      type
+ * @param      value
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -63,6 +65,7 @@ export const getSpacingProps = (type, value) => {
 };
 
 /**
+ * @param      spacing
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -82,6 +85,7 @@ export const parseSpacing = (spacing) => {
 };
 
 /**
+ * @param      spacing
  * @deprecated 置き換え予定
  */
 // @ts-ignore

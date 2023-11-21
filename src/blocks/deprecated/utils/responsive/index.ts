@@ -1,6 +1,7 @@
 import { responsiveKeys } from '@aktk/blocks-old/helper/responsive';
 
 /**
+ * @param props
  * @deprecated
  */
 // @ts-ignore
@@ -17,6 +18,7 @@ export default function getDeprecatedDataProperty(props) {
 }
 
 /**
+ * @param      values
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -28,6 +30,8 @@ export const isResponsive = (values) => {
 };
 
 /**
+ * @param      values
+ * @param      key
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -43,6 +47,7 @@ export const getResponsiveValue = (values, key) => {
 };
 
 /**
+ * @param      values
  * @deprecated 旧関数
  */
 // @ts-ignore
@@ -72,9 +77,9 @@ export const getResponsiveValues = (values) => {
 	return 0 < Object.keys(result).length ? result : undefined;
 };
 
-
-
 /**
+ * @param      values
+ * @param      arrowFalsy
  * @deprecated 置き換え予定
  */
 // @ts-ignore

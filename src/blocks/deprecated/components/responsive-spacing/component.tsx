@@ -12,13 +12,18 @@ import { UNITS_SIZE } from '@aktk/block-components/config';
  * yStandard.
  */
 import BoxControl from '@aktk/blocks-old/components/box-control';
-import ResponsiveTab, { tabType } from '@aktk/blocks-old/components/responsive-tab';
+import ResponsiveTab, {
+	tabType,
+} from '@aktk/blocks-old/components/responsive-tab';
 import ResponsiveValuesInfo from '@aktk/blocks-old/components/responsive-values-info';
 import {
 	getResponsiveValue,
 	parseResponsiveValues,
 } from '@aktk/blocks/deprecated/utils/responsive';
-import { getSpacingInfo, parseSpacing } from '@aktk/blocks/deprecated/utils/spacing';
+import {
+	getSpacingInfo,
+	parseSpacing,
+} from '@aktk/blocks/deprecated/utils/spacing';
 import './_edit.scss';
 
 /**

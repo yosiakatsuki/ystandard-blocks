@@ -24,28 +24,28 @@ import save from './save';
 import metadata from './block.json';
 
 export function registerColumnBlock() {
-  const attributes = mergeDefaultAttributes(
-    metadata.name,
-    metadata.attributes
-  );
+	const attributes = mergeDefaultAttributes(
+		metadata.name,
+		metadata.attributes
+	);
 
-  // @ts-ignore
-  registerBlockType( metadata.name, {
-    ...metadata,
-    ...{
-      icon: (
-        <Columns
-          stroke={ COLORS.iconForeground }
-          style={ { fill: 'none' } }
-        />
-      ),
-      category: CATEGORY.common,
-      attributes,
-      edit,
-      save,
-      example: {},
-    }
-  } );
+	// @ts-ignore
+	registerBlockType(metadata.name, {
+		...metadata,
+		...{
+			icon: (
+				<Columns
+					stroke={COLORS.iconForeground}
+					style={{ fill: 'none' }}
+				/>
+			),
+			category: CATEGORY.common,
+			attributes,
+			edit,
+			save,
+			example: {},
+		},
+	});
 }
 
 registerColumnBlock();

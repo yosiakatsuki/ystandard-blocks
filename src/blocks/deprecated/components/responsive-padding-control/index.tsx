@@ -6,11 +6,14 @@ import { getResponsiveValues } from '@aktk/blocks/deprecated/utils/responsive';
 
 /**
  *
- * @param label
- * @param values
- * @param onChange
- * @param props
- * @constructor
+ * @param      label.label
+ * @param      label
+ * @param      values
+ * @param      onChange
+ * @param      props
+ * @param      label.values
+ * @param      label.onChange
+ * @class
  * @deprecated 置き換え予定
  */
 // @ts-ignore

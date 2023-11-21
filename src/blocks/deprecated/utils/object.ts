@@ -1,4 +1,5 @@
 /**
+ * @param      value
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -6,6 +7,7 @@ export const isObject = (value) => {
 	return 'object' === typeof value;
 };
 /**
+ * @param      value
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -16,6 +18,8 @@ export const parseObject = (value) => {
 	return 0 < Object.keys(value).length ? { ...value } : undefined;
 };
 /**
+ * @param      value
+ * @param      key
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -26,6 +30,7 @@ export const hasObjectKey = (value, key) => {
 	return value.hasOwnProperty(key);
 };
 /**
+ * @param      obj
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -40,6 +45,8 @@ export const object2Array = (obj) => {
 };
 
 /**
+ * @param      obj
+ * @param      key
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -52,6 +59,9 @@ export const hasKey = (obj, key) => {
 };
 
 /**
+ * @param      obj
+ * @param      key
+ * @param      defaultValue
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -64,6 +74,7 @@ export const getProperty = (obj, key, defaultValue = undefined) => {
 };
 
 /**
+ * @param      obj
  * @deprecated 置き換え予定
  */
 // @ts-ignore

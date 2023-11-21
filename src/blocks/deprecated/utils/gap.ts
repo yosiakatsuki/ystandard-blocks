@@ -1,4 +1,5 @@
 /**
+ * @param      value
  * @deprecated 置き換え予定
  */
 // @ts-ignore

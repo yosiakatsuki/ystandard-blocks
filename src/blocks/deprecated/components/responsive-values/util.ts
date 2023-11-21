@@ -1,9 +1,15 @@
 // @ts-nocheck
 import { camelCase } from 'lodash';
 import { isObject, parseObject } from '@aktk/blocks/deprecated/utils/object';
-import { isResponsive, parseResponsiveValues } from '@aktk/blocks/deprecated/utils/responsive';
+import {
+	isResponsive,
+	parseResponsiveValues,
+} from '@aktk/blocks/deprecated/utils/responsive';
 
 /**
+ * @param      propertyName
+ * @param      values
+ * @param      suffix
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -28,6 +34,9 @@ const getCustomProperties = (propertyName, values, suffix = '') => {
 	return result;
 };
 /**
+ * @param      propertyName
+ * @param      values
+ * @param      suffix
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -41,6 +50,8 @@ export const getResponsiveValueStyle = (propertyName, values, suffix = '') => {
 };
 
 /**
+ * @param      values
+ * @param      suffix
  * @deprecated 置き換え予定
  */
 // @ts-ignore
@@ -48,6 +59,8 @@ export const getResponsiveWidthStyle = (values, suffix = '') => {
 	return getResponsiveValueStyle('width', values, suffix);
 };
 /**
+ * @param      values
+ * @param      suffix
  * @deprecated 置き換え予定
  */
 // @ts-ignore

@@ -19,6 +19,7 @@ module.exports = {
 		'jsdoc/require-returns-description': 'off',
 		'jsdoc/require-param-type': 'off',
 		'react-hooks/exhaustive-deps': 'off',
+		'jsdoc/check-param-names': 'off',
 	},
 	parserOptions: {
 		requireConfigFile: false,
