@@ -5,6 +5,7 @@ export const responsiveKeys = {
 };
 
 /**
+ * @param      values
  * @deprecated 旧関数
  */
 export const isResponsive = (values) => {
@@ -15,6 +16,8 @@ export const isResponsive = (values) => {
 };
 
 /**
+ * @param      values
+ * @param      key
  * @deprecated 旧関数
  */
 export const getResponsiveValue = (values, key) => {
@@ -29,6 +32,7 @@ export const getResponsiveValue = (values, key) => {
 };
 
 /**
+ * @param      values
  * @deprecated 旧関数
  */
 export const getResponsiveValues = (values) => {
@@ -58,6 +62,8 @@ export const getResponsiveValues = (values) => {
 };
 
 /**
+ * @param      values
+ * @param      arrowFalsy
  * @deprecated 旧関数
  */
 export const parseResponsiveValues = (values, arrowFalsy = false) => {

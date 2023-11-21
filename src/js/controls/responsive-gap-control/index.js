@@ -11,12 +11,15 @@ import { getResponsiveValues } from '@aktk/helper/responsive';
 
 /**
  * ResponsiveGapControl
- * @param label
- * @param values
- * @param onChange
- * @param props
- * @returns {JSX.Element}
- * @constructor
+ * @param  label.label
+ * @param  label
+ * @param  values
+ * @param  onChange
+ * @param  props
+ * @param  label.values
+ * @param  label.onChange
+ * @return {JSX.Element}
+ * @class
  * @deprecated ResponsiveGapControl
  */
 const ResponsiveGapControl = ({ label, values, onChange, ...props }) => {
