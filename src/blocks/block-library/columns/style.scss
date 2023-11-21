@@ -9,163 +9,161 @@ $editor: false !default;
  */
 .ystdb-columns-wrap {
 
-  + .ystdb-columns-wrap {
-    margin-top: 0;
-  }
+	+ .ystdb-columns-wrap {
+		margin-top: 0;
+	}
 }
 
 /**
  * Columns
  */
 .ystdb-columns {
-  --ystdb-column-row-gap: 2rem;
-  --ystdb-column-column-gap: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ystdb-column-row-gap) var(--ystdb-column-column-gap);
+	--ystdb-column-row-gap: 2rem;
+	--ystdb-column-column-gap: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ystdb-column-row-gap) var(--ystdb-column-column-gap);
 
-  @include mixin.column();
+	@include mixin.column();
 
-  &[style*="--ystdb-gap-desktop"] {
+	&[style*="--ystdb-gap-desktop"] {
 
-    @include global.media-breakpoint-only-pc($editor) {
-      --ystdb-column-row-gap: var(--ystdb-gap-desktop);
-      --ystdb-column-column-gap: var(--ystdb-gap-desktop);
-    }
-  }
+		@include global.media-breakpoint-only-pc($editor) {
+			--ystdb-column-row-gap: var(--ystdb-gap-desktop);
+			--ystdb-column-column-gap: var(--ystdb-gap-desktop);
+		}
+	}
 
-  &[style*="--ystdb-row-gap-desktop"] {
+	&[style*="--ystdb-row-gap-desktop"] {
 
-    @include global.media-breakpoint-only-pc($editor) {
-      --ystdb-column-row-gap: var(--ystdb-row-gap-desktop);
-    }
-  }
+		@include global.media-breakpoint-only-pc($editor) {
+			--ystdb-column-row-gap: var(--ystdb-row-gap-desktop);
+		}
+	}
 
-  &[style*="--ystdb-column-gap-desktop"] {
+	&[style*="--ystdb-column-gap-desktop"] {
 
-    @include global.media-breakpoint-only-pc($editor) {
-      --ystdb-column-column-gap: var(--ystdb-column-gap-desktop);
-    }
-  }
+		@include global.media-breakpoint-only-pc($editor) {
+			--ystdb-column-column-gap: var(--ystdb-column-gap-desktop);
+		}
+	}
 
-  &[style*="--ystdb-gap-tablet"] {
+	&[style*="--ystdb-gap-tablet"] {
 
-    @include global.media-breakpoint-only-tablet($editor) {
-      --ystdb-column-row-gap: var(--ystdb-gap-tablet);
-      --ystdb-column-column-gap: var(--ystdb-gap-tablet);
-    }
-  }
+		@include global.media-breakpoint-only-tablet($editor) {
+			--ystdb-column-row-gap: var(--ystdb-gap-tablet);
+			--ystdb-column-column-gap: var(--ystdb-gap-tablet);
+		}
+	}
 
-  &[style*="--ystdb-row-gap-tablet"] {
+	&[style*="--ystdb-row-gap-tablet"] {
 
-    @include global.media-breakpoint-only-tablet($editor) {
-      --ystdb-column-row-gap: var(--ystdb-row-gap-tablet);
-    }
-  }
+		@include global.media-breakpoint-only-tablet($editor) {
+			--ystdb-column-row-gap: var(--ystdb-row-gap-tablet);
+		}
+	}
 
-  &[style*="--ystdb-column-gap-tablet"] {
+	&[style*="--ystdb-column-gap-tablet"] {
 
-    @include global.media-breakpoint-only-tablet($editor) {
-      --ystdb-column-column-gap: var(--ystdb-column-gap-tablet);
-    }
-  }
+		@include global.media-breakpoint-only-tablet($editor) {
+			--ystdb-column-column-gap: var(--ystdb-column-gap-tablet);
+		}
+	}
 
-  &[style*="--ystdb-gap-mobile"] {
+	&[style*="--ystdb-gap-mobile"] {
 
-    @include global.media-breakpoint-only-mobile($editor) {
-      --ystdb-column-row-gap: var(--ystdb-gap-mobile);
-      --ystdb-column-column-gap: var(--ystdb-gap-mobile);
-    }
-  }
+		@include global.media-breakpoint-only-mobile($editor) {
+			--ystdb-column-row-gap: var(--ystdb-gap-mobile);
+			--ystdb-column-column-gap: var(--ystdb-gap-mobile);
+		}
+	}
 
-  &[style*="--ystdb-row-gap-mobile"] {
+	&[style*="--ystdb-row-gap-mobile"] {
 
-    @include global.media-breakpoint-only-mobile($editor) {
-      --ystdb-column-row-gap: var(--ystdb-row-gap-mobile);
-    }
-  }
+		@include global.media-breakpoint-only-mobile($editor) {
+			--ystdb-column-row-gap: var(--ystdb-row-gap-mobile);
+		}
+	}
 
-  &[style*="--ystdb-column-gap-mobile"] {
+	&[style*="--ystdb-column-gap-mobile"] {
 
-    @include global.media-breakpoint-only-mobile($editor) {
-      --ystdb-column-column-gap: var(--ystdb-column-gap-mobile);
-    }
-  }
+		@include global.media-breakpoint-only-mobile($editor) {
+			--ystdb-column-column-gap: var(--ystdb-column-gap-mobile);
+		}
+	}
 
-  &.is-reverse {
-    flex-direction: row-reverse;
-  }
+	&.is-reverse {
+		flex-direction: row-reverse;
+	}
 
-  &.is-vertically-aligned-top {
+	&.is-vertically-aligned-top {
 
-    > .ystdb-column > .ystdb-column-block-container {
-      justify-content: flex-start;
-    }
-  }
+		> .ystdb-column > .ystdb-column-block-container {
+			justify-content: flex-start;
+		}
+	}
 
-  &.is-vertically-aligned-center {
+	&.is-vertically-aligned-center {
 
-    > .ystdb-column > .ystdb-column-block-container {
-      justify-content: center;
-    }
-  }
+		> .ystdb-column > .ystdb-column-block-container {
+			justify-content: center;
+		}
+	}
 
-  &.is-vertically-aligned-bottom {
+	&.is-vertically-aligned-bottom {
 
-    > .ystdb-column > .ystdb-column-block-container {
-      justify-content: flex-end;
-    }
-  }
+		> .ystdb-column > .ystdb-column-block-container {
+			justify-content: flex-end;
+		}
+	}
 
-  &.is-vertically-aligned-last {
+	&.is-vertically-aligned-last {
 
-    > .ystdb-column > .ystdb-column-block-container {
+		> .ystdb-column > .ystdb-column-block-container {
 
-      > *:nth-last-child(2) {
-        margin-bottom: auto;
-      }
-    }
-  }
+			> *:nth-last-child(2) {
+				margin-bottom: auto;
+			}
+		}
+	}
 
-  &.is-horizontally-aligned-center {
-    justify-content: center;
-  }
+	&.is-horizontally-aligned-center {
+		justify-content: center;
+	}
 
-  &.is-horizontally-aligned-right {
-    justify-content: flex-end;
-  }
+	&.is-horizontally-aligned-right {
+		justify-content: flex-end;
+	}
 
-  &.is-horizontally-aligned-between {
-    justify-content: space-between;
-  }
+	&.is-horizontally-aligned-between {
+		justify-content: space-between;
+	}
 
-  /**
+	/**
    * Margin
    */
-  @include global.responsive-custom-property-component-2("margin", $editor);
-  @include global.responsive-custom-property-component-2("margin-top", $editor);
-  @include global.responsive-custom-property-component-2("margin-right", $editor);
-  @include global.responsive-custom-property-component-2("margin-left", $editor);
-  @include global.responsive-custom-property-component-2("margin-bottom", $editor);
+	@include global.responsive-custom-property-component-2("margin", $editor);
+	@include global.responsive-custom-property-component-2("margin-top", $editor);
+	@include global.responsive-custom-property-component-2("margin-right", $editor);
+	@include global.responsive-custom-property-component-2("margin-left", $editor);
+	@include global.responsive-custom-property-component-2("margin-bottom", $editor);
 
-  /**
+	/**
    * Padding
    */
-  @include global.responsive-custom-property-component-2("padding", $editor);
-  @include global.responsive-custom-property-component-2("padding-top", $editor);
-  @include global.responsive-custom-property-component-2("padding-right", $editor);
-  @include global.responsive-custom-property-component-2("padding-left", $editor);
-  @include global.responsive-custom-property-component-2("padding-bottom", $editor);
+	@include global.responsive-custom-property-component-2("padding", $editor);
+	@include global.responsive-custom-property-component-2("padding-top", $editor);
+	@include global.responsive-custom-property-component-2("padding-right", $editor);
+	@include global.responsive-custom-property-component-2("padding-left", $editor);
+	@include global.responsive-custom-property-component-2("padding-bottom", $editor);
 
-  /**
+	/**
    * Gap
    */
-  @include global.responsive-custom-property-component-2("gap", $editor);
-  @include global.responsive-custom-property-component-2("column-gap", $editor);
-  @include global.responsive-custom-property-component-2("row-gap", $editor);
+	@include global.responsive-custom-property-component-2("gap", $editor);
+	@include global.responsive-custom-property-component-2("column-gap", $editor);
+	@include global.responsive-custom-property-component-2("row-gap", $editor);
 }
 
 // .ystdb-columns
-
-
 

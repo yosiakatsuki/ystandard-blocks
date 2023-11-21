@@ -1,40 +1,41 @@
 .aktk-link-control {
 
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  * {
-    box-sizing: border-box;
-  }
+	* {
+		box-sizing: border-box;
+	}
 
-  &.is-inspector-controls {
-    .block-editor-url-input__input {
-      padding-right: 34px !important;
-    }
+	&.is-inspector-controls {
 
-    //検索エンターボタン.
-    .block-editor-link-control__search-enter {
-      right: 3px;
-    }
+		.block-editor-url-input__input {
+			padding-right: 34px !important;
+		}
 
-    // 検索結果.
-    .block-editor-link-control__search-results {
-      margin-top: 0;
-      padding-right: 0;
-      padding-left: 0;
+		//検索エンターボタン.
+		.block-editor-link-control__search-enter {
+			right: 3px;
+		}
 
-      .components-button.has-icon.has-text {
-        padding: 0;
-      }
+		// 検索結果.
+		.block-editor-link-control__search-results {
+			margin-top: 0;
+			padding-right: 0;
+			padding-left: 0;
 
-      .block-editor-link-control__search-item-icon {
-        margin-right: 0;
-      }
+			.components-button.has-icon.has-text {
+				padding: 0;
+			}
 
-      .components-menu-item__shortcut {
-        padding-left: 8px;
-      }
-    }
-  }
+			.block-editor-link-control__search-item-icon {
+				margin-right: 0;
+			}
 
-  // &.is-inspector-controls
+			.components-menu-item__shortcut {
+				padding-left: 8px;
+			}
+		}
+	}
+
+	// &.is-inspector-controls
 }
