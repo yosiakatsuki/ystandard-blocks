@@ -22,6 +22,7 @@ import edit from './edit';
 import save from './save';
 // @ts-ignore
 import metadata from './block.json';
+import './style.scss';
 
 export function registerColumnBlock() {
 	const attributes = mergeDefaultAttributes(

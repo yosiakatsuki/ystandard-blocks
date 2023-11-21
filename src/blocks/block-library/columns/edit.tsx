@@ -19,7 +19,7 @@ import {
 	getResponsiveGapStyle,
 	getResponsiveMarginStyle,
 } from '@aktk/blocks/deprecated/components/responsive-spacing';
-import BlockVariationPicker from '@aktk/block-components/block-variation-picker';
+import BlockVariationPicker from '@aktk/block-components/components/block-variation-picker';
 /**
  * Block.
  */
