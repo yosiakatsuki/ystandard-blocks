@@ -45,15 +45,14 @@ jobs:
       - name: lint
         run: npm run lint
 
-      - name: Notify Lint
-        uses: 8398a7/action-slack@v3
+      - name: Failed Test
+        uses: sarisia/actions-status-discord@v1
         with:
-          status: ${{ job.status }}
-          author_name: Failure lint
-          fields: repo,message,commit,job
+          nodetail: true
+          title: "Failure : lint"
+          color: 0x962305
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
 
   codeCheck:
@@ -80,15 +79,14 @@ jobs:
       - name: php -l
         run: bash bin/php-l.sh
 
-      - name: Error Check
-        uses: 8398a7/action-slack@v3
+      - name: Failed Test
+        uses: sarisia/actions-status-discord@v1
         with:
-          status: ${{ job.status }}
-          author_name: "Failure : Error Check"
-          fields: repo,message,commit,job
+          nodetail: true
+          title: "Failure : Error Check"
+          color: 0x962305
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
 
   test:
@@ -126,14 +124,13 @@ jobs:
         run: npm run test
 
       - name: Failed Test
-        uses: 8398a7/action-slack@v3
+        uses: sarisia/actions-status-discord@v1
         with:
-          status: ${{ job.status }}
-          author_name: "Failure : Test"
-          fields: repo,message,commit,job
+          nodetail: true
+          title: "Failure : Test"
+          color: 0x962305
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
 
   release:
