@@ -41,6 +41,7 @@ $editor: false;
 
 			@include global.media-breakpoint-only-pc() {
 				flex: 1 1 0;
+				width: auto;
 			}
 		}
 
@@ -48,6 +49,7 @@ $editor: false;
 
 			@include global.media-breakpoint-only-tablet() {
 				flex: 1 1 0;
+				width: auto;
 			}
 		}
 
@@ -55,6 +57,7 @@ $editor: false;
 
 			@include global.media-breakpoint-only-mobile() {
 				flex: 1 1 0;
+				width: auto;
 			}
 		}
 	}
@@ -73,6 +76,42 @@ $editor: false;
    * flex-basis.
    */
 	@include global.responsive-custom-property-component-2("flex-basis", $editor);
+
+
+	// deprecated
+	&.is-padding-large,
+	&.has-background.is-padding-large {
+		padding: 1.5rem;
+
+		/* 幅広画像の特別処理 */
+		.wp-block-image.alignwide {
+			margin-right: -1.5rem;
+			margin-left: -1.5rem;
+			padding-right: 0;
+			padding-left: 0;
+
+			&:first-child {
+				margin-top: -1.5rem;
+			}
+		}
+	}
+
+	&.is-padding-small,
+	&.has-background.is-padding-small {
+		padding: 1rem;
+
+		/* 幅広画像の特別処理 */
+		.wp-block-image.alignwide {
+			margin-right: -1rem;
+			margin-left: -1rem;
+			padding-right: 0;
+			padding-left: 0;
+
+			&:first-child {
+				margin-top: -1rem;
+			}
+		}
+	}
 }
 
 .ystdb-column__link {

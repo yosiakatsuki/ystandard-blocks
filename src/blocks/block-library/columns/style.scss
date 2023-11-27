@@ -163,6 +163,13 @@ $editor: false !default;
 	@include global.responsive-custom-property-component-2("gap", $editor);
 	@include global.responsive-custom-property-component-2("column-gap", $editor);
 	@include global.responsive-custom-property-component-2("row-gap", $editor);
+
+
+	// deprecated
+	&.is-no-margin {
+		--ystdb-column-row-gap: 0;
+		--ystdb-column-column-gap: 0;
+	}
 }
 
 // .ystdb-columns

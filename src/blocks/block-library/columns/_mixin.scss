@@ -35,10 +35,10 @@
 @mixin column-width($i,$editor:false) {
 	$width: calc(#{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"} - var(--ystdb-column-column-gap) * #{global.decimal-ceil(math.div($i - 1, $i),2)});
 	$width_no_margin: #{global.decimal-floor(math.div(1, $i) * 100,2)}#{"%"};
-	$column_selector: "> .ystdb-column";
+	$column_selector: "> :where(.ystdb-column)";
 
 	@if true == $editor {
-		$column_selector: "> .block-editor-inner-blocks > .block-editor-block-list__layout > .ystdb-column";
+		$column_selector: "> .block-editor-inner-blocks > .block-editor-block-list__layout > :where(.ystdb-column)";
 	}
 
 	#{$column_selector} {
