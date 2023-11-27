@@ -2,6 +2,7 @@ module.exports = {
 	rootDir: '../../',
 	moduleNameMapper: {
 		'^@aktk/blocks/(.+)': '<rootDir>/src/blocks/$1',
+		'^@aktk/blocks-old/(.+)': '<rootDir>/src/js/$1',
 		'^@aktk/(.+)': '<rootDir>/src/js/$1',
 	},
 	preset: '@wordpress/jest-preset-default',
