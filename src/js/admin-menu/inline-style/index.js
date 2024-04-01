@@ -55,6 +55,7 @@ const InlineStyle = () => {
 		if (isUpdating) {
 			return;
 		}
+
 		setIsUpdating(true);
 		const data = {
 			...options,
