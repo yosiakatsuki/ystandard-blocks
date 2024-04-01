@@ -11,7 +11,7 @@
  * Text Domain: ystandard-blocks
  * Domain Path: languages
  * Requires PHP: 7.4.0
- * Requires at least: 6.1
+ * Requires at least: 6.4
  * Update URI : https://wp-ystandard.com/plugins/ystandard-blocks/
  *
  * @package yStandard_blocks
