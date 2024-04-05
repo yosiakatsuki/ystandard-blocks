@@ -94,13 +94,13 @@ const ToolbarButtons = () => {
 		return newValue;
 	};
 
-	const getMarkerStyle = () => {
+	const getMarkerStyle = (markerColor = undefined) => {
 		const style = getCurrentValue('style');
 		let weight = getProperty(style, '@markerWeight', 30);
 		weight = weight ? 100 - weight : '';
 		let opacity = getProperty(style, '@markerOpacity', 60);
 		opacity = opacity ? opacity / 100 : '';
-		let color = getProperty(style, '@markerColor');
+		let color = markerColor ?? getProperty(style, '@markerColor');
 		color = color ? hex2rgb(color) : '';
 		if (!weight || !opacity || !color) {
 			return { background: undefined };
@@ -313,7 +313,9 @@ const ToolbarButtons = () => {
 												onChange={(color) => {
 													updateButtonsStyle({
 														'@markerColor': color,
-														...getMarkerStyle(),
+														...getMarkerStyle(
+															color
+														),
 													});
 												}}
 												value={getStyle(
