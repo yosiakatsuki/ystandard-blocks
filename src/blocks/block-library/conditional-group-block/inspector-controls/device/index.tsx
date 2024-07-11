@@ -19,51 +19,54 @@ import Notice from '@aktk/blocks/components/notice';
  * @param {Function} props.setAttributes
  * @class
  */
-const PanelDevice = ({
+const PanelDevice = ( {
 	attributes,
 	setAttributes,
-}: BlockEditProps<BlockAttributes>) => {
+}: BlockEditProps< BlockAttributes > ) => {
 	// @ts-ignore
 	const { hideSp, hideMd, hideLg } = attributes;
 	return (
 		<Panel
-			title={__('画面サイズ別非表示設定', 'ystandard-blocks')}
-			initialOpen={hideSp || hideMd || hideLg}
+			title={ __( '画面サイズ別非表示設定', 'ystandard-blocks' ) }
+			initialOpen={ hideSp || hideMd || hideLg }
 		>
-			<BaseControl id={'notice'}>
-				<Notice type={'help'}>
-					{__(
+			<BaseControl id={ 'notice' }>
+				<Notice type={ 'help' }>
+					{ __(
 						'各デバイスの画面サイズでブロックを非表示にできます。',
 						'ystandard-blocks'
-					)}
+					) }
 				</Notice>
 			</BaseControl>
-			<BaseControl id={'device'}>
+			<BaseControl id={ 'device' }>
 				<ToggleControl
-					label={__(
+					label={ __(
 						'スマートフォンサイズで非表示',
 						'ystandard-blocks'
-					)}
-					checked={hideSp}
-					onChange={(value) => {
-						setAttributes({ hideSp: value });
-					}}
+					) }
+					checked={ hideSp }
+					onChange={ ( value ) => {
+						setAttributes( { hideSp: value } );
+					} }
 				/>
 
 				<ToggleControl
-					label={__('タブレットサイズで非表示', 'ystandard-blocks')}
-					checked={hideMd}
-					onChange={(value) => {
-						setAttributes({ hideMd: value });
-					}}
+					label={ __(
+						'タブレットサイズで非表示',
+						'ystandard-blocks'
+					) }
+					checked={ hideMd }
+					onChange={ ( value ) => {
+						setAttributes( { hideMd: value } );
+					} }
 				/>
 
 				<ToggleControl
-					label={__('PCサイズで非表示', 'ystandard-blocks')}
-					checked={hideLg}
-					onChange={(value) => {
-						setAttributes({ hideLg: value });
-					}}
+					label={ __( 'PCサイズで非表示', 'ystandard-blocks' ) }
+					checked={ hideLg }
+					onChange={ ( value ) => {
+						setAttributes( { hideLg: value } );
+					} }
 				/>
 			</BaseControl>
 		</Panel>

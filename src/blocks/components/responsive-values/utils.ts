@@ -11,16 +11,16 @@ type ParseResponsiveValuesProps =
 	| object
 	| undefined;
 
-export function parseResponsiveValues(values: ParseResponsiveValuesProps) {
-	if (undefined === values) {
+export function parseResponsiveValues( values: ParseResponsiveValuesProps ) {
+	if ( undefined === values ) {
 		return undefined;
 	}
-	if (!isObject(values)) {
+	if ( ! isObject( values ) ) {
 		return { desktop: values };
 	}
 	const { desktop, tablet, mobile } = values as unknown as ResponsiveValues;
 	let result;
-	if (desktop || tablet || mobile) {
+	if ( desktop || tablet || mobile ) {
 		result = {
 			desktop,
 			tablet,
@@ -29,12 +29,12 @@ export function parseResponsiveValues(values: ParseResponsiveValuesProps) {
 	} else {
 		result = { desktop: values };
 	}
-	return removeUndefined(result);
+	return removeUndefined( result );
 }
 
 export function getResponsiveCustomPropName(
 	name: string,
 	type: 'mobile' | 'tablet' | 'desktop'
 ) {
-	return `--ystdb--${type}--${name}`;
+	return `--ystdb--${ type }--${ name }`;
 }

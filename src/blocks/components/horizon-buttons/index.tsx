@@ -4,6 +4,6 @@ interface HorizonButtonsProps {
 	children: React.ReactNode;
 }
 
-export default function HorizonButtons(props: HorizonButtonsProps) {
-	return <div className="ystdb__horizon-buttons">{props.children}</div>;
+export default function HorizonButtons( props: HorizonButtonsProps ) {
+	return <div className="ystdb__horizon-buttons">{ props.children }</div>;
 }

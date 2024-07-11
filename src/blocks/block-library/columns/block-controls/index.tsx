@@ -3,12 +3,12 @@ import VerticalAlign from './vertical-align';
 import HorizonAlignment from './horizon-alignment';
 
 // @ts-ignore
-const ColumnsBlockControls = (props) => {
+const ColumnsBlockControls = ( props ) => {
 	return (
 		// @ts-ignore
 		<BlockControls>
-			<VerticalAlign {...props} />
-			<HorizonAlignment {...props} />
+			<VerticalAlign { ...props } />
+			<HorizonAlignment { ...props } />
 		</BlockControls>
 	);
 };

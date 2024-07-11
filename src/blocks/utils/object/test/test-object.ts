@@ -1,17 +1,17 @@
 import { removeUndefined } from '../index';
 
-describe('removeUndefined', () => {
+describe( 'removeUndefined', () => {
 	// @ts-ignore
-	test('removeUndefined', () => {
+	test( 'removeUndefined', () => {
 		const actual = {
 			a: 12,
 			b: '13px',
 			c: undefined,
 		};
-		expect(removeUndefined(actual)).toStrictEqual({
+		expect( removeUndefined( actual ) ).toStrictEqual( {
 			a: 12,
 			b: '13px',
-		});
+		} );
 		const actual2 = {
 			a: 12,
 			b: {
@@ -20,9 +20,9 @@ describe('removeUndefined', () => {
 			},
 			c: undefined,
 		};
-		expect(removeUndefined(actual2)).toStrictEqual({
+		expect( removeUndefined( actual2 ) ).toStrictEqual( {
 			a: 12,
 			b: { ba: 22 },
-		});
-	});
-});
+		} );
+	} );
+} );

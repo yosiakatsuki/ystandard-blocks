@@ -4,8 +4,8 @@
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const getSpacingProps = (type, value) => {
-	if (!value || 'object' !== typeof value) {
+export const getSpacingProps = ( type, value ) => {
+	if ( ! value || 'object' !== typeof value ) {
 		return undefined;
 	}
 	const top = value?.top || '';
@@ -13,52 +13,52 @@ export const getSpacingProps = (type, value) => {
 	const bottom = value?.bottom || '';
 	const left = value?.left || '';
 	// 全部共通.
-	if (!!top && [right, bottom, left].every((x) => x === top)) {
+	if ( !! top && [ right, bottom, left ].every( ( x ) => x === top ) ) {
 		return {
-			[`${type}`]: top,
+			[ `${ type }` ]: top,
 		};
 	}
 	// 上下・左右.
-	if (!!top && top === bottom && !!right && right === left) {
+	if ( !! top && top === bottom && !! right && right === left ) {
 		return {
-			[`${type}`]: `${top} ${right}`,
+			[ `${ type }` ]: `${ top } ${ right }`,
 		};
 	}
 	// 上・左右・下
-	if (!!top && !!right && right === left && !!bottom) {
+	if ( !! top && !! right && right === left && !! bottom ) {
 		return {
-			[`${type}`]: `${top} ${right} ${bottom}`,
+			[ `${ type }` ]: `${ top } ${ right } ${ bottom }`,
 		};
 	}
 	// 全部あるけどバラバラ.
-	if (!!top && !!right && !!left && !!bottom) {
+	if ( !! top && !! right && !! left && !! bottom ) {
 		return {
-			[`${type}`]: `${top} ${right} ${bottom} ${left}`,
+			[ `${ type }` ]: `${ top } ${ right } ${ bottom } ${ left }`,
 		};
 	}
 	let result = {};
-	if (top) {
+	if ( top ) {
 		result = {
 			...result,
-			[`${type}-top`]: top,
+			[ `${ type }-top` ]: top,
 		};
 	}
-	if (right) {
+	if ( right ) {
 		result = {
 			...result,
-			[`${type}-right`]: right,
+			[ `${ type }-right` ]: right,
 		};
 	}
-	if (bottom) {
+	if ( bottom ) {
 		result = {
 			...result,
-			[`${type}-bottom`]: bottom,
+			[ `${ type }-bottom` ]: bottom,
 		};
 	}
-	if (left) {
+	if ( left ) {
 		result = {
 			...result,
-			[`${type}-left`]: left,
+			[ `${ type }-left` ]: left,
 		};
 	}
 	return result;
@@ -69,15 +69,15 @@ export const getSpacingProps = (type, value) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const parseSpacing = (spacing) => {
-	if (!spacing || 'object' !== typeof spacing) {
+export const parseSpacing = ( spacing ) => {
+	if ( ! spacing || 'object' !== typeof spacing ) {
 		return undefined;
 	}
 	if (
-		!spacing?.top &&
-		!spacing?.right &&
-		!spacing?.bottom &&
-		!spacing?.left
+		! spacing?.top &&
+		! spacing?.right &&
+		! spacing?.bottom &&
+		! spacing?.left
 	) {
 		return undefined;
 	}
@@ -89,8 +89,8 @@ export const parseSpacing = (spacing) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const getSpacingInfo = (spacing) => {
-	if (!spacing || 'object' !== typeof spacing) {
+export const getSpacingInfo = ( spacing ) => {
+	if ( ! spacing || 'object' !== typeof spacing ) {
 		return undefined;
 	}
 	const top = spacing?.top || '-';
@@ -98,15 +98,15 @@ export const getSpacingInfo = (spacing) => {
 	const bottom = spacing?.bottom || '-';
 	const left = spacing?.left || '-';
 
-	if ([right, bottom, left].every((x) => x === top)) {
-		return `${top}`;
+	if ( [ right, bottom, left ].every( ( x ) => x === top ) ) {
+		return `${ top }`;
 	}
-	if (top === bottom && left === right) {
-		return `${top} ${right}`;
+	if ( top === bottom && left === right ) {
+		return `${ top } ${ right }`;
 	}
-	if (top && left === right && bottom) {
-		return `${top} ${right} ${bottom}`;
+	if ( top && left === right && bottom ) {
+		return `${ top } ${ right } ${ bottom }`;
 	}
 
-	return `${top} ${right} ${bottom} ${left}`;
+	return `${ top } ${ right } ${ bottom } ${ left }`;
 };

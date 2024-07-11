@@ -1,7 +1,7 @@
-export function removeUndefined(value: object) {
+export function removeUndefined( value: object ) {
 	try {
-		return JSON.parse(JSON.stringify(value));
-	} catch (error) {
+		return JSON.parse( JSON.stringify( value ) );
+	} catch ( error ) {
 		return {};
 	}
 }

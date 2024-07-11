@@ -25,7 +25,7 @@ import { getResponsiveValues } from '@aktk/blocks-old/helper/responsive';
  * @class
  * @deprecated Old
  */
-const ResponsiveMarginControl = ({
+const ResponsiveMarginControl = ( {
 	// @ts-ignore
 	label,
 	// @ts-ignore
@@ -34,24 +34,24 @@ const ResponsiveMarginControl = ({
 	onChange,
 	min = -9999,
 	...props
-}) => {
+} ) => {
 	// @ts-ignores
-	const handleOnChange = (newValue) => {
-		onChange(getResponsiveValues(newValue));
+	const handleOnChange = ( newValue ) => {
+		onChange( getResponsiveValues( newValue ) );
 	};
 
 	return (
 		<BaseControl>
 			<ResponsiveSpacing
-				{...props}
+				{ ...props }
 				label={
-					label ? label : __('外側余白(margin)', 'ystandard-blocks')
+					label ? label : __( '外側余白(margin)', 'ystandard-blocks' )
 				}
-				values={values}
-				onChange={handleOnChange}
-				inputProps={{
+				values={ values }
+				onChange={ handleOnChange }
+				inputProps={ {
 					min,
-				}}
+				} }
 			/>
 		</BaseControl>
 	);

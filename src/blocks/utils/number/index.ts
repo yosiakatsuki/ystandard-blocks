@@ -4,16 +4,16 @@ export function toNumber(
 		| undefined
 		| { min?: number; max?: number; default?: number } = undefined
 ) {
-	const number = Number(value);
+	const number = Number( value );
 	const { min, max, default: defaultValue } = option || {};
 
-	if (isNaN(number)) {
+	if ( isNaN( number ) ) {
 		return defaultValue;
 	}
-	if (min && number < min) {
+	if ( min && number < min ) {
 		return min;
 	}
-	if (max && number > max) {
+	if ( max && number > max ) {
 		return max;
 	}
 

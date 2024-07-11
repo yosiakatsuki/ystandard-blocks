@@ -24,13 +24,13 @@ export function registerGroupBlock() {
 	);
 
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
 				<Maximize
-					stroke={COLOR.iconForeground}
-					style={{ fill: 'none' }}
+					stroke={ COLOR.iconForeground }
+					style={ { fill: 'none' } }
 				/>
 			),
 			category: CATEGORY.common,
@@ -39,7 +39,7 @@ export function registerGroupBlock() {
 			save,
 			example: {},
 		},
-	});
+	} );
 }
 
 registerGroupBlock();

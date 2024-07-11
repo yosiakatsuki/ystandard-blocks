@@ -12,40 +12,43 @@ import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
  */
 import HierarchicalTermSelector from '@aktk/blocks/components/hierarchical-term-selector';
 
-const DEFAULT_LABEL = __('カテゴリー・タグ', 'ystandard-blocks');
+const DEFAULT_LABEL = __( 'カテゴリー・タグ', 'ystandard-blocks' );
 
-export default function Terms(props: BlockEditProps<BlockAttributes>) {
+export default function Terms( props: BlockEditProps< BlockAttributes > ) {
 	const { attributes, setAttributes } = props;
 	const { taxonomy, terms } = attributes;
 	// @ts-expect-error
-	const { taxonomyLabel } = useSelect((select) => {
-		const { getTaxonomy } = select(coreStore);
-		const selectedTaxonomy = getTaxonomy(taxonomy);
+	const { taxonomyLabel } = useSelect( ( select ) => {
+		const { getTaxonomy } = select( coreStore );
+		const selectedTaxonomy = getTaxonomy( taxonomy );
 
-		if (!selectedTaxonomy || !selectedTaxonomy.hasOwnProperty('name')) {
+		if (
+			! selectedTaxonomy ||
+			! selectedTaxonomy.hasOwnProperty( 'name' )
+		) {
 			return { taxonomyLabel: DEFAULT_LABEL };
 		}
 		return {
 			taxonomyLabel: selectedTaxonomy?.name || DEFAULT_LABEL,
 		};
-	});
-	const handleOnChange = (newValue: string[]) => {
-		setAttributes({ terms: newValue });
+	} );
+	const handleOnChange = ( newValue: string[] ) => {
+		setAttributes( { terms: newValue } );
 	};
 	return (
 		<>
-			{!!taxonomy && (
+			{ !! taxonomy && (
 				<BaseControl
-					id={'hierarchical-term-selector'}
-					label={taxonomyLabel}
+					id={ 'hierarchical-term-selector' }
+					label={ taxonomyLabel }
 				>
 					<HierarchicalTermSelector
-						taxonomy={taxonomy}
-						selectedTerms={terms}
-						onChange={handleOnChange}
+						taxonomy={ taxonomy }
+						selectedTerms={ terms }
+						onChange={ handleOnChange }
 					/>
 				</BaseControl>
-			)}
+			) }
 		</>
 	);
 }

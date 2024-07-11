@@ -1,79 +1,79 @@
 import { getBorderRadiusStyles } from '../utils';
 
-describe('getBorderRadiusStyles', () => {
+describe( 'getBorderRadiusStyles', () => {
 	// @ts-ignore
-	test('single', () => {
-		expect(getBorderRadiusStyles('10px')).toStrictEqual({
+	test( 'single', () => {
+		expect( getBorderRadiusStyles( '10px' ) ).toStrictEqual( {
 			borderRadius: '10px',
-		});
-		expect(getBorderRadiusStyles('')).toBeUndefined();
-		expect(getBorderRadiusStyles(undefined)).toBeUndefined();
-	});
+		} );
+		expect( getBorderRadiusStyles( '' ) ).toBeUndefined();
+		expect( getBorderRadiusStyles( undefined ) ).toBeUndefined();
+	} );
 	// @ts-ignore
-	test('borderRadius', () => {
+	test( 'borderRadius', () => {
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				borderRadius: '100px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderRadius: '100px',
-		});
+		} );
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				borderRadius: '100px',
 				topLeft: '10px',
 				topRight: '11px',
 				bottomRight: '12px',
 				bottomLeft: '13px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderRadius: '100px',
-		});
-	});
+		} );
+	} );
 	// @ts-ignore
-	test('split', () => {
+	test( 'split', () => {
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				topLeft: '10px',
 				topRight: '11px',
 				bottomRight: '12px',
 				bottomLeft: '13px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderTopLeftRadius: '10px',
 			borderTopRightRadius: '11px',
 			borderBottomRightRadius: '12px',
 			borderBottomLeftRadius: '13px',
-		});
+		} );
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				topLeft: '10px',
 				bottomRight: '12px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderTopLeftRadius: '10px',
 			borderBottomRightRadius: '12px',
-		});
+		} );
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				bottomLeft: '10px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderBottomLeftRadius: '10px',
-		});
+		} );
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				topLeft: undefined,
 				bottomLeft: '10px',
-			})
-		).toStrictEqual({
+			} )
+		).toStrictEqual( {
 			borderBottomLeftRadius: '10px',
-		});
+		} );
 		expect(
-			getBorderRadiusStyles({
+			getBorderRadiusStyles( {
 				topRight: undefined,
 				bottomLeft: undefined,
-			})
-		).toStrictEqual({});
-	});
-});
+			} )
+		).toStrictEqual( {} );
+	} );
+} );

@@ -3,7 +3,7 @@
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const isObject = (value) => {
+export const isObject = ( value ) => {
 	return 'object' === typeof value;
 };
 /**
@@ -11,11 +11,11 @@ export const isObject = (value) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const parseObject = (value) => {
-	if (!value || !isObject(value)) {
+export const parseObject = ( value ) => {
+	if ( ! value || ! isObject( value ) ) {
 		return undefined;
 	}
-	return 0 < Object.keys(value).length ? { ...value } : undefined;
+	return 0 < Object.keys( value ).length ? { ...value } : undefined;
 };
 /**
  * @param      value
@@ -23,23 +23,23 @@ export const parseObject = (value) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const hasObjectKey = (value, key) => {
-	if (!isObject(value)) {
+export const hasObjectKey = ( value, key ) => {
+	if ( ! isObject( value ) ) {
 		return false;
 	}
-	return value.hasOwnProperty(key);
+	return value.hasOwnProperty( key );
 };
 /**
  * @param      obj
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const object2Array = (obj) => {
+export const object2Array = ( obj ) => {
 	let result = { ...obj };
-	if (isObject(result)) {
-		result = Object.entries(result).map((value) => {
-			return value[1];
-		});
+	if ( isObject( result ) ) {
+		result = Object.entries( result ).map( ( value ) => {
+			return value[ 1 ];
+		} );
 	}
 	return result;
 };
@@ -50,12 +50,12 @@ export const object2Array = (obj) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const hasKey = (obj, key) => {
-	if (!obj || 'object' !== typeof obj) {
+export const hasKey = ( obj, key ) => {
+	if ( ! obj || 'object' !== typeof obj ) {
 		return false;
 	}
 
-	return obj.hasOwnProperty(key);
+	return obj.hasOwnProperty( key );
 };
 
 /**
@@ -65,12 +65,12 @@ export const hasKey = (obj, key) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const getProperty = (obj, key, defaultValue = undefined) => {
-	if (!hasKey(obj, key)) {
+export const getProperty = ( obj, key, defaultValue = undefined ) => {
+	if ( ! hasKey( obj, key ) ) {
 		return defaultValue;
 	}
 
-	return obj[key];
+	return obj[ key ];
 };
 
 /**
@@ -78,6 +78,6 @@ export const getProperty = (obj, key, defaultValue = undefined) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const objectCopy = (obj) => {
-	return JSON.parse(JSON.stringify(obj));
+export const objectCopy = ( obj ) => {
+	return JSON.parse( JSON.stringify( obj ) );
 };

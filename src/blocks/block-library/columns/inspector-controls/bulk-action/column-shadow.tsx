@@ -3,34 +3,34 @@ import { __ } from '@wordpress/i18n';
 import HorizonButtons from '@aktk/blocks-old/components/horizon-buttons';
 
 // @ts-ignore
-const ColumnShadow = (props) => {
+const ColumnShadow = ( props ) => {
 	const { updateColumnAttributes } = props;
 	// @ts-ignore
-	const handleOnClick = (value) => {
-		updateColumnAttributes({
+	const handleOnClick = ( value ) => {
+		updateColumnAttributes( {
 			shadow: value,
-		});
+		} );
 	};
 	return (
-		<BaseControl id={'shadow'} label={__('影', 'ystandard-blocks')}>
+		<BaseControl id={ 'shadow' } label={ __( '影', 'ystandard-blocks' ) }>
 			<HorizonButtons>
 				<Button
-					key={'shadow-on'}
-					variant={'secondary'}
-					onClick={() => {
-						handleOnClick(true);
-					}}
+					key={ 'shadow-on' }
+					variant={ 'secondary' }
+					onClick={ () => {
+						handleOnClick( true );
+					} }
 				>
-					{__('ON', 'ystandard-blocks')}
+					{ __( 'ON', 'ystandard-blocks' ) }
 				</Button>
 				<Button
-					key={'shadow-off'}
-					variant={'secondary'}
-					onClick={() => {
-						handleOnClick(false);
-					}}
+					key={ 'shadow-off' }
+					variant={ 'secondary' }
+					onClick={ () => {
+						handleOnClick( false );
+					} }
 				>
-					{__('OFF', 'ystandard-blocks')}
+					{ __( 'OFF', 'ystandard-blocks' ) }
 				</Button>
 			</HorizonButtons>
 		</BaseControl>

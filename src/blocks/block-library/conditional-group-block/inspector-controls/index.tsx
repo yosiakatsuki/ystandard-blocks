@@ -4,12 +4,16 @@ import PanelAmp from './amp';
 import PanelTaxonomy from './taxonomy';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 
-const GroupInspectorControls = (props: object) => {
+const GroupInspectorControls = ( props: object ) => {
 	return (
 		<InspectorControls>
-			<PanelDevice {...(props as BlockEditProps<BlockAttributes>)} />
-			<PanelTaxonomy {...(props as BlockEditProps<BlockAttributes>)} />
-			<PanelAmp {...(props as BlockEditProps<BlockAttributes>)} />
+			<PanelDevice
+				{ ...( props as BlockEditProps< BlockAttributes > ) }
+			/>
+			<PanelTaxonomy
+				{ ...( props as BlockEditProps< BlockAttributes > ) }
+			/>
+			<PanelAmp { ...( props as BlockEditProps< BlockAttributes > ) } />
 		</InspectorControls>
 	);
 };

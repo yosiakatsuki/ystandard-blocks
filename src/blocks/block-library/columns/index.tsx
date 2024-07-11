@@ -26,11 +26,14 @@ export function registerColumnsBlock() {
 	);
 
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
-				<Grid stroke={COLOR.iconForeground} style={{ fill: 'none' }} />
+				<Grid
+					stroke={ COLOR.iconForeground }
+					style={ { fill: 'none' } }
+				/>
 			),
 			category: CATEGORY.common,
 			attributes,
@@ -39,7 +42,7 @@ export function registerColumnsBlock() {
 			example: {},
 			variations,
 		},
-	});
+	} );
 }
 
 registerColumnsBlock();

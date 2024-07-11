@@ -7,18 +7,18 @@ import {
 } from '@wordpress/block-editor';
 
 // @ts-ignore
-export function BlockControls(props) {
+export function BlockControls( props ) {
 	const { attributes, setAttributes } = props;
 	const { align } = attributes;
 	return (
 		<>
-			{/* @ts-ignore */}
+			{ /* @ts-ignore */ }
 			<WPBlockControls>
 				<AlignmentToolbar
-					value={align}
-					onChange={(nextAlign) => {
-						setAttributes({ align: nextAlign });
-					}}
+					value={ align }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { align: nextAlign } );
+					} }
 				/>
 			</WPBlockControls>
 		</>

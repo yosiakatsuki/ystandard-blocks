@@ -13,18 +13,18 @@ import { Animation } from './animation';
 import { Link } from './link';
 
 // @ts-ignore
-export function InspectorControls(props) {
+export function InspectorControls( props ) {
 	return (
 		<>
 			<WPInspectorControls>
-				<Color {...props} />
-				<Border {...props} />
-				<Icon {...props} />
-				<FontSize {...props} />
-				<Padding {...props} />
-				<BlockType {...props} />
-				<Animation {...props} />
-				<Link {...props} />
+				<Color { ...props } />
+				<Border { ...props } />
+				<Icon { ...props } />
+				<FontSize { ...props } />
+				<Padding { ...props } />
+				<BlockType { ...props } />
+				<Animation { ...props } />
+				<Link { ...props } />
 			</WPInspectorControls>
 		</>
 	);

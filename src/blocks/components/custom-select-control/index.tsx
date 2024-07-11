@@ -15,7 +15,7 @@ export interface CustomSelectControlOption {
 export interface CustomSelectControlProps {
 	value: string;
 	options: CustomSelectControlOption[];
-	onChange: (value: string) => void;
+	onChange: ( value: string ) => void;
 	label?: string | undefined;
 	useDefaultItem?: boolean | undefined;
 	className?: string | undefined;
@@ -24,36 +24,36 @@ export interface CustomSelectControlProps {
 const DEFAULT_ITEM = [
 	{
 		key: '',
-		name: __('--選択--', 'ystandard-blocks'),
+		name: __( '--選択--', 'ystandard-blocks' ),
 		style: { fontSize: '1em' },
 	},
 ];
 
-export default function CustomSelectControl({
+export default function CustomSelectControl( {
 	value,
 	options,
 	onChange,
 	label = '',
 	useDefaultItem = true,
 	...props
-}: CustomSelectControlProps) {
+}: CustomSelectControlProps ) {
 	// @ts-ignore
-	const handleOnChange = ({ selectedItem }) => {
-		onChange(selectedItem.key);
+	const handleOnChange = ( { selectedItem } ) => {
+		onChange( selectedItem.key );
 	};
 	// @ts-ignore
-	const currentSelection = options.find((option) => {
+	const currentSelection = options.find( ( option ) => {
 		return option.key === value;
-	});
-	const _options = useDefaultItem ? [...DEFAULT_ITEM, ...options] : options;
+	} );
+	const _options = useDefaultItem ? [ ...DEFAULT_ITEM, ...options ] : options;
 	return (
 		<WPCustomSelectControl
-			label={label}
-			options={_options}
-			value={currentSelection}
+			label={ label }
+			options={ _options }
+			value={ currentSelection }
 			// @ts-ignore
-			onChange={handleOnChange}
-			{...props}
+			onChange={ handleOnChange }
+			{ ...props }
 		/>
 	);
 }

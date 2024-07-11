@@ -4,10 +4,10 @@ const transforms = {
 	to: [
 		{
 			type: 'block',
-			blocks: ['core/button'],
+			blocks: [ 'core/button' ],
 			// @ts-ignore
-			transform: (attributes) => {
-				return createBlock('core/button', {
+			transform: ( attributes ) => {
+				return createBlock( 'core/button', {
 					text: attributes.text,
 					borderRadius: attributes.borderRadius,
 					align: attributes.align,
@@ -18,7 +18,7 @@ const transforms = {
 					url: attributes.url,
 					linkTarget: attributes.linkTarget,
 					rel: attributes.rel,
-				});
+				} );
 			},
 		},
 	],

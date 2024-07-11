@@ -23,20 +23,20 @@ import { getResponsiveValues } from '@aktk/blocks-old/helper/responsive';
  * @deprecated ResponsiveGapControl
  */
 // @ts-ignore
-const ResponsiveGapControl = ({ label, values, onChange, ...props }) => {
+const ResponsiveGapControl = ( { label, values, onChange, ...props } ) => {
 	// @ts-ignore
-	const handleOnChange = (newValue) => {
-		onChange(getResponsiveValues(newValue));
+	const handleOnChange = ( newValue ) => {
+		onChange( getResponsiveValues( newValue ) );
 	};
 
 	return (
 		<BaseControl>
 			<ResponsiveSpacing
-				label={label ? label : __('余白(gap)', 'ystandard-blocks')}
-				values={values}
-				onChange={handleOnChange}
-				splitOnAxis={true}
-				{...props}
+				label={ label ? label : __( '余白(gap)', 'ystandard-blocks' ) }
+				values={ values }
+				onChange={ handleOnChange }
+				splitOnAxis={ true }
+				{ ...props }
 			/>
 		</BaseControl>
 	);

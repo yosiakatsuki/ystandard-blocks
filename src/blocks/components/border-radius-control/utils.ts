@@ -11,26 +11,26 @@ import type { BorderRadiusValue } from './index';
 export function getBorderRadiusStyles(
 	borderRadius: BorderRadiusValue | string | undefined
 ) {
-	if (!borderRadius) {
+	if ( ! borderRadius ) {
 		return undefined;
 	}
 	// 固定値はborderRadiusで返す.
-	if (isString(borderRadius)) {
+	if ( isString( borderRadius ) ) {
 		return {
 			borderRadius,
 		};
 	}
 	// borderRadiusの指定があればそれだけ返す.
-	if (borderRadius?.borderRadius) {
+	if ( borderRadius?.borderRadius ) {
 		return {
 			borderRadius: borderRadius?.borderRadius,
 		};
 	}
 
-	return removeUndefined({
+	return removeUndefined( {
 		borderTopLeftRadius: borderRadius?.topLeft,
 		borderTopRightRadius: borderRadius?.topRight,
 		borderBottomRightRadius: borderRadius?.bottomRight,
 		borderBottomLeftRadius: borderRadius?.bottomLeft,
-	});
+	} );
 }

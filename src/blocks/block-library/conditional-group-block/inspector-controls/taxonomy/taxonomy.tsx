@@ -9,22 +9,22 @@ import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
  */
 import TaxonomySelect from '@aktk/blocks/components/taxonomy-select';
 
-const Taxonomy = (props: BlockEditProps<BlockAttributes>) => {
+const Taxonomy = ( props: BlockEditProps< BlockAttributes > ) => {
 	const { attributes, setAttributes } = props;
 	const { taxonomy } = attributes;
-	const handleOnChange = (newValue: string) => {
-		setAttributes({
+	const handleOnChange = ( newValue: string ) => {
+		setAttributes( {
 			taxonomy: newValue,
 			terms: undefined,
-		});
+		} );
 	};
 	return (
-		<BaseControl id={'taxonomy'}>
+		<BaseControl id={ 'taxonomy' }>
 			<TaxonomySelect
-				label={__('分類', 'ystandard-blocks')}
-				value={taxonomy}
-				onChange={handleOnChange}
-				allTaxonomies={true}
+				label={ __( '分類', 'ystandard-blocks' ) }
+				value={ taxonomy }
+				onChange={ handleOnChange }
+				allTaxonomies={ true }
 			/>
 		</BaseControl>
 	);

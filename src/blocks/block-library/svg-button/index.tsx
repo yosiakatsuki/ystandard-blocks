@@ -25,11 +25,14 @@ export function registerSvgButtonBlock() {
 		metadata.attributes
 	);
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
-				<Link2 stroke={COLOR.iconForeground} style={{ fill: 'none' }} />
+				<Link2
+					stroke={ COLOR.iconForeground }
+					style={ { fill: 'none' } }
+				/>
 			),
 			category: CATEGORY.common,
 			attributes,
@@ -38,7 +41,7 @@ export function registerSvgButtonBlock() {
 			example: {},
 			transforms,
 		},
-	});
+	} );
 }
 
 registerSvgButtonBlock();

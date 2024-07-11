@@ -17,7 +17,7 @@ import './index.scss';
  * @deprecated
  */
 // @ts-ignore
-export default function SvgIconSelect(props) {
+export default function SvgIconSelect( props ) {
 	const {
 		iconControlTitle,
 		iconPosition,
@@ -32,53 +32,55 @@ export default function SvgIconSelect(props) {
 	} = props;
 	const iconBaseControlTitle =
 		iconControlTitle === undefined
-			? __('表示アイコン', 'ystandard-blocks')
+			? __( '表示アイコン', 'ystandard-blocks' )
 			: iconControlTitle;
 
 	return (
 		<div
-			className={classnames('ystdb-icon-select', {
-				[`align--${align}`]: align,
+			className={ classnames( 'ystdb-icon-select', {
+				[ `align--${ align }` ]: align,
 				'is-float': isFloat,
-			})}
+			} ) }
 		>
-			{customInfo && <div style={customInfoStyle}>{customInfo}</div>}
-			{!!onChangePosition && (
-				<BaseControl id={'icon-position'}>
+			{ customInfo && (
+				<div style={ customInfoStyle }>{ customInfo }</div>
+			) }
+			{ !! onChangePosition && (
+				<BaseControl id={ 'icon-position' }>
 					<div className="ystdb-inspector-controls__label">
-						{__('アイコン表示位置', 'ystandard-blocks')}
+						{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
 					</div>
-					<div className={'ystdb-icon-select__position'}>
+					<div className={ 'ystdb-icon-select__position' }>
 						<RadioControl
-							selected={iconPosition}
-							options={[
+							selected={ iconPosition }
+							options={ [
 								{
-									label: __('左', 'ystandard-blocks'),
+									label: __( '左', 'ystandard-blocks' ),
 									value: 'left',
 								},
 								{
-									label: __('右', 'ystandard-blocks'),
+									label: __( '右', 'ystandard-blocks' ),
 									value: 'right',
 								},
-							]}
-							onChange={onChangePosition}
+							] }
+							onChange={ onChangePosition }
 						/>
 					</div>
 				</BaseControl>
-			)}
-			<BaseControl id={'icon-select'}>
+			) }
+			<BaseControl id={ 'icon-select' }>
 				<div className="ystdb-inspector-controls__label">
-					{iconBaseControlTitle}
+					{ iconBaseControlTitle }
 				</div>
-				<div className={'ystdb-icon-select__picker'}>
-					{/* @ts-ignore */}
+				<div className={ 'ystdb-icon-select__picker' }>
+					{ /* @ts-ignore */ }
 					<IconSelect
-						selectedIcon={selectedIcon}
-						previewIcon={previewIcon}
+						selectedIcon={ selectedIcon }
+						previewIcon={ previewIcon }
 						// @ts-ignore
-						onChange={(value) => {
-							onClickIcon(value);
-						}}
+						onChange={ ( value ) => {
+							onClickIcon( value );
+						} }
 					/>
 				</div>
 			</BaseControl>

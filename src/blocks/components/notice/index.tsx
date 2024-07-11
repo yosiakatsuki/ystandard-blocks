@@ -7,16 +7,20 @@ interface NoticeProps {
 	children: React.ReactNode;
 }
 
-export default function Notice({
+export default function Notice( {
 	className,
 	type = 'info',
 	children,
 	...props
-}: NoticeProps) {
+}: NoticeProps ) {
 	const wrapProps = {
-		className: classnames('ystd-component-notice', className, `is-${type}`),
+		className: classnames(
+			'ystd-component-notice',
+			className,
+			`is-${ type }`
+		),
 		...props,
 	};
 
-	return <div {...wrapProps}>{children}</div>;
+	return <div { ...wrapProps }>{ children }</div>;
 }

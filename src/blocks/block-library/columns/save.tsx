@@ -13,7 +13,7 @@ import {
 import { getColumnGapCustomProperty } from './functions/gap';
 
 // @ts-ignore
-export default function ({ attributes }) {
+export default function ( { attributes } ) {
 	const {
 		colPc,
 		colTablet,
@@ -25,33 +25,35 @@ export default function ({ attributes }) {
 		margin,
 	} = attributes;
 
-	const blockProps = useBlockProps.save({
+	const blockProps = useBlockProps.save( {
 		className: 'ystdb-columns-wrap',
 		style: {
-			...getResponsiveMarginStyle(margin),
+			...getResponsiveMarginStyle( margin ),
 		},
-	});
+	} );
 
 	const columnBlocksProps = {
-		className: classnames('ystdb-columns', {
-			[`has-${colMobile}-columns`]: colMobile,
-			[`has-${colTablet}-columns--tablet`]: colTablet,
-			[`has-${colPc}-columns--pc`]: colPc,
-			[`is-vertically-aligned-${verticalAlignment}`]: verticalAlignment,
-			[`is-horizontally-aligned-${horizonAlignment}`]: horizonAlignment,
+		className: classnames( 'ystdb-columns', {
+			[ `has-${ colMobile }-columns` ]: colMobile,
+			[ `has-${ colTablet }-columns--tablet` ]: colTablet,
+			[ `has-${ colPc }-columns--pc` ]: colPc,
+			[ `is-vertically-aligned-${ verticalAlignment }` ]:
+				verticalAlignment,
+			[ `is-horizontally-aligned-${ horizonAlignment }` ]:
+				horizonAlignment,
 			'is-reverse': reverse,
-		}),
+		} ),
 		style: {
-			...getColumnGapCustomProperty(gap),
-			...getResponsiveGapStyle(gap),
+			...getColumnGapCustomProperty( gap ),
+			...getResponsiveGapStyle( gap ),
 		},
 	};
 
-	const innerBlocksProps = useInnerBlocksProps.save(columnBlocksProps);
+	const innerBlocksProps = useInnerBlocksProps.save( columnBlocksProps );
 
 	return (
-		<div {...blockProps}>
-			<div {...innerBlocksProps} />
+		<div { ...blockProps }>
+			<div { ...innerBlocksProps } />
 		</div>
 	);
 }

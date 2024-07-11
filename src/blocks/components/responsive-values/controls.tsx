@@ -20,12 +20,12 @@ interface ResponsiveValuesControlProps {
 	label?: string;
 	labelClassName?: string;
 	values?: ResponsiveValues;
-	onChange?: (values?: ResponsiveValues) => void;
+	onChange?: ( values?: ResponsiveValues ) => void;
 	hasPadding?: boolean;
 	units?: ResponsiveValuesUnit[];
 }
 
-export function ResponsiveValuesControl(props: ResponsiveValuesControlProps) {
+export function ResponsiveValuesControl( props: ResponsiveValuesControlProps ) {
 	const {
 		label,
 		values = {},
@@ -34,72 +34,72 @@ export function ResponsiveValuesControl(props: ResponsiveValuesControlProps) {
 		labelClassName,
 		units,
 	} = props;
-	const wrapClasses = classnames({
+	const wrapClasses = classnames( {
 		'py-2': hasPadding,
-	});
-	const labelClasses = classnames('font-bold mb-2', labelClassName);
+	} );
+	const labelClasses = classnames( 'mb-2 font-bold', labelClassName );
 
 	const handleOnClear = () => {
-		onChange?.(undefined);
+		onChange?.( undefined );
 	};
 
 	return (
-		<div className={wrapClasses}>
-			{label && <div className={labelClasses}>{label}</div>}
-			<div className="flex gap-2 mb-2">
-				<div className="flex gap-1 items-center">
-					<Icon icon="desktop" size={14} />
+		<div className={ wrapClasses }>
+			{ label && <div className={ labelClasses }>{ label }</div> }
+			<div className="mb-2 flex gap-2">
+				<div className="flex items-center gap-1">
+					<Icon icon="desktop" size={ 14 } />
 					<WPUnitControl
 						className="mb-0"
-						value={values?.desktop}
-						onChange={(value) => {
+						value={ values?.desktop }
+						onChange={ ( value ) => {
 							const newValues = {
 								...values,
 								desktop: value || undefined,
 							};
-							onChange?.(parseResponsiveValues(newValues));
-						}}
-						units={units}
+							onChange?.( parseResponsiveValues( newValues ) );
+						} }
+						units={ units }
 					/>
 				</div>
-				<div className="flex gap-1 items-center">
-					<Icon icon="tablet" size={14} />
+				<div className="flex items-center gap-1">
+					<Icon icon="tablet" size={ 14 } />
 					<WPUnitControl
 						className="mb-0"
-						value={values?.tablet}
-						onChange={(value) => {
+						value={ values?.tablet }
+						onChange={ ( value ) => {
 							const newValues = {
 								...values,
 								tablet: value || undefined,
 							};
-							onChange?.(parseResponsiveValues(newValues));
-						}}
-						units={units}
+							onChange?.( parseResponsiveValues( newValues ) );
+						} }
+						units={ units }
 					/>
 				</div>
-				<div className="flex gap-1 items-center">
-					<Icon icon="smartphone" size={14} />
+				<div className="flex items-center gap-1">
+					<Icon icon="smartphone" size={ 14 } />
 					<WPUnitControl
 						className="mb-0"
-						value={values?.mobile}
-						onChange={(value) => {
+						value={ values?.mobile }
+						onChange={ ( value ) => {
 							const newValues = {
 								...values,
 								mobile: value || undefined,
 							};
-							onChange?.(parseResponsiveValues(newValues));
-						}}
-						units={units}
+							onChange?.( parseResponsiveValues( newValues ) );
+						} }
+						units={ units }
 					/>
 				</div>
 			</div>
 			<Button
-				variant={'secondary'}
+				variant={ 'secondary' }
 				isSmall
-				className={'w-full justify-center'}
-				onClick={handleOnClear}
+				className={ 'w-full justify-center' }
+				onClick={ handleOnClear }
 			>
-				{__('すべてクリア', 'ystandard-blocks')}
+				{ __( 'すべてクリア', 'ystandard-blocks' ) }
 			</Button>
 		</div>
 	);

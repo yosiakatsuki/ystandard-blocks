@@ -3,10 +3,10 @@ import { useSelect } from '@wordpress/data';
 
 export function useColorPalette() {
 	// @ts-ignore
-	return useSelect((select) => {
+	return useSelect( ( select ) => {
 		// @ts-ignore
-		const { colors } = select(blockEditorStore).getSettings();
+		const { colors } = select( blockEditorStore ).getSettings();
 
 		return colors;
-	});
+	} );
 }

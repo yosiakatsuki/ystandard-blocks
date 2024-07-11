@@ -7,5 +7,5 @@ import {
 } from '@wordpress/block-editor';
 
 export function useFontSizes() {
-	return useSetting('typography.fontSizes');
+	return useSetting( 'typography.fontSizes' );
 }

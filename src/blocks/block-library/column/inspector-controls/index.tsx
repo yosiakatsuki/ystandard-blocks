@@ -6,14 +6,14 @@ import PanelSize from './size';
 import PanelLink from './link';
 
 // @ts-ignore
-const InspectorControls = (props) => {
+const InspectorControls = ( props ) => {
 	return (
 		<WPInspectorControls>
-			<PanelBackground {...props} />
-			<PanelSize {...props} />
-			<PanelPadding {...props} />
-			<PanelShadow {...props} />
-			<PanelLink {...props} />
+			<PanelBackground { ...props } />
+			<PanelSize { ...props } />
+			<PanelPadding { ...props } />
+			<PanelShadow { ...props } />
+			<PanelLink { ...props } />
 		</WPInspectorControls>
 	);
 };

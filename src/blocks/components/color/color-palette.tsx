@@ -3,21 +3,21 @@ import { select } from '@wordpress/data';
 
 export interface ColorPaletteProps {
 	value: string;
-	onChange: (value?: string) => void;
+	onChange: ( value?: string ) => void;
 }
 
-export function ColorPalette(props: ColorPaletteProps) {
+export function ColorPalette( props: ColorPaletteProps ) {
 	const { value, onChange } = props;
-	const { colors } = select('core/block-editor').getSettings();
+	const { colors } = select( 'core/block-editor' ).getSettings();
 	return (
 		<>
 			<WPColorPalette
-				colors={colors}
-				disableCustomColors={false}
-				onChange={(color?: string) => {
-					onChange(color);
-				}}
-				value={value}
+				colors={ colors }
+				disableCustomColors={ false }
+				onChange={ ( color?: string ) => {
+					onChange( color );
+				} }
+				value={ value }
 			/>
 		</>
 	);

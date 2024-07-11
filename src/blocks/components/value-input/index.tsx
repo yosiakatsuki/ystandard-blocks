@@ -20,34 +20,36 @@ export interface ValueInputProps {
 	label?: string;
 	value: string;
 	onChange: ValueInputOnChange;
-	units?: Array<{ value: string; label: string; default?: number }>;
+	units?: Array< { value: string; label: string; default?: number } >;
 	hasClearButton?: boolean;
 }
 
-export function ValueInput(props: ValueInputProps) {
+export function ValueInput( props: ValueInputProps ) {
 	const { label, value, onChange, units = UNITS_SIZE } = props;
 
-	const handleOnChange: ValueInputOnChange = (newValue, extra) => {
-		const _value = !newValue ? undefined : newValue;
-		onChange(_value, extra);
+	const handleOnChange: ValueInputOnChange = ( newValue, extra ) => {
+		const _value = ! newValue ? undefined : newValue;
+		onChange( _value, extra );
 	};
 
 	return (
-		<div className={'m-0'}>
-			{label && <span className={'block text-[11px] mb-2'}>{label}</span>}
-			<div className="flex gap-2 items-center">
+		<div className={ 'm-0' }>
+			{ label && (
+				<span className={ 'mb-2 block text-[11px]' }>{ label }</span>
+			) }
+			<div className="flex items-center gap-2">
 				<WPUnitControl
-					value={value}
-					onChange={handleOnChange}
-					units={units}
-					className={'m-0'}
+					value={ value }
+					onChange={ handleOnChange }
+					units={ units }
+					className={ 'm-0' }
 				/>
 				<Button
-					variant={'tertiary'}
-					onClick={() => handleOnChange(undefined)}
-					className={'text-[10px] h-auto'}
+					variant={ 'tertiary' }
+					onClick={ () => handleOnChange( undefined ) }
+					className={ 'h-auto text-fz-xxs' }
 				>
-					{__('クリア', 'ystandard-blocks')}
+					{ __( 'クリア', 'ystandard-blocks' ) }
 				</Button>
 			</div>
 		</div>

@@ -7,11 +7,11 @@ import Width from './width';
 import AutoWidth from './auto-width';
 
 // @ts-ignore
-const PanelSize = (props) => {
+const PanelSize = ( props ) => {
 	return (
-		<PanelBody title={__('カラムサイズ設定', 'ystandard-blocks')}>
-			<Width {...props} />
-			<AutoWidth {...props} />
+		<PanelBody title={ __( 'カラムサイズ設定', 'ystandard-blocks' ) }>
+			<Width { ...props } />
+			<AutoWidth { ...props } />
 		</PanelBody>
 	);
 };

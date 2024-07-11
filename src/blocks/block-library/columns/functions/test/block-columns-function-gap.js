@@ -1,7 +1,7 @@
 import { getColumnGapCustomProperty } from '../gap';
 
-describe('getColumnGapCustomProperty', () => {
-	test('getColumnGapCustomProperty only desktop', () => {
+describe( 'getColumnGapCustomProperty', () => {
+	test( 'getColumnGapCustomProperty only desktop', () => {
 		const attr = {
 			desktop: {
 				top: '10px',
@@ -10,12 +10,12 @@ describe('getColumnGapCustomProperty', () => {
 				left: '10px',
 			},
 		};
-		expect(getColumnGapCustomProperty(attr)).toEqual({
+		expect( getColumnGapCustomProperty( attr ) ).toEqual( {
 			'--ystdb-column-row-gap': '10px',
 			'--ystdb-column-column-gap': '10px',
-		});
-	});
-	test('getColumnGapCustomProperty only tablet', () => {
+		} );
+	} );
+	test( 'getColumnGapCustomProperty only tablet', () => {
 		const attr = {
 			tablet: {
 				top: '10px',
@@ -24,9 +24,9 @@ describe('getColumnGapCustomProperty', () => {
 				left: '10px',
 			},
 		};
-		expect(getColumnGapCustomProperty(attr)).toBeUndefined();
-	});
-	test('getColumnGapCustomProperty row - col', () => {
+		expect( getColumnGapCustomProperty( attr ) ).toBeUndefined();
+	} );
+	test( 'getColumnGapCustomProperty row - col', () => {
 		const attr = {
 			desktop: {
 				top: '10px',
@@ -35,12 +35,12 @@ describe('getColumnGapCustomProperty', () => {
 				left: '10px',
 			},
 		};
-		expect(getColumnGapCustomProperty(attr)).toEqual({
+		expect( getColumnGapCustomProperty( attr ) ).toEqual( {
 			'--ystdb-column-row-gap': '10px',
 			'--ystdb-column-column-gap': '20px',
-		});
-	});
-	test('getColumnGapCustomProperty desktop, tablet', () => {
+		} );
+	} );
+	test( 'getColumnGapCustomProperty desktop, tablet', () => {
 		const attr = {
 			desktop: {
 				top: '10px',
@@ -55,6 +55,6 @@ describe('getColumnGapCustomProperty', () => {
 				left: '10px',
 			},
 		};
-		expect(getColumnGapCustomProperty(attr)).toBeUndefined();
-	});
-});
+		expect( getColumnGapCustomProperty( attr ) ).toBeUndefined();
+	} );
+} );

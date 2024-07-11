@@ -31,23 +31,23 @@ interface ResponsiveFontSizeSelectProps {
 		size: string | undefined,
 		slug?: string | undefined
 	) => void;
-	onResponsiveChange?: (size?: ResponsiveFontSize) => void;
+	onResponsiveChange?: ( size?: ResponsiveFontSize ) => void;
 	isResponsive?: boolean;
 	units?: ResponsiveValuesUnit[];
 }
 
 const TAB_SINGLE = {
 	name: 'single',
-	title: __('標準', 'ystandard-blocks'),
+	title: __( '標準', 'ystandard-blocks' ),
 	value: 'single',
 };
 const TAB_RESPONSIVE = {
 	name: 'responsive',
-	title: __('レスポンシブ', 'ystandard-blocks'),
+	title: __( 'レスポンシブ', 'ystandard-blocks' ),
 	value: 'responsive',
 };
 
-const TABS_SETTINGS = [TAB_SINGLE, TAB_RESPONSIVE];
+const TABS_SETTINGS = [ TAB_SINGLE, TAB_RESPONSIVE ];
 
 const DEFAULT_UNITS = [
 	{ value: 'px', label: 'px' },
@@ -58,7 +58,9 @@ const DEFAULT_UNITS = [
 	{ value: 'ch', label: 'ch' },
 ];
 
-export function ResponsiveFontSizeSelect(props: ResponsiveFontSizeSelectProps) {
+export function ResponsiveFontSizeSelect(
+	props: ResponsiveFontSizeSelectProps
+) {
 	const {
 		label,
 		id = 'font-size-select',
@@ -76,73 +78,73 @@ export function ResponsiveFontSizeSelect(props: ResponsiveFontSizeSelectProps) {
 		size?: string | undefined,
 		slug?: string | undefined
 	) => {
-		onPickerChange?.(size, slug);
+		onPickerChange?.( size, slug );
 	};
 
-	const handleOnChangeResponsive = (size?: ResponsiveValues) => {
-		onResponsiveChange?.(size as ResponsiveFontSize);
+	const handleOnChangeResponsive = ( size?: ResponsiveValues ) => {
+		onResponsiveChange?.( size as ResponsiveFontSize );
 	};
 
 	const tabPanels = {
-		[TAB_SINGLE.value]: (
+		[ TAB_SINGLE.value ]: (
 			<>
 				<FontSizeSelect
-					value={value}
-					onPickerChange={handleOnChangePicker}
+					value={ value }
+					onPickerChange={ handleOnChangePicker }
 				/>
 			</>
 		),
-		[TAB_RESPONSIVE.value]: (
+		[ TAB_RESPONSIVE.value ]: (
 			<>
 				<ResponsiveValuesControl
-					label={__('フォントサイズ', 'ystandard-blocks')}
-					labelClassName={'text-[10px]'}
-					values={responsiveValue}
-					onChange={handleOnChangeResponsive}
-					units={_units}
+					label={ __( 'フォントサイズ', 'ystandard-blocks' ) }
+					labelClassName={ 'text-[10px]' }
+					values={ responsiveValue }
+					onChange={ handleOnChangeResponsive }
+					units={ _units }
 				/>
 			</>
 		),
 	};
 
-	const renderPanelType = (type: string) => (
-		<div className="mt-4">{tabPanels[type]}</div>
+	const renderPanelType = ( type: string ) => (
+		<div className="mt-4">{ tabPanels[ type ] }</div>
 	);
 
 	return (
-		<BaseControl id={id} label={label}>
-			{isResponsive ? (
+		<BaseControl id={ id } label={ label }>
+			{ isResponsive ? (
 				<>
 					<TabPanel
-						tabs={TABS_SETTINGS}
+						tabs={ TABS_SETTINGS }
 						initialTabName={
 							responsiveValue
 								? TAB_RESPONSIVE.value
 								: TAB_SINGLE.value
 						}
 					>
-						{(tab) => renderPanelType(tab.value)}
+						{ ( tab ) => renderPanelType( tab.value ) }
 					</TabPanel>
 				</>
 			) : (
-				<>{renderPanelType(TAB_SINGLE.value)}</>
-			)}
+				<>{ renderPanelType( TAB_SINGLE.value ) }</>
+			) }
 		</BaseControl>
 	);
 }
 
-function FontSizeSelect(props: ResponsiveFontSizeSelectProps) {
+function FontSizeSelect( props: ResponsiveFontSizeSelectProps ) {
 	const { value, onPickerChange } = props;
 	return (
 		<>
 			<FontSizeEdit
-				value={value}
-				onChange={(
+				value={ value }
+				onChange={ (
 					size: string | undefined,
 					slug?: string | undefined
 				) => {
-					onPickerChange?.(size, slug);
-				}}
+					onPickerChange?.( size, slug );
+				} }
 			/>
 		</>
 	);

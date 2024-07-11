@@ -23,13 +23,13 @@ export function registerSvgButtonLinkBlock() {
 		metadata.attributes
 	);
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
 				<Code
-					stroke={COLOR.iconDeprecatedForeground}
-					style={{ fill: 'none' }}
+					stroke={ COLOR.iconDeprecatedForeground }
+					style={ { fill: 'none' } }
 				/>
 			),
 			category: CATEGORY.deprecated,
@@ -40,7 +40,7 @@ export function registerSvgButtonLinkBlock() {
 			},
 			example: {},
 		},
-	});
+	} );
 }
 
 registerSvgButtonLinkBlock();

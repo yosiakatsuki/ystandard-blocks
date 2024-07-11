@@ -9,7 +9,7 @@ import { BaseControl, PanelBody } from '@wordpress/components';
 import ResponsiveDeprecatedNumberControl from '@aktk/blocks/deprecated/components/responsive-number-control';
 
 // @ts-ignore
-export function Padding(props) {
+export function Padding( props ) {
 	const { setAttributes, attributes } = props;
 
 	const {
@@ -25,78 +25,78 @@ export function Padding(props) {
 
 	return (
 		<>
-			<PanelBody title={__('余白設定', 'ystandard-blocks')}>
+			<PanelBody title={ __( '余白設定', 'ystandard-blocks' ) }>
 				<BaseControl
-					id={'padding'}
-					label={__('ボタン内側の余白設定', 'ystandard-blocks')}
+					id={ 'padding' }
+					label={ __( 'ボタン内側の余白設定', 'ystandard-blocks' ) }
 				>
 					<ResponsiveDeprecatedNumberControl
-						label={__('上下', 'ystandard-blocks')}
-						useResponsive={isPaddingVerticalResponsive}
+						label={ __( '上下', 'ystandard-blocks' ) }
+						useResponsive={ isPaddingVerticalResponsive }
 						// @ts-ignore
-						changeResponsiveMode={(value) => {
-							setAttributes({
+						changeResponsiveMode={ ( value ) => {
+							setAttributes( {
 								isPaddingVerticalResponsive: value,
-							});
-						}}
-						desktopValue={paddingVerticalDesktop}
+							} );
+						} }
+						desktopValue={ paddingVerticalDesktop }
 						// @ts-ignore
-						desktopOnChange={(value) => {
-							setAttributes({
+						desktopOnChange={ ( value ) => {
+							setAttributes( {
 								paddingVerticalDesktop: value,
-							});
-						}}
-						tabletValue={paddingVerticalTablet}
+							} );
+						} }
+						tabletValue={ paddingVerticalTablet }
 						// @ts-ignore
-						tabletOnChange={(value) => {
-							setAttributes({
+						tabletOnChange={ ( value ) => {
+							setAttributes( {
 								paddingVerticalTablet: value,
-							});
-						}}
-						mobileValue={paddingVerticalMobile}
+							} );
+						} }
+						mobileValue={ paddingVerticalMobile }
 						// @ts-ignore
-						mobileOnChange={(value) => {
-							setAttributes({
+						mobileOnChange={ ( value ) => {
+							setAttributes( {
 								paddingVerticalMobile: value,
-							});
-						}}
-						min={1}
-						max={500}
-						step={1}
+							} );
+						} }
+						min={ 1 }
+						max={ 500 }
+						step={ 1 }
 					/>
 					<ResponsiveDeprecatedNumberControl
-						label={__('左右', 'ystandard-blocks')}
-						useResponsive={isPaddingHorizontalResponsive}
+						label={ __( '左右', 'ystandard-blocks' ) }
+						useResponsive={ isPaddingHorizontalResponsive }
 						// @ts-ignore
-						changeResponsiveMode={(value) => {
-							setAttributes({
+						changeResponsiveMode={ ( value ) => {
+							setAttributes( {
 								isPaddingHorizontalResponsive: value,
-							});
-						}}
-						desktopValue={paddingHorizontalDesktop}
+							} );
+						} }
+						desktopValue={ paddingHorizontalDesktop }
 						// @ts-ignore
-						desktopOnChange={(value) => {
-							setAttributes({
+						desktopOnChange={ ( value ) => {
+							setAttributes( {
 								paddingHorizontalDesktop: value,
-							});
-						}}
-						tabletValue={paddingHorizontalTablet}
+							} );
+						} }
+						tabletValue={ paddingHorizontalTablet }
 						// @ts-ignore
-						tabletOnChange={(value) => {
-							setAttributes({
+						tabletOnChange={ ( value ) => {
+							setAttributes( {
 								paddingHorizontalTablet: value,
-							});
-						}}
-						mobileValue={paddingHorizontalMobile}
+							} );
+						} }
+						mobileValue={ paddingHorizontalMobile }
 						// @ts-ignore
-						mobileOnChange={(value) => {
-							setAttributes({
+						mobileOnChange={ ( value ) => {
+							setAttributes( {
 								paddingHorizontalMobile: value,
-							});
-						}}
-						min={1}
-						max={500}
-						step={1}
+							} );
+						} }
+						min={ 1 }
+						max={ 500 }
+						step={ 1 }
 					/>
 				</BaseControl>
 			</PanelBody>

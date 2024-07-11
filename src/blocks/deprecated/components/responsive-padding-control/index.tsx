@@ -17,21 +17,23 @@ import { getResponsiveValues } from '@aktk/blocks/deprecated/utils/responsive';
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-const ResponsivePaddingControl = ({ label, values, onChange, ...props }) => {
+const ResponsivePaddingControl = ( { label, values, onChange, ...props } ) => {
 	// @ts-ignore
-	const handleOnChange = (newValue) => {
-		onChange(getResponsiveValues(newValue));
+	const handleOnChange = ( newValue ) => {
+		onChange( getResponsiveValues( newValue ) );
 	};
 
 	return (
 		<BaseControl>
 			<ResponsiveSpacing
 				label={
-					label ? label : __('内側余白(padding)', 'ystandard-blocks')
+					label
+						? label
+						: __( '内側余白(padding)', 'ystandard-blocks' )
 				}
-				values={values}
-				onChange={handleOnChange}
-				{...props}
+				values={ values }
+				onChange={ handleOnChange }
+				{ ...props }
 			/>
 		</BaseControl>
 	);

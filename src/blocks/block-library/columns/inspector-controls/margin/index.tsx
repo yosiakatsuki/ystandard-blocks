@@ -3,21 +3,21 @@ import ResponsiveMarginControl from '@aktk/blocks/deprecated/components/responsi
 import { __ } from '@wordpress/i18n';
 
 // @ts-ignore
-const PanelMargin = ({ attributes, setAttributes }) => {
+const PanelMargin = ( { attributes, setAttributes } ) => {
 	const { margin } = attributes;
 	// @ts-ignore
-	const handleMarginOnChange = (newValue) => {
-		setAttributes({
+	const handleMarginOnChange = ( newValue ) => {
+		setAttributes( {
 			margin: newValue,
-		});
+		} );
 	};
 	return (
-		<PanelBody title={__('余白', 'ystandard-blocks')}>
-			{/* @ts-ignore */}
+		<PanelBody title={ __( '余白', 'ystandard-blocks' ) }>
+			{ /* @ts-ignore */ }
 			<ResponsiveMarginControl
-				label={__('外側余白(margin)', 'ystandard-blocks')}
-				onChange={handleMarginOnChange}
-				values={margin}
+				label={ __( '外側余白(margin)', 'ystandard-blocks' ) }
+				onChange={ handleMarginOnChange }
+				values={ margin }
 			/>
 		</PanelBody>
 	);

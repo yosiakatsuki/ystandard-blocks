@@ -17,25 +17,25 @@ import GroupInspectorControls from './inspector-controls';
 import './editor.scss';
 
 export default function ConditionalGroupEdit(
-	props: BlockEditProps<BlockAttributes>
+	props: BlockEditProps< BlockAttributes >
 ) {
 	const { clientId } = props;
 	// @ts-expect-error
-	const { hasInnerBlocks } = useSelect((select) => {
+	const { hasInnerBlocks } = useSelect( ( select ) => {
 		// @ts-expect-error
-		const { getBlock } = select(blockEditorStore);
+		const { getBlock } = select( blockEditorStore );
 
-		const block = getBlock(clientId);
+		const block = getBlock( clientId );
 		return {
 			hasInnerBlocks: block && block.innerBlocks.length,
 		};
-	});
-	const blockProps = useBlockProps({
-		className: classnames('ystdb-conditional-group'),
-	});
+	} );
+	const blockProps = useBlockProps( {
+		className: classnames( 'ystdb-conditional-group' ),
+	} );
 	const innerBlocksProps = useInnerBlocksProps(
 		{
-			className: classnames('ystdb-conditional-group__inner'),
+			className: classnames( 'ystdb-conditional-group__inner' ),
 		},
 		{
 			renderAppender: hasInnerBlocks
@@ -46,10 +46,10 @@ export default function ConditionalGroupEdit(
 
 	return (
 		<>
-			<GroupInspectorControls {...props} />
+			<GroupInspectorControls { ...props } />
 
-			<div {...blockProps}>
-				<div {...innerBlocksProps} />
+			<div { ...blockProps }>
+				<div { ...innerBlocksProps } />
 			</div>
 		</>
 	);

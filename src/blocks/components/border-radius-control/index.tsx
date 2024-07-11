@@ -11,26 +11,29 @@ export type BorderRadiusValue = {
 };
 
 export interface BorderRadiusControlProps {
-	onChange: (value: BorderRadiusValue | string | undefined) => void;
+	onChange: ( value: BorderRadiusValue | string | undefined ) => void;
 	values?: BorderRadiusValue | string;
 }
 
-export function BorderRadiusControl(props: BorderRadiusControlProps) {
+export function BorderRadiusControl( props: BorderRadiusControlProps ) {
 	const { values, onChange } = props;
 
-	const handleOnChange = (value: BorderRadiusValue | string) => {
-		if (!value) {
-			onChange(undefined);
+	const handleOnChange = ( value: BorderRadiusValue | string ) => {
+		if ( ! value ) {
+			onChange( undefined );
 		}
-		if (isString(value)) {
-			onChange({ borderRadius: value });
+		if ( isString( value ) ) {
+			onChange( { borderRadius: value } );
 		}
-		onChange(value);
+		onChange( value );
 	};
 
 	return (
 		<>
-			<WPBorderRadiusControl values={values} onChange={handleOnChange} />
+			<WPBorderRadiusControl
+				values={ values }
+				onChange={ handleOnChange }
+			/>
 		</>
 	);
 }

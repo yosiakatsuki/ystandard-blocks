@@ -29,30 +29,30 @@ interface ColorGradientSettingsDropdownProps {
 	controlLabel?: string;
 	clearable?: boolean;
 	colorValue: Color;
-	onChange: (color: Color) => void;
+	onChange: ( color: Color ) => void;
 	label: string;
 	disableGradient?: boolean;
 	gradientValue?: string;
-	setGradient?: (newGradientValue: string) => void;
+	setGradient?: ( newGradientValue: string ) => void;
 }
 
-const LabeledColorIndicator = ({
+const LabeledColorIndicator = ( {
 	colorValue,
 	label,
 }: {
 	colorValue: string;
 	label: string;
-}) => (
+} ) => (
 	<HStack justify="flex-start">
 		<ColorIndicator
 			className="block-editor-panel-color-gradient-settings__color-indicator"
-			colorValue={colorValue}
+			colorValue={ colorValue }
 		/>
 		<FlexItem
 			className="block-editor-panel-color-gradient-settings__color-name"
-			title={label}
+			title={ label }
 		>
-			{label}
+			{ label }
 		</FlexItem>
 	</HStack>
 );
@@ -61,26 +61,26 @@ const renderToggle =
 	// @ts-expect-error
 
 
-		(settings) =>
+		( settings ) =>
 		// @ts-expect-error
-		({ onToggle, isOpen }) => {
+		( { onToggle, isOpen } ) => {
 			const { colorValue, label } = settings;
 
 			const toggleProps = {
 				onClick: onToggle,
 				className: classnames(
 					'block-editor-panel-color-gradient-settings__dropdown',
-					'border border-gray-300 border-solid',
+					'border border-solid border-gray-300',
 					{ 'is-open': isOpen }
 				),
 				'aria-expanded': isOpen,
 			};
 
 			return (
-				<Button {...toggleProps}>
+				<Button { ...toggleProps }>
 					<LabeledColorIndicator
-						colorValue={colorValue}
-						label={label}
+						colorValue={ colorValue }
+						label={ label }
 					/>
 				</Button>
 			);
@@ -111,7 +111,7 @@ export function ColorGradientSettingsDropdown(
 		gradientValue,
 		label,
 		onColorChange: onChange,
-		onGradientChange: !disableGradient ? setGradient : undefined,
+		onGradientChange: ! disableGradient ? setGradient : undefined,
 		showTitle: false,
 		...colorGradientSettings,
 	};
@@ -123,26 +123,26 @@ export function ColorGradientSettingsDropdown(
 
 	return (
 		<>
-			{colorGradientSettings.hasColorsOrGradients && (
+			{ colorGradientSettings.hasColorsOrGradients && (
 				<BaseControl
-					id={'color-gradient-settings-dropdown'}
-					label={controlLabel}
+					id={ 'color-gradient-settings-dropdown' }
+					label={ controlLabel }
 				>
 					<Dropdown
 						// @ts-expect-error
-						popoverProps={popoverProps}
+						popoverProps={ popoverProps }
 						className="block-editor-tools-panel-color-gradient-settings__dropdown"
-						renderToggle={renderToggle(toggleSettings)}
-						renderContent={() => (
+						renderToggle={ renderToggle( toggleSettings ) }
+						renderContent={ () => (
 							<DropdownContentWrapper paddingSize="none">
 								<div className="block-editor-panel-color-gradient-settings__dropdown-content">
-									<ColorGradientControl {...controlProps} />
+									<ColorGradientControl { ...controlProps } />
 								</div>
 							</DropdownContentWrapper>
-						)}
+						) }
 					/>
 				</BaseControl>
-			)}
+			) }
 		</>
 	);
 }

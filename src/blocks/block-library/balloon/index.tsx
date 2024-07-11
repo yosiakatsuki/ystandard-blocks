@@ -30,13 +30,13 @@ export function registerColumnBlock() {
 	);
 
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
 				<FiMessageSquare
-					stroke={COLORS.iconForeground}
-					style={{ fill: 'none' }}
+					stroke={ COLORS.iconForeground }
+					style={ { fill: 'none' } }
 				/>
 			),
 			category: CATEGORY.common,
@@ -45,7 +45,7 @@ export function registerColumnBlock() {
 			save,
 			example: {},
 		},
-	});
+	} );
 }
 
 registerColumnBlock();

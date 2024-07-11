@@ -12,25 +12,25 @@ import { ComponentContainer } from '@aktk/blocks/components/component-container'
 import { IconSize } from './size';
 
 //@ts-expect-error
-export function IconRight(props) {
+export function IconRight( props ) {
 	const { attributes, setAttributes } = props;
 	const { iconRight, iconSizeRight } = attributes;
 
 	return (
-		<BaseControl id={'right-icon'}>
+		<BaseControl id={ 'right-icon' }>
 			<ComponentContainer>
 				<IconSelect
-					label={__('右アイコン', 'ystandard-blocks')}
-					icon={iconRight}
-					onChange={(value: string | undefined) => {
-						setAttributes({ iconRight: value });
-					}}
+					label={ __( '右アイコン', 'ystandard-blocks' ) }
+					icon={ iconRight }
+					onChange={ ( value: string | undefined ) => {
+						setAttributes( { iconRight: value } );
+					} }
 				/>
 				<IconSize
-					size={iconSizeRight}
-					onChange={(value: string | undefined) => {
-						setAttributes({ iconSizeRight: value });
-					}}
+					size={ iconSizeRight }
+					onChange={ ( value: string | undefined ) => {
+						setAttributes( { iconSizeRight: value } );
+					} }
 				/>
 			</ComponentContainer>
 		</BaseControl>

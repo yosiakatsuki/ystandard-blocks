@@ -11,7 +11,7 @@ import {
 } from '@wordpress/components';
 
 // @ts-ignore
-export function BlockType(props) {
+export function BlockType( props ) {
 	const { setAttributes, attributes } = props;
 
 	const {
@@ -27,70 +27,70 @@ export function BlockType(props) {
 
 	return (
 		<>
-			<PanelBody title={__('ブロックタイプ設定', 'ystandard-blocks')}>
-				<BaseControl id={'desktop'}>
+			<PanelBody title={ __( 'ブロックタイプ設定', 'ystandard-blocks' ) }>
+				<BaseControl id={ 'desktop' }>
 					<ToggleControl
-						label={__('デスクトップ', 'ystandard-blocks')}
-						onChange={() => {
-							setAttributes({
-								buttonBlockDesktop: !buttonBlockDesktop,
-							});
-						}}
-						checked={buttonBlockDesktop}
+						label={ __( 'デスクトップ', 'ystandard-blocks' ) }
+						onChange={ () => {
+							setAttributes( {
+								buttonBlockDesktop: ! buttonBlockDesktop,
+							} );
+						} }
+						checked={ buttonBlockDesktop }
 					/>
 					<ToggleControl
-						label={__('タブレット', 'ystandard-blocks')}
-						onChange={() => {
-							setAttributes({
-								buttonBlockTablet: !buttonBlockTablet,
-							});
-						}}
-						checked={buttonBlockTablet}
+						label={ __( 'タブレット', 'ystandard-blocks' ) }
+						onChange={ () => {
+							setAttributes( {
+								buttonBlockTablet: ! buttonBlockTablet,
+							} );
+						} }
+						checked={ buttonBlockTablet }
 					/>
 					<ToggleControl
-						label={__('モバイル', 'ystandard-blocks')}
-						onChange={() => {
-							setAttributes({
-								buttonBlockMobile: !buttonBlockMobile,
-							});
-						}}
-						checked={buttonBlockMobile}
+						label={ __( 'モバイル', 'ystandard-blocks' ) }
+						onChange={ () => {
+							setAttributes( {
+								buttonBlockMobile: ! buttonBlockMobile,
+							} );
+						} }
+						checked={ buttonBlockMobile }
 					/>
 				</BaseControl>
-				{(buttonBlockDesktop ||
+				{ ( buttonBlockDesktop ||
 					buttonBlockTablet ||
-					buttonBlockMobile) && (
-					<BaseControl id={'button-size'}>
+					buttonBlockMobile ) && (
+					<BaseControl id={ 'button-size' }>
 						<RangeControl
-							value={maxWidthValue}
-							label={__('ボタン最大幅', 'ystandard-blocks')}
-							min={0}
-							max={maxWidthUnitMaximum}
-							initialPosition={100}
+							value={ maxWidthValue }
+							label={ __( 'ボタン最大幅', 'ystandard-blocks' ) }
+							min={ 0 }
+							max={ maxWidthUnitMaximum }
+							initialPosition={ 100 }
 							allowReset
-							onChange={(value) => {
-								setAttributes({ maxWidth: value });
-							}}
+							onChange={ ( value ) => {
+								setAttributes( { maxWidth: value } );
+							} }
 						/>
 						<RadioControl
-							label={__('最大幅単位', 'ystandard-blocks')}
-							selected={maxUnit}
-							options={[
+							label={ __( '最大幅単位', 'ystandard-blocks' ) }
+							selected={ maxUnit }
+							options={ [
 								{
-									label: __('%', 'ystandard-blocks'),
+									label: __( '%', 'ystandard-blocks' ),
 									value: '%',
 								},
 								{
-									label: __('px', 'ystandard-blocks'),
+									label: __( 'px', 'ystandard-blocks' ),
 									value: 'px',
 								},
-							]}
-							onChange={(option) => {
-								setAttributes({ maxUnit: option });
-							}}
+							] }
+							onChange={ ( option ) => {
+								setAttributes( { maxUnit: option } );
+							} }
 						/>
 					</BaseControl>
-				)}
+				) }
 			</PanelBody>
 		</>
 	);

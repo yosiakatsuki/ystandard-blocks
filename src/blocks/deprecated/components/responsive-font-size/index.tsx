@@ -24,22 +24,22 @@ interface ResponsiveFontSizeControlProps {
 	id?: string;
 	label: string;
 	useResponsive: boolean;
-	changeResponsiveMode: (value: boolean) => void;
+	changeResponsiveMode: ( value: boolean ) => void;
 	fontSize: object;
-	onChangeFontSizePicker: (value: object) => void;
+	onChangeFontSizePicker: ( value: object ) => void;
 	unitOptions: object[];
 	desktopValue: number;
-	desktopOnChange: (value: number) => void;
+	desktopOnChange: ( value: number ) => void;
 	desktopUnit: string;
-	desktopUnitOnChange: (value: string) => void;
+	desktopUnitOnChange: ( value: string ) => void;
 	tabletValue: number;
-	tabletOnChange: (value: number) => void;
+	tabletOnChange: ( value: number ) => void;
 	tabletUnit: string;
-	tabletUnitOnChange: (value: string) => void;
+	tabletUnitOnChange: ( value: string ) => void;
 	mobileValue: number;
-	mobileOnChange: (value: number) => void;
+	mobileOnChange: ( value: number ) => void;
 	mobileUnit: string;
-	mobileUnitOnChange: (value: string) => void;
+	mobileUnitOnChange: ( value: string ) => void;
 }
 
 /**
@@ -77,124 +77,124 @@ export default function ResponsiveDeprecatedFontSizeControl(
 	const step = 1;
 
 	const toggleUseResponsive = () => {
-		changeResponsiveMode(!useResponsive);
+		changeResponsiveMode( ! useResponsive );
 	};
 
 	return (
-		<BaseControl id={id}>
+		<BaseControl id={ id }>
 			<div className="ystdb-responsive-range">
 				<div className="ystdb-responsive-range__title">
 					<span className="components-base-control__label">
-						{label}
+						{ label }
 					</span>
 					<div className="ystdb-responsive-range__toggle">
 						<Button
-							className={classnames({
+							className={ classnames( {
 								'is-use-responsive': useResponsive,
-							})}
-							onClick={toggleUseResponsive}
+							} ) }
+							onClick={ toggleUseResponsive }
 						>
-							<FiSettings size={14} />
+							<FiSettings size={ 14 } />
 						</Button>
 					</div>
 				</div>
 
 				<div className="ystdb-responsive-range__content">
-					{!useResponsive ? (
+					{ ! useResponsive ? (
 						<>
 							<FontSizePicker
-								label={label}
+								label={ label }
 								// @ts-ignore
-								value={fontSize.size}
+								value={ fontSize.size }
 								// @ts-ignore
-								onChange={(font) => {
-									onChangeFontSizePicker(font);
-								}}
+								onChange={ ( font ) => {
+									onChangeFontSizePicker( font );
+								} }
 								__nextHasNoMarginBottom
 							/>
 						</>
 					) : (
 						<>
 							<div className="ystdb-inspector-controls__columns is-center">
-								<Icon icon={'desktop'} />
+								<Icon icon={ 'desktop' } />
 								<NumberControl
-									value={desktopValue}
-									onChange={(value) => {
+									value={ desktopValue }
+									onChange={ ( value ) => {
 										// @ts-ignore
-										desktopOnChange(value);
-									}}
-									min={min}
-									max={max}
-									step={!step ? 1 : step}
-									style={{ flexGrow: 1 }}
+										desktopOnChange( value );
+									} }
+									min={ min }
+									max={ max }
+									step={ ! step ? 1 : step }
+									style={ { flexGrow: 1 } }
 								/>
-								{!!unitOptions ? (
+								{ !! unitOptions ? (
 									<SelectControl
-										value={desktopUnit}
+										value={ desktopUnit }
 										// @ts-ignore
-										options={unitOptions}
-										onChange={(value) => {
-											desktopUnitOnChange(value);
-										}}
+										options={ unitOptions }
+										onChange={ ( value ) => {
+											desktopUnitOnChange( value );
+										} }
 									/>
 								) : (
-									<span>{desktopUnit}</span>
-								)}
+									<span>{ desktopUnit }</span>
+								) }
 							</div>
 							<div className="ystdb-inspector-controls__columns is-center">
-								<Icon icon={'tablet'} />
+								<Icon icon={ 'tablet' } />
 								<NumberControl
-									value={tabletValue}
-									onChange={(value) => {
+									value={ tabletValue }
+									onChange={ ( value ) => {
 										// @ts-ignore
-										tabletOnChange(value);
-									}}
-									min={min}
-									max={max}
-									step={!step ? 1 : step}
-									style={{ flexGrow: 1 }}
+										tabletOnChange( value );
+									} }
+									min={ min }
+									max={ max }
+									step={ ! step ? 1 : step }
+									style={ { flexGrow: 1 } }
 								/>
-								{!!unitOptions ? (
+								{ !! unitOptions ? (
 									<SelectControl
-										value={tabletUnit}
+										value={ tabletUnit }
 										// @ts-ignore
-										options={unitOptions}
-										onChange={(value) => {
-											tabletUnitOnChange(value);
-										}}
+										options={ unitOptions }
+										onChange={ ( value ) => {
+											tabletUnitOnChange( value );
+										} }
 									/>
 								) : (
-									<span>{tabletUnit}</span>
-								)}
+									<span>{ tabletUnit }</span>
+								) }
 							</div>
 							<div className="ystdb-inspector-controls__columns is-center">
-								<Icon icon={'smartphone'} />
+								<Icon icon={ 'smartphone' } />
 								<NumberControl
-									value={mobileValue}
-									onChange={(value) => {
+									value={ mobileValue }
+									onChange={ ( value ) => {
 										// @ts-ignore
-										mobileOnChange(value);
-									}}
-									min={min}
-									max={max}
-									step={!step ? 1 : step}
-									style={{ flexGrow: 1 }}
+										mobileOnChange( value );
+									} }
+									min={ min }
+									max={ max }
+									step={ ! step ? 1 : step }
+									style={ { flexGrow: 1 } }
 								/>
-								{!!unitOptions ? (
+								{ !! unitOptions ? (
 									<SelectControl
-										value={mobileUnit}
+										value={ mobileUnit }
 										// @ts-ignore
-										options={unitOptions}
-										onChange={(value) => {
-											mobileUnitOnChange(value);
-										}}
+										options={ unitOptions }
+										onChange={ ( value ) => {
+											mobileUnitOnChange( value );
+										} }
 									/>
 								) : (
-									<span>{mobileUnit}</span>
-								)}
+									<span>{ mobileUnit }</span>
+								) }
 							</div>
 						</>
-					)}
+					) }
 				</div>
 			</div>
 		</BaseControl>

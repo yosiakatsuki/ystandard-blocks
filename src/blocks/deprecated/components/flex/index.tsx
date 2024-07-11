@@ -4,7 +4,7 @@
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const Flex = ({ children, ...props }) => {
+export const Flex = ( { children, ...props } ) => {
 	const {
 		justifyBetween,
 		justifyCenter,
@@ -20,34 +20,34 @@ export const Flex = ({ children, ...props }) => {
 	let justifyContent;
 	let alignItems;
 	let _gap;
-	if (justifyBetween) {
+	if ( justifyBetween ) {
 		justifyContent = 'space-between';
 	}
-	if (justifyCenter) {
+	if ( justifyCenter ) {
 		justifyContent = 'center';
 	}
-	if (justifyRight) {
+	if ( justifyRight ) {
 		justifyContent = 'flex-end';
 	}
-	if (justifyLeft) {
+	if ( justifyLeft ) {
 		justifyContent = 'flex-start';
 	}
-	if (alignTop) {
+	if ( alignTop ) {
 		alignItems = 'flex-start';
 	}
-	if (alignCenter) {
+	if ( alignCenter ) {
 		alignItems = 'center';
 	}
-	if (alignBottom) {
+	if ( alignBottom ) {
 		alignItems = 'flex-end';
 	}
-	if (isGapSmall) {
+	if ( isGapSmall ) {
 		_gap = '0.5em';
 	}
-	if (isGapLarge) {
+	if ( isGapLarge ) {
 		_gap = '1em';
 	}
-	if (gap) {
+	if ( gap ) {
 		_gap = gap;
 	}
 	const blockProps = {
@@ -59,7 +59,7 @@ export const Flex = ({ children, ...props }) => {
 			...props?.style,
 		},
 	};
-	return <div {...blockProps}>{children}</div>;
+	return <div { ...blockProps }>{ children }</div>;
 };
 
 /**
@@ -68,7 +68,7 @@ export const Flex = ({ children, ...props }) => {
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-export const FlexItem = ({ children, ...props }) => {
+export const FlexItem = ( { children, ...props } ) => {
 	const { flexGrow, flexShrink, flexBasis } = props;
 	const blockProps = {
 		style: {
@@ -78,5 +78,5 @@ export const FlexItem = ({ children, ...props }) => {
 			...props?.style,
 		},
 	};
-	return <div {...blockProps}>{children}</div>;
+	return <div { ...blockProps }>{ children }</div>;
 };

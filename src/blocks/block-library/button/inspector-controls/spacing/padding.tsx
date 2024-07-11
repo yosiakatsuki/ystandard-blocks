@@ -20,40 +20,42 @@ import {
 import type { Attributes } from '../../types';
 
 // @ts-expect-error
-export function Padding(props) {
+export function Padding( props ) {
 	const { attributes, setAttributes } = props;
 	const { padding, responsivePadding } = attributes as unknown as Attributes;
 
-	const handleOnChange = (value: SpacingValue | undefined) => {
-		setAttributes({
+	const handleOnChange = ( value: SpacingValue | undefined ) => {
+		setAttributes( {
 			padding: {
 				...padding,
 				...value,
 			},
 			responsivePadding: undefined,
-		});
+		} );
 	};
 
-	const handleOnResponsiveChange = (value: ResponsiveSpacing | undefined) => {
-		setAttributes({
+	const handleOnResponsiveChange = (
+		value: ResponsiveSpacing | undefined
+	) => {
+		setAttributes( {
 			responsivePadding: {
 				...responsivePadding,
 				...value,
 			},
 			padding: undefined,
-		});
+		} );
 	};
 
 	return (
 		<>
 			<ResponsivePaddingSelect
-				label={__('パディング', 'ystandard-blocks')}
-				onChange={handleOnChange}
-				onResponsiveChange={handleOnResponsiveChange}
-				value={padding as unknown as SpacingValue}
-				responsiveValue={responsivePadding}
-				splitOnAxis={true}
-				sides={['horizontal', 'vertical']}
+				label={ __( 'パディング', 'ystandard-blocks' ) }
+				onChange={ handleOnChange }
+				onResponsiveChange={ handleOnResponsiveChange }
+				value={ padding as unknown as SpacingValue }
+				responsiveValue={ responsivePadding }
+				splitOnAxis={ true }
+				sides={ [ 'horizontal', 'vertical' ] }
 			/>
 		</>
 	);

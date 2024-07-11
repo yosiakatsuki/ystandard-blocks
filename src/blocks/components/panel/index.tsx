@@ -6,36 +6,40 @@ import { useEffect, useState } from '@wordpress/element';
 
 interface PanelProps {
 	title: string;
-	initialOpen?: (() => boolean) | boolean;
+	initialOpen?: ( () => boolean ) | boolean;
 	children: React.ReactNode;
 }
 
-export default function Panel(props: PanelProps) {
+export default function Panel( props: PanelProps ) {
 	const { title, initialOpen, children } = props;
-	const [panelOpen, setPanelOpen] = useState(false);
+	const [ panelOpen, setPanelOpen ] = useState( false );
 
 	const setInitialOpen = () => {
-		if ('function' === typeof initialOpen) {
-			setPanelOpen(initialOpen());
+		if ( 'function' === typeof initialOpen ) {
+			setPanelOpen( initialOpen() );
 		}
-		setPanelOpen(initialOpen ?? false);
+		setPanelOpen( initialOpen ?? false );
 	};
 
-	useEffect(() => {
+	useEffect( () => {
 		setInitialOpen();
-	}, []);
+	}, [] );
 
-	useEffect(() => {
+	useEffect( () => {
 		setInitialOpen();
-	}, [initialOpen]);
+	}, [ initialOpen ] );
 
 	const togglePanel = () => {
-		setPanelOpen(!panelOpen);
+		setPanelOpen( ! panelOpen );
 	};
 
 	return (
-		<PanelBody title={title} initialOpen={panelOpen} onToggle={togglePanel}>
-			{children}
+		<PanelBody
+			title={ title }
+			initialOpen={ panelOpen }
+			onToggle={ togglePanel }
+		>
+			{ children }
 		</PanelBody>
 	);
 }

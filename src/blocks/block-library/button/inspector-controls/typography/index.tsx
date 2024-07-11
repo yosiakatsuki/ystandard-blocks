@@ -10,12 +10,12 @@ import { TextColor } from './text-color';
 import { FontSize } from './font-size';
 
 // @ts-expect-error
-export function Typography(props) {
+export function Typography( props ) {
 	return (
 		<>
-			<Panel title={__('テキスト', 'ystandard-blocks')}>
-				<TextColor {...props} />
-				<FontSize {...props} />
+			<Panel title={ __( 'テキスト', 'ystandard-blocks' ) }>
+				<TextColor { ...props } />
+				<FontSize { ...props } />
 			</Panel>
 		</>
 	);

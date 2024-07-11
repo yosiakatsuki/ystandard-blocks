@@ -6,37 +6,37 @@ interface IconProps {
 	size?: string;
 }
 
-export function Icon(props: IconProps) {
+export function Icon( props: IconProps ) {
 	const { hasIcon = false, icon, size } = props;
 	return (
 		<>
 			<SvgIcon
-				name={icon}
-				style={{
+				name={ icon }
+				style={ {
 					fontSize: size,
-				}}
-				fallback={hasIcon ? <FallBackIcon /> : undefined}
+				} }
+				fallback={ hasIcon ? <FallBackIcon /> : undefined }
 			/>
 		</>
 	);
 }
 
 Icon.Content = IconContent;
-function IconContent(props: IconProps) {
+function IconContent( props: IconProps ) {
 	const { hasIcon = false, icon, size } = props;
 	return (
 		<>
 			<SvgIcon.Content
-				name={icon}
-				style={{
+				name={ icon }
+				style={ {
 					fontSize: size,
-				}}
-				fallback={hasIcon ? <FallBackIcon /> : undefined}
+				} }
+				fallback={ hasIcon ? <FallBackIcon /> : undefined }
 			/>
 		</>
 	);
 }
 
 function FallBackIcon() {
-	return <span aria-hidden={true} />;
+	return <span aria-hidden={ true } />;
 }

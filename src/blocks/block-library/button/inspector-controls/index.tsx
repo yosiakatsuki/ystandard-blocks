@@ -16,18 +16,18 @@ import { SizePanel } from './size';
 import { SpacingPanel } from './spacing';
 
 // @ts-ignore
-export function InspectorControls(props) {
+export function InspectorControls( props ) {
 	return (
 		<>
 			<WPInspectorControls>
-				<ButtonTypePanel {...props} />
-				<Link {...props} />
-				<Typography {...props} />
-				<Background {...props} />
-				<Icon {...props} />
-				<BorderPanel {...props} />
-				<SpacingPanel {...props} />
-				<SizePanel {...props} />
+				<ButtonTypePanel { ...props } />
+				<Link { ...props } />
+				<Typography { ...props } />
+				<Background { ...props } />
+				<Icon { ...props } />
+				<BorderPanel { ...props } />
+				<SpacingPanel { ...props } />
+				<SizePanel { ...props } />
 			</WPInspectorControls>
 		</>
 	);

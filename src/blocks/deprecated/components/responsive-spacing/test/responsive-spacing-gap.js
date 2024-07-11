@@ -4,8 +4,8 @@ import { getResponsiveGapStyle } from '../util';
 /**
  * test : gap style
  */
-describe('gap style', () => {
-	test('getResponsiveGapStyle only desktop', () => {
+describe( 'gap style', () => {
+	test( 'getResponsiveGapStyle only desktop', () => {
 		const attr = {
 			desktop: {
 				top: '10px',
@@ -14,9 +14,9 @@ describe('gap style', () => {
 				left: '10px',
 			},
 		};
-		expect(getResponsiveGapStyle(attr)).toEqual({ gap: '10px' });
-	});
-	test('getResponsiveGapStyle responsive', () => {
+		expect( getResponsiveGapStyle( attr ) ).toEqual( { gap: '10px' } );
+	} );
+	test( 'getResponsiveGapStyle responsive', () => {
 		const attr = {
 			desktop: {
 				top: '10px',
@@ -37,14 +37,14 @@ describe('gap style', () => {
 				left: '30px',
 			},
 		};
-		expect(getResponsiveGapStyle(attr)).toEqual({
+		expect( getResponsiveGapStyle( attr ) ).toEqual( {
 			'--ystdb-gap-desktop': '10px',
 			'--ystdb-gap-tablet': '20px',
 			'--ystdb-gap-mobile': '30px',
-		});
-	});
+		} );
+	} );
 
-	test('getResponsiveGapStyle only mobile', () => {
+	test( 'getResponsiveGapStyle only mobile', () => {
 		const attr = {
 			mobile: {
 				top: '30px',
@@ -53,12 +53,12 @@ describe('gap style', () => {
 				left: '30px',
 			},
 		};
-		expect(getResponsiveGapStyle(attr)).toEqual({
+		expect( getResponsiveGapStyle( attr ) ).toEqual( {
 			'--ystdb-gap-mobile': '30px',
-		});
-	});
+		} );
+	} );
 
-	test('getResponsiveGapStyle row - column', () => {
+	test( 'getResponsiveGapStyle row - column', () => {
 		const attr = {
 			desktop: {
 				top: '30px',
@@ -67,12 +67,12 @@ describe('gap style', () => {
 				left: '10px',
 			},
 		};
-		expect(getResponsiveGapStyle(attr)).toEqual({
+		expect( getResponsiveGapStyle( attr ) ).toEqual( {
 			rowGap: '30px',
 			columnGap: '10px',
-		});
-	});
-	test('getResponsiveGapStyle row - column responsive', () => {
+		} );
+	} );
+	test( 'getResponsiveGapStyle row - column responsive', () => {
 		const attr = {
 			desktop: {
 				top: '30px',
@@ -87,11 +87,11 @@ describe('gap style', () => {
 				left: '10px',
 			},
 		};
-		expect(getResponsiveGapStyle(attr)).toEqual({
+		expect( getResponsiveGapStyle( attr ) ).toEqual( {
 			'--ystdb-row-gap-desktop': '30px',
 			'--ystdb-column-gap-desktop': '10px',
 			'--ystdb-row-gap-tablet': '20px',
 			'--ystdb-column-gap-tablet': '15px',
-		});
-	});
-});
+		} );
+	} );
+} );

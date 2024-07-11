@@ -10,21 +10,21 @@ import { useState } from '@wordpress/element';
 import ResponsivePaddingControl from '@aktk/blocks/deprecated/components/responsive-padding-control';
 
 // @ts-ignore
-const ColumnPadding = (props) => {
+const ColumnPadding = ( props ) => {
 	const { updateColumnAttributes } = props;
-	const [padding, setPadding] = useState();
+	const [ padding, setPadding ] = useState();
 	// @ts-ignore
-	const handlePaddingOnChange = (value) => {
-		updateColumnAttributes({
+	const handlePaddingOnChange = ( value ) => {
+		updateColumnAttributes( {
 			padding: value,
-		});
-		setPadding(value);
+		} );
+		setPadding( value );
 	};
 	return (
 		<ResponsivePaddingControl
-			label={__('内側余白(padding)', 'ystandard-blocks')}
-			values={padding}
-			onChange={handlePaddingOnChange}
+			label={ __( '内側余白(padding)', 'ystandard-blocks' ) }
+			values={ padding }
+			onChange={ handlePaddingOnChange }
 		/>
 	);
 };

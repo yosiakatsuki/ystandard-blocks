@@ -25,13 +25,13 @@ export function registerCustomButtonBlock() {
 		metadata.attributes
 	);
 	// @ts-ignore
-	registerBlockType(metadata.name, {
+	registerBlockType( metadata.name, {
 		...metadata,
 		...{
 			icon: (
 				<Link2
-					stroke={COLOR.iconBetaForeground}
-					style={{ fill: 'none' }}
+					stroke={ COLOR.iconBetaForeground }
+					style={ { fill: 'none' } }
 				/>
 			),
 			category: CATEGORY.beta,
@@ -41,7 +41,7 @@ export function registerCustomButtonBlock() {
 			example: {},
 			transforms,
 		},
-	});
+	} );
 }
 
 registerCustomButtonBlock();

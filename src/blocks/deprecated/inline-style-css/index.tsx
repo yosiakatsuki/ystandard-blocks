@@ -7,20 +7,20 @@ import {
 } from './util';
 import type { InlineStyleCssProps } from './types';
 
-export function InlineStyleCss(props: InlineStyleCssProps) {
+export function InlineStyleCss( props: InlineStyleCssProps ) {
 	const { styles = {}, clientId, selector = '' } = props;
-	const { desktop, tablet, mobile } = parseInlineStyleProps(styles);
+	const { desktop, tablet, mobile } = parseInlineStyleProps( styles );
 	let style = '';
 
-	if (desktop) {
-		style += addMediaQueryDesktop(getCSS(desktop, clientId, selector));
+	if ( desktop ) {
+		style += addMediaQueryDesktop( getCSS( desktop, clientId, selector ) );
 	}
-	if (tablet) {
-		style += addMediaQueryTablet(getCSS(tablet, clientId, selector));
+	if ( tablet ) {
+		style += addMediaQueryTablet( getCSS( tablet, clientId, selector ) );
 	}
-	if (mobile) {
-		style += addMediaQueryMobile(getCSS(mobile, clientId, selector));
+	if ( mobile ) {
+		style += addMediaQueryMobile( getCSS( mobile, clientId, selector ) );
 	}
 
-	return <>{style && <style>{style}</style>}</>;
+	return <>{ style && <style>{ style }</style> }</>;
 }

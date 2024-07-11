@@ -5,7 +5,7 @@ type BlockStyleClassesType = {
 	gradients?: string;
 };
 
-export function getBlockStyleClasses(attributes: BlockStyleClassesType) {
+export function getBlockStyleClasses( attributes: BlockStyleClassesType ) {
 	const { textColor, inlineTextColor, backgroundColor, gradients } =
 		attributes;
 

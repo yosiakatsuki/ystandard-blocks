@@ -3,7 +3,7 @@ import classnames from 'classnames';
  * WordPress.
  */
 import { getColorClassName, useBlockProps } from '@wordpress/block-editor';
-export default function Save({ attributes }) {
+export default function Save( { attributes } ) {
 	const {
 		className,
 		textColor,
@@ -31,11 +31,11 @@ export default function Save({ attributes }) {
 		verticalAlign,
 	} = attributes;
 
-	const blockProps = useBlockProps.save({
-		className: classnames('ystdb-balloon', className),
-	});
+	const blockProps = useBlockProps.save( {
+		className: classnames( 'ystdb-balloon', className ),
+	} );
 	return (
-		<div {...blockProps}>
+		<div { ...blockProps }>
 			<span>バルーン作成中</span>
 		</div>
 	);

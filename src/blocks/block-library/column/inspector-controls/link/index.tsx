@@ -15,73 +15,79 @@ import { LinkControl } from '@aktk/block-components/components/link-control';
 import Notice, { noticeType } from '@aktk/blocks/deprecated/components/notice';
 
 // @ts-ignore
-const PanelLink = ({ attributes, setAttributes }) => {
+const PanelLink = ( { attributes, setAttributes } ) => {
 	const { linkTarget, rel, url, screenReaderText } = attributes;
 
 	// @ts-ignore
-	const handleOnLinkChange = (newValue) => {
-		setAttributes(newValue);
+	const handleOnLinkChange = ( newValue ) => {
+		setAttributes( newValue );
 	};
 
 	const onSetLinkRel = useCallback(
 		// @ts-ignore
-		(value) => {
-			setAttributes({ rel: value });
+		( value ) => {
+			setAttributes( { rel: value } );
 		},
-		[setAttributes]
+		[ setAttributes ]
 	);
 	const onSetScreenReaderText = useCallback(
 		// @ts-ignore
-		(value) => {
-			setAttributes({ screenReaderText: value });
+		( value ) => {
+			setAttributes( { screenReaderText: value } );
 		},
-		[setAttributes]
+		[ setAttributes ]
 	);
 
-	const linkControlValue = useMemo(() => {
+	const linkControlValue = useMemo( () => {
 		return {
 			url,
 			linkTarget,
 			rel,
 		};
-	}, [url, linkTarget, rel]);
+	}, [ url, linkTarget, rel ] );
 
 	return (
 		<PanelBody
-			title={__('リンク設定', 'ystandard-blocks')}
-			initialOpen={false}
+			title={ __( 'リンク設定', 'ystandard-blocks' ) }
+			initialOpen={ false }
 		>
 			<BaseControl>
-				<Notice type={noticeType.warning} style={{ fontSize: '12px' }}>
+				<Notice
+					type={ noticeType.warning }
+					style={ { fontSize: '12px' } }
+				>
 					<div>
-						{__(
+						{ __(
 							'リンクの設定をした場合、公開ページでカラム内のテキストを選択できない状態になります。',
 							'ystandard-blocks'
-						)}
+						) }
 					</div>
 				</Notice>
 			</BaseControl>
 			<BaseControl>
 				<LinkControl
-					value={linkControlValue}
-					onChange={handleOnLinkChange}
-					isInspectorControls={true}
+					value={ linkControlValue }
+					onChange={ handleOnLinkChange }
+					isInspectorControls={ true }
 				/>
 			</BaseControl>
 			<BaseControl>
 				<TextControl
-					className={'ystdb-column-editor__link-rel'}
-					label={__('リンク rel 属性', 'ystandard-blocks')}
-					value={rel || ''}
-					onChange={onSetLinkRel}
+					className={ 'ystdb-column-editor__link-rel' }
+					label={ __( 'リンク rel 属性', 'ystandard-blocks' ) }
+					value={ rel || '' }
+					onChange={ onSetLinkRel }
 				/>
 			</BaseControl>
 			<BaseControl>
 				<TextControl
-					className={'ystdb-column-editor__link-rel'}
-					label={__('スクリーンリーダーテキスト', 'ystandard-blocks')}
-					value={screenReaderText || ''}
-					onChange={onSetScreenReaderText}
+					className={ 'ystdb-column-editor__link-rel' }
+					label={ __(
+						'スクリーンリーダーテキスト',
+						'ystandard-blocks'
+					) }
+					value={ screenReaderText || '' }
+					onChange={ onSetScreenReaderText }
 				/>
 			</BaseControl>
 		</PanelBody>

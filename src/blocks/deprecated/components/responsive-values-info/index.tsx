@@ -9,24 +9,24 @@ import './_edit.scss';
  * @deprecated 置き換え予定
  */
 // @ts-ignore
-const ResponsiveValuesInfo = ({ desktop, tablet, mobile, ...props }) => {
-	if (!tablet && !mobile) {
+const ResponsiveValuesInfo = ( { desktop, tablet, mobile, ...props } ) => {
+	if ( ! tablet && ! mobile ) {
 		return null;
 	}
 
 	return (
-		<div className={'ystd-responsive-values-info'} {...props}>
+		<div className={ 'ystd-responsive-values-info' } { ...props }>
 			<div>
 				<Monitor />
-				{desktop || '-'}
+				{ desktop || '-' }
 			</div>
 			<div>
 				<Tablet />
-				{tablet || '-'}
+				{ tablet || '-' }
 			</div>
 			<div>
 				<Smartphone />
-				{mobile || '-'}
+				{ mobile || '-' }
 			</div>
 		</div>
 	);

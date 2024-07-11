@@ -11,22 +11,22 @@ export interface TabPanelProps {
 	className?: string;
 	tabs: Tab[];
 	initialTabName?: string;
-	children: (tab: Tab) => React.ReactNode;
+	children: ( tab: Tab ) => React.ReactNode;
 }
 
 import './tab-panel.scss';
 
-export function TabPanel(props: TabPanelProps) {
+export function TabPanel( props: TabPanelProps ) {
 	const { tabs, initialTabName, children, className } = props;
-	const tabPanelClassess = classnames('ystdb-tab-panel', className);
+	const tabPanelClassess = classnames( 'ystdb-tab-panel', className );
 
 	return (
 		<WPTabPanel
-			className={tabPanelClassess}
-			tabs={tabs}
-			initialTabName={initialTabName}
+			className={ tabPanelClassess }
+			tabs={ tabs }
+			initialTabName={ initialTabName }
 		>
-			{(tab) => children(tab as unknown as Tab)}
+			{ ( tab ) => children( tab as unknown as Tab ) }
 		</WPTabPanel>
 	);
 }

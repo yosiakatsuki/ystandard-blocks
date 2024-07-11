@@ -12,45 +12,51 @@ import Notice from '@aktk/blocks/components/notice';
 import Panel from '@aktk/blocks/components/panel';
 import { getBlockEditorConfig } from '@aktk/blocks/utils';
 
-export default function PanelAmp({
+export default function PanelAmp( {
 	attributes,
 	setAttributes,
-}: BlockEditProps<BlockAttributes>) {
+}: BlockEditProps< BlockAttributes > ) {
 	const { hideAMP, onlyAMP } = attributes;
-	const useAmp = getBlockEditorConfig('useAmp');
+	const useAmp = getBlockEditorConfig( 'useAmp' );
 	return (
 		<>
-			{!!useAmp && (
+			{ !! useAmp && (
 				<Panel
-					title={__('AMP 表示・非表示 設定', 'ystandard-blocks')}
-					initialOpen={hideAMP || onlyAMP}
+					title={ __( 'AMP 表示・非表示 設定', 'ystandard-blocks' ) }
+					initialOpen={ hideAMP || onlyAMP }
 				>
-					<BaseControl id={'amp-help'}>
-						<Notice type={'help'}>
-							{__(
+					<BaseControl id={ 'amp-help' }>
+						<Notice type={ 'help' }>
+							{ __(
 								'AMPページでの表示・非表示設定',
 								'ystandard-blocks'
-							)}
+							) }
 						</Notice>
 					</BaseControl>
-					<BaseControl id={'amp-enable'}>
+					<BaseControl id={ 'amp-enable' }>
 						<ToggleControl
-							label={__('AMPページで非表示', 'ystandard-blocks')}
-							checked={hideAMP}
-							onChange={(value) => {
-								setAttributes({ hideAMP: value });
-							}}
+							label={ __(
+								'AMPページで非表示',
+								'ystandard-blocks'
+							) }
+							checked={ hideAMP }
+							onChange={ ( value ) => {
+								setAttributes( { hideAMP: value } );
+							} }
 						/>
 						<ToggleControl
-							label={__('AMPページのみ表示', 'ystandard-blocks')}
-							checked={onlyAMP}
-							onChange={(value) => {
-								setAttributes({ onlyAMP: value });
-							}}
+							label={ __(
+								'AMPページのみ表示',
+								'ystandard-blocks'
+							) }
+							checked={ onlyAMP }
+							onChange={ ( value ) => {
+								setAttributes( { onlyAMP: value } );
+							} }
 						/>
 					</BaseControl>
 				</Panel>
-			)}
+			) }
 		</>
 	);
 }

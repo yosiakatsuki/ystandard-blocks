@@ -18,101 +18,101 @@ import CustomSelectControl, {
 export interface TaxonomySelectProps {
 	label: string;
 	value: string;
-	onChange: (value: string) => void;
+	onChange: ( value: string ) => void;
 	postType?: string | undefined;
 	allTaxonomies?: boolean;
 }
 
-export default function TaxonomySelect({
+export default function TaxonomySelect( {
 	label,
 	value,
 	postType,
 	onChange,
 	allTaxonomies,
-}: TaxonomySelectProps) {
+}: TaxonomySelectProps ) {
 	// @ts-expect-error
-	const { selectedPostType, taxonomy, hasResolved } = useSelect((select) => {
-		const { getPostType, getTaxonomies } = select(coreStore);
-		const _taxonomies = getTaxonomies({ per_page: -1 }) || [];
-		const hasResolvedPostType = select(coreStore).hasFinishedResolution(
-			'getPostType',
-			[postType]
-		);
-		const hasResolvedTaxonomies = select(coreStore).hasFinishedResolution(
-			'getTaxonomies',
-			[{ per_page: -1 }]
-		);
-		return {
-			selectedPostType: getPostType(postType),
-			// @ts-expect-error
-			taxonomy: _taxonomies.filter((item) => {
-				return item?.visibility?.show_ui;
-			}),
-			hasResolved: hasResolvedPostType && hasResolvedTaxonomies,
-		};
-	});
+	const { selectedPostType, taxonomy, hasResolved } = useSelect(
+		( select ) => {
+			const { getPostType, getTaxonomies } = select( coreStore );
+			const _taxonomies = getTaxonomies( { per_page: -1 } ) || [];
+			const hasResolvedPostType = select(
+				coreStore
+			).hasFinishedResolution( 'getPostType', [ postType ] );
+			const hasResolvedTaxonomies = select(
+				coreStore
+			).hasFinishedResolution( 'getTaxonomies', [ { per_page: -1 } ] );
+			return {
+				selectedPostType: getPostType( postType ),
+				// @ts-expect-error
+				taxonomy: _taxonomies.filter( ( item ) => {
+					return item?.visibility?.show_ui;
+				} ),
+				hasResolved: hasResolvedPostType && hasResolvedTaxonomies,
+			};
+		}
+	);
 	// @ts-expect-error
-	const getTaxonomyNames = (taxonomies) => {
+	const getTaxonomyNames = ( taxonomies ) => {
 		// @ts-expect-error
-		return taxonomies.map((item) => {
+		return taxonomies.map( ( item ) => {
 			return item?.slug;
-		});
+		} );
 	};
 
-	const taxonomies = useMemo(() => {
+	const taxonomies = useMemo( () => {
 		return true === allTaxonomies
-			? getTaxonomyNames(taxonomy) || []
+			? getTaxonomyNames( taxonomy ) || []
 			: selectedPostType?.taxonomies || [];
-	}, [selectedPostType, taxonomy, allTaxonomies]);
+	}, [ selectedPostType, taxonomy, allTaxonomies ] );
 
-	const options = useMemo(() => {
+	const options = useMemo( () => {
 		// @ts-expect-error
-		return taxonomies.map((item) => {
+		return taxonomies.map( ( item ) => {
 			// @ts-expect-error
-			const _taxonomy = taxonomy.filter((filterItem) => {
+			const _taxonomy = taxonomy.filter( ( filterItem ) => {
 				return item === filterItem?.slug;
-			});
-			if (_taxonomy) {
+			} );
+			if ( _taxonomy ) {
 				return {
-					key: _taxonomy[0].slug,
-					name: _taxonomy[0].name,
+					key: _taxonomy[ 0 ].slug,
+					name: _taxonomy[ 0 ].name,
 					style: { fontSize: '1em' },
 				};
 			}
 			return {};
-		});
-	}, [taxonomy, taxonomies]) as CustomSelectControlOption[];
+		} );
+	}, [ taxonomy, taxonomies ] ) as CustomSelectControlOption[];
 
-	const handleOnChange = (newValue: string) => {
-		onChange(newValue);
+	const handleOnChange = ( newValue: string ) => {
+		onChange( newValue );
 	};
 
 	return (
 		<>
-			{hasResolved ? (
+			{ hasResolved ? (
 				<>
-					{1 <= options.length ? (
+					{ 1 <= options.length ? (
 						<CustomSelectControl
-							className={'aktk-taxonomy-select'}
-							label={label}
-							value={value}
-							options={options}
-							onChange={handleOnChange}
+							className={ 'aktk-taxonomy-select' }
+							label={ label }
+							value={ value }
+							options={ options }
+							onChange={ handleOnChange }
 							// @ts-ignore
 							__nextUnconstrainedWidth
 						/>
 					) : (
-						<Notice type={'help'}>
-							{__(
+						<Notice type={ 'help' }>
+							{ __(
 								'選択できる項目がありません。',
 								'ystandard-blocks'
-							)}
+							) }
 						</Notice>
-					)}
+					) }
 				</>
 			) : (
 				<Spinner />
-			)}
+			) }
 		</>
 	);
 }

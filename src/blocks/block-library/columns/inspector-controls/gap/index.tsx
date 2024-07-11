@@ -11,21 +11,21 @@ import { __ } from '@wordpress/i18n';
  * @function
  */
 // @ts-ignore
-const PanelGap = ({ attributes, setAttributes }) => {
+const PanelGap = ( { attributes, setAttributes } ) => {
 	const { gap } = attributes;
 	// @ts-ignore
-	const handleGapOnChange = (newValue) => {
-		setAttributes({
+	const handleGapOnChange = ( newValue ) => {
+		setAttributes( {
 			gap: newValue,
-		});
+		} );
 	};
 	return (
-		<PanelBody title={__('カラム間余白', 'ystandard-blocks')}>
-			{/* @ts-ignore */}
+		<PanelBody title={ __( 'カラム間余白', 'ystandard-blocks' ) }>
+			{ /* @ts-ignore */ }
 			<ResponsiveGapControl
-				label={__('カラム間の余白(gap)', 'ystandard-blocks')}
-				onChange={handleGapOnChange}
-				values={gap}
+				label={ __( 'カラム間の余白(gap)', 'ystandard-blocks' ) }
+				onChange={ handleGapOnChange }
+				values={ gap }
 			/>
 		</PanelBody>
 	);

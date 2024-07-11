@@ -10,7 +10,7 @@ import ResponsiveDeprecatedFontSizeControl from '@aktk/blocks/deprecated/compone
 import { toNumber } from '@aktk/blocks/utils/number';
 
 // @ts-ignore
-export function FontSize(props) {
+export function FontSize( props ) {
 	const { fontSize, setFontSize, setAttributes, attributes } = props;
 
 	const {
@@ -22,76 +22,76 @@ export function FontSize(props) {
 
 	return (
 		<>
-			<PanelBody title={__('文字設定', 'ystandard-blocks')}>
-				<BaseControl id={'font-size'}>
-					{/* @ts-ignore */}
+			<PanelBody title={ __( '文字設定', 'ystandard-blocks' ) }>
+				<BaseControl id={ 'font-size' }>
+					{ /* @ts-ignore */ }
 					<ResponsiveDeprecatedFontSizeControl
-						id={'font-size'}
-						useResponsive={isFontSizeResponsive}
-						fontSize={fontSize}
-						onChangeFontSizePicker={(font) => {
-							setFontSize(font);
-						}}
-						changeResponsiveMode={(value) => {
-							if (value) {
-								setAttributes({
+						id={ 'font-size' }
+						useResponsive={ isFontSizeResponsive }
+						fontSize={ fontSize }
+						onChangeFontSizePicker={ ( font ) => {
+							setFontSize( font );
+						} }
+						changeResponsiveMode={ ( value ) => {
+							if ( value ) {
+								setAttributes( {
 									fontSizeDesktop:
-										!fontSizeDesktop && fontSize.size
+										! fontSizeDesktop && fontSize.size
 											? fontSize.size
-											: toNumber(fontSizeDesktop, {
+											: toNumber( fontSizeDesktop, {
 													min: 0,
 													max: 200,
-												}),
+											  } ),
 									fontSizeTablet:
-										!fontSizeTablet && fontSize.size
+										! fontSizeTablet && fontSize.size
 											? fontSize.size
-											: toNumber(fontSizeDesktop, {
+											: toNumber( fontSizeDesktop, {
 													min: 0,
 													max: 200,
-												}),
+											  } ),
 									fontSizeMobile:
-										!fontSizeMobile && fontSize.size
+										! fontSizeMobile && fontSize.size
 											? fontSize.size
-											: toNumber(fontSizeDesktop, {
+											: toNumber( fontSizeDesktop, {
 													min: 0,
 													max: 200,
-												}),
-								});
+											  } ),
+								} );
 							}
-							setAttributes({
+							setAttributes( {
 								isFontSizeResponsive: value,
-							});
-						}}
-						desktopValue={fontSizeDesktop}
-						desktopOnChange={(value) => {
-							setAttributes({
-								fontSizeDesktop: toNumber(value, {
+							} );
+						} }
+						desktopValue={ fontSizeDesktop }
+						desktopOnChange={ ( value ) => {
+							setAttributes( {
+								fontSizeDesktop: toNumber( value, {
 									min: 0,
 									max: 200,
-								}),
-							});
-						}}
-						desktopUnit={'px'}
-						tabletValue={fontSizeTablet}
-						tabletOnChange={(value) =>
-							setAttributes({
-								fontSizeTablet: toNumber(value, {
+								} ),
+							} );
+						} }
+						desktopUnit={ 'px' }
+						tabletValue={ fontSizeTablet }
+						tabletOnChange={ ( value ) =>
+							setAttributes( {
+								fontSizeTablet: toNumber( value, {
 									min: 0,
 									max: 200,
-								}),
-							})
+								} ),
+							} )
 						}
-						tabletUnit={'px'}
-						mobileValue={fontSizeMobile}
-						mobileOnChange={(value) =>
-							setAttributes({
-								fontSizeMobile: toNumber(value, {
+						tabletUnit={ 'px' }
+						mobileValue={ fontSizeMobile }
+						mobileOnChange={ ( value ) =>
+							setAttributes( {
+								fontSizeMobile: toNumber( value, {
 									min: 0,
 									max: 200,
-								}),
-							})
+								} ),
+							} )
 						}
-						mobileUnit={'px'}
+						mobileUnit={ 'px' }
 					/>
 				</BaseControl>
 			</PanelBody>
