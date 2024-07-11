@@ -4,8 +4,6 @@ import classnames from 'classnames';
  */
 import { Button } from '@wordpress/components';
 import { plusCircle, Icon as WPIcon } from '@wordpress/icons';
-// @ts-ignore
-import type { Icon } from '@wordpress/components';
 
 export * from './horizon-buttons';
 
@@ -22,8 +20,7 @@ interface AktkButtonProps {
 	children?: React.ReactNode;
 	disabled?: boolean;
 	isBusy?: boolean;
-	// @ts-ignore
-	icon?: string | Function | null | Icon.Props< any >[ 'icon' ];
+	icon?: string | Function | null | React.ReactNode;
 	iconSize?: number;
 	isSmall?: boolean;
 	text?: string;
@@ -58,6 +55,7 @@ function BaseButton( props: BaseButtonProps & AktkButtonProps ) {
 				onClick={ onClick }
 				disabled={ disabled }
 				isBusy={ isBusy }
+				// @ts-ignore
 				icon={ icon }
 				iconSize={ iconSize }
 				isSmall={ isSmall }

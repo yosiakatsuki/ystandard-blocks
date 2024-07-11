@@ -12,6 +12,8 @@ import { Panel } from '@aktk/block-components/components/panel';
 import BalloonPosition from './position';
 import BalloonType from './type';
 import BalloonFontSize from './font-size';
+import BalloonBackgroundColor from './background-color';
+import BalloonTextColor from './text-color';
 
 // @ts-ignore
 export default function Balloon( props ) {
@@ -20,6 +22,8 @@ export default function Balloon( props ) {
 			<BalloonPosition { ...props } />
 			<BalloonType { ...props } />
 			<BalloonFontSize { ...props } />
+			<BalloonBackgroundColor { ...props } />
+			<BalloonTextColor { ...props } />
 		</Panel>
 	);
 }
