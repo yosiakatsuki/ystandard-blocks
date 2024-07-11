@@ -8,7 +8,6 @@ const outputPath = './library/svg-icons/svg-icons.php';
 const icons = [];
 const {
 	siX,
-	siTwitter,
 	siFacebook,
 	siHatenabookmark,
 	siPocket,
@@ -26,10 +25,10 @@ const {
 	siTumblr,
 	siAmazon,
 	siDiscord,
+	siBluesky,
 } = require('simple-icons');
 const snsIcons = [
 	siX,
-	siTwitter,
 	siFacebook,
 	siHatenabookmark,
 	siPocket,
@@ -47,6 +46,7 @@ const snsIcons = [
 	siTumblr,
 	siAmazon,
 	siDiscord,
+	siBluesky,
 ];
 for (const icon in feather.icons) {
 	icons.push({
