@@ -1,3 +1,23 @@
+import classnames from 'classnames';
+/**
+ * WordPress Dependencies
+ */
+import { useBlockProps, withColors } from '@wordpress/block-editor';
+
+/**
+ * Block.
+ */
+import './style-editor.scss';
+
+// @ts-ignore
 export default function Edit(props) {
-	return <div>バルーン作成中</div>;
+	const { attributes, className } = props;
+	const blockProps = useBlockProps({
+		className: classnames('ystdb-balloon', className),
+	});
+	return (
+		<div {...blockProps}>
+			<div>バルーン作成中</div>
+		</div>
+	);
 }
