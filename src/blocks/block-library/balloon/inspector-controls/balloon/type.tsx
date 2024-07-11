@@ -13,39 +13,40 @@ import {
 	SecondaryButton,
 } from '@aktk/block-components/components/buttons';
 
-const POSITIONS = [
+export const TYPES = [
 	{
-		label: __( '右', 'ystandard-blocks' ),
-		value: 'right',
+		label: __( '会話', 'ystandard-blocks' ),
+		value: 'serif',
 	},
 	{
-		label: __( '左', 'ystandard-blocks' ),
-		value: 'left',
+		label: __( '会話(枠線)', 'ystandard-blocks' ),
+		value: 'serif-border',
+	},
+	{
+		label: __( '考え中', 'ystandard-blocks' ),
+		value: 'think',
 	},
 ];
 
 // @ts-ignore
-export default function BalloonPosition( props ) {
+export default function BalloonType( props ) {
 	const { attributes, setAttributes } = props;
-	const { balloonPosition } = attributes;
+	const { balloonType } = attributes;
 
 	const handleOnChange = ( value: string ) => {
-		setAttributes( { balloonPosition: value } );
+		setAttributes( { balloonType: value } );
 	};
-
 	return (
 		<BaseControl
-			id={ 'balloon-position' }
-			label={ __( '吹き出しの向き', 'ystandard-blocks' ) }
+			id={ 'balloon-types' }
+			label={ __( '吹き出しタイプ', 'ystandard-blocks' ) }
 		>
 			<HorizonButtons>
-				{ POSITIONS.map( ( position ) => {
-					const slug = position.value;
-					const label = position.label;
+				{ TYPES.map( ( type ) => {
+					const slug = type.value;
+					const label = type.label;
 					const Button =
-						slug === balloonPosition
-							? PrimaryButton
-							: SecondaryButton;
+						slug === balloonType ? PrimaryButton : SecondaryButton;
 					return (
 						<Button
 							key={ slug }
