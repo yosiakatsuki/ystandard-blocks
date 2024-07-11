@@ -11,6 +11,7 @@ import { Panel } from '@aktk/block-components/components/panel';
  */
 import BalloonPosition from './position';
 import BalloonType from './type';
+import BalloonFontSize from './font-size';
 
 // @ts-ignore
 export default function Balloon( props ) {
@@ -18,6 +19,7 @@ export default function Balloon( props ) {
 		<Panel title={ __( '吹き出し設定', 'ystandard-blocks' ) }>
 			<BalloonPosition { ...props } />
 			<BalloonType { ...props } />
+			<BalloonFontSize { ...props } />
 		</Panel>
 	);
 }
