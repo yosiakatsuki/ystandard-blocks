@@ -7,17 +7,24 @@ import { useBlockProps, withColors } from '@wordpress/block-editor';
 /**
  * Block.
  */
+import InspectorControls from './inspector-controls';
+import BlockControls from '@aktk/blocks/block-library/balloon/block-controls';
 import './style-editor.scss';
 
 // @ts-ignore
-export default function Edit(props) {
+export default function Edit( props ) {
 	const { attributes, className } = props;
-	const blockProps = useBlockProps({
-		className: classnames('ystdb-balloon', className),
-	});
+	const blockProps = useBlockProps( {
+		className: classnames( 'ystdb-balloon', className ),
+	} );
 	return (
-		<div {...blockProps}>
-			<div>バルーン作成中</div>
-		</div>
+		<>
+			<BlockControls { ...props } />
+			<InspectorControls { ...props } />
+
+			<div { ...blockProps }>
+				<div>バルーン作成中</div>
+			</div>
+		</>
 	);
 }
