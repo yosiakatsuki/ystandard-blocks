@@ -74,7 +74,7 @@ export const ResponsiveValues = ({
 										label={_x(
 											'デスクトップ',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										value={valueDesktop}
 										onChange={handleOnChangeDesktop}
@@ -97,7 +97,7 @@ export const ResponsiveValues = ({
 										label={_x(
 											'タブレット',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										value={valueTablet}
 										onChange={handleOnChangeTablet}
@@ -120,7 +120,7 @@ export const ResponsiveValues = ({
 										label={_x(
 											'モバイル',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										value={valueMobile}
 										onChange={handleOnChangeMobile}

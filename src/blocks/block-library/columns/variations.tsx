@@ -13,8 +13,8 @@ const icon = (
 const variations = [
 	{
 		name: 'column-2',
-		title: __('2列', 'ystandard-toolbox'),
-		description: __('2列', 'ystandard-toolbox'),
+		title: __('2列', 'ystandard-blocks'),
+		description: __('2列', 'ystandard-blocks'),
 		icon,
 		attributes: {
 			colPc: 2,
@@ -26,8 +26,8 @@ const variations = [
 	},
 	{
 		name: 'column-3',
-		title: __('3列', 'ystandard-toolbox'),
-		description: __('3列', 'ystandard-toolbox'),
+		title: __('3列', 'ystandard-blocks'),
+		description: __('3列', 'ystandard-blocks'),
 		isDefault: true,
 		icon,
 		attributes: {
@@ -40,8 +40,8 @@ const variations = [
 	},
 	{
 		name: 'column-4',
-		title: __('4列', 'ystandard-toolbox'),
-		description: __('4列', 'ystandard-toolbox'),
+		title: __('4列', 'ystandard-blocks'),
+		description: __('4列', 'ystandard-blocks'),
 		icon,
 		attributes: {
 			colPc: 4,

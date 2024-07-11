@@ -78,7 +78,7 @@ export const ResponsiveSpacing = (props) => {
 										label={_x(
 											'デスクトップ',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										values={valueDesktop}
 										onChange={handleOnChangeDesktop}
@@ -98,7 +98,7 @@ export const ResponsiveSpacing = (props) => {
 										label={_x(
 											'タブレット',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										values={valueTablet}
 										onChange={handleOnChangeTablet}
@@ -118,7 +118,7 @@ export const ResponsiveSpacing = (props) => {
 										label={_x(
 											'モバイル',
 											'responsive-component',
-											'ystandard-toolbox'
+											'ystandard-blocks'
 										)}
 										values={valueMobile}
 										onChange={handleOnChangeMobile}

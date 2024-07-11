@@ -53,7 +53,7 @@
     "align": false,
     "ystdtdHiddenBySize": false
   },
-  "textdomain": "ystandard-toolbox",
+  "textdomain": "ystandard-blocks",
   "editorScript": "file:./index.tsx",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

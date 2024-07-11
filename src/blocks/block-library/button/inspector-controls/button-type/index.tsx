@@ -29,15 +29,15 @@ export function ButtonTypePanel(props) {
 						buttons={[
 							{
 								value: '',
-								label: __('デフォルト', 'ystandard-toolbox'),
+								label: __('デフォルト', 'ystandard-blocks'),
 							},
 							{
 								value: 'outline',
-								label: __('アウトライン', 'ystandard-toolbox'),
+								label: __('アウトライン', 'ystandard-blocks'),
 							},
 							{
 								value: 'link',
-								label: __('リンク', 'ystandard-toolbox'),
+								label: __('リンク', 'ystandard-blocks'),
 							},
 						]}
 					/>

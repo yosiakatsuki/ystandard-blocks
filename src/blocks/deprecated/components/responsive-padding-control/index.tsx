@@ -27,7 +27,7 @@ const ResponsivePaddingControl = ({ label, values, onChange, ...props }) => {
 		<BaseControl>
 			<ResponsiveSpacing
 				label={
-					label ? label : __('内側余白(padding)', 'ystandard-toolbox')
+					label ? label : __('内側余白(padding)', 'ystandard-blocks')
 				}
 				values={values}
 				onChange={handleOnChange}

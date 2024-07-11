@@ -1,4 +1,4 @@
-import { Columns } from 'react-feather';
+import { FiMessageSquare } from 'react-icons/fi';
 /**
  * WordPress.
  */
@@ -10,7 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { COLORS } from '@aktk/block-components/config';
 
 /**
- * yStandard.
+ * Plugin.
  */
 import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 import { CATEGORY } from '@aktk/blocks/config';
@@ -34,7 +34,7 @@ export function registerColumnBlock() {
 		...metadata,
 		...{
 			icon: (
-				<Columns
+				<FiMessageSquare
 					stroke={COLORS.iconForeground}
 					style={{ fill: 'none' }}
 				/>

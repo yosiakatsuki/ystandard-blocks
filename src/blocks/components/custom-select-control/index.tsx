@@ -24,7 +24,7 @@ export interface CustomSelectControlProps {
 const DEFAULT_ITEM = [
 	{
 		key: '',
-		name: __('--選択--', 'ystandard-toolbox'),
+		name: __('--選択--', 'ystandard-blocks'),
 		style: { fontSize: '1em' },
 	},
 ];

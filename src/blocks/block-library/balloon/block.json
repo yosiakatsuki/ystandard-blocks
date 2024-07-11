@@ -1,0 +1,109 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 2,
+	"name": "ystdb/balloon-2",
+	"title": "吹き出し",
+	"description": "吹き出しブロック",
+	"version": "1.0.0",
+	"keywords": [
+		"balloon",
+		"吹き出し"
+	],
+	"attributes": {
+		"avatarName": {
+			"type": "string",
+			"source": "html",
+			"selector": ".ystdb-balloon__name"
+		},
+		"avatarNameColor": {
+			"type": "string"
+		},
+		"avatarURL": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".ystdb-balloon__avatar-image",
+			"attribute": "src",
+			"default": "https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp"
+		},
+		"avatarAlt": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".ystdb-balloon__avatar-image",
+			"attribute": "alt"
+		},
+		"avatarID": {
+			"type": "integer",
+			"default": 0
+		},
+		"avatarSize": {
+			"type": "string",
+			"default": "large"
+		},
+		"avatarBorderColor": {
+			"type": "string"
+		},
+		"customAvatarBorderColor": {
+			"type": "string"
+		},
+		"avatarBorderWidth": {
+			"type": "integer",
+			"default": 0
+		},
+		"avatarBorderRadius": {
+			"type": "integer"
+		},
+		"text": {
+			"type": "string",
+			"source": "html",
+			"selector": ".ystdb-balloon__text"
+		},
+		"balloonPosition": {
+			"type": "string",
+			"default": "right"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"customBackgroundColor": {
+			"type": "string"
+		},
+		"balloonBorderColor": {
+			"type": "string"
+		},
+		"customBalloonBorderColor": {
+			"type": "string"
+		},
+		"balloonBorderWidth": {
+			"type": "integer",
+			"default": 1
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"customTextColor": {
+			"type": "string"
+		},
+		"fontSize": {
+			"type": "string"
+		},
+		"customFontSize": {
+			"type": "string"
+		},
+		"balloonType": {
+			"type": "string",
+			"default": "serif"
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "top"
+		}
+	},
+	"supports": {
+		"className": false,
+		"align": false
+	},
+	"textdomain": "ystandard-blocks",
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

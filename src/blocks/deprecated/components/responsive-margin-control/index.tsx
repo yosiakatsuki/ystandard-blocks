@@ -45,7 +45,7 @@ const ResponsiveMarginControl = ({
 			<ResponsiveSpacing
 				{...props}
 				label={
-					label ? label : __('外側余白(margin)', 'ystandard-toolbox')
+					label ? label : __('外側余白(margin)', 'ystandard-blocks')
 				}
 				values={values}
 				onChange={handleOnChange}

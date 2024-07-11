@@ -41,21 +41,21 @@ export function FontSize(props) {
 											: toNumber(fontSizeDesktop, {
 													min: 0,
 													max: 200,
-											  }),
+												}),
 									fontSizeTablet:
 										!fontSizeTablet && fontSize.size
 											? fontSize.size
 											: toNumber(fontSizeDesktop, {
 													min: 0,
 													max: 200,
-											  }),
+												}),
 									fontSizeMobile:
 										!fontSizeMobile && fontSize.size
 											? fontSize.size
 											: toNumber(fontSizeDesktop, {
 													min: 0,
 													max: 200,
-											  }),
+												}),
 								});
 							}
 							setAttributes({

@@ -32,7 +32,7 @@ const ResponsiveGapControl = ({ label, values, onChange, ...props }) => {
 	return (
 		<BaseControl>
 			<ResponsiveSpacing
-				label={label ? label : __('余白(gap)', 'ystandard-toolbox')}
+				label={label ? label : __('余白(gap)', 'ystandard-blocks')}
 				values={values}
 				onChange={handleOnChange}
 				splitOnAxis={true}
