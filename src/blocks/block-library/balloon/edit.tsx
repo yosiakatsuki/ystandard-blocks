@@ -9,7 +9,7 @@ import { useBlockProps, withColors } from '@wordpress/block-editor';
  */
 import InspectorControls from './inspector-controls';
 import BlockControls from '@aktk/blocks/block-library/balloon/block-controls';
-import './style-editor.scss';
+import './editor.scss';
 
 // @ts-ignore
 export default function Edit( props ) {

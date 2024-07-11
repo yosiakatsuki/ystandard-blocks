@@ -32,7 +32,7 @@
 			"attribute": "alt"
 		},
 		"avatarID": {
-			"type": "integer",
+			"type": "number",
 			"default": 0
 		},
 		"avatarSize": {

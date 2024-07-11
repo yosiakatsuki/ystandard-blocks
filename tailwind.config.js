@@ -1,6 +1,6 @@
 /** @type {import("tailwindcss").Config} */
 module.exports = {
-	content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+	content: [ './src/**/*.{html,js,jsx,ts,tsx}' ],
 	corePlugins: {
 		preflight: false,
 	},
@@ -32,10 +32,9 @@ module.exports = {
 				'fz-label-l': '20px',
 			},
 			fontFamily: {
-				orbitron: ['Orbitron', 'sans-serif'],
+				orbitron: [ 'Orbitron', 'sans-serif' ],
 			},
 		},
 	},
 	plugins: [],
-	important: true,
 };
