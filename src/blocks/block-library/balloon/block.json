@@ -18,6 +18,9 @@
 		"avatarNameColor": {
 			"type": "string"
 		},
+		"customAvatarNameColor": {
+			"type": "string"
+		},
 		"avatarURL": {
 			"type": "string",
 			"source": "attribute",

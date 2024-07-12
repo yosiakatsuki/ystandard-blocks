@@ -14,6 +14,7 @@ import AvatarSize from './size';
 import AvatarBorderRadius from './border-radius';
 import AvatarBorderWidth from './border-width';
 import AvatarBorderColor from './border-color';
+import AvatarNameColor from './name-color';
 
 // @ts-ignore
 export default function Avatar( props ) {
@@ -23,6 +24,7 @@ export default function Avatar( props ) {
 			<AvatarBorderRadius { ...props } />
 			<AvatarBorderWidth { ...props } />
 			<AvatarBorderColor { ...props } />
+			<AvatarNameColor { ...props } />
 		</Panel>
 	);
 }
