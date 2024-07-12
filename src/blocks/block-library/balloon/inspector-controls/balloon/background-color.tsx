@@ -7,6 +7,10 @@ import { BaseControl } from '@wordpress/components';
  * Aktk Dependencies.
  */
 import { ColorPalette } from '@aktk/block-components/components/color-pallet-control';
+/**
+ * Block.
+ */
+import { isTypeOutline } from '../../utils';
 
 // @ts-ignore
 export default function BalloonBackgroundColor( props ) {
@@ -16,8 +20,6 @@ export default function BalloonBackgroundColor( props ) {
 		setBalloonBorderColor,
 		attributes,
 	} = props;
-
-	const isTypeSerif = 'serif-border' === attributes.balloonType;
 
 	return (
 		<BaseControl
@@ -29,7 +31,7 @@ export default function BalloonBackgroundColor( props ) {
 				value={ backgroundColor.color }
 				onChange={ ( color ) => {
 					setBackgroundColor( color );
-					if ( ! isTypeSerif ) {
+					if ( ! isTypeOutline( attributes ) ) {
 						setBalloonBorderColor( color );
 					}
 				} }

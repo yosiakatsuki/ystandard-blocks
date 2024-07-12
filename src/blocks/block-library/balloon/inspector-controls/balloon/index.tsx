@@ -14,6 +14,8 @@ import BalloonType from './type';
 import BalloonFontSize from './font-size';
 import BalloonBackgroundColor from './background-color';
 import BalloonTextColor from './text-color';
+import BalloonBorderWidth from './border-width';
+import BalloonBorderColor from './border-color';
 
 // @ts-ignore
 export default function Balloon( props ) {
@@ -24,6 +26,8 @@ export default function Balloon( props ) {
 			<BalloonFontSize { ...props } />
 			<BalloonBackgroundColor { ...props } />
 			<BalloonTextColor { ...props } />
+			<BalloonBorderWidth { ...props } />
+			<BalloonBorderColor { ...props } />
 		</Panel>
 	);
 }
