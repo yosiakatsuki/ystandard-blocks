@@ -13,6 +13,7 @@ import { Panel } from '@aktk/block-components/components/panel';
 import AvatarSize from './size';
 import AvatarBorderRadius from './border-radius';
 import AvatarBorderWidth from './border-width';
+import AvatarBorderColor from './border-color';
 
 // @ts-ignore
 export default function Avatar( props ) {
@@ -21,6 +22,7 @@ export default function Avatar( props ) {
 			<AvatarSize { ...props } />
 			<AvatarBorderRadius { ...props } />
 			<AvatarBorderWidth { ...props } />
+			<AvatarBorderColor { ...props } />
 		</Panel>
 	);
 }

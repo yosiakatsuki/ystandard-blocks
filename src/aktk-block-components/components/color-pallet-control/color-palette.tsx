@@ -11,6 +11,8 @@ import ColorDropdownWrapper from '@aktk/block-components/components/color-pallet
 import useThemeColors from '@aktk/block-components/hooks/useThemeColors';
 import useThemeGradients from '@aktk/block-components/hooks/useThemeGradient';
 
+import './editor-color-palette.scss';
+
 interface ColorPaletteProps {
 	label: string;
 	value: string;
@@ -32,7 +34,7 @@ export function ColorPalette( props: ColorPaletteProps ) {
 		<>
 			<ColorDropdownWrapper colorValue={ value } label={ label }>
 				<ColorPaletteControl
-					className="[&_legend+div]:!pt-1 [&_legend]:px-4 [&_legend]:pt-4 [&_legend_*]:!m-0 [&_legend_*]:!font-bold"
+					className="aktk-components__color-palette-control"
 					label={ label }
 					value={ value }
 					onChange={ onChange }

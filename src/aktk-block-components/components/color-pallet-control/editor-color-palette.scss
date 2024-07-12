@@ -1,0 +1,15 @@
+// [&_legend_*]:!m-0 [&_legend_*]:!font-bold
+.aktk-components__color-palette-control {
+	legend {
+		@apply px-4 pt-4;
+
+		* {
+			font-weight: 700 !important;
+			margin:0 !important;
+		}
+
+		+ div {
+			padding-top: 4px !important;
+		}
+	}
+}
