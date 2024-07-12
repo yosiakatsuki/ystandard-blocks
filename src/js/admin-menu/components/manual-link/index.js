@@ -2,7 +2,13 @@ import { Book } from 'react-feather';
 import './_manual-link.scss';
 import classnames from 'classnames';
 
-const ManualLink = (props) => {
+/**
+ *
+ * @param  props
+ * @return {JSX.Element}
+ * @deprecated
+ */
+const ManualLink = ( props ) => {
 	const { url, target, text, topRight } = props;
 
 	const linkText = text || 'マニュアルを見る';
@@ -10,16 +16,16 @@ const ManualLink = (props) => {
 
 	return (
 		<div
-			className={classnames('ystdb-component-manual-link', {
+			className={ classnames( 'ystdb-component-manual-link', {
 				'is-top-right': topRight,
-			})}
+			} ) }
 		>
-			<a href={url} target={linkTarget}>
+			<a href={ url } target={ linkTarget }>
 				<span className="ystdb-component-manual-link__icon">
-					<Book size={12} />
+					<Book size={ 12 } />
 				</span>
 				<span className="ystdb-component-manual-link__text">
-					{linkText}
+					{ linkText }
 				</span>
 			</a>
 		</div>

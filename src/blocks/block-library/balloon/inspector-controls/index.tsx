@@ -4,6 +4,7 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
  */
 import Balloon from './balloon';
 import AvatarList from './avatar-list';
+import Avatar from './avatar';
 
 // @ts-ignore
 export default function InspectorControls( props ) {
@@ -11,6 +12,7 @@ export default function InspectorControls( props ) {
 		<WPInspectorControls>
 			<AvatarList { ...props } />
 			<Balloon { ...props } />
+			<Avatar { ...props } />
 		</WPInspectorControls>
 	);
 }
