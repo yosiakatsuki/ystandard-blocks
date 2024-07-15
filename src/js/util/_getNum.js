@@ -14,19 +14,22 @@ export default function getNum(
 	max = null,
 	defaultValue = undefined
 ) {
-	if (!isFinite(value) || '' === value || value < min) {
-		if (null === defaultValue && ('' === value || undefined === value)) {
+	if ( ! isFinite( value ) || '' === value || value < min ) {
+		if (
+			null === defaultValue &&
+			( '' === value || undefined === value )
+		) {
 			return undefined;
 		}
-		if (undefined !== defaultValue) {
+		if ( undefined !== defaultValue ) {
 			value = defaultValue;
 		} else {
 			value = min;
 		}
 	}
-	value = Number(value);
+	value = Number( value );
 
-	if (null !== max && value > max) {
+	if ( null !== max && value > max ) {
 		value = max;
 	}
 

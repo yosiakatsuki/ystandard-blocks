@@ -24,18 +24,18 @@ export const noticeType = {
  * @class
  * @deprecated
  */
-const Notice = ({ children, type, className, ...props }) => {
+const Notice = ( { children, type, className, ...props } ) => {
 	const _noticeType = type || 'info';
 	const wrapProps = {
 		className: classnames(
 			'ystd-component-notice',
 			className,
-			`is-${_noticeType}`
+			`is-${ _noticeType }`
 		),
 		...props,
 	};
 
-	return <div {...wrapProps}>{children}</div>;
+	return <div { ...wrapProps }>{ children }</div>;
 };
 
 export default Notice;

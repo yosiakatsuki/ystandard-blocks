@@ -8,13 +8,13 @@ import { __ } from '@wordpress/i18n';
  */
 import ContentWidth from './content-width';
 
-const PanelContentWidth = (props) => {
+const PanelContentWidth = ( props ) => {
 	return (
 		<PanelBody
-			title={__('コンテンツ幅設定', 'ystandard-blocks')}
-			initialOpen={false}
+			title={ __( 'コンテンツ幅設定', 'ystandard-blocks' ) }
+			initialOpen={ false }
 		>
-			<ContentWidth {...props} />
+			<ContentWidth { ...props } />
 		</PanelBody>
 	);
 };

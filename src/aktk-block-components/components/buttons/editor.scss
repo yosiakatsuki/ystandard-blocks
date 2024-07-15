@@ -3,19 +3,23 @@
 
 
 .aktk-components__horizon-buttons {
+
 	@apply flex;
 
 	> button {
+
 		@apply w-full text-center justify-center border border-solid;
 
 		box-shadow: none !important;
 		border-color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
 
 		&:not(:first-child) {
+
 			@apply rounded-l-none;
 		}
 
 		&:not(:last-child) {
+
 			@apply rounded-r-none border-r-0;
 		}
 	}

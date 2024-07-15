@@ -8,13 +8,13 @@ import {
 	__experimentalItemGroup as ItemGroup,
 } from '@wordpress/components';
 
-const ColorDropdown = ({
+const ColorDropdown = ( {
 	key,
 	value,
 	label,
 	position = 'bottom-start',
 	renderContent,
-}) => {
+} ) => {
 	const _buttonLabel = label ?? '色';
 
 	return (
@@ -24,31 +24,31 @@ const ColorDropdown = ({
 			className="block-editor-panel-color-gradient-settings__item-group"
 		>
 			<Dropdown
-				key={key}
-				popoverProps={{
+				key={ key }
+				popoverProps={ {
 					placement: position,
-				}}
+				} }
 				className="block-editor-panel-color-gradient-settings__dropdown"
 				contentClassName="block-editor-panel-color-gradient-settings__dropdown-content"
-				style={{ display: 'block' }}
-				renderToggle={({ isOpen, onToggle }) => (
+				style={ { display: 'block' } }
+				renderToggle={ ( { isOpen, onToggle } ) => (
 					<Item
-						onClick={onToggle}
-						className={classnames(
+						onClick={ onToggle }
+						className={ classnames(
 							'block-editor-panel-color-gradient-settings__item',
 							{ 'is-open': isOpen }
-						)}
+						) }
 					>
 						<HStack justify="flex-start">
 							<ColorIndicator
 								className="block-editor-panel-color-gradient-settings__color-indicator"
-								colorValue={value}
+								colorValue={ value }
 							/>
-							<FlexItem>{_buttonLabel}</FlexItem>
+							<FlexItem>{ _buttonLabel }</FlexItem>
 						</HStack>
 					</Item>
-				)}
-				renderContent={renderContent}
+				) }
+				renderContent={ renderContent }
 			/>
 		</ItemGroup>
 	);

@@ -24,18 +24,14 @@
 			}
 		}
 
-		&.has-avatar {
-			.aktk-components__media-upload-select-button {
-
-			}
-		}
-
 		&:not(.has-avatar) {
+
 			.aktk-components__media-upload-select-button {
 				position: relative;
 				z-index: 0;
-				&:before,
-				&:after {
+
+				&::before,
+				&::after {
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -45,11 +41,13 @@
 					top: 0;
 					left: 0;
 				}
-				&:before {
-					content: '';
+
+				&::before {
+					content: "";
 					background-color: rgba(#000, 0.5);
 				}
-				&:after {
+
+				&::after {
 					content: attr(data-selectLabel);
 					color: #fff;
 					font-size: 10px;

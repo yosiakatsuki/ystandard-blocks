@@ -11,9 +11,9 @@ import { schema } from '../functions';
 
 const AddItem = () => {
 	const { balloons, setBalloons, updateOption, isUpdating } =
-		useContext(BalloonContext);
+		useContext( BalloonContext );
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
 	const avatarDefaultValue = {
 		image: '',
@@ -21,15 +21,15 @@ const AddItem = () => {
 		name: '',
 	};
 
-	const [avatar, setAvatar] = useState(avatarDefaultValue);
-	const [hasError, setHasError] = useState(false);
+	const [ avatar, setAvatar ] = useState( avatarDefaultValue );
+	const [ hasError, setHasError ] = useState( false );
 
-	const openModal = () => setIsModalOpen(true);
-	const closeModal = () => setIsModalOpen(false);
+	const openModal = () => setIsModalOpen( true );
+	const closeModal = () => setIsModalOpen( false );
 
 	const checkInput = () => {
-		if (!avatar.image && !avatar.name) {
-			setHasError(true);
+		if ( ! avatar.image && ! avatar.name ) {
+			setHasError( true );
 			return false;
 		}
 
@@ -37,35 +37,36 @@ const AddItem = () => {
 	};
 
 	const addItem = () => {
-		balloons.push({
+		balloons.push( {
 			...schema,
 			...avatar,
 			...{
 				index: balloons.length - 1,
 			},
-		});
-		setBalloons([...balloons]);
-		updateOption([...balloons]);
-		setAvatar(avatarDefaultValue);
+		} );
+		setBalloons( [ ...balloons ] );
+		updateOption( [ ...balloons ] );
+		setAvatar( avatarDefaultValue );
 	};
 
 	return (
 		<div className="ystdb-menu-balloon__add-item">
-			<Button isSecondary onClick={openModal} disabled={isUpdating}>
-				<Icon className={'ystdb-button-icon'} icon={plusCircle} /> 追加
+			<Button isSecondary onClick={ openModal } disabled={ isUpdating }>
+				<Icon className={ 'ystdb-button-icon' } icon={ plusCircle } />{ ' ' }
+				追加
 			</Button>
-			{isModalOpen && (
+			{ isModalOpen && (
 				<Modal
 					title="吹き出し設定の追加"
-					onRequestClose={closeModal}
-					shouldCloseOnClickOutside={false}
-					isDismissible={false}
+					onRequestClose={ closeModal }
+					shouldCloseOnClickOutside={ false }
+					isDismissible={ false }
 				>
 					<div className="ystdb-menu-balloon__add-modal">
 						<div className="ystdb-menu-balloon__add-modal-image">
 							<AvatarMediaUpload
-								onSelect={(media) => {
-									setAvatar((old) => {
+								onSelect={ ( media ) => {
+									setAvatar( ( old ) => {
 										return {
 											...old,
 											...{
@@ -73,11 +74,11 @@ const AddItem = () => {
 												imageId: media.id,
 											},
 										};
-									});
-									setHasError(false);
-								}}
-								onClickAvatarDelete={() => {
-									setAvatar((old) => {
+									} );
+									setHasError( false );
+								} }
+								onClickAvatarDelete={ () => {
+									setAvatar( ( old ) => {
 										return {
 											...old,
 											...{
@@ -85,31 +86,31 @@ const AddItem = () => {
 												imageId: 0,
 											},
 										};
-									});
-								}}
-								type={['image']}
-								imageId={avatar.imageId}
-								imageUrl={avatar.image}
-								name={avatar.name}
+									} );
+								} }
+								type={ [ 'image' ] }
+								imageId={ avatar.imageId }
+								imageUrl={ avatar.image }
+								name={ avatar.name }
 							/>
 						</div>
 						<div className="ystdb-menu-balloon__add-modal-name">
 							<TextControl
-								value={avatar.name}
-								onChange={(value) => {
-									setAvatar((old) => {
+								value={ avatar.name }
+								onChange={ ( value ) => {
+									setAvatar( ( old ) => {
 										return {
 											...old,
 											...{
 												name: value,
 											},
 										};
-									});
-									setHasError(false);
-								}}
+									} );
+									setHasError( false );
+								} }
 							/>
 						</div>
-						<ErrorMessage isShow={hasError}>
+						<ErrorMessage isShow={ hasError }>
 							画像 または 名前を入力してください。
 						</ErrorMessage>
 						<div className="ystdb-components-section">
@@ -117,14 +118,14 @@ const AddItem = () => {
 								<div className="ystdb-menu-component-columns__item">
 									<UpdateButton
 										isPrimary
-										onClick={() => {
-											if (!checkInput()) {
+										onClick={ () => {
+											if ( ! checkInput() ) {
 												return;
 											}
 											addItem();
 											closeModal();
-										}}
-										disabled={hasError}
+										} }
+										disabled={ hasError }
 									>
 										追加
 									</UpdateButton>
@@ -132,7 +133,7 @@ const AddItem = () => {
 								<div className="ystdb-menu-component-columns__item">
 									<CancelButton
 										isSecondary
-										onClick={closeModal}
+										onClick={ closeModal }
 									>
 										キャンセル
 									</CancelButton>
@@ -141,7 +142,7 @@ const AddItem = () => {
 						</div>
 					</div>
 				</Modal>
-			)}
+			) }
 		</div>
 	);
 };

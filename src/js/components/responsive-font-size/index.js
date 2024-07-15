@@ -42,7 +42,7 @@ class ResponsiveFontSizeControl extends Component {
 		const step = 1;
 
 		const toggleUseResponsive = () => {
-			changeResponsiveMode(!useResponsive);
+			changeResponsiveMode( ! useResponsive );
 		};
 
 		return (
@@ -50,108 +50,108 @@ class ResponsiveFontSizeControl extends Component {
 				<div className="ystdb-responsive-range">
 					<div className="ystdb-responsive-range__title">
 						<span className="components-base-control__label">
-							{label}
+							{ label }
 						</span>
 						<div className="ystdb-responsive-range__toggle">
 							<Button
-								className={classnames({
+								className={ classnames( {
 									'is-use-responsive': useResponsive,
-								})}
-								onClick={toggleUseResponsive}
+								} ) }
+								onClick={ toggleUseResponsive }
 							>
-								<SVGIcon name={'settings'} />
+								<SVGIcon name={ 'settings' } />
 							</Button>
 						</div>
 					</div>
 
 					<div className="ystdb-responsive-range__content">
-						{!useResponsive ? (
+						{ ! useResponsive ? (
 							<>
 								<FontSizePicker
-									label={label}
-									value={fontSize.size}
-									onChange={(font) => {
-										onChangeFontSizePicker(font);
-									}}
+									label={ label }
+									value={ fontSize.size }
+									onChange={ ( font ) => {
+										onChangeFontSizePicker( font );
+									} }
 									__nextHasNoMarginBottom
 								/>
 							</>
 						) : (
 							<Fragment>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={'desktop'} />
+									<Icon icon={ 'desktop' } />
 									<NumberControl
-										value={desktopValue}
-										onChange={(value) => {
-											desktopOnChange(value);
-										}}
-										min={min}
-										max={max}
-										step={undefined === step ? 1 : step}
-										style={{ flexGrow: 1 }}
+										value={ desktopValue }
+										onChange={ ( value ) => {
+											desktopOnChange( value );
+										} }
+										min={ min }
+										max={ max }
+										step={ undefined === step ? 1 : step }
+										style={ { flexGrow: 1 } }
 									/>
-									{!!unitOptions ? (
+									{ !! unitOptions ? (
 										<SelectControl
-											value={desktopUnit}
-											options={unitOptions}
-											onChange={(value) => {
-												desktopUnitOnChange(value);
-											}}
+											value={ desktopUnit }
+											options={ unitOptions }
+											onChange={ ( value ) => {
+												desktopUnitOnChange( value );
+											} }
 										/>
 									) : (
-										<span>{desktopUnit}</span>
-									)}
+										<span>{ desktopUnit }</span>
+									) }
 								</div>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={'tablet'} />
+									<Icon icon={ 'tablet' } />
 									<NumberControl
-										value={tabletValue}
-										onChange={(value) => {
-											tabletOnChange(value);
-										}}
-										min={min}
-										max={max}
-										step={undefined === step ? 1 : step}
-										style={{ flexGrow: 1 }}
+										value={ tabletValue }
+										onChange={ ( value ) => {
+											tabletOnChange( value );
+										} }
+										min={ min }
+										max={ max }
+										step={ undefined === step ? 1 : step }
+										style={ { flexGrow: 1 } }
 									/>
-									{!!unitOptions ? (
+									{ !! unitOptions ? (
 										<SelectControl
-											value={tabletUnit}
-											options={unitOptions}
-											onChange={(value) => {
-												tabletUnitOnChange(value);
-											}}
+											value={ tabletUnit }
+											options={ unitOptions }
+											onChange={ ( value ) => {
+												tabletUnitOnChange( value );
+											} }
 										/>
 									) : (
-										<span>{tabletUnit}</span>
-									)}
+										<span>{ tabletUnit }</span>
+									) }
 								</div>
 								<div className="ystdb-inspector-controls__columns is-center">
-									<Icon icon={'smartphone'} />
+									<Icon icon={ 'smartphone' } />
 									<NumberControl
-										value={mobileValue}
-										onChange={(value) => {
-											mobileOnChange(value);
-										}}
-										min={min}
-										max={max}
-										step={undefined === step ? 1 : step}
-										style={{ flexGrow: 1 }}
+										value={ mobileValue }
+										onChange={ ( value ) => {
+											mobileOnChange( value );
+										} }
+										min={ min }
+										max={ max }
+										step={ undefined === step ? 1 : step }
+										style={ { flexGrow: 1 } }
 									/>
-									{!!unitOptions ? (
+									{ !! unitOptions ? (
 										<SelectControl
-											value={mobileUnit}
-											options={unitOptions}
-											onChange={(value) => {
-												mobileUnitOnChange(value);
-											}}
+											value={ mobileUnit }
+											options={ unitOptions }
+											onChange={ ( value ) => {
+												mobileUnitOnChange( value );
+											} }
 										/>
 									) : (
-										<span>{mobileUnit}</span>
-									)}
+										<span>{ mobileUnit }</span>
+									) }
 								</div>
 							</Fragment>
-						)}
+						) }
 					</div>
 				</div>
 			</BaseControl>

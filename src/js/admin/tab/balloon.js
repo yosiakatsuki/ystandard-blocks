@@ -3,13 +3,13 @@ import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 
 export const balloon = () => {
-	new Vue({
+	new Vue( {
 		el: '#balloon',
 		data: {
 			balloon: ystdbOption.balloon,
 		},
 		mounted() {
-			UIkit.use(Icons);
+			UIkit.use( Icons );
 		},
 		computed: {
 			count() {
@@ -17,36 +17,36 @@ export const balloon = () => {
 			},
 		},
 		methods: {
-			deleteImage(index) {
-				this.balloon.splice(index, 1);
+			deleteImage( index ) {
+				this.balloon.splice( index, 1 );
 			},
 			addImage() {
-				this.balloon.push({
+				this.balloon.push( {
 					url: '',
 					name: '',
-				});
+				} );
 				UIkit.icon();
 			},
-			selectImage(index) {
+			selectImage( index ) {
 				const self = this;
-				const customUploader = wp.media({
+				const customUploader = wp.media( {
 					title: '画像を選択',
 					button: {
 						text: '選択',
 					},
 					multiple: false,
-				});
-				customUploader.on('select', () => {
-					const image = customUploader.state().get('selection');
-					image.each(function (file) {
+				} );
+				customUploader.on( 'select', () => {
+					const image = customUploader.state().get( 'selection' );
+					image.each( function ( file ) {
 						const imageUrl = file.toJSON().url;
-						if (imageUrl) {
-							self.balloon[index].url = imageUrl;
+						if ( imageUrl ) {
+							self.balloon[ index ].url = imageUrl;
 						}
-					});
-				});
+					} );
+				} );
 				customUploader.open();
 			},
 		},
-	});
+	} );
 };

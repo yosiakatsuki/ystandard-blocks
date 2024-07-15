@@ -15,12 +15,12 @@ export function getIcons() {
  * @return {undefined|string} アイコンSVG.
  * @deprecated @aktk/components/icon に移行.
  */
-export function getIconSvg(iconName) {
-	const name = migrateOldSNSIconName(iconName);
-	const targetIcon = getIcons().find((icon) => {
+export function getIconSvg( iconName ) {
+	const name = migrateOldSNSIconName( iconName );
+	const targetIcon = getIcons().find( ( icon ) => {
 		return icon.name === name;
-	});
-	if (!targetIcon || !targetIcon.hasOwnProperty('icon')) {
+	} );
+	if ( ! targetIcon || ! targetIcon.hasOwnProperty( 'icon' ) ) {
 		return undefined;
 	}
 	return targetIcon.icon;
@@ -33,8 +33,8 @@ export function getIconSvg(iconName) {
  * @return {string} アイコン名.
  * @deprecated 旧SNSアイコン名は使用しない.
  */
-export function migrateOldSNSIconName(name) {
-	if (!name) {
+export function migrateOldSNSIconName( name ) {
+	if ( ! name ) {
 		return name;
 	}
 	const snsIcons = [
@@ -107,10 +107,10 @@ export function migrateOldSNSIconName(name) {
 			new: 'sns-amazon',
 		},
 	];
-	const migrate = snsIcons.find((icon) => {
+	const migrate = snsIcons.find( ( icon ) => {
 		return icon.old === name;
-	});
-	if (!migrate) {
+	} );
+	if ( ! migrate ) {
 		return name;
 	}
 	return migrate.new;

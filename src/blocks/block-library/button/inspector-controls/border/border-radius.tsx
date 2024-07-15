@@ -1,8 +1,4 @@
 /**
- * WordPress dependencies.
- */
-import { __ } from '@wordpress/i18n';
-/**
  * Plugin dependencies.
  */
 import { BorderRadiusControl } from '@aktk/blocks/components/border-radius-control';

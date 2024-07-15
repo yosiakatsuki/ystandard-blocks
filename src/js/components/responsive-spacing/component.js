@@ -21,113 +21,113 @@ import { getSpacingInfo, parseSpacing } from '@aktk/helper/spacing';
  * @param      props
  * @deprecated v3.12.0
  */
-export const ResponsiveSpacing = (props) => {
+export const ResponsiveSpacing = ( props ) => {
 	const { label, values, onChange, units, inputProps, splitOnAxis } = props;
 
-	const _units = units ?? getComponentConfig('units');
-	const valueDesktop = getResponsiveValue(values, 'desktop');
-	const valueTablet = getResponsiveValue(values, 'tablet');
-	const valueMobile = getResponsiveValue(values, 'mobile');
+	const _units = units ?? getComponentConfig( 'units' );
+	const valueDesktop = getResponsiveValue( values, 'desktop' );
+	const valueTablet = getResponsiveValue( values, 'tablet' );
+	const valueMobile = getResponsiveValue( values, 'mobile' );
 
-	const handleOnChangeDesktop = (nextValues) => {
+	const handleOnChangeDesktop = ( nextValues ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
-				desktop: parseSpacing(nextValues),
-			})
+				desktop: parseSpacing( nextValues ),
+			} )
 		);
 	};
-	const handleOnChangeTablet = (nextValues) => {
+	const handleOnChangeTablet = ( nextValues ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
-				tablet: parseSpacing(nextValues),
-			})
+				tablet: parseSpacing( nextValues ),
+			} )
 		);
 	};
-	const handleOnChangeMobile = (nextValues) => {
+	const handleOnChangeMobile = ( nextValues ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
-				mobile: parseSpacing(nextValues),
-			})
+				mobile: parseSpacing( nextValues ),
+			} )
 		);
 	};
 	return (
 		<BaseControl>
-			<ResponsiveTab label={label}>
-				{(tab) => {
+			<ResponsiveTab label={ label }>
+				{ ( tab ) => {
 					return (
 						<>
-							{tabType.desktop === tab.name && (
+							{ tabType.desktop === tab.name && (
 								<div
 									className={
 										'ystd-responsive-spacing-box-control'
 									}
 								>
 									<BoxControl
-										label={_x(
+										label={ _x(
 											'デスクトップ',
 											'responsive-component',
 											'ystandard-toolbox'
-										)}
-										values={valueDesktop}
-										onChange={handleOnChangeDesktop}
-										units={_units}
-										inputProps={inputProps}
-										splitOnAxis={splitOnAxis}
+										) }
+										values={ valueDesktop }
+										onChange={ handleOnChangeDesktop }
+										units={ _units }
+										inputProps={ inputProps }
+										splitOnAxis={ splitOnAxis }
 									/>
 								</div>
-							)}
-							{tabType.tablet === tab.name && (
+							) }
+							{ tabType.tablet === tab.name && (
 								<div
 									className={
 										'ystd-responsive-spacing-box-control'
 									}
 								>
 									<BoxControl
-										label={_x(
+										label={ _x(
 											'タブレット',
 											'responsive-component',
 											'ystandard-toolbox'
-										)}
-										values={valueTablet}
-										onChange={handleOnChangeTablet}
-										units={_units}
-										inputProps={inputProps}
-										splitOnAxis={splitOnAxis}
+										) }
+										values={ valueTablet }
+										onChange={ handleOnChangeTablet }
+										units={ _units }
+										inputProps={ inputProps }
+										splitOnAxis={ splitOnAxis }
 									/>
 								</div>
-							)}
-							{tabType.mobile === tab.name && (
+							) }
+							{ tabType.mobile === tab.name && (
 								<div
 									className={
 										'ystd-responsive-spacing-box-control'
 									}
 								>
 									<BoxControl
-										label={_x(
+										label={ _x(
 											'モバイル',
 											'responsive-component',
 											'ystandard-toolbox'
-										)}
-										values={valueMobile}
-										onChange={handleOnChangeMobile}
-										units={_units}
-										inputProps={inputProps}
-										splitOnAxis={splitOnAxis}
+										) }
+										values={ valueMobile }
+										onChange={ handleOnChangeMobile }
+										units={ _units }
+										inputProps={ inputProps }
+										splitOnAxis={ splitOnAxis }
 									/>
 								</div>
-							)}
+							) }
 						</>
 					);
-				}}
+				} }
 			</ResponsiveTab>
 			<ResponsiveValuesInfo
-				desktop={getSpacingInfo(valueDesktop)}
-				tablet={getSpacingInfo(valueTablet)}
-				mobile={getSpacingInfo(valueMobile)}
-				style={{ marginTop: 0 }}
+				desktop={ getSpacingInfo( valueDesktop ) }
+				tablet={ getSpacingInfo( valueTablet ) }
+				mobile={ getSpacingInfo( valueMobile ) }
+				style={ { marginTop: 0 } }
 			/>
 		</BaseControl>
 	);

@@ -20,21 +20,21 @@ const getCustomProperty = (
 	suffix = ''
 ) => {
 	const prefix = '--ystdb';
-	const _suffix = suffix ? `-${suffix}` : '';
-	if (!isObject(value)) {
+	const _suffix = suffix ? `-${ suffix }` : '';
+	if ( ! isObject( value ) ) {
 		return undefined;
 	}
 	let result = {};
-	Object.keys(value).map((key) => {
+	Object.keys( value ).map( ( key ) => {
 		const propertyName = _isResponsive
-			? `${prefix}-${key}${_suffix}-${device}`
-			: camelCase(key);
+			? `${ prefix }-${ key }${ _suffix }-${ device }`
+			: camelCase( key );
 		result = {
 			...result,
-			[propertyName]: value[key],
+			[ propertyName ]: value[ key ],
 		};
 		return true;
-	});
+	} );
 	return result;
 };
 
@@ -43,27 +43,27 @@ const getCustomProperty = (
  * @param      suffix
  * @deprecated v3.12.0
  */
-const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
-	if (!isObject(value)) {
+const getResponsiveSpacingCustomProperty = ( value, suffix = '' ) => {
+	if ( ! isObject( value ) ) {
 		return undefined;
 	}
 	return {
 		...getCustomProperty(
 			value?.desktop,
 			'desktop',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 		...getCustomProperty(
 			value?.tablet,
 			'tablet',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 		...getCustomProperty(
 			value?.mobile,
 			'mobile',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 	};
@@ -74,27 +74,27 @@ const getResponsiveSpacingCustomProperty = (value, suffix = '') => {
  * @param      suffix
  * @deprecated v3.12.0
  */
-const getResponsiveGapCustomProperty = (value, suffix = '') => {
-	if (!isObject(value)) {
+const getResponsiveGapCustomProperty = ( value, suffix = '' ) => {
+	if ( ! isObject( value ) ) {
 		return undefined;
 	}
 	return {
 		...getCustomProperty(
-			getGapProperty(value?.desktop),
+			getGapProperty( value?.desktop ),
 			'desktop',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 		...getCustomProperty(
-			getGapProperty(value?.tablet),
+			getGapProperty( value?.tablet ),
 			'tablet',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 		...getCustomProperty(
-			getGapProperty(value?.mobile),
+			getGapProperty( value?.mobile ),
 			'mobile',
-			isResponsive(value),
+			isResponsive( value ),
 			suffix
 		),
 	};
@@ -106,14 +106,16 @@ const getResponsiveGapCustomProperty = (value, suffix = '') => {
  * @param      suffix
  * @deprecated v3.12.0
  */
-export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
-	const parsedValue = parseResponsiveValues({
-		desktop: getSpacingProps(type, values?.desktop),
-		tablet: getSpacingProps(type, values?.tablet),
-		mobile: getSpacingProps(type, values?.mobile),
-	});
+export const getResponsiveSpacingStyle = ( type, values, suffix = '' ) => {
+	const parsedValue = parseResponsiveValues( {
+		desktop: getSpacingProps( type, values?.desktop ),
+		tablet: getSpacingProps( type, values?.tablet ),
+		mobile: getSpacingProps( type, values?.mobile ),
+	} );
 
-	return parseObject(getResponsiveSpacingCustomProperty(parsedValue, suffix));
+	return parseObject(
+		getResponsiveSpacingCustomProperty( parsedValue, suffix )
+	);
 };
 
 /**
@@ -121,8 +123,8 @@ export const getResponsiveSpacingStyle = (type, values, suffix = '') => {
  * @param      suffix
  * @deprecated v3.12.0
  */
-export const getResponsiveGapStyle = (values, suffix = '') => {
-	return parseObject(getResponsiveGapCustomProperty(values, suffix));
+export const getResponsiveGapStyle = ( values, suffix = '' ) => {
+	return parseObject( getResponsiveGapCustomProperty( values, suffix ) );
 };
 
 /**
@@ -130,14 +132,14 @@ export const getResponsiveGapStyle = (values, suffix = '') => {
  * @param      suffix
  * @deprecated v3.12.0
  */
-export const getResponsivePaddingStyle = (values, suffix = '') => {
-	return getResponsiveSpacingStyle('padding', values, suffix);
+export const getResponsivePaddingStyle = ( values, suffix = '' ) => {
+	return getResponsiveSpacingStyle( 'padding', values, suffix );
 };
 /**
  * @param values
  * @param suffix
  * @deprecated
  */
-export const getResponsiveMarginStyle = (values, suffix = '') => {
-	return getResponsiveSpacingStyle('margin', values, suffix);
+export const getResponsiveMarginStyle = ( values, suffix = '' ) => {
+	return getResponsiveSpacingStyle( 'margin', values, suffix );
 };

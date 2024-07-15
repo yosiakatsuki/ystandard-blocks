@@ -3,8 +3,6 @@
  */
 import { __ } from '@wordpress/i18n';
 import { BaseControl } from '@wordpress/components';
-// @ts-expect-error
-import { __experimentalUseGradient } from '@wordpress/block-editor';
 
 /**
  * Plugin dependencies.

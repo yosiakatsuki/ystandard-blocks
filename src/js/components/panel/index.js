@@ -13,16 +13,16 @@ import { useMemo } from '@wordpress/element';
  * @class
  * @deprecated
  */
-const Panel = ({ title, initialOpen, children }) => {
-	const _initialOpen = useMemo(() => {
-		if ('function' === typeof initialOpen) {
+const Panel = ( { title, initialOpen, children } ) => {
+	const _initialOpen = useMemo( () => {
+		if ( 'function' === typeof initialOpen ) {
 			return initialOpen();
 		}
 		return initialOpen;
-	}, []);
+	}, [] );
 	return (
-		<PanelBody title={title} initialOpen={_initialOpen}>
-			{children}
+		<PanelBody title={ title } initialOpen={ _initialOpen }>
+			{ children }
 		</PanelBody>
 	);
 };

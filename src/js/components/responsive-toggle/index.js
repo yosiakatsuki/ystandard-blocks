@@ -13,83 +13,83 @@ import {
 } from '@aktk/helper/responsive';
 import ResponsiveValuesInfo from '@aktk/components/responsive-values-info';
 
-const ResponsiveToggle = ({
+const ResponsiveToggle = ( {
 	panelLabel,
 	toggleLabel,
 	values,
 	onChange,
 	valuesInfoLabel = undefined,
-}) => {
+} ) => {
 	const _valuesInfoLabel =
-		valuesInfoLabel ?? _x('ON', 'responsive-toggle', 'ystandard-blocks');
-	const valueDesktop = getResponsiveValue(values, 'desktop');
-	const valueTablet = getResponsiveValue(values, 'tablet');
-	const valueMobile = getResponsiveValue(values, 'mobile');
-	const handleOnChangeDesktop = (value) => {
+		valuesInfoLabel ?? _x( 'ON', 'responsive-toggle', 'ystandard-blocks' );
+	const valueDesktop = getResponsiveValue( values, 'desktop' );
+	const valueTablet = getResponsiveValue( values, 'tablet' );
+	const valueMobile = getResponsiveValue( values, 'mobile' );
+	const handleOnChangeDesktop = ( value ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
 				desktop: value || undefined,
-			})
+			} )
 		);
 	};
-	const handleOnChangeTablet = (value) => {
+	const handleOnChangeTablet = ( value ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
 				tablet: value || undefined,
-			})
+			} )
 		);
 	};
-	const handleOnChangeMobile = (value) => {
+	const handleOnChangeMobile = ( value ) => {
 		onChange(
-			parseResponsiveValues({
+			parseResponsiveValues( {
 				...values,
 				mobile: value || undefined,
-			})
+			} )
 		);
 	};
 	return (
 		<BaseControl>
-			<ResponsiveTab label={panelLabel}>
-				{(tab) => {
+			<ResponsiveTab label={ panelLabel }>
+				{ ( tab ) => {
 					return (
 						<>
-							{tabType.desktop === tab.name && (
+							{ tabType.desktop === tab.name && (
 								<ToggleControl
-									label={toggleLabel}
-									checked={!!valueDesktop}
-									onChange={(value) => {
-										handleOnChangeDesktop(value);
-									}}
+									label={ toggleLabel }
+									checked={ !! valueDesktop }
+									onChange={ ( value ) => {
+										handleOnChangeDesktop( value );
+									} }
 								/>
-							)}
-							{tabType.tablet === tab.name && (
+							) }
+							{ tabType.tablet === tab.name && (
 								<ToggleControl
-									label={toggleLabel}
-									checked={!!valueTablet}
-									onChange={(value) => {
-										handleOnChangeTablet(value);
-									}}
+									label={ toggleLabel }
+									checked={ !! valueTablet }
+									onChange={ ( value ) => {
+										handleOnChangeTablet( value );
+									} }
 								/>
-							)}
-							{tabType.mobile === tab.name && (
+							) }
+							{ tabType.mobile === tab.name && (
 								<ToggleControl
-									label={toggleLabel}
-									checked={!!valueMobile}
-									onChange={(value) => {
-										handleOnChangeMobile(value);
-									}}
+									label={ toggleLabel }
+									checked={ !! valueMobile }
+									onChange={ ( value ) => {
+										handleOnChangeMobile( value );
+									} }
 								/>
-							)}
+							) }
 						</>
 					);
-				}}
+				} }
 			</ResponsiveTab>
 			<ResponsiveValuesInfo
-				desktop={!!valueDesktop ? _valuesInfoLabel : undefined}
-				tablet={!!valueTablet ? _valuesInfoLabel : undefined}
-				mobile={!!valueMobile ? _valuesInfoLabel : undefined}
+				desktop={ !! valueDesktop ? _valuesInfoLabel : undefined }
+				tablet={ !! valueTablet ? _valuesInfoLabel : undefined }
+				mobile={ !! valueMobile ? _valuesInfoLabel : undefined }
 			/>
 		</BaseControl>
 	);

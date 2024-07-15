@@ -48,14 +48,14 @@ export const supports = {
 export const sizing = [
 	{
 		value: '',
-		label: __('1倍'),
+		label: __( '1倍' ),
 	},
 	{
 		value: '2',
-		label: __('2倍'),
+		label: __( '2倍' ),
 	},
 	{
 		value: '5',
-		label: __('5倍'),
+		label: __( '5倍' ),
 	},
 ];

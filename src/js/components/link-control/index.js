@@ -3,48 +3,48 @@ import './_editor.scss';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
-const LinkControl = ({ value, onChange, ...props }) => {
+const LinkControl = ( { value, onChange, ...props } ) => {
 	const { linkTarget, rel, url } = value;
 	const opensInNewTab = linkTarget === '_blank';
 
-	const handleOnChange = ({
+	const handleOnChange = ( {
 		url: newURL = '',
 		opensInNewTab: newOpensInNewTab,
-	}) => {
+	} ) => {
 		let updatedRel = rel;
 		let newLinkTarget = linkTarget;
-		if (opensInNewTab !== newOpensInNewTab) {
+		if ( opensInNewTab !== newOpensInNewTab ) {
 			newLinkTarget = newOpensInNewTab ? '_blank' : undefined;
-			if (newLinkTarget && !rel) {
+			if ( newLinkTarget && ! rel ) {
 				updatedRel = NEW_TAB_REL;
-			} else if (!newLinkTarget && rel === NEW_TAB_REL) {
+			} else if ( ! newLinkTarget && rel === NEW_TAB_REL ) {
 				updatedRel = undefined;
 			}
 		}
-		onChange({
+		onChange( {
 			url: newURL,
 			linkTarget: newLinkTarget,
 			rel: updatedRel,
-		});
+		} );
 	};
 
 	function unlink() {
-		onChange({
+		onChange( {
 			url: undefined,
 			linkTarget: undefined,
 			rel: undefined,
-		});
+		} );
 	}
 
 	return (
-		<div className={'aktk-link-control'}>
+		<div className={ 'aktk-link-control' }>
 			<WPLinkControl
-				value={{ url, opensInNewTab }}
-				onChange={handleOnChange}
-				onRemove={() => {
+				value={ { url, opensInNewTab } }
+				onChange={ handleOnChange }
+				onRemove={ () => {
 					unlink();
-				}}
-				{...props}
+				} }
+				{ ...props }
 			/>
 		</div>
 	);
