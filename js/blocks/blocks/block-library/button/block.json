@@ -1,0 +1,113 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/custom-button",
+  "title": "【β版】[ys]ボタン",
+  "description": "【β版】アイコンや余白等を設定できるボタン",
+  "version": "2.0.0",
+  "keywords": [
+    "btn",
+    "button",
+    "ボタン",
+    "アイコン"
+  ],
+  "attributes": {
+    "buttonType": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": ".ystdb-custom-button__content"
+    },
+    "url": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "href"
+    },
+    "linkTarget": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "target"
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "rel"
+    },
+    "iconLeft": {
+      "type": "string"
+    },
+    "iconSizeLeft": {
+      "type": "string"
+    },
+    "iconRight": {
+      "type": "string"
+    },
+    "iconSizeRight": {
+      "type": "string"
+    },
+    "iconPosition": {
+      "type": "string"
+    },
+    "align": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    },
+    "customGradient": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "border": {
+      "type": "object"
+    },
+    "borderRadius": {
+      "type": "object"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "customFontSize": {
+      "type": "string"
+    },
+    "responsiveFontSize": {
+      "type": "object"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "responsivePadding": {
+      "type": "object"
+    },
+    "animation": {
+      "type": "object"
+    },
+    "style": {
+      "type": "object"
+    }
+  },
+  "supports": {
+    "className": false,
+    "align": false
+  },
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

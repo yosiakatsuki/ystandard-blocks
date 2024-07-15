@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/conditional-group-block",
+  "title": "条件付きグループブロック",
+  "description": "条件により表示・非表示を切り替えできるグループブロック",
+  "version": "2.0.0",
+  "keywords": [
+    "cgb",
+    "条件付きグループブロック",
+    "conditional group block",
+    "グループブロック"
+  ],
+  "attributes": {
+    "hideSp": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "taxFilterType": {
+      "type": "string",
+      "default": "only"
+    },
+    "taxonomy": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "array"
+    },
+    "applyChildren": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideAMP": {
+      "type": "boolean",
+      "default": false
+    },
+    "onlyAMP": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "className": false,
+    "html": false,
+    "align": false,
+    "ystdtdHiddenBySize": false
+  },
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

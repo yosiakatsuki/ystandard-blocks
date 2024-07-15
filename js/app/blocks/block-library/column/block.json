@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/column",
+  "title": "カラム",
+  "description": "カスタムカラム用カラムブロック",
+  "attributes": {
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "shadow": {
+      "type": "boolean"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "width": {
+      "type": "object"
+    },
+    "isAutoWidth": {
+      "type": "object"
+    },
+    "url": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".ystdb-column__link",
+      "attribute": "href"
+    },
+    "linkTarget": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".ystdb-column__link",
+      "attribute": "target"
+    },
+    "rel": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".ystdb-column__link",
+      "attribute": "rel"
+    },
+    "screenReaderText": {
+      "type": "string",
+      "source": "text",
+      "selector": ".ystdb-column__link-screen-reader-text"
+    }
+  },
+  "supports": {
+    "align": false,
+    "className": false
+  },
+  "parent": [
+    "ystdb/columns"
+  ],
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

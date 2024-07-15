@@ -1,0 +1,148 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 2,
+  "name": "ystdb/svg-button-link",
+  "title": "【非推奨】ボタン型リンク",
+  "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。今後廃止予定です。",
+  "version": "2.0.0",
+  "keywords": [],
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 4
+    },
+    "iconLeft": {
+      "type": "string"
+    },
+    "iconLeftSVG": {
+      "type": "string"
+    },
+    "iconSizeLeft": {
+      "type": "string",
+      "default": ""
+    },
+    "iconRight": {
+      "type": "string"
+    },
+    "iconRightSVG": {
+      "type": "string"
+    },
+    "iconSizeRight": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "customFontSize": {
+      "type": "string"
+    },
+    "isFontSizeResponsive": {
+      "type": "boolean",
+      "default": false
+    },
+    "fontSizeMobile": {
+      "type": "number"
+    },
+    "fontSizeTablet": {
+      "type": "number"
+    },
+    "fontSizeDesktop": {
+      "type": "number"
+    },
+    "paddingType": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonType": {
+      "type": "string"
+    },
+    "isPaddingVerticalResponsive": {
+      "type": "boolean"
+    },
+    "paddingVerticalDesktop": {
+      "type": "number"
+    },
+    "paddingVerticalTablet": {
+      "type": "number"
+    },
+    "paddingVerticalMobile": {
+      "type": "number"
+    },
+    "isPaddingHorizontalResponsive": {
+      "type": "boolean"
+    },
+    "paddingHorizontalDesktop": {
+      "type": "number"
+    },
+    "paddingHorizontalTablet": {
+      "type": "number"
+    },
+    "paddingHorizontalMobile": {
+      "type": "number"
+    },
+    "buttonBlockDesktop": {
+      "type": "boolean"
+    },
+    "buttonBlockTablet": {
+      "type": "boolean"
+    },
+    "buttonBlockMobile": {
+      "type": "boolean"
+    },
+    "maxWidth": {
+      "type": "number",
+      "default": 100
+    },
+    "maxUnit": {
+      "type": "string",
+      "default": "%"
+    },
+    "animationType": {
+      "type": "string",
+      "default": "none"
+    },
+    "animationInterval": {
+      "type": "number",
+      "default": 5
+    }
+  },
+  "supports": {
+    "className": false,
+    "align": false,
+    "html": false
+  },
+  "styles": [
+    {
+      "name": "fill",
+      "label": "塗りつぶし",
+      "isDefault": true
+    },
+    {
+      "name": "outline",
+      "label": "アウトライン"
+    }
+  ],
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
