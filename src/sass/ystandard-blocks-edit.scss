@@ -7,15 +7,11 @@
 @use "edit/component";
 
 // Blocks.
-@use "../../blocks/balloon/edit" as balloon-edit;
 @use "../../blocks/card/edit" as card-edit;
 @use "../../blocks/heading/edit" as heading-edit;
 @use "../../blocks/section/edit" as section-edit;
 @use "../../blocks/svg-icon/edit" as svg-icon-edit;
 @use "../../blocks/inline-style/edit" as toolbar-buttons;
-
-// Inspector controls.
-@use "../../blocks/balloon/inspector-controls";
 
 .wp-block {
 
