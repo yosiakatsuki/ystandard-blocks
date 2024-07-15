@@ -24,10 +24,10 @@ const UNITS = [
 // @ts-ignore
 export default function BalloonBorderWidth( props ) {
 	const { attributes, setAttributes } = props;
-	const { balloonBorderWidth } = attributes;
+	const { balloonBorderWidth, balloonType } = attributes;
 
 	// 枠線モード以外は非表示.
-	if ( ! isTypeOutline( attributes ) ) {
+	if ( ! isTypeOutline( balloonType ) ) {
 		return <></>;
 	}
 

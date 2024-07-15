@@ -65,6 +65,8 @@ class Blocks {
 			if ( ! is_file( $file ) ) {
 				continue;
 			}
+			$style        = null;
+			$editor_style = null;
 			// ブロックの情報.
 
 			$name = basename( $file, '.js' );
@@ -88,7 +90,6 @@ class Blocks {
 			}
 			if ( 'normal' === $type ) {
 				// スクリプト関連.
-				$style      = null;
 				$style_path = YSTDB_PATH . "/css/blocks/{$name}/block.css";
 				if ( is_file( $style_path ) ) {
 					$style = [
@@ -97,7 +98,7 @@ class Blocks {
 						'var'    => filemtime( $style_path ),
 					];
 				}
-				$editor_style      = null;
+
 				$editor_style_path = YSTDB_PATH . "/css/blocks/{$name}/edit.css";
 				if ( is_file( $editor_style_path ) ) {
 					$editor_style = [

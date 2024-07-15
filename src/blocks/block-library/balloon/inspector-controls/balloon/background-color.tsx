@@ -31,7 +31,7 @@ export default function BalloonBackgroundColor( props ) {
 				value={ backgroundColor.color }
 				onChange={ ( color ) => {
 					setBackgroundColor( color );
-					if ( ! isTypeOutline( attributes ) ) {
+					if ( ! isTypeOutline( attributes?.balloonType ) ) {
 						setBalloonBorderColor( color );
 					}
 				} }

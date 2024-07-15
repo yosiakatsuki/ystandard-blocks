@@ -19,7 +19,7 @@ export default function BalloonBorderColor( props ) {
 	const { attributes, balloonBorderColor, setBalloonBorderColor } = props;
 
 	// 枠線モード以外は非表示.
-	if ( ! isTypeOutline( attributes ) ) {
+	if ( ! isTypeOutline( attributes?.balloonType ) ) {
 		return <></>;
 	}
 
