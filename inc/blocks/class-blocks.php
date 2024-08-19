@@ -150,13 +150,15 @@ class Blocks {
 			/**
 			 * ブロック共通スクリプト
 			 */
-			wp_register_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE, false );
+			wp_enqueue_script(
+				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
+				YSTDB_URL . '/js/admin-menu/admin-app.js'
+			);
 			wp_localize_script(
 				Config::BLOCK_EDITOR_SCRIPT_HANDLE,
 				'ystdb',
 				$this->create_block_config()
 			);
-			wp_enqueue_script( Config::BLOCK_EDITOR_SCRIPT_HANDLE );
 			if ( function_exists( 'wp_set_script_translations' ) ) {
 				wp_set_script_translations(
 					Config::BLOCK_EDITOR_SCRIPT_HANDLE,
