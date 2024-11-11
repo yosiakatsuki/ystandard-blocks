@@ -7,9 +7,8 @@ export const getAutoWidthClasses = ( isAutoWidth ) => {
 	const mobile = getResponsiveValue( isAutoWidth, 'mobile' );
 
 	return {
-		'is-auto-width-desktop': desktop && ( tablet || mobile ),
+		'is-auto-width-desktop': desktop,
 		'is-auto-width-tablet': tablet,
 		'is-auto-width-mobile': mobile,
-		'is-auto-width': desktop && ! tablet && ! mobile,
 	};
 };

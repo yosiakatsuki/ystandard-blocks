@@ -19,6 +19,7 @@ import { CATEGORY } from '@aktk/blocks/config';
  */
 import edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 // @ts-ignore
 import metadata from './block.json';
 import './style.scss';
@@ -44,6 +45,7 @@ export function registerColumnBlock() {
 			edit,
 			save,
 			example: {},
+			deprecated,
 		},
 	} );
 }

@@ -37,6 +37,11 @@ $editor: false;
 
 	&:not(.has-column-width) {
 
+		&.is-auto-width {
+			flex: 1 1 0;
+			width: auto;
+		}
+
 		&.is-auto-width-desktop {
 
 			@include global.media-breakpoint-only-pc() {
