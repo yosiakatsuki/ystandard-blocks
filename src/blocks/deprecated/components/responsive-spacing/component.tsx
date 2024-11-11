@@ -63,7 +63,7 @@ export const ResponsiveSpacing = ( props ) => {
 		);
 	};
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			<ResponsiveTab label={ label }>
 				{ ( tab ) => {
 					return (

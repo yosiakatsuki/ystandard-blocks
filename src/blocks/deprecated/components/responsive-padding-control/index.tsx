@@ -24,7 +24,7 @@ const ResponsivePaddingControl = ( { label, values, onChange, ...props } ) => {
 	};
 
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			<ResponsiveSpacing
 				label={
 					label
