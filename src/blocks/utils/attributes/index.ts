@@ -1,6 +1,11 @@
 import { isObject } from 'lodash';
 
 export const getDefaultAttributes = () => {
+	/**
+	 * Toolboxのブロック拡張機能でデフォルト値をフックできる
+	 * 「ystdtbBlockEditor」チェック
+	 * TODO: aktk-componentへ移動
+	 */
 	if (
 		! window.ystdtbBlockEditor ||
 		'object' !== typeof window.ystdtbBlockEditor
