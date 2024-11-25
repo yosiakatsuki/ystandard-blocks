@@ -4,9 +4,13 @@ import { Link2 } from 'react-feather';
  */
 import { registerBlockType } from '@wordpress/blocks';
 /**
+ * Aktk Dependencies.
+ */
+import { COLORS } from '@aktk/block-components/config';
+/**
  * Plugin.
  */
-import { COLOR, CATEGORY } from '@aktk/blocks/config';
+import { CATEGORY } from '@aktk/blocks/config';
 /**
  * Block
  */
@@ -30,7 +34,7 @@ export function registerSvgButtonBlock() {
 		...{
 			icon: (
 				<Link2
-					stroke={ COLOR.iconForeground }
+					stroke={ COLORS.iconForeground }
 					style={ { fill: 'none' } }
 				/>
 			),
