@@ -1,0 +1,177 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 2,
+	"name": "ystdb/heading",
+	"title": "カスタム見出し",
+	"description": "カスタム見出しブロック",
+	"version": "2.0.0",
+	"keywords": [
+		"heading",
+		"見出し",
+		"カスタム見出し"
+	],
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".ystdb-heading__text",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"subText": {
+			"type": "string",
+			"default": ""
+		},
+		"subTextPosition": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"subTextSize": {
+			"type": "string"
+		},
+		"customSubTextSize": {
+			"type": "string"
+		},
+		"useSubTextSizeResponsive": {
+			"type": "boolean",
+			"default": false
+		},
+		"subTextSizeMobile": {
+			"type": "number"
+		},
+		"subTextSizeTablet": {
+			"type": "number"
+		},
+		"subTextSizeDesktop": {
+			"type": "number"
+		},
+		"subTextFontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"subTextLetterSpacing": {
+			"type": "number"
+		},
+		"subTextColor": {
+			"type": "string"
+		},
+		"customSubTextColor": {
+			"type": "string"
+		},
+		"subTextBorderWidth": {
+			"type": "number",
+			"default": 50
+		},
+		"subTextBorderHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"dividerColor": {
+			"type": "string"
+		},
+		"customDividerColor": {
+			"type": "string"
+		},
+		"dividerMarginTop": {
+			"type": "number",
+			"default": 4
+		},
+		"dividerMarginBottom": {
+			"type": "number",
+			"default": 4
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"customTextColor": {
+			"type": "string"
+		},
+		"fontSize": {
+			"type": "string"
+		},
+		"customFontSize": {
+			"type": "string"
+		},
+		"useFontSizeResponsive": {
+			"type": "boolean",
+			"default": false
+		},
+		"fontSizeMobile": {
+			"type": "number"
+		},
+		"fontSizeTablet": {
+			"type": "number"
+		},
+		"fontSizeDesktop": {
+			"type": "number"
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"letterSpacing": {
+			"type": "number"
+		},
+		"clearStyle": {
+			"type": "boolean",
+			"default": true
+		},
+		"dividerImageURL": {
+			"type": "string"
+		},
+		"dividerImageAlt": {
+			"type": "string"
+		},
+		"dividerImageID": {
+			"type": "integer",
+			"default": 0
+		},
+		"marginTop": {
+			"type": "string",
+			"default": ""
+		},
+		"marginTopUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginRight": {
+			"type": "string",
+			"default": ""
+		},
+		"marginRightUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginBottom": {
+			"type": "string",
+			"default": ""
+		},
+		"marginBottomUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginLeft": {
+			"type": "string",
+			"default": ""
+		},
+		"marginLeftUnit": {
+			"type": "string",
+			"default": "px"
+		}
+	},
+	"supports": {
+		"className": false,
+		"align": false
+	},
+	"textdomain": "ystandard-blocks",
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
