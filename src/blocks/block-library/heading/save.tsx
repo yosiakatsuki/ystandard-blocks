@@ -1,3 +1,7 @@
 export default function Save() {
-	return <></>;
+	return (
+		<>
+			<div>カスタム見出し2</div>
+		</>
+	);
 }

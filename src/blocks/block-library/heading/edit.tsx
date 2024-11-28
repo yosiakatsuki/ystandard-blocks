@@ -2,11 +2,22 @@
  * WordPress dependencies.
  */
 import { compose } from '@wordpress/compose';
-import { withColors, withFontSizes } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	RichText,
+	withColors,
+	withFontSizes,
+} from '@wordpress/block-editor';
 
 // @ts-ignore
 function Edit( props ) {
-	return <></>;
+	const blockProps = useBlockProps( {} );
+
+	return (
+		<div { ...blockProps }>
+			<div>カスタム見出し2</div>
+		</div>
+	);
 }
 
 // @ts-ignore
