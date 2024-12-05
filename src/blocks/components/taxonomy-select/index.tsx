@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 import Notice from '@aktk/blocks/components/notice';
 import CustomSelectControl, {
 	CustomSelectControlOption,
-} from '@aktk/blocks/components/custom-select-control';
+} from '@aktk/block-components/components/custom-select-control';
 
 export interface TaxonomySelectProps {
 	label: string;
