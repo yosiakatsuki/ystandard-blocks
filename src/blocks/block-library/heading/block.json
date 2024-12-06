@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
 	"apiVersion": 2,
 	"name": "ystdb/heading2",
-	"title": "カスタム見出し2",
+	"title": "カスタム見出し 2",
 	"description": "カスタム見出しブロック",
 	"version": "2.0.0",
 	"keywords": [
@@ -24,6 +24,12 @@
 		"align": {
 			"type": "string",
 			"default": "left"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"customTextColor": {
+			"type": "string"
 		},
 		"subText": {
 			"type": "string",
@@ -86,12 +92,6 @@
 		"dividerMarginBottom": {
 			"type": "number",
 			"default": 4
-		},
-		"textColor": {
-			"type": "string"
-		},
-		"customTextColor": {
-			"type": "string"
 		},
 		"fontSize": {
 			"type": "string"
