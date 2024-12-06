@@ -9,6 +9,7 @@ import { PanelBody } from '@wordpress/components';
  */
 import { TextColor } from '@aktk/blocks/block-library/heading/inspector-controls/typography/text-color';
 import { FontSize } from '@aktk/blocks/block-library/heading/inspector-controls/typography/font-size';
+import { FontWeight } from '@aktk/blocks/block-library/heading/inspector-controls/typography/font-weight';
 
 // @ts-ignore
 export function Typography( props ) {
@@ -16,6 +17,7 @@ export function Typography( props ) {
 		<PanelBody title={ __( '文字設定', 'ystandard-blocks' ) }>
 			<TextColor { ...props } />
 			<FontSize { ...props } />
+			<FontWeight { ...props } />
 		</PanelBody>
 	);
 }

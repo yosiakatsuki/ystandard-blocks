@@ -50,6 +50,7 @@ function Edit( props ) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
+		fontWeight,
 		clearStyle,
 	} = attributes;
 
@@ -95,6 +96,7 @@ function Edit( props ) {
 		textColor: textColor?.color,
 		fontSize: fontSize?.size,
 		useFontSizeResponsive,
+		fontWeight,
 	} );
 
 	// 見出しテキストの変更.

@@ -41,12 +41,15 @@ type HeadingTextStylesProps = {
 	textColor: string;
 	fontSize: string;
 	useFontSizeResponsive: boolean;
+	fontWeight: string;
 };
 
 export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
-	const { textColor, fontSize, useFontSizeResponsive } = attributes;
+	const { textColor, fontSize, useFontSizeResponsive, fontWeight } =
+		attributes;
 	return {
 		color: textColor || undefined,
 		fontSize: fontSize && ! useFontSizeResponsive ? fontSize : undefined,
+		fontWeight: fontWeight || undefined,
 	};
 }

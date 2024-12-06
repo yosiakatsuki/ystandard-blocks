@@ -42,6 +42,7 @@ export default function Save( { attributes } ) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
+		fontWeight,
 		clearStyle,
 	} = attributes;
 
@@ -91,6 +92,7 @@ export default function Save( { attributes } ) {
 		textColor: customTextColor,
 		fontSize: ! fontSizeClass ? customFontSize : undefined,
 		useFontSizeResponsive,
+		fontWeight,
 	} );
 
 	return (
