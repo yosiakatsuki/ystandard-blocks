@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, BaseControl } from '@wordpress/components';
+import { BaseControl } from '@wordpress/components';
 /**
  * Aktk Dependencies.
  */
@@ -18,17 +18,15 @@ export function TextColor( props ) {
 	};
 
 	return (
-		<PanelBody title={ __( '文字色', 'ystandard-blocks' ) }>
-			<BaseControl
-				id={ 'text-color' }
+		<BaseControl
+			id={ 'text-color' }
+			label={ __( '文字色', 'ystandard-blocks' ) }
+		>
+			<ColorPalette
 				label={ __( '文字色', 'ystandard-blocks' ) }
-			>
-				<ColorPalette
-					label={ __( '文字色', 'ystandard-blocks' ) }
-					value={ textColor.color }
-					onChange={ handleOnChange }
-				/>
-			</BaseControl>
-		</PanelBody>
+				value={ textColor.color }
+				onChange={ handleOnChange }
+			/>
+		</BaseControl>
 	);
 }

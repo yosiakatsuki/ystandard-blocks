@@ -4,40 +4,49 @@
 import clsx from 'clsx';
 
 type BlockClassesProps = {
-	className?: string;
-	textColor?: string;
+	className: string;
 };
 
 // @ts-ignore
 export function getBlockClasses( attributes: BlockClassesProps ) {
-	const { className, textColor } = attributes;
-	return clsx( 'ystdb-heading', className, {
-		[ `${ textColor }` ]: textColor,
-	} );
+	const { className } = attributes;
+	return clsx( 'ystdb-heading', className, {} );
 }
 
 type HeadingTextClassesProps = {
-	clearStyle?: boolean;
-	textColor?: string;
-	hasTextColor?: boolean;
+	textColor: string;
+	hasTextColor: boolean;
+	fontSize: string;
+	useFontSizeResponsive: boolean;
+	clearStyle: boolean;
 };
 
 export function getHeadingTextClasses( attributes: HeadingTextClassesProps ) {
-	const { textColor, hasTextColor = false, clearStyle = true } = attributes;
+	const {
+		textColor,
+		hasTextColor = false,
+		fontSize,
+		useFontSizeResponsive = false,
+		clearStyle = true,
+	} = attributes;
 	return clsx( 'ystdb-heading__text', {
 		[ `${ textColor }` ]: textColor,
 		'has-text-color': hasTextColor,
 		'is-clear-style': clearStyle,
+		[ `${ fontSize }` ]: fontSize && ! useFontSizeResponsive,
 	} );
 }
 
 type HeadingTextStylesProps = {
-	textColor?: string;
+	textColor: string;
+	fontSize: string;
+	useFontSizeResponsive: boolean;
 };
 
 export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
-	const { textColor } = attributes;
+	const { textColor, fontSize, useFontSizeResponsive } = attributes;
 	return {
 		color: textColor || undefined,
+		fontSize: fontSize && ! useFontSizeResponsive ? fontSize : undefined,
 	};
 }

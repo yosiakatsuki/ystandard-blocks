@@ -7,7 +7,7 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
  */
 import { HeadingLevel } from '@aktk/blocks/block-library/heading/inspector-controls/heading-level';
 import { ClearStyle } from '@aktk/blocks/block-library/heading/inspector-controls/clear-style';
-import { TextColor } from '@aktk/blocks/block-library/heading/inspector-controls/text-color';
+import { Typography } from '@aktk/blocks/block-library/heading/inspector-controls/typography';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -15,7 +15,7 @@ export function InspectorControls( props ) {
 		<>
 			<WPInspectorControls>
 				<HeadingLevel { ...props } />
-				<TextColor { ...props } />
+				<Typography { ...props } />
 				<ClearStyle { ...props } />
 			</WPInspectorControls>
 		</>

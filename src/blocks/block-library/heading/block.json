@@ -31,6 +31,32 @@
 		"customTextColor": {
 			"type": "string"
 		},
+		"fontSize": {
+			"type": "string"
+		},
+		"customFontSize": {
+			"type": "string"
+		},
+		"useFontSizeResponsive": {
+			"type": "boolean",
+			"default": false
+		},
+		"fontSizeMobile": {
+			"type": "number"
+		},
+		"fontSizeTablet": {
+			"type": "number"
+		},
+		"fontSizeDesktop": {
+			"type": "number"
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"letterSpacing": {
+			"type": "number"
+		},
 		"subText": {
 			"type": "string",
 			"default": ""
@@ -92,32 +118,6 @@
 		"dividerMarginBottom": {
 			"type": "number",
 			"default": 4
-		},
-		"fontSize": {
-			"type": "string"
-		},
-		"customFontSize": {
-			"type": "string"
-		},
-		"useFontSizeResponsive": {
-			"type": "boolean",
-			"default": false
-		},
-		"fontSizeMobile": {
-			"type": "number"
-		},
-		"fontSizeTablet": {
-			"type": "number"
-		},
-		"fontSizeDesktop": {
-			"type": "number"
-		},
-		"fontWeight": {
-			"type": "string",
-			"default": ""
-		},
-		"letterSpacing": {
-			"type": "number"
 		},
 		"clearStyle": {
 			"type": "boolean",

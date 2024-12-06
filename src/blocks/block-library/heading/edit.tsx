@@ -1,4 +1,8 @@
 /**
+ * External dependencies
+ */
+import clsx from 'clsx';
+/**
  * WordPress dependencies.
  */
 import { compose } from '@wordpress/compose';
@@ -20,6 +24,10 @@ import {
 	getHeadingTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
 import { __ } from '@wordpress/i18n';
+import {
+	getDeprecatedFontResponsiveClass,
+	getDeprecatedFontResponsiveStyle,
+} from '@aktk/blocks/deprecated/components/responsive-font-size';
 
 // @ts-ignore
 function Edit( props ) {
@@ -28,22 +36,50 @@ function Edit( props ) {
 		setAttributes,
 		className,
 		textColor,
+		fontSize,
 		mergeBlocks,
 		onReplace,
 		style,
 		clientId,
 	} = props;
-	const { level, content, clearStyle } = attributes;
+
+	const {
+		level,
+		content,
+		useFontSizeResponsive,
+		fontSizeMobile,
+		fontSizeTablet,
+		fontSizeDesktop,
+		clearStyle,
+	} = attributes;
 
 	// 見出しレベル.
 	const TagName = `h${ level }`;
 
 	// ブロック一番外側のプロパティなど.
 	const blockProps = useBlockProps( {
-		className: getBlockClasses( {
-			className,
-		} ),
-		style,
+		className: clsx(
+			getBlockClasses( {
+				className,
+			} ),
+			{
+				...getDeprecatedFontResponsiveClass(
+					useFontSizeResponsive,
+					fontSizeMobile,
+					fontSizeTablet,
+					fontSizeDesktop
+				),
+			}
+		),
+		style: {
+			...style,
+			...getDeprecatedFontResponsiveStyle( {
+				isResponsive: useFontSizeResponsive,
+				desktop: fontSizeDesktop,
+				tablet: fontSizeTablet,
+				mobile: fontSizeMobile,
+			} ),
+		},
 	} );
 
 	// 見出しタグ本体のクラス.
@@ -51,10 +87,14 @@ function Edit( props ) {
 		clearStyle,
 		textColor: textColor?.class,
 		hasTextColor: !! textColor?.color || !! textColor?.class,
+		fontSize: fontSize?.class,
+		useFontSizeResponsive,
 	} );
 	// 見出しタグ本体のstyle.
 	const textStyles = getHeadingTextStyles( {
 		textColor: textColor?.color,
+		fontSize: fontSize?.size,
+		useFontSizeResponsive,
 	} );
 
 	// 見出しテキストの変更.
