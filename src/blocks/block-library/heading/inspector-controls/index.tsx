@@ -5,10 +5,11 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
 /**
  * Internal dependencies.
  */
-import { HeadingLevel } from '@aktk/blocks/block-library/heading/inspector-controls/heading-level';
-import { ClearStyle } from '@aktk/blocks/block-library/heading/inspector-controls/clear-style';
-import { Typography } from '@aktk/blocks/block-library/heading/inspector-controls/typography';
-import { Spacing } from '@aktk/blocks/block-library/heading/inspector-controls/spacing';
+import { HeadingLevel } from './heading-level';
+import { ClearStyle } from './clear-style';
+import { Typography } from './typography';
+import { Spacing } from './spacing';
+import { SubText } from './sub-text';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -18,6 +19,7 @@ export function InspectorControls( props ) {
 				<HeadingLevel { ...props } />
 				<Typography { ...props } />
 				<Spacing { ...props } />
+				<SubText { ...props } />
 				<ClearStyle { ...props } />
 			</WPInspectorControls>
 		</>

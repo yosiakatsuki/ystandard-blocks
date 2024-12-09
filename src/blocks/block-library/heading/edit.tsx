@@ -6,6 +6,7 @@ import clsx from 'clsx';
  * WordPress dependencies.
  */
 import { compose } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	RichText,
@@ -14,30 +15,39 @@ import {
 } from '@wordpress/block-editor';
 import { createBlock, getDefaultBlockName } from '@wordpress/blocks';
 /**
+ * Aktk Dependencies
+ */
+import InputControl from '@aktk/block-components/wp-controls/input-control';
+/**
+ * Plugin dependencies.
+ */
+import { getDeprecatedFontResponsiveClass } from '@aktk/blocks/deprecated/components/responsive-font-size';
+/**
  * Internal dependencies.
  */
-import { BlockControls } from '@aktk/blocks/block-library/heading/block-controls';
-import { InspectorControls } from '@aktk/blocks/block-library/heading/inspector-controls';
 import {
 	getBlockClasses,
 	getBlockStyles,
 	getHeadingTextClasses,
 	getHeadingTextStyles,
-} from '@aktk/blocks/block-library/heading/util';
-import { __ } from '@wordpress/i18n';
-import { getDeprecatedFontResponsiveClass } from '@aktk/blocks/deprecated/components/responsive-font-size';
+	getSubTextClasses,
+	getSubTextStyles,
+} from './util';
+import { BlockControls } from './block-controls';
+import { InspectorControls } from './inspector-controls';
+import type { AttributeType } from './type';
 
 // @ts-ignore
 function Edit( props ) {
 	const {
 		attributes,
 		setAttributes,
-		className,
 		textColor,
 		fontSize,
 		mergeBlocks,
 		onReplace,
 		style,
+		isSelected,
 		clientId,
 	} = props;
 
@@ -48,7 +58,9 @@ function Edit( props ) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
-	} = attributes;
+		subText,
+		subTextPosition,
+	} = attributes as AttributeType;
 
 	// 見出しレベル.
 	const TagName = `h${ level }`;
@@ -82,15 +94,48 @@ function Edit( props ) {
 		fontSize: fontSize?.class,
 	} );
 	// 見出しタグ本体のstyle.
-	const textStyles = getHeadingTextStyles( {
-		...attributes,
-		textColor: textColor?.color,
-		fontSize: fontSize?.size,
-	} );
+	const textStyles = {
+		...getHeadingTextStyles( {
+			...attributes,
+			textColor: textColor?.color,
+			fontSize: fontSize?.size,
+		} ),
+		lineHeight: '1.4',
+	};
 
 	// 見出しテキストの変更.
 	const handleOnChange = ( value: string ) => {
 		setAttributes( { content: value } );
+	};
+
+	// サブテキスト編集.
+	const editSubText = () => {
+		const showControl = isSelected || subText;
+		const subTextClasses = clsx(
+			'[&_input+div]:!hidden [&_input]:!p-0',
+			getSubTextClasses( attributes )
+		);
+		const subTextStyles = getSubTextStyles( attributes );
+
+		return (
+			<>
+				{ showControl && (
+					<div className={ subTextClasses } style={ subTextStyles }>
+						<InputControl
+							value={ subText || '' }
+							onChange={ ( newValue ) => {
+								setAttributes( { subText: newValue } );
+							} }
+							placeholder={ __(
+								'サブテキスト…',
+								'ystandard-blocks'
+							) }
+							ariaLabel={ __( 'Sub Text' ) }
+						/>
+					</div>
+				) }
+			</>
+		);
 	};
 
 	return (
@@ -100,13 +145,14 @@ function Edit( props ) {
 
 			<div { ...blockProps }>
 				<div className={ `ystdb-heading__container` }>
+					{ 'top' === subTextPosition && <>{ editSubText() }</> }
 					<RichText
 						identifier="content"
 						// @ts-ignore
 						tagName={ TagName }
 						className={ textClasses }
 						style={ textStyles }
-						value={ content }
+						value={ content || '' }
 						onChange={ handleOnChange }
 						onMerge={ mergeBlocks }
 						onSplit={ ( value, isOriginal ) => {
@@ -141,6 +187,7 @@ function Edit( props ) {
 							'ystandard-blocks'
 						) }
 					/>
+					{ 'bottom' === subTextPosition && <>{ editSubText() }</> }
 				</div>
 			</div>
 		</>

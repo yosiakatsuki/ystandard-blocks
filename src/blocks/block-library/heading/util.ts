@@ -117,3 +117,27 @@ export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
 		letterSpacing: !! letterSpacing ? `${ letterSpacing }em` : undefined,
 	};
 }
+
+type SubTextClassesProps = {
+	subTextColor: string;
+	hasSubTextColor: boolean;
+};
+
+export function getSubTextClasses( props: SubTextClassesProps ) {
+	const { subTextColor, hasSubTextColor } = props;
+	return clsx( 'ystdb-heading__subtext', {
+		[ `${ subTextColor }` ]: subTextColor,
+		'has-color': hasSubTextColor,
+	} );
+}
+
+type SubTextStylesProps = {
+	subTextColor: string;
+};
+
+export function getSubTextStyles( props: SubTextStylesProps ) {
+	const { subTextColor } = props;
+	return {
+		color: subTextColor || undefined,
+	};
+}

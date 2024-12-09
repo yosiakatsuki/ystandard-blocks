@@ -21,7 +21,7 @@ export interface AttributeType {
 	marginLeft?: string;
 	marginLeftUnit?: string;
 	subText?: string;
-	subTextPosition?: string;
+	subTextPosition?: 'top' | 'bottom';
 	subTextSize?: string;
 	customSubTextSize?: string;
 	useSubTextSizeResponsive?: boolean;

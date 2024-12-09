@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 /**
  * WordPress dependencies.
  */
@@ -9,6 +10,9 @@ interface InputControlProps {
 	value: string;
 	disabled?: boolean;
 	labelPosition?: 'top' | 'side';
+	readOnly?: boolean;
+	placeholder?: string;
+	ariaLabel?: string;
 }
 
 export default function InputControl( props: InputControlProps ) {
@@ -18,7 +22,14 @@ export default function InputControl( props: InputControlProps ) {
 		value,
 		labelPosition = 'top',
 		disabled = false,
+		readOnly = false,
+		placeholder,
+		ariaLabel,
 	} = props;
+
+	const classes = clsx( {
+		'[&_input]:!bg-gray-50': readOnly,
+	} );
 
 	return (
 		<WPInputControl
@@ -27,6 +38,10 @@ export default function InputControl( props: InputControlProps ) {
 			value={ value }
 			labelPosition={ labelPosition }
 			disabled={ disabled }
+			readOnly={ readOnly }
+			className={ classes }
+			placeholder={ placeholder }
+			aria-label={ ariaLabel }
 		/>
 	);
 }
