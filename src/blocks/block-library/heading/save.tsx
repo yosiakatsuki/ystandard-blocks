@@ -28,6 +28,7 @@ import {
 	getHeadingTextClasses,
 	getHeadingTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
+import type { AttributeType } from '@aktk/blocks/block-library/heading/type';
 
 // @ts-ignore
 export default function Save( { attributes } ) {
@@ -42,9 +43,7 @@ export default function Save( { attributes } ) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
-		fontWeight,
-		clearStyle,
-	} = attributes;
+	} = attributes as AttributeType;
 
 	// 見出しタグ.
 	const tagName = `h${ level }`;
@@ -83,16 +82,13 @@ export default function Save( { attributes } ) {
 		textColor: getColorClassName( 'color', textColor ),
 		hasTextColor: !! textColor || !! customTextColor,
 		fontSize: fontSizeClass,
-		useFontSizeResponsive,
-		clearStyle,
 	} );
 
 	// 見出しタグ本体のstyle.
 	const textStyles = getHeadingTextStyles( {
+		...attributes,
 		textColor: customTextColor,
 		fontSize: ! fontSizeClass ? customFontSize : undefined,
-		useFontSizeResponsive,
-		fontWeight,
 	} );
 
 	return (
@@ -103,7 +99,7 @@ export default function Save( { attributes } ) {
 					tagName={ tagName }
 					className={ textClasses }
 					style={ textStyles }
-					value={ content }
+					value={ content || '' }
 				/>
 			</div>
 		</div>

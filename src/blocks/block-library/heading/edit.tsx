@@ -50,8 +50,6 @@ function Edit( props ) {
 		fontSizeMobile,
 		fontSizeTablet,
 		fontSizeDesktop,
-		fontWeight,
-		clearStyle,
 	} = attributes;
 
 	// 見出しレベル.
@@ -85,18 +83,16 @@ function Edit( props ) {
 
 	// 見出しタグ本体のクラス.
 	const textClasses = getHeadingTextClasses( {
-		clearStyle,
+		...attributes,
 		textColor: textColor?.class,
 		hasTextColor: !! textColor?.color || !! textColor?.class,
 		fontSize: fontSize?.class,
-		useFontSizeResponsive,
 	} );
 	// 見出しタグ本体のstyle.
 	const textStyles = getHeadingTextStyles( {
+		...attributes,
 		textColor: textColor?.color,
 		fontSize: fontSize?.size,
-		useFontSizeResponsive,
-		fontWeight,
 	} );
 
 	// 見出しテキストの変更.
