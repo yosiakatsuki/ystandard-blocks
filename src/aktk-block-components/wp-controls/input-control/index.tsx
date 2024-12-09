@@ -13,6 +13,8 @@ interface InputControlProps {
 	readOnly?: boolean;
 	placeholder?: string;
 	ariaLabel?: string;
+	style?: React.CSSProperties;
+	className?: string;
 }
 
 export default function InputControl( props: InputControlProps ) {
@@ -25,9 +27,11 @@ export default function InputControl( props: InputControlProps ) {
 		readOnly = false,
 		placeholder,
 		ariaLabel,
+		style,
+		className,
 	} = props;
 
-	const classes = clsx( {
+	const classes = clsx( className, {
 		'[&_input]:!bg-gray-50': readOnly,
 	} );
 
@@ -40,6 +44,7 @@ export default function InputControl( props: InputControlProps ) {
 			disabled={ disabled }
 			readOnly={ readOnly }
 			className={ classes }
+			style={ style }
 			placeholder={ placeholder }
 			aria-label={ ariaLabel }
 		/>

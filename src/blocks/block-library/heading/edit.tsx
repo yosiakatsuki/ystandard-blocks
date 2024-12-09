@@ -36,6 +36,7 @@ import {
 import { BlockControls } from './block-controls';
 import { InspectorControls } from './inspector-controls';
 import type { AttributeType } from './type';
+import './style-editor.scss';
 
 // @ts-ignore
 function Edit( props ) {
@@ -44,6 +45,7 @@ function Edit( props ) {
 		setAttributes,
 		textColor,
 		fontSize,
+		subTextSize,
 		mergeBlocks,
 		onReplace,
 		style,
@@ -111,18 +113,28 @@ function Edit( props ) {
 	// サブテキスト編集.
 	const editSubText = () => {
 		const showControl = isSelected || subText;
+
+		const editorStyles = {};
 		const subTextClasses = clsx(
-			'[&_input+div]:!hidden [&_input]:!p-0',
-			getSubTextClasses( attributes )
+			'ystdb-heading__subtext-edit',
+			'[&_input+div]:!hidden [&_input]:!p-0 [&_input]:!text-[1em] [&_input]:!h-auto',
+			getSubTextClasses( {
+				...attributes,
+				subTextSize: subTextSize?.class,
+			} )
 		);
-		const subTextStyles = getSubTextStyles( attributes );
+		const subTextStyles = getSubTextStyles( {
+			...attributes,
+			subTextSize: subTextSize?.size || '14px',
+		} );
 
 		return (
 			<>
 				{ showControl && (
-					<div className={ subTextClasses } style={ subTextStyles }>
+					<div className={ subTextClasses } style={ editorStyles }>
 						<InputControl
 							value={ subText || '' }
+							style={ subTextStyles }
 							onChange={ ( newValue ) => {
 								setAttributes( { subText: newValue } );
 							} }

@@ -25,7 +25,8 @@ import {
 	getBlockStyles,
 	getHeadingTextClasses,
 	getHeadingTextStyles,
-	getSubTextClasses, getSubTextStyles
+	getSubTextClasses,
+	getSubTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
 import type { AttributeType } from '@aktk/blocks/block-library/heading/type';
 
@@ -44,6 +45,9 @@ export default function Save( { attributes } ) {
 		fontSizeDesktop,
 		subText,
 		subTextPosition,
+		subTextSize,
+		customSubTextSize,
+		useSubTextSizeResponsive,
 	} = attributes as AttributeType;
 
 	// 見出しタグ.
@@ -84,8 +88,18 @@ export default function Save( { attributes } ) {
 
 	// サブテキスト.
 	const SubTextContent = () => {
-		const subTextClasses = getSubTextClasses( attributes );
-		const subTextStyles = getSubTextStyles( attributes );
+		const subTextClasses = getSubTextClasses( {
+			...attributes,
+			subTextSize:
+				! useSubTextSizeResponsive &&
+				getFontSizeClass( subTextSize || '' ),
+		} );
+		const subTextStyles = getSubTextStyles( {
+			...attributes,
+			subTextSize: ! useSubTextSizeResponsive
+				? customSubTextSize
+				: undefined,
+		} );
 
 		return (
 			<div

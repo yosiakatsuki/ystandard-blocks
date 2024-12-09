@@ -6,7 +6,10 @@ import clsx from 'clsx';
 /**
  * Plugin dependencies.
  */
-import { getDeprecatedFontResponsiveStyle } from '@aktk/blocks/deprecated/components/responsive-font-size';
+import {
+	getDeprecatedFontResponsiveStyle,
+	getDeprecatedFontResponsiveClass,
+} from '@aktk/blocks/deprecated/components/responsive-font-size';
 
 type BlockClassesProps = {};
 
@@ -119,25 +122,68 @@ export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
 }
 
 type SubTextClassesProps = {
+	subTextSize: string;
+	hasSubTextSize: boolean;
+	useSubTextSizeResponsive: boolean;
+	subTextSizeDesktop: number;
+	subTextSizeTablet: number;
+	subTextSizeMobile: number;
 	subTextColor: string;
 	hasSubTextColor: boolean;
 };
 
 export function getSubTextClasses( props: SubTextClassesProps ) {
-	const { subTextColor, hasSubTextColor } = props;
+	const {
+		subTextSize,
+		hasSubTextSize,
+		useSubTextSizeResponsive,
+		subTextSizeDesktop,
+		subTextSizeTablet,
+		subTextSizeMobile,
+		subTextColor,
+		hasSubTextColor,
+	} = props;
 	return clsx( 'ystdb-heading__subtext', {
-		[ `${ subTextColor }` ]: subTextColor,
+		[ `${ subTextSize }` ]: subTextSize,
+		'has-font-size': hasSubTextSize,
+		...getDeprecatedFontResponsiveClass(
+			useSubTextSizeResponsive,
+			subTextSizeDesktop,
+			subTextSizeTablet,
+			subTextSizeMobile
+		),
+		[ `${ subTextColor }` ]: subTextColor && ! useSubTextSizeResponsive,
 		'has-color': hasSubTextColor,
 	} );
 }
 
 type SubTextStylesProps = {
+	subTextSize: string;
+	useSubTextSizeResponsive: boolean;
+	subTextSizeDesktop: number;
+	subTextSizeTablet: number;
+	subTextSizeMobile: number;
 	subTextColor: string;
 };
 
 export function getSubTextStyles( props: SubTextStylesProps ) {
-	const { subTextColor } = props;
+	const {
+		subTextSize,
+		useSubTextSizeResponsive,
+		subTextSizeDesktop,
+		subTextSizeTablet,
+		subTextSizeMobile,
+		subTextColor,
+	} = props;
 	return {
+		fontSize:
+			subTextSize && ! useSubTextSizeResponsive ? subTextSize : undefined,
 		color: subTextColor || undefined,
+		...getDeprecatedFontResponsiveStyle( {
+			isResponsive: useSubTextSizeResponsive,
+			desktop: subTextSizeDesktop,
+			tablet: subTextSizeTablet,
+			mobile: subTextSizeMobile,
+		} ),
 	};
 }

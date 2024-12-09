@@ -14,64 +14,63 @@ import { toNumber } from '@aktk/block-components/utils/number';
  */
 import ResponsiveDeprecatedFontSizeControl from '@aktk/blocks/deprecated/components/responsive-font-size';
 
-
 // @ts-ignore
-export function FontSize( props ) {
-	const { fontSize, setFontSize, attributes, setAttributes } = props;
+export function SubTextFontSize( props ) {
+	const { subTextSize, setSubTextSize, attributes, setAttributes } = props;
 	const {
-		useFontSizeResponsive,
-		fontSizeDesktop,
-		fontSizeTablet,
-		fontSizeMobile,
+		useSubTextSizeResponsive,
+		subTextSizeMobile,
+		subTextSizeTablet,
+		subTextSizeDesktop,
 	} = attributes;
 
 	return (
 		<BaseControl
-			id={ 'font-size' }
+			id={ 'sub-text-font-size' }
 			label={ __( '文字サイズ', 'ystandard-blocks' ) }
 		>
 			<ResponsiveDeprecatedFontSizeControl
 				id={ 'font-size' }
-				useResponsive={ useFontSizeResponsive }
-				fontSize={ fontSize }
+				useResponsive={ useSubTextSizeResponsive }
+				fontSize={ subTextSize }
 				onChangeFontSizePicker={ ( font ) => {
-					setFontSize( font );
+					setSubTextSize( font );
 				} }
 				changeResponsiveMode={ ( value ) => {
 					if ( value ) {
 						setAttributes( {
-							fontSizeDesktop:
-								! fontSizeDesktop && fontSize.size
-									? fontSize.size
-									: toNumber( fontSizeDesktop, {
+							subTextSizeDesktop:
+								! subTextSizeDesktop && subTextSize.size
+									? subTextSize.size
+									: toNumber( subTextSizeDesktop, {
 											min: 0,
 											max: 200,
 											default: undefined,
 									  } ),
-							fontSizeTablet:
-								! fontSizeTablet && fontSize.size
-									? fontSize.size
-									: toNumber( fontSizeTablet, {
+							subTextSizeTablet:
+								! subTextSizeTablet && subTextSize.size
+									? subTextSize.size
+									: toNumber( subTextSizeTablet, {
 											min: 0,
 											max: 200,
 											default: undefined,
 									  } ),
-							fontSizeMobile:
-								! fontSizeMobile && fontSize.size
-									? fontSize.size
-									: toNumber( fontSizeMobile, {
+							subTextSizeMobile:
+								! subTextSizeMobile && subTextSize.size
+									? subTextSize.size
+									: toNumber( subTextSizeMobile, {
 											min: 0,
 											max: 200,
 											default: undefined,
 									  } ),
 						} );
 					}
-					setAttributes( { useFontSizeResponsive: value } );
+					setAttributes( { useSubTextSizeResponsive: value } );
 				} }
-				desktopValue={ fontSizeDesktop }
+				desktopValue={ subTextSizeDesktop }
 				desktopOnChange={ ( value ) => {
 					setAttributes( {
-						fontSizeDesktop: toNumber( value, {
+						subTextSizeDesktop: toNumber( value, {
 							min: 0,
 							max: 200,
 							default: undefined,
@@ -79,10 +78,10 @@ export function FontSize( props ) {
 					} );
 				} }
 				desktopUnit={ 'px' }
-				tabletValue={ fontSizeTablet }
+				tabletValue={ subTextSizeTablet }
 				tabletOnChange={ ( value ) =>
 					setAttributes( {
-						fontSizeTablet: toNumber( value, {
+						subTextSizeTablet: toNumber( value, {
 							min: 0,
 							max: 200,
 							default: undefined,
@@ -90,10 +89,10 @@ export function FontSize( props ) {
 					} )
 				}
 				tabletUnit={ 'px' }
-				mobileValue={ fontSizeMobile }
+				mobileValue={ subTextSizeMobile }
 				mobileOnChange={ ( value ) =>
 					setAttributes( {
-						fontSizeMobile: toNumber( value, {
+						subTextSizeMobile: toNumber( value, {
 							min: 0,
 							max: 200,
 							default: undefined,

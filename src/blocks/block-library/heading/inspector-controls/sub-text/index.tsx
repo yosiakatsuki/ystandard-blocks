@@ -9,6 +9,7 @@ import { PanelBody } from '@wordpress/components';
  */
 import { SubTextContent } from './sub-text-content';
 import { SubTextPosition } from './sub-text-position';
+import { SubTextFontSize } from './sub-text-font-size';
 
 // @ts-ignore
 export function SubText( props ) {
@@ -19,6 +20,7 @@ export function SubText( props ) {
 		>
 			<SubTextContent { ...props } />
 			<SubTextPosition { ...props } />
+			<SubTextFontSize { ...props } />
 		</PanelBody>
 	);
 }
