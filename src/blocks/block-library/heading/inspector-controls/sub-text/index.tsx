@@ -8,6 +8,7 @@ import { PanelBody } from '@wordpress/components';
  * Internal dependencies.
  */
 import { SubTextContent } from './sub-text-content';
+import { SubTextPosition } from './sub-text-position';
 
 // @ts-ignore
 export function SubText( props ) {
@@ -17,6 +18,7 @@ export function SubText( props ) {
 			initialOpen={ false }
 		>
 			<SubTextContent { ...props } />
+			<SubTextPosition { ...props } />
 		</PanelBody>
 	);
 }

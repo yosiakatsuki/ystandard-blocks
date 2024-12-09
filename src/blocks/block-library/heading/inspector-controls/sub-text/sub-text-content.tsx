@@ -21,7 +21,7 @@ export function SubTextContent( props ) {
 	return (
 		<BaseControl
 			id={ 'sub-text' }
-			label={ __( 'サブテキストコンテンツ', 'ystandard-blocks' ) }
+			label={ __( 'テキスト', 'ystandard-blocks' ) }
 		>
 			<InputControl
 				value={ subText }
