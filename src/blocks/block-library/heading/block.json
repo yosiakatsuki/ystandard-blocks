@@ -57,6 +57,38 @@
 		"letterSpacing": {
 			"type": "number"
 		},
+		"marginTop": {
+			"type": "string",
+			"default": ""
+		},
+		"marginTopUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginRight": {
+			"type": "string",
+			"default": ""
+		},
+		"marginRightUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginBottom": {
+			"type": "string",
+			"default": ""
+		},
+		"marginBottomUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"marginLeft": {
+			"type": "string",
+			"default": ""
+		},
+		"marginLeftUnit": {
+			"type": "string",
+			"default": "px"
+		},
 		"subText": {
 			"type": "string",
 			"default": ""
@@ -132,38 +164,6 @@
 		"dividerImageID": {
 			"type": "integer",
 			"default": 0
-		},
-		"marginTop": {
-			"type": "string",
-			"default": ""
-		},
-		"marginTopUnit": {
-			"type": "string",
-			"default": "px"
-		},
-		"marginRight": {
-			"type": "string",
-			"default": ""
-		},
-		"marginRightUnit": {
-			"type": "string",
-			"default": "px"
-		},
-		"marginBottom": {
-			"type": "string",
-			"default": ""
-		},
-		"marginBottomUnit": {
-			"type": "string",
-			"default": "px"
-		},
-		"marginLeft": {
-			"type": "string",
-			"default": ""
-		},
-		"marginLeftUnit": {
-			"type": "string",
-			"default": "px"
 		}
 	},
 	"supports": {

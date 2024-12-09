@@ -12,6 +12,14 @@ export interface AttributeType {
 	fontSizeDesktop?: number;
 	fontWeight?: string;
 	letterSpacing?: number;
+	marginTop?: string;
+	marginTopUnit?: string;
+	marginRight?: string;
+	marginRightUnit?: string;
+	marginBottom?: string;
+	marginBottomUnit?: string;
+	marginLeft?: string;
+	marginLeftUnit?: string;
 	subText?: string;
 	subTextPosition?: string;
 	subTextSize?: string;
@@ -34,12 +42,4 @@ export interface AttributeType {
 	dividerImageURL?: string;
 	dividerImageAlt?: string;
 	dividerImageID?: number;
-	marginTop?: string;
-	marginTopUnit?: string;
-	marginRight?: string;
-	marginRightUnit?: string;
-	marginBottom?: string;
-	marginBottomUnit?: string;
-	marginLeft?: string;
-	marginLeftUnit?: string;
 }

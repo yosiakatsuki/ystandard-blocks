@@ -15,16 +15,14 @@ import {
 /**
  * Plugin dependencies.
  */
-import {
-	getDeprecatedFontResponsiveClass,
-	getDeprecatedFontResponsiveStyle,
-} from '@aktk/blocks/deprecated/components/responsive-font-size';
+import { getDeprecatedFontResponsiveClass } from '@aktk/blocks/deprecated/components/responsive-font-size';
 
 /**
  * Internal dependencies.
  */
 import {
 	getBlockClasses,
+	getBlockStyles,
 	getHeadingTextClasses,
 	getHeadingTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
@@ -50,31 +48,21 @@ export default function Save( { attributes } ) {
 
 	// ブロック一番外側のプロパティなど.
 	const blockProps = useBlockProps.save( {
-		className: clsx(
-			getBlockClasses( {
-				className: attributes?.className || '',
-			} ),
-			{
-				...getDeprecatedFontResponsiveClass(
-					useFontSizeResponsive,
-					fontSizeMobile,
-					fontSizeTablet,
-					fontSizeDesktop
-				),
-			}
-		),
+		className: clsx( getBlockClasses( attributes ), {
+			...getDeprecatedFontResponsiveClass(
+				useFontSizeResponsive,
+				fontSizeMobile,
+				fontSizeTablet,
+				fontSizeDesktop
+			),
+		} ),
 		style: {
-			...getDeprecatedFontResponsiveStyle( {
-				isResponsive: useFontSizeResponsive,
-				desktop: fontSizeDesktop,
-				tablet: fontSizeTablet,
-				mobile: fontSizeMobile,
-			} ),
+			...getBlockStyles( attributes ),
 		},
 	} );
 
 	// 見出しタグ : 文字サイズクラス
-	const fontSizeClass = getFontSizeClass( fontSize );
+	const fontSizeClass = getFontSizeClass( fontSize || '' );
 
 	// 見出しタグ本体のクラス.
 	const textClasses = getHeadingTextClasses( {

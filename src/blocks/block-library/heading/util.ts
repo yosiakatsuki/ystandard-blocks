@@ -3,14 +3,71 @@
  */
 import clsx from 'clsx';
 
-type BlockClassesProps = {
-	className: string;
+/**
+ * Plugin dependencies.
+ */
+import { getDeprecatedFontResponsiveStyle } from '@aktk/blocks/deprecated/components/responsive-font-size';
+
+type BlockClassesProps = {};
+
+export function getBlockClasses( attributes: BlockClassesProps ) {
+	return clsx( 'ystdb-heading', {} );
+}
+
+type BlockStylesProps = {
+	useFontSizeResponsive: boolean;
+	fontSizeMobile?: number;
+	fontSizeTablet?: number;
+	fontSizeDesktop?: number;
+	marginTop?: string;
+	marginTopUnit?: string;
+	marginRight?: string;
+	marginRightUnit?: string;
+	marginBottom?: string;
+	marginBottomUnit?: string;
+	marginLeft?: string;
+	marginLeftUnit?: string;
 };
 
-// @ts-ignore
-export function getBlockClasses( attributes: BlockClassesProps ) {
-	const { className } = attributes;
-	return clsx( 'ystdb-heading', className, {} );
+export function getBlockStyles( attributes: BlockStylesProps ) {
+	const {
+		useFontSizeResponsive,
+		fontSizeMobile,
+		fontSizeTablet,
+		fontSizeDesktop,
+		marginTop,
+		marginTopUnit,
+		marginRight,
+		marginRightUnit,
+		marginBottom,
+		marginBottomUnit,
+		marginLeft,
+		marginLeftUnit,
+	} = attributes;
+
+	// 余白の作成.
+	const getSpacingValue = (
+		spacing: number | string | undefined,
+		unit: string | undefined
+	) => {
+		if ( undefined === spacing || '' === spacing ) {
+			return undefined;
+		}
+		return `${ spacing }${ unit }`;
+	};
+
+	return {
+		...getDeprecatedFontResponsiveStyle( {
+			isResponsive: useFontSizeResponsive,
+			desktop: fontSizeDesktop,
+			tablet: fontSizeTablet,
+			mobile: fontSizeMobile,
+		} ),
+		marginTop: getSpacingValue( marginTop, marginTopUnit ),
+		marginRight: getSpacingValue( marginRight, marginRightUnit ),
+		marginBottom: getSpacingValue( marginBottom, marginBottomUnit ),
+		marginLeft: getSpacingValue( marginLeft, marginLeftUnit ),
+	};
 }
 
 type HeadingTextClassesProps = {

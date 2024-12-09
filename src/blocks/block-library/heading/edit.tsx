@@ -20,14 +20,12 @@ import { BlockControls } from '@aktk/blocks/block-library/heading/block-controls
 import { InspectorControls } from '@aktk/blocks/block-library/heading/inspector-controls';
 import {
 	getBlockClasses,
+	getBlockStyles,
 	getHeadingTextClasses,
 	getHeadingTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
 import { __ } from '@wordpress/i18n';
-import {
-	getDeprecatedFontResponsiveClass,
-	getDeprecatedFontResponsiveStyle,
-} from '@aktk/blocks/deprecated/components/responsive-font-size';
+import { getDeprecatedFontResponsiveClass } from '@aktk/blocks/deprecated/components/responsive-font-size';
 
 // @ts-ignore
 function Edit( props ) {
@@ -59,7 +57,7 @@ function Edit( props ) {
 	const blockProps = useBlockProps( {
 		className: clsx(
 			getBlockClasses( {
-				className,
+				...attributes,
 			} ),
 			{
 				...getDeprecatedFontResponsiveClass(
@@ -72,12 +70,7 @@ function Edit( props ) {
 		),
 		style: {
 			...style,
-			...getDeprecatedFontResponsiveStyle( {
-				isResponsive: useFontSizeResponsive,
-				desktop: fontSizeDesktop,
-				tablet: fontSizeTablet,
-				mobile: fontSizeMobile,
-			} ),
+			...getBlockStyles( attributes ),
 		},
 	} );
 
