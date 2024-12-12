@@ -66,8 +66,8 @@ export default function ColorDropdownWrapper( {
 	children: React.ReactNode;
 } ) {
 	const popoverProps = {
-		placement: 'bottom-start',
-		offset: 16,
+		placement: 'left-start',
+		offset: 36,
 		shift: true,
 	};
 
