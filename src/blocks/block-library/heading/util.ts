@@ -164,6 +164,7 @@ type SubTextStylesProps = {
 	subTextSizeTablet: number;
 	subTextSizeMobile: number;
 	subTextColor: string;
+	subTextFontWeight: string;
 };
 
 export function getSubTextStyles( props: SubTextStylesProps ) {
@@ -174,11 +175,13 @@ export function getSubTextStyles( props: SubTextStylesProps ) {
 		subTextSizeTablet,
 		subTextSizeMobile,
 		subTextColor,
+		subTextFontWeight,
 	} = props;
 	return {
 		fontSize:
 			subTextSize && ! useSubTextSizeResponsive ? subTextSize : undefined,
 		color: subTextColor || undefined,
+		fontWeight: subTextFontWeight || undefined,
 		...getDeprecatedFontResponsiveStyle( {
 			isResponsive: useSubTextSizeResponsive,
 			desktop: subTextSizeDesktop,

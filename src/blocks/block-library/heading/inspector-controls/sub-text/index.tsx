@@ -11,6 +11,7 @@ import { SubTextContent } from './sub-text-content';
 import { SubTextPosition } from './sub-text-position';
 import { SubTextFontSize } from './sub-text-font-size';
 import { SubTextColor } from './sub-text-color';
+import { SubTextFontWeight } from './sub-text-font-weight';
 
 // @ts-ignore
 export function SubText( props ) {
@@ -23,6 +24,7 @@ export function SubText( props ) {
 			<SubTextPosition { ...props } />
 			<SubTextColor { ...props } />
 			<SubTextFontSize { ...props } />
+			<SubTextFontWeight { ...props } />
 		</PanelBody>
 	);
 }
