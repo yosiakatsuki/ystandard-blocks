@@ -122,13 +122,13 @@ export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
 }
 
 type SubTextClassesProps = {
+	subTextColor: string;
 	subTextSize: string;
 	hasSubTextSize: boolean;
 	useSubTextSizeResponsive: boolean;
 	subTextSizeDesktop: number;
 	subTextSizeTablet: number;
 	subTextSizeMobile: number;
-	subTextColor: string;
 	hasSubTextColor: boolean;
 };
 

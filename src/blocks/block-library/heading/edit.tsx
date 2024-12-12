@@ -45,6 +45,7 @@ function Edit( props ) {
 		setAttributes,
 		textColor,
 		fontSize,
+		subTextColor,
 		subTextSize,
 		mergeBlocks,
 		onReplace,
@@ -117,14 +118,16 @@ function Edit( props ) {
 		const editorStyles = {};
 		const subTextClasses = clsx(
 			'ystdb-heading__subtext-edit',
-			'[&_input+div]:!hidden [&_input]:!p-0 [&_input]:!text-[1em] [&_input]:!h-auto',
+			'[&_input+div]:!hidden [&_input]:!h-auto [&_input]:!p-0 [&_input]:!text-[1em] [&_input]:!text-current',
 			getSubTextClasses( {
 				...attributes,
+				subTextColor: subTextColor?.class,
 				subTextSize: subTextSize?.class,
 			} )
 		);
 		const subTextStyles = getSubTextStyles( {
 			...attributes,
+			subTextColor: subTextColor?.color,
 			subTextSize: subTextSize?.size || '14px',
 		} );
 

@@ -44,6 +44,8 @@ export default function Save( { attributes } ) {
 		fontSizeTablet,
 		fontSizeDesktop,
 		subText,
+		subTextColor,
+		customSubTextColor,
 		subTextPosition,
 		subTextSize,
 		customSubTextSize,
@@ -90,12 +92,14 @@ export default function Save( { attributes } ) {
 	const SubTextContent = () => {
 		const subTextClasses = getSubTextClasses( {
 			...attributes,
+			subTextColor: getColorClassName( 'color', subTextColor ),
 			subTextSize:
 				! useSubTextSizeResponsive &&
 				getFontSizeClass( subTextSize || '' ),
 		} );
 		const subTextStyles = getSubTextStyles( {
 			...attributes,
+			subTextColor: customSubTextColor,
 			subTextSize: ! useSubTextSizeResponsive
 				? customSubTextSize
 				: undefined,
