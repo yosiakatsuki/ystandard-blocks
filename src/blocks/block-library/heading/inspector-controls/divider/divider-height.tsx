@@ -13,22 +13,22 @@ import UnitControl, {
 import { parseIntWithUnit } from '@aktk/block-components/utils/number';
 
 // @ts-ignore
-export function DividerWidth( props ) {
+export function DividerHeight( props ) {
 	const { attributes, setAttributes } = props;
-	const { subTextBorderWidth } = attributes;
+	const { subTextBorderHeight } = attributes;
 
 	// 値を取得.
 	const getValue = () => {
-		if ( parseIntWithUnit( subTextBorderWidth ) === subTextBorderWidth ) {
-			return `${ subTextBorderWidth }px`;
+		if ( parseIntWithUnit( subTextBorderHeight ) === subTextBorderHeight ) {
+			return `${ subTextBorderHeight }px`;
 		}
-		return subTextBorderWidth;
+		return subTextBorderHeight;
 	};
 
 	// 更新.
 	const handleOnChange = ( newValue: string ) => {
 		setAttributes( {
-			subTextBorderWidth: parseIntWithUnit( newValue ),
+			subTextBorderHeight: parseIntWithUnit( newValue ),
 		} );
 	};
 
@@ -39,8 +39,8 @@ export function DividerWidth( props ) {
 
 	return (
 		<BaseControl
-			id={ 'divider-width' }
-			label={ __( '区切り線の長さ', 'ystandard-blocks' ) }
+			id={ 'divider-height' }
+			label={ __( '区切り線の太さ', 'ystandard-blocks' ) }
 		>
 			<UnitControl
 				value={ getValue() }

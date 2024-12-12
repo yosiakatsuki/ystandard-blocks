@@ -8,6 +8,7 @@ import { PanelBody } from '@wordpress/components';
  * Internal dependencies.
  */
 import { DividerWidth } from './divider-width';
+import { DividerHeight } from './divider-height';
 
 // @ts-ignore
 export function Divider( props ) {
@@ -17,6 +18,7 @@ export function Divider( props ) {
 			initialOpen={ false }
 		>
 			<DividerWidth { ...props } />
+			<DividerHeight { ...props } />
 		</PanelBody>
 	);
 }
