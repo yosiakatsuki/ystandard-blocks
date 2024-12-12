@@ -21,6 +21,20 @@ export function toNumber(
 	return number;
 }
 
+export function parseIntWithUnit(
+	value: string | number | undefined | null,
+	defaultNumber: number | undefined = undefined
+) {
+	if ( undefined === value || null === value ) {
+		return defaultNumber;
+	}
+	const number: number = parseInt( `${ value }` );
+	if ( isNaN( number ) ) {
+		return defaultNumber;
+	}
+	return number;
+}
+
 export function parseFloatWithUnit(
 	value: string | number | undefined | null,
 	defaultNumber: number | undefined = undefined
