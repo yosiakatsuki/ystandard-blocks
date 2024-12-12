@@ -10,6 +10,7 @@ import { ClearStyle } from './clear-style';
 import { Typography } from './typography';
 import { Spacing } from './spacing';
 import { SubText } from './sub-text';
+import { Divider } from './divider';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -20,6 +21,7 @@ export function InspectorControls( props ) {
 				<Typography { ...props } />
 				<Spacing { ...props } />
 				<SubText { ...props } />
+				<Divider { ...props } />
 				<ClearStyle { ...props } />
 			</WPInspectorControls>
 		</>
