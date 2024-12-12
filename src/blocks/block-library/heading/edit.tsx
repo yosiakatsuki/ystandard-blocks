@@ -118,7 +118,7 @@ function Edit( props ) {
 		const editorStyles = {};
 		const subTextClasses = clsx(
 			'ystdb-heading__subtext-edit',
-			'[&_input+div]:!hidden [&_input]:!h-auto [&_input]:!p-0 [&_input]:!text-[1em] [&_input]:!text-current',
+			'[&_input+div]:!hidden [&_input]:!h-auto [&_input]:!p-0 [&_input]:!text-[1em] [&_input]:!text-current [&_input]:!tracking-[inherit]',
 			getSubTextClasses( {
 				...attributes,
 				subTextColor: subTextColor?.class,
