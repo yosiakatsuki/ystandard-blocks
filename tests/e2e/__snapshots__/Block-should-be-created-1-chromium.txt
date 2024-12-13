@@ -1,0 +1,3 @@
+<!-- wp:ystdb/heading2 -->
+<div class="ystdb-heading has-text-align-left"><div class="ystdb-heading__container"><h2 class="ystdb-heading__text is-clear-style"></h2><div class="ystdb-heading__subtext" aria-hidden="true" data-text=""></div></div></div>
+<!-- /wp:ystdb/heading2 -->

@@ -5,13 +5,15 @@ import { BlockControls as WPBlockControls } from '@wordpress/block-editor';
 /**
  * Block dependencies.
  */
-import { HeadingLevel } from '@aktk/blocks/block-library/heading/block-controls/heading-level';
+import { HeadingLevel } from './heading-level';
+import { Align } from './align';
 
 // @ts-ignore
 export function BlockControls( props ) {
 	return (
 		<WPBlockControls group={ 'block' }>
 			<HeadingLevel { ...props } />
+			<Align { ...props } />
 		</WPBlockControls>
 	);
 }

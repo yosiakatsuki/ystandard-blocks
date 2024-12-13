@@ -11,10 +11,44 @@ import {
 	getDeprecatedFontResponsiveClass,
 } from '@aktk/blocks/deprecated/components/responsive-font-size';
 
-type BlockClassesProps = {};
+type BlockClassesProps = {
+	align: string;
+	subTextBorderHeight: number;
+	subTextBorderWidth: number;
+	subTextPosition: string;
+	subText: string;
+	useFontSizeResponsive: boolean;
+	fontSizeDesktop: number;
+	fontSizeTablet: number;
+	fontSizeMobile: number;
+};
 
 export function getBlockClasses( attributes: BlockClassesProps ) {
-	return clsx( 'ystdb-heading', {} );
+	const {
+		align,
+		subTextBorderHeight,
+		subTextBorderWidth,
+		subText,
+		subTextPosition,
+		useFontSizeResponsive,
+		fontSizeDesktop,
+		fontSizeTablet,
+		fontSizeMobile,
+	} = attributes;
+
+	return clsx( 'ystdb-heading', {
+		[ `has-text-align-${ align }` ]: align,
+		'has-divider': subTextBorderHeight && subTextBorderWidth,
+		'has-sub-text': subText,
+		[ `has-subtext--${ subTextPosition }` ]:
+			subText || ( subTextBorderHeight && subTextBorderWidth ),
+		...getDeprecatedFontResponsiveClass(
+			useFontSizeResponsive,
+			fontSizeDesktop,
+			fontSizeTablet,
+			fontSizeMobile
+		),
+	} );
 }
 
 type BlockStylesProps = {
@@ -144,7 +178,7 @@ export function getSubTextClasses( props: SubTextClassesProps ) {
 		hasSubTextColor,
 	} = props;
 	return clsx( 'ystdb-heading__subtext', {
-		[ `${ subTextSize }` ]: subTextSize,
+		[ `${ subTextSize }` ]: subTextSize && ! useSubTextSizeResponsive,
 		'has-font-size': hasSubTextSize,
 		...getDeprecatedFontResponsiveClass(
 			useSubTextSizeResponsive,
@@ -152,7 +186,7 @@ export function getSubTextClasses( props: SubTextClassesProps ) {
 			subTextSizeTablet,
 			subTextSizeMobile
 		),
-		[ `${ subTextColor }` ]: subTextColor && ! useSubTextSizeResponsive,
+		[ `${ subTextColor }` ]: subTextColor,
 		'has-color': hasSubTextColor,
 	} );
 }
