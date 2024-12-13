@@ -11,6 +11,7 @@ import { DividerWidth } from './divider-width';
 import { DividerHeight } from './divider-height';
 import { DividerColor } from './divider-color';
 import { DividerImage } from './divider-image';
+import { DividerSpacing } from '@aktk/blocks/block-library/heading/inspector-controls/divider/divider-spacing';
 
 // @ts-ignore
 export function Divider( props ) {
@@ -23,6 +24,7 @@ export function Divider( props ) {
 			<DividerHeight { ...props } />
 			<DividerColor { ...props } />
 			<DividerImage { ...props } />
+			<DividerSpacing { ...props } />
 		</PanelBody>
 	);
 }
