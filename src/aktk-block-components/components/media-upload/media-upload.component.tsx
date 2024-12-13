@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 /**
  * WordPress dependencies
  */
@@ -20,10 +21,18 @@ export interface MediaUploadProps {
 	useMediaUtils?: boolean;
 	selectLabel?: string;
 	clearLabel?: string;
+	controlSize?: 'normal' | 'small';
 }
 
 export default function MediaUpload( props: MediaUploadProps ) {
-	const { media, mediaTypes, onSelect, onClear, useMediaUtils } = props;
+	const {
+		media,
+		mediaTypes,
+		controlSize = 'normal',
+		onSelect,
+		onClear,
+		useMediaUtils,
+	} = props;
 
 	// メディア指定が文字列の場合はオブジェクトに変換
 	const _media = typeof media === 'string' ? { url: media } : media;
@@ -41,6 +50,7 @@ export default function MediaUpload( props: MediaUploadProps ) {
 					onClear={ onClear }
 					selectLabel={ props.selectLabel }
 					clearLabel={ props.clearLabel }
+					controlSize={ controlSize }
 				/>
 			) }
 		/>
@@ -51,6 +61,7 @@ interface MediaUploadRenderComponentProps {
 	onClear: () => void;
 	selectLabel?: string;
 	clearLabel?: string;
+	controlSize?: 'normal' | 'small';
 }
 
 const DEFAULT_SELECT_LABEL = '画像を選択';
@@ -59,7 +70,14 @@ const DEFAULT_CLEAR_LABEL = '画像をクリア';
 function MediaUploadRender(
 	props: MediaUploadRenderProps & MediaUploadRenderComponentProps
 ) {
-	const { obj, media, onClear, selectLabel, clearLabel } = props;
+	const {
+		obj,
+		media,
+		controlSize = 'normal',
+		onClear,
+		selectLabel,
+		clearLabel,
+	} = props;
 	// Propsの展開.
 	const open = obj.open;
 	const type = media?.type || 'image';
@@ -70,13 +88,19 @@ function MediaUploadRender(
 	const _selectLabel = selectLabel || DEFAULT_SELECT_LABEL;
 	const _clearLabel = clearLabel || DEFAULT_CLEAR_LABEL;
 
+	const buttonClasses = clsx(
+		'flex !h-auto  w-full items-center justify-center border border-solid border-gray-300 !bg-gray-100 !text-black [&:not(:focus,:hover)]:!shadow-none',
+		{
+			'min-h-[100px]': 'normal' === controlSize,
+			'min-h-[40px]': 'small' === controlSize,
+		}
+	);
+
 	// 画像が設定されていない場合
 	if ( ! id && ! url ) {
 		return (
 			<Button
-				className={
-					'flex !h-auto min-h-[100px] w-full items-center justify-center border border-solid border-gray-400 !bg-gray-300 !text-black [&:not(:focus,:hover)]:!shadow-none'
-				}
+				className={ buttonClasses }
 				variant="secondary"
 				onClick={ open }
 				data-selectLabel={ _selectLabel }

@@ -10,6 +10,7 @@ import { PanelBody } from '@wordpress/components';
 import { DividerWidth } from './divider-width';
 import { DividerHeight } from './divider-height';
 import { DividerColor } from './divider-color';
+import { DividerImage } from './divider-image';
 
 // @ts-ignore
 export function Divider( props ) {
@@ -21,6 +22,7 @@ export function Divider( props ) {
 			<DividerWidth { ...props } />
 			<DividerHeight { ...props } />
 			<DividerColor { ...props } />
+			<DividerImage { ...props } />
 		</PanelBody>
 	);
 }
