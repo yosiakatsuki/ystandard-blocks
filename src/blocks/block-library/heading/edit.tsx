@@ -37,6 +37,7 @@ import { BlockControls } from './block-controls';
 import { InspectorControls } from './inspector-controls';
 import type { AttributeType } from './type';
 import './style-editor.scss';
+import { Divider } from '@aktk/blocks/block-library/heading/component';
 
 // @ts-ignore
 function Edit( props ) {
@@ -47,6 +48,7 @@ function Edit( props ) {
 		fontSize,
 		subTextColor,
 		subTextSize,
+		dividerColor,
 		mergeBlocks,
 		onReplace,
 		style,
@@ -56,6 +58,7 @@ function Edit( props ) {
 
 	const {
 		level,
+		align,
 		content,
 		useFontSizeResponsive,
 		fontSizeMobile,
@@ -63,6 +66,12 @@ function Edit( props ) {
 		fontSizeDesktop,
 		subText,
 		subTextPosition,
+		subTextBorderWidth,
+		subTextBorderHeight,
+		dividerMarginTop,
+		dividerMarginBottom,
+		dividerImageURL,
+		dividerImageAlt,
 	} = attributes as AttributeType;
 
 	// 見出しレベル.
@@ -123,6 +132,10 @@ function Edit( props ) {
 				...attributes,
 				subTextColor: subTextColor?.class,
 				subTextSize: subTextSize?.class,
+				hasSubTextSize:
+					!! subTextSize?.size ||
+					!! subTextSize?.class ||
+					useFontSizeResponsive,
 			} )
 		);
 		const subTextStyles = getSubTextStyles( {
@@ -153,6 +166,24 @@ function Edit( props ) {
 		);
 	};
 
+	const SubTextDivider = () => {
+		return (
+			<Divider
+				width={ subTextBorderWidth }
+				height={ subTextBorderHeight }
+				color={ dividerColor.color }
+				colorClass={ dividerColor.class }
+				marginTop={ dividerMarginTop }
+				marginBottom={ dividerMarginBottom }
+				image={ {
+					url: dividerImageURL,
+					alt: dividerImageAlt,
+				} }
+				align={ align }
+			/>
+		);
+	};
+
 	return (
 		<>
 			<BlockControls { ...props } />
@@ -160,7 +191,12 @@ function Edit( props ) {
 
 			<div { ...blockProps }>
 				<div className={ `ystdb-heading__container` }>
-					{ 'top' === subTextPosition && <>{ editSubText() }</> }
+					{ 'top' === subTextPosition && (
+						<>
+							{ editSubText() }
+							<SubTextDivider />
+						</>
+					) }
 					<RichText
 						identifier="content"
 						// @ts-ignore
@@ -202,7 +238,12 @@ function Edit( props ) {
 							'ystandard-blocks'
 						) }
 					/>
-					{ 'bottom' === subTextPosition && <>{ editSubText() }</> }
+					{ 'bottom' === subTextPosition && (
+						<>
+							<SubTextDivider />
+							{ editSubText() }
+						</>
+					) }
 				</div>
 			</div>
 		</>

@@ -29,11 +29,13 @@ import {
 	getSubTextStyles,
 } from '@aktk/blocks/block-library/heading/util';
 import type { AttributeType } from '@aktk/blocks/block-library/heading/type';
+import { Divider } from '@aktk/blocks/block-library/heading/component';
 
 // @ts-ignore
 export default function Save( { attributes } ) {
 	const {
 		level,
+		align,
 		content,
 		textColor,
 		customTextColor,
@@ -50,6 +52,14 @@ export default function Save( { attributes } ) {
 		subTextSize,
 		customSubTextSize,
 		useSubTextSizeResponsive,
+		subTextBorderWidth,
+		subTextBorderHeight,
+		dividerColor,
+		customDividerColor,
+		dividerMarginTop,
+		dividerMarginBottom,
+		dividerImageURL,
+		dividerImageAlt,
 	} = attributes as AttributeType;
 
 	// 見出しタグ.
@@ -93,6 +103,8 @@ export default function Save( { attributes } ) {
 		const subTextClasses = getSubTextClasses( {
 			...attributes,
 			subTextColor: getColorClassName( 'color', subTextColor ),
+			hasSubTextSize:
+				subTextSize || customSubTextSize || useSubTextSizeResponsive,
 			subTextSize:
 				! useSubTextSizeResponsive &&
 				getFontSizeClass( subTextSize || '' ),
@@ -115,12 +127,31 @@ export default function Save( { attributes } ) {
 		);
 	};
 
+	const SubTextDivider = () => {
+		return (
+			<Divider
+				width={ subTextBorderWidth }
+				height={ subTextBorderHeight }
+				color={ customDividerColor }
+				colorClass={ getColorClassName( 'fill', dividerColor ) }
+				marginTop={ dividerMarginTop }
+				marginBottom={ dividerMarginBottom }
+				image={ {
+					url: dividerImageURL,
+					alt: dividerImageAlt,
+				} }
+				align={ align }
+			/>
+		);
+	};
+
 	return (
 		<div { ...blockProps }>
 			<div className={ `ystdb-heading__container` }>
 				{ 'top' === subTextPosition && (
 					<>
 						<SubTextContent />
+						<SubTextDivider />
 					</>
 				) }
 				<RichText.Content
@@ -132,6 +163,7 @@ export default function Save( { attributes } ) {
 				/>
 				{ 'bottom' === subTextPosition && (
 					<>
+						<SubTextDivider />
 						<SubTextContent />
 					</>
 				) }
