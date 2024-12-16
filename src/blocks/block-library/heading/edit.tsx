@@ -131,6 +131,7 @@ function Edit( props ) {
 			getSubTextClasses( {
 				...attributes,
 				subTextColor: subTextColor?.class,
+				customSubTextColor: subTextColor?.color,
 				subTextSize: subTextSize?.class,
 				hasSubTextSize:
 					!! subTextSize?.size ||

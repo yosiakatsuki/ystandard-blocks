@@ -13,11 +13,6 @@ import {
 } from '@wordpress/block-editor';
 
 /**
- * Plugin dependencies.
- */
-import { getDeprecatedFontResponsiveClass } from '@aktk/blocks/deprecated/components/responsive-font-size';
-
-/**
  * Internal dependencies.
  */
 import {
@@ -30,6 +25,7 @@ import {
 } from '@aktk/blocks/block-library/heading/util';
 import type { AttributeType } from '@aktk/blocks/block-library/heading/type';
 import { Divider } from '@aktk/blocks/block-library/heading/component';
+import { getDeprecatedDataProperty } from '@aktk/blocks/deprecated/components/responsive-font-size';
 
 // @ts-ignore
 export default function Save( { attributes } ) {
@@ -42,8 +38,6 @@ export default function Save( { attributes } ) {
 		fontSize,
 		customFontSize,
 		useFontSizeResponsive,
-		fontSizeMobile,
-		fontSizeTablet,
 		fontSizeDesktop,
 		subText,
 		subTextColor,
@@ -67,14 +61,7 @@ export default function Save( { attributes } ) {
 
 	// ブロック一番外側のプロパティなど.
 	const blockProps = useBlockProps.save( {
-		className: clsx( getBlockClasses( attributes ), {
-			...getDeprecatedFontResponsiveClass(
-				useFontSizeResponsive,
-				fontSizeMobile,
-				fontSizeTablet,
-				fontSizeDesktop
-			),
-		} ),
+		className: clsx( getBlockClasses( attributes ) ),
 		style: {
 			...getBlockStyles( attributes ),
 		},
@@ -100,6 +87,9 @@ export default function Save( { attributes } ) {
 
 	// サブテキスト.
 	const SubTextContent = () => {
+		if ( ! subText ) {
+			return <></>;
+		}
 		const subTextClasses = getSubTextClasses( {
 			...attributes,
 			subTextColor: getColorClassName( 'color', subTextColor ),
@@ -160,6 +150,11 @@ export default function Save( { attributes } ) {
 					className={ textClasses }
 					style={ textStyles }
 					value={ content || '' }
+					{ ...getDeprecatedDataProperty( {
+						'font-size': useFontSizeResponsive
+							? `${ fontSizeDesktop }px`
+							: undefined,
+					} ) }
 				/>
 				{ 'bottom' === subTextPosition && (
 					<>

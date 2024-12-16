@@ -157,13 +157,13 @@ export function getHeadingTextStyles( attributes: HeadingTextStylesProps ) {
 
 type SubTextClassesProps = {
 	subTextColor: string;
+	customSubTextColor: string;
 	subTextSize: string;
 	hasSubTextSize: boolean;
 	useSubTextSizeResponsive: boolean;
 	subTextSizeDesktop: number;
 	subTextSizeTablet: number;
 	subTextSizeMobile: number;
-	hasSubTextColor: boolean;
 };
 
 export function getSubTextClasses( props: SubTextClassesProps ) {
@@ -175,7 +175,7 @@ export function getSubTextClasses( props: SubTextClassesProps ) {
 		subTextSizeTablet,
 		subTextSizeMobile,
 		subTextColor,
-		hasSubTextColor,
+		customSubTextColor,
 	} = props;
 	return clsx( 'ystdb-heading__subtext', {
 		[ `${ subTextSize }` ]: subTextSize && ! useSubTextSizeResponsive,
@@ -187,7 +187,7 @@ export function getSubTextClasses( props: SubTextClassesProps ) {
 			subTextSizeMobile
 		),
 		[ `${ subTextColor }` ]: subTextColor,
-		'has-color': hasSubTextColor,
+		'has-color': subTextColor || customSubTextColor,
 	} );
 }
 
