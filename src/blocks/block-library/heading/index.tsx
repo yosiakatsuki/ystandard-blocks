@@ -24,7 +24,7 @@ import './style.scss';
 /**
  * Register custom heading block.
  */
-function registerCustomHeadingBlock() {
+export function registerHeadingBlock() {
 	const attributes = mergeDefaultAttributes(
 		metadata.name,
 		metadata.attributes
@@ -48,4 +48,4 @@ function registerCustomHeadingBlock() {
 	} );
 }
 
-registerCustomHeadingBlock();
+registerHeadingBlock();

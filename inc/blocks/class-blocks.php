@@ -167,7 +167,6 @@ class Blocks {
 				);
 			}
 		}
-
 		foreach ( $this->register_blocks['normal'] as $block ) {
 			$handle              = 'ystandard-blocks-' . $block['name'];
 			$block_type          = Config::BLOCK_CATEGORY . '/' . $block['name'];

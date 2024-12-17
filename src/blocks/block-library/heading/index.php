@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Class Custom Heading Block.
  */
-class Custom_Heading_Block {
+class Heading_Block {
 
 	/**
 	 * Constructor.
@@ -31,4 +31,4 @@ class Custom_Heading_Block {
 	}
 }
 
-new Custom_Heading_Block();
+new Heading_Block();
