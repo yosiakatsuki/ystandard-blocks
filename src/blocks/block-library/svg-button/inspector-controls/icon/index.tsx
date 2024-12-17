@@ -75,7 +75,7 @@ export function Icon( props ) {
 					/>
 					<BaseControl
 						id={ 'icon-left-size' }
-						label={ _x( '左アイコンサイズ', 'ystandard-blocks' ) }
+						label={ _x( '右アイコンサイズ', 'ystandard-blocks' ) }
 					>
 						<IconSize
 							iconSize={ iconSizeRight }
