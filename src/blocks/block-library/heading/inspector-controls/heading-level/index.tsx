@@ -48,9 +48,7 @@ export function HeadingLevel( props ) {
 	};
 
 	return (
-		<PanelBody
-			title={ __( '見出しレベル', 'ystandard-blocks' ) }
-		>
+		<PanelBody title={ __( '見出しレベル', 'ystandard-blocks' ) }>
 			<BaseControl id={ 'heading-level' }>
 				<CustomSelectControl
 					value={ level.toString() }

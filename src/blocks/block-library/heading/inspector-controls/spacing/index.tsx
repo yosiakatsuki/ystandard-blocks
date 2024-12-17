@@ -39,25 +39,25 @@ export function Spacing( props ) {
 					spacing={ [
 						{
 							type: 'Top',
-							label: '上',
+							label: __( '上', 'ystandard-blocks' ),
 							value: marginTop,
 							unit: marginTopUnit,
 						},
 						{
 							type: 'Right',
-							label: '右',
+							label: __( '右', 'ystandard-blocks' ),
 							value: marginRight,
 							unit: marginRightUnit,
 						},
 						{
 							type: 'Bottom',
-							label: '下',
+							label: __( '下', 'ystandard-blocks' ),
 							value: marginBottom,
 							unit: marginBottomUnit,
 						},
 						{
 							type: 'Left',
-							label: '左',
+							label: __( '左', 'ystandard-blocks' ),
 							value: marginLeft,
 							unit: marginLeftUnit,
 						},
@@ -98,7 +98,7 @@ function SpacingControls( props: SpacingControlsProps ) {
 							className="flex w-full items-center gap-2"
 							key={ index }
 						>
-							<div>{ __( label, 'ystandard-blocks' ) }</div>
+							<div>{ label }</div>
 							<div className="grow">
 								<UnitControl
 									value={ `${ value }${ unit }` }

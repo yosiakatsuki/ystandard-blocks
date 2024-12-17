@@ -14,7 +14,6 @@ import { toNumber } from '@aktk/block-components/utils/number';
  */
 import ResponsiveDeprecatedFontSizeControl from '@aktk/blocks/deprecated/components/responsive-font-size';
 
-
 // @ts-ignore
 export function FontSize( props ) {
 	const { fontSize, setFontSize, attributes, setAttributes } = props;

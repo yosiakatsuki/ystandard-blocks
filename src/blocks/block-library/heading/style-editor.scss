@@ -1,8 +1,11 @@
 @use "../../../sass/global";
 
 .ystdb-heading__subtext-edit {
+
 	&.ys-is-font-responsive {
+
 		input {
+
 			@include global.media-breakpoint-down(md) {
 				font-size: var(--ys-font-mobile) !important;
 			}

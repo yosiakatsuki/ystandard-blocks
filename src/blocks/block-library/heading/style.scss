@@ -120,11 +120,12 @@
 }
 
 :where(body:not(.ystandard)) {
+
 	.ystdb-heading__subtext {
+
 		&:not(.has-color) {
 			color: var(--ystdb--text-color--gray, #757575);
 		}
 	}
 }
-
 
