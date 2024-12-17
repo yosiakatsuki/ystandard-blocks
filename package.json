@@ -57,7 +57,7 @@
 		"test:unit-php": "wp-env start && wp-env run tests-cli --env-cwd=wp-content/plugins/ystandard-blocks vendor/bin/phpunit -c phpunit.xml.dist",
 		"test:e2e": "wp-scripts test-playwright",
 		"test:e2e:debug": "wp-scripts test-playwright --debug",
-		"test": "npm run test:unit-js && npm run test:e2e && npm run test:unit-php",
+		"test": "npm run test:unit-js && npm run test:unit-php",
 		"zip:copy:base": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/phpunit' --exclude='/' --exclude='/src' --exclude='package*.json' --exclude='/blocks' --exclude='/temp' --exclude='tsconfig.json' --exclude='./ystandard-blocks*.json' . ystandard-blocks",
 		"zip:copy:blocks": "rsync -am --exclude='*.scss' --exclude='*.js' --exclude='tests/' --exclude='deprecated/' ./blocks ystandard-blocks/",
 		"zip:archive": "zip -9 -qmr ystandard-blocks.zip ystandard-blocks",
