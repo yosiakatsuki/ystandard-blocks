@@ -137,7 +137,11 @@ function Edit( props ) {
 					!! subTextSize?.size ||
 					!! subTextSize?.class ||
 					useFontSizeResponsive,
-			} )
+			} ),
+			{
+				'[&_input]:text-center': 'center' === align,
+				'[&_input]:text-right': 'right' === align,
+			}
 		);
 		const subTextStyles = {
 			'--wp-components-color-background': 'transparent',
