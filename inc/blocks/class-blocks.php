@@ -51,6 +51,7 @@ class Blocks {
 		add_action( 'init', [ $this, 'register_block' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_filter( 'yststd_parts_block_preview_styles', [ $this, 'add_parts_preview_style' ] );
+		add_filter( 'block_type_metadata', [ $this, 'block_type_metadata' ] );
 	}
 
 	/**
@@ -231,6 +232,25 @@ class Blocks {
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
 		);
+	}
+
+	/**
+	 * ブロックのメタデータを調整.
+	 *
+	 * @param array $metadata メタデータ.
+	 *
+	 * @return array
+	 */
+	public function block_type_metadata( $metadata ) {
+		// Blocksのブロックだけ処理する.
+		if ( isset( $metadata['name'] ) && false !== strpos( $metadata['name'], 'ystdb' ) ) {
+			// ファイルの更新時間をバージョンにセット.CSS等のキャッシュ対策.
+			if ( isset( $metadata['file'] ) && file_exists( $metadata['file'] ) ) {
+				$metadata['version'] = filemtime( $metadata['file'] );
+			}
+		}
+
+		return $metadata;
 	}
 
 	/**
