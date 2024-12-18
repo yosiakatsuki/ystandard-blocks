@@ -139,17 +139,21 @@ function Edit( props ) {
 					useFontSizeResponsive,
 			} )
 		);
-		const subTextStyles = getSubTextStyles( {
-			...attributes,
-			subTextColor: subTextColor?.color,
-			subTextSize: subTextSize?.size || '14px',
-		} );
+		const subTextStyles = {
+			'--wp-components-color-background': 'transparent',
+			...getSubTextStyles( {
+				...attributes,
+				subTextColor: subTextColor?.color,
+				subTextSize: subTextSize?.size || '14px',
+			} ),
+		};
 
 		return (
 			<>
 				{ showControl && (
 					<div className={ subTextClasses } style={ editorStyles }>
 						<InputControl
+							className="!bg-transparent [&_*]:!bg-transparent"
 							value={ subText || '' }
 							style={ subTextStyles }
 							onChange={ ( newValue ) => {
