@@ -1,4 +1,5 @@
 @use "global";
+@use "global/tailwind";
 
 @mixin controlsLabel($i) {
 	padding: 0.25em 0.5em;

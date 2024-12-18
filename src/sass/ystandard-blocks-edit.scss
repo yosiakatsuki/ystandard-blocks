@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@use "global/tailwind";
 @use "foundation/custom-properties";
 @use "../js/components/svg-icon-select/edit" as svg-icon-select-components;
 @use "../js/components/media-upload-control/edit" as media-upload-control;

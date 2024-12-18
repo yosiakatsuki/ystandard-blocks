@@ -72,6 +72,14 @@ function Edit( props ) {
 		dividerMarginBottom,
 		dividerImageURL,
 		dividerImageAlt,
+		marginTop,
+		marginTopUnit,
+		marginRight,
+		marginRightUnit,
+		marginBottom,
+		marginBottomUnit,
+		marginLeft,
+		marginLeftUnit,
 	} = attributes as AttributeType;
 
 	// 見出しレベル.
@@ -95,8 +103,31 @@ function Edit( props ) {
 		style: {
 			...style,
 			...getBlockStyles( attributes ),
+			// 編集画面ではマージンを設定しない.
+			marginTop: undefined,
+			marginTopUnit: undefined,
+			marginRight: undefined,
+			marginRightUnit: undefined,
+			marginBottom: undefined,
+			marginBottomUnit: undefined,
+			marginLeft: undefined,
+			marginLeftUnit: undefined,
 		},
 	} );
+
+	const containerStyles = {
+		...getBlockStyles( {
+			useFontSizeResponsive: false,
+			marginTop,
+			marginTopUnit,
+			marginRight,
+			marginRightUnit,
+			marginBottom,
+			marginBottomUnit,
+			marginLeft,
+			marginLeftUnit,
+		} ),
+	};
 
 	// 見出しタグ本体のクラス.
 	const textClasses = getHeadingTextClasses( {
@@ -199,7 +230,10 @@ function Edit( props ) {
 			<InspectorControls { ...props } />
 
 			<div { ...blockProps }>
-				<div className={ `ystdb-heading__container` }>
+				<div
+					className={ `ystdb-heading__container` }
+					style={ containerStyles }
+				>
 					{ 'top' === subTextPosition && (
 						<>
 							{ editSubText() }

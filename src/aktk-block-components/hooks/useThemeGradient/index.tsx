@@ -3,6 +3,7 @@
  */
 import { useEffect, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
+// @ts-ignore
 import { store as editorStore } from '@wordpress/editor';
 
 /**
