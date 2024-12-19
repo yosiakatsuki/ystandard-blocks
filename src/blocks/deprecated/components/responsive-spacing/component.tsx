@@ -39,6 +39,7 @@ export const ResponsiveSpacing = ( props ) => {
 	const valueMobile = getResponsiveValue( values, 'mobile' );
 
 	const handleOnChangeDesktop = ( nextValues ) => {
+		console.log({nextValues});
 		onChange(
 			parseResponsiveValues( {
 				...values,

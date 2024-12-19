@@ -10,4 +10,13 @@
 	.components-base-control {
 		margin-bottom: 0;
 	}
+
+	.components-number-control.components-unit-control {
+		width: 100%;
+		max-width: none;
+
+		+ .components-range-control {
+			display: none;
+		}
+	}
 }
