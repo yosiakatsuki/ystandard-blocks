@@ -16,6 +16,7 @@ const UnitControl = ( { label, value, onChange, units, ...props } ) => {
 			value={ value }
 			onChange={ onChange }
 			units={ units }
+			__next40pxDefaultSize
 			{ ...props }
 		/>
 	);

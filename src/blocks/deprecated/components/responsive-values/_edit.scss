@@ -4,4 +4,12 @@
 		font-size: 0.8em !important;
 		color: #757575 !important;
 	}
+	&.components-number-control.components-unit-control {
+		margin-bottom: 0;
+		
+		+ .components-button {
+			margin-bottom: 20px;
+			translate: 0 50%;
+		}
+	}
 }
