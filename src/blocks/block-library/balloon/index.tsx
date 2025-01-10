@@ -23,7 +23,7 @@ import save from './save';
 import metadata from './block.json';
 import './style.scss';
 
-export function registerColumnBlock() {
+export function registerBalloonBlock() {
 	const attributes = mergeDefaultAttributes(
 		metadata.name,
 		metadata.attributes
@@ -48,4 +48,4 @@ export function registerColumnBlock() {
 	} );
 }
 
-registerColumnBlock();
+registerBalloonBlock();

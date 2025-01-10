@@ -2,28 +2,38 @@
  * WordPress dependencies
  */
 import { useEffect, useState } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
-import { store as editorStore } from '@wordpress/editor';
+// @ts-ignore
+import { useSettings } from '@wordpress/block-editor';
 
 /**
  * テーマのカラー設定を取得する（設定画面用）
  */
 const useThemeColors = () => {
 	const [ colors, setColors ] = useState( [] );
-	const themeColors = useSelect( ( select ) => {
-		// @ts-ignore
-		const settings = select( editorStore )?.getEditorSettings();
-		return settings?.colors || [];
-	}, [] );
+	const [ defaultColors, themeColors, customColors, enableDefaultColors ] =
+		useSettings(
+			'color.palette.default',
+			'color.palette.theme',
+			'color.palette.custom',
+			'color.defaultPalette'
+		);
+
+	const _colors = enableDefaultColors
+		? [
+				...( themeColors || [] ),
+				...( defaultColors || [] ),
+				...( customColors || [] ),
+		  ]
+		: [ ...( themeColors || [] ), ...( customColors || [] ) ];
+
 	useEffect( () => {
-		if ( themeColors ) {
-			setColors( themeColors );
+		if ( _colors ) {
+			// @ts-ignore
+			setColors( _colors );
 		}
-	}, [ themeColors ] );
+	}, [ _colors ] );
 
 	return colors;
 };
 
 export default useThemeColors;
-
-
