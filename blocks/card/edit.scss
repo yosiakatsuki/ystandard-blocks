@@ -2,9 +2,7 @@
 @use "block";
 
 .is-selected {
-
 	.ystdb-card__edit {
-
 		* {
 			box-sizing: border-box;
 		}
@@ -16,9 +14,12 @@
 }
 
 .ystdb-card__url-input {
-
 	&.block-editor-url-input {
 		padding: 1rem;
+
+		@media (min-width: 600px) {
+			min-width: 0;
+		}
 
 		&.is-use-inspector-control {
 			padding: 0;
@@ -35,7 +36,6 @@
 	position: relative;
 
 	&.is-rendered {
-
 		&::after {
 			content: "";
 			position: absolute;
@@ -48,7 +48,6 @@
 	}
 
 	.ystdb-card__link {
-
 		&::after {
 			display: none;
 		}
