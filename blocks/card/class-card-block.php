@@ -177,6 +177,7 @@ class Card_Block extends Dynamic_Block {
 		'className'             => 'class',
 		'url'                   => 'url',
 		'linkTarget'            => 'link_target',
+		'target'                => 'link_target',
 		'rel'                   => 'rel',
 		'cardType'              => 'card_type',
 		'title'                 => 'title',
