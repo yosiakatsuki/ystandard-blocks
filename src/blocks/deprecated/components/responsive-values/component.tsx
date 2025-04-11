@@ -60,7 +60,7 @@ export const ResponsiveValues = ( {
 		);
 	};
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			<ResponsiveTab label={ label }>
 				{ ( tab ) => {
 					return (

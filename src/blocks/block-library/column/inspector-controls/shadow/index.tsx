@@ -1,8 +1,13 @@
 /**
  * WordPress.
  */
-import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 const PanelShadow = ( { attributes, setAttributes } ) => {
@@ -22,6 +27,7 @@ const PanelShadow = ( { attributes, setAttributes } ) => {
 					onChange={ () => {
 						handleOnClick( ! shadow );
 					} }
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 		</PanelBody>

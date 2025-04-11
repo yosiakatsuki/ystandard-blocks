@@ -1,6 +1,11 @@
-import { PanelBody, BaseControl, RangeControl } from '@wordpress/components';
+import { PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { getNumber } from '@aktk/blocks-old/helper/number.js';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 const PanelColumns = ( { attributes, setAttributes } ) => {
@@ -31,7 +36,7 @@ const PanelColumns = ( { attributes, setAttributes } ) => {
 	};
 	return (
 		<PanelBody title={ __( 'カラム数', 'ystandard-blocks' ) }>
-			<BaseControl>
+			<BaseControl __nextHasNoMarginBottom>
 				<RangeControl
 					label={ __( 'デスクトップ', 'ystandard-blocks' ) }
 					beforeIcon={ 'desktop' }
@@ -39,6 +44,8 @@ const PanelColumns = ( { attributes, setAttributes } ) => {
 					onChange={ handleOnchangePc }
 					min={ 1 }
 					max={ 6 }
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 				<RangeControl
 					label={ __( 'タブレット', 'ystandard-blocks' ) }
@@ -47,6 +54,8 @@ const PanelColumns = ( { attributes, setAttributes } ) => {
 					onChange={ handleOnChangeTablet }
 					min={ 1 }
 					max={ 6 }
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 				<RangeControl
 					label={ __( 'モバイル', 'ystandard-blocks' ) }
@@ -55,6 +64,8 @@ const PanelColumns = ( { attributes, setAttributes } ) => {
 					onChange={ handleOnChangeMobile }
 					min={ 1 }
 					max={ 6 }
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 		</PanelBody>

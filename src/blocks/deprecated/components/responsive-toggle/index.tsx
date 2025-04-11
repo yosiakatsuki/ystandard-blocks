@@ -68,7 +68,7 @@ const ResponsiveToggle = ( {
 		);
 	};
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			{ /* @ts-ignore */ }
 			<ResponsiveTab label={ panelLabel }>
 				{
@@ -83,6 +83,7 @@ const ResponsiveToggle = ( {
 										onChange={ ( value ) => {
 											handleOnChangeDesktop( value );
 										} }
+										__nextHasNoMarginBottom
 									/>
 								) }
 								{ tabType.tablet === tab.name && (
@@ -92,6 +93,7 @@ const ResponsiveToggle = ( {
 										onChange={ ( value ) => {
 											handleOnChangeTablet( value );
 										} }
+										__nextHasNoMarginBottom
 									/>
 								) }
 								{ tabType.mobile === tab.name && (
@@ -101,6 +103,7 @@ const ResponsiveToggle = ( {
 										onChange={ ( value ) => {
 											handleOnChangeMobile( value );
 										} }
+										__nextHasNoMarginBottom
 									/>
 								) }
 							</>

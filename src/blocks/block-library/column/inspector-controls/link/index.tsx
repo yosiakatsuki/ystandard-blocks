@@ -2,13 +2,14 @@
  * WordPress dependencies
  */
 import { useCallback, useMemo } from '@wordpress/element';
-import { PanelBody, BaseControl, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * aktk dependencies
  */
 import { LinkControl } from '@aktk/block-components/components/link-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Plugin dependencies
  */
@@ -77,6 +78,8 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 					label={ __( 'リンク rel 属性', 'ystandard-blocks' ) }
 					value={ rel || '' }
 					onChange={ onSetLinkRel }
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 			<BaseControl>
@@ -88,6 +91,8 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 					) }
 					value={ screenReaderText || '' }
 					onChange={ onSetScreenReaderText }
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 		</PanelBody>

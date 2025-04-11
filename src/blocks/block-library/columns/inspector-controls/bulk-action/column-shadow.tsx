@@ -1,6 +1,11 @@
-import { BaseControl, Button } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import HorizonButtons from '@aktk/blocks-old/components/horizon-buttons';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 const ColumnShadow = ( props ) => {
@@ -12,7 +17,7 @@ const ColumnShadow = ( props ) => {
 		} );
 	};
 	return (
-		<BaseControl id={ 'shadow' } label={ __( '影', 'ystandard-blocks' ) }>
+		<BaseControl id={ 'shadow' } label={ __( '影', 'ystandard-blocks' ) } __nextHasNoMarginBottom>
 			<HorizonButtons>
 				<Button
 					key={ 'shadow-on' }

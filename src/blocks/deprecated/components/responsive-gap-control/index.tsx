@@ -30,7 +30,7 @@ const ResponsiveGapControl = ( { label, values, onChange, ...props } ) => {
 	};
 
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			<ResponsiveSpacing
 				label={ label ? label : __( '余白(gap)', 'ystandard-blocks' ) }
 				values={ values }

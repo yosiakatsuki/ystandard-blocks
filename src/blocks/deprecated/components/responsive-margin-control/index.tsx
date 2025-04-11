@@ -41,7 +41,7 @@ const ResponsiveMarginControl = ( {
 	};
 
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			<ResponsiveSpacing
 				{ ...props }
 				label={

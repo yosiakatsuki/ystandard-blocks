@@ -85,6 +85,7 @@ export const ResponsiveSpacing = ( props ) => {
 										units={ _units }
 										inputProps={ inputProps }
 										splitOnAxis={ splitOnAxis }
+										__next40pxDefaultSize
 									/>
 								</div>
 							) }
@@ -105,6 +106,7 @@ export const ResponsiveSpacing = ( props ) => {
 										units={ _units }
 										inputProps={ inputProps }
 										splitOnAxis={ splitOnAxis }
+										__next40pxDefaultSize
 									/>
 								</div>
 							) }
@@ -125,6 +127,7 @@ export const ResponsiveSpacing = ( props ) => {
 										units={ _units }
 										inputProps={ inputProps }
 										splitOnAxis={ splitOnAxis }
+										__next40pxDefaultSize
 									/>
 								</div>
 							) }

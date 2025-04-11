@@ -1,7 +1,12 @@
-import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import Notice from '@aktk/blocks-old/components/notice';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 /**
  * レイアウト
@@ -24,11 +29,13 @@ const PanelLayout = ( { attributes, setAttributes } ) => {
 			<BaseControl
 				id={ 'column-reverse' }
 				label={ __( '表示順序を逆順にする', 'ystandard-blocks' ) }
+				__nextHasNoMarginBottom
 			>
 				<ToggleControl
 					label={ __( '逆順にする', 'ystandard-blocks' ) }
 					checked={ reverse }
 					onChange={ handleOnChange }
+					__nextHasNoMarginBottom
 				/>
 				{ /* @ts-ignore */ }
 				<Notice type={ 'help' } style={ { marginTop: '-24px' } }>
