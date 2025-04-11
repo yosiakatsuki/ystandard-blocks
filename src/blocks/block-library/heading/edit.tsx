@@ -199,6 +199,8 @@ function Edit( props ) {
 								'ystandard-blocks'
 							) }
 							ariaLabel={ __( 'Sub Text' ) }
+							// @ts-ignore
+							__next40pxDefaultSize
 						/>
 					</div>
 				) }

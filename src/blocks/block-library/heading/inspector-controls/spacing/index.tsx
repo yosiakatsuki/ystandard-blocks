@@ -2,12 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, BaseControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 
 /**
  * Aktk dependencies
  */
 import UnitControl from '@aktk/block-components/wp-controls/unit-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 /**
  * Internal dependencies
@@ -102,7 +103,6 @@ function SpacingControls( props: SpacingControlsProps ) {
 							<div className="grow">
 								<UnitControl
 									value={ `${ value }${ unit }` }
-									unit={ unit }
 									onChange={ handleOnChange }
 								/>
 							</div>

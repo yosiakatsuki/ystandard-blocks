@@ -2,7 +2,11 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, BaseControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 export function ClearStyle( props ) {
@@ -26,6 +30,7 @@ export function ClearStyle( props ) {
 						} );
 					} }
 					checked={ clearStyle }
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 		</PanelBody>

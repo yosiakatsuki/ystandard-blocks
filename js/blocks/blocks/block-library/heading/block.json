@@ -168,7 +168,8 @@
   },
   "supports": {
     "className": false,
-    "align": false
+    "align": false,
+    "splitting": true
   },
   "textdomain": "ystandard-blocks",
   "editorScript": "file:./index.js",

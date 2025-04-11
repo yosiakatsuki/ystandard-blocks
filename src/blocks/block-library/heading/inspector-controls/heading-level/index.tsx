@@ -2,13 +2,14 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, BaseControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 /**
  * Aktk dependencies.
  */
 import CustomSelectControl, {
 	type CustomSelectControlOption,
 } from '@aktk/block-components/components/custom-select-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 const HEADING_LEVELS: CustomSelectControlOption[] = [
 	{

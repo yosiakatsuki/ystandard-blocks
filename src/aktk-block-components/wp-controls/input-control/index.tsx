@@ -47,6 +47,7 @@ export default function InputControl( props: InputControlProps ) {
 			style={ style }
 			placeholder={ placeholder }
 			aria-label={ ariaLabel }
+			__next40pxDefaultSize
 		/>
 	);
 }

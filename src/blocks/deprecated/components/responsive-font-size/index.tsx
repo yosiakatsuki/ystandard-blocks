@@ -81,7 +81,7 @@ export default function ResponsiveDeprecatedFontSizeControl(
 	};
 
 	return (
-		<BaseControl id={ id }>
+		<BaseControl id={ id } __nextHasNoMarginBottom>
 			<div className="ystdb-responsive-range">
 				{ label && (
 					<div className="ystdb-responsive-range__title">
@@ -111,6 +111,7 @@ export default function ResponsiveDeprecatedFontSizeControl(
 										onChangeFontSizePicker( font );
 									} }
 									__nextHasNoMarginBottom
+									__next40pxDefaultSize
 								/>
 							</>
 						) : (

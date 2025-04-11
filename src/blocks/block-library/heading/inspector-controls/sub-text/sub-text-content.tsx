@@ -2,11 +2,11 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
 /**
  * Aktk Dependencies
  */
 import InputControl from '@aktk/block-components/wp-controls/input-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 export function SubTextContent( props ) {

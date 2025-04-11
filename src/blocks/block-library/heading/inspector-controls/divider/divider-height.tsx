@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
 
 /**
  * Aktk dependencies.
@@ -11,6 +10,7 @@ import UnitControl, {
 	useCustomUnits,
 } from '@aktk/block-components/wp-controls/unit-control';
 import { parseIntWithUnit } from '@aktk/block-components/utils/number';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 export function DividerHeight( props ) {

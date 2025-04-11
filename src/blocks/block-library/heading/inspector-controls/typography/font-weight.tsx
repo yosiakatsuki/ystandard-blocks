@@ -2,7 +2,6 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
 
 /**
  * Aktk dependencies.
@@ -10,6 +9,7 @@ import { BaseControl } from '@wordpress/components';
 import CustomSelectControl, {
 	type CustomSelectControlOption,
 } from '@aktk/block-components/components/custom-select-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 const FONT_WEIGHTS: CustomSelectControlOption[] = [
 	{

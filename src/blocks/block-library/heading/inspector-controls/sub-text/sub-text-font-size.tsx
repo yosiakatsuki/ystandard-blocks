@@ -2,12 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
 
 /**
  * Aktk Dependencies
  */
 import { toNumber } from '@aktk/block-components/utils/number';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 /**
  * Plugin dependencies.
