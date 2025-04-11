@@ -1,12 +1,15 @@
 /**
  * WordPress dependencies.
  */
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 // @ts-expect-error
 import { store as coreStore } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * yStandard.
  */

@@ -1,12 +1,17 @@
 /**
  * WordPress.
  */
-import { BaseControl, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 // @ts-expect-error
 import { store as coreStore } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 const DEFAULT_LABEL = __( 'カテゴリー', 'ystandard-blocks' );
 
@@ -17,7 +22,6 @@ export default function ApplyChildren(
 	const { taxonomy, applyChildren } = attributes;
 	// @ts-expect-error
 	const { hierarchical, taxonomyLabel } = useSelect( ( select ) => {
-		// @ts-expect-error
 		const { getTaxonomy } = select( coreStore );
 		const selectedTaxonomy = getTaxonomy( taxonomy );
 
@@ -42,6 +46,7 @@ export default function ApplyChildren(
 						onChange={ ( value ) => {
 							setAttributes( { applyChildren: value } );
 						} }
+						__nextHasNoMarginBottom
 					/>
 				</BaseControl>
 			) }

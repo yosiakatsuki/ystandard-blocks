@@ -1,9 +1,14 @@
 /**
  * WordPress dependencies.
  */
-import { BaseControl, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 /**
  * Plugin
@@ -11,6 +16,7 @@ import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 import Notice from '@aktk/blocks/components/notice';
 import Panel from '@aktk/blocks/components/panel';
 import { getBlockEditorConfig } from '@aktk/blocks/utils';
+
 
 export default function PanelAmp( {
 	attributes,
@@ -43,6 +49,7 @@ export default function PanelAmp( {
 							onChange={ ( value ) => {
 								setAttributes( { hideAMP: value } );
 							} }
+							__nextHasNoMarginBottom
 						/>
 						<ToggleControl
 							label={ __(
@@ -53,6 +60,7 @@ export default function PanelAmp( {
 							onChange={ ( value ) => {
 								setAttributes( { onlyAMP: value } );
 							} }
+							__nextHasNoMarginBottom
 						/>
 					</BaseControl>
 				</Panel>

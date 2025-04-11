@@ -1,10 +1,13 @@
 /**
  * WordPress
  */
-import { BaseControl, ToggleControl } from '@wordpress/components';
+import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
-
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Plugin.
  */
@@ -48,6 +51,7 @@ const PanelDevice = ( {
 					onChange={ ( value ) => {
 						setAttributes( { hideSp: value } );
 					} }
+					__nextHasNoMarginBottom
 				/>
 
 				<ToggleControl
@@ -59,6 +63,7 @@ const PanelDevice = ( {
 					onChange={ ( value ) => {
 						setAttributes( { hideMd: value } );
 					} }
+					__nextHasNoMarginBottom
 				/>
 
 				<ToggleControl
@@ -67,6 +72,7 @@ const PanelDevice = ( {
 					onChange={ ( value ) => {
 						setAttributes( { hideLg: value } );
 					} }
+					__nextHasNoMarginBottom
 				/>
 			</BaseControl>
 		</Panel>

@@ -1,9 +1,12 @@
 /**
  * WordPress
  */
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Plugin.
  */

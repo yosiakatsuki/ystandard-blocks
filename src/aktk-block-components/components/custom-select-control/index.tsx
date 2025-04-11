@@ -54,6 +54,7 @@ export default function CustomSelectControl( {
 			// @ts-ignore
 			onChange={ handleOnChange }
 			{ ...props }
+			__next40pxDefaultSize
 		/>
 	);
 }
