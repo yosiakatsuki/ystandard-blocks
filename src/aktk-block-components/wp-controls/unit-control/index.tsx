@@ -21,7 +21,7 @@ export interface UnitControlProps {
 
 export default function UnitControl( props: UnitControlProps ) {
 	// @ts-expect-error
-	return <WPUnitControl { ...props } />;
+	return <WPUnitControl { ...props } __next40pxDefaultSize />;
 }
 
 export { useCustomUnits };
