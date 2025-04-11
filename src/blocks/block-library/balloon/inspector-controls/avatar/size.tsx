@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
+
 
 /**
  * Aktk Dependencies.
@@ -12,6 +12,7 @@ import {
 	PrimaryButton,
 	SecondaryButton,
 } from '@aktk/block-components/components/buttons';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 const SIZE = [
 	{

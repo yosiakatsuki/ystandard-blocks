@@ -2,8 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
 import { FontSizePicker } from '@wordpress/block-editor';
+
+/**
+ * Aktk Dependencies
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-ignore
 export default function BalloonFontSize( props ) {

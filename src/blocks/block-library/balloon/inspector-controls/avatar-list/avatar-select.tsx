@@ -2,8 +2,12 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { BaseControl } from '@wordpress/components';
 import { PlainButton } from '@aktk/block-components/components/buttons';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 type AvatarObject = {
 	id: number;

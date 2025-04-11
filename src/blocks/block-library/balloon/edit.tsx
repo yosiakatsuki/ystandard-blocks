@@ -115,6 +115,8 @@ function AvatarEdit( props ) {
 					aria-label={ __( 'Name' ) }
 					data-1p-ignore
 					data-lpignore
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
 				/>
 			</AvatarNameWrap>
 		);
