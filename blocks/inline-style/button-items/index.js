@@ -23,7 +23,7 @@ const items = getProperty(
 );
 const POPOVER_PROPS = {
 	position: 'bottom right',
-	isAlternate: true,
+	variant: 'toolbar',
 };
 
 registerFormatType( 'ystdb/inline-style-items', {
