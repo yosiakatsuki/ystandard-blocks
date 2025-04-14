@@ -1,5 +1,9 @@
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 import MediaUploadControl from '@aktk/components/media-upload-control';
 import { BACKGROUND_TYPE_IMAGE, BACKGROUND_TYPE_VIDEO } from '../config';

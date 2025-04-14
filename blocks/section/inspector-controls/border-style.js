@@ -1,5 +1,10 @@
-import { BaseControl, SelectControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 import { getComponentConfig } from '@aktk/helper/config';
 
@@ -23,6 +28,8 @@ const BorderStyle = ( props ) => {
 				value={ borderStyle }
 				options={ borderStyles }
 				onChange={ handleOnChange }
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
 			/>
 		</BaseControl>
 	);

@@ -1,4 +1,7 @@
 import classnames from 'classnames';
+/**
+ * WordPress Dependencies
+ */
 import { useState } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -14,17 +17,23 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
-	BaseControl,
-	RangeControl,
 	Button,
 	SVG,
 	Path,
-	ToggleControl,
 	SelectControl,
 	FocalPointPicker,
 	ExternalLink,
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
+
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+
 import {
 	marginType,
 	wrapperTagNames,
@@ -923,6 +932,7 @@ const SectionEdit = ( props ) => {
 												overlaySizeUnitX
 											) }
 											style={ { flexGrow: 1 } }
+											__next40pxDefaultSize
 										/>
 										<SelectControl
 											value={ overlaySizeUnitX }
@@ -932,6 +942,8 @@ const SectionEdit = ( props ) => {
 													overlaySizeUnitX: type,
 												} );
 											} }
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
 										/>
 									</div>
 									<div className="ystdb-inspector-controls__columns">
@@ -961,6 +973,7 @@ const SectionEdit = ( props ) => {
 												overlaySizeUnitY
 											) }
 											style={ { flexGrow: 1 } }
+											__next40pxDefaultSize
 										/>
 										<SelectControl
 											value={ overlaySizeUnitY }
@@ -970,6 +983,8 @@ const SectionEdit = ( props ) => {
 													overlaySizeUnitY: type,
 												} );
 											} }
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
 										/>
 									</div>
 								</BaseControl>
@@ -986,6 +1001,8 @@ const SectionEdit = ( props ) => {
 													overlayPositionX: type,
 												} );
 											} }
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
 										/>
 										<NumberControl
 											value={ overlayPositionValueX }
@@ -1010,6 +1027,7 @@ const SectionEdit = ( props ) => {
 												overlayPositionUnitX
 											) }
 											style={ { flexGrow: 1 } }
+											__next40pxDefaultSize
 										/>
 
 										<SelectControl
@@ -1031,6 +1049,8 @@ const SectionEdit = ( props ) => {
 													overlayPositionY: type,
 												} );
 											} }
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
 										/>
 										<NumberControl
 											value={ overlayPositionValueY }
@@ -1055,6 +1075,7 @@ const SectionEdit = ( props ) => {
 												overlayPositionUnitY
 											) }
 											style={ { flexGrow: 1 } }
+											__next40pxDefaultSize
 										/>
 
 										<SelectControl
@@ -1065,6 +1086,8 @@ const SectionEdit = ( props ) => {
 													overlayPositionUnitY: type,
 												} );
 											} }
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
 										/>
 									</div>
 								</BaseControl>
@@ -1141,6 +1164,8 @@ const SectionEdit = ( props ) => {
 												} );
 											}
 										} }
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
 									/>
 									{ 'custom' === backgroundImageSize && (
 										<>
@@ -1176,6 +1201,7 @@ const SectionEdit = ( props ) => {
 														backgroundImageSizeUnitX
 													) }
 													style={ { flexGrow: 1 } }
+													__next40pxDefaultSize
 												/>
 												<SelectControl
 													value={
@@ -1190,6 +1216,8 @@ const SectionEdit = ( props ) => {
 																type,
 														} );
 													} }
+													__next40pxDefaultSize
+													__nextHasNoMarginBottom
 												/>
 											</div>
 											<div className="ystdb-inspector-controls__columns">
@@ -1224,6 +1252,7 @@ const SectionEdit = ( props ) => {
 														backgroundImageSizeUnitY
 													) }
 													style={ { flexGrow: 1 } }
+													__next40pxDefaultSize
 												/>
 												<SelectControl
 													value={
@@ -1238,6 +1267,8 @@ const SectionEdit = ( props ) => {
 																type,
 														} );
 													} }
+													__next40pxDefaultSize
+													__nextHasNoMarginBottom
 												/>
 											</div>
 										</>
@@ -1258,6 +1289,8 @@ const SectionEdit = ( props ) => {
 												backgroundImageRepeat: type,
 											} );
 										} }
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 								<BaseControl
@@ -1712,6 +1745,8 @@ const SectionEdit = ( props ) => {
 										animationType: type,
 									} );
 								} }
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 							/>
 						</BaseControl>
 						<BaseControl>

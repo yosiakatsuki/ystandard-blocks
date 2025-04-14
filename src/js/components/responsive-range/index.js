@@ -62,7 +62,7 @@ class ResponsiveRangeControl extends Component {
 			} ),
 		};
 		return (
-			<BaseControl>
+			<BaseControl __nextHasNoMarginBottom>
 				<div className="ystdb-responsive-range">
 					<div className="ystdb-responsive-range__title">
 						<span className="components-base-control__label">
@@ -101,6 +101,7 @@ class ResponsiveRangeControl extends Component {
 												undefined === step ? 1 : step
 											}
 											style={ { flexGrow: 1 } }
+											__next40pxDefaultSize
 										/>
 
 										{ !! unitOptions ? (
@@ -132,6 +133,7 @@ class ResponsiveRangeControl extends Component {
 										max={ max }
 										step={ undefined === step ? 1 : step }
 										style={ { flexGrow: 1 } }
+										__next40pxDefaultSize
 									/>
 									{ !! unitOptions ? (
 										<SelectControl
@@ -156,6 +158,7 @@ class ResponsiveRangeControl extends Component {
 										max={ max }
 										step={ undefined === step ? 1 : step }
 										style={ { flexGrow: 1 } }
+										__next40pxDefaultSize
 									/>
 									{ !! unitOptions ? (
 										<SelectControl

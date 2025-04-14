@@ -1,5 +1,10 @@
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+
 import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 const BorderColor = ( props ) => {

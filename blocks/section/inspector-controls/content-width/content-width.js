@@ -1,8 +1,13 @@
 /**
  * WordPress
  */
-import { BaseControl, RangeControl, Button } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import { __, _x } from '@wordpress/i18n';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
 /**
  * yStandard
  */

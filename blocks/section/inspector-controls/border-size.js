@@ -1,5 +1,10 @@
-import { BaseControl, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
+
 import { toNumber } from '@aktk/helper/number';
 
 const BorderSize = ( props ) => {
