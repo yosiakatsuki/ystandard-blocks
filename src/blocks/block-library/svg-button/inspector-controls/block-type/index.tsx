@@ -2,13 +2,13 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import {
-	BaseControl,
-	PanelBody,
-	RadioControl,
-	RangeControl,
-	ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, RadioControl } from '@wordpress/components';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
 
 // @ts-ignore
 export function BlockType( props ) {

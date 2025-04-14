@@ -2,16 +2,16 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import {
-	BaseControl,
-	PanelBody,
-	RadioControl,
-} from '@wordpress/components';
+import { PanelBody, RadioControl } from '@wordpress/components';
+/**
+ * Aktk dependencies.
+ */
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Plugin dependencies.
  */
 import { BUTTON_ANIMATION } from '@aktk/blocks/config';
-import RangeControl from '@aktk/block-components/wp-controls/range-control';
 
 // @ts-ignore
 export function Animation( props ) {

@@ -46,7 +46,7 @@ export default function SvgIconSelect( props ) {
 				<div style={ customInfoStyle }>{ customInfo }</div>
 			) }
 			{ !! onChangePosition && (
-				<BaseControl id={ 'icon-position' }>
+				<BaseControl id={ 'icon-position' } __nextHasNoMarginBottom>
 					<div className="ystdb-inspector-controls__label">
 						{ __( 'アイコン表示位置', 'ystandard-blocks' ) }
 					</div>
@@ -68,7 +68,7 @@ export default function SvgIconSelect( props ) {
 					</div>
 				</BaseControl>
 			) }
-			<BaseControl id={ 'icon-select' }>
+			<BaseControl id={ 'icon-select' } __nextHasNoMarginBottom>
 				<div className="ystdb-inspector-controls__label">
 					{ iconBaseControlTitle }
 				</div>

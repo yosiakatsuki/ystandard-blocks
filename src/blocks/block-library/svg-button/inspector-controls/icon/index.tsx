@@ -2,7 +2,11 @@
  * WordPress dependencies.
  */
 import { __, _x } from '@wordpress/i18n';
-import { BaseControl, Button, PanelBody } from '@wordpress/components';
+import { Button, PanelBody } from '@wordpress/components';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Plugin dependencies.
  */

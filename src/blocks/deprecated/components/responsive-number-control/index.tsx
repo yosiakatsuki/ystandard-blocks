@@ -61,7 +61,7 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 	};
 
 	return (
-		<BaseControl id={ 'ResponsiveDeprecatedNumberControl' }>
+		<BaseControl id={ 'ResponsiveDeprecatedNumberControl' } __nextHasNoMarginBottom>
 			<div className="ystdb-responsive-range">
 				<div className="ystdb-responsive-range__title">
 					<span className="components-base-control__label">
@@ -101,6 +101,7 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 											: controlStep
 									}
 									style={ { flexGrow: 1 } }
+									__next40pxDefaultSize
 								/>
 								{ !! unitOptions ? (
 									<SelectControl
@@ -137,6 +138,7 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 											: controlStep
 									}
 									style={ { flexGrow: 1 } }
+									__next40pxDefaultSize
 								/>
 								{ !! unitOptions ? (
 									<SelectControl
@@ -170,6 +172,7 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 											: controlStep
 									}
 									style={ { flexGrow: 1 } }
+									__next40pxDefaultSize
 								/>
 								{ !! unitOptions ? (
 									<SelectControl
@@ -203,6 +206,7 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 											: controlStep
 									}
 									style={ { flexGrow: 1 } }
+									__next40pxDefaultSize
 								/>
 								{ !! unitOptions ? (
 									<SelectControl

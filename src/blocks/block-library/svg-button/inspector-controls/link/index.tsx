@@ -2,11 +2,18 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
+/**
+ * Aktk dependencies.
+ */
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+import TextControl from '@aktk/block-components/wp-controls/text-control';
+
 /**
  * Plugin dependencies.
  */
 import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
+
 
 // @ts-ignore
 export function Link( props ) {
