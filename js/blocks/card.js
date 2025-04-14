@@ -183,9 +183,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @aktk/block-components/wp-controls/base-control */ "./src/aktk-block-components/wp-controls/base-control/index.tsx");
-/* harmony import */ var _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @aktk/config/config.js */ "./src/js/config/config.js");
-/* harmony import */ var _aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @aktk/components/color-palette-control */ "./src/js/components/color-palette-control/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./config */ "./blocks/card/config.js");
+/* harmony import */ var _aktk_block_components_wp_controls_toggle_control__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @aktk/block-components/wp-controls/toggle-control */ "./src/aktk-block-components/wp-controls/toggle-control/index.tsx");
+/* harmony import */ var _aktk_block_components_wp_controls_text_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @aktk/block-components/wp-controls/text-control */ "./src/aktk-block-components/wp-controls/text-control/index.tsx");
+/* harmony import */ var _aktk_block_components_wp_controls_textarea_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @aktk/block-components/wp-controls/textarea-control */ "./src/aktk-block-components/wp-controls/textarea-control/index.tsx");
+/* harmony import */ var _aktk_block_components_wp_controls_range_control__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @aktk/block-components/wp-controls/range-control */ "./src/aktk-block-components/wp-controls/range-control/index.tsx");
+/* harmony import */ var _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @aktk/config/config.js */ "./src/js/config/config.js");
+/* harmony import */ var _aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @aktk/components/color-palette-control */ "./src/js/components/color-palette-control/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./config */ "./blocks/card/config.js");
 
 
 /**
@@ -201,6 +205,10 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Aktk Dependencies.
  */
+
+
+
+
 
 /**
  * Blocks.
@@ -254,7 +262,7 @@ const cardEdit = props => {
     if (!!value && -1 === value.indexOf(ystdb.homeUrl)) {
       setAttributes({
         linkTarget: '_blank',
-        rel: _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_9__.ystdbConfig.button.newTabRel
+        rel: _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_13__.ystdbConfig.button.newTabRel
       });
     } else {
       setAttributes({
@@ -313,14 +321,14 @@ const cardEdit = props => {
     isFullWidth: true,
     hasBorder: true,
     __nextHasNoMarginBottom: true
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_toggle_control__WEBPACK_IMPORTED_MODULE_9__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Open in new tab'),
     onChange: value => {
       const newLinkTarget = value ? '_blank' : undefined;
       let updatedRel = rel;
       if (newLinkTarget && !rel) {
-        updatedRel = _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_9__.ystdbConfig.button.newTabRel;
-      } else if (!newLinkTarget && rel === _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_9__.ystdbConfig.button.newTabRel) {
+        updatedRel = _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_13__.ystdbConfig.button.newTabRel;
+      } else if (!newLinkTarget && rel === _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_13__.ystdbConfig.button.newTabRel) {
         updatedRel = undefined;
       }
       setAttributes({
@@ -329,7 +337,7 @@ const cardEdit = props => {
       });
     },
     checked: linkTarget === '_blank'
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_text_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Link rel'),
     value: rel || '',
     onChange: value => {
@@ -342,7 +350,7 @@ const cardEdit = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RadioControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード表示タイプ', 'ystandard-blocks'),
     selected: selectedCardType,
-    options: _config__WEBPACK_IMPORTED_MODULE_11__.cardTypes,
+    options: _config__WEBPACK_IMPORTED_MODULE_15__.cardTypes,
     onChange: option => {
       setAttributes({
         cardType: option
@@ -350,7 +358,7 @@ const cardEdit = props => {
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-inspector-controls__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード背景色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード背景色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード背景色', 'ystandard-blocks'),
     value: backgroundColor.color,
     onChange: color => {
@@ -358,7 +366,7 @@ const cardEdit = props => {
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-inspector-controls__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード枠線', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード枠線', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('カード枠線色', 'ystandard-blocks'),
     value: borderColor.color,
     onChange: color => {
@@ -367,7 +375,7 @@ const cardEdit = props => {
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('タイトル', 'ystandard-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_textarea_control__WEBPACK_IMPORTED_MODULE_11__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('タイトル', 'ystandard-blocks'),
     value: title,
     onChange: value => {
@@ -380,7 +388,7 @@ const cardEdit = props => {
     }, "\u8868\u793A\u3055\u308C\u308B\u30BF\u30A4\u30C8\u30EB\u3092\u6307\u5B9A\u3067\u304D\u307E\u3059\u3002", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "\u4F55\u3082\u5165\u529B\u3057\u306A\u3051\u308C\u3070\u81EA\u52D5\u3067\u53D6\u5F97\u3055\u308C\u307E\u3059\u3002")
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-inspector-controls__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('タイトル文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('タイトル文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('タイトル文字色', 'ystandard-blocks'),
     value: titleColor.color,
     onChange: color => {
@@ -389,7 +397,7 @@ const cardEdit = props => {
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('画像設定', 'ystandard-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_toggle_control__WEBPACK_IMPORTED_MODULE_9__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('画像を表示する', 'ystandard-blocks'),
     onChange: () => {
       setAttributes({
@@ -416,7 +424,7 @@ const cardEdit = props => {
     className: "ystdb-inspector-controls__label"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('画像サイズ', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: 'ystdb-btn-selector components-base-control'
-  }, _config__WEBPACK_IMPORTED_MODULE_11__.imageSizes.map(item => {
+  }, _config__WEBPACK_IMPORTED_MODULE_15__.imageSizes.map(item => {
     const selectedImageSize = imageSize ? imageSize : 'normal';
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       key: item.value,
@@ -431,7 +439,7 @@ const cardEdit = props => {
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RadioControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('画像表示タイプ', 'ystandard-blocks'),
     selected: selectedImageType,
-    options: _config__WEBPACK_IMPORTED_MODULE_11__.imageTypes,
+    options: _config__WEBPACK_IMPORTED_MODULE_15__.imageTypes,
     onChange: option => {
       setAttributes({
         imageType: option
@@ -440,7 +448,7 @@ const cardEdit = props => {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RadioControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('画像表示位置', 'ystandard-blocks'),
     selected: imageAlign,
-    options: _config__WEBPACK_IMPORTED_MODULE_11__.imageAlignList,
+    options: _config__WEBPACK_IMPORTED_MODULE_15__.imageAlignList,
     onChange: option => {
       setAttributes({
         imageAlign: option
@@ -449,7 +457,7 @@ const cardEdit = props => {
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要文設定', 'ystandard-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_toggle_control__WEBPACK_IMPORTED_MODULE_9__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要文を表示する', 'ystandard-blocks'),
     onChange: () => {
       setAttributes({
@@ -457,7 +465,7 @@ const cardEdit = props => {
       });
     },
     checked: showDscr
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_range_control__WEBPACK_IMPORTED_MODULE_12__["default"], {
     value: dscrCharCount,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要文の字数', 'ystandard-blocks'),
     min: 0,
@@ -469,7 +477,7 @@ const cardEdit = props => {
         dscrCharCount: !value ? 40 : value
       });
     }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_textarea_control__WEBPACK_IMPORTED_MODULE_11__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要文', 'ystandard-blocks'),
     value: dscr,
     onChange: value => {
@@ -482,7 +490,7 @@ const cardEdit = props => {
     }, "\u8868\u793A\u3055\u308C\u308B\u6982\u8981\u6587\u3092\u6307\u5B9A\u3067\u304D\u307E\u3059\u3002", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "\u4F55\u3082\u5165\u529B\u3057\u306A\u3051\u308C\u3070\u81EA\u52D5\u3067\u53D6\u5F97\u3055\u308C\u307E\u3059\u3002")
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-inspector-controls__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要 文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要 文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('概要 文字色', 'ystandard-blocks'),
     value: dscrColor.color,
     onChange: color => {
@@ -491,7 +499,7 @@ const cardEdit = props => {
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('ドメイン表示設定', 'ystandard-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_toggle_control__WEBPACK_IMPORTED_MODULE_9__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('ドメインを表示する', 'ystandard-blocks'),
     onChange: () => {
       setAttributes({
@@ -501,7 +509,7 @@ const cardEdit = props => {
     checked: showDomain
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "ystdb-inspector-controls__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('ドメイン 文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('ドメイン 文字色', 'ystandard-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_components_color_palette_control__WEBPACK_IMPORTED_MODULE_14__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('ドメイン 文字色', 'ystandard-blocks'),
     value: domainColor.color,
     onChange: color => {
@@ -510,7 +518,7 @@ const cardEdit = props => {
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     initialOpen: false,
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('キャプション', 'ystandard-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_8__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_aktk_block_components_wp_controls_textarea_control__WEBPACK_IMPORTED_MODULE_11__["default"], {
     value: caption,
     onChange: value => {
       setAttributes({
@@ -613,6 +621,167 @@ __webpack_require__.r(__webpack_exports__);
 function BaseControl(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.BaseControl, {
     ...props,
+    __nextHasNoMarginBottom: true
+  });
+}
+
+/***/ }),
+
+/***/ "./src/aktk-block-components/wp-controls/range-control/index.tsx":
+/*!***********************************************************************!*\
+  !*** ./src/aktk-block-components/wp-controls/range-control/index.tsx ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ RangeControl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+/**
+ * WordPress dependencies.
+ */
+
+function RangeControl(props) {
+  const {
+    label,
+    value,
+    min,
+    max,
+    step,
+    initialPosition,
+    allowReset,
+    onChange
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+    label: label,
+    value: value,
+    min: min,
+    max: max,
+    step: step,
+    initialPosition: initialPosition,
+    allowReset: allowReset,
+    onChange: newValue => {
+      onChange(newValue);
+    },
+    __next40pxDefaultSize: true,
+    __nextHasNoMarginBottom: true
+  });
+}
+
+/***/ }),
+
+/***/ "./src/aktk-block-components/wp-controls/text-control/index.tsx":
+/*!**********************************************************************!*\
+  !*** ./src/aktk-block-components/wp-controls/text-control/index.tsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TextControl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+/**
+ * WordPress dependencies.
+ */
+
+function TextControl(props) {
+  const {
+    className,
+    label,
+    value,
+    onChange
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    className: className,
+    label: label,
+    value: value,
+    onChange: onChange,
+    __nextHasNoMarginBottom: true,
+    __next40pxDefaultSize: true
+  });
+}
+
+/***/ }),
+
+/***/ "./src/aktk-block-components/wp-controls/textarea-control/index.tsx":
+/*!**************************************************************************!*\
+  !*** ./src/aktk-block-components/wp-controls/textarea-control/index.tsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TextareaControl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function TextareaControl(props) {
+  const {
+    label,
+    value,
+    onChange,
+    help
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
+    label: label,
+    value: value,
+    onChange: onChange,
+    help: help,
+    __nextHasNoMarginBottom: true
+  });
+}
+
+/***/ }),
+
+/***/ "./src/aktk-block-components/wp-controls/toggle-control/index.tsx":
+/*!************************************************************************!*\
+  !*** ./src/aktk-block-components/wp-controls/toggle-control/index.tsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ToggleControl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+/**
+ * WordPress dependencies
+ */
+
+function ToggleControl(props) {
+  const {
+    className,
+    label,
+    onChange,
+    checked
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    className: className,
+    label: label,
+    onChange: onChange,
+    checked: checked,
     __nextHasNoMarginBottom: true
   });
 }

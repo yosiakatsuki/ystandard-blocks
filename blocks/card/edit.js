@@ -11,10 +11,6 @@ import {
 import { Fragment } from '@wordpress/element';
 import {
 	PanelBody,
-	ToggleControl,
-	TextControl,
-	TextareaControl,
-	RangeControl,
 	RadioControl,
 	Button,
 } from '@wordpress/components';
@@ -26,6 +22,10 @@ import { __ } from '@wordpress/i18n';
  * Aktk Dependencies.
  */
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+import TextControl from '@aktk/block-components/wp-controls/text-control';
+import TextareaControl from '@aktk/block-components/wp-controls/textarea-control';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
 /**
  * Blocks.
  */
