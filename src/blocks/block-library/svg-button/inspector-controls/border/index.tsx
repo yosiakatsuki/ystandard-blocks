@@ -2,7 +2,12 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
+
+/**
+ * Aktk dependencies.
+ */
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
 
 // @ts-ignore
 export function Border( props ) {

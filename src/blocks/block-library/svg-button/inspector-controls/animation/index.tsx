@@ -6,12 +6,12 @@ import {
 	BaseControl,
 	PanelBody,
 	RadioControl,
-	RangeControl,
 } from '@wordpress/components';
 /**
  * Plugin dependencies.
  */
 import { BUTTON_ANIMATION } from '@aktk/blocks/config';
+import RangeControl from '@aktk/block-components/wp-controls/range-control';
 
 // @ts-ignore
 export function Animation( props ) {

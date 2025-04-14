@@ -8,17 +8,18 @@ import {
 	withColors,
 	withFontSizes,
 } from '@wordpress/block-editor';
-import { ToggleControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
 /**
+ * Aktk dependencies.
+ */
+import { SvgIcon } from '@aktk/block-components/components/svg-icon';
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+
+/**
  * Plugin dependencies.
  */
-import { BlockControls } from './block-controls';
-import { InspectorControls } from './inspector-controls';
-import { SvgIcon } from '@aktk/block-components/components/svg-icon';
-import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 import {
 	getDeprecatedFontResponsiveClass,
 	getDeprecatedFontResponsiveStyle,
@@ -27,7 +28,14 @@ import {
 	getDeprecatedPaddingResponsiveClass,
 	getDeprecatedPaddingResponsiveStyle,
 } from '@aktk/blocks/deprecated/components/responsive-number-control';
+import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 import URLInput from '@aktk/blocks/components/url-input';
+
+/**
+ * Block dependencies.
+ */
+import { BlockControls } from './block-controls';
+import { InspectorControls } from './inspector-controls';
 
 // @ts-ignore
 function SvgButton( props ) {
