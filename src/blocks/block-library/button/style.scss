@@ -27,6 +27,10 @@
 :where(.ystdb-custom-button) {
 	display: flex;
 	justify-content: var(--ystdb--button--align);
+
+	.wp-block-button__link {
+		width: auto;
+	}
 }
 
 .ystdb-custom-button__link {

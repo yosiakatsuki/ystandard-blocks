@@ -87,6 +87,12 @@
 	}
 }
 
+:where(.ystdb-button__link) {
+	&.wp-block-button__link {
+		width: auto;
+	}
+}
+
 .wp-block-button {
 
 	&.ys-is-font-responsive {
