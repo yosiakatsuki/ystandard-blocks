@@ -11,7 +11,6 @@ import {
 import { Fragment } from '@wordpress/element';
 import {
 	PanelBody,
-	BaseControl,
 	ToggleControl,
 	TextControl,
 	TextareaControl,
@@ -22,6 +21,11 @@ import {
 import ServerSideRender from '@wordpress/server-side-render';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 /**
  * Blocks.
  */
