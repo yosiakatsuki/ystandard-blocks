@@ -1,9 +1,14 @@
 import classnames from 'classnames';
 import IconSelect from './icon-select';
 import { __ } from '@wordpress/i18n';
-import { RadioControl, BaseControl } from '@wordpress/components';
+import { RadioControl } from '@wordpress/components';
 
 import { Component } from '@wordpress/element';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 class SVGIconSelect extends Component {
 	render() {

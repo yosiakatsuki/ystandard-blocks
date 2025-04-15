@@ -18,7 +18,6 @@ import { Fragment } from '@wordpress/element';
 
 import {
 	PanelBody,
-	BaseControl,
 	ToggleControl,
 	TextControl,
 	SelectControl,
@@ -27,6 +26,11 @@ import {
 import { compose } from '@wordpress/compose';
 
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk Dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
@@ -100,6 +104,7 @@ function svgIcon( props ) {
 					</BaseControl>
 					<FontSizePicker
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 						label={ __( 'アイコンサイズ', 'ystandard-blocks' ) }
 						value={ fontSize.size }
 						onChange={ ( font ) => {
@@ -114,6 +119,8 @@ function svgIcon( props ) {
 							onChange={ ( size ) => {
 								setAttributes( { iconSize: size } );
 							} }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					</div>
 				</PanelBody>
@@ -154,6 +161,7 @@ function svgIcon( props ) {
 							} );
 						} }
 						checked={ linkTarget === '_blank' }
+						__nextHasNoMarginBottom
 					/>
 					<TextControl
 						label={ __( 'リンクrel', 'ystandard-blocks' ) }
@@ -161,6 +169,8 @@ function svgIcon( props ) {
 						onChange={ ( value ) => {
 							setAttributes( { rel: value } );
 						} }
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 					/>
 				</PanelBody>
 			</InspectorControls>
