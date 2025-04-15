@@ -26,7 +26,6 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
-
 /**
  * Aktk Dependencies.
  */

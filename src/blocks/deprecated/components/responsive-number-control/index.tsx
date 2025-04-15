@@ -61,7 +61,10 @@ export default function ResponsiveDeprecatedNumberControl( props ) {
 	};
 
 	return (
-		<BaseControl id={ 'ResponsiveDeprecatedNumberControl' } __nextHasNoMarginBottom>
+		<BaseControl
+			id={ 'ResponsiveDeprecatedNumberControl' }
+			__nextHasNoMarginBottom
+		>
 			<div className="ystdb-responsive-range">
 				<div className="ystdb-responsive-range__title">
 					<span className="components-base-control__label">

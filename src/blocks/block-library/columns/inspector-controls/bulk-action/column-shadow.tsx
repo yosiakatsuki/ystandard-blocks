@@ -17,7 +17,11 @@ const ColumnShadow = ( props ) => {
 		} );
 	};
 	return (
-		<BaseControl id={ 'shadow' } label={ __( '影', 'ystandard-blocks' ) } __nextHasNoMarginBottom>
+		<BaseControl
+			id={ 'shadow' }
+			label={ __( '影', 'ystandard-blocks' ) }
+			__nextHasNoMarginBottom
+		>
 			<HorizonButtons>
 				<Button
 					key={ 'shadow-on' }

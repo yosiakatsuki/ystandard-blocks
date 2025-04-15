@@ -14,7 +14,6 @@ import TextControl from '@aktk/block-components/wp-controls/text-control';
  */
 import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 
-
 // @ts-ignore
 export function Link( props ) {
 	const { attributes, setAttributes } = props;

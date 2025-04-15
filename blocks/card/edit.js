@@ -9,11 +9,7 @@ import {
 	MediaUpload,
 } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
-import {
-	PanelBody,
-	RadioControl,
-	Button,
-} from '@wordpress/components';
+import { PanelBody, RadioControl, Button } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';

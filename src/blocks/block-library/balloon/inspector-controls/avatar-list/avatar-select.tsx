@@ -69,7 +69,7 @@ function AvatarSelectButton( props: AvatarSelectButtonProps ) {
 		>
 			<img
 				className={ classnames(
-					'block aspect-square rounded-full object-cover w-full',
+					'block aspect-square w-full rounded-full object-cover',
 					{
 						grayscale: ! isCurrent,
 					}

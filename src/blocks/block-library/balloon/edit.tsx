@@ -150,7 +150,7 @@ function AvatarEdit( props ) {
 						avatarNameColor={ avatarNameColor }
 					/>
 				}
-				{/*{ isSelected ? <AvatarNameEdit /> : <AvatarNamePreview /> }*/}
+				{ /*{ isSelected ? <AvatarNameEdit /> : <AvatarNamePreview /> }*/ }
 			</figure>
 		</>
 	);

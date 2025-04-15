@@ -17,7 +17,6 @@ import Notice from '@aktk/blocks/components/notice';
 import Panel from '@aktk/blocks/components/panel';
 import { getBlockEditorConfig } from '@aktk/blocks/utils';
 
-
 export default function PanelAmp( {
 	attributes,
 	setAttributes,
