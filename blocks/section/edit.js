@@ -906,7 +906,7 @@ const SectionEdit = ( props ) => {
 								>
 									<div className="ystdb-inspector-controls__columns">
 										<span>
-											{ __( '幅　', 'ystandard-blocks' ) }
+											{ __( '幅', 'ystandard-blocks' ) }
 										</span>
 										<NumberControl
 											value={ overlaySizeX }
@@ -1171,7 +1171,7 @@ const SectionEdit = ( props ) => {
 											<div className="ystdb-inspector-controls__columns">
 												<span>
 													{ __(
-														'幅　',
+														'幅',
 														'ystandard-blocks'
 													) }
 												</span>

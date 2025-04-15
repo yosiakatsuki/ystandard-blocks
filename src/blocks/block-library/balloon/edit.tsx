@@ -8,7 +8,6 @@ import {
 	withFontSizes,
 	RichText,
 } from '@wordpress/block-editor';
-import { useCallback, useEffect } from '@wordpress/element';
 import { TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
