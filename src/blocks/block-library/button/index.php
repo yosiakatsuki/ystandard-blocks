@@ -19,11 +19,31 @@ class Button_Block {
 	const BLOCK_NAME = 'ystdb/custom-button';
 
 	/**
+	 * Instance.
+	 *
+	 * @var Button_Block
+	 */
+	private static $instance;
+
+	/**
 	 * Constructor.
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'init', [ $this, 'register_block' ], 100 );
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_responsive_style' ] );
+	}
+
+	/**
+	 * Instance.
+	 *
+	 * @return Button_Block
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -177,4 +197,4 @@ class Button_Block {
 	}
 }
 
-// 3.12.0で追加予定.
+Button_Block::get_instance();
