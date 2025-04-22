@@ -1,9 +1,6 @@
-import { isNumber } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { FontSizePicker } from '@wordpress/components';
-import { getFontSizeClass } from '@wordpress/block-editor';
 import type {
 	FontSize,
 	FontSizePickerProps,
@@ -15,44 +12,48 @@ import type {
 import useThemeFontSizes from '@aktk/block-components/hooks/useThemeFontSizes';
 import { IconUnitControl } from '@aktk/block-components/components/icon-control';
 import { ResponsiveSelectTab } from '@aktk/block-components/components/tab-panel';
+import FontSizePicker from '@aktk/block-components/wp-controls/font-size-picker';
 
 /**
  * Internal dependencies
  */
-import type { CustomFontSize, CustomFontSizePickerProps } from './types';
+import type {
+	ResponsiveFontSize,
+	CustomFontSizePickerProps,
+	CustomFontSizePickerOnChangeProps,
+} from './types';
 
 import './style-editor.scss';
-
-export { CustomFontSize };
-export * from './util';
+/**
+ * Export.
+ */
+export { ResponsiveFontSize, CustomFontSizePickerOnChangeProps };
 
 /**
  * カスタムフォントサイズピッカー
  * @param props
  */
-export default function CustomFontSizePicker(
-	props: CustomFontSizePickerProps
-) {
+export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 	// フォントサイズ設定の取得.
 	const themeFontSizes = useThemeFontSizes();
 
-	const { fontSize, useResponsive = true, onChange } = props;
+	const {
+		fontSize,
+		customFontSize,
+		responsiveFontSize,
+		useResponsive = true,
+		onChange,
+	} = props;
 	// WPフォントサイズピッカー用にサイズ抽出.
-	const wpPickerFontSize = fontSize?.fontSize?.size ?? fontSize?.desktop;
-	// 値の更新.
-	const handleOnChange = ( newValue: CustomFontSize ) => {
-		onChange( newValue );
-	};
+	const wpPickerFontSize =
+		fontSize?.size ?? customFontSize ?? responsiveFontSize?.desktop;
 	// カスタム入力の変更イベント.
-	const handleOnCustomInputChange = ( newValue: CustomFontSize ) => {
+	const handleOnCustomInputChange = ( newValue: ResponsiveFontSize ) => {
 		// カスタム入力が使われた場合、WPフォントサイズピッカーにdesktopの値を入れつつ更新.
-		const newFontSize = newValue?.desktop
-			? { size: newValue.desktop }
-			: undefined;
-		handleOnChange( {
-			...fontSize,
-			...newValue,
-			fontSize: newFontSize,
+		onChange( {
+			fontSize: undefined,
+			customFontSize: undefined,
+			responsiveFontSize: newValue,
 		} );
 	};
 	// WPフォントサイズピッカーの変更イベント.
@@ -60,28 +61,16 @@ export default function CustomFontSizePicker(
 		newValue: number | string | undefined,
 		selectedItem?: FontSize
 	) => {
-		// カスタム値の入力の場合`selectedItem`はundefined.
-		const newFontSize = {
-			size: newValue,
-			slug: '',
-			className: '',
-		};
-		if ( !! selectedItem ) {
-			newFontSize.slug = selectedItem.slug;
-			newFontSize.className = getFontSizeClass( selectedItem.slug );
-		}
 		// WPフォントサイズピッカーを使った場合カスタム側の値を削除しつつ更新.
-		handleOnChange( {
-			...fontSize,
-			desktop: isNumber( newValue ) ? `${ newValue }px` : newValue,
-			tablet: undefined,
-			mobile: undefined,
-			fontSize: newFontSize,
+		onChange( {
+			fontSize: selectedItem,
+			customFontSize: ! selectedItem ? `${ newValue }` : undefined,
+			responsiveFontSize: undefined,
 		} );
 	};
 
 	const isResponsive = () => {
-		return !! fontSize?.tablet || !! fontSize?.mobile;
+		return !! responsiveFontSize?.tablet || !! responsiveFontSize?.mobile;
 	};
 
 	return (
@@ -98,7 +87,7 @@ export default function CustomFontSizePicker(
 					}
 					responsiveTabContent={
 						<CustomSizeInputPanel
-							fontSize={ fontSize }
+							responsiveFontSize={ responsiveFontSize }
 							onChange={ handleOnCustomInputChange }
 						/>
 					}
@@ -121,11 +110,16 @@ export function WPFontSizePicker( props: FontSizePickerProps ) {
 /**
  * カスタムフォントサイズ入力パネル
  * @param props
+ * @param props.responsiveFontSize
+ * @param props.onChange
  */
-export function CustomSizeInputPanel( props: CustomFontSizePickerProps ) {
-	const { fontSize, onChange } = props;
+export function CustomSizeInputPanel( props: {
+	responsiveFontSize?: ResponsiveFontSize;
+	onChange: ( value: ResponsiveFontSize ) => void;
+} ) {
+	const { responsiveFontSize, onChange } = props;
 
-	const handleOnChange = ( newValue: CustomFontSize ) => {
+	const handleOnChange = ( newValue: ResponsiveFontSize ) => {
 		onChange( newValue );
 	};
 
@@ -133,10 +127,10 @@ export function CustomSizeInputPanel( props: CustomFontSizePickerProps ) {
 		<div className={ 'grid grid-cols-1 gap-4 md:grid-cols-3' }>
 			<div>
 				<IconUnitControl.Desktop
-					value={ fontSize?.desktop }
+					value={ responsiveFontSize?.desktop }
 					onChange={ ( newValue ) => {
 						handleOnChange( {
-							...fontSize,
+							...responsiveFontSize,
 							desktop: newValue,
 						} );
 					} }
@@ -145,10 +139,10 @@ export function CustomSizeInputPanel( props: CustomFontSizePickerProps ) {
 			</div>
 			<div>
 				<IconUnitControl.Tablet
-					value={ fontSize?.tablet }
+					value={ responsiveFontSize?.tablet }
 					onChange={ ( newValue ) => {
 						handleOnChange( {
-							...fontSize,
+							...responsiveFontSize,
 							tablet: newValue,
 						} );
 					} }
@@ -157,10 +151,10 @@ export function CustomSizeInputPanel( props: CustomFontSizePickerProps ) {
 			</div>
 			<div>
 				<IconUnitControl.Mobile
-					value={ fontSize?.mobile }
+					value={ responsiveFontSize?.mobile }
 					onChange={ ( newValue ) => {
 						handleOnChange( {
-							...fontSize,
+							...responsiveFontSize,
 							mobile: newValue,
 						} );
 					} }

@@ -1,16 +1,21 @@
-export interface CustomFontSize {
+import type { FontSize } from '@wordpress/components/src/font-size-picker/types';
+
+export type ResponsiveFontSize = {
 	desktop?: string;
 	tablet?: string;
 	mobile?: string;
-	fontSize?: {
-		size?: number | string;
-		slug?: string;
-		className?: string;
-	};
-}
+};
+
+export type CustomFontSizePickerOnChangeProps = {
+	fontSize?: FontSize;
+	customFontSize?: string;
+	responsiveFontSize?: ResponsiveFontSize;
+};
 
 export interface CustomFontSizePickerProps {
-	fontSize: CustomFontSize | undefined;
-	onChange: ( value: CustomFontSize ) => void;
+	fontSize?: FontSize;
+	customFontSize?: string;
+	responsiveFontSize?: ResponsiveFontSize;
+	onChange: ( value: CustomFontSizePickerOnChangeProps ) => void;
 	useResponsive?: boolean;
 }
