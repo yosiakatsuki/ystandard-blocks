@@ -18,12 +18,12 @@ interface ResponsiveSelectTabProps {
 const TABS = [
 	{
 		name: 'default',
-		title: __( '標準', 'ystandard-toolbox' ),
+		title: __( '標準', 'ystandard-blocks' ),
 		className: TAB_CLASS,
 	},
 	{
 		name: 'responsive',
-		title: __( 'デバイス別', 'ystandard-toolbox' ),
+		title: __( 'デバイス別', 'ystandard-blocks' ),
 		className: TAB_CLASS,
 	},
 ];

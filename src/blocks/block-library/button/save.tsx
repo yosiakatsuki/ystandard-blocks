@@ -9,9 +9,12 @@ import {
 } from '@wordpress/block-editor';
 
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import { getFontSize } from '@aktk/blocks/components/font-size-edit';
+import {
+	getCustomFontSizeClass,
+	getCustomFontSizeStyle,
+} from '@aktk/block-components/components/custom-font-size-picker';
 
 /**
  * Block.
@@ -39,15 +42,16 @@ function Save( { attributes } ) {
 	const blockProps = useBlockProps.save( {
 		className: getWrapClasses( { ...attributes } ),
 	} );
-
 	const linkClasses = getLinkClasses( {
 		...attributes,
-		fontSize: getFontSize( customFontSize, fontSize )?.className,
+		// @ts-expect-error
+		fontSize: getCustomFontSizeClass( fontSize ),
 		gradientClass: getGradientClass( gradient ),
 	} );
 	const linkStyles = getLinkStyles( {
 		...attributes,
-		fontSize: getFontSize( customFontSize, fontSize )?.size,
+		// @ts-expect-error
+		fontSize: getCustomFontSizeStyle( fontSize, customFontSize ),
 	} );
 	return (
 		<>

@@ -19,7 +19,7 @@ function getOptions() {
 	// 未選択時のオプション.
 	const noSelectOption = [
 		{
-			name: __( '----', 'ystandard-toolbox' ),
+			name: __( '----', 'ystandard-blocks' ),
 			key: '',
 		},
 	];
