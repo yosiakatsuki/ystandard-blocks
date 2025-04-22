@@ -24,6 +24,7 @@ import type {
 } from './types';
 
 import './style-editor.scss';
+import { isNumber } from 'lodash';
 /**
  * Export.
  */
@@ -42,6 +43,7 @@ export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 		customFontSize,
 		responsiveFontSize,
 		useResponsive = true,
+		wpPickerDisableCustomFontSizes = false,
 		onChange,
 	} = props;
 	// WPフォントサイズピッカー用にサイズ抽出.
@@ -62,9 +64,12 @@ export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 		selectedItem?: FontSize
 	) => {
 		// WPフォントサイズピッカーを使った場合カスタム側の値を削除しつつ更新.
+		const _customFontSize = ! selectedItem ? newValue : undefined;
 		onChange( {
 			fontSize: selectedItem,
-			customFontSize: ! selectedItem ? `${ newValue }` : undefined,
+			customFontSize: isNumber( _customFontSize )
+				? `${ _customFontSize }px`
+				: _customFontSize,
 			responsiveFontSize: undefined,
 		} );
 	};
@@ -83,6 +88,9 @@ export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 							onChange={ handleOnWPPickerChange }
 							value={ wpPickerFontSize }
 							fontSizes={ themeFontSizes }
+							disableCustomFontSizes={
+								wpPickerDisableCustomFontSizes
+							}
 						/>
 					}
 					responsiveTabContent={
