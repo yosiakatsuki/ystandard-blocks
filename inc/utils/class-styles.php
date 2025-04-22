@@ -61,7 +61,7 @@ class Styles {
 	}
 
 	/**
-	 * ブレークポイントmin-widthに指定する値の取得.get_breakpoints_min_width_size
+	 * ブレークポイントmin-widthに指定する値の取得.
 	 *
 	 * @param string|int $value 値.
 	 * @param boolean    $minus マイナスするか.
@@ -72,11 +72,11 @@ class Styles {
 		$float_value = (float) $value;
 		$unit        = str_replace( (string) $float_value, '', $value );
 		$base        = self::get_breakpoints_base_size();
-		$calc        = $minus ? - 1 : 1;
+		$calc        = $minus ? -1 : 1;
 		if ( ! empty( $unit ) && ( 'em' === $unit || 'rem' === $unit ) ) {
 			$value = ( $float_value + ( 1 / $base ) * $calc );
 		} else {
-			$value = (int) $float_value + 1 * $calc;
+			$value = (int) $float_value + 1 / 10 * $calc;
 		}
 
 		return apply_filters(
@@ -100,11 +100,12 @@ class Styles {
 		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'mobile', $breakpoints ) ) {
 			return $css;
 		}
-		$breakpoint = $breakpoints['mobile'];
+		$max = self::get_breakpoints_calc_width_size( $breakpoints['mobile'] );
 
+		// 将来的には @media (width < 640px) にしたい.
 		return sprintf(
 			'@media (max-width:%s) {%s}',
-			$breakpoint,
+			$max,
 			$css
 		);
 	}
@@ -123,13 +124,14 @@ class Styles {
 		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'mobile', $breakpoints ) ) {
 			return $css;
 		}
-		// タブレットのチェック.
-		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'desktop', $breakpoints ) ) {
+		// デスクトップのチェック.
+		if ( ! array_key_exists( 'desktop', $breakpoints ) ) {
 			return $css;
 		}
 		$min = $breakpoints['mobile'];
 		$max = self::get_breakpoints_calc_width_size( $breakpoints['desktop'] );
 
+		// 将来的には  (width < 1024px) にしたい.
 		return sprintf(
 			'@media (min-width:%s) AND (max-width:%s) {%s}',
 			$min,

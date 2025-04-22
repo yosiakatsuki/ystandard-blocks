@@ -17,6 +17,8 @@ export interface CustomFontSizePickerProps {
 	customFontSize?: string;
 	responsiveFontSize?: ResponsiveFontSize;
 	onChange: ( value: CustomFontSizePickerOnChangeProps ) => void;
+	responsiveControlStyle?: 'vertical' | 'horizontal';
 	useResponsive?: boolean;
+	showResetButton?: boolean;
 	wpPickerDisableCustomFontSizes?: boolean;
 }

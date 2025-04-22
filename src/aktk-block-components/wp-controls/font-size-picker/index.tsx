@@ -7,5 +7,11 @@ import type { FontSizePickerProps as WPFontSizePickerProps } from '@wordpress/co
 
 export default function FontSizePicker( props: WPFontSizePickerProps ) {
 	// @ts-ignore
-	return <WPFontSizePicker { ...props } __next40pxDefaultSize />;
+	return (
+		<WPFontSizePicker
+			{ ...props }
+			__next40pxDefaultSize
+			__nextHasNoMarginBottom
+		/>
+	);
 }

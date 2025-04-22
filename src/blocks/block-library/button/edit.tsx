@@ -12,9 +12,12 @@ import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import { getFontSize } from '@aktk/blocks/components/font-size-edit';
+import {
+	getCustomFontSizeClass,
+	getCustomFontSizeStyle,
+} from '@aktk/block-components/components/custom-font-size-picker';
 
 /**
  * Block
@@ -24,6 +27,7 @@ import { getLinkClasses, getLinkStyles, getWrapClasses } from './utils';
 import { Icon } from './icon';
 import './style-editor.scss';
 import type { Attributes } from '@aktk/blocks/block-library/button/types';
+
 
 // @ts-expect-error
 function Edit( props ) {
@@ -58,14 +62,16 @@ function Edit( props ) {
 	const linkProps = {
 		className: getLinkClasses( {
 			...attributes,
-			fontSize: getFontSize( customFontSize, fontSize )?.className,
+			// @ts-expect-error
+			fontSize: getCustomFontSizeClass( fontSize ),
 			gradientClass,
 		} ),
 		style: getLinkStyles( {
 			...attributes,
 			textColor: textColor?.color,
 			backgroundColor: backgroundColor?.color,
-			fontSize: getFontSize( customFontSize, fontSize )?.size,
+			// @ts-expect-error
+			fontSize: getCustomFontSizeStyle( fontSize, customFontSize ),
 			customGradient: gradientValue,
 		} ),
 	};
