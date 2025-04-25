@@ -2,13 +2,12 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { BaseControl } from '@wordpress/components';
-
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import Panel from '@aktk/blocks/components/panel';
-import { ColorGradientSettingsDropdown } from '@aktk/blocks/components/color';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import { Panel } from '@aktk/block-components/components/panel';
+import { ColorGradientPalette } from '@aktk/block-components/components/color-pallet-control';
 
 // @ts-expect-error
 export function Background( props ) {
@@ -17,11 +16,11 @@ export function Background( props ) {
 
 	return (
 		<Panel title={ __( '背景色', 'ystandard-blocks' ) }>
-			<BaseControl id={ 'background-color' }>
-				<ColorGradientSettingsDropdown
+			<BaseControl>
+				<ColorGradientPalette
 					label={ __( '背景色', 'ystandard-blocks' ) }
 					colorValue={ backgroundColor.color }
-					onChange={ setBackgroundColor }
+					onColorChange={ setBackgroundColor }
 					gradientValue={ gradientValue }
 					setGradient={ setGradient }
 				/>

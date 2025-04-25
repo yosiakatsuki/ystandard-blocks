@@ -3,9 +3,12 @@
  */
 import { __ } from '@wordpress/i18n';
 /**
+ * Aktk dependencies.
+ */
+import { Panel } from '@aktk/block-components/components/panel';
+/**
  * Plugin dependencies.
  */
-import Panel from '@aktk/blocks/components/panel';
 import { TextColor } from './text-color';
 import { FontSize } from './font-size';
 
