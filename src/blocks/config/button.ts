@@ -5,4 +5,7 @@ export const BUTTON_ANIMATION = [
 	{ label: __( 'キラキラ', 'ystandard-blocks' ), value: 'shine' },
 ];
 
+/**
+ * @deprecated
+ */
 export const BUTTON_NEW_TAB_REL = 'noreferrer noopener';
