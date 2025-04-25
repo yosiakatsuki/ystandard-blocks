@@ -2,12 +2,15 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
-import { TextControl, ToggleControl } from '@wordpress/components';
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import Panel from '@aktk/blocks/components/panel';
-import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import TextControl from '@aktk/block-components/wp-controls/text-control';
+import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
+import { Panel } from '@aktk/block-components/components/panel';
+import { BUTTON_NEW_TAB_REL } from '@aktk/block-components/config';
+
 // @ts-expect-error
 export function Link( props ) {
 	const { attributes, setAttributes } = props;
@@ -28,18 +31,22 @@ export function Link( props ) {
 	};
 	return (
 		<Panel title={ __( 'リンク設定', 'ystandard-blocks' ) }>
-			<ToggleControl
-				label={ __( 'Open in new tab' ) }
-				onChange={ handleLinkTargetChange }
-				checked={ linkTarget === '_blank' }
-			/>
-			<TextControl
-				label={ __( 'リンクrel属性', 'ystandard-blocks' ) }
-				value={ rel || '' }
-				onChange={ ( value ) => {
-					setAttributes( { rel: value } );
-				} }
-			/>
+			<BaseControl>
+				<ToggleControl
+					label={ __( '新しいタブで開く', 'ystandard-blocks' ) }
+					onChange={ handleLinkTargetChange }
+					checked={ linkTarget === '_blank' }
+				/>
+			</BaseControl>
+			<BaseControl>
+				<TextControl
+					label={ __( 'リンクrel属性', 'ystandard-blocks' ) }
+					value={ rel || '' }
+					onChange={ ( value ) => {
+						setAttributes( { rel: value } );
+					} }
+				/>
+			</BaseControl>
 		</Panel>
 	);
 }
