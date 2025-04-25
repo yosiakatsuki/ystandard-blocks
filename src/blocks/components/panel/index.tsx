@@ -10,6 +10,10 @@ interface PanelProps {
 	children: React.ReactNode;
 }
 
+/**
+ * @param props
+ * @deprecated
+ */
 export default function Panel( props: PanelProps ) {
 	const { title, initialOpen, children } = props;
 	const [ panelOpen, setPanelOpen ] = useState( false );

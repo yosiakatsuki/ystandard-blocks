@@ -86,6 +86,11 @@ const renderToggle =
 			);
 		};
 
+/**
+ *
+ * @param props
+ * @deprecated
+ */
 export function ColorGradientSettingsDropdown(
 	props: ColorGradientSettingsDropdownProps
 ) {
@@ -129,7 +134,6 @@ export function ColorGradientSettingsDropdown(
 					label={ controlLabel }
 				>
 					<Dropdown
-						// @ts-expect-error
 						popoverProps={ popoverProps }
 						className="block-editor-tools-panel-color-gradient-settings__dropdown"
 						renderToggle={ renderToggle( toggleSettings ) }
