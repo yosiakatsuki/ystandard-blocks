@@ -1,14 +1,17 @@
 /**
  * WordPress dependencies.
  */
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import { IconSelect } from '@aktk/block-components/components/icon-select';
 
 /**
  * Plugin dependencies.
  */
-import { IconSelect } from '@aktk/block-components/components/icon-select';
-import { ComponentContainer } from '@aktk/blocks/components/component-container';
 import { IconSize } from './size';
 
 //@ts-expect-error
@@ -18,7 +21,7 @@ export function IconLeft( props ) {
 
 	return (
 		<BaseControl id={ 'left-icon' }>
-			<ComponentContainer>
+			<BaseControl>
 				<IconSelect
 					label={ __( '左アイコン', 'ystandard-blocks' ) }
 					icon={ iconLeft }
@@ -26,13 +29,15 @@ export function IconLeft( props ) {
 						setAttributes( { iconLeft: value } );
 					} }
 				/>
+			</BaseControl>
+			<BaseControl>
 				<IconSize
 					size={ iconSizeLeft }
 					onChange={ ( value: string | undefined ) => {
 						setAttributes( { iconSizeLeft: value } );
 					} }
 				/>
-			</ComponentContainer>
+			</BaseControl>
 		</BaseControl>
 	);
 }

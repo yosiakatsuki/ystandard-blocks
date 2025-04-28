@@ -8,19 +8,19 @@ interface TextControlProps {
 	label?: string;
 	value: string;
 	onChange: ( value: string ) => void;
+	ref?: React.RefObject< HTMLElement >;
+	placeholder?: string;
 }
 
 export default function TextControl( props: TextControlProps ) {
-	const { className, label, value, onChange } = props;
-
 	return (
-		<WPTextControl
-			className={ className }
-			label={ label }
-			value={ value }
-			onChange={ onChange }
-			__nextHasNoMarginBottom
-			__next40pxDefaultSize
-		/>
+		<>
+			{ /* @ts-expect-error */ }
+			<WPTextControl
+				{ ...props }
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+			/>
+		</>
 	);
 }
