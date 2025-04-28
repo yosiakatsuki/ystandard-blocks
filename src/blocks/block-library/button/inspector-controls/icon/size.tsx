@@ -1,14 +1,14 @@
 /**
  * WordPress dependencies.
  */
-import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import HorizonButtons from '@aktk/blocks/components/horizon-buttons';
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import { ValueInput } from '@aktk/blocks/components/value-input';
-import { ComponentLabel } from '@aktk/blocks/components/label';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import Button from '@aktk/block-components/wp-controls/button';
+import { HorizonButtons } from '@aktk/block-components/components/buttons';
+import { UnitInput } from '@aktk/block-components/components/unit-input';
 
 interface IconSizeProps {
 	size: string;
@@ -30,6 +30,13 @@ const ICON_SIZE_LIST = {
 	},
 };
 
+const UNIT_LIST = [
+	{
+		value: 'em',
+		label: __( 'em', 'ystandard-blocks' ),
+	},
+];
+
 export function IconSize( props: IconSizeProps ) {
 	const { size, onChange } = props;
 
@@ -47,7 +54,7 @@ export function IconSize( props: IconSizeProps ) {
 					onClick={ () => {
 						handleOnChange( value.value );
 					} }
-					isSmall
+					size={ 'small' }
 				>
 					{ value.label }
 				</Button>
@@ -56,18 +63,19 @@ export function IconSize( props: IconSizeProps ) {
 	};
 
 	return (
-		<div>
-			<ComponentLabel>
-				{ __( '大きさ', 'ystandard-blocks' ) }
-			</ComponentLabel>
+		<BaseControl
+			id={ 'icon-size-left' }
+			label={ __( '大きさ', 'ystandard-blocks' ) }
+		>
 			<HorizonButtons>{ IconSizeButton() }</HorizonButtons>
 			<div className={ 'mt-2' }>
-				<ValueInput
+				<UnitInput
 					value={ size }
 					onChange={ handleOnChange }
-					units={ [ { value: 'em', label: 'em' } ] }
+					units={ UNIT_LIST }
+					hasClearButton
 				/>
 			</div>
-		</div>
+		</BaseControl>
 	);
 }

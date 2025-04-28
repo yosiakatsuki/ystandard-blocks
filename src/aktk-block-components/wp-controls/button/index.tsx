@@ -8,6 +8,7 @@ interface ButtonProps {
 	style?: React.CSSProperties;
 	isDestructive?: boolean;
 	onClick: () => void;
+	disabled?: boolean;
 }
 
 export default function Button( props: ButtonProps ) {

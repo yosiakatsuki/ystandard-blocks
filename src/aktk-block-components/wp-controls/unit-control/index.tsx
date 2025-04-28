@@ -17,6 +17,7 @@ export interface UnitControlProps {
 	unit?: string | undefined;
 	disableUnits?: boolean | undefined;
 	isResetValueOnUnitChange?: boolean | undefined;
+	className?: string;
 }
 
 export default function UnitControl( props: UnitControlProps ) {
