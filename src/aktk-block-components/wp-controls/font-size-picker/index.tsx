@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { FontSizePicker as WPFontSizePicker } from '@wordpress/block-editor';
+import { FontSizePicker as WPFontSizePicker } from '@wordpress/components';
 // @ts-expect-error
 import type { FontSizePickerProps as WPFontSizePickerProps } from '@wordpress/components';
 
