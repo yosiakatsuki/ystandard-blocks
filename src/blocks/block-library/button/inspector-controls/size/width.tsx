@@ -1,8 +1,12 @@
 /**
  * WordPress dependencies.
  */
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+
 /**
  * Plugin dependencies.
  */
@@ -25,16 +29,11 @@ export function Width( props ) {
 	};
 
 	return (
-		<>
-			<BaseControl
-				id={ 'width' }
-				label={ __( '幅', 'ystandard-blocks' ) }
-			>
-				<ValueInput
-					value={ style?.width || '' }
-					onChange={ handleOnChange }
-				/>
-			</BaseControl>
-		</>
+		<BaseControl id={ 'width' } label={ __( '幅', 'ystandard-blocks' ) }>
+			<ValueInput
+				value={ style?.width || '' }
+				onChange={ handleOnChange }
+			/>
+		</BaseControl>
 	);
 }
