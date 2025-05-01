@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import classNames from 'classnames';
 import './style-editor.scss';
 
 interface NoticeProps {
@@ -11,7 +11,7 @@ export function Notice( props: NoticeProps ) {
 	const baseClassName = 'aktk-notice';
 
 	const { children, className, style } = props;
-	const noticeClass = clsx( baseClassName, className );
+	const noticeClass = classNames( baseClassName, className );
 	const noticeStyle = {
 		...style,
 	};
@@ -29,7 +29,7 @@ export function NoticeText( props: NoticeProps ) {
 	const baseClassName = 'aktk-notice--text';
 
 	const { children, className, style } = props;
-	const noticeClass = clsx( baseClassName, className );
+	const noticeClass = classNames( baseClassName, className );
 	const noticeStyle = {
 		...style,
 	};
@@ -47,10 +47,11 @@ export function NoticeInfo( props: NoticeProps ) {
 	return (
 		<Notice
 			{ ...props }
-			className={ 'bg-aktk-bg-blue text-aktk-bg-blue' }
+			className={ 'bg-aktk-bg-blue text-aktk-text-blue' }
 		/>
 	);
 }
+
 export function NoticeWarning( props: NoticeProps ) {
 	return (
 		<Notice
@@ -61,6 +62,7 @@ export function NoticeWarning( props: NoticeProps ) {
 		/>
 	);
 }
+
 export function NoticeWarningText( props: NoticeProps ) {
 	return (
 		<NoticeText
@@ -70,7 +72,6 @@ export function NoticeWarningText( props: NoticeProps ) {
 	);
 }
 
-
 export function NoticeSecondaryText( props: NoticeProps ) {
 	return (
 		<NoticeText
@@ -79,4 +80,3 @@ export function NoticeSecondaryText( props: NoticeProps ) {
 		/>
 	);
 }
-

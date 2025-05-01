@@ -1,35 +1,52 @@
 /**
  * WordPress dependencies.
  */
-import { ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import { ComponentLabel } from '@aktk/blocks/components/label';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import RadioControl from '@aktk/block-components/wp-controls/radio-control';
+import { NoticeInfo } from '@aktk/block-components/components/notice';
+
+const BUTTONS = [
+	{
+		label: __( 'テキストの近くに配置する', 'ystandard-blocks' ),
+		value: 'normal',
+	},
+	{
+		label: __( 'ボタン外側に配置する', 'ystandard-blocks' ),
+		value: 'space-between',
+	},
+];
 
 // @ts-expect-error
 export function IconPosition( props ) {
 	const { attributes, setAttributes } = props;
 	const { iconPosition } = attributes;
 
-	const handleOnChange = ( value: boolean ) => {
+	const handleOnChange = ( value: string ) => {
 		setAttributes( {
-			iconPosition: value ? 'space-between' : undefined,
+			iconPosition: 'normal' === value ? undefined : value,
 		} );
 	};
+
 	return (
-		<div>
-			<ComponentLabel>
-				{ __( 'アイコンの位置', 'ystandard-blocks' ) }
-			</ComponentLabel>
-			<div className={ 'mt-2' }>
-				<ToggleControl
-					label={ __( '外側に配置する', 'ystandard-blocks' ) }
-					checked={ iconPosition === 'space-between' }
-					onChange={ handleOnChange }
-				/>
-			</div>
-		</div>
+		<BaseControl>
+			<RadioControl
+				label={ __( 'アイコンの位置', 'ystandard-blocks' ) }
+				selected={ ! iconPosition ? 'normal' : iconPosition }
+				options={ BUTTONS }
+				onChange={ handleOnChange }
+			/>
+			{ 'space-between' === iconPosition && (
+				<NoticeInfo>
+					{ __(
+						'「ボタン外側に配置する」を選択する場合は合わせてボタンの幅も設定してください。',
+						'ystandard-blocks'
+					) }
+				</NoticeInfo>
+			) }
+		</BaseControl>
 	);
 }
