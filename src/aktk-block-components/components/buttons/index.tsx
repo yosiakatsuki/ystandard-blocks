@@ -113,7 +113,7 @@ export function DestructiveButton( props: AktkButtonProps ) {
 		<>
 			<BaseButton
 				{ ...props }
-				variant={ 'tertiary' }
+				variant={ 'secondary' }
 				isDestructive={ true }
 			/>
 		</>

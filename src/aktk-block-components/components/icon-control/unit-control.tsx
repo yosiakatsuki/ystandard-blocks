@@ -62,7 +62,8 @@ function getUnits( type: UnitTypes ): UnitType[] | undefined {
 }
 
 function IconUnitControlBase( props: IconUnitControlProps ) {
-	return <UnitControl { ...props } units={ getUnits( props?.unitType ) } />;
+	const units = props?.units || getUnits( props?.unitType );
+	return <UnitControl { ...props } units={ units } />;
 }
 
 function MobileUnitControl( props: IconUnitControlProps ) {

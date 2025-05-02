@@ -89,6 +89,12 @@
 		"responsiveFontSize": {
 			"type": "object"
 		},
+		"width"	: {
+			"type": "string"
+		},
+		"responsiveWidth": {
+			"type": "object"
+		},
 		"padding": {
 			"type": "object"
 		},

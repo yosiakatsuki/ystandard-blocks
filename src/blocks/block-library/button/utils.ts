@@ -72,6 +72,8 @@ export function getLinkStyles( attributes: Attributes ) {
 		border,
 		responsiveFontSize,
 		responsivePadding,
+		width,
+		responsiveWidth,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles( borderRadius );
@@ -102,6 +104,13 @@ export function getLinkStyles( attributes: Attributes ) {
 					] = paddingValue;
 				}
 			} );
+			// width.
+			const _width = responsiveWidth?.[ type ];
+			if ( _width ) {
+				// @ts-expect-error
+				acc[ getResponsiveCustomPropName( 'button--width', type ) ] =
+					_width;
+			}
 
 			return acc;
 		},
@@ -113,6 +122,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		[ getResponsiveCustomPropName( 'button--font-size', 'desktop' ) ]:
 			responsiveFontSize?.desktop,
 		color: customTextColor,
+		width,
 		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,

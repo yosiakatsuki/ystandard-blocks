@@ -3,6 +3,7 @@
  *
  * @param {Object} obj - 削除対象のオブジェクト
  * @return {Object} - 空プロパティを削除したオブジェクト
+ * @deprecated use `stripUndefined` instead
  */
 export function deleteUndefined( obj: object ) {
 	try {
@@ -13,6 +14,34 @@ export function deleteUndefined( obj: object ) {
 		// console.error( error );
 		return obj;
 	}
+}
+
+/**
+ * オブジェクトの空プロパティを削除する
+ *
+ * @param {Object} obj - 削除対象のオブジェクト
+ * @return {Object} - 空プロパティを削除したオブジェクト
+ */
+export function stripUndefined( obj: object ): object {
+	return Object.entries( obj ).reduce( ( acc, [ key, value ] ) => {
+		if ( value === undefined ) {
+			return acc;
+		}
+
+		if ( value && typeof value === 'object' && ! Array.isArray( value ) ) {
+			// 子オブジェクトも走査
+			const cleaned = stripUndefined( value );
+			// @ts-ignore
+			if ( Object.keys( cleaned ).length ) {
+				// @ts-ignore
+				acc[ key ] = cleaned;
+			}
+		} else {
+			// @ts-ignore
+			acc[ key ] = value;
+		}
+		return acc;
+	}, {} );
 }
 
 /**
@@ -34,4 +63,16 @@ export function isEmpty( value: object ) {
 		return true;
 	}
 	return Object.keys( value ).length === 0;
+}
+
+/**
+ * レスポンシブかチェックする
+ * @param value
+ */
+export function isResponsive( value: any ) {
+	if ( ! isObject( value ) ) {
+		return false;
+	}
+	// @ts-ignore;
+	return !! ( value?.tablet || value?.mobile );
 }

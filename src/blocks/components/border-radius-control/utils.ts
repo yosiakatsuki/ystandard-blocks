@@ -1,8 +1,8 @@
 import { isString } from 'lodash';
 /**
- * Plugin dependencies
+ * Aktk dependencies.
  */
-import { removeUndefined } from '@aktk/blocks/utils';
+import { stripUndefined } from '@aktk/block-components/utils/object';
 /**
  * Internal dependencies
  */
@@ -27,7 +27,7 @@ export function getBorderRadiusStyles(
 		};
 	}
 
-	return removeUndefined( {
+	return stripUndefined( {
 		borderTopLeftRadius: borderRadius?.topLeft,
 		borderTopRightRadius: borderRadius?.topRight,
 		borderBottomRightRadius: borderRadius?.bottomRight,
