@@ -115,6 +115,7 @@
 		"postcss": "^8.5.3",
 		"postcss-cli": "^11.0.1",
 		"prettier": "npm:wp-prettier@^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
 		"react-feather": "^2.0.10",
 		"react-icons": "^5.5.0",
 		"react-toastify": "^11.0.5",
