@@ -13,6 +13,7 @@ interface ResponsiveSelectTabProps {
 	isResponsive?: boolean;
 	defaultTabContent: React.ReactNode;
 	responsiveTabContent: React.ReactNode;
+	forSettingPage?: boolean;
 }
 
 const TABS = [
@@ -34,16 +35,21 @@ export function ResponsiveSelectTab( props: ResponsiveSelectTabProps ) {
 		defaultTabContent,
 		responsiveTabContent,
 		isResponsive = false,
+		forSettingPage = false,
 	} = props;
 
 	const _initialTabName =
 		initialTabName ?? isResponsive ? 'responsive' : 'default';
 
+	const tabClasses = classnames( 'aktk-responsive-select-tab', {
+		'is-setting-page': forSettingPage,
+	} );
+
 	return (
 		<TabPanel
 			tabs={ TABS }
 			initialTabName={ _initialTabName }
-			className={ 'aktk-responsive-select-tab' }
+			className={ tabClasses }
 		>
 			{ ( tab ) => {
 				return (
