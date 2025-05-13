@@ -3,8 +3,13 @@
  */
 import { __ } from '@wordpress/i18n';
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import {
+	CustomSpacingSelectControl,
+	type Spacing,
+} from '@aktk/block-components/components/custom-spacing-select';
 /**
  * Plugin dependencies.
  */
@@ -46,17 +51,33 @@ export function Padding( props ) {
 		} );
 	};
 
+	const handleOnCustomInputChange = ( newValue: Spacing ) => {
+		console.log( { newValue } );
+		setAttributes( {
+			padding: newValue,
+		} );
+	};
+
 	return (
 		<>
-			<ResponsivePaddingSelect
-				label={ __( 'パディング', 'ystandard-blocks' ) }
-				onChange={ handleOnChange }
-				onResponsiveChange={ handleOnResponsiveChange }
-				value={ padding as unknown as SpacingValue }
-				responsiveValue={ responsivePadding }
-				splitOnAxis={ true }
-				sides={ [ 'horizontal', 'vertical' ] }
-			/>
+			<BaseControl>
+				<CustomSpacingSelectControl
+					values={ padding }
+					onChange={ handleOnCustomInputChange }
+				/>
+			</BaseControl>
+			<div>
+				<p className="mt-5 font-bold">旧設定</p>
+				<ResponsivePaddingSelect
+					label={ __( 'パディング', 'ystandard-blocks' ) }
+					onChange={ handleOnChange }
+					onResponsiveChange={ handleOnResponsiveChange }
+					value={ padding as unknown as SpacingValue }
+					responsiveValue={ responsivePadding }
+					splitOnAxis={ true }
+					sides={ [ 'horizontal', 'vertical' ] }
+				/>
+			</div>
 		</>
 	);
 }

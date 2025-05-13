@@ -1,8 +1,4 @@
 /**
- * WordPress Dependencies
- */
-import { __ } from '@wordpress/i18n';
-/**
  * Aktk Dependencies
  */
 import { ResponsiveSelectTab } from '@aktk/block-components/components/tab-panel';

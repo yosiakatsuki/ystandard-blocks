@@ -1,6 +1,12 @@
-import type { ResponsiveSpacing } from '@aktk/blocks/components/responsive-spacing/types';
-import type { ResponsiveFontSize } from '@aktk/blocks/components/responsive-font-size/types';
 import type { ResponsiveValues } from '@aktk/blocks/components/responsive-values/types';
+/**
+ * Aktk dependencies.
+ */
+import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+import type {
+	ResponsiveSpacing,
+	Spacing,
+} from '@aktk/block-components/components/custom-spacing-select';
 
 export interface Attributes {
 	buttonType?: string;
@@ -26,7 +32,7 @@ export interface Attributes {
 	fontSize?: string;
 	customFontSize?: string;
 	responsiveFontSize: ResponsiveFontSize;
-	padding?: object;
+	padding?: Spacing;
 	responsivePadding?: ResponsiveSpacing;
 	width?: string;
 	responsiveWidth?: ResponsiveValues;

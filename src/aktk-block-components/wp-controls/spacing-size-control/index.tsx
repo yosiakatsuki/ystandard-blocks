@@ -1,8 +1,16 @@
 /**
  * @see https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/spacing-sizes-control
  */
-// @ts-expect-error
-import { __experimentalSpacingSizesControl as WPSpacingSizesControl } from '@wordpress/block-editor';
+
+import {
+	// @ts-expect-error
+	__experimentalSpacingSizesControl as WPSpacingSizesControl,
+} from '@wordpress/block-editor';
+
+export {
+	// @ts-expect-error
+	getCustomValueFromPreset,
+} from '@wordpress/block-editor';
 
 export type SpacingSizeValues = {
 	top?: string;
@@ -12,14 +20,28 @@ export type SpacingSizeValues = {
 };
 
 export interface SpacingSizeControlProps {
-	values: SpacingSizeValues;
+	values: SpacingSizeValues | undefined;
 	onChange: ( newValue: SpacingSizeValues ) => void;
 	label?: string;
-	sides?: 'top' | 'right' | 'bottom' | 'left';
+	sides?: (
+		| 'top'
+		| 'right'
+		| 'bottom'
+		| 'left'
+		| 'horizontal'
+		| 'vertical'
+	)[];
+	minimumCustomValue?: number;
 }
 
 export default function SpacingSizesControl( props: SpacingSizeControlProps ) {
-	const { values, onChange, label, sides } = props;
+	const {
+		values,
+		onChange,
+		label,
+		sides = [ 'top', 'right', 'bottom', 'left' ],
+		minimumCustomValue = 0,
+	} = props;
 	const controlLabel = label || '';
 	return (
 		<WPSpacingSizesControl
@@ -27,6 +49,7 @@ export default function SpacingSizesControl( props: SpacingSizeControlProps ) {
 			onChange={ onChange }
 			label={ controlLabel }
 			sides={ sides }
+			minimumCustomValue={ minimumCustomValue }
 		/>
 	);
 }

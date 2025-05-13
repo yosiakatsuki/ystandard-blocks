@@ -6,7 +6,7 @@
 		"description": "<h2>「yStandard」用 ブロックエディター(Gutenberg)ブロック追加・拡張プラグイン</h2><h3>追加ブロック</h3><ul><li>セクションブロック<ul><li>ブロックを入れ子にしてひとまとめにするブロック</li></ul></li><li>ボタン型リンク<ul><li>HTML入力欄にアンカー(a)タグを貼り付けるとボタン型に表示するブロック</li></ul></li><li>カスタムボタンブロック<ul><li>アイコンの設定や横幅いっぱいに表示できるボタン</li></ul></li><li>カードブロック<ul><li>カード型のリンクを作成できるブロック</li></ul></li><li>カスタムカラムブロック<ul><li>2行以上の表示が可能、スマホ・タブレット・PCで列数の設定が可能なカラムブロック</li></ul></li><li>アイコンブロック<ul><li>アイコンを表示できるブロック</li></ul></li><li>カスタム見出しブロック<ul><li>文字サイズやサブテキストが表示可能な見出しブロック</li></ul></li><li>吹き出しブロック<ul><li>会話形式のコンテンツが作成できるブロック</li></ul></li><li>条件付きグループブロック<ul><li>条件により表示・非表示を切り替えできるグループブロック</li></ul></li></ul><h3>インライン装飾</h3><ul><li>3種類のインライン装飾ボタンを追加。カスタマイザーから装飾内容をカスタマイズ可能</li><li>文字サイズを少し大きく・少し小さくする装飾</li></ul>",
 		"changelog": "<h2>更新履歴</h2><p>更新履歴は下記ページを参照<br><a href='https://github.com/yosiakatsuki/ystandard-blocks/blob/master/README.md#%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4' target='_blank' rel='noopener noreferrer'>更新履歴(GitHub)</a></p>"
 	},
-	"requires": "6.1.0",
+	"requires": "6.7.0",
 	"tested": "6.8.0",
 	"icons": {
 		"1x": "https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/icon.png",

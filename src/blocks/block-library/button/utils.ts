@@ -17,6 +17,7 @@ import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
  * Block dependencies.
  */
 import type { Attributes } from './types';
+import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select';
 
 export function getWrapClasses( attributes: Attributes ) {
 	const className = attributes?.className || '';
@@ -74,6 +75,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		responsivePadding,
 		width,
 		responsiveWidth,
+		padding,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles( borderRadius );
@@ -126,6 +128,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
+		...getCustomSpacingValues( padding, 'padding' ),
 		...borderRadiusStyles,
 		...getBorderStyles( border ),
 		...responsiveStyles,

@@ -1,5 +1,9 @@
 import { isObject } from 'lodash';
-import { removeUndefined } from '@aktk/blocks/utils';
+
+/**
+ * Aktk dependencies.
+ */
+import { stripUndefined } from '@aktk/block-components/utils/object';
 
 import type { ResponsiveValues } from './types';
 
@@ -29,7 +33,7 @@ export function parseResponsiveValues( values: ParseResponsiveValuesProps ) {
 	} else {
 		result = { desktop: values };
 	}
-	return removeUndefined( result );
+	return stripUndefined( result );
 }
 
 export function getResponsiveCustomPropName(
