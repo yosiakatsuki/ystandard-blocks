@@ -27,35 +27,6 @@ const LabeledColorIndicator = ( { colorValue, label } ) => (
 	</HStack>
 );
 
-const renderToggle =
-	//@ts-ignore
-
-
-		( settings ) =>
-		//@ts-ignore
-		( { onToggle, isOpen } ) => {
-			const { colorValue, label } = settings;
-
-			const toggleProps = {
-				onClick: onToggle,
-				className: classnames(
-					'block-editor-panel-color-gradient-settings__dropdown',
-					'border border-solid border-gray-300',
-					{ 'is-open': isOpen }
-				),
-				'aria-expanded': isOpen,
-			};
-
-			return (
-				<Button { ...toggleProps }>
-					<LabeledColorIndicator
-						colorValue={ colorValue }
-						label={ label }
-					/>
-				</Button>
-			);
-		};
-
 export default function ColorDropdownWrapper( {
 	colorValue,
 	label,
@@ -71,6 +42,35 @@ export default function ColorDropdownWrapper( {
 		shift: true,
 	};
 
+	const renderToggle =
+		//@ts-ignore
+
+
+			( settings ) =>
+			//@ts-ignore
+			( { onToggle, isOpen } ) => {
+				const { colorValue: _colorValue, label: _label } = settings;
+
+				const toggleProps = {
+					onClick: onToggle,
+					className: classnames(
+						'block-editor-panel-color-gradient-settings__dropdown',
+						'border border-solid border-gray-300',
+						{ 'is-open': isOpen }
+					),
+					'aria-expanded': isOpen,
+				};
+
+				return (
+					<Button { ...toggleProps }>
+						<LabeledColorIndicator
+							colorValue={ _colorValue }
+							label={ _label }
+						/>
+					</Button>
+				);
+			};
+
 	return (
 		<Dropdown
 			popoverProps={ popoverProps }
@@ -78,7 +78,7 @@ export default function ColorDropdownWrapper( {
 			renderToggle={ renderToggle( { colorValue, label } ) }
 			renderContent={ () => (
 				<DropdownContentWrapper paddingSize="none">
-					<div className="block-editor-panel-color-gradient-settings__dropdown-content">
+					<div className="block-editor-color-gradient-control__panel w-[260px] p-4">
 						{ children }
 					</div>
 				</DropdownContentWrapper>
