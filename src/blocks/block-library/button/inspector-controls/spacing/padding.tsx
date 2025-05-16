@@ -7,17 +7,13 @@ import { __ } from '@wordpress/i18n';
  */
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 import {
-	CustomSpacingSelectControl,
-	type Spacing,
+	ResponsiveSpacingSelect,
+	type ResponsiveSpacing,
 } from '@aktk/block-components/components/custom-spacing-select';
+import { isResponsive } from '@aktk/block-components/utils/object';
 /**
  * Plugin dependencies.
  */
-import type { SpacingValue } from '@aktk/blocks/components/spacing-size-control';
-import {
-	ResponsivePaddingSelect,
-	ResponsiveSpacing,
-} from '@aktk/blocks/components/responsive-spacing';
 
 /**
  * Internal dependencies
@@ -29,55 +25,34 @@ export function Padding( props ) {
 	const { attributes, setAttributes } = props;
 	const { padding, responsivePadding } = attributes as unknown as Attributes;
 
-	const handleOnChange = ( value: SpacingValue | undefined ) => {
-		setAttributes( {
-			padding: {
-				...padding,
-				...value,
-			},
-			responsivePadding: undefined,
-		} );
+	const handleOnChange = ( newValue: ResponsiveSpacing | undefined ) => {
+		if ( isResponsive( newValue ) ) {
+			setAttributes( {
+				padding: undefined,
+				responsivePadding: newValue,
+			} );
+		} else {
+			setAttributes( {
+				padding: newValue?.desktop,
+				responsivePadding: undefined,
+			} );
+		}
 	};
 
-	const handleOnResponsiveChange = (
-		value: ResponsiveSpacing | undefined
-	) => {
-		setAttributes( {
-			responsivePadding: {
-				...responsivePadding,
-				...value,
-			},
-			padding: undefined,
-		} );
-	};
-
-	const handleOnCustomInputChange = ( newValue: Spacing ) => {
-		console.log( { newValue } );
-		setAttributes( {
-			padding: newValue,
-		} );
-	};
+	const value = isResponsive( responsivePadding )
+		? responsivePadding
+		: {
+				desktop: padding,
+		  };
 
 	return (
 		<>
 			<BaseControl>
-				<CustomSpacingSelectControl
-					values={ padding }
-					onChange={ handleOnCustomInputChange }
+				<ResponsiveSpacingSelect
+					value={ value }
+					onChange={ handleOnChange }
 				/>
 			</BaseControl>
-			<div>
-				<p className="mt-5 font-bold">旧設定</p>
-				<ResponsivePaddingSelect
-					label={ __( 'パディング', 'ystandard-blocks' ) }
-					onChange={ handleOnChange }
-					onResponsiveChange={ handleOnResponsiveChange }
-					value={ padding as unknown as SpacingValue }
-					responsiveValue={ responsivePadding }
-					splitOnAxis={ true }
-					sides={ [ 'horizontal', 'vertical' ] }
-				/>
-			</div>
 		</>
 	);
 }

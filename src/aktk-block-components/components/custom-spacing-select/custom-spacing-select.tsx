@@ -10,11 +10,14 @@ import { isObject } from '@aktk/block-components/utils/object';
 
 export function CustomSpacingSelectControl( props: SpacingSizeControlProps ) {
 	const { values, onChange, label, sides, minimumCustomValue = 0 } = props;
+	const handleOnChange = ( newValue: SpacingSizeValues ) => {
+		onChange( newValue );
+	};
 	return (
 		<>
 			<SpacingSizesControl
 				values={ values }
-				onChange={ onChange }
+				onChange={ handleOnChange }
 				label={ label }
 				sides={ sides }
 				minimumCustomValue={ minimumCustomValue }

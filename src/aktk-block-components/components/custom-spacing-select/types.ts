@@ -13,17 +13,8 @@ export interface ResponsiveSpacing {
 
 export interface ResponsiveSpacingSelectProps {
 	value: ResponsiveSpacing | undefined;
-	onChange: ( newValue: ResponsiveSpacing ) => void;
+	onChange: ( newValue?: ResponsiveSpacing ) => void;
 	responsiveControlStyle?: 'vertical' | 'horizontal';
-	sides?: ( 'top' | 'right' | 'bottom' | 'left' )[];
-	minimumCustomValue?: number;
-	useResponsive?: boolean;
-	showResetButton?: boolean;
-}
-
-export interface ResponsiveSpacingSelectControlProps {
-	value: Spacing | undefined;
-	onChange: ( newValue: Spacing ) => void;
 	sides?: ( 'top' | 'right' | 'bottom' | 'left' )[];
 	minimumCustomValue?: number;
 	useResponsive?: boolean;

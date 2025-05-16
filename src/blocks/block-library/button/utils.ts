@@ -18,6 +18,7 @@ import { getBorderStyles } from '@aktk/blocks/components/border-box-control';
  */
 import type { Attributes } from './types';
 import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select';
+import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
 
 export function getWrapClasses( attributes: Attributes ) {
 	const className = attributes?.className || '';
@@ -103,7 +104,7 @@ export function getLinkStyles( attributes: Attributes ) {
 							`button--padding-${ pos }`,
 							type
 						)
-					] = paddingValue;
+					] = presetTokenToCssVar( paddingValue ) || paddingValue;
 				}
 			} );
 			// width.

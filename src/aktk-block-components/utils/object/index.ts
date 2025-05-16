@@ -23,6 +23,9 @@ export function deleteUndefined( obj: object ) {
  * @return {Object} - 空プロパティを削除したオブジェクト
  */
 export function stripUndefined( obj: object ): object {
+	if ( ! isObject( obj ) ) {
+		return obj;
+	}
 	return Object.entries( obj ).reduce( ( acc, [ key, value ] ) => {
 		if ( value === undefined ) {
 			return acc;
