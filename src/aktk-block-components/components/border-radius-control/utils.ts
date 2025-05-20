@@ -6,7 +6,7 @@ import { stripUndefined } from '@aktk/block-components/utils/object';
 /**
  * Internal dependencies
  */
-import type { BorderRadiusValue } from './index';
+import type { BorderRadiusValue } from './types';
 
 export function getBorderRadiusStyles(
 	borderRadius: BorderRadiusValue | string | undefined
