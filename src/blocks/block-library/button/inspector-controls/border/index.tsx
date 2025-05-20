@@ -3,9 +3,13 @@
  */
 import { __ } from '@wordpress/i18n';
 /**
+ * Aktk dependencies.
+ */
+import { Panel } from '@aktk/block-components/components/panel';
+
+/**
  * Plugin dependencies.
  */
-import Panel from '@aktk/blocks/components/panel';
 import { BorderRadius } from './border-radius';
 import { Border } from './border';
 

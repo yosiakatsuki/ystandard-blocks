@@ -1,7 +1,8 @@
 /**
- * Plugin dependencies.
+ * Aktk dependencies.
  */
-import { BorderRadiusControl } from '@aktk/blocks/components/border-radius-control';
+import { BorderRadiusControl } from '@aktk/block-components/components/border-radius-control';
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-expect-error
 export function BorderRadius( props ) {
@@ -15,11 +16,11 @@ export function BorderRadius( props ) {
 	const borderRadiusValue = borderRadius?.borderRadius || borderRadius;
 
 	return (
-		<>
+		<BaseControl>
 			<BorderRadiusControl
 				onChange={ handleOnChange }
 				values={ borderRadiusValue }
 			/>
-		</>
+		</BaseControl>
 	);
 }
