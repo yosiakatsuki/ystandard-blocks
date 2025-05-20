@@ -2,12 +2,19 @@
 	.components-tab-panel__tabs {
 		@apply border-0 border-b border-b-gray-100 border-solid;
 	}
-	&:not(.is-setting-page) {
+	.components-tab-panel__tabs {
+		@apply grid grid-cols-2;
+	}
+	.components-tab-panel__tabs-item {
+		@apply text-center justify-center;
+	}
+}
+
+
+.aktk-responsive-select-tab-for-setting-page {
+	.aktk-responsive-select-tab {
 		.components-tab-panel__tabs {
-			@apply grid grid-cols-2;
-		}
-		.components-tab-panel__tabs-item {
-			@apply text-center justify-center;
+			@apply block;
 		}
 	}
 }
