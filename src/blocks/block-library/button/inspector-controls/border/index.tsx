@@ -18,8 +18,8 @@ export function BorderPanel( props ) {
 	return (
 		<>
 			<Panel title={ __( '枠線・角丸', 'ystandard-blocks' ) }>
-				<BorderRadius { ...props } />
 				<Border { ...props } />
+				<BorderRadius { ...props } />
 			</Panel>
 		</>
 	);

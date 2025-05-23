@@ -1,4 +1,12 @@
-import { BorderBoxControl } from '@aktk/blocks/components/border-box-control';
+/**
+ * WordPress dependencies.
+ */
+import { __ } from '@wordpress/i18n';
+/**
+ * Aktk dependencies.
+ */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import { CustomBorderSelect } from '@aktk/block-components/components/custom-border-select';
 
 // @ts-expect-error
 export function Border( props ) {
@@ -6,11 +14,12 @@ export function Border( props ) {
 	const { border } = attributes;
 	// @ts-expect-error
 	const handleOnChange = ( value ) => {
+		console.log( { Border: value } );
 		setAttributes( { border: value || undefined } );
 	};
 	return (
-		<>
-			<BorderBoxControl value={ border } onChange={ handleOnChange } />
-		</>
+		<BaseControl id={ 'border' } label={ __( '枠線', 'ystandard-blocks' ) }>
+			<CustomBorderSelect value={ border } onChange={ handleOnChange } />
+		</BaseControl>
 	);
 }
