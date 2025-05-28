@@ -22,7 +22,7 @@ export function Background( props ) {
 					colorValue={ backgroundColor.color }
 					onColorChange={ setBackgroundColor }
 					gradientValue={ gradientValue }
-					setGradient={ setGradient }
+					onGradientChange={ setGradient }
 				/>
 			</BaseControl>
 		</Panel>

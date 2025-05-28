@@ -23,7 +23,6 @@ interface ColorGradientPaletteProps {
 /**
  *
  * @param      props
- * @deprecated 未完成.
  */
 export function ColorGradientPalette( props: ColorGradientPaletteProps ) {
 	const {
@@ -38,9 +37,11 @@ export function ColorGradientPalette( props: ColorGradientPaletteProps ) {
 	// 色設定を取得
 	const themeColors = useThemeColors();
 	const themeGradients = useThemeGradients();
+
 	// カラーパレットの設定
 	const paletteColors = colors || themeColors;
 	const paletteGradients = gradients || themeGradients;
+	console.log( { paletteColors, paletteGradients } );
 	return (
 		<>
 			<ColorDropdownWrapper
