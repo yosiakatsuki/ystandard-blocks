@@ -63,6 +63,15 @@ export function NoticeWarning( props: NoticeProps ) {
 	);
 }
 
+export function NoticeSecondary( props: NoticeProps ) {
+	return (
+		<Notice
+			{ ...props }
+			className={ 'mt-1 bg-aktk-bg-gray text-fz-xxs text-aktk-text-gray' }
+		/>
+	);
+}
+
 export function NoticeWarningText( props: NoticeProps ) {
 	return (
 		<NoticeText

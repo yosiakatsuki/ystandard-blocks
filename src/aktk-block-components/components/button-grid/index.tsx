@@ -1,8 +1,7 @@
-import classnames from 'classnames';
 /**
- * WordPress dependencies.
+ * Aktk dependencies.
  */
-import { Button } from '@wordpress/components';
+import Button from '@aktk/block-components/wp-controls/button';
 
 type ButtonProps = {
 	label: string;
@@ -24,22 +23,13 @@ export function ButtonGrid( props: ButtonGridProps ) {
 		<div className="grid grid-cols-2 gap-2">
 			{ buttons.map( ( button ) => {
 				const isActive = button.value === current;
-				const className = classnames( 'justify-center text-black', {
-					'bg-black': isActive,
-					'text-white': isActive,
-				} );
-				const styles = {
-					boxShadow: 'inset 0 0 0 1px #ccc',
-				};
 				return (
 					<Button
+						className={ 'justify-center text-center' }
 						key={ button.value }
-						className={ className }
 						onClick={ () => handleOnClick( button.value ) }
-						variant={ 'secondary' }
-						style={ styles }
+						variant={ isActive ? 'primary' : 'secondary' }
 					>
-						<span className="shadow-"></span>
 						{ button.label }
 					</Button>
 				);

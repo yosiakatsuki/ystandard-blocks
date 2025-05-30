@@ -93,6 +93,7 @@ function Edit( props ) {
 			<InspectorControls { ...inspectorControlsProps } />
 
 			<div { ...useBlockProps( {} ) }>
+				{ /* @ts-ignore */ }
 				<div { ...wrapProps }>
 					<div { ...linkProps }>
 						<Icon

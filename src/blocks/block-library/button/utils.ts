@@ -51,6 +51,7 @@ export function getLinkClasses( attributes: LinkClasses ) {
 		fontSize = '',
 		backgroundColor = '',
 		gradientClass = '',
+		border,
 	} = attributes;
 
 	const textColorClass = getColorClassName( 'color', textColor );
@@ -65,6 +66,8 @@ export function getLinkClasses( attributes: LinkClasses ) {
 		[ `${ fontSize }` ]: !! fontSize,
 		[ backgroundColorClass ]: !! backgroundColor,
 		[ `${ gradientClass }` ]: !! gradientClass,
+		// @ts-ignore
+		'has-border-color': !! border?.color,
 		...getBlockStyleClasses( {
 			textColor: textColor || attributes?.customTextColor,
 			backgroundColor:
