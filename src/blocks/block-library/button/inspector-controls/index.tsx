@@ -20,8 +20,8 @@ export function InspectorControls( props ) {
 	return (
 		<>
 			<WPInspectorControls>
-				<ButtonTypePanel { ...props } />
 				<Link { ...props } />
+				<ButtonTypePanel { ...props } />
 				<Typography { ...props } />
 				<Background { ...props } />
 				<Icon { ...props } />
