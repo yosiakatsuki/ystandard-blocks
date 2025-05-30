@@ -1,8 +1,6 @@
 // [&_legend_*]:!m-0 [&_legend_*]:!font-bold
 .aktk-components__color-palette-control {
-
 	legend {
-
 		@apply px-4 pt-4;
 
 		* {
@@ -13,5 +11,25 @@
 		+ div {
 			padding-top: 4px !important;
 		}
+	}
+}
+
+.components-circular-option-picker__option {
+	&[style*="currentColor"],
+	&[style*="currentcolor"] {
+		color: transparent !important;
+		background-color: #fff !important;
+		background: repeating-linear-gradient(
+			-45deg,
+			rgba(#999, 0.8),
+			rgba(#999, 0.8) 3px,
+			#fff 0,
+			#fff 6px
+		) !important;
+	}
+
+	&[style*="transparent"] {
+		color: transparent !important;
+		background-color: rgba(#fff, 0.6) !important;
 	}
 }
