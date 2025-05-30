@@ -19,7 +19,7 @@ export interface Attributes {
 	iconRight?: string;
 	iconSizeRight?: string;
 	iconPosition?: string;
-	textAlign?: string;
+	align?: string;
 	backgroundColor?: string;
 	customBackgroundColor?: string;
 	gradient?: string;

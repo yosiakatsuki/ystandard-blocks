@@ -23,11 +23,16 @@ import {
  * Block
  */
 import { InspectorControls } from './inspector-controls';
-import { getLinkClasses, getLinkStyles, getWrapClasses } from './utils';
+import { BlockControls } from './block-controls';
+import type { Attributes } from './types';
+import {
+	getLinkClasses,
+	getLinkStyles,
+	getWrapClasses,
+	getWrapStyles,
+} from './utils';
 import { Icon } from './icon';
 import './style-editor.scss';
-import type { Attributes } from '@aktk/blocks/block-library/button/types';
-
 
 // @ts-expect-error
 function Edit( props ) {
@@ -58,6 +63,7 @@ function Edit( props ) {
 			className,
 			...attributes,
 		} ),
+		style: getWrapStyles( { ...attributes } ),
 	};
 	const linkProps = {
 		className: getLinkClasses( {
@@ -83,6 +89,7 @@ function Edit( props ) {
 
 	return (
 		<>
+			<BlockControls { ...props } />
 			<InspectorControls { ...inspectorControlsProps } />
 
 			<div { ...useBlockProps( {} ) }>

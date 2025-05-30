@@ -19,7 +19,12 @@ import {
 /**
  * Block.
  */
-import { getLinkClasses, getLinkStyles, getWrapClasses } from './utils';
+import {
+	getLinkClasses,
+	getLinkStyles,
+	getWrapClasses,
+	getWrapStyles,
+} from './utils';
 import { Icon } from './icon';
 import type { Attributes } from './types';
 
@@ -41,6 +46,7 @@ function Save( { attributes } ) {
 
 	const blockProps = useBlockProps.save( {
 		className: getWrapClasses( { ...attributes } ),
+		style: getWrapStyles( { ...attributes } ),
 	} );
 	const linkClasses = getLinkClasses( {
 		...attributes,
