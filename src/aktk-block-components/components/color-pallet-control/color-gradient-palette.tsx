@@ -18,6 +18,8 @@ interface ColorGradientPaletteProps {
 	gradientValue: string;
 	onGradientChange: ( value: string ) => void;
 	gradients?: string[];
+	enableCurrentColor?: boolean;
+	enableTransparent?: boolean;
 }
 
 /**
@@ -34,9 +36,14 @@ export function ColorGradientPalette( props: ColorGradientPaletteProps ) {
 		gradientValue,
 		onGradientChange,
 		gradients,
+		enableCurrentColor,
+		enableTransparent,
 	} = props;
 	// 色設定を取得
-	const themeColors = useThemeColors();
+	const themeColors = useThemeColors( {
+		enableCurrentColor,
+		enableTransparent,
+	} );
 	const themeGradients = useThemeGradients();
 
 	// カラーパレットの設定

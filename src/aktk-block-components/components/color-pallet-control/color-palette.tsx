@@ -16,6 +16,8 @@ interface ColorPaletteProps {
 	value: string;
 	onChange: ( newColor?: string, index?: number ) => void;
 	colors?: PaletteObject[] | ColorObject[];
+	enableCurrentColor?: boolean;
+	enableTransparent?: boolean;
 }
 
 /**
@@ -23,11 +25,21 @@ interface ColorPaletteProps {
  * @param props
  */
 export function ColorPalette( props: ColorPaletteProps ) {
-	const { label, value, onChange, colors } = props;
+	const {
+		label,
+		value,
+		onChange,
+		colors,
+		enableCurrentColor,
+		enableTransparent,
+	} = props;
 	const handleOnChange = ( newColor?: string, index?: number ) => {
 		onChange( newColor, index );
 	};
-	const themeColors = useThemeColors();
+	const themeColors = useThemeColors( {
+		enableCurrentColor,
+		enableTransparent,
+	} );
 	return (
 		<>
 			<ColorDropdownWrapper colorValue={ value } label={ label }>

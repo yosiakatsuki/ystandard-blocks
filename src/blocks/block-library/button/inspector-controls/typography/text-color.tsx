@@ -22,6 +22,7 @@ export function TextColor( props ) {
 					label={ __( '文字色', 'ystandard-blocks' ) }
 					value={ textColor.color }
 					onChange={ setTextColor }
+					enableCurrentColor={ true }
 				/>
 			</BaseControl>
 		</>

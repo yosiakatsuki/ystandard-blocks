@@ -6,10 +6,30 @@ import { useMemo } from '@wordpress/element';
 // @ts-ignore
 import { useSettings } from '@wordpress/block-editor';
 
+type themeColorsOptions = {
+	enableCurrentColor?: boolean;
+	enableTransparent?: boolean;
+};
+
+const CURRENT_COLOR = {
+	name: 'currentColor',
+	slug: 'currentColor',
+	color: 'currentColor',
+};
+
+const TRANSPARENT = {
+	name: 'transparent',
+	slug: 'transparent',
+	color: 'transparent',
+};
+
 /**
  * テーマのカラー設定を取得する（設定画面用）
+ * @param options
  */
-const useThemeColors = () => {
+const useThemeColors = ( options?: themeColorsOptions ) => {
+	const { enableCurrentColor = false, enableTransparent = false } =
+		options || {};
 	const [ defaultColors, themeColors, customColors, enableDefaultColors ] =
 		useSettings(
 			'color.palette.default',
@@ -22,7 +42,11 @@ const useThemeColors = () => {
 		if ( themeColors && themeColors.length ) {
 			result.push( {
 				name: _x( 'テーマ', 'useThemeColors', 'ystandard-blocks' ),
-				colors: themeColors,
+				colors: [
+					...themeColors,
+					...( enableCurrentColor ? [ CURRENT_COLOR ] : [] ),
+					...( enableTransparent ? [ TRANSPARENT ] : [] ),
+				],
 			} );
 		}
 		if ( enableDefaultColors && defaultColors && defaultColors.length ) {

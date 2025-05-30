@@ -16,13 +16,18 @@ export function Background( props ) {
 
 	return (
 		<Panel title={ __( '背景色', 'ystandard-blocks' ) }>
-			<BaseControl>
+			<BaseControl
+				id={ 'background-color' }
+				label={ __( '背景色', 'ystandard-blocks' ) }
+			>
 				<ColorGradientPalette
 					label={ __( '背景色', 'ystandard-blocks' ) }
 					colorValue={ backgroundColor.color }
 					onColorChange={ setBackgroundColor }
 					gradientValue={ gradientValue }
 					onGradientChange={ setGradient }
+					enableCurrentColor={ true }
+					enableTransparent={ true }
 				/>
 			</BaseControl>
 		</Panel>
