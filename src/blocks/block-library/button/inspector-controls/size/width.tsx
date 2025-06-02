@@ -6,8 +6,9 @@ import { __ } from '@wordpress/i18n';
  * Aktk dependencies.
  */
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
+import Button from '@aktk/block-components/wp-controls/button';
 import { CustomSizeControl } from '@aktk/block-components/components/custom-size-control';
-import { ToggleGroup } from '@aktk/block-components/components/toggle-group';
+import { HorizonButtons } from '@aktk/block-components/components/buttons';
 import { isResponsive } from '@aktk/block-components/utils/object';
 import type { ResponsiveValues } from '@aktk/block-components/types';
 
@@ -64,6 +65,37 @@ export function Width( props ) {
 				mobile: undefined,
 		  };
 
+	const AdditionalContent = ( isResponsiveTab: boolean ) => {
+		if ( isResponsiveTab ) {
+			return <></>;
+		}
+		return (
+			<BaseControl
+				id={ 'width-toggle' }
+				className="mt-4"
+				label={ __( '簡単設定', 'ystandard-blocks' ) }
+			>
+				<HorizonButtons>
+					{ TOGGLE_SIZES.map( ( option ) => (
+						<Button
+							key={ option.value }
+							variant="secondary"
+							size="small"
+							onClick={ () => {
+								setAttributes( {
+									responsiveWidth: undefined,
+									width: option.value,
+								} );
+							} }
+						>
+							{ option.label }
+						</Button>
+					) ) }
+				</HorizonButtons>
+			</BaseControl>
+		);
+	};
+
 	return (
 		<>
 			<BaseControl
@@ -74,24 +106,9 @@ export function Width( props ) {
 					value={ _width }
 					onChange={ handleOnChange }
 					units={ SIZE_UNITS }
+					additionalContent={ AdditionalContent }
 				/>
 			</BaseControl>
-			{ ! isResponsive( responsiveWidth ) && (
-				<BaseControl>
-					<ToggleGroup
-						value={ _width }
-						label={ __( '簡単設定', 'ystandard-blocks' ) }
-						// isDeselectable={ true }
-						onChange={ ( value ) => {
-							setAttributes( {
-								responsiveWidth: undefined,
-								width: value,
-							} );
-						} }
-						options={ TOGGLE_SIZES }
-					/>
-				</BaseControl>
-			) }
 		</>
 	);
 }

@@ -4,9 +4,14 @@ import { Link2 } from 'react-feather';
  */
 import { registerBlockType } from '@wordpress/blocks';
 /**
+ * Aktk Dependencies.
+ */
+import { COLORS } from '@aktk/block-components/config';
+
+/**
  * Plugin.
  */
-import { COLOR, CATEGORY } from '@aktk/blocks/config';
+import { CATEGORY } from '@aktk/blocks/config';
 /**
  * Block
  */
@@ -30,7 +35,7 @@ export function registerCustomButtonBlock() {
 		...{
 			icon: (
 				<Link2
-					stroke={ COLOR.iconBetaForeground }
+					stroke={ COLORS.iconBetaForeground }
 					style={ { fill: 'none' } }
 				/>
 			),

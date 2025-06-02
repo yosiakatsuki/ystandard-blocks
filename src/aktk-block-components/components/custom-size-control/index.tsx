@@ -24,6 +24,7 @@ export function CustomSizeControl( props: CustomSizeControlProps ) {
 		useResponsive = true,
 		showResetButton = true,
 		units = undefined,
+		additionalContent,
 	} = props;
 
 	const handleOnChange = ( newValue: ResponsiveValues ) => {
@@ -44,36 +45,49 @@ export function CustomSizeControl( props: CustomSizeControlProps ) {
 				<ResponsiveSelectTab
 					isResponsive={ isResponsive( value ) }
 					defaultTabContent={
-						<NormalSizeEdit
-							value={ value?.desktop }
-							onChange={ handleOnChange }
-							onReset={
-								showResetButton ? handleOnReset : undefined
-							}
-							units={ units }
-						/>
+						<>
+							<NormalSizeEdit
+								value={ value?.desktop }
+								onChange={ handleOnChange }
+								onReset={
+									showResetButton ? handleOnReset : undefined
+								}
+								units={ units }
+							/>
+							{ !! additionalContent &&
+								additionalContent( false ) }
+						</>
 					}
 					responsiveTabContent={
-						<ResponsiveSizeEdit
-							value={ value || {} }
-							onChange={ handleOnChange }
-							responsiveControlStyle={ responsiveControlStyle }
-							onReset={
-								showResetButton ? handleOnReset : undefined
-							}
-							units={ units }
-						/>
+						<>
+							<ResponsiveSizeEdit
+								value={ value || {} }
+								onChange={ handleOnChange }
+								responsiveControlStyle={
+									responsiveControlStyle
+								}
+								onReset={
+									showResetButton ? handleOnReset : undefined
+								}
+								units={ units }
+							/>
+							{ !! additionalContent &&
+								additionalContent( true ) }
+						</>
 					}
 				/>
 			) : (
-				<NormalSizeEdit
-					value={ value?.desktop }
-					onChange={ ( newValue ) => {
-						onChange( newValue );
-					} }
-					onReset={ showResetButton ? handleOnReset : undefined }
-					units={ units }
-				/>
+				<>
+					<NormalSizeEdit
+						value={ value?.desktop }
+						onChange={ ( newValue ) => {
+							onChange( newValue );
+						} }
+						onReset={ showResetButton ? handleOnReset : undefined }
+						units={ units }
+					/>
+					{ !! additionalContent && additionalContent( false ) }
+				</>
 			) }
 		</>
 	);

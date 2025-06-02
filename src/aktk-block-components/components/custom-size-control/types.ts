@@ -8,4 +8,5 @@ export interface CustomSizeControlProps {
 	units?: UnitType[];
 	useResponsive?: boolean;
 	showResetButton?: boolean;
+	additionalContent?: ( isResponsive: boolean ) => React.ReactNode;
 }
