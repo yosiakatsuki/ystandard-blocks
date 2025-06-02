@@ -47,7 +47,10 @@ export function Padding( props ) {
 
 	return (
 		<>
-			<BaseControl>
+			<BaseControl
+				id={ 'padding' }
+				label={ __( '内側余白', 'ystandard-blocks' ) }
+			>
 				<ResponsiveSpacingSelect
 					value={ value }
 					onChange={ handleOnChange }
