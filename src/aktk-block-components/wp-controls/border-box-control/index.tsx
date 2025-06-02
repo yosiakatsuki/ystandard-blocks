@@ -17,7 +17,7 @@ export default function BorderBoxControl( props: BorderBoxControlProps ) {
 	return (
 		<>
 			{ /* @ts-ignore */ }
-			<WPBorderBoxControl { ...props } />
+			<WPBorderBoxControl { ...props } __next40pxDefaultSize />
 		</>
 	);
 }

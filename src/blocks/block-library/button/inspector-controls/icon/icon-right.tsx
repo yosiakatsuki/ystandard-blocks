@@ -1,12 +1,12 @@
 /**
  * WordPress dependencies.
  */
-import { BaseControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Plugin dependencies.
  */
+import BaseControl from '@aktk/block-components/wp-controls/base-control';
 import { IconSelect } from '@aktk/block-components/components/icon-select';
 import { ComponentContainer } from '@aktk/blocks/components/component-container';
 import { IconSize } from './size';

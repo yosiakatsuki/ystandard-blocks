@@ -14,7 +14,6 @@ export function Border( props ) {
 	const { border } = attributes;
 	// @ts-expect-error
 	const handleOnChange = ( value ) => {
-		console.log( { Border: value } );
 		setAttributes( { border: value || undefined } );
 	};
 	return (

@@ -15,7 +15,6 @@ interface UnitInputProps {
 				label: string;
 		  }[]
 		| undefined;
-	unit?: string | undefined;
 	disableUnits?: boolean | undefined;
 	isResetValueOnUnitChange?: boolean | undefined;
 	hasClearButton?: boolean;
@@ -29,7 +28,6 @@ export function UnitInput( props: UnitInputProps ) {
 		value,
 		onChange,
 		units = UNITS_SIZE,
-		unit,
 		disableUnits,
 		isResetValueOnUnitChange,
 		hasClearButton = false,
@@ -51,7 +49,6 @@ export function UnitInput( props: UnitInputProps ) {
 				onChange={ handleOnChange }
 				value={ value }
 				units={ units }
-				unit={ unit }
 				disableUnits={ disableUnits }
 				isResetValueOnUnitChange={ isResetValueOnUnitChange }
 				className={ '!mb-0 grow' }
