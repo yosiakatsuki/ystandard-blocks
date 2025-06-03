@@ -93,6 +93,20 @@ describe( 'stripUndefined', () => {
 		};
 		expect( stripUndefined( input ) ).toEqual( expectedOutput );
 	} );
+
+	it( 'すべてundefinedのキーのみの場合', () => {
+		const input = {
+			a: undefined,
+			b: {
+				c: undefined,
+				d: {
+					e: undefined,
+					f: undefined,
+				},
+			},
+		};
+		expect( stripUndefined( input ) ).toBeUndefined();
+	} );
 } );
 
 describe( 'isResponsive', () => {
