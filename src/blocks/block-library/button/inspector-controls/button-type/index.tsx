@@ -11,7 +11,7 @@ import { applyFilters } from '@wordpress/hooks';
  */
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 import { Panel } from '@aktk/block-components/components/panel';
-import { ButtonGrid } from '@aktk/block-components/components/button-grid';
+import { ButtonGrid } from '@aktk/block-components/components/buttons';
 import { NoticeSecondary } from '@aktk/block-components/components/notice';
 
 const BUTTON_TYPES = [

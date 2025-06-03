@@ -37,16 +37,11 @@ export interface Attributes {
 	width?: string;
 	responsiveWidth?: ResponsiveValues;
 	animation?: Animation;
-	style?: ButtonStyle;
 	className?: string;
 	clientId?: string;
 }
 
-export interface ButtonHoverAnimation {
-	type: string;
-	value: object;
-}
-
-export interface ButtonStyle {
-	hoverAnimation?: ButtonHoverAnimation;
-}
+type Animation = {
+	type?: 'none' | 'shine';
+	interval?: string;
+};

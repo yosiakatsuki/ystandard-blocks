@@ -52,6 +52,7 @@ export function getLinkClasses( attributes: LinkClasses ) {
 		backgroundColor = '',
 		gradientClass = '',
 		border,
+		animation,
 	} = attributes;
 
 	const textColorClass = getColorClassName( 'color', textColor );
@@ -60,12 +61,16 @@ export function getLinkClasses( attributes: LinkClasses ) {
 		backgroundColor
 	);
 
+	const hasAnimation = !! animation?.type && 'none' !== animation?.type;
+
 	return classnames( 'ystdb-custom-button__link', {
 		[ className ]: !! className,
 		[ textColorClass ]: !! textColor,
 		[ `${ fontSize }` ]: !! fontSize,
 		[ backgroundColorClass ]: !! backgroundColor,
 		[ `${ gradientClass }` ]: !! gradientClass,
+		'has-animation': hasAnimation,
+		[ `has-animation--${ animation?.type }` ]: hasAnimation,
 		// @ts-ignore
 		'has-border-color': !! border?.color,
 		...getBlockStyleClasses( {
@@ -91,6 +96,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		width,
 		responsiveWidth,
 		padding,
+		animation,
 	} = attributes;
 
 	const borderRadiusStyles = getBorderRadiusStyles( borderRadius );
@@ -134,6 +140,15 @@ export function getLinkStyles( attributes: Attributes ) {
 		{} as Record< string, string >
 	);
 
+	// アニメーションのスタイル.
+	const hasAnimation =
+		!! animation?.type &&
+		'none' !== animation?.type &&
+		!! animation?.interval;
+	const animationDuration = hasAnimation
+		? `${ animation.interval }s`
+		: undefined;
+
 	return {
 		[ `--ystdb-button-justify` ]: iconPosition,
 		[ getResponsiveCustomPropName( 'button--font-size', 'desktop' ) ]:
@@ -143,6 +158,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		fontSize,
 		background: customGradient,
 		backgroundColor: customBackgroundColor,
+		animationDuration,
 		...getCustomSpacingValues( padding, 'padding' ),
 		...borderRadiusStyles,
 		...getBorderStyles( border ),

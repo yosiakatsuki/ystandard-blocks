@@ -14,6 +14,7 @@ import { Icon } from './icon';
 import { BorderPanel } from './border';
 import { SizePanel } from './size';
 import { SpacingPanel } from './spacing';
+import { AnimationPanel } from './animation';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -28,6 +29,7 @@ export function InspectorControls( props ) {
 				<BorderPanel { ...props } />
 				<SpacingPanel { ...props } />
 				<SizePanel { ...props } />
+				<AnimationPanel { ...props } />
 			</WPInspectorControls>
 		</>
 	);
