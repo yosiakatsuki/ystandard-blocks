@@ -93,6 +93,10 @@
 		height: 1.25em;
 	}
 
+	:where(.sns-icon svg) {
+		fill: currentColor;
+	}
+
 	&:where(.has-animation) {
 		position: relative;
 		overflow: hidden;
