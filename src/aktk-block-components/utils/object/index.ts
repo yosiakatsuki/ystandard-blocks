@@ -26,16 +26,18 @@ export function stripUndefined( obj: object ): object | undefined {
 	if ( ! isObject( obj ) ) {
 		return obj;
 	}
+	if ( isEmpty( obj ) ) {
+		return obj;
+	}
 	const result = Object.entries( obj ).reduce( ( acc, [ key, value ] ) => {
-		if ( value === undefined ) {
+		if ( undefined === value ) {
 			return acc;
 		}
 
 		if ( value && typeof value === 'object' && ! Array.isArray( value ) ) {
 			// 子オブジェクトも走査
 			const cleaned = stripUndefined( value );
-			// @ts-ignore
-			if ( Object.keys( cleaned ).length ) {
+			if ( isObject( cleaned ) && Object.keys( cleaned ).length ) {
 				// @ts-ignore
 				acc[ key ] = cleaned;
 			}
