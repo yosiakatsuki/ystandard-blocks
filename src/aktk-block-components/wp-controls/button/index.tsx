@@ -9,6 +9,7 @@ interface ButtonProps {
 	isDestructive?: boolean;
 	onClick: () => void;
 	disabled?: boolean;
+	isBusy?: boolean;
 }
 
 export default function Button( props: ButtonProps ) {
