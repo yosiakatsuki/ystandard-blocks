@@ -58,14 +58,16 @@
 	line-height: var(--ystdb--button--line-height);
 
 	box-shadow: var(--ystdb--button--box-shadow);
-	transition: color 0.3s, background-color 0.3s, box-shadow 0.3s, border-color 0.3s, font-weight 0.3s;
-
-	// ホバーデフォルトスタイルの調整.
-	&:where(:not(.has-background,.has-text-color,.has-border-color)) {
-		--ystdb--button--hover--text-color: var(--ystd--button--hover--text-color, var(--ystdb--button--background-color));
-		--ystdb--button--hover--background-color: var(--ystd--button--hover--background-color, var(--ystdb--button--text-color));
-		--ystdb--button--hover--border-color: var(--ystd--button--hover--border-color, var(--ystdb--button--background-color));
-	}
+	transition: width 0.3s,
+	height 0.3s,
+	padding 0.3s,
+	background-color 0.3s,
+	border-color 0.3s,
+	border-width 0.3s,
+	color 0.3s,
+	font-size 0.3s,
+	font-weight 0.3s,
+	box-shadow 0.3s;
 
 	&:hover {
 		@media (hover: hover) {
