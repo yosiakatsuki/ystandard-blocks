@@ -13,10 +13,17 @@
 			fill: none;
 			stroke: currentcolor;
 		}
+
+		&.sns-icon {
+			width: 1.6em;
+			height: 1.6em;
+		}
 	}
 }
 .ystd-component__icon-preview {
 	.ys-icon {
+		max-height: 100%;
+		max-width: 100%;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;

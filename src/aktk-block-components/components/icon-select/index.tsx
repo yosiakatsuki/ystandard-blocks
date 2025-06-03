@@ -65,12 +65,13 @@ export function IconSelect( props: IconSelectProps ) {
 						{ __( 'アイコン選択', 'ystandard-toolbox' ) }
 					</Button>
 					<Button
-						variant={ 'tertiary' }
+						variant={ 'secondary' }
 						onClick={ () => {
 							onChange( undefined );
 						} }
 						size={ 'small' }
 						disabled={ disable }
+						isDestructive
 					>
 						{ __( 'クリア', 'ystandard-toolbox' ) }
 					</Button>
