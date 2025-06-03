@@ -15,7 +15,7 @@ const BUTTONS = [
 		value: 'normal',
 	},
 	{
-		label: __( 'ボタン外側に配置する', 'ystandard-blocks' ),
+		label: __( 'ボタン端に配置する', 'ystandard-blocks' ),
 		value: 'space-between',
 	},
 ];
