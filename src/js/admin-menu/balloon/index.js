@@ -66,7 +66,7 @@ const Balloon = () => {
 
 	return (
 		<>
-			<div className="ystdb-menu__wrap ">
+			<div className="ystdb-menu__wrap">
 				<ManualLink
 					url={
 						'https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/'

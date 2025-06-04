@@ -70,6 +70,7 @@
 	box-shadow 0.3s;
 
 	&:hover {
+
 		@media (hover: hover) {
 			color: var(--ystdb--button--hover--text-color);
 			background-color: var(--ystdb--button--hover--background-color);
@@ -94,7 +95,7 @@
 	}
 
 	:where(.sns-icon svg) {
-		fill: currentColor;
+		fill: currentcolor;
 	}
 
 	&:where(.has-animation) {
@@ -115,6 +116,7 @@
 			opacity: 0;
 		}
 	}
+
 	&:where(.has-animation--shine)::before {
 		animation-name: ystdb_button_shine;
 	}
@@ -123,6 +125,7 @@
 :where(.ystdb-custom-button) {
 
 	&:where(.is-type--outline) {
+
 		.ystdb-custom-button__link {
 			background-color: transparent;
 			--ystdb--button--hover--background-color: transparent;
@@ -134,6 +137,7 @@
 	}
 
 	&:where(.is-type--link) {
+
 		.ystdb-custom-button__link {
 			background-color: transparent;
 			--ystdb--button--hover--background-color: transparent;

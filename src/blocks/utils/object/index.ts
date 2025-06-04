@@ -1,4 +1,5 @@
 /**
+ * @param value
  * @deprecated
  */
 export function removeUndefined( value: object ) {

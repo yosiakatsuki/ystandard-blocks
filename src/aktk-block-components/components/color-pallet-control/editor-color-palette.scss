@@ -1,6 +1,8 @@
 // [&_legend_*]:!m-0 [&_legend_*]:!font-bold
 .aktk-components__color-palette-control {
+
 	legend {
+
 		@apply px-4 pt-4;
 
 		* {
@@ -15,6 +17,7 @@
 }
 
 .components-circular-option-picker__option {
+
 	&[style*="currentColor"],
 	&[style*="currentcolor"] {
 		color: transparent !important;

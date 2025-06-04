@@ -9,6 +9,7 @@
 .ystd-component__icon-select__icon-list {
 
 	.ys-icon {
+
 		&:not(.sns-icon) svg {
 			fill: none;
 			stroke: currentcolor;
@@ -20,7 +21,9 @@
 		}
 	}
 }
+
 .ystd-component__icon-preview {
+
 	.ys-icon {
 		max-height: 100%;
 		max-width: 100%;
@@ -38,6 +41,7 @@
 		}
 	}
 }
+
 .ystd-component__icon-select__popover {
 
 	.components-popover__content {
