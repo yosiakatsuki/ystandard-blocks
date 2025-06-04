@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
   "apiVersion": 2,
   "name": "ystdb/custom-button",
-  "title": "【β版】[ys]ボタン",
+  "title": "【β版】カスタムボタン",
   "description": "【β版】アイコンや余白等を設定できるボタン",
   "version": "2.0.0",
   "keywords": [
@@ -87,6 +87,12 @@
       "type": "string"
     },
     "responsiveFontSize": {
+      "type": "object"
+    },
+    "width": {
+      "type": "string"
+    },
+    "responsiveWidth": {
       "type": "object"
     },
     "padding": {
