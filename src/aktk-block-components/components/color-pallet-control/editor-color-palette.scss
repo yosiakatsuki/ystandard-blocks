@@ -22,7 +22,7 @@
 	&[style*="currentcolor"] {
 		color: transparent !important;
 		background-color: #fff !important;
-		background: repeating-linear-gradient(
+		background-image: repeating-linear-gradient(
 			-45deg,
 			rgba(#999, 0.8),
 			rgba(#999, 0.8) 3px,
