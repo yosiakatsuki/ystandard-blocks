@@ -11,7 +11,8 @@
 		background-color: global.$color__ystd_blue;
 		color: #fff;
 
-		&:active {
+		&:active,
+		&:hover {
 			color: #fff;
 		}
 	}
