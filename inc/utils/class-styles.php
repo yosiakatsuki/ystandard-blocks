@@ -382,19 +382,20 @@ class Styles {
 	/**
 	 * Gutenberg のプリセットトークンを CSS カスタムプロパティへ変換する。
 	 *
-	 * @param string  $token        例: 'var:preset|spacing|60'
+	 * @param string  $token        例: 'var:preset|spacing|60'.
 	 * @param boolean $wrap_in_var  true = 'var(--wp--preset--spacing--60)'
-	 *                              false = '--wp--preset--spacing--60'
+	 *                              false = '--wp--preset--spacing--60'.
 	 *
 	 * @return string 変換済み文字列。トークンでなければ元値を返す。
 	 */
-	function wp_preset_token_to_css_var( $token, $wrap_in_var = true ) {
-		// Gutenberg のプリセットトークンのみを対象にする
+	public static function wp_preset_token_to_css_var( $token, $wrap_in_var = true ) {
+		// Gutenberg のプリセットトークンのみを対象にする.
 		if ( 0 === strpos( $token, 'var:preset|' ) ) {
 			// 'var:preset|feature|slug'
 			$parts = explode( '|', $token );
 			if ( 3 === count( $parts ) ) {
 				[ , $feature, $slug ] = $parts;
+				// 結合.
 				$var_name = "--wp--preset--{$feature}--{$slug}";
 
 				return $wrap_in_var ? "var({$var_name})" : $var_name;

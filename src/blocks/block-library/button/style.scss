@@ -1,10 +1,7 @@
 :root {
 	// v4までの対応
 	--ystd--button--border-radius: var(--ystd-button-border-radius);
-}
 
-
-:root {
 	--ystdb--button--align: flex-start;
 
 	--ystdb--button--text-color: var(--ystd--button--text-color, #fff);
@@ -34,6 +31,34 @@
 :where(.ystdb-custom-button) {
 	display: flex;
 	justify-content: var(--ystdb--button--align);
+
+	&:where(.is-type--outline) {
+
+		.ystdb-custom-button__link {
+			background-color: transparent;
+			--ystdb--button--hover--background-color: transparent;
+			color: var(--ystdb--button--background-color);
+			--ystdb--button--hover--text-color: var(--ystdb--button--background-color);
+			border-color: var(--ystdb--button--background-color);
+			--ystdb--button--hover--border-color: var(--ystdb--button--background-color);
+		}
+	}
+
+	&:where(.is-type--link) {
+
+		.ystdb-custom-button__link {
+			background-color: transparent;
+			--ystdb--button--hover--background-color: transparent;
+			color: var(--ystd--link--color, var(--link-text));
+			--ystdb--button--hover--text-color: var(--ystd--link--hover--color, var(--link-text-hover));
+			--ystdb--button--border-width: 0;
+			--ystdb--button--hover--border--width: 0;
+			--ystdb--button--border-color: transparent;
+			--ystdb--button--hover--border-color: transparent;
+			--ystdb--button--padding-y: 0;
+			--ystdb--button--padding-x: 0;
+		}
+	}
 }
 
 .ystdb-custom-button__link {
@@ -119,37 +144,6 @@
 
 	&:where(.has-animation--shine)::before {
 		animation-name: ystdb_button_shine;
-	}
-}
-
-:where(.ystdb-custom-button) {
-
-	&:where(.is-type--outline) {
-
-		.ystdb-custom-button__link {
-			background-color: transparent;
-			--ystdb--button--hover--background-color: transparent;
-			color: var(--ystdb--button--background-color);
-			--ystdb--button--hover--text-color: var(--ystdb--button--background-color);
-			border-color: var(--ystdb--button--background-color);
-			--ystdb--button--hover--border-color: var(--ystdb--button--background-color);
-		}
-	}
-
-	&:where(.is-type--link) {
-
-		.ystdb-custom-button__link {
-			background-color: transparent;
-			--ystdb--button--hover--background-color: transparent;
-			color: var(--ystd--link--color, var(--link-text));
-			--ystdb--button--hover--text-color: var(--ystd--link--hover--color, var(--link-text-hover));
-			--ystdb--button--border-width: 0;
-			--ystdb--button--hover--border--width: 0;
-			--ystdb--button--border-color: transparent;
-			--ystdb--button--hover--border-color: transparent;
-			--ystdb--button--padding-y: 0;
-			--ystdb--button--padding-x: 0;
-		}
 	}
 }
 

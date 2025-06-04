@@ -20,8 +20,6 @@ interface UnitInputProps {
 	hasClearButton?: boolean;
 }
 
-import './style-editor.scss';
-
 export function UnitInput( props: UnitInputProps ) {
 	const {
 		label,
