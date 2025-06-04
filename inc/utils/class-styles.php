@@ -231,7 +231,7 @@ class Styles {
 		// カスタムプロパティ作成.
 		$custom_prop = self::get_responsive_custom_prop_name( $prop_name, $type );
 
-		return "{$selector}[style*=\"{$custom_prop}\"]{{$property}:var({$custom_prop}) !important;}";
+		return "{$selector}:where([style*=\"{$custom_prop}\"]){{$property}:var({$custom_prop}) !important;}";
 	}
 
 	/**
