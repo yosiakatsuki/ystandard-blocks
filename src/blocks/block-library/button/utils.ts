@@ -150,7 +150,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		: undefined;
 
 	return {
-		[ `--ystdb-button-justify` ]: iconPosition,
+		[ `--ystdb--button--justify` ]: iconPosition,
 		[ getResponsiveCustomPropName( 'button--font-size', 'desktop' ) ]:
 			responsiveFontSize?.desktop,
 		color: customTextColor,

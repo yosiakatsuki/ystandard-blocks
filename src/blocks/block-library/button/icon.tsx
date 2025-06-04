@@ -31,12 +31,25 @@ function IconContent( props: IconProps ) {
 				style={ {
 					fontSize: size,
 				} }
-				fallback={ hasIcon ? <FallBackIcon /> : undefined }
+				fallback={
+					hasIcon ? <FallBackIcon size={ size } /> : undefined
+				}
 			/>
 		</>
 	);
 }
 
-function FallBackIcon() {
-	return <span aria-hidden={ true } />;
+function FallBackIcon( props: IconProps ) {
+	const { size } = props;
+	return (
+		<span
+			aria-hidden={ true }
+			className={ 'ys-icon ys-icon--fallback' }
+			style={ {
+				fontSize: size,
+			} }
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" />
+		</span>
+	);
 }
