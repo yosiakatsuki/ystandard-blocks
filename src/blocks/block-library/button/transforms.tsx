@@ -52,7 +52,7 @@ const transforms = {
 				newAttributes.content = text;
 
 				// タイプ.
-				if ( className.includes( 'is-style-outline' ) ) {
+				if ( className && className.includes( 'is-style-outline' ) ) {
 					newAttributes.buttonType = 'outline';
 					newAttributes.className = className.replace(
 						/is-style-outline/g,
@@ -74,10 +74,10 @@ const transforms = {
 							: undefined,
 					};
 				} else {
-					if ( fontSize !== undefined ) {
+					if ( undefined !== fontSize ) {
 						newAttributes.fontSize = fontSize;
 					}
-					if ( customFontSize !== undefined ) {
+					if ( undefined !== customFontSize ) {
 						newAttributes.customFontSize = customFontSize;
 					}
 				}
