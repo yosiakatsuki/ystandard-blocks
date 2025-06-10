@@ -5,12 +5,18 @@
 	--ystdb--button--align: flex-start;
 
 	--ystdb--button--text-color: var(--ystd--button--text-color, #fff);
-	--ystdb--button--background-color: var(--ystd--button--background-color, #222);
+	--ystdb--button--background-color: var(
+		--ystd--button--background-color,
+		#222
+	);
 	--ystdb--button--font-size: var(--ystd--button--font-size, #222);
 	--ystdb--button--line-height: var(--ystd--button--line-height, 1.3);
 	--ystdb--button--font-weight: var(--ystd--button--font-weight, normal);
 	--ystdb--button--border-width: var(--ystd--button--border-width, 2px);
-	--ystdb--button--border-color: var(--ystd--button--border-color, transparent);
+	--ystdb--button--border-color: var(
+		--ystd--button--border-color,
+		transparent
+	);
 	--ystdb--button--border-style: var(--ystd--button--border-style, solid);
 	--ystdb--button--border-radius: var(--ystd--button--border-radius, 4px);
 	--ystdb--button--display: var(--ystd--button--display, inline-flex);
@@ -19,13 +25,21 @@
 	--ystdb--button--padding-y: var(--ystd--button--padding-y, 0.25em);
 	--ystdb--button--padding-x: var(--ystd--button--padding-x, 2em);
 	--ystdb--button--box-shadow: var(--ystd--button--box-shadow, none);
-	--ystdb--button--text-decoration: var(--ystd--button--text-decoration, none);
+	--ystdb--button--text-decoration: var(
+		--ystd--button--text-decoration,
+		none
+	);
 
 	--ystdb--button--hover--text-color: var(--ystdb--button--text-color);
-	--ystdb--button--hover--background-color: var(--ystdb--button--background-color);
+	--ystdb--button--hover--background-color: var(
+		--ystdb--button--background-color
+	);
 	--ystdb--button--hover--border-color: var(--ystdb--button--border-color);
 	--ystdb--button--hover--box-shadow-default: none; //3px 3px 6px rgba(0, 0, 0, 0.2);
-	--ystdb--button--hover--box-shadow: var(--ystd--button--hover--box-shadow, var(--ystdb--button--hover--box-shadow-default));
+	--ystdb--button--hover--box-shadow: var(
+		--ystd--button--hover--box-shadow,
+		var(--ystdb--button--hover--box-shadow-default)
+	);
 }
 
 .ystdb-custom-button__link {
@@ -50,19 +64,19 @@
 	line-height: var(--ystdb--button--line-height);
 
 	box-shadow: var(--ystdb--button--box-shadow);
-	transition: width 0.3s,
-	height 0.3s,
-	padding 0.3s,
-	background-color 0.3s,
-	border-color 0.3s,
-	border-width 0.3s,
-	color 0.3s,
-	font-size 0.3s,
-	font-weight 0.3s,
-	box-shadow 0.3s;
+	transition:
+		width 0.3s,
+		height 0.3s,
+		padding 0.3s,
+		background-color 0.3s,
+		border-color 0.3s,
+		border-width 0.3s,
+		color 0.3s,
+		font-size 0.3s,
+		font-weight 0.3s,
+		box-shadow 0.3s;
 
 	&:hover {
-
 		@media (hover: hover) {
 			color: var(--ystdb--button--hover--text-color);
 			background-color: var(--ystdb--button--hover--background-color);
@@ -77,7 +91,7 @@
 		align-items: center;
 		flex-shrink: 0;
 		line-height: 1;
-		vertical-align: -.25em;
+		vertical-align: -0.25em;
 	}
 
 	:where(.ys-icon svg) {
@@ -114,30 +128,34 @@
 	}
 }
 
-
 :where(.ystdb-custom-button) {
 	display: flex;
 	justify-content: var(--ystdb--button--align);
 
 	&:where(.is-type--outline) {
-
 		.ystdb-custom-button__link {
 			background-color: transparent;
 			--ystdb--button--hover--background-color: transparent;
 			color: var(--ystdb--button--background-color);
-			--ystdb--button--hover--text-color: var(--ystdb--button--background-color);
+			--ystdb--button--hover--text-color: var(
+				--ystdb--button--background-color
+			);
 			border-color: var(--ystdb--button--background-color);
-			--ystdb--button--hover--border-color: var(--ystdb--button--background-color);
+			--ystdb--button--hover--border-color: var(
+				--ystdb--button--background-color
+			);
 		}
 	}
 
 	&:where(.is-type--link) {
-
 		.ystdb-custom-button__link {
 			background-color: transparent;
 			--ystdb--button--hover--background-color: transparent;
 			color: var(--ystd--link--color, var(--link-text));
-			--ystdb--button--hover--text-color: var(--ystd--link--hover--color, var(--link-text-hover));
+			--ystdb--button--hover--text-color: var(
+				--ystd--link--hover--color,
+				var(--link-text-hover)
+			);
 			--ystdb--button--border-width: 0;
 			--ystdb--button--hover--border--width: 0;
 			--ystdb--button--border-color: transparent;
@@ -148,9 +166,7 @@
 	}
 }
 
-
 @keyframes ystdb_button_shine {
-
 	0% {
 		transform: scale(0) rotate(45deg);
 		opacity: 0;
