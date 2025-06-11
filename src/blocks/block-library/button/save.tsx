@@ -82,7 +82,7 @@ function Save( { attributes } ) {
 						className={ 'ystdb-custom-button__content' }
 					/>
 					<Icon.Content
-						hasIcon={ !! iconLeft || !! iconRightBlank }
+						hasIcon={ !! iconRight || !! iconRightBlank }
 						icon={ iconRight }
 						size={ iconSizeRight }
 					/>

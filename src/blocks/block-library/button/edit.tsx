@@ -118,7 +118,7 @@ function Edit( props ) {
 							className={ 'ystdb-custom-button__content' }
 						/>
 						<Icon
-							hasIcon={ !! iconLeft || !! iconRightBlank }
+							hasIcon={ !! iconRight || !! iconRightBlank }
 							icon={ iconRight }
 							size={ iconSizeRight }
 						/>
