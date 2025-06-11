@@ -5,19 +5,21 @@ import { isString } from 'lodash';
 // @ts-ignore
 import { __experimentalBorderRadiusControl as WPBorderRadiusControl } from '@wordpress/block-editor';
 
-import { BorderRadiusControlProps, BorderRadiusValue } from './types';
+import type { BorderRadiusControlProps, BorderRadiusValue } from './types';
 
 export function BorderRadiusControl( props: BorderRadiusControlProps ) {
 	const { values, onChange } = props;
 
 	const handleOnChange = ( value: BorderRadiusValue | string ) => {
-		if ( ! value ) {
-			onChange( undefined );
-		}
-		if ( isString( value ) ) {
-			onChange( { borderRadius: value } );
-		}
-		onChange( value );
+		// 値が空の場合はundefinedを返す.
+		// 文字列の場合はborderRadiusの形式で返す.
+		// オブジェクトの場合はそのまま返す.
+		const _returnValue = ! value
+			? undefined
+			: isString( value )
+			? { borderRadius: value }
+			: value;
+		onChange( _returnValue );
 	};
 
 	return (

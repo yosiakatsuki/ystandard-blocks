@@ -7,6 +7,6 @@ export type BorderRadiusValue = {
 };
 
 export interface BorderRadiusControlProps {
-	onChange: ( value: BorderRadiusValue | string | undefined ) => void;
+	onChange: ( value: BorderRadiusValue | undefined ) => void;
 	values?: BorderRadiusValue | string;
 }

@@ -19,4 +19,7 @@ module.exports = {
 	getFontSizeClass: ( fontSize ) => {
 		return fontSize ? `font-size-${ fontSize }` : '';
 	},
+	__experimentalBorderRadiusControl: ( { onChange, values } ) => (
+		<button onClick={ () => onChange( values ) }>change</button>
+	),
 };
