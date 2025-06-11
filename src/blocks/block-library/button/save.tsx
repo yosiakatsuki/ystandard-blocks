@@ -14,7 +14,7 @@ import {
 import {
 	getCustomFontSizeClass,
 	getCustomFontSizeStyle,
-} from '@aktk/block-components/components/custom-font-size-picker';
+} from '@aktk/block-components/components/custom-font-size-picker/utils';
 
 /**
  * Block.

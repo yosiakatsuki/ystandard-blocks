@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Block <Save /> snapshot matches snapshot with borderRadius 0 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link"
+      href="https://example.com"
+      style="border-radius: 0;"
+    >
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Button Block <Save /> snapshot matches snapshot with icons and all attributes 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link"
+      href="https://example.com"
+      rel="noopener"
+      style="font-size: 24px;"
+      target="_blank"
+    >
+      <span
+        aria-hidden="true"
+        class="ys-icon ys-icon--fallback"
+        style="font-size: 16px;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+      <span
+        aria-hidden="true"
+        class="ys-icon ys-icon--fallback"
+        style="font-size: 20px;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Button Block <Save /> snapshot matches snapshot with minimal attributes 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link"
+      href="https://example.com"
+    >
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;

@@ -36,7 +36,7 @@ export function getWrapClasses( attributes: Attributes ) {
 export function getWrapStyles( attributes: Attributes ) {
 	const { align } = attributes;
 	return {
-		'justify-content': align,
+		justifyContent: align,
 	};
 }
 

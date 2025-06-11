@@ -6,6 +6,8 @@ module.exports = {
 		'^@aktk/block-components/(.+)':
 			'<rootDir>/src/aktk-block-components/$1',
 		'^@aktk/(.+)': '<rootDir>/src/js/$1',
+		'^@wordpress/block-editor$':
+			'<rootDir>/tests/unit/__mocks__/wordpress-block-editor.js',
 	},
 	preset: '@wordpress/jest-preset-default',
 	transform: {
