@@ -51,8 +51,10 @@ function Edit( props ) {
 		content,
 		iconLeft,
 		iconSizeLeft,
+		iconLeftBlank,
 		iconRight,
 		iconSizeRight,
+		iconRightBlank,
 		fontSize,
 		customFontSize,
 	} = attributes as unknown as Attributes;
@@ -97,7 +99,7 @@ function Edit( props ) {
 				<div { ...wrapProps }>
 					<div { ...linkProps }>
 						<Icon
-							hasIcon={ !! iconLeft || !! iconRight }
+							hasIcon={ !! iconLeft || !! iconLeftBlank }
 							icon={ iconLeft }
 							size={ iconSizeLeft }
 						/>
@@ -116,7 +118,7 @@ function Edit( props ) {
 							className={ 'ystdb-custom-button__content' }
 						/>
 						<Icon
-							hasIcon={ !! iconLeft || !! iconRight }
+							hasIcon={ !! iconLeft || !! iconRightBlank }
 							icon={ iconRight }
 							size={ iconSizeRight }
 						/>

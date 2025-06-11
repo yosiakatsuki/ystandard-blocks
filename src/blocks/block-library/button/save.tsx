@@ -35,8 +35,10 @@ function Save( { attributes } ) {
 		url,
 		iconLeft,
 		iconSizeLeft,
+		iconLeftBlank,
 		iconRight,
 		iconSizeRight,
+		iconRightBlank,
 		fontSize,
 		customFontSize,
 		gradient,
@@ -70,7 +72,7 @@ function Save( { attributes } ) {
 					rel={ rel || undefined }
 				>
 					<Icon.Content
-						hasIcon={ !! iconLeft || !! iconRight }
+						hasIcon={ !! iconLeft || !! iconLeftBlank }
 						icon={ iconLeft }
 						size={ iconSizeLeft }
 					/>
@@ -80,7 +82,7 @@ function Save( { attributes } ) {
 						className={ 'ystdb-custom-button__content' }
 					/>
 					<Icon.Content
-						hasIcon={ !! iconLeft || !! iconRight }
+						hasIcon={ !! iconLeft || !! iconRightBlank }
 						icon={ iconRight }
 						size={ iconSizeRight }
 					/>

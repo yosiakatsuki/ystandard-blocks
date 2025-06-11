@@ -5,12 +5,7 @@
 	"title": "【β版】カスタムボタン",
 	"description": "【β版】アイコンや余白等を設定できるボタン",
 	"version": "2.0.0",
-	"keywords": [
-		"btn",
-		"button",
-		"ボタン",
-		"アイコン"
-	],
+	"keywords": [ "btn", "button", "ボタン", "アイコン" ],
 	"attributes": {
 		"buttonType": {
 			"type": "string"
@@ -44,11 +39,17 @@
 		"iconSizeLeft": {
 			"type": "string"
 		},
+		"iconLeftBlank": {
+			"type": "boolean"
+		},
 		"iconRight": {
 			"type": "string"
 		},
 		"iconSizeRight": {
 			"type": "string"
+		},
+		"iconRightBlank": {
+			"type": "boolean"
 		},
 		"iconPosition": {
 			"type": "string"
@@ -89,7 +90,7 @@
 		"responsiveFontSize": {
 			"type": "object"
 		},
-		"width"	: {
+		"width": {
 			"type": "string"
 		},
 		"responsiveWidth": {

@@ -16,8 +16,10 @@ export interface Attributes {
 	rel?: string;
 	iconLeft?: string;
 	iconSizeLeft?: string;
+	iconLeftBlank?: boolean;
 	iconRight?: string;
 	iconSizeRight?: string;
+	iconRightBlank?: boolean;
 	iconPosition?: string;
 	align?: string;
 	backgroundColor?: string;
