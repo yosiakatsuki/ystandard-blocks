@@ -5,6 +5,8 @@ import { _x } from '@wordpress/i18n';
 import { useMemo } from '@wordpress/element';
 // @ts-ignore
 import { useSettings } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
+import { store as editorStore } from '@wordpress/editor';
 
 type themeColorsOptions = {
 	enableCurrentColor?: boolean;
@@ -30,6 +32,8 @@ const TRANSPARENT = {
 const useThemeColors = ( options?: themeColorsOptions ) => {
 	const { enableCurrentColor = false, enableTransparent = false } =
 		options || {};
+
+	// 設定から色情報を取得.
 	const [ defaultColors, themeColors, customColors, enableDefaultColors ] =
 		useSettings(
 			'color.palette.default',
@@ -37,6 +41,15 @@ const useThemeColors = ( options?: themeColorsOptions ) => {
 			'color.palette.custom',
 			'color.defaultPalette'
 		);
+
+	// useSelectから色情報を取得(主に設定画面用).
+	const dataColors = useSelect( ( select ) => {
+		// @ts-ignore
+		const settings = select( editorStore )?.getEditorSettings();
+		// @ts-ignore
+		return settings?.colors || [];
+	}, [] );
+
 	return useMemo( () => {
 		const result = [];
 		if ( themeColors && themeColors.length ) {
@@ -44,6 +57,15 @@ const useThemeColors = ( options?: themeColorsOptions ) => {
 				name: _x( 'テーマ', 'useThemeColors', 'ystandard-blocks' ),
 				colors: [
 					...themeColors,
+					...( enableCurrentColor ? [ CURRENT_COLOR ] : [] ),
+					...( enableTransparent ? [ TRANSPARENT ] : [] ),
+				],
+			} );
+		} else if ( dataColors && dataColors.length ) {
+			result.push( {
+				name: _x( 'テーマ', 'useThemeColors', 'ystandard-blocks' ),
+				colors: [
+					...dataColors,
 					...( enableCurrentColor ? [ CURRENT_COLOR ] : [] ),
 					...( enableTransparent ? [ TRANSPARENT ] : [] ),
 				],
@@ -62,7 +84,13 @@ const useThemeColors = ( options?: themeColorsOptions ) => {
 			} );
 		}
 		return result;
-	}, [ customColors, themeColors, defaultColors, enableDefaultColors ] );
+	}, [
+		customColors,
+		themeColors,
+		defaultColors,
+		enableDefaultColors,
+		dataColors,
+	] );
 };
 
 export default useThemeColors;
