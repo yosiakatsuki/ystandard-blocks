@@ -73,6 +73,20 @@ export function isEmpty( value: object ) {
 }
 
 /**
+ * オブジェクトにキーが存在するかチェックする
+ *
+ * @param value
+ * @param key
+ * @returns
+ */
+export function hasKey( value: object, key: string ) {
+	if ( ! isObject( value ) ) {
+		return false;
+	}
+	return Object.prototype.hasOwnProperty.call( value, key );
+}
+
+/**
  * レスポンシブかチェックする
  * @param value
  */
