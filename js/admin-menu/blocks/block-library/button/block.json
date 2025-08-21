@@ -44,11 +44,17 @@
     "iconSizeLeft": {
       "type": "string"
     },
+    "iconLeftBlank": {
+      "type": "boolean"
+    },
     "iconRight": {
       "type": "string"
     },
     "iconSizeRight": {
       "type": "string"
+    },
+    "iconRightBlank": {
+      "type": "boolean"
     },
     "iconPosition": {
       "type": "string"
