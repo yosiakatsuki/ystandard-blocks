@@ -4,7 +4,6 @@ import classnames from 'classnames';
  */
 import {
 	getColorClassName,
-	getFontSizeClass,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
