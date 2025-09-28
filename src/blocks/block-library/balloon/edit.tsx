@@ -2,12 +2,7 @@ import classnames from 'classnames';
 /**
  * WordPress Dependencies
  */
-import {
-	useBlockProps,
-	withColors,
-	withFontSizes,
-	RichText,
-} from '@wordpress/block-editor';
+import { useBlockProps, withColors, RichText } from '@wordpress/block-editor';
 import { TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -19,6 +14,10 @@ import {
 	MediaUpload,
 	type MediaObject,
 } from '@aktk/block-components/components/media-upload';
+import {
+	getCustomFontSizeClass,
+	getCustomFontSizeStyle,
+} from '@aktk/block-components/components/custom-font-size-picker';
 
 /**
  * Block.
@@ -220,7 +219,6 @@ function BalloonEdit( props ) {
 		backgroundColor,
 		balloonBorderColor,
 		textColor,
-		fontSize,
 	} = props;
 	const {
 		verticalAlign,
@@ -228,9 +226,16 @@ function BalloonEdit( props ) {
 		balloonType,
 		balloonBorderWidth,
 		text,
+		fontSize,
+		customFontSize,
 	} = attributes;
 
 	const isOutline = isTypeOutline( balloonType );
+
+	const fontSizeObject = {
+		slug: fontSize,
+		size: customFontSize,
+	};
 
 	// 吹き出しスタイル・クラス
 	const balloonBodyStyles = {
@@ -255,13 +260,13 @@ function BalloonEdit( props ) {
 	// 吹き出しテキストスタイル・クラス.
 	const textStyles = {
 		color: textColor.color,
-		fontSize: fontSize.size ? fontSize.size : undefined,
+		fontSize: getCustomFontSizeStyle( fontSizeObject, customFontSize ),
 	};
 
 	const textClasses = classnames( 'ystdb-ystdb-balloon__text', {
 		[ textColor.class ]: textColor.class,
 		'has-text-color': textColor.color,
-		[ fontSize.class ]: fontSize.class,
+		[ getCustomFontSizeClass( fontSizeObject ) ]: fontSizeObject?.slug,
 	} );
 
 	// アウトラインタイプの三角スタイル・クラス
@@ -346,5 +351,4 @@ export default compose( [
 		avatarBorderColor: 'borderColor',
 		balloonBorderColor: 'borderColor',
 	} ),
-	withFontSizes( 'fontSize' ),
 ] )( Edit );

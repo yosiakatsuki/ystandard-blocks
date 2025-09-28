@@ -9,6 +9,14 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 /**
+ * Aktk dependencies.
+ */
+import {
+	getCustomFontSizeClass,
+	getCustomFontSizeStyle,
+} from '@aktk/block-components/components/custom-font-size-picker';
+
+/**
  * Block.
  */
 import {
@@ -105,6 +113,11 @@ function Balloon( attributes ) {
 	} = attributes;
 	const isOutline = isTypeOutline( balloonType );
 
+	const fontSizeObject = {
+		slug: fontSize,
+		size: customFontSize,
+	};
+
 	// 吹き出しスタイル・クラス.
 	const balloonBodyStyles = {
 		backgroundColor: getBalloonBackground(
@@ -136,17 +149,16 @@ function Balloon( attributes ) {
 
 	// 吹き出しテキストスタイル・クラス.
 	const textClass = getColorClassName( 'color', textColor );
-	const fontSizeClass = getFontSizeClass( fontSize );
+
 	const textStyles = {
 		color: textClass ? undefined : customTextColor,
-		fontSize:
-			! fontSizeClass && customFontSize ? customFontSize : undefined,
+		fontSize: getCustomFontSizeStyle( fontSizeObject, customFontSize ),
 	};
 
 	const textClasses = classnames( 'ystdb-balloon__text', {
 		[ textClass ]: textClass,
 		'has-text-color': textColor || customTextColor,
-		[ fontSizeClass ]: fontSizeClass,
+		[ getCustomFontSizeClass( fontSizeObject ) ]: fontSizeObject?.slug,
 	} );
 
 	// アウトラインタイプの三角スタイル・クラス
