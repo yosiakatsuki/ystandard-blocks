@@ -1,18 +1,20 @@
-@use "block";
-
+@use "./style";
 
 .ystdb-icon__select--no-icon {
-	width: 200px;
 	max-width: 100%;
 	margin: 0 auto;
-	padding: 2rem;
+	padding: 1rem;
 	background-color: #eee;
 	color: #666 !important;
 	text-align: center !important;
 
 	svg {
-		width: 32px !important;
-		height: 32px !important;
+		width: 16px !important;
+		height: 16px !important;
+	}
+
+	p {
+		font-size: 10px;
 	}
 }
 

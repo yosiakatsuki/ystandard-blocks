@@ -1,13 +1,8 @@
-import classnames from 'classnames';
 import SVGIconSelect from '@aktk/components/svg-icon-select/index';
-import SVGIcon from '@aktk/components/svg-icon';
 import { sizing } from './config';
 
 import {
-	BlockControls,
-	AlignmentToolbar,
 	InspectorControls,
-	PanelColorSettings,
 	withColors,
 	FontSizePicker,
 	withFontSizes,
@@ -35,73 +30,14 @@ import BaseControl from '@aktk/block-components/wp-controls/base-control';
 const NEW_TAB_REL = 'noreferrer noopener';
 
 function svgIcon( props ) {
-	const {
-		textColor,
-		setTextColor,
-		attributes,
-		setAttributes,
-		isSelected,
-		fontSize,
-		setFontSize,
-		className,
-	} = props;
-	const { icon, iconSize, align, url, rel, linkTarget } = attributes;
-
-	const classes = classnames( className, 'ystdb-icon', {
-		[ `has-text-align-${ align }` ]: align,
-		[ textColor.class ]: textColor.class,
-		[ fontSize.class ]: fontSize.class,
-		[ `is-size--${ iconSize }` ]: iconSize,
-	} );
-
-	const styles = {
-		color: textColor.color,
-		fontSize: fontSize.size ? fontSize.size : undefined,
-	};
+	const { attributes, setAttributes, isSelected, fontSize, setFontSize } =
+		props;
+	const { icon, iconSize, url, rel, linkTarget } = attributes;
 
 	return (
 		<Fragment>
-			<BlockControls>
-				<AlignmentToolbar
-					value={ align }
-					onChange={ ( nextAlign ) => {
-						setAttributes( { align: nextAlign } );
-					} }
-				/>
-			</BlockControls>
 			<InspectorControls>
-				<PanelColorSettings
-					title={ __( '色設定', 'ystandard-blocks' ) }
-					initialOpen={ true }
-					colorSettings={ [
-						{
-							value: textColor.color,
-							onChange: ( color ) => {
-								setTextColor( color );
-							},
-							label: __( '文字色', 'ystandard-blocks' ),
-						},
-					] }
-				/>
 				<PanelBody title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
-					<BaseControl
-						id={ 'icon' }
-						label={ __( 'アイコン', 'ystandard-blocks' ) }
-					>
-						<SVGIconSelect
-							panelTitle={ __(
-								'アイコン選択',
-								'ystandard-blocks'
-							) }
-							iconControlTitle={ '' }
-							selectedIcon={ icon }
-							onClickIcon={ ( value ) => {
-								setAttributes( { icon: value } );
-							} }
-							align={ 'center' }
-							isFloat={ true }
-						/>
-					</BaseControl>
 					<FontSizePicker
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
@@ -174,27 +110,6 @@ function svgIcon( props ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<div className={ classes } style={ styles }>
-				{ !! icon ? (
-					<SVGIcon name={ icon } />
-				) : (
-					<div className={ 'ystdb-icon__select--no-icon' }>
-						<SVGIcon name={ 'info' } />
-						<div
-							style={ {
-								fontSize: '12px',
-								lineHeight: 1.2,
-								marginTop: '0.5em',
-							} }
-						>
-							「アイコン設定」から
-							<br />
-							アイコンを選択
-						</div>
-					</div>
-				) }
-			</div>
 		</Fragment>
 	);
 }

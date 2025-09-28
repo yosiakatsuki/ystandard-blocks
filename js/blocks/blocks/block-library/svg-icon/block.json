@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 3,
+  "name": "ystdb/svg-icon",
+  "title": "アイコン",
+  "description": "'アイコン表示ブロック",
+  "version": "1.0.0",
+  "keywords": [
+    "icon"
+  ],
+  "attributes": {
+    "icon": {
+      "type": "string"
+    },
+    "iconSize": {
+      "type": "string",
+      "default": "5"
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "customFontSize": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "linkTarget": {
+      "type": "string"
+    },
+    "rel": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "className": false,
+    "align": false
+  },
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -7,7 +7,6 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		block: './src/js/block/block.js',
-		'svg-icon': './blocks/svg-icon/index.js',
 		section: './blocks/section/index.js',
 		card: './blocks/card/index.js',
 		'inline-style': './blocks/inline-style/index.js',

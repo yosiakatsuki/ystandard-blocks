@@ -20,7 +20,7 @@
 		}
 	}
 
-	&.is-size--2 {
+	&:where(.is-size--2) {
 
 		svg {
 			width: 2em;
@@ -28,7 +28,7 @@
 		}
 	}
 
-	&.is-size--5 {
+	&:where(.is-size--5) {
 
 		svg {
 			width: 5em;
@@ -36,13 +36,22 @@
 		}
 	}
 
-	.ystdb-icon__link {
+	:where(.ystdb-icon__link) {
 		color: currentcolor;
 		text-decoration: none;
 
-		&:hover {
-			color: currentcolor;
+		@media (hover: hover) {
+			&:hover {
+				color: currentcolor;
+			}
 		}
 	}
 }
 
+
+:where(body:not(.ystandard)) .ys-icon {
+	svg {
+		width: 1em;
+		height: 1em;
+	}
+}
