@@ -59,6 +59,11 @@ function Edit( props ) {
 		customFontSize,
 	} = attributes as unknown as Attributes;
 
+	const fontSizeObject = {
+		slug: fontSize,
+		size: customFontSize,
+	};
+
 	const wrapProps = {
 		className: getWrapClasses( {
 			clientId,
@@ -71,7 +76,7 @@ function Edit( props ) {
 		className: getLinkClasses( {
 			...attributes,
 			// @ts-expect-error
-			fontSize: getCustomFontSizeClass( fontSize ),
+			fontSize: getCustomFontSizeClass( fontSizeObject ),
 			gradientClass,
 		} ),
 		style: getLinkStyles( {
@@ -79,7 +84,7 @@ function Edit( props ) {
 			textColor: textColor?.color,
 			backgroundColor: backgroundColor?.color,
 			// @ts-expect-error
-			fontSize: getCustomFontSizeStyle( fontSize, customFontSize ),
+			fontSize: getCustomFontSizeStyle( fontSizeObject, customFontSize ),
 			customGradient: gradientValue,
 		} ),
 	};

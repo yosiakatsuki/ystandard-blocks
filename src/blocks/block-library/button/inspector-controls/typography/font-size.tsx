@@ -15,10 +15,9 @@ import BaseControl from '@aktk/block-components/wp-controls/base-control';
 export function FontSize( props ) {
 	const { attributes, setAttributes } = props;
 	const { fontSize, customFontSize, responsiveFontSize } = attributes;
-
 	const handleOnChange = ( value: CustomFontSizePickerOnChangeProps ) => {
 		setAttributes( {
-			fontSize: value?.fontSize,
+			fontSize: value?.fontSize?.slug,
 			customFontSize: value?.customFontSize,
 			responsiveFontSize: value?.responsiveFontSize,
 		} );
@@ -29,7 +28,10 @@ export function FontSize( props ) {
 			label={ __( 'フォントサイズ', 'ystandard-toolbox' ) }
 		>
 			<CustomFontSizePicker
-				fontSize={ fontSize }
+				fontSize={ {
+					slug: fontSize,
+					size: customFontSize,
+				} }
 				customFontSize={ customFontSize }
 				responsiveFontSize={ responsiveFontSize }
 				onChange={ handleOnChange }

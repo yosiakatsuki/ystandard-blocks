@@ -46,6 +46,11 @@ function Save( { attributes } ) {
 		rel,
 	} = attributes as Attributes;
 
+	const fontSizeObject = {
+		slug: fontSize,
+		size: customFontSize,
+	};
+
 	const blockProps = useBlockProps.save( {
 		className: getWrapClasses( { ...attributes } ),
 		style: getWrapStyles( { ...attributes } ),
@@ -53,13 +58,13 @@ function Save( { attributes } ) {
 	const linkClasses = getLinkClasses( {
 		...attributes,
 		// @ts-expect-error
-		fontSize: getCustomFontSizeClass( fontSize ),
+		fontSize: getCustomFontSizeClass( fontSizeObject ),
 		gradientClass: getGradientClass( gradient ),
 	} );
 	const linkStyles = getLinkStyles( {
 		...attributes,
 		// @ts-expect-error
-		fontSize: getCustomFontSizeStyle( fontSize, customFontSize ),
+		fontSize: getCustomFontSizeStyle( fontSizeObject, customFontSize ),
 	} );
 	return (
 		<>
