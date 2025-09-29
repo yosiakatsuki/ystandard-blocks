@@ -20,7 +20,7 @@ exports[`Button Block <Save /> snapshot matches snapshot with borderRadius 0 1`]
 </DocumentFragment>
 `;
 
-exports[`Button Block <Save /> snapshot matches snapshot with icons and all attributes 1`] = `
+exports[`Button Block <Save /> snapshot matches snapshot with icons and custom font size 1`] = `
 <DocumentFragment>
   <div
     class="ystdb-custom-button"
@@ -29,7 +29,46 @@ exports[`Button Block <Save /> snapshot matches snapshot with icons and all attr
       class="ystdb-custom-button__link"
       href="https://example.com"
       rel="noopener"
-      style="font-size: 24px;"
+      style="font-size: 2em;"
+      target="_blank"
+    >
+      <span
+        aria-hidden="true"
+        class="ys-icon ys-icon--fallback"
+        style="font-size: 16px;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+      <span
+        aria-hidden="true"
+        class="ys-icon ys-icon--fallback"
+        style="font-size: 20px;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Button Block <Save /> snapshot matches snapshot with icons and font size 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link font-size-large"
+      href="https://example.com"
+      rel="noopener"
       target="_blank"
     >
       <span

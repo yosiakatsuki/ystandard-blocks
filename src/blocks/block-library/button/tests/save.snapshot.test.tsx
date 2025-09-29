@@ -16,7 +16,7 @@ describe( 'Button Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( 'matches snapshot with icons and all attributes', () => {
+	it( 'matches snapshot with icons and font size', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -29,7 +29,28 @@ describe( 'Button Block <Save /> snapshot', () => {
 					iconSizeLeft: 16,
 					iconSizeRight: 20,
 					fontSize: 'large',
-					customFontSize: 24,
+					gradient: 'gradient',
+					linkTarget: '_blank',
+					rel: 'noopener',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( 'matches snapshot with icons and custom font size', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'Button',
+					url: 'https://example.com',
+					iconLeft: 'left',
+					iconRight: 'right',
+					iconLeftBlank: true,
+					iconRightBlank: true,
+					iconSizeLeft: 16,
+					iconSizeRight: 20,
+					customFontSize: '2em',
 					gradient: 'gradient',
 					linkTarget: '_blank',
 					rel: 'noopener',
