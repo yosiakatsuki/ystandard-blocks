@@ -38,9 +38,11 @@ export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 		showResetButton = true,
 		onChange,
 	} = props;
+
 	// WPフォントサイズピッカー用にサイズ抽出.
 	const wpPickerFontSize =
 		fontSize?.size ?? customFontSize ?? responsiveFontSize?.desktop;
+
 	// カスタム入力の変更イベント.
 	const handleOnCustomInputChange = ( newValue: ResponsiveFontSize ) => {
 		// カスタム入力が使われた場合、WPフォントサイズピッカーにdesktopの値を入れつつ更新.
