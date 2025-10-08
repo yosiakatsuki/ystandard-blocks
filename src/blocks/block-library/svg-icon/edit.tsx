@@ -35,15 +35,12 @@ function Edit( props ) {
 		attributes,
 		setAttributes,
 		isSelected,
-		fontSize,
-		setFontSize,
 		className,
 	} = props;
 
 	// attributes.
 	const { icon, align, iconSize } = attributes;
 
-	console.log( { fontSize } );
 	// ブロックの基本プロパティ.
 	const blockProps = useBlockProps( {
 		className: classnames( className, 'ystdb-icon', {

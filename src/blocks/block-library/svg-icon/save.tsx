@@ -17,6 +17,7 @@ import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 // @ts-expect-error
 function Save( { attributes } ) {
 	const { icon } = attributes;
+
 	const blockProps = useBlockProps.save( {
 		className: classnames( '' ),
 		style: {},
