@@ -10,7 +10,8 @@
 	],
 	"attributes": {
 		"icon": {
-			"type": "string"
+			"type": "string",
+			"default": "info"
 		},
 		"iconSize": {
 			"type": "string",
