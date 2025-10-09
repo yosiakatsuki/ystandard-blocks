@@ -20,6 +20,7 @@ import './style.scss';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
+import { deprecated } from './deprecated';
 
 function registerSvgIconBlock() {
 	const attributes = mergeDefaultAttributes(
@@ -41,6 +42,7 @@ function registerSvgIconBlock() {
 			edit,
 			save,
 			example: {},
+			deprecated,
 		},
 	} );
 }
