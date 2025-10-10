@@ -17,9 +17,14 @@ export function FontSize( props ) {
 	const { fontSize, customFontSize, responsiveFontSize } = attributes;
 
 	const handleOnChange = ( value: CustomFontSizePickerOnChangeProps ) => {
+		const fontSizeSlug = value?.fontSize?.slug;
+		const customFontSizeValue = ! fontSizeSlug
+			? value?.customFontSize
+			: undefined;
+
 		setAttributes( {
-			fontSize: value?.fontSize,
-			customFontSize: value?.customFontSize,
+			fontSize: fontSizeSlug,
+			customFontSize: customFontSizeValue,
 			responsiveFontSize: value?.responsiveFontSize,
 		} );
 	};

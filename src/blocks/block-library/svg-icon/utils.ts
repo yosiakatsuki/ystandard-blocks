@@ -28,14 +28,15 @@ import type { Attributes } from './types';
  * @param attributes
  */
 export function getBlockClasses( attributes: Attributes ) {
-	const { className, align } = attributes;
-	return classnames( 'ystdb-icon', className, {
+	const { align } = attributes;
+	return classnames( 'ystdb-icon', {
 		[ `has-text-align-${ align }` ]: align,
 	} );
 }
 
 export function getWrapClasses( attributes: Attributes ) {
 	const {
+		url,
 		textColor,
 		customTextColor,
 		fontSize,
@@ -43,11 +44,14 @@ export function getWrapClasses( attributes: Attributes ) {
 		backgroundColor,
 		customBackgroundColor,
 	} = attributes;
+
 	const textColorClass = getColorClassName( 'color', textColor ) || '';
+	const fontSizeClass = getFontSizeClass( fontSize || '' ) || '';
 
 	return classnames( 'ystdb-icon__wrap', {
+		'ystdb-icon__link': url,
 		[ textColorClass ]: !! textColor,
-		[ getFontSizeClass( fontSize || '' ) ]: fontSize,
+		[ fontSizeClass ]: !! fontSize,
 		[ `is-size--${ iconSize }` ]: iconSize,
 		...getBlockStyleClasses( {
 			textColor: textColor || customTextColor,

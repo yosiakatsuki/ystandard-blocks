@@ -1,8 +1,5 @@
 .ystdb-icon {
-	padding: 1rem;
-
 	svg {
-
 		&[fill="none"] {
 			fill: none;
 		}
@@ -20,8 +17,25 @@
 		}
 	}
 
-	&:where(.is-size--2) {
+	&:where(.has-text-align-left) {
+		text-align: left;
+	}
+	&:where(.has-text-align-center) {
+		text-align: center;
+	}
+	&:where(.has-text-align-right) {
+		text-align: right;
+	}
+}
 
+.ystdb-icon__wrap {
+	display: inline-flex;
+
+	&:where(:not(.has-padding)) {
+		padding: 1rem;
+	}
+
+	&:where(.is-size--2) {
 		svg {
 			width: 2em;
 			height: 2em;
@@ -29,20 +43,21 @@
 	}
 
 	&:where(.is-size--5) {
-
 		svg {
 			width: 5em;
 			height: 5em;
 		}
 	}
 
-	:where(.ystdb-icon__link) {
-		color: currentcolor;
+	&:where(.ystdb-icon__link) {
 		text-decoration: none;
 
-		@media (hover: hover) {
-			&:hover {
-				color: currentcolor;
+		&:where(:not(.has-text-color)) {
+			color: currentcolor;
+			@media (hover: hover) {
+				&:hover {
+					color: currentcolor;
+				}
 			}
 		}
 	}

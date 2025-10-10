@@ -16,10 +16,7 @@ import { FontSize } from './font-size';
 // @ts-ignore
 export function Icon( props ) {
 	return (
-		<Panel
-			title={ __( 'アイコン設定', 'ystandard-blocks' ) }
-			initialOpen={ true }
-		>
+		<Panel title={ __( 'アイコン設定', 'ystandard-blocks' ) }>
 			<IconSelect { ...props } />
 			<FontSize { ...props } />
 		</Panel>

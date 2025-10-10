@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "ystdb/svg-icon",
 	"title": "アイコン",
-	"description": "'アイコン表示ブロック",
+	"description": "アイコン表示ブロック",
 	"version": "1.0.0",
 	"keywords": [
 		"icon"

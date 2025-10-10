@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 /**
  * WordPress dependencies.
  */
@@ -7,36 +6,52 @@ import {
 	// @ts-expect-error
 	__experimentalGetGradientClass as getGradientClass,
 } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 
 /**
  * Aktk dependencies.
  */
 import { SvgIcon } from '@aktk/block-components/components/svg-icon';
 
+/**
+ * Block dependencies.
+ */
+import { getBlockClasses, getWrapClasses, getWrapStyles } from './utils';
+
 // @ts-expect-error
 function Save( { attributes } ) {
-	const { icon } = attributes;
+	const { icon, url, linkTarget, rel } = attributes;
 
 	const blockProps = useBlockProps.save( {
-		className: classnames( '' ),
-		style: {},
+		className: getBlockClasses( attributes ),
 	} );
+
+	const wrapProps = {
+		className: getWrapClasses( attributes ),
+		style: getWrapStyles( attributes ),
+	};
 
 	return (
 		<>
 			<div { ...blockProps }>
-				{ !! icon ? (
-					<SvgIcon.Content name={ icon } />
+				{ url ? (
+					<>
+						{ /* URLあり */ }
+						<a
+							href={ url }
+							target={ linkTarget }
+							rel={ rel }
+							{ ...wrapProps }
+						>
+							<SvgIcon.Content name={ icon || 'info' } />
+						</a>
+					</>
 				) : (
-					<div className={ 'ystdb-icon__select--no-icon' }>
-						<SvgIcon.Content name={ 'info' } />
-						<p>
-							「アイコン設定」から
-							<br />
-							アイコンを選択
-						</p>
-					</div>
+					<>
+						{ /* URLなし */ }
+						<div { ...wrapProps }>
+							<SvgIcon.Content name={ icon || 'info' } />
+						</div>
+					</>
 				) }
 			</div>
 		</>

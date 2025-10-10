@@ -11,7 +11,7 @@ interface PanelProps {
 }
 
 export function Panel( props: PanelProps ) {
-	const { title, initialOpen, children } = props;
+	const { title, initialOpen = true, children } = props;
 	const [ panelOpen, setPanelOpen ] = useState( false );
 
 	const setInitialOpen = () => {
