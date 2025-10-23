@@ -6,19 +6,25 @@ import { useEffect, useState } from '@wordpress/element';
 
 interface PanelProps {
 	title: string;
-	initialOpen?: ( () => boolean ) | boolean;
+	initialOpen?: boolean;
+	initialOpenControlled?: ( () => boolean ) | boolean;
 	children: React.ReactNode;
 }
 
 export function Panel( props: PanelProps ) {
-	const { title, initialOpen = true, children } = props;
-	const [ panelOpen, setPanelOpen ] = useState( false );
+	const {
+		title,
+		initialOpen = true,
+		initialOpenControlled = false,
+		children,
+	} = props;
+	const [ panelOpen, setPanelOpen ] = useState( initialOpen );
 
+	// 動的に開閉状態を制御する場合の初期値設定.
 	const setInitialOpen = () => {
-		if ( 'function' === typeof initialOpen ) {
-			setPanelOpen( initialOpen() );
+		if ( 'function' === typeof initialOpenControlled ) {
+			setPanelOpen( initialOpenControlled() );
 		}
-		setPanelOpen( initialOpen ?? false );
 	};
 
 	useEffect( () => {
@@ -27,7 +33,7 @@ export function Panel( props: PanelProps ) {
 
 	useEffect( () => {
 		setInitialOpen();
-	}, [ initialOpen ] );
+	}, [ initialOpenControlled ] );
 
 	const togglePanel = () => {
 		setPanelOpen( ! panelOpen );
