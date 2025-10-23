@@ -20,9 +20,11 @@
 	&:where(.has-text-align-left) {
 		text-align: left;
 	}
+
 	&:where(.has-text-align-center) {
 		text-align: center;
 	}
+
 	&:where(.has-text-align-right) {
 		text-align: right;
 	}
@@ -53,6 +55,11 @@
 
 // 非yStandardでの調整.
 :where(body:not(.ystandard)) .ys-icon {
+	display: inline-block;
+	flex-shrink: 0;
+	line-height: 1;
+	vertical-align: -.25em;
+
 	svg {
 		width: 1em;
 		height: 1em;

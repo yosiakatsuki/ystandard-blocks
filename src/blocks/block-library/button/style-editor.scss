@@ -1,1 +1,10 @@
 @use "style";
+
+.ystdb-icon {
+	.ys-icon {
+		display: inline-block;
+		flex-shrink: 0;
+		line-height: 1;
+		vertical-align: -.25em;
+	}
+}

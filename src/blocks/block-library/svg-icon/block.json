@@ -23,6 +23,12 @@
 		"customTextColor": {
 			"type": "string"
 		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"customBackgroundColor": {
+			"type": "string"
+		},
 		"fontSize": {
 			"type": "string"
 		},
@@ -58,6 +64,12 @@
 			"type": "string"
 		},
 		"responsiveHeight": {
+			"type": "object"
+		},
+		"border": {
+			"type": "object"
+		},
+		"borderRadius": {
 			"type": "object"
 		},
 		"iconSize": {

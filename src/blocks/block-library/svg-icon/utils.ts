@@ -69,6 +69,8 @@ export function getWrapStyles( attributes: Attributes ) {
 		responsiveWidth,
 		height,
 		responsiveHeight,
+		borderRadius,
+		border,
 	} = attributes;
 
 	// レスポンシブ指定のあるスタイルを生成.
@@ -126,5 +128,7 @@ export function getWrapStyles( attributes: Attributes ) {
 		height,
 		...responsiveStyles,
 		...getCustomSpacingValues( padding, 'padding' ),
+		...getBorderRadiusStyles( borderRadius ),
+		...getBorderStyles( border ),
 	};
 }
