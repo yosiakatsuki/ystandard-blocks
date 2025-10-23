@@ -40,7 +40,9 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 		onChange( stripUndefined( newValue as object ) );
 	};
 
-	const handleOnCustomSelectChange = ( newValue: SpacingSizeValues ) => {
+	const handleOnCustomSelectChange = (
+		newValue: SpacingSizeValues | undefined
+	) => {
 		onChange( {
 			desktop: newValue,
 			tablet: undefined,
@@ -54,12 +56,29 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 				<ResponsiveSelectTab
 					isResponsive={ isResponsive( value ) }
 					defaultTabContent={
-						<CustomSpacingSelectControl
-							sides={ sides }
-							values={ value?.desktop }
-							onChange={ handleOnCustomSelectChange }
-							minimumCustomValue={ minimumCustomValue }
-						/>
+						<>
+							<CustomSpacingSelectControl
+								sides={ sides }
+								values={ value?.desktop }
+								onChange={ handleOnCustomSelectChange }
+								minimumCustomValue={ minimumCustomValue }
+							/>
+							{ showResetButton && (
+								<Button
+									onClick={ () =>
+										handleOnCustomSelectChange( undefined )
+									}
+									size={ 'small' }
+									variant={ 'secondary' }
+									isDestructive
+									className={
+										'mt-2 w-full justify-center text-center'
+									}
+								>
+									リセット
+								</Button>
+							) }
+						</>
 					}
 					responsiveTabContent={
 						<ResponsiveSpacingSelectControl
