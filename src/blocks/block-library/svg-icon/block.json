@@ -31,7 +31,8 @@
 			"type": "string"
 		},
 		"customFontSize": {
-			"type": "string"
+			"type": "string",
+			"default": "24px"
 		},
 		"responsiveFontSize": {
 			"type": "object"
