@@ -5,6 +5,7 @@ import type {
 	ResponsiveSpacing,
 	Spacing,
 } from '@aktk/block-components/components/custom-spacing-select';
+import type { ResponsiveValues } from '@aktk/blocks/components/responsive-values';
 
 /**
  * Block attributes.
@@ -33,4 +34,8 @@ export interface Attributes {
 	className?: string;
 	padding?: Spacing;
 	responsivePadding?: ResponsiveSpacing;
+	width?: string;
+	responsiveWidth?: ResponsiveValues;
+	height?: string;
+	responsiveHeight?: ResponsiveValues;
 }

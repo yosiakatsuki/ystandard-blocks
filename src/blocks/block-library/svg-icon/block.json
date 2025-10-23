@@ -48,6 +48,18 @@
 		"responsivePadding": {
 			"type": "object"
 		},
+		"width": {
+			"type": "string"
+		},
+		"responsiveWidth": {
+			"type": "object"
+		},
+		"height": {
+			"type": "string"
+		},
+		"responsiveHeight": {
+			"type": "object"
+		},
 		"iconSize": {
 			"type": "string",
 			"default": "5"

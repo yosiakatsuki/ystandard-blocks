@@ -77,6 +77,24 @@ class Svg_Icon_Block {
 					'type'      => $type,
 				]
 			);
+			// 幅.
+			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+				[
+					'selector'  => $selector,
+					'prop_name' => 'icon--width',
+					'property'  => 'width',
+					'type'      => $type,
+				]
+			);
+			// 高さ.
+			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+				[
+					'selector'  => $selector,
+					'prop_name' => 'icon--height',
+					'property'  => 'height',
+					'type'      => $type,
+				]
+			);
 
 			// 余白.
 			foreach ( [ 'top', 'right', 'bottom', 'left' ] as $pos ) {

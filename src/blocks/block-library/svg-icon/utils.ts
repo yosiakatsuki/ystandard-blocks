@@ -65,6 +65,10 @@ export function getWrapStyles( attributes: Attributes ) {
 		responsiveFontSize,
 		padding,
 		responsivePadding,
+		width,
+		responsiveWidth,
+		height,
+		responsiveHeight,
 	} = attributes;
 
 	// レスポンシブ指定のあるスタイルを生成.
@@ -96,6 +100,20 @@ export function getWrapStyles( attributes: Attributes ) {
 					] = presetTokenToCssVar( paddingValue ) || paddingValue;
 				}
 			} );
+			// width.
+			const _width = responsiveWidth?.[ type ];
+			if ( _width ) {
+				// @ts-ignore
+				acc[ getResponsiveCustomPropName( 'icon--width', type ) ] =
+					_width;
+			}
+			// height.
+			const _height = responsiveHeight?.[ type ];
+			if ( _height ) {
+				// @ts-ignore
+				acc[ getResponsiveCustomPropName( 'icon--height', type ) ] =
+					_height;
+			}
 			return acc;
 		},
 		{} as Record< string, string >
@@ -104,6 +122,8 @@ export function getWrapStyles( attributes: Attributes ) {
 	return {
 		color: customTextColor || undefined,
 		fontSize: customFontSize || undefined,
+		width,
+		height,
 		...responsiveStyles,
 		...getCustomSpacingValues( padding, 'padding' ),
 	};

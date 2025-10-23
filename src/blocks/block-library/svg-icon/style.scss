@@ -30,6 +30,8 @@
 
 .ystdb-icon__wrap {
 	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 
 	&:where(:not(.has-padding)) {
 		padding: 1rem;
