@@ -77,6 +77,18 @@ class Svg_Icon_Block {
 					'type'      => $type,
 				]
 			);
+
+			// 余白.
+			foreach ( [ 'top', 'right', 'bottom', 'left' ] as $pos ) {
+				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+					[
+						'selector'  => $selector,
+						'prop_name' => "icon--padding-{$pos}",
+						'property'  => "padding-{$pos}",
+						'type'      => $type,
+					]
+				);
+			}
 		}
 
 		// 結合.

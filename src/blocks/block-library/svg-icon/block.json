@@ -13,10 +13,6 @@
 			"type": "string",
 			"default": "info"
 		},
-		"iconSize": {
-			"type": "string",
-			"default": "5"
-		},
 		"align": {
 			"type": "string",
 			"default": "center"
@@ -45,6 +41,16 @@
 		},
 		"rel": {
 			"type": "string"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"responsivePadding": {
+			"type": "object"
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "5"
 		}
 	},
 	"supports": {

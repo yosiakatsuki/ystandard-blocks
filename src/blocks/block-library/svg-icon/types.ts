@@ -1,3 +1,14 @@
+/**
+ * Aktk dependencies.
+ */
+import type {
+	ResponsiveSpacing,
+	Spacing,
+} from '@aktk/block-components/components/custom-spacing-select';
+
+/**
+ * Block attributes.
+ */
 export type ResponsiveFontSize = {
 	[ key: string ]: string;
 };
@@ -20,4 +31,6 @@ export interface Attributes {
 	linkTarget?: string;
 	rel?: string;
 	className?: string;
+	padding?: Spacing;
+	responsivePadding?: ResponsiveSpacing;
 }

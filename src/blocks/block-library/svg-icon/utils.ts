@@ -40,7 +40,6 @@ export function getWrapClasses( attributes: Attributes ) {
 		textColor,
 		customTextColor,
 		fontSize,
-		iconSize,
 		backgroundColor,
 		customBackgroundColor,
 	} = attributes;
@@ -52,7 +51,6 @@ export function getWrapClasses( attributes: Attributes ) {
 		'ystdb-icon__link': url,
 		[ textColorClass ]: !! textColor,
 		[ fontSizeClass ]: !! fontSize,
-		[ `is-size--${ iconSize }` ]: iconSize,
 		...getBlockStyleClasses( {
 			textColor: textColor || customTextColor,
 			backgroundColor: backgroundColor || customBackgroundColor,
@@ -61,10 +59,17 @@ export function getWrapClasses( attributes: Attributes ) {
 }
 
 export function getWrapStyles( attributes: Attributes ) {
-	const { customTextColor, customFontSize, responsiveFontSize } = attributes;
+	const {
+		customTextColor,
+		customFontSize,
+		responsiveFontSize,
+		padding,
+		responsivePadding,
+	} = attributes;
 
 	// レスポンシブ指定のあるスタイルを生成.
 	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
+	const position = [ 'top', 'right', 'bottom', 'left' ] as const;
 	const responsiveStyles = types.reduce(
 		( acc, type ) => {
 			// フォントサイズ.
@@ -78,6 +83,19 @@ export function getWrapStyles( attributes: Attributes ) {
 					acc[ propName ] = value;
 				}
 			}
+			// padding.
+			const _padding = responsivePadding?.[ type ];
+			position.forEach( ( pos ) => {
+				const paddingValue = _padding?.[ pos ];
+				if ( paddingValue ) {
+					acc[
+						getResponsiveCustomPropName(
+							`icon--padding-${ pos }`,
+							type
+						)
+					] = presetTokenToCssVar( paddingValue ) || paddingValue;
+				}
+			} );
 			return acc;
 		},
 		{} as Record< string, string >
@@ -87,5 +105,6 @@ export function getWrapStyles( attributes: Attributes ) {
 		color: customTextColor || undefined,
 		fontSize: customFontSize || undefined,
 		...responsiveStyles,
+		...getCustomSpacingValues( padding, 'padding' ),
 	};
 }

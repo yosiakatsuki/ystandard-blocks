@@ -9,6 +9,7 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
 import { Color } from './color';
 import { Icon } from './icon';
 import { Link } from './link';
+import { SpacingPanel } from './spacing';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -17,6 +18,7 @@ export function InspectorControls( props ) {
 			<Color { ...props } />
 			<Icon { ...props } />
 			<Link { ...props } />
+			<SpacingPanel { ...props } />
 		</WPInspectorControls>
 	);
 }

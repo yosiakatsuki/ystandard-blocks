@@ -35,20 +35,6 @@
 		padding: 1rem;
 	}
 
-	&:where(.is-size--2) {
-		svg {
-			width: 2em;
-			height: 2em;
-		}
-	}
-
-	&:where(.is-size--5) {
-		svg {
-			width: 5em;
-			height: 5em;
-		}
-	}
-
 	&:where(.ystdb-icon__link) {
 		text-decoration: none;
 
@@ -63,10 +49,29 @@
 	}
 }
 
-
+// 非yStandardでの調整.
 :where(body:not(.ystandard)) .ys-icon {
 	svg {
 		width: 1em;
 		height: 1em;
+	}
+}
+
+// deprecated
+// v3.19.0で廃止
+
+.ystdb-icon {
+	&:where(.is-size--2) {
+		svg {
+			width: 2em;
+			height: 2em;
+		}
+	}
+
+	&:where(.is-size--5) {
+		svg {
+			width: 5em;
+			height: 5em;
+		}
 	}
 }
