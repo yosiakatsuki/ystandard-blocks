@@ -28,6 +28,7 @@ export function FontSize( props ) {
 			responsiveFontSize: value?.responsiveFontSize,
 		} );
 	};
+
 	return (
 		<BaseControl
 			id={ 'font-size' }

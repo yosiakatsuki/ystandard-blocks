@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { isNumber } from 'lodash';
+import { isNumber, isString } from 'lodash';
 /**
  * WordPress dependencies
  */
@@ -39,9 +39,19 @@ export function CustomFontSizePicker( props: CustomFontSizePickerProps ) {
 		onChange,
 	} = props;
 
+	const presetFontSize = themeFontSizes.filter( ( size: FontSize ) => {
+		if ( ! isString( fontSize ) ) {
+			return false;
+		}
+		return size.slug === fontSize;
+	} )[ 0 ] as FontSize | undefined;
+
 	// WPフォントサイズピッカー用にサイズ抽出.
 	const wpPickerFontSize =
-		fontSize?.size ?? customFontSize ?? responsiveFontSize?.desktop;
+		presetFontSize?.size ??
+		fontSize?.size ??
+		customFontSize ??
+		responsiveFontSize?.desktop;
 
 	// カスタム入力の変更イベント.
 	const handleOnCustomInputChange = ( newValue: ResponsiveFontSize ) => {
