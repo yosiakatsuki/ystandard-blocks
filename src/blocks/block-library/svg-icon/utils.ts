@@ -45,11 +45,14 @@ export function getWrapClasses( attributes: Attributes ) {
 	} = attributes;
 
 	const textColorClass = getColorClassName( 'color', textColor ) || '';
+	const textBackgroundColorClass =
+		getColorClassName( 'background-color', backgroundColor ) || '';
 	const fontSizeClass = getFontSizeClass( fontSize || '' ) || '';
 
 	return classnames( 'ystdb-icon__wrap', {
 		'ystdb-icon__link': url,
 		[ textColorClass ]: !! textColor,
+		[ textBackgroundColorClass ]: !! backgroundColor,
 		[ fontSizeClass ]: !! fontSize,
 		...getBlockStyleClasses( {
 			textColor: textColor || customTextColor,
