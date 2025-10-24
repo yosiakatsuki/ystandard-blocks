@@ -70,14 +70,14 @@
 // v3.19.0で廃止
 
 .ystdb-icon {
-	&:where(.is-size--2) {
+	&.is-size--2 {
 		svg {
 			width: 2em;
 			height: 2em;
 		}
 	}
 
-	&:where(.is-size--5) {
+	&.is-size--5 {
 		svg {
 			width: 5em;
 			height: 5em;

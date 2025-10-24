@@ -53,6 +53,13 @@ export const to031900 = [
 		},
 		// @ts-ignore.
 		migrate( attributes ) {
+			// アイコンサイズの移行.
+			if ( attributes?.iconSize ) {
+				attributes.className = classnames(
+					attributes.className,
+					`is-size--${ attributes.iconSize }`
+				);
+			}
 			return attributes;
 		},
 		// @ts-ignore
