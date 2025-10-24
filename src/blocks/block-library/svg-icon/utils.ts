@@ -61,6 +61,7 @@ export function getWrapClasses( attributes: Attributes ) {
 export function getWrapStyles( attributes: Attributes ) {
 	const {
 		customTextColor,
+		customBackgroundColor,
 		customFontSize,
 		responsiveFontSize,
 		padding,
@@ -123,6 +124,7 @@ export function getWrapStyles( attributes: Attributes ) {
 
 	return {
 		color: customTextColor || undefined,
+		backgroundColor: customBackgroundColor || undefined,
 		fontSize: customFontSize || undefined,
 		width,
 		height,

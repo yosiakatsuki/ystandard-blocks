@@ -7,7 +7,9 @@
 
 namespace ystandard_blocks;
 
+use ystandard_blocks\helper\Helper_Version;
 use ystandard_blocks\utils\Styles;
+use ystandard_blocks\utils\Version;
 
 defined( 'ABSPATH' ) || die();
 
@@ -28,6 +30,7 @@ class Svg_Icon_Block {
 	private function __construct() {
 		add_action( 'init', [ $this, 'register_block' ], 100 );
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_responsive_style' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_ystandard_legacy_style' ] );
 	}
 
 	/**
@@ -115,6 +118,25 @@ class Svg_Icon_Block {
 		$css .= Styles::add_media_query_mobile( $responsive['mobile'] );
 
 		$handle = 'ystdb-svg-icon-block-responsive';
+		wp_register_style( $handle, false );
+		wp_add_inline_style( $handle, $css );
+		wp_enqueue_style( $handle );
+	}
+
+	/**
+	 * YStandard 旧バージョン互換用スタイル出力.
+	 *
+	 * @return void
+	 */
+	public function enqueue_ystandard_legacy_style() {
+		if ( Version::ystandard_version_compare( '5.0.0-alpha' ) ) {
+			return;
+		}
+		$css    = '
+		.ystdb-icon__wrap :where(.ys-icon) {vertical-align: baseline;}
+		.ystdb-icon__wrap svg {vertical-align: -.25em;}
+		';
+		$handle = 'ystdb-svg-icon-legacy-style';
 		wp_register_style( $handle, false );
 		wp_add_inline_style( $handle, $css );
 		wp_enqueue_style( $handle );

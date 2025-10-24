@@ -24,7 +24,7 @@ import { getBlockClasses, getWrapClasses, getWrapStyles } from './utils';
 
 // @ts-expect-error
 function Edit( props ) {
-	const { textColor, attributes, className } = props;
+	const { textColor, backgroundColor, attributes, className } = props;
 
 	// attributes.
 	const { icon } = attributes;
@@ -41,10 +41,12 @@ function Edit( props ) {
 		className: getWrapClasses( {
 			...attributes,
 			textColor: textColor?.class || '',
+			backgroundColor: backgroundColor?.class || '',
 		} ),
 		style: getWrapStyles( {
 			...attributes,
 			customTextColor: textColor?.color || '',
+			customBackgroundColor: backgroundColor?.color || '',
 		} ),
 	};
 

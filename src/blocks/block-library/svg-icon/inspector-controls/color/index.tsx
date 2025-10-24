@@ -11,6 +11,7 @@ import { Panel } from '@aktk/block-components/components/panel';
  * Block dependencies.
  */
 import { TextColor } from './text-color';
+import { BackgroundColor } from './background-color';
 
 // @ts-expect-error
 export function Color( props ) {
@@ -20,6 +21,7 @@ export function Color( props ) {
 			initialOpen={ true }
 		>
 			<TextColor { ...props } />
+			<BackgroundColor { ...props } />
 		</Panel>
 	);
 }

@@ -9,6 +9,8 @@
 
 namespace ystandard_blocks\helper;
 
+use ystandard_blocks\utils\Version;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -20,51 +22,29 @@ class Helper_Version {
 
 	/**
 	 * プラグインの有効化チェック
+	 *
+	 * @deprecated use utils\Version::check_version()
 	 */
 	public static function check_version() {
-		/**
-		 * PHPバージョンチェック
-		 */
-		if ( version_compare( phpversion(), '7.0.0', '<' ) ) {
-			add_action( 'admin_notices', [ __CLASS__, 'phpversion_notice' ] );
-
-			return false;
-		}
-		/**
-		 * Gutenbergチェック
-		 */
-		if ( ! function_exists( 'register_block_type' ) ) {
-			add_action( 'admin_notices', [ __CLASS__, 'block_editor_notice' ] );
-
-			return false;
-		}
-
-		return true;
+		return Version::check_version();
 	}
 
 	/**
 	 * PHPバージョン不足案内
+	 *
+	 * @deprecated use Version::phpversion_notice();
 	 */
 	public static function phpversion_notice() {
-		?>
-		<div class="notice notice-error is-dismissible">
-			<p>PHPバージョンが古いためyStandard Blocksが機能しません。</p>
-			<p>yStandard BlocksはPHP 7.3以上での利用を推奨しています。</p>
-			<p>お使いのサーバーのPHPバージョンをご確認ください。（このサイトで有効になっているPHPバージョン：<?php echo phpversion(); ?>）</p>
-		</div>
-		<?php
+		Version::phpversion_notice();
 	}
 
 	/**
 	 * ブロックエディター使えない案内
+	 *
+	 * @deprecated use Version::block_editor_notice();)
 	 */
 	public static function block_editor_notice() {
-		?>
-		<div class="notice notice-error is-dismissible">
-			<p>このサイトではブロックエディターが使えないためyStandard Blocksが機能しません。</p>
-			<p>クラシックエディター(Classic Editor)を停止するなど、ブロックエディターが使える状態にしてください。</p>
-		</div>
-		<?php
+		Version::block_editor_notice();
 	}
 
 	/**
@@ -73,11 +53,10 @@ class Helper_Version {
 	 * @param string $version バージョン.
 	 *
 	 * @return bool|int
+	 * @deprecated use Version::wordpress_version_compare;
 	 */
 	public static function wordpress_version_compare( $version ) {
 
-		$wp_version = get_bloginfo( 'version' );
-
-		return version_compare( $wp_version, $version, '>=' );
+		return Version::wordpress_version_compare( $version );
 	}
 }

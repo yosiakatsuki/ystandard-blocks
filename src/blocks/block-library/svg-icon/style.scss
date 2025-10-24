@@ -35,7 +35,7 @@
 	justify-content: center;
 	align-items: center;
 
-	&:where(:not(.has-padding)) {
+	&:where(.has-background) {
 		padding: 1rem;
 	}
 
@@ -58,11 +58,11 @@
 	display: inline-block;
 	flex-shrink: 0;
 	line-height: 1;
-	vertical-align: -.25em;
 
 	svg {
 		width: 1em;
 		height: 1em;
+		vertical-align: -.25em;
 	}
 }
 

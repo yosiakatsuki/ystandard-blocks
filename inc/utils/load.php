@@ -13,3 +13,4 @@ defined( 'ABSPATH' ) || die();
 require_once __DIR__ . '/class-file.php';
 require_once __DIR__ . '/class-types.php';
 require_once __DIR__ . '/class-styles.php';
+require_once __DIR__ . '/class-version.php';
