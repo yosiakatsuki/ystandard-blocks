@@ -23,11 +23,16 @@ export function FontSize( props ) {
 			? value?.customFontSize
 			: undefined;
 
+		// 旧クラス削除.
+		const _className = className
+			? className.replace( /is-size--\S+/g, '' )
+			: undefined;
+
 		setAttributes( {
 			fontSize: fontSizeSlug,
 			customFontSize: customFontSizeValue,
 			responsiveFontSize: value?.responsiveFontSize,
-			className: className.replace( /is-size--\S+/g, '' ), // 旧クラス削除.
+			className: _className,
 		} );
 	};
 
