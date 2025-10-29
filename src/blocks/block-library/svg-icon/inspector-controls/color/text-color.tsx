@@ -16,10 +16,10 @@ export function TextColor( props ) {
 		<>
 			<BaseControl
 				id={ 'text-color' }
-				label={ __( '文字色', 'ystandard-blocks' ) }
+				label={ __( 'アイコン色', 'ystandard-blocks' ) }
 			>
 				<ColorPalette
-					label={ __( '文字色', 'ystandard-blocks' ) }
+					label={ __( 'アイコン色', 'ystandard-blocks' ) }
 					value={ textColor.color }
 					onChange={ setTextColor }
 					enableCurrentColor={ true }
