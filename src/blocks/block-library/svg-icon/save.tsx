@@ -1,11 +1,7 @@
 /**
  * WordPress dependencies.
  */
-import {
-	useBlockProps,
-	// @ts-expect-error
-	__experimentalGetGradientClass as getGradientClass,
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Aktk dependencies.

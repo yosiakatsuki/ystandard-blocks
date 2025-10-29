@@ -1,5 +1,9 @@
+@use "./deprecated-styles";
+
 .ystdb-icon {
+
 	svg {
+
 		&[fill="none"] {
 			fill: none;
 		}
@@ -31,9 +35,10 @@
 
 
 	:where(.sns-icon) {
-		color: currentColor;
-		fill: currentColor;
+		color: currentcolor;
+		fill: currentcolor;
 	}
+
 	.ys-icon {
 		display: inline-flex;
 		flex-shrink: 0;
@@ -55,15 +60,20 @@
 
 		&:where(:not(.has-text-color)) {
 			color: currentcolor;
+
 			@media (hover: hover) {
+
 				&:hover {
 					color: currentcolor;
 				}
 			}
 		}
 	}
+
 	&.has-icon-size {
+
 		:where(.ys-icon) {
+
 			svg {
 				width: 1em;
 				height: 1em;
@@ -82,24 +92,5 @@
 		width: 1em;
 		height: 1em;
 		vertical-align: -.25em;
-	}
-}
-
-// deprecated
-// v3.19.0で廃止
-
-.ystdb-icon {
-	&.is-size--2 {
-		svg {
-			width: 2em;
-			height: 2em;
-		}
-	}
-
-	&.is-size--5 {
-		svg {
-			width: 5em;
-			height: 5em;
-		}
 	}
 }

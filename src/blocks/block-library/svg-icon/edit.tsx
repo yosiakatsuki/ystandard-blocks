@@ -1,14 +1,8 @@
 /**
  * WordPress dependencies.
  */
-import {
-	useBlockProps,
-	withColors,
-	// @ts-expect-error
-	__experimentalUseGradient,
-} from '@wordpress/block-editor';
+import { useBlockProps, withColors } from '@wordpress/block-editor';
 import { compose } from '@wordpress/compose';
-import { __ } from '@wordpress/i18n';
 
 /**
  * Aktk dependencies.
