@@ -47,6 +47,7 @@ export function getWrapClasses( attributes: Attributes ) {
 	const textColorClass = getColorClassName( 'color', textColor ) || '';
 	const textBackgroundColorClass =
 		getColorClassName( 'background-color', backgroundColor ) || '';
+
 	const fontSizeClass = getFontSizeClass( fontSize || '' ) || '';
 
 	return classnames( 'ystdb-icon__wrap', {
@@ -65,6 +66,7 @@ export function getWrapStyles( attributes: Attributes ) {
 	const {
 		customTextColor,
 		customBackgroundColor,
+		fontSize,
 		customFontSize,
 		responsiveFontSize,
 		padding,
@@ -128,7 +130,7 @@ export function getWrapStyles( attributes: Attributes ) {
 	return {
 		color: customTextColor || undefined,
 		backgroundColor: customBackgroundColor || undefined,
-		fontSize: customFontSize || undefined,
+		fontSize: ! fontSize ? customFontSize || undefined : undefined,
 		width,
 		height,
 		...responsiveStyles,

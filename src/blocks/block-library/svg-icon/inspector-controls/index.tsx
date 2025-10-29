@@ -17,8 +17,8 @@ import { BorderPanel } from './border';
 export function InspectorControls( props ) {
 	return (
 		<WPInspectorControls>
-			<Color { ...props } />
 			<Icon { ...props } />
+			<Color { ...props } />
 			<Link { ...props } />
 			<SizePanel { ...props } />
 			<SpacingPanel { ...props } />

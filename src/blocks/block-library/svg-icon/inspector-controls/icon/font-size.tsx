@@ -31,8 +31,8 @@ export function FontSize( props ) {
 
 	return (
 		<BaseControl
-			id={ 'font-size' }
-			label={ __( 'フォントサイズ', 'ystandard-toolbox' ) }
+			id={ 'icon-size' }
+			label={ __( 'アイコンサイズ', 'ystandard-toolbox' ) }
 		>
 			<CustomFontSizePicker
 				fontSize={ fontSize }

@@ -17,6 +17,11 @@
 		}
 	}
 
+	:where(.sns-icon) {
+		color: currentColor;
+		fill: currentColor;
+	}
+
 	&:where(.has-text-align-left) {
 		text-align: left;
 	}
