@@ -14,7 +14,8 @@ import BaseControl from '@aktk/block-components/wp-controls/base-control';
 // @ts-expect-error
 export function FontSize( props ) {
 	const { attributes, setAttributes } = props;
-	const { fontSize, customFontSize, responsiveFontSize } = attributes;
+	const { fontSize, customFontSize, responsiveFontSize, className } =
+		attributes;
 
 	const handleOnChange = ( value: CustomFontSizePickerOnChangeProps ) => {
 		const fontSizeSlug = value?.fontSize?.slug;
@@ -26,6 +27,7 @@ export function FontSize( props ) {
 			fontSize: fontSizeSlug,
 			customFontSize: customFontSizeValue,
 			responsiveFontSize: value?.responsiveFontSize,
+			className: className.replace( /is-size--\S+/g, '' ), // 旧クラス削除.
 		} );
 	};
 
