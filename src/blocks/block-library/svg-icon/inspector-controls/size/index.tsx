@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
  * Aktk dependencies.
  */
 import { Panel } from '@aktk/block-components/components/panel';
+import { NoticeSecondary } from '@aktk/block-components/components/notice';
 /**
  * Plugin dependencies.
  */
@@ -17,6 +18,14 @@ export function SizePanel( props ) {
 	return (
 		<>
 			<Panel title={ __( 'サイズ', 'ystandard-blocks' ) }>
+				<div className={ '-mt-2 mb-2' }>
+					<NoticeSecondary>
+						{ __(
+							'※アイコンのサイズではなく、アイコンを囲むボックスのサイズを設定します。背景色や枠線と合わせて利用してください。',
+							'ystandard-blocks'
+						) }
+					</NoticeSecondary>
+				</div>
 				<Width { ...props } />
 				<Height { ...props } />
 			</Panel>

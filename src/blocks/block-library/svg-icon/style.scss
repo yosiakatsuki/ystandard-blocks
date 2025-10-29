@@ -17,11 +17,6 @@
 		}
 	}
 
-	:where(.sns-icon) {
-		color: currentColor;
-		fill: currentColor;
-	}
-
 	&:where(.has-text-align-left) {
 		text-align: left;
 	}
@@ -32,6 +27,17 @@
 
 	&:where(.has-text-align-right) {
 		text-align: right;
+	}
+
+
+	:where(.sns-icon) {
+		color: currentColor;
+		fill: currentColor;
+	}
+	.ys-icon {
+		display: inline-flex;
+		flex-shrink: 0;
+		line-height: 1;
 	}
 }
 
@@ -56,11 +62,19 @@
 			}
 		}
 	}
+	&.has-icon-size {
+		:where(.ys-icon) {
+			svg {
+				width: 1em;
+				height: 1em;
+			}
+		}
+	}
 }
 
 // 非yStandardでの調整.
 :where(body:not(.ystandard)) .ys-icon {
-	display: inline-block;
+	display: inline-flex;
 	flex-shrink: 0;
 	line-height: 1;
 
