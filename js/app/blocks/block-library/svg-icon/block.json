@@ -3,18 +3,15 @@
   "apiVersion": 3,
   "name": "ystdb/svg-icon",
   "title": "アイコン",
-  "description": "'アイコン表示ブロック",
+  "description": "アイコン表示ブロック",
   "version": "1.0.0",
   "keywords": [
     "icon"
   ],
   "attributes": {
     "icon": {
-      "type": "string"
-    },
-    "iconSize": {
       "type": "string",
-      "default": "5"
+      "default": "info"
     },
     "align": {
       "type": "string",
@@ -26,11 +23,20 @@
     "customTextColor": {
       "type": "string"
     },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
     "fontSize": {
       "type": "string"
     },
     "customFontSize": {
       "type": "string"
+    },
+    "responsiveFontSize": {
+      "type": "object"
     },
     "url": {
       "type": "string"
@@ -40,6 +46,34 @@
     },
     "rel": {
       "type": "string"
+    },
+    "padding": {
+      "type": "object"
+    },
+    "responsivePadding": {
+      "type": "object"
+    },
+    "width": {
+      "type": "string"
+    },
+    "responsiveWidth": {
+      "type": "object"
+    },
+    "height": {
+      "type": "string"
+    },
+    "responsiveHeight": {
+      "type": "object"
+    },
+    "border": {
+      "type": "object"
+    },
+    "borderRadius": {
+      "type": "object"
+    },
+    "iconSize": {
+      "type": "string",
+      "default": "5"
     }
   },
   "supports": {
