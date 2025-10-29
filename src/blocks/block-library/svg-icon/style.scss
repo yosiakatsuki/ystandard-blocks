@@ -83,7 +83,7 @@
 }
 
 // 非yStandardでの調整.
-:where(body:not(.ystandard)) .ys-icon {
+:where(body:not(.ystandard) .ystdb-icon) .ys-icon {
 	display: inline-flex;
 	flex-shrink: 0;
 	line-height: 1;
