@@ -22,7 +22,7 @@ class Svg_Icon_Block {
 	 *
 	 * @var Svg_Icon_Block
 	 */
-	private static Svg_Icon_Block $instance;
+	private static $instance;
 
 	/**
 	 * Constructor.
