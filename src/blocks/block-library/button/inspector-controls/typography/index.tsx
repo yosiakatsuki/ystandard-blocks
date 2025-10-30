@@ -11,6 +11,7 @@ import { Panel } from '@aktk/block-components/components/panel';
  */
 import { TextColor } from './text-color';
 import { FontSize } from './font-size';
+import { TextDecoration } from './text-decoration';
 
 // @ts-expect-error
 export function Typography( props ) {
@@ -19,6 +20,7 @@ export function Typography( props ) {
 			<Panel title={ __( 'テキスト', 'ystandard-blocks' ) }>
 				<TextColor { ...props } />
 				<FontSize { ...props } />
+				<TextDecoration { ...props } />
 			</Panel>
 		</>
 	);

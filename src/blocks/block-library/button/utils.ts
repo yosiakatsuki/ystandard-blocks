@@ -87,6 +87,7 @@ export function getLinkStyles( attributes: Attributes ) {
 		iconPosition,
 		customTextColor,
 		fontSize,
+		textDecoration,
 		customBackgroundColor,
 		customGradient,
 		borderRadius,
@@ -151,6 +152,7 @@ export function getLinkStyles( attributes: Attributes ) {
 
 	return {
 		[ `--ystdb--button--justify` ]: iconPosition,
+		[ `--ystdb--button--text-decoration` ]: textDecoration,
 		[ getResponsiveCustomPropName( 'button--font-size', 'desktop' ) ]:
 			responsiveFontSize?.desktop,
 		color: customTextColor,

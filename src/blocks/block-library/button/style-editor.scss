@@ -9,3 +9,15 @@
 		vertical-align: -.25em;
 	}
 }
+
+// Text Decoration設定カスタマイズ
+.ystdtb-control__button__text-decoration {
+	.components-base-control__label {
+		display: none;
+	}
+	.block-editor-text-decoration-control {
+		> *:last-child {
+			display: none;
+		}
+	}
+}

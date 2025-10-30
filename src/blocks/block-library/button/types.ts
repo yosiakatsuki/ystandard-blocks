@@ -34,6 +34,7 @@ export interface Attributes {
 	fontSize?: string;
 	customFontSize?: string;
 	responsiveFontSize: ResponsiveFontSize;
+	textDecoration?: string;
 	padding?: Spacing;
 	responsivePadding?: ResponsiveSpacing;
 	width?: string;

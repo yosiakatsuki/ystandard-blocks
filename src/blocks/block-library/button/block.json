@@ -90,6 +90,9 @@
 		"responsiveFontSize": {
 			"type": "object"
 		},
+		"textDecoration": {
+			"type": "string"
+		},
 		"width": {
 			"type": "string"
 		},
