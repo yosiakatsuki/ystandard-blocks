@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Plugin dependencies.
  */
-import Panel from '@aktk/blocks/components/panel';
+import { Panel } from '@aktk/block-components/components/panel';
 
 /**
  * Internal dependencies.
