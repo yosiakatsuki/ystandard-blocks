@@ -1,4 +1,4 @@
-import { Link2 } from 'react-feather';
+import { Bookmark } from 'react-feather';
 /**
  * WordPress.
  */
@@ -22,9 +22,7 @@ import edit from './edit';
 import save from './save';
 import './style.scss';
 
-import transforms from './transforms';
-
-export function registerCustomButtonBlock() {
+export function registerCustomHeadingBlock() {
 	const attributes = mergeDefaultAttributes(
 		metadata.name,
 		metadata.attributes
@@ -34,7 +32,7 @@ export function registerCustomButtonBlock() {
 		...metadata,
 		...{
 			icon: (
-				<Link2
+				<Bookmark
 					stroke={ COLORS.iconBetaForeground }
 					style={ { fill: 'none' } }
 				/>
@@ -44,9 +42,7 @@ export function registerCustomButtonBlock() {
 			edit,
 			save,
 			example: {},
-			transforms,
 		},
 	} );
 }
-
-registerCustomButtonBlock();
+registerCustomHeadingBlock();

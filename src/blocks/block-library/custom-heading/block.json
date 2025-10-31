@@ -1,0 +1,58 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 3,
+	"name": "ystdb/custom-heading",
+	"title": "【β版】カスタム見出し",
+	"description": "【β版】カスタム見出しブロック",
+	"version": "1.0.0",
+	"keywords": [
+		"heading",
+		"見出し",
+		"カスタム見出し"
+	],
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".ystdb-custom-heading",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"customTextColor": {
+			"type": "string"
+		},
+		"fontSize": {
+			"type": "string"
+		},
+		"customFontSize": {
+			"type": "string"
+		},
+		"responsiveFontSize": {
+			"type": "object"
+		},
+		"clearStyle": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true,
+		"className": true,
+		"splitting": true
+	},
+	"textdomain": "ystandard-blocks",
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

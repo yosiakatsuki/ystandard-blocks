@@ -1,8 +1,8 @@
-import type { ResponsiveValues } from '@aktk/blocks/components/responsive-values/types';
 /**
  * Aktk dependencies.
  */
 import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+import type { ResponsiveValues } from '@aktk/blocks/components/responsive-values/types';
 import type {
 	ResponsiveSpacing,
 	Spacing,
