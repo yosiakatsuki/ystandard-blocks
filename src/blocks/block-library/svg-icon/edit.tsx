@@ -16,6 +16,8 @@ import { InspectorControls } from './inspector-controls';
 import { BlockControls } from './block-controls';
 import { getBlockClasses, getWrapClasses, getWrapStyles } from './utils';
 
+import './style-editor.scss';
+
 // @ts-expect-error
 function Edit( props ) {
 	const { textColor, backgroundColor, attributes, className } = props;
