@@ -23,7 +23,7 @@ import save from './save';
 import './style.scss';
 
 export function registerCustomHeadingBlock() {
-	const attributes = mergeDefaultAttributes(
+	const blockAttributes = mergeDefaultAttributes(
 		metadata.name,
 		metadata.attributes
 	);
@@ -38,10 +38,19 @@ export function registerCustomHeadingBlock() {
 				/>
 			),
 			category: CATEGORY.beta,
-			attributes,
+			blockAttributes,
 			edit,
 			save,
 			example: {},
+			merge( attributes, attributesToMerge ) {
+				return {
+					content:
+						// @ts-ignore.
+						( attributes.content || '' ) +
+						// @ts-ignore.
+						( attributesToMerge.content || '' ),
+				};
+			},
 		},
 	} );
 }

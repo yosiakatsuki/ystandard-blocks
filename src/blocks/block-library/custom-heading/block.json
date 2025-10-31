@@ -12,16 +12,16 @@
 	],
 	"attributes": {
 		"content": {
-			"type": "string",
-			"source": "html",
-			"selector": ".ystdb-custom-heading",
-			"default": ""
+			"type": "rich-text",
+			"source": "rich-text",
+			"selector": "h1,h2,h3,h4,h5,h6",
+			"role": "content"
 		},
 		"level": {
 			"type": "number",
 			"default": 2
 		},
-		"align": {
+		"textAlign": {
 			"type": "string",
 			"default": "left"
 		},
@@ -43,10 +43,13 @@
 		"clearStyle": {
 			"type": "boolean",
 			"default": true
+		},
+		"placeholder": {
+			"type": "string"
 		}
 	},
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": false,
 		"anchor": true,
 		"className": true,
 		"splitting": true
