@@ -10,6 +10,8 @@ import { __ } from '@wordpress/i18n';
  * Block dependencies.
  */
 import type { Attributes } from './types';
+import { getHeadingClasses } from './util';
+import { InspectorControls } from '@aktk/blocks/block-library/custom-heading/inspector-controls';
 
 // @ts-ignore.
 function Edit( props ) {
@@ -27,7 +29,7 @@ function Edit( props ) {
 	const tagName = 'h' + level;
 	// ブロックProps.
 	const blockProps = useBlockProps( {
-		className: 'ystdb-custom-heading',
+		className: getHeadingClasses( attributes ),
 	} );
 
 	const onContentChange = ( newContent: string ) => {
@@ -36,6 +38,7 @@ function Edit( props ) {
 
 	return (
 		<>
+			<InspectorControls { ...props } />
 			<RichText
 				identifier="content"
 				// @ts-ignore
