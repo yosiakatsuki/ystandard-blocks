@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with all attributes combined 1`] = `
+<DocumentFragment>
+  <h3
+    class="ystdb-custom-heading font-size-large has-text-align-center"
+  >
+    <span>
+      全属性指定
+    </span>
+  </h3>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with clearStyle true 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading is-clear-style"
+  >
+    <span>
+      スタイルクリアあり
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with custom font size 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-size: 2em;"
+  >
+    <span>
+      カスタムフォントサイズ指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with custom font size and responsive font size 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading has-text-align-center"
+    style="font-size: 2em; --ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
+  >
+    <span>
+      カスタム＆レスポンシブ
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with font size 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading font-size-large"
+  >
+    <span>
+      フォントサイズ指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with level 1 1`] = `
+<DocumentFragment>
+  <h1
+    class="ystdb-custom-heading"
+  >
+    <span>
+      カスタム見出し H1
+    </span>
+  </h1>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with level 3 1`] = `
+<DocumentFragment>
+  <h3
+    class="ystdb-custom-heading"
+  >
+    <span>
+      カスタム見出し H3
+    </span>
+  </h3>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with minimal attributes 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+  >
+    <span>
+      カスタム見出し
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with responsive font size 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
+  >
+    <span>
+      レスポンシブフォントサイズ指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with text align center 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading has-text-align-center"
+  >
+    <span>
+      テキストセンター揃え
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot matches snapshot with text align right 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading has-text-align-right"
+  >
+    <span>
+      テキスト右揃え
+    </span>
+  </h2>
+</DocumentFragment>
+`;
