@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "ystdb/custom-heading",
 	"title": "【β版】カスタム見出し",
-	"description": "【β版】カスタム見出しブロック",
+	"description": "※このブロックは開発中ブロックです。正式リリースまでに設定の追加削除など仕様変更がある点にご注意ください。将来的にyStandard Blocksのカスタム見出しブロックが廃止になり、このブロックが見出しブロックとなります。【β版】カスタム見出しブロック",
 	"version": "1.0.0",
 	"keywords": [
 		"heading",

@@ -4,15 +4,17 @@
 import { InspectorControls as WPInspectorControls } from '@wordpress/block-editor';
 
 /**
- * Aktk dependencies.
+ * Block dependencies.
  */
-import { ClearStyle } from './clear-style';
+import { MainTextPanel } from './main-text';
+import { ClearStylePanel } from './clear-style';
 
 // @ts-ignore
 export function InspectorControls( props ) {
 	return (
 		<WPInspectorControls>
-			<ClearStyle { ...props } />
+			<MainTextPanel { ...props } />
+			<ClearStylePanel { ...props } />
 		</WPInspectorControls>
 	);
 }

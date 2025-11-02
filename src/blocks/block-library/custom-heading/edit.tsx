@@ -10,25 +10,19 @@ import { __ } from '@wordpress/i18n';
  * Block dependencies.
  */
 import type { Attributes } from './types';
-import { getHeadingClasses } from './util';
-import { InspectorControls } from '@aktk/blocks/block-library/custom-heading/inspector-controls';
+import { InspectorControls } from './inspector-controls';
+import { getHeadingClasses, getHeadingStyles } from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
-	const {
-		attributes,
-		setAttributes,
-		mergeBlocks,
-		onReplace,
-		style,
-		clientId,
-	} = props;
+	const { attributes, setAttributes, mergeBlocks, onReplace } = props;
 	const { content, level, textAlign, placeholder } = attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
 	// ブロックProps.
 	const blockProps = useBlockProps( {
 		className: getHeadingClasses( attributes ),
+		style: getHeadingStyles( attributes ),
 	} );
 
 	const onContentChange = ( newContent: string ) => {

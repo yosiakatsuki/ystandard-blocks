@@ -30,6 +30,7 @@ class Custom_Heading_Block {
 	 */
 	private function __construct() {
 		add_action( 'init', [ $this, 'register_block' ], 100 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_responsive_style' ] );
 	}
 
 	/**
@@ -43,6 +44,44 @@ class Custom_Heading_Block {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * レスポンシブ用CSS出力.
+	 *
+	 * @return void
+	 */
+	public function enqueue_responsive_style() {
+
+		$types      = [ 'desktop', 'tablet', 'mobile' ];
+		$responsive = [
+			'desktop' => '',
+			'tablet'  => '',
+			'mobile'  => '',
+		];
+		$selector   = '.ystdb-custom-heading';
+		$css        = '';
+		foreach ( $types as $type ) {
+			// フォントサイズ.
+			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+				[
+					'selector'  => $selector,
+					'prop_name' => 'heading--font-size',
+					'property'  => 'font-size',
+					'type'      => $type,
+				]
+			);
+		}
+
+		// 結合.
+		$css .= Styles::add_media_query_desktop( $responsive['desktop'] );
+		$css .= Styles::add_media_query_tablet( $responsive['tablet'] );
+		$css .= Styles::add_media_query_mobile( $responsive['mobile'] );
+
+		$handle = 'ystdb-custom-heading-block-responsive';
+		wp_register_style( $handle, false );
+		wp_add_inline_style( $handle, $css );
+		wp_enqueue_style( $handle );
 	}
 
 	/**

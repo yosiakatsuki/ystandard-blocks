@@ -7,7 +7,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  * Block dependencies.
  */
 import type { Attributes } from './types';
-import { getHeadingClasses } from './util';
+import { getHeadingClasses, getHeadingStyles } from './utils';
 
 // @ts-expect-error
 function Save( { attributes } ) {
@@ -15,6 +15,7 @@ function Save( { attributes } ) {
 	const TagName = 'h' + level;
 	const blockProps = useBlockProps.save( {
 		className: getHeadingClasses( attributes ),
+		style: getHeadingStyles( attributes ),
 	} );
 
 	return (
