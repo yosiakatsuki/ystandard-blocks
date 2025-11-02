@@ -4,7 +4,7 @@ import Save from '../save';
 
 // スナップショットテスト
 describe( 'Custom Heading Block <Save /> snapshot', () => {
-	it( '001: matches snapshot with minimal attributes', () => {
+	it( '001: 最小限の属性', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -16,7 +16,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '002: matches snapshot with level 1', () => {
+	it( '002: レベル1の見出し', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -28,7 +28,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '003: matches snapshot with level 3', () => {
+	it( '003: レベル3の見出し', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -40,7 +40,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '004: matches snapshot with font size', () => {
+	it( '004: フォントサイズ指定', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -53,7 +53,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '005: matches snapshot with custom font size', () => {
+	it( '005: カスタムフォントサイズ指定', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -66,7 +66,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '006: matches snapshot with responsive font size', () => {
+	it( '006: レスポンシブフォントサイズ指定', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -83,7 +83,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '007: matches snapshot with text align center', () => {
+	it( '007: テキスト中央揃え', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -96,7 +96,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '008: matches snapshot with text align right', () => {
+	it( '008: テキスト右揃え', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -109,7 +109,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '009: matches snapshot with clearStyle true', () => {
+	it( '009: スタイルクリア有効', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -122,7 +122,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '010: matches snapshot with all attributes combined', () => {
+	it( '010: 複数属性の組み合わせ', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -137,7 +137,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '011: matches snapshot with custom font size and responsive font size', () => {
+	it( '011: カスタムフォントサイズとレスポンシブフォントサイズの組み合わせ', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
