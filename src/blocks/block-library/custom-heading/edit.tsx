@@ -23,8 +23,7 @@ function Edit( props ) {
 		style,
 		clientId,
 	} = props;
-	const { content, level, anchor, textAlign, placeholder } =
-		attributes as Attributes;
+	const { content, level, textAlign, placeholder } = attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
 	// ブロックProps.

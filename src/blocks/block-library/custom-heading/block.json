@@ -22,8 +22,7 @@
 			"default": 2
 		},
 		"textAlign": {
-			"type": "string",
-			"default": "left"
+			"type": "string"
 		},
 		"textColor": {
 			"type": "string"

@@ -5,8 +5,9 @@ import classnames from 'classnames';
 import type { Attributes } from './types';
 
 export function getHeadingClasses( attributes: Attributes ) {
-	const { clearStyle } = attributes;
+	const { clearStyle, textAlign } = attributes;
 	return classnames( 'ystdb-custom-heading', {
 		'is-clear-style': clearStyle,
+		[ `has-text-align-${ textAlign }` ]: !! textAlign,
 	} );
 }
