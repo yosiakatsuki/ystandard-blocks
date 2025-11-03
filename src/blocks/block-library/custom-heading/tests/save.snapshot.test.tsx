@@ -327,4 +327,56 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '023: 文字太さ(400)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字太さ指定(400)',
+					level: 2,
+					fontWeight: '400',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '024: 文字太さ(700)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字太さ指定(700)',
+					level: 2,
+					fontWeight: '700',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '025: 文字スタイル(italic)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字スタイル指定(italic)',
+					level: 2,
+					fontStyle: 'italic',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '026: 文字スタイル(normal)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字スタイル指定(normal)',
+					level: 2,
+					fontStyle: 'normal',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

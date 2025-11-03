@@ -12,6 +12,10 @@ export interface Attributes {
 	fontSize?: string;
 	customFontSize?: string;
 	responsiveFontSize?: ResponsiveFontSize;
+	fontWeight?: string;
+	fontStyle?: string;
+	lineHeight?: number;
+	lettersSpacing?: string;
 	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;

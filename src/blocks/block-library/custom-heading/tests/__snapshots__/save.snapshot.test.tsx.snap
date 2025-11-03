@@ -273,3 +273,55 @@ exports[`Custom Heading Block <Save /> snapshot 022: 文字色追加(カスタ�
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 023: 文字太さ(400) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-weight: 400;"
+  >
+    <span>
+      文字太さ指定(400)
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 024: 文字太さ(700) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-weight: 700;"
+  >
+    <span>
+      文字太さ指定(700)
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 025: 文字スタイル(italic) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-style: italic;"
+  >
+    <span>
+      文字スタイル指定(italic)
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 026: 文字スタイル(normal) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-style: normal;"
+  >
+    <span>
+      文字スタイル指定(normal)
+    </span>
+  </h2>
+</DocumentFragment>
+`;

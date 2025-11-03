@@ -28,8 +28,14 @@ export function getHeadingClasses( attributes: Attributes ) {
 }
 
 export function getHeadingStyles( attributes: Attributes ) {
-	const { fontSize, customFontSize, responsiveFontSize, customTextColor } =
-		attributes;
+	const {
+		fontSize,
+		customFontSize,
+		responsiveFontSize,
+		customTextColor,
+		fontStyle,
+		fontWeight,
+	} = attributes;
 
 	// カスタムフォントサイズが有効かどうか.
 	let hasCustomFontSize = ! fontSize && !! customFontSize;
@@ -54,6 +60,8 @@ export function getHeadingStyles( attributes: Attributes ) {
 	return {
 		fontSize: hasCustomFontSize ? customFontSize : undefined,
 		color: customTextColor || undefined,
+		fontStyle: fontStyle || undefined,
+		fontWeight: fontWeight || undefined,
 		...responsiveStyles,
 	};
 }
