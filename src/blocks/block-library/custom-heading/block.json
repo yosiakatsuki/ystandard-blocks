@@ -39,6 +39,18 @@
 		"responsiveFontSize": {
 			"type": "object"
 		},
+		"lineHeight": {
+			"type": "string"
+		},
+		"letterSpacing": {
+			"type": "string"
+		},
+		"fontWeight": {
+			"type": "string"
+		},
+		"fontStyle": {
+			"type": "string"
+		},
 		"clearStyle": {
 			"type": "boolean",
 			"default": true
