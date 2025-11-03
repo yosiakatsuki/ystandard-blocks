@@ -12,7 +12,7 @@ import {
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 // @ts-expect-error
-export function FontSize( props ) {
+export function MainTextFontSize( props ) {
 	const { attributes, setAttributes } = props;
 	const { fontSize, customFontSize, responsiveFontSize } = attributes;
 	const handleOnChange = ( value: CustomFontSizePickerOnChangeProps ) => {

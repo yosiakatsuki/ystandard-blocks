@@ -11,13 +11,15 @@ import { Panel } from '@aktk/block-components/components/panel';
 /**
  * Block dependencies.
  */
-import { FontSize } from './font-size';
+import { MainTextFontSize } from './font-size';
+import { MainTextTextColor } from './text-color';
 
 // @ts-ignore.
 export function MainTextPanel( props ) {
 	return (
 		<Panel title={ __( 'メインテキスト', 'ystandard-blocks' ) }>
-			<FontSize { ...props } />
+			<MainTextFontSize { ...props } />
+			<MainTextTextColor { ...props } />
 		</Panel>
 	);
 }

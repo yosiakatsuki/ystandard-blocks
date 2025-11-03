@@ -15,14 +15,21 @@ import { getHeadingClasses, getHeadingStyles } from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
-	const { attributes, setAttributes, mergeBlocks, onReplace } = props;
+	const { attributes, setAttributes, textColor, mergeBlocks, onReplace } =
+		props;
 	const { content, level, textAlign, placeholder } = attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
 	// ブロックProps.
 	const blockProps = useBlockProps( {
-		className: getHeadingClasses( attributes ),
-		style: getHeadingStyles( attributes ),
+		className: getHeadingClasses( {
+			...attributes,
+			textColor: textColor?.slug,
+		} ),
+		style: getHeadingStyles( {
+			...attributes,
+			customTextColor: textColor?.color,
+		} ),
 	} );
 
 	const onContentChange = ( newContent: string ) => {

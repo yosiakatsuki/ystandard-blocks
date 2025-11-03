@@ -2,7 +2,8 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies.
  */
-import { getFontSizeClass } from '@wordpress/block-editor';
+import { getFontSizeClass, getColorClassName } from '@wordpress/block-editor';
+
 /**
  * Plugin dependencies.
  */
@@ -13,19 +14,22 @@ import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-
 import type { Attributes } from './types';
 
 export function getHeadingClasses( attributes: Attributes ) {
-	const { clearStyle, fontSize, textAlign } = attributes;
+	const { clearStyle, fontSize, textAlign, textColor } = attributes;
 
 	const fontSizeClass = getFontSizeClass( fontSize || '' );
+	const textColorClass = getColorClassName( 'color', textColor || '' );
 
 	return classnames( 'ystdb-custom-heading', {
 		[ fontSizeClass ]: !! fontSize,
+		[ textColorClass ]: !! textColor,
 		'is-clear-style': clearStyle,
 		[ `has-text-align-${ textAlign }` ]: !! textAlign,
 	} );
 }
 
 export function getHeadingStyles( attributes: Attributes ) {
-	const { fontSize, customFontSize, responsiveFontSize } = attributes;
+	const { fontSize, customFontSize, responsiveFontSize, customTextColor } =
+		attributes;
 
 	// カスタムフォントサイズが有効かどうか.
 	let hasCustomFontSize = ! fontSize && !! customFontSize;
@@ -49,6 +53,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 
 	return {
 		fontSize: hasCustomFontSize ? customFontSize : undefined,
+		color: customTextColor || undefined,
 		...responsiveStyles,
 	};
 }
