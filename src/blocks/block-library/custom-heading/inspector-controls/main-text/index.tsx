@@ -15,6 +15,7 @@ import { MainTextFontSize } from './font-size';
 import { MainTextTextColor } from './text-color';
 import { MainTextFonWeight } from './font-weight';
 import { MainTextFontStyle } from './font-style';
+import { MainTextLetterSpacing } from './letter-spacing';
 
 // @ts-ignore.
 export function MainTextPanel( props ) {
@@ -24,6 +25,7 @@ export function MainTextPanel( props ) {
 			<MainTextTextColor { ...props } />
 			<MainTextFonWeight { ...props } />
 			<MainTextFontStyle { ...props } />
+			<MainTextLetterSpacing { ...props } />
 		</Panel>
 	);
 }

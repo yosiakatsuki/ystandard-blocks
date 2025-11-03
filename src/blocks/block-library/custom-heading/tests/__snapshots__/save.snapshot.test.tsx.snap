@@ -325,3 +325,16 @@ exports[`Custom Heading Block <Save /> snapshot 026: 文字スタイル(normal) 
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 027: 文字間隔指定 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="letter-spacing: 0.1em;"
+  >
+    <span>
+      文字間隔指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;

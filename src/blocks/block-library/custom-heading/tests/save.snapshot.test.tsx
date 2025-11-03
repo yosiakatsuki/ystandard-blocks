@@ -379,4 +379,17 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '027: 文字間隔指定', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字間隔指定',
+					level: 2,
+					letterSpacing: '0.1em',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

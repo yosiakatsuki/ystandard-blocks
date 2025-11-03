@@ -15,7 +15,7 @@ export interface Attributes {
 	fontWeight?: string;
 	fontStyle?: string;
 	lineHeight?: number;
-	lettersSpacing?: string;
+	letterSpacing?: string;
 	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;
