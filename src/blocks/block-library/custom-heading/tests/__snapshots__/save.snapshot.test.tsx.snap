@@ -248,3 +248,28 @@ exports[`Custom Heading Block <Save /> snapshot 020: レスポンシブフォン
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 021: 文字色追加(クラス) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading color-ys-blue"
+  >
+    <span>
+      文字色class指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 022: 文字色追加(カスタム) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="color: rgb(255, 0, 0);"
+  >
+    <span>
+      文字色カスタム指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;

@@ -301,4 +301,30 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '021: 文字色追加(クラス)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字色class指定',
+					level: 2,
+					textColor: 'ys-blue',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '022: 文字色追加(カスタム)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '文字色カスタム指定',
+					level: 2,
+					customTextColor: '#ff0000',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );
