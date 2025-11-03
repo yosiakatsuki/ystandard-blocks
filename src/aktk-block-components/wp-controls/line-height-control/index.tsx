@@ -13,6 +13,7 @@ export default function LineHeightControl( props: LineHeightControlProps ) {
 				value={ value }
 				onChange={ onChange }
 				__nextHasNoMarginBottom={ true }
+				__next40pxDefaultSize
 			/>
 		</div>
 	);

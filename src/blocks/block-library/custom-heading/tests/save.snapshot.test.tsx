@@ -392,4 +392,30 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '028: 行の高さ指定', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '行の高さ指定',
+					level: 2,
+					lineHeight: 1.8,
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '029: 行の高さ指定(0指定)', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '行の高さ指定(0指定)',
+					level: 2,
+					lineHeight: 0,
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

@@ -338,3 +338,29 @@ exports[`Custom Heading Block <Save /> snapshot 027: 文字間隔指定 1`] = `
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 028: 行の高さ指定 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="line-height: 1.8;"
+  >
+    <span>
+      行の高さ指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 029: 行の高さ指定(0指定) 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="line-height: 0;"
+  >
+    <span>
+      行の高さ指定(0指定)
+    </span>
+  </h2>
+</DocumentFragment>
+`;
