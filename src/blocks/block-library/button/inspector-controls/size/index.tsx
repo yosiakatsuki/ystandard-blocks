@@ -15,10 +15,7 @@ import { Width } from './width';
 export function SizePanel( props ) {
 	return (
 		<>
-			<Panel
-				title={ __( 'サイズ', 'ystandard-blocks' ) }
-				initialOpen={ false }
-			>
+			<Panel title={ __( 'サイズ', 'ystandard-blocks' ) }>
 				<Width { ...props } />
 			</Panel>
 		</>
