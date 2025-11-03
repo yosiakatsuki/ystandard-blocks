@@ -27,6 +27,9 @@ export function getHeadingClasses( attributes: Attributes ) {
 export function getHeadingStyles( attributes: Attributes ) {
 	const { fontSize, customFontSize, responsiveFontSize } = attributes;
 
+	// カスタムフォントサイズが有効かどうか.
+	let hasCustomFontSize = ! fontSize && !! customFontSize;
+
 	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
 	// レスポンシブ指定のあるスタイルを生成.
 	const responsiveStyles = types.reduce(
@@ -37,6 +40,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 				acc[
 					getResponsiveCustomPropName( 'heading--font-size', type )
 				] = _fontSize;
+				hasCustomFontSize = false;
 			}
 			return acc;
 		},
@@ -44,7 +48,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 	);
 
 	return {
-		fontSize: ! fontSize && customFontSize ? customFontSize : undefined,
+		fontSize: hasCustomFontSize ? customFontSize : undefined,
 		...responsiveStyles,
 	};
 }
