@@ -37,6 +37,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 		fontWeight,
 		letterSpacing,
 		lineHeight,
+		fontFamily,
 	} = attributes;
 
 	// カスタムフォントサイズが有効かどうか.
@@ -66,6 +67,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 		fontWeight: fontWeight || undefined,
 		letterSpacing: letterSpacing || undefined,
 		lineHeight,
+		fontFamily,
 		...responsiveStyles,
 	};
 }

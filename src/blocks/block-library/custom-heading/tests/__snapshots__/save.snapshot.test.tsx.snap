@@ -364,3 +364,16 @@ exports[`Custom Heading Block <Save /> snapshot 029: 行の高さ指定(0指定)
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 030: フォントファミリー指定 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="font-family: Arial, sans-serif;"
+  >
+    <span>
+      フォントファミリー指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;

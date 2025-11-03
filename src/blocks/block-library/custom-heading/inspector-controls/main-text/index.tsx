@@ -17,6 +17,7 @@ import { MainTextFonWeight } from './font-weight';
 import { MainTextFontStyle } from './font-style';
 import { MainTextLetterSpacing } from './letter-spacing';
 import { MainTextLineHeight } from './line-height';
+import { MainTextFontFamily } from './font-family';
 
 // @ts-ignore.
 export function MainTextPanel( props ) {
@@ -28,6 +29,7 @@ export function MainTextPanel( props ) {
 			<MainTextFontStyle { ...props } />
 			<MainTextLetterSpacing { ...props } />
 			<MainTextLineHeight { ...props } />
+			<MainTextFontFamily { ...props } />
 		</Panel>
 	);
 }

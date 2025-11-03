@@ -3,7 +3,7 @@ import { LineHeightControl as WPLineHeightControl } from '@wordpress/block-edito
 
 interface LineHeightControlProps {
 	value: string | undefined;
-	onChange: ( value: number ) => void;
+	onChange: ( value: string ) => void;
 }
 export default function LineHeightControl( props: LineHeightControlProps ) {
 	const { value, onChange } = props;

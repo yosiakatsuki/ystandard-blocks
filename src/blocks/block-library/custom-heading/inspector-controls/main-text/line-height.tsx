@@ -17,7 +17,7 @@ export function MainTextLineHeight( props ) {
 	const { attributes, setAttributes } = props;
 	const { lineHeight } = attributes as Attributes;
 
-	const handleOnChange = ( newValue: number | undefined ) => {
+	const handleOnChange = ( newValue: string | undefined ) => {
 		setAttributes( {
 			lineHeight: newValue,
 		} );

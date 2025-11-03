@@ -40,7 +40,7 @@
 			"type": "object"
 		},
 		"lineHeight": {
-			"type": "number"
+			"type": "string"
 		},
 		"letterSpacing": {
 			"type": "string"
@@ -49,6 +49,9 @@
 			"type": "string"
 		},
 		"fontStyle": {
+			"type": "string"
+		},
+		"fontFamily": {
 			"type": "string"
 		},
 		"clearStyle": {

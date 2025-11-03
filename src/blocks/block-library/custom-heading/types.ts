@@ -14,8 +14,9 @@ export interface Attributes {
 	responsiveFontSize?: ResponsiveFontSize;
 	fontWeight?: string;
 	fontStyle?: string;
-	lineHeight?: number;
+	lineHeight?: string;
 	letterSpacing?: string;
+	fontFamily?: string;
 	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;

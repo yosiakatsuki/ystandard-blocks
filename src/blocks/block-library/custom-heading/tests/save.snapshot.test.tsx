@@ -418,4 +418,17 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '030: フォントファミリー指定', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'フォントファミリー指定',
+					level: 2,
+					fontFamily: 'Arial, sans-serif',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );
