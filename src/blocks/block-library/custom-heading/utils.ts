@@ -36,7 +36,7 @@ export function getHeadingStyles( attributes: Attributes ) {
 		( acc, type ) => {
 			// font-size.
 			const _fontSize = responsiveFontSize?.[ type ];
-			if ( _fontSize ) {
+			if ( _fontSize && ! fontSize ) {
 				acc[
 					getResponsiveCustomPropName( 'heading--font-size', type )
 				] = _fontSize;
