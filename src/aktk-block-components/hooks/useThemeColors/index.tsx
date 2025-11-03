@@ -6,6 +6,7 @@ import { useMemo } from '@wordpress/element';
 // @ts-ignore
 import { useSettings } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
+// @ts-ignore.
 import { store as editorStore } from '@wordpress/editor';
 
 type themeColorsOptions = {

@@ -1,7 +1,7 @@
 // @ts-ignore.
 import { __experimentalFontFamilyControl as WPFontFamilyControl } from '@wordpress/block-editor';
 
-type FontFamilies = Array< {
+export type FontFamilies = Array< {
 	name: string;
 	fontFamily: string;
 } >;

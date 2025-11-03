@@ -2,7 +2,7 @@
  * Aktk dependencies.
  */
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
-import FontFamilyControl from '@aktk/block-components/wp-controls/font-family-control';
+import { FontFamilySelect } from '@aktk/block-components/components/font-family-select';
 
 // @ts-expect-error.
 export function MainTextFontFamily( props ) {
@@ -16,7 +16,7 @@ export function MainTextFontFamily( props ) {
 	};
 	return (
 		<BaseControl>
-			<FontFamilyControl
+			<FontFamilySelect
 				value={ fontFamily }
 				onChange={ handleOnChange }
 			/>
