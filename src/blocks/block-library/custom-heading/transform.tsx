@@ -27,6 +27,10 @@ export const transforms = {
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
 					customFontSize: attributes.customFontSize,
+					fontWeight: attributes?.style?.typography?.fontWeight,
+					fontStyle: attributes?.style?.typography?.fontStyle,
+					letterSpacing: attributes?.style?.typography?.letterSpacing,
+					lineHeight: attributes?.style?.typography?.lineHeight,
 				} );
 			},
 		},
@@ -80,6 +84,10 @@ export const transforms = {
 					content: attributes.content,
 					level: attributes.level,
 					textAlign: attributes.textAlign,
+					textColor: attributes.textColor,
+					customTextColor: attributes.customTextColor,
+					fontSize: attributes.fontSize,
+					customFontSize: attributes.customFontSize,
 				} );
 			},
 		},
