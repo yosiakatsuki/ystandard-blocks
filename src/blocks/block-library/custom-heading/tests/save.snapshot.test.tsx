@@ -155,4 +155,150 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	// フォントサイズ優先順位のテスト
+	it( '012: フォントサイズとカスタムフォントサイズの組み合わせ（fontSizeが優先）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'fontSize優先',
+					level: 2,
+					fontSize: 'large',
+					customFontSize: '3em',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '013: フォントサイズとレスポンシブフォントサイズの組み合わせ（fontSizeが優先）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'fontSize優先',
+					level: 2,
+					fontSize: 'large',
+					responsiveFontSize: {
+						desktop: '2rem',
+						tablet: '1.5rem',
+						mobile: '1.2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '014: 全フォントサイズ指定の組み合わせ（fontSizeが優先）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'fontSize優先',
+					level: 2,
+					fontSize: 'large',
+					customFontSize: '3em',
+					responsiveFontSize: {
+						desktop: '2rem',
+						tablet: '1.5rem',
+						mobile: '1.2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	// レスポンシブフォントサイズ部分指定のテスト
+	it( '015: レスポンシブフォントサイズ（desktopのみ）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'デスクトップのみ',
+					level: 2,
+					responsiveFontSize: {
+						desktop: '2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '016: レスポンシブフォントサイズ（tabletのみ）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'タブレットのみ',
+					level: 2,
+					responsiveFontSize: {
+						tablet: '1.5rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '017: レスポンシブフォントサイズ（mobileのみ）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'モバイルのみ',
+					level: 2,
+					responsiveFontSize: {
+						mobile: '1.2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '018: レスポンシブフォントサイズ（desktop + tablet）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'デスクトップ＋タブレット',
+					level: 2,
+					responsiveFontSize: {
+						desktop: '2rem',
+						tablet: '1.5rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '019: レスポンシブフォントサイズ（desktop + mobile）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'デスクトップ＋モバイル',
+					level: 2,
+					responsiveFontSize: {
+						desktop: '2rem',
+						mobile: '1.2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '020: レスポンシブフォントサイズ（tablet + mobile）', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'タブレット＋モバイル',
+					level: 2,
+					responsiveFontSize: {
+						tablet: '1.5rem',
+						mobile: '1.2rem',
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );
