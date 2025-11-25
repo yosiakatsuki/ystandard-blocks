@@ -1,0 +1,75 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+  "apiVersion": 3,
+  "name": "ystdb/custom-heading",
+  "title": "【β版】カスタム見出し",
+  "description": "※このブロックは開発中ブロックです。正式リリースまでに設定の追加削除など仕様変更がある点にご注意ください。将来的にyStandard Blocksのカスタム見出しブロックが廃止になり、このブロックが見出しブロックとなります。",
+  "version": "1.0.0",
+  "keywords": [
+    "heading",
+    "見出し",
+    "カスタム見出し"
+  ],
+  "attributes": {
+    "content": {
+      "type": "rich-text",
+      "source": "rich-text",
+      "selector": "h1,h2,h3,h4,h5,h6",
+      "role": "content"
+    },
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "customFontSize": {
+      "type": "string"
+    },
+    "responsiveFontSize": {
+      "type": "object"
+    },
+    "lineHeight": {
+      "type": "string"
+    },
+    "letterSpacing": {
+      "type": "string"
+    },
+    "fontWeight": {
+      "type": "string"
+    },
+    "fontStyle": {
+      "type": "string"
+    },
+    "fontFamily": {
+      "type": "string"
+    },
+    "clearStyle": {
+      "type": "boolean",
+      "default": true
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "align": false,
+    "anchor": true,
+    "className": true,
+    "splitting": true
+  },
+  "textdomain": "ystandard-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
