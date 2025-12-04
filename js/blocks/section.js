@@ -5663,7 +5663,6 @@ const SectionEdit = props => {
               id: 'background-point',
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('表示位置', 'ystandard-blocks'),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FocalPointPicker, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Focal point picker'),
                 url: backgroundImageURL,
                 value: focalPoint,
                 onChange: newFocalPoint => {

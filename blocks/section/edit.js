@@ -1125,7 +1125,6 @@ const SectionEdit = ( props ) => {
 									) }
 								>
 									<FocalPointPicker
-										label={ __( 'Focal point picker' ) }
 										url={ backgroundImageURL }
 										value={ focalPoint }
 										onChange={ ( newFocalPoint ) => {
