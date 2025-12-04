@@ -1136,6 +1136,7 @@ const SectionEdit = ( props ) => {
 											'dark-focal-point-picker':
 												useDarkImagePreview,
 										} ) }
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 								<BaseControl

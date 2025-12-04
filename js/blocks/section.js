@@ -5672,7 +5672,8 @@ const SectionEdit = props => {
                 },
                 className: classnames__WEBPACK_IMPORTED_MODULE_0___default()({
                   'dark-focal-point-picker': useDarkImagePreview
-                })
+                }),
+                __nextHasNoMarginBottom: true
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsxs)(_aktk_block_components_wp_controls_base_control__WEBPACK_IMPORTED_MODULE_6__["default"], {
               id: 'background-size',
