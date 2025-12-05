@@ -106,6 +106,8 @@ const BalloonItem = ( props ) => {
 								onChange={ ( value ) => {
 									updateBalloon( { name: value } );
 								} }
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 							/>
 						</div>
 						<div className="ystdb-menu-balloon__item-enable">
@@ -116,6 +118,7 @@ const BalloonItem = ( props ) => {
 										enable: true === value ? 1 : 0,
 									} );
 								} }
+								__nextHasNoMarginBottom
 							/>
 						</div>
 						<DeleteItemButton

@@ -187,7 +187,9 @@ const ButtonItems = () => {
 				<div className="ystdb-menu-component-columns is-reverse">
 					<div className="ystdb-menu-component-columns__item">
 						<PanelBody title={ 'スタイル選択' }>
-							<BaseControl>
+							<BaseControl
+								__nextHasNoMarginBottom
+							>
 								{ isNothingItems && (
 									<>
 										<p>スタイル設定がありません。</p>
@@ -225,6 +227,8 @@ const ButtonItems = () => {
 												onChange={ ( value ) => {
 													setSelectedItem( value );
 												} }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										) }
 									</div>
@@ -253,6 +257,7 @@ const ButtonItems = () => {
 								<BaseControl
 									id={ 'button-name' }
 									label={ 'ボタン名' }
+									__nextHasNoMarginBottom
 								>
 									<TextControl
 										label={ `表示名 (ID:${ getCurrentOption(
@@ -268,11 +273,14 @@ const ButtonItems = () => {
 												label: value,
 											} );
 										} }
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 								<BaseControl
 									id={ 'enable' }
 									label={ 'ボタンの有効化' }
+									__nextHasNoMarginBottom
 								>
 									<ToggleControl
 										label={ 'ボタンを有効にする' }
@@ -285,6 +293,7 @@ const ButtonItems = () => {
 												enable: value,
 											} );
 										} }
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 							</PanelBody>
@@ -296,6 +305,7 @@ const ButtonItems = () => {
 										<BaseControl
 											id={ 'column-font-size' }
 											label={ 'サイズ' }
+											__nextHasNoMarginBottom
 										>
 											<div className="ystdb-component-responsive__container">
 												<div className="ystdb-component-responsive__item">
@@ -319,6 +329,7 @@ const ButtonItems = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
@@ -343,6 +354,7 @@ const ButtonItems = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
@@ -367,6 +379,7 @@ const ButtonItems = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 											</div>
@@ -374,6 +387,7 @@ const ButtonItems = () => {
 										<BaseControl
 											id={ 'font-weight' }
 											label={ '太さ' }
+											__nextHasNoMarginBottom
 										>
 											<SelectControl
 												value={ getStyle(
@@ -391,11 +405,14 @@ const ButtonItems = () => {
 														'font-weight': value,
 													} );
 												} }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 										<BaseControl
 											id={ 'font-style' }
 											label={ 'スタイル' }
+											__nextHasNoMarginBottom
 										>
 											<SelectControl
 												value={ getStyle(
@@ -413,11 +430,14 @@ const ButtonItems = () => {
 														'font-style': value,
 													} );
 												} }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 										<BaseControl
 											id={ 'white-space' }
 											label={ '改行しない' }
+											__nextHasNoMarginBottom
 										>
 											<ToggleControl
 												label={ '改行しない' }
@@ -438,6 +458,7 @@ const ButtonItems = () => {
 															: undefined,
 													} );
 												} }
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 									</PanelBody>
@@ -445,6 +466,7 @@ const ButtonItems = () => {
 										<BaseControl
 											id={ 'font-color' }
 											label={ '文字色' }
+											__nextHasNoMarginBottom
 										>
 											<ColorPalette
 												onChange={ ( color ) => {
@@ -469,6 +491,7 @@ const ButtonItems = () => {
 										<BaseControl
 											id={ 'font-family' }
 											label={ 'フォント(font-family)' }
+											__nextHasNoMarginBottom
 										>
 											<TextControl
 												placeholder={ 'sans-serif' }
@@ -484,6 +507,8 @@ const ButtonItems = () => {
 														'font-family': value,
 													} )
 												}
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 									</PanelBody>
@@ -537,7 +562,7 @@ const ButtonItems = () => {
 							isDismissible={ false }
 							focusOnMount
 						>
-							<BaseControl>
+							<BaseControl __nextHasNoMarginBottom>
 								<TextControl
 									label="ID (英数字)"
 									value={ newStyleSlug }
@@ -545,6 +570,8 @@ const ButtonItems = () => {
 										checkSlug( value, true );
 										setNewStyleSlug( value );
 									} }
+									__next40pxDefaultSize
+									__nextHasNoMarginBottom
 								/>
 								<ErrorMessage
 									isShow={ !! newStyleSlugErrorMessage }
@@ -558,6 +585,8 @@ const ButtonItems = () => {
 										setNewStyleLabel( value );
 										setNewStyleLabelErrorMessage( '' );
 									} }
+									__next40pxDefaultSize
+									__nextHasNoMarginBottom
 								/>
 								<ErrorMessage
 									isShow={ !! newStyleLabelErrorMessage }

@@ -85,6 +85,7 @@ export default function HierarchicalTermSelector( {
 							onChangeCheckbox( termId );
 						} }
 						label={ unescapeString( term.name ) }
+						__nextHasNoMarginBottom
 					/>
 					{ !! term.children.length && (
 						<div className="aktk-hierarchical-terms-list__subchoices">

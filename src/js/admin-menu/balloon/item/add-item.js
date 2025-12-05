@@ -1,5 +1,5 @@
 import { Icon, plusCircle } from '@wordpress/icons';
-import { useContext, useState } from '@wordpress/element';
+import { useContext, useState, useRef } from '@wordpress/element';
 import { Button, TextControl, Modal } from '@wordpress/components';
 
 import './_add-item.scss';
@@ -14,6 +14,8 @@ const AddItem = () => {
 		useContext( BalloonContext );
 
 	const [ isModalOpen, setIsModalOpen ] = useState( false );
+	const buttonRef = useRef( null );
+	const avatarNameRef = useRef( null );
 
 	const avatarDefaultValue = {
 		image: '',
@@ -24,8 +26,23 @@ const AddItem = () => {
 	const [ avatar, setAvatar ] = useState( avatarDefaultValue );
 	const [ hasError, setHasError ] = useState( false );
 
-	const openModal = () => setIsModalOpen( true );
-	const closeModal = () => setIsModalOpen( false );
+	const openModal = () => {
+		setIsModalOpen( true );
+
+		setTimeout( () => {
+			if ( avatarNameRef?.current ) {
+				avatarNameRef.current.focus();
+			}
+		}, 100 );
+	};
+	const closeModal = () => {
+		setTimeout( () => {
+			if ( buttonRef?.current ) {
+				buttonRef.current.focus();
+			}
+		}, 100 );
+		setIsModalOpen( false );
+	};
 
 	const checkInput = () => {
 		if ( ! avatar.image && ! avatar.name ) {
@@ -51,7 +68,12 @@ const AddItem = () => {
 
 	return (
 		<div className="ystdb-menu-balloon__add-item">
-			<Button isSecondary onClick={ openModal } disabled={ isUpdating }>
+			<Button
+				isSecondary
+				onClick={ openModal }
+				disabled={ isUpdating }
+				ref={ buttonRef }
+			>
 				<Icon className={ 'ystdb-button-icon' } icon={ plusCircle } />{ ' ' }
 				追加
 			</Button>
@@ -96,6 +118,7 @@ const AddItem = () => {
 						</div>
 						<div className="ystdb-menu-balloon__add-modal-name">
 							<TextControl
+								ref={ avatarNameRef }
 								value={ avatar.name }
 								onChange={ ( value ) => {
 									setAvatar( ( old ) => {
@@ -108,6 +131,8 @@ const AddItem = () => {
 									} );
 									setHasError( false );
 								} }
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 							/>
 						</div>
 						<ErrorMessage isShow={ hasError }>

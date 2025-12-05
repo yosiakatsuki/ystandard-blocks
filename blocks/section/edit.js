@@ -1125,7 +1125,6 @@ const SectionEdit = ( props ) => {
 									) }
 								>
 									<FocalPointPicker
-										label={ __( 'Focal point picker' ) }
 										url={ backgroundImageURL }
 										value={ focalPoint }
 										onChange={ ( newFocalPoint ) => {
@@ -1137,6 +1136,7 @@ const SectionEdit = ( props ) => {
 											'dark-focal-point-picker':
 												useDarkImagePreview,
 										} ) }
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 								<BaseControl
