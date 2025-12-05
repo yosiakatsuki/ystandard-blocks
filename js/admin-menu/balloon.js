@@ -2331,7 +2331,9 @@ const BalloonItem = props => {
                 updateBalloon({
                   name: value
                 });
-              }
+              },
+              __next40pxDefaultSize: true,
+              __nextHasNoMarginBottom: true
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "ystdb-menu-balloon__item-enable",
@@ -2341,7 +2343,8 @@ const BalloonItem = props => {
                 updateBalloon({
                   enable: true === value ? 1 : 0
                 });
-              }
+              },
+              __nextHasNoMarginBottom: true
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_delete_item_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
             index: index,
