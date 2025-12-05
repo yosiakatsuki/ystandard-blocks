@@ -1821,6 +1821,8 @@ const AddItem = () => {
     isUpdating
   } = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useContext)(_index__WEBPACK_IMPORTED_MODULE_3__.BalloonContext);
   const [isModalOpen, setIsModalOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const buttonRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const avatarNameRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const avatarDefaultValue = {
     image: '',
     imageId: 0,
@@ -1828,8 +1830,22 @@ const AddItem = () => {
   };
   const [avatar, setAvatar] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(avatarDefaultValue);
   const [hasError, setHasError] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+    setTimeout(() => {
+      if (avatarNameRef?.current) {
+        avatarNameRef.current.focus();
+      }
+    }, 100);
+  };
+  const closeModal = () => {
+    setTimeout(() => {
+      if (buttonRef?.current) {
+        buttonRef.current.focus();
+      }
+    }, 100);
+    setIsModalOpen(false);
+  };
   const checkInput = () => {
     if (!avatar.image && !avatar.name) {
       setHasError(true);
@@ -1855,6 +1871,7 @@ const AddItem = () => {
       isSecondary: true,
       onClick: openModal,
       disabled: isUpdating,
+      ref: buttonRef,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
         className: 'ystdb-button-icon',
         icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -1900,6 +1917,7 @@ const AddItem = () => {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "ystdb-menu-balloon__add-modal-name",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            ref: avatarNameRef,
             value: avatar.name,
             onChange: value => {
               setAvatar(old => {
@@ -1911,7 +1929,9 @@ const AddItem = () => {
                 };
               });
               setHasError(false);
-            }
+            },
+            __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_message__WEBPACK_IMPORTED_MODULE_6__.ErrorMessage, {
           isShow: hasError,
