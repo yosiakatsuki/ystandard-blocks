@@ -146,6 +146,7 @@ const ToolbarButtons = () => {
 								<BaseControl
 									id={ 'enable' }
 									label={ 'ボタンの有効化' }
+									__nextHasNoMarginBottom
 								>
 									<ToggleControl
 										label={ 'ボタンを有効にする' }
@@ -155,6 +156,7 @@ const ToolbarButtons = () => {
 												enable: value,
 											} );
 										} }
+										__nextHasNoMarginBottom
 									/>
 								</BaseControl>
 							</PanelBody>
@@ -164,6 +166,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'font-size' }
 											label={ 'サイズ' }
+											__nextHasNoMarginBottom
 										>
 											<div className="ystdb-component-responsive__container">
 												<div className="ystdb-component-responsive__item">
@@ -189,6 +192,7 @@ const ToolbarButtons = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
@@ -217,6 +221,7 @@ const ToolbarButtons = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 												<div className="ystdb-component-responsive__item">
@@ -245,6 +250,7 @@ const ToolbarButtons = () => {
 															);
 														} }
 														units={ fontUnit }
+														__next40pxDefaultSize
 													/>
 												</div>
 											</div>
@@ -252,6 +258,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'font-weight' }
 											label={ '太さ' }
+											__nextHasNoMarginBottom
 										>
 											<SelectControl
 												value={ getStyle(
@@ -269,11 +276,14 @@ const ToolbarButtons = () => {
 														'font-weight': value,
 													} );
 												} }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 										<BaseControl
 											id={ 'font-style' }
 											label={ 'スタイル' }
+											__nextHasNoMarginBottom
 										>
 											<SelectControl
 												value={ getStyle(
@@ -291,6 +301,8 @@ const ToolbarButtons = () => {
 														'font-style': value,
 													} );
 												} }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 									</PanelBody>
@@ -298,6 +310,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'font-color' }
 											label={ '文字色' }
+											__nextHasNoMarginBottom
 										>
 											<ColorPalette
 												onChange={ ( color ) => {
@@ -317,6 +330,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'marker-color' }
 											label={ '色' }
+											__nextHasNoMarginBottom
 										>
 											<ColorPalette
 												onChange={ ( color ) => {
@@ -339,6 +353,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'marker-opacity' }
 											label={ '濃さ(%)' }
+											__nextHasNoMarginBottom
 										>
 											<RangeControl
 												value={ getStyle(
@@ -356,11 +371,14 @@ const ToolbarButtons = () => {
 												} }
 												min={ 10 }
 												max={ 100 }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 										<BaseControl
 											id={ 'marker-weight' }
 											label={ '太さ(%)' }
+											__nextHasNoMarginBottom
 										>
 											<RangeControl
 												value={ getStyle(
@@ -378,6 +396,8 @@ const ToolbarButtons = () => {
 												} }
 												min={ 5 }
 												max={ 95 }
+												__next40pxDefaultSize
+												__nextHasNoMarginBottom
 											/>
 										</BaseControl>
 									</PanelBody>
@@ -388,6 +408,7 @@ const ToolbarButtons = () => {
 										<BaseControl
 											id={ 'font-family' }
 											label={ 'フォント(font-family)' }
+											__nextHasNoMarginBottom
 										>
 											<TextControl
 												placeholder={ 'sans-serif' }

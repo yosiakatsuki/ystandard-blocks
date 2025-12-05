@@ -2241,6 +2241,7 @@ const ButtonItems = () => {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
             title: 'スタイル選択',
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+              __nextHasNoMarginBottom: true,
               children: [isNothingItems && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
                   children: "\u30B9\u30BF\u30A4\u30EB\u8A2D\u5B9A\u304C\u3042\u308A\u307E\u305B\u3093\u3002"
@@ -2267,7 +2268,9 @@ const ButtonItems = () => {
                     options: getItemList(),
                     onChange: value => {
                       setSelectedItem(value);
-                    }
+                    },
+                    __next40pxDefaultSize: true,
+                    __nextHasNoMarginBottom: true
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
@@ -2287,6 +2290,7 @@ const ButtonItems = () => {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
               id: 'button-name',
               label: 'ボタン名',
+              __nextHasNoMarginBottom: true,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
                 label: `表示名 (ID:${getCurrentOption('name', '')})`,
                 value: getCurrentOption('label', ''),
@@ -2294,11 +2298,14 @@ const ButtonItems = () => {
                   updateInlineItem({
                     label: value
                   });
-                }
+                },
+                __next40pxDefaultSize: true,
+                __nextHasNoMarginBottom: true
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
               id: 'enable',
               label: 'ボタンの有効化',
+              __nextHasNoMarginBottom: true,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
                 label: 'ボタンを有効にする',
                 checked: getCurrentOption('enable', true),
@@ -2306,7 +2313,8 @@ const ButtonItems = () => {
                   updateInlineItem({
                     enable: value
                   });
-                }
+                },
+                __nextHasNoMarginBottom: true
               })
             })]
           }), selectedItem && getCurrentOption('enable', true) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
@@ -2315,6 +2323,7 @@ const ButtonItems = () => {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'column-font-size',
                 label: 'サイズ',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                   className: "ystdb-component-responsive__container",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
@@ -2328,7 +2337,8 @@ const ButtonItems = () => {
                           'font-size': value
                         });
                       },
-                      units: fontUnit
+                      units: fontUnit,
+                      __next40pxDefaultSize: true
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                     className: "ystdb-component-responsive__item",
@@ -2341,7 +2351,8 @@ const ButtonItems = () => {
                           'font-size': value
                         }, 'tabletStyle');
                       },
-                      units: fontUnit
+                      units: fontUnit,
+                      __next40pxDefaultSize: true
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                     className: "ystdb-component-responsive__item",
@@ -2354,13 +2365,15 @@ const ButtonItems = () => {
                           'font-size': value
                         }, 'mobileStyle');
                       },
-                      units: fontUnit
+                      units: fontUnit,
+                      __next40pxDefaultSize: true
                     })]
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'font-weight',
                 label: '太さ',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
                   value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('style', {}), 'font-weight'),
                   options: (0,_aktk_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontWeight'),
@@ -2368,11 +2381,14 @@ const ButtonItems = () => {
                     updateInlineItemStyle({
                       'font-weight': value
                     });
-                  }
+                  },
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'font-style',
                 label: 'スタイル',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
                   value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('style', {}), 'font-style'),
                   options: (0,_aktk_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontStyle'),
@@ -2380,11 +2396,14 @@ const ButtonItems = () => {
                     updateInlineItemStyle({
                       'font-style': value
                     });
-                  }
+                  },
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'white-space',
                 label: '改行しない',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
                   label: '改行しない',
                   checked: 'nowrap' === (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('style', {}), 'white-space'),
@@ -2392,7 +2411,8 @@ const ButtonItems = () => {
                     updateInlineItemStyle({
                       'white-space': value ? 'nowrap' : undefined
                     });
-                  }
+                  },
+                  __nextHasNoMarginBottom: true
                 })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -2400,6 +2420,7 @@ const ButtonItems = () => {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'font-color',
                 label: '文字色',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_color_palette_color_palette__WEBPACK_IMPORTED_MODULE_5__["default"], {
                   onChange: color => {
                     updateInlineItemStyle({
@@ -2415,12 +2436,15 @@ const ButtonItems = () => {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'font-family',
                 label: 'フォント(font-family)',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
                   placeholder: 'sans-serif',
                   value: (0,_function__WEBPACK_IMPORTED_MODULE_7__.getStyle)(getCurrentOption('style', {}), 'font-family'),
                   onChange: value => updateInlineItemStyle({
                     'font-family': value
-                  })
+                  }),
+                  __next40pxDefaultSize: true,
+                  __nextHasNoMarginBottom: true
                 })
               })
             })]
@@ -2468,13 +2492,16 @@ const ButtonItems = () => {
           isDismissible: false,
           focusOnMount: true,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+            __nextHasNoMarginBottom: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
               label: "ID (\u82F1\u6570\u5B57)",
               value: newStyleSlug,
               onChange: value => {
                 checkSlug(value, true);
                 setNewStyleSlug(value);
-              }
+              },
+              __next40pxDefaultSize: true,
+              __nextHasNoMarginBottom: true
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_message__WEBPACK_IMPORTED_MODULE_8__.ErrorMessage, {
               isShow: !!newStyleSlugErrorMessage,
               children: newStyleSlugErrorMessage
@@ -2484,7 +2511,9 @@ const ButtonItems = () => {
               onChange: value => {
                 setNewStyleLabel(value);
                 setNewStyleLabelErrorMessage('');
-              }
+              },
+              __next40pxDefaultSize: true,
+              __nextHasNoMarginBottom: true
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_message__WEBPACK_IMPORTED_MODULE_8__.ErrorMessage, {
               isShow: !!newStyleLabelErrorMessage,
               children: newStyleLabelErrorMessage
@@ -3180,6 +3209,7 @@ const ToolbarButtons = () => {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                 id: 'enable',
                 label: 'ボタンの有効化',
+                __nextHasNoMarginBottom: true,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
                   label: 'ボタンを有効にする',
                   checked: getCurrentValue('enable'),
@@ -3187,7 +3217,8 @@ const ToolbarButtons = () => {
                     updateButtonsOption({
                       enable: value
                     });
-                  }
+                  },
+                  __nextHasNoMarginBottom: true
                 })
               })
             }), getCurrentValue('enable') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
@@ -3196,6 +3227,7 @@ const ToolbarButtons = () => {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'font-size',
                   label: 'サイズ',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                     className: "ystdb-component-responsive__container",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
@@ -3209,7 +3241,8 @@ const ToolbarButtons = () => {
                             'font-size': value
                           });
                         },
-                        units: fontUnit
+                        units: fontUnit,
+                        __next40pxDefaultSize: true
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                       className: "ystdb-component-responsive__item",
@@ -3222,7 +3255,8 @@ const ToolbarButtons = () => {
                             'font-size': value
                           }, 'tabletStyle');
                         },
-                        units: fontUnit
+                        units: fontUnit,
+                        __next40pxDefaultSize: true
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                       className: "ystdb-component-responsive__item",
@@ -3235,13 +3269,15 @@ const ToolbarButtons = () => {
                             'font-size': value
                           }, 'mobileStyle');
                         },
-                        units: fontUnit
+                        units: fontUnit,
+                        __next40pxDefaultSize: true
                       })]
                     })]
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'font-weight',
                   label: '太さ',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
                     value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-weight', getDefaultStyle('font-weight')),
                     options: (0,_aktk_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontWeight'),
@@ -3249,11 +3285,14 @@ const ToolbarButtons = () => {
                       updateButtonsStyle({
                         'font-weight': value
                       });
-                    }
+                    },
+                    __next40pxDefaultSize: true,
+                    __nextHasNoMarginBottom: true
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'font-style',
                   label: 'スタイル',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
                     value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-style', getDefaultStyle('font-style')),
                     options: (0,_aktk_helper_config__WEBPACK_IMPORTED_MODULE_3__.getComponentConfig)('fontStyle'),
@@ -3261,7 +3300,9 @@ const ToolbarButtons = () => {
                       updateButtonsStyle({
                         'font-style': value
                       });
-                    }
+                    },
+                    __next40pxDefaultSize: true,
+                    __nextHasNoMarginBottom: true
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -3269,6 +3310,7 @@ const ToolbarButtons = () => {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'font-color',
                   label: '文字色',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_color_palette_color_palette__WEBPACK_IMPORTED_MODULE_6__["default"], {
                     onChange: color => {
                       updateButtonsStyle({
@@ -3283,6 +3325,7 @@ const ToolbarButtons = () => {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'marker-color',
                   label: '色',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_color_palette_color_palette__WEBPACK_IMPORTED_MODULE_6__["default"], {
                     onChange: color => {
                       updateButtonsStyle({
@@ -3295,6 +3338,7 @@ const ToolbarButtons = () => {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'marker-opacity',
                   label: '濃さ(%)',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
                     value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), '@markerOpacity', getDefaultStyle('@markerOpacity')),
                     onChange: value => {
@@ -3304,11 +3348,14 @@ const ToolbarButtons = () => {
                       });
                     },
                     min: 10,
-                    max: 100
+                    max: 100,
+                    __next40pxDefaultSize: true,
+                    __nextHasNoMarginBottom: true
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'marker-weight',
                   label: '太さ(%)',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
                     value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), '@markerWeight', getDefaultStyle('@markerWeight')),
                     onChange: value => {
@@ -3318,7 +3365,9 @@ const ToolbarButtons = () => {
                       });
                     },
                     min: 5,
-                    max: 95
+                    max: 95,
+                    __next40pxDefaultSize: true,
+                    __nextHasNoMarginBottom: true
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -3327,6 +3376,7 @@ const ToolbarButtons = () => {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
                   id: 'font-family',
                   label: 'フォント(font-family)',
+                  __nextHasNoMarginBottom: true,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
                     placeholder: 'sans-serif',
                     value: (0,_function__WEBPACK_IMPORTED_MODULE_8__.getStyle)(getCurrentValue('style'), 'font-family', getDefaultStyle('font-family')),
