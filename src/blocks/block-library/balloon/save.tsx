@@ -36,6 +36,8 @@ function Avatar( attributes ) {
 		avatarBorderRadius,
 		avatarNameColor,
 		customAvatarNameColor,
+		avatarNameSize,
+		customAvatarNameSize,
 	} = attributes;
 
 	// アバターfigureクラス.
@@ -63,14 +65,20 @@ function Avatar( attributes ) {
 
 	// アバター名スタイル・クラス.
 	const avatarNameColorClass = getColorClassName( 'color', avatarNameColor );
+	const avatarNameSizeClass = getCustomFontSizeClass( {
+		slug: avatarNameSize,
+		size: customAvatarNameSize,
+	} );
 
 	const avatarNameClass = classnames( 'ystdb-balloon__name', {
 		[ avatarNameColorClass ]: avatarNameColorClass,
 		'has-text-color': customAvatarNameColor || avatarNameColorClass,
+		'has-font-size': avatarNameSizeClass || customAvatarNameSize,
 	} );
 
 	const avatarNameStyles = {
 		color: customAvatarNameColor,
+		fontSize: customAvatarNameSize,
 	};
 
 	return (

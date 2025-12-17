@@ -17,7 +17,7 @@ import {
 	getCustomFontSizeClass,
 	getCustomFontSizeStyle,
 } from '@aktk/block-components/components/custom-font-size-picker';
-import TextareaControl from '@aktk/block-components/wp-controls/textarea-control';
+import { StretchTextAreaControl } from '@aktk/block-components/components/text-control';
 
 /**
  * Block.
@@ -29,7 +29,6 @@ import {
 import InspectorControls from './inspector-controls';
 import BlockControls from './block-controls';
 import './style-editor.scss';
-
 
 // @ts-ignore
 function AvatarEdit( props ) {
@@ -47,6 +46,8 @@ function AvatarEdit( props ) {
 		avatarSize,
 		avatarBorderWidth,
 		avatarBorderRadius,
+		avatarNameSize,
+		customAvatarNameSize,
 		avatarName,
 	} = attributes;
 	// アバターfigureクラス.
@@ -116,9 +117,10 @@ function AvatarEdit( props ) {
 						avatarName={ avatarName }
 						setAttributes={ setAttributes }
 						avatarNameColor={ avatarNameColor }
+						avatarNameSize={ avatarNameSize }
+						customAvatarNameSize={ customAvatarNameSize }
 					/>
 				}
-				{ /*{ isSelected ? <AvatarNameEdit /> : <AvatarNamePreview /> }*/ }
 			</figure>
 		</>
 	);
@@ -134,6 +136,8 @@ type AvatarNameEditProps = {
 				class?: string;
 		  }
 		| undefined;
+	avatarNameSize?: string;
+	customAvatarNameSize?: string;
 };
 
 /**
@@ -143,16 +147,32 @@ type AvatarNameEditProps = {
  * @constructor
  */
 function AvatarNameEdit( props: AvatarNameEditProps ) {
-	const { isSelected, avatarName, setAttributes, avatarNameColor } = props;
+	const {
+		isSelected,
+		avatarName,
+		setAttributes,
+		avatarNameColor,
+		avatarNameSize,
+		customAvatarNameSize,
+	} = props;
+
+	const fontSizeObject = {
+		slug: avatarNameSize || '',
+		size: customAvatarNameSize || '',
+	};
 	// アバター名スタイル・クラス.
 	const avatarNameStyles = {
 		color: avatarNameColor?.color,
-		padding: '0.1em 0.25em',
-		height: 'auto',
+		fontSize: getCustomFontSizeStyle(
+			fontSizeObject,
+			customAvatarNameSize
+		),
 	};
 	const avatarNameClass = classnames( 'ystdb-balloon__name', {
 		'has-text-color': avatarNameColor?.color,
 		[ avatarNameColor?.class || '' ]: avatarNameColor?.class,
+		[ getCustomFontSizeClass( fontSizeObject ) ]: fontSizeObject?.slug,
+		'has-font-size': fontSizeObject?.slug || fontSizeObject?.size,
 	} );
 	// アバター名プレビュー.
 	const AvatarNamePreview = () => {
@@ -162,9 +182,9 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 		return <>{ avatarName }</>;
 	};
 	return (
-		<figcaption className={ avatarNameClass }>
+		<figcaption className={ avatarNameClass } style={ avatarNameStyles }>
 			{ isSelected ? (
-				<TextareaControl
+				<StretchTextAreaControl
 					value={ avatarName }
 					className={ 'ystdb-balloon__name--edit' }
 					onChange={ ( value ) => {
@@ -172,10 +192,7 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 							avatarName: value,
 						} );
 					} }
-					style={ avatarNameStyles }
 					placeholder={ __( '名前…', 'ystandard-blocks' ) }
-					ariaLabel={ __( '名前…', 'ystandard-blocks' )  }
-					rows={2}
 				/>
 			) : (
 				<AvatarNamePreview />

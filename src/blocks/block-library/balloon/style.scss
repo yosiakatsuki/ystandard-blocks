@@ -39,10 +39,10 @@
 				width: 80px;
 				height: 80px;
 			}
+		}
 
-			.ystdb-balloon__name {
-				font-size: 0.8em;
-			}
+		.ystdb-balloon__name:not(.has-font-size) {
+			font-size: 0.8em;
 		}
 	}
 }
