@@ -3,7 +3,6 @@ import classnames from 'classnames';
  * WordPress Dependencies
  */
 import { useBlockProps, withColors, RichText } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -18,6 +17,7 @@ import {
 	getCustomFontSizeClass,
 	getCustomFontSizeStyle,
 } from '@aktk/block-components/components/custom-font-size-picker';
+import TextareaControl from '@aktk/block-components/wp-controls/textarea-control';
 
 /**
  * Block.
@@ -28,7 +28,8 @@ import {
 } from '@aktk/blocks/block-library/balloon/utils';
 import InspectorControls from './inspector-controls';
 import BlockControls from './block-controls';
-import './editor.scss';
+import './style-editor.scss';
+
 
 // @ts-ignore
 function AvatarEdit( props ) {
@@ -79,37 +80,6 @@ function AvatarEdit( props ) {
 		avatarID || avatarURL
 			? { id: avatarID, url: avatarURL, alt: avatarAlt }
 			: undefined;
-
-	// // アバター名figcaption.
-	// const AvatarNameWrap = ( { children }: { children: React.ReactNode } ) => {
-	// 	return (
-	// 		<figcaption className={ avatarNameClass }>{ children }</figcaption>
-	// 	);
-	// };
-	//
-	// // アバター名編集.
-	// const AvatarNameEdit = () => {
-	// 	return (
-	// 		<AvatarNameWrap>
-	// 			<TextControl
-	// 				value={ avatarName }
-	// 				className={ 'ystdb-balloon__name--edit' }
-	// 				onChange={ ( value ) => {
-	// 					setAttributes( {
-	// 						avatarName: value,
-	// 					} );
-	// 				} }
-	// 				style={ avatarNameStyles }
-	// 				placeholder={ __( '名前…', 'ystandard-blocks' ) }
-	// 				aria-label={ __( 'Name' ) }
-	// 				data-1p-ignore
-	// 				data-lpignore
-	// 				__next40pxDefaultSize
-	// 				__nextHasNoMarginBottom
-	// 			/>
-	// 		</AvatarNameWrap>
-	// 	);
-	// };
 
 	return (
 		<>
@@ -166,6 +136,12 @@ type AvatarNameEditProps = {
 		| undefined;
 };
 
+/**
+ * アバター名編集コンポーネント.
+ *
+ * @param props
+ * @constructor
+ */
 function AvatarNameEdit( props: AvatarNameEditProps ) {
 	const { isSelected, avatarName, setAttributes, avatarNameColor } = props;
 	// アバター名スタイル・クラス.
@@ -188,7 +164,7 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 	return (
 		<figcaption className={ avatarNameClass }>
 			{ isSelected ? (
-				<TextControl
+				<TextareaControl
 					value={ avatarName }
 					className={ 'ystdb-balloon__name--edit' }
 					onChange={ ( value ) => {
@@ -198,11 +174,8 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 					} }
 					style={ avatarNameStyles }
 					placeholder={ __( '名前…', 'ystandard-blocks' ) }
-					aria-label={ __( 'Name' ) }
-					data-1p-ignore
-					data-lpignore
-					__next40pxDefaultSize
-					__nextHasNoMarginBottom
+					ariaLabel={ __( '名前…', 'ystandard-blocks' )  }
+					rows={2}
 				/>
 			) : (
 				<AvatarNamePreview />

@@ -61,17 +61,13 @@
 	.ystdb-balloon__name--edit {
 		text-align: center;
 
-		&:focus {
-			border: 0;
-			outline: none;
-			box-shadow: none;
-		}
-
-		.components-text-control__input {
+		.components-textarea-control__input {
 			text-align: center;
 			border: 0;
 			padding: 0.25em;
 			min-height: auto;
+			line-height: 1.2;
+			resize: none;
 		}
 	}
 
