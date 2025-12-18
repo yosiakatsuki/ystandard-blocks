@@ -16,10 +16,10 @@ export default function AvatarNameColor( props ) {
 	return (
 		<BaseControl
 			id={ 'avatar-border-color' }
-			label={ __( 'アバター名前文字色', 'ystandard-blocks' ) }
+			label={ __( 'アバター名 文字色', 'ystandard-blocks' ) }
 		>
 			<ColorPalette
-				label={ __( 'アバター名前文字色', 'ystandard-blocks' ) }
+				label={ __( 'アバター名 文字色', 'ystandard-blocks' ) }
 				value={ avatarNameColor.color }
 				onChange={ ( color ) => {
 					setAvatarNameColor( color );

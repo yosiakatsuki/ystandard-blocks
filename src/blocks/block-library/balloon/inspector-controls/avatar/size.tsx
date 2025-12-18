@@ -35,8 +35,8 @@ export default function AvatarSize( props ) {
 
 	return (
 		<BaseControl
-			id={ 'avatar-size' }
-			label={ __( 'アバターサイズ', 'ystandard-blocks' ) }
+			id={ 'avatar-image-size' }
+			label={ __( 'アバター画像サイズ', 'ystandard-blocks' ) }
 		>
 			<HorizonButtons>
 				{ SIZE.map( ( size ) => {
