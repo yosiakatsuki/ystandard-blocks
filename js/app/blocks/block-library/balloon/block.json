@@ -21,6 +21,12 @@
     "customAvatarNameColor": {
       "type": "string"
     },
+    "avatarNameSize": {
+      "type": "string"
+    },
+    "customAvatarNameSize": {
+      "type": "string"
+    },
     "avatarURL": {
       "type": "string",
       "source": "attribute",

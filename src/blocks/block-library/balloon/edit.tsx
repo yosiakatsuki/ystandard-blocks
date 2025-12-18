@@ -3,7 +3,6 @@ import classnames from 'classnames';
  * WordPress Dependencies
  */
 import { useBlockProps, withColors, RichText } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -18,6 +17,7 @@ import {
 	getCustomFontSizeClass,
 	getCustomFontSizeStyle,
 } from '@aktk/block-components/components/custom-font-size-picker';
+import { StretchTextAreaControl } from '@aktk/block-components/components/text-control';
 
 /**
  * Block.
@@ -28,7 +28,7 @@ import {
 } from '@aktk/blocks/block-library/balloon/utils';
 import InspectorControls from './inspector-controls';
 import BlockControls from './block-controls';
-import './editor.scss';
+import './style-editor.scss';
 
 // @ts-ignore
 function AvatarEdit( props ) {
@@ -46,6 +46,8 @@ function AvatarEdit( props ) {
 		avatarSize,
 		avatarBorderWidth,
 		avatarBorderRadius,
+		avatarNameSize,
+		customAvatarNameSize,
 		avatarName,
 	} = attributes;
 	// アバターfigureクラス.
@@ -79,37 +81,6 @@ function AvatarEdit( props ) {
 		avatarID || avatarURL
 			? { id: avatarID, url: avatarURL, alt: avatarAlt }
 			: undefined;
-
-	// // アバター名figcaption.
-	// const AvatarNameWrap = ( { children }: { children: React.ReactNode } ) => {
-	// 	return (
-	// 		<figcaption className={ avatarNameClass }>{ children }</figcaption>
-	// 	);
-	// };
-	//
-	// // アバター名編集.
-	// const AvatarNameEdit = () => {
-	// 	return (
-	// 		<AvatarNameWrap>
-	// 			<TextControl
-	// 				value={ avatarName }
-	// 				className={ 'ystdb-balloon__name--edit' }
-	// 				onChange={ ( value ) => {
-	// 					setAttributes( {
-	// 						avatarName: value,
-	// 					} );
-	// 				} }
-	// 				style={ avatarNameStyles }
-	// 				placeholder={ __( '名前…', 'ystandard-blocks' ) }
-	// 				aria-label={ __( 'Name' ) }
-	// 				data-1p-ignore
-	// 				data-lpignore
-	// 				__next40pxDefaultSize
-	// 				__nextHasNoMarginBottom
-	// 			/>
-	// 		</AvatarNameWrap>
-	// 	);
-	// };
 
 	return (
 		<>
@@ -146,9 +117,10 @@ function AvatarEdit( props ) {
 						avatarName={ avatarName }
 						setAttributes={ setAttributes }
 						avatarNameColor={ avatarNameColor }
+						avatarNameSize={ avatarNameSize }
+						customAvatarNameSize={ customAvatarNameSize }
 					/>
 				}
-				{ /*{ isSelected ? <AvatarNameEdit /> : <AvatarNamePreview /> }*/ }
 			</figure>
 		</>
 	);
@@ -164,19 +136,43 @@ type AvatarNameEditProps = {
 				class?: string;
 		  }
 		| undefined;
+	avatarNameSize?: string;
+	customAvatarNameSize?: string;
 };
 
+/**
+ * アバター名編集コンポーネント.
+ *
+ * @param props
+ * @constructor
+ */
 function AvatarNameEdit( props: AvatarNameEditProps ) {
-	const { isSelected, avatarName, setAttributes, avatarNameColor } = props;
+	const {
+		isSelected,
+		avatarName,
+		setAttributes,
+		avatarNameColor,
+		avatarNameSize,
+		customAvatarNameSize,
+	} = props;
+
+	const fontSizeObject = {
+		slug: avatarNameSize || '',
+		size: customAvatarNameSize || '',
+	};
 	// アバター名スタイル・クラス.
 	const avatarNameStyles = {
 		color: avatarNameColor?.color,
-		padding: '0.1em 0.25em',
-		height: 'auto',
+		fontSize: getCustomFontSizeStyle(
+			fontSizeObject,
+			customAvatarNameSize
+		),
 	};
 	const avatarNameClass = classnames( 'ystdb-balloon__name', {
 		'has-text-color': avatarNameColor?.color,
 		[ avatarNameColor?.class || '' ]: avatarNameColor?.class,
+		[ getCustomFontSizeClass( fontSizeObject ) ]: fontSizeObject?.slug,
+		'has-font-size': fontSizeObject?.slug || fontSizeObject?.size,
 	} );
 	// アバター名プレビュー.
 	const AvatarNamePreview = () => {
@@ -186,9 +182,9 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 		return <>{ avatarName }</>;
 	};
 	return (
-		<figcaption className={ avatarNameClass }>
+		<figcaption className={ avatarNameClass } style={ avatarNameStyles }>
 			{ isSelected ? (
-				<TextControl
+				<StretchTextAreaControl
 					value={ avatarName }
 					className={ 'ystdb-balloon__name--edit' }
 					onChange={ ( value ) => {
@@ -196,13 +192,7 @@ function AvatarNameEdit( props: AvatarNameEditProps ) {
 							avatarName: value,
 						} );
 					} }
-					style={ avatarNameStyles }
 					placeholder={ __( '名前…', 'ystandard-blocks' ) }
-					aria-label={ __( 'Name' ) }
-					data-1p-ignore
-					data-lpignore
-					__next40pxDefaultSize
-					__nextHasNoMarginBottom
 				/>
 			) : (
 				<AvatarNamePreview />

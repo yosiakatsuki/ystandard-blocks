@@ -1,0 +1,40 @@
+.aktk-component-stretch-text-area-control {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	translate: 0 -50%;
+	height: 100% !important;
+
+	> * {
+		height: 100% !important;
+	}
+
+	textarea {
+		width: 100% !important;
+		border: 0 !important;
+		background-color: transparent !important;
+		box-shadow: none !important;
+		color: currentcolor !important;
+		font-family: inherit !important;
+
+		&::placeholder {
+			color: currentcolor !important;
+		}
+
+		&:not([style*="height"]) {
+			height: 100% !important;
+		}
+		&:not([style*="min-height"]) {
+			min-height: 0 !important;
+		}
+		&:not([style*="padding"]) {
+			padding: 0 !important;
+		}
+	}
+}
+
+.aktk-component-stretch-text-area-control__dummy {
+	width: 100%;
+	opacity: 0;
+	z-index: -1;
+}
