@@ -35,7 +35,7 @@ export function registerCustomButtonBlock() {
 		...{
 			icon: (
 				<Link2
-					stroke={ COLORS.iconBetaForeground }
+					stroke={ COLORS.iconForeground }
 					style={ { fill: 'none' } }
 				/>
 			),
