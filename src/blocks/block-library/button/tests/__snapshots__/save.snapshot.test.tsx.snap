@@ -99,6 +99,26 @@ exports[`Button Block <Save /> snapshot matches snapshot with icons and font siz
 </DocumentFragment>
 `;
 
+exports[`Button Block <Save /> snapshot matches snapshot with linkTarget _blank only (no rel) 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link"
+      href="https://example.com"
+      target="_blank"
+    >
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Button Block <Save /> snapshot matches snapshot with minimal attributes 1`] = `
 <DocumentFragment>
   <div
@@ -107,6 +127,27 @@ exports[`Button Block <Save /> snapshot matches snapshot with minimal attributes
     <a
       class="ystdb-custom-button__link"
       href="https://example.com"
+    >
+      <span
+        class="ystdb-custom-button__content"
+      >
+        Button
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Button Block <Save /> snapshot matches snapshot with rel nofollow 1`] = `
+<DocumentFragment>
+  <div
+    class="ystdb-custom-button"
+  >
+    <a
+      class="ystdb-custom-button__link"
+      href="https://example.com"
+      rel="nofollow"
+      target="_blank"
     >
       <span
         class="ystdb-custom-button__content"

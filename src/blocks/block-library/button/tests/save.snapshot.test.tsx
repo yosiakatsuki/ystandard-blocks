@@ -73,4 +73,32 @@ describe( 'Button Block <Save /> snapshot', () => {
 		// スナップショットでHTML全体を確認
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( 'matches snapshot with linkTarget _blank only (no rel)', () => {
+		// 新しいタブで開く場合でもrel属性が自動付与されないことを確認
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'Button',
+					url: 'https://example.com',
+					linkTarget: '_blank',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( 'matches snapshot with rel nofollow', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'Button',
+					url: 'https://example.com',
+					linkTarget: '_blank',
+					rel: 'nofollow',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );
