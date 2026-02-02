@@ -63,7 +63,6 @@ class Deprecated_Blocks {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu' ], 100 + self::MENU_POSITION );
-		add_filter( Config::ADMIN_MENU_NAV_LIST, [ $this, 'add_nav_item' ], self::MENU_POSITION );
 	}
 
 	/**
@@ -106,30 +105,12 @@ class Deprecated_Blocks {
 	}
 
 	/**
-	 * メニューナビゲーション追加
-	 *
-	 * @param array $items List.
-	 *
-	 * @return array
-	 */
-	public function add_nav_item( $items ) {
-		$items[ self::MENU_SLUG ] = [
-			'label' => '非推奨ブロック',
-			'link'  => admin_url( 'admin.php?page=' . self::MENU_SLUG ),
-		];
-
-		return $items;
-	}
-
-	/**
 	 * ページ表示
 	 */
 	public function render_page() {
 		$content = $this->get_page_content();
 		Admin_Menu::admin_menu_content(
 			$content,
-			self::MENU_SLUG,
-			true,
 			self::CAPABILITY
 		);
 	}

@@ -79,7 +79,7 @@ class Inline_Style {
 		 * Admin.
 		 */
 		add_action( 'admin_menu', [ $this, 'add_menu' ], 100 + self::MENU_POSITION );
-		add_filter( Config::ADMIN_MENU_NAV_LIST, [ $this, 'add_nav_item' ], self::MENU_POSITION );
+
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
 
 		add_action( 'rest_api_init', [ $this, 'add_endpoint' ] );
@@ -421,26 +421,8 @@ class Inline_Style {
 	 */
 	public function add_page() {
 		Admin_Menu::admin_menu_content(
-			Admin_Menu::get_option_page_element( self::ADMIN_MENU_SCRIPT_NAME ),
-			self::MENU_SLUG
+			Admin_Menu::get_option_page_element( self::ADMIN_MENU_SCRIPT_NAME )
 		);
-	}
-
-	/**
-	 * メニューナビゲーション追加
-	 *
-	 * @param array $items List.
-	 *
-	 * @return array
-	 */
-	public function add_nav_item( $items ) {
-
-		$items[ self::MENU_SLUG ] = [
-			'label' => 'インラインスタイル',
-			'link'  => admin_url( 'admin.php?page=' . self::MENU_SLUG ),
-		];
-
-		return $items;
 	}
 }
 

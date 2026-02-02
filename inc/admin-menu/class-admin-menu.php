@@ -260,21 +260,16 @@ class Admin_Menu {
 			</div>
 		</div>
 		<?php
-		self::admin_menu_content(
-			ob_get_clean(),
-			self::MENU_SLUG
-		);
+		self::admin_menu_content( ob_get_clean() );
 	}
 
 	/**
 	 * 設定画面のフォーマット
 	 *
 	 * @param string $content    設定画面のメイン部分.
-	 * @param string $page_slug  設定スラッグ.
-	 * @param bool   $navigation ナビゲーションを表示するか.
 	 * @param string $capability ページへのアクセスに必要な権限.
 	 */
-	public static function admin_menu_content( $content, $page_slug, $navigation = true, $capability = 'manage_options' ) {
+	public static function admin_menu_content( $content, $capability = 'manage_options' ) {
 		if ( ! current_user_can( $capability ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
@@ -283,13 +278,6 @@ class Admin_Menu {
 			<h1 class="ystdb-menu__title"><span class="orbitron">yStandard Blocks</span>設定</h1>
 			<div id="ystdb-menu" class="ystdb-menu">
 				<div class="ystdb-menu__container">
-					<?php if ( $navigation ) : ?>
-						<div class="ystdb-menu__nav">
-							<ul class="ystdb-menu__nav-list">
-								<?php self::get_menu_list( $page_slug ); ?>
-							</ul>
-						</div>
-					<?php endif; ?>
 					<div class="ystdb-menu__content">
 						<?php echo $content; ?>
 					</div>
@@ -297,33 +285,6 @@ class Admin_Menu {
 			</div>
 		</div>
 		<?php
-	}
-
-	/**
-	 * ページナビゲーションの作成
-	 *
-	 * @param string $page_slug Slug.
-	 */
-	public static function get_menu_list( $page_slug ) {
-		/**
-		 * メニューリスト : slug => label,link.
-		 */
-		$list = apply_filters( Config::ADMIN_MENU_NAV_LIST, [] );
-		$nav  = [];
-		foreach ( $list as $slug => $value ) {
-			$classes = [ 'ystdb-menu__nav-link' ];
-			if ( $page_slug === $slug ) {
-				$classes[] = 'is-active';
-			}
-			$nav[] = sprintf(
-				'<li><a class="%s" href="%s">%s</a></li>',
-				trim( implode( ' ', $classes ) ),
-				$value['link'],
-				$value['label']
-			);
-		}
-
-		echo implode( PHP_EOL, $nav );
 	}
 
 	/**
