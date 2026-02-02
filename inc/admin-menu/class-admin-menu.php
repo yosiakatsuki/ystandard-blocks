@@ -35,7 +35,7 @@ class Admin_Menu {
 	/**
 	 * 今いるの設定画面がチェック.
 	 *
-	 * @param string $slug        スラッグ.
+	 * @param string $slug スラッグ.
 	 * @param string $hook_suffix Hook Suffix.
 	 *
 	 * @return bool
@@ -47,9 +47,9 @@ class Admin_Menu {
 	/**
 	 * 管理画面用スクリプトの読み込み
 	 *
-	 * @param string $name   Script Name.
-	 * @param array  $route  Api route.
-	 * @param array  $config Config.
+	 * @param string $name Script Name.
+	 * @param array $route Api route.
+	 * @param array $config Config.
 	 */
 	public static function enqueue_admin_scripts( $name, $route, $config = [] ) {
 		$css_url  = YSTDB_URL . "/js/admin-menu/{$name}.css";
@@ -167,6 +167,12 @@ class Admin_Menu {
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-admin-menu.css' )
 		);
+		wp_enqueue_style(
+			'ystdb-admin-google-font',
+			'https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap',
+			[],
+			null
+		);
 	}
 
 	/**
@@ -263,9 +269,9 @@ class Admin_Menu {
 	/**
 	 * 設定画面のフォーマット
 	 *
-	 * @param string $content    設定画面のメイン部分.
-	 * @param string $page_slug  設定スラッグ.
-	 * @param bool   $navigation ナビゲーションを表示するか.
+	 * @param string $content 設定画面のメイン部分.
+	 * @param string $page_slug 設定スラッグ.
+	 * @param bool $navigation ナビゲーションを表示するか.
 	 */
 	public static function admin_menu_content( $content, $page_slug, $navigation = true ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
