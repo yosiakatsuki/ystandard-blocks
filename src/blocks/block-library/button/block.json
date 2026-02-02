@@ -1,9 +1,9 @@
 {
 	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "ystdb/custom-button",
-	"title": "【β版】カスタムボタン",
-	"description": "【β版】アイコンや余白等を設定できるボタン",
+	"title": "カスタムボタン",
+	"description": "アイコンや余白等を設定できるボタン",
 	"version": "2.0.0",
 	"keywords": [ "btn", "button", "ボタン", "アイコン" ],
 	"attributes": {
