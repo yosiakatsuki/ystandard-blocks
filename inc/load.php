@@ -21,7 +21,7 @@ require_once __DIR__ . '/admin/class-notice.php';
 require_once __DIR__ . '/migration/class-migration.php';
 require_once __DIR__ . '/option/class-option.php';
 
-if ( ! \ystandard_blocks\helper\Helper_Version::check_version() ) {
+if ( ! \ystandard_blocks\Utils\Version::check_version() ) {
 	return;
 }
 
@@ -37,3 +37,4 @@ require_once __DIR__ . '/enqueue/class-enqueue.php';
 require_once __DIR__ . '/enqueue/class-enqueue-embed.php';
 require_once __DIR__ . '/enqueue/class-polyfill.php';
 require_once __DIR__ . '/kses/class-kses.php';
+require_once __DIR__ . '/deprecated-blocks/class-deprecated-blocks.php';
