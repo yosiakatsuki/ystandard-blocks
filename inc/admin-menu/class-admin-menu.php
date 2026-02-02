@@ -269,12 +269,13 @@ class Admin_Menu {
 	/**
 	 * 設定画面のフォーマット
 	 *
-	 * @param string $content 設定画面のメイン部分.
-	 * @param string $page_slug 設定スラッグ.
-	 * @param bool $navigation ナビゲーションを表示するか.
+	 * @param string $content    設定画面のメイン部分.
+	 * @param string $page_slug  設定スラッグ.
+	 * @param bool   $navigation ナビゲーションを表示するか.
+	 * @param string $capability ページへのアクセスに必要な権限.
 	 */
-	public static function admin_menu_content( $content, $page_slug, $navigation = true ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
+	public static function admin_menu_content( $content, $page_slug, $navigation = true, $capability = 'manage_options' ) {
+		if ( ! current_user_can( $capability ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 		?>

@@ -30,6 +30,13 @@ class Deprecated_Blocks {
 	const MENU_POSITION = 20;
 
 	/**
+	 * ページへのアクセスに必要な権限
+	 *
+	 * Edit_others_posts: 編集者以上がアクセス可能
+	 */
+	const CAPABILITY = 'edit_others_posts';
+
+	/**
 	 * 非推奨ブロック情報
 	 *
 	 * ブロックの追加・削除はこの配列を編集してください。
@@ -89,9 +96,9 @@ class Deprecated_Blocks {
 	public function add_menu() {
 		add_submenu_page(
 			Admin_Menu::MENU_SLUG,
-			'非推奨ブロックチェック',
-			'非推奨ブロックチェック',
-			'manage_options',
+			'非推奨ブロック',
+			'非推奨ブロック',
+			self::CAPABILITY,
 			self::MENU_SLUG,
 			[ $this, 'render_page' ],
 			self::MENU_POSITION
@@ -121,7 +128,9 @@ class Deprecated_Blocks {
 		$content = $this->get_page_content();
 		Admin_Menu::admin_menu_content(
 			$content,
-			self::MENU_SLUG
+			self::MENU_SLUG,
+			true,
+			self::CAPABILITY
 		);
 	}
 
