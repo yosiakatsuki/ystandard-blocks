@@ -145,13 +145,7 @@ class Deprecated_Blocks {
 
 				<?php $this->render_search_results( $search_results ); ?>
 
-				<div class="ystdb-deprecated-blocks__notice" style="margin-top: 2em; padding: 1em; background: #f0f0f1; border-left: 4px solid #2271b1;">
-					<h3 style="margin-top: 0;">補足</h3>
-					<ul style="margin-bottom: 0;">
-						<li>ウィジェットエリア内のブロックは検索対象外です。ウィジェット画面で直接ご確認ください。</li>
-						<li>ブロックテーマのテンプレート（wp_template, wp_template_part）は検索対象に含まれています。</li>
-					</ul>
-				</div>
+				<p style="margin-top: 1.5em; font-size: 12px; color: #757575;">※ウィジェットエリア内のブロックは検索対象外です。ウィジェット画面で直接ご確認ください。</p>
 			</div>
 		</div>
 		<?php
@@ -265,7 +259,7 @@ class Deprecated_Blocks {
 			?>
 		</p>
 		<table class="widefat striped" style="margin-top: 1em;">
-			<thead>
+			<thead style="white-space: nowrap;">
 				<tr>
 					<th>投稿タイトル</th>
 					<th>投稿タイプ</th>
@@ -303,7 +297,7 @@ class Deprecated_Blocks {
 						</td>
 						<td>
 							<?php if ( ! empty( $result['edit_link'] ) ) : ?>
-								<a href="<?php echo esc_url( $result['edit_link'] ); ?>" class="button button-small" target="_blank">
+								<a href="<?php echo esc_url( $result['edit_link'] ); ?>"  target="_blank" >
 									編集
 								</a>
 							<?php else : ?>
