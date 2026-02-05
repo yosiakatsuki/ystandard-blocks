@@ -3576,7 +3576,6 @@ const ystdbConfig = {
     iconDeprecatedForeground: '#be4141'
   },
   button: {
-    newTabRel: 'noreferrer noopener',
     borderRadiusMin: 0,
     borderRadiusMax: 50,
     borderRadiusInitialPosition: 4,
