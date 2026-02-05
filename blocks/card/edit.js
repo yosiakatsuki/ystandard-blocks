@@ -25,7 +25,6 @@ import RangeControl from '@aktk/block-components/wp-controls/range-control';
 /**
  * Blocks.
  */
-import { ystdbConfig } from '@aktk/config/config.js';
 import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 import { cardTypes, imageSizes, imageTypes, imageAlignList } from './config';

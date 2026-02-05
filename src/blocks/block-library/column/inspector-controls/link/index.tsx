@@ -20,7 +20,7 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 
 	const handleScreenReaderTextChange = ( value: string ) => {
 		setAttributes( { screenReaderText: value } );
-	}
+	};
 
 	const handleCustomURLInputChange = ( value: CustomURLInputValue ) => {
 		const { url: newURL, linkTarget: newLinkTarget, rel: newRel } = value;
@@ -39,15 +39,13 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 			<BaseControl>
 				<CustomURLInput
 					url={ url }
-					linkTarget={linkTarget}
+					linkTarget={ linkTarget }
 					rel={ rel }
 					onChange={ handleCustomURLInputChange }
 				/>
 			</BaseControl>
 			<BaseControl>
-				<NoticeWarning
-					style={ { fontSize: '12px' } }
-				>
+				<NoticeWarning style={ { fontSize: '12px' } }>
 					<div>
 						{ __(
 							'リンクの設定をした場合、公開ページでカラム内のテキストを選択できない状態になります。',

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Blocks Loader
+ *
+ * @package yStandard_blocks
+ */
+
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-block-utility.php';

@@ -60,7 +60,6 @@ function SvgButton( props ) {
 		fontSizeDesktop,
 		align,
 		url,
-		rel,
 		linkTarget,
 		isPaddingVerticalResponsive,
 		paddingVerticalDesktop,

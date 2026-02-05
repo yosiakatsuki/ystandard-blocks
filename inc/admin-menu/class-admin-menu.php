@@ -48,8 +48,8 @@ class Admin_Menu {
 	 * 管理画面用スクリプトの読み込み
 	 *
 	 * @param string $name Script Name.
-	 * @param array $route Api route.
-	 * @param array $config Config.
+	 * @param array  $route Api route.
+	 * @param array  $config Config.
 	 */
 	public static function enqueue_admin_scripts( $name, $route, $config = [] ) {
 		$css_url  = YSTDB_URL . "/js/admin-menu/{$name}.css";
