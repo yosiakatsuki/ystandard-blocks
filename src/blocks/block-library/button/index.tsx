@@ -39,7 +39,7 @@ export function registerCustomButtonBlock() {
 					style={ { fill: 'none' } }
 				/>
 			),
-			category: CATEGORY.beta,
+			category: CATEGORY.common,
 			attributes,
 			edit,
 			save,

@@ -45,7 +45,7 @@ export function registerSvgButtonBlock() {
 					style={ { fill: 'none' } }
 				/>
 			),
-			category: CATEGORY.common,
+			category: CATEGORY.deprecated,
 			attributes,
 			edit,
 			save,
