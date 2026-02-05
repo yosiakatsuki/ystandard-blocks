@@ -32,9 +32,9 @@ require_once __DIR__ . '/admin/class-admin.php';
 require_once __DIR__ . '/admin-menu/class-admin-menu.php';
 require_once __DIR__ . '/inline-style/class-inline-style.php';
 require_once __DIR__ . '/balloon/class-balloon.php';
-require_once __DIR__ . '/blocks/class-blocks.php';
+require_once __DIR__ . '/blocks/index.php';
 require_once __DIR__ . '/enqueue/class-enqueue.php';
 require_once __DIR__ . '/enqueue/class-enqueue-embed.php';
 require_once __DIR__ . '/enqueue/class-polyfill.php';
 require_once __DIR__ . '/kses/class-kses.php';
-require_once __DIR__ . '/deprecated-blocks/class-deprecated-blocks.php';
+

@@ -95,8 +95,8 @@ class Deprecated_Blocks {
 	public function add_menu() {
 		add_submenu_page(
 			Admin_Menu::MENU_SLUG,
-			'非推奨ブロック',
-			'非推奨ブロック',
+			'移行が必要なブロック一覧',
+			'移行が必要なブロック一覧',
 			self::CAPABILITY,
 			self::MENU_SLUG,
 			[ $this, 'render_page' ],
@@ -127,8 +127,8 @@ class Deprecated_Blocks {
 		ob_start();
 		?>
 		<div class="ystdb-deprecated-blocks">
-			<h2>非推奨ブロック一覧</h2>
-			<p>以下のブロックは非推奨となっています。新しいブロックへの移行をご検討ください。</p>
+			<h2>移行が必要なブロック一覧</h2>
+			<p>以下のブロックは非推奨となっています。廃止前に新しいブロックへの移行を実施してください。</p>
 
 			<?php $this->render_deprecated_blocks_table(); ?>
 
