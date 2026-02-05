@@ -187,9 +187,7 @@ const ButtonItems = () => {
 				<div className="ystdb-menu-component-columns is-reverse">
 					<div className="ystdb-menu-component-columns__item">
 						<PanelBody title={ 'スタイル選択' }>
-							<BaseControl
-								__nextHasNoMarginBottom
-							>
+							<BaseControl __nextHasNoMarginBottom>
 								{ isNothingItems && (
 									<>
 										<p>スタイル設定がありません。</p>

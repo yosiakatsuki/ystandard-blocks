@@ -35,11 +35,11 @@ export function registerCustomButtonBlock() {
 		...{
 			icon: (
 				<Link2
-					stroke={ COLORS.iconBetaForeground }
+					stroke={ COLORS.iconForeground }
 					style={ { fill: 'none' } }
 				/>
 			),
-			category: CATEGORY.beta,
+			category: CATEGORY.common,
 			attributes,
 			edit,
 			save,

@@ -35,7 +35,7 @@ class Admin_Menu {
 	/**
 	 * 今いるの設定画面がチェック.
 	 *
-	 * @param string $slug        スラッグ.
+	 * @param string $slug スラッグ.
 	 * @param string $hook_suffix Hook Suffix.
 	 *
 	 * @return bool
@@ -47,8 +47,8 @@ class Admin_Menu {
 	/**
 	 * 管理画面用スクリプトの読み込み
 	 *
-	 * @param string $name   Script Name.
-	 * @param array  $route  Api route.
+	 * @param string $name Script Name.
+	 * @param array  $route Api route.
 	 * @param array  $config Config.
 	 */
 	public static function enqueue_admin_scripts( $name, $route, $config = [] ) {
@@ -167,6 +167,12 @@ class Admin_Menu {
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-admin-menu.css' )
 		);
+		wp_enqueue_style(
+			'ystdb-admin-google-font',
+			'https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap',
+			[],
+			null
+		);
 	}
 
 	/**
@@ -203,7 +209,7 @@ class Admin_Menu {
 									</a>
 								</div>
 								<div class="ystdb-menu-top__column no-shadow no-padding">
-									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-inline-style/" target="_blank" rel="noopener">
+									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-inline-style/" target="_blank">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book">
 											<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
 											<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -239,7 +245,7 @@ class Admin_Menu {
 									</a>
 								</div>
 								<div class="ystdb-menu-top__column no-shadow no-padding">
-									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/" target="_blank" rel="noopener">
+									<a class="ystdb-menu-top__link-manual button is-primary is-small" href="https://wp-ystandard.com/manual/ystdb-balloon-avatar-setting/" target="_blank">
 										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book">
 											<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
 											<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -254,21 +260,17 @@ class Admin_Menu {
 			</div>
 		</div>
 		<?php
-		self::admin_menu_content(
-			ob_get_clean(),
-			self::MENU_SLUG
-		);
+		self::admin_menu_content( ob_get_clean() );
 	}
 
 	/**
 	 * 設定画面のフォーマット
 	 *
 	 * @param string $content    設定画面のメイン部分.
-	 * @param string $page_slug  設定スラッグ.
-	 * @param bool   $navigation ナビゲーションを表示するか.
+	 * @param string $capability ページへのアクセスに必要な権限.
 	 */
-	public static function admin_menu_content( $content, $page_slug, $navigation = true ) {
-		if ( ! current_user_can( 'manage_options' ) ) {
+	public static function admin_menu_content( $content, $capability = 'manage_options' ) {
+		if ( ! current_user_can( $capability ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 		?>
@@ -276,13 +278,6 @@ class Admin_Menu {
 			<h1 class="ystdb-menu__title"><span class="orbitron">yStandard Blocks</span>設定</h1>
 			<div id="ystdb-menu" class="ystdb-menu">
 				<div class="ystdb-menu__container">
-					<?php if ( $navigation ) : ?>
-						<div class="ystdb-menu__nav">
-							<ul class="ystdb-menu__nav-list">
-								<?php self::get_menu_list( $page_slug ); ?>
-							</ul>
-						</div>
-					<?php endif; ?>
 					<div class="ystdb-menu__content">
 						<?php echo $content; ?>
 					</div>
@@ -290,33 +285,6 @@ class Admin_Menu {
 			</div>
 		</div>
 		<?php
-	}
-
-	/**
-	 * ページナビゲーションの作成
-	 *
-	 * @param string $page_slug Slug.
-	 */
-	public static function get_menu_list( $page_slug ) {
-		/**
-		 * メニューリスト : slug => label,link.
-		 */
-		$list = apply_filters( Config::ADMIN_MENU_NAV_LIST, [] );
-		$nav  = [];
-		foreach ( $list as $slug => $value ) {
-			$classes = [ 'ystdb-menu__nav-link' ];
-			if ( $page_slug === $slug ) {
-				$classes[] = 'is-active';
-			}
-			$nav[] = sprintf(
-				'<li><a class="%s" href="%s">%s</a></li>',
-				trim( implode( ' ', $classes ) ),
-				$value['link'],
-				$value['label']
-			);
-		}
-
-		echo implode( PHP_EOL, $nav );
 	}
 
 	/**

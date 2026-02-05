@@ -10,8 +10,8 @@
 namespace ystandard_blocks;
 
 use ystandard_blocks\helper\Helper_Amp;
-use ystandard_blocks\helper\Helper_Version;
 use ystandard_blocks\utils\Styles;
+use ystandard_blocks\utils\Version;
 
 defined( 'ABSPATH' ) || die();
 
@@ -38,12 +38,11 @@ class Blocks {
 	 * Constructor.
 	 */
 	public function __construct() {
-		if ( Helper_Version::wordpress_version_compare( '5.8-alpha-1' ) ) {
+		if ( Version::wordpress_version_compare( '5.8-alpha-1' ) ) {
 			add_filter( 'block_categories_all', [ $this, 'add_block_categories' ] );
 		} else {
 			add_filter( 'block_categories', [ $this, 'add_block_categories' ] );
 		}
-		$this->load_files();
 		$this->init_blocks();
 		// 以下は徐々に移行する.
 		$this->init();
@@ -306,17 +305,6 @@ class Blocks {
 
 		return array_merge( $categories, $blocks_categories );
 	}
-
-	/**
-	 * ファイルの読み込み
-	 */
-	private function load_files() {
-		require_once __DIR__ . '/class-block-utility.php';
-		require_once __DIR__ . '/class-dynamic-block.php';
-		require_once __DIR__ . '/class-color-palette.php';
-		require_once __DIR__ . '/class-font-size.php';
-	}
-
 
 	/**
 	 * パス文字列をURLに変換する.

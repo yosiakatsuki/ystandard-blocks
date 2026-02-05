@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "ystdb/svg-button",
-  "title": "カスタムボタン",
-  "description": "ボタンブロック",
+  "title": "【非推奨】カスタムボタン",
+  "description": "【非推奨】ボタンブロック",
   "version": "2.0.0",
   "keywords": [],
   "attributes": {
@@ -131,6 +131,7 @@
     }
   },
   "supports": {
+    "inserter": false,
     "className": false,
     "align": false
   },

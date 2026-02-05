@@ -9,11 +9,6 @@ import { PanelBody } from '@wordpress/components';
 import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
 import TextControl from '@aktk/block-components/wp-controls/text-control';
 
-/**
- * Plugin dependencies.
- */
-import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
-
 // @ts-ignore
 export function Link( props ) {
 	const { attributes, setAttributes } = props;
@@ -25,18 +20,8 @@ export function Link( props ) {
 					label={ __( 'Open in new tab' ) }
 					onChange={ ( value ) => {
 						const newLinkTarget = value ? '_blank' : undefined;
-						let updatedRel = rel;
-						if ( newLinkTarget && ! rel ) {
-							updatedRel = BUTTON_NEW_TAB_REL;
-						} else if (
-							! newLinkTarget &&
-							rel === BUTTON_NEW_TAB_REL
-						) {
-							updatedRel = undefined;
-						}
 						setAttributes( {
 							linkTarget: newLinkTarget,
-							rel: updatedRel,
 						} );
 					} }
 					checked={ linkTarget === '_blank' }
