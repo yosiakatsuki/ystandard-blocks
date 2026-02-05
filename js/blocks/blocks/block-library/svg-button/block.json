@@ -131,6 +131,7 @@
     }
   },
   "supports": {
+    "inserter": false,
     "className": false,
     "align": false
   },
