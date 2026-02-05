@@ -33,6 +33,11 @@ interface WPLinkControlOnChangeProps {
   opensInNewTab?: boolean;
 }
 
+/**
+ * @deprecated use @aktk/block-components/components/url-input
+ * @param props
+ * @constructor
+ */
 export function LinkControl( props: LinkControlProps ) {
   const { value, onChange, isInspectorControls = false } = props;
   const { url, linkTarget, rel } = value;

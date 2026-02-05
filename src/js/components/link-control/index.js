@@ -3,6 +3,14 @@ import './_editor.scss';
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
+/**
+ * @deprecated
+ * @param value
+ * @param onChange
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const LinkControl = ( { value, onChange, ...props } ) => {
 	const { linkTarget, rel, url } = value;
 	const opensInNewTab = linkTarget === '_blank';
