@@ -261,8 +261,7 @@ const cardEdit = props => {
     });
     if (!!value && -1 === value.indexOf(ystdb.homeUrl)) {
       setAttributes({
-        linkTarget: '_blank',
-        rel: _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_12__.ystdbConfig.button.newTabRel
+        linkTarget: '_blank'
       });
     } else {
       setAttributes({
@@ -335,15 +334,8 @@ const cardEdit = props => {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Open in new tab'),
               onChange: value => {
                 const newLinkTarget = value ? '_blank' : undefined;
-                let updatedRel = rel;
-                if (newLinkTarget && !rel) {
-                  updatedRel = _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_12__.ystdbConfig.button.newTabRel;
-                } else if (!newLinkTarget && rel === _aktk_config_config_js__WEBPACK_IMPORTED_MODULE_12__.ystdbConfig.button.newTabRel) {
-                  updatedRel = undefined;
-                }
                 setAttributes({
-                  linkTarget: newLinkTarget,
-                  rel: updatedRel
+                  linkTarget: newLinkTarget
                 });
               },
               checked: linkTarget === '_blank'

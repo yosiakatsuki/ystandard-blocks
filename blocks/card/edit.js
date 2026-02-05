@@ -78,7 +78,6 @@ const cardEdit = ( props ) => {
 		if ( !! value && -1 === value.indexOf( ystdb.homeUrl ) ) {
 			setAttributes( {
 				linkTarget: '_blank',
-				rel: ystdbConfig.button.newTabRel,
 			} );
 		} else {
 			setAttributes( {
@@ -154,19 +153,9 @@ const cardEdit = ( props ) => {
 									const newLinkTarget = value
 										? '_blank'
 										: undefined;
-									let updatedRel = rel;
-									if ( newLinkTarget && ! rel ) {
-										updatedRel =
-											ystdbConfig.button.newTabRel;
-									} else if (
-										! newLinkTarget &&
-										rel === ystdbConfig.button.newTabRel
-									) {
-										updatedRel = undefined;
-									}
+
 									setAttributes( {
 										linkTarget: newLinkTarget,
-										rel: updatedRel,
 									} );
 								} }
 								checked={ linkTarget === '_blank' }
