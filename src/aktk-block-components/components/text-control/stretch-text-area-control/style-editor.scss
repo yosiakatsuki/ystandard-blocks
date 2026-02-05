@@ -24,9 +24,11 @@
 		&:not([style*="height"]) {
 			height: 100% !important;
 		}
+
 		&:not([style*="min-height"]) {
 			min-height: 0 !important;
 		}
+
 		&:not([style*="padding"]) {
 			padding: 0 !important;
 		}

@@ -28,7 +28,6 @@ import {
 	getDeprecatedPaddingResponsiveClass,
 	getDeprecatedPaddingResponsiveStyle,
 } from '@aktk/blocks/deprecated/components/responsive-number-control';
-import { BUTTON_NEW_TAB_REL } from '@aktk/blocks/config';
 import URLInput from '@aktk/blocks/components/url-input';
 
 /**
@@ -61,7 +60,6 @@ function SvgButton( props ) {
 		fontSizeDesktop,
 		align,
 		url,
-		rel,
 		linkTarget,
 		isPaddingVerticalResponsive,
 		paddingVerticalDesktop,
@@ -252,18 +250,8 @@ function SvgButton( props ) {
 								const newLinkTarget = value
 									? '_blank'
 									: undefined;
-								let updatedRel = rel;
-								if ( newLinkTarget && ! rel ) {
-									updatedRel = BUTTON_NEW_TAB_REL;
-								} else if (
-									! newLinkTarget &&
-									rel === BUTTON_NEW_TAB_REL
-								) {
-									updatedRel = undefined;
-								}
 								setAttributes( {
 									linkTarget: newLinkTarget,
-									rel: updatedRel,
 								} );
 							} }
 							checked={ linkTarget === '_blank' }

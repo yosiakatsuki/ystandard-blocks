@@ -11,7 +11,7 @@ module.exports = {
 				'admin-gray': '#aaaaaa',
 				'notice-error': '#ae3b43',
 				'aktk-text-red': '#C9323F',
-				'aktk-text-yellow': '#F2B031',
+				'aktk-text-yellow': '#e1970e',
 				'aktk-text-green': '#2A8C44',
 				'aktk-text-blue': '#06669E',
 				'aktk-text-gray': '#989EA1',

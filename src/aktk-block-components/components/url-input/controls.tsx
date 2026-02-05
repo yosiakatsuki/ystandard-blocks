@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies.
  */
+import { __ } from '@wordpress/i18n';
 import { URLInput as WPURLInput } from '@wordpress/block-editor';
 
 /**
@@ -9,7 +10,6 @@ import { URLInput as WPURLInput } from '@wordpress/block-editor';
 import ToggleControl from '@aktk/block-components/wp-controls/toggle-control';
 import TextControl from '@aktk/block-components/wp-controls/text-control';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
-import { BUTTON_NEW_TAB_REL } from '@aktk/block-components/components/url-input/const';
 
 export type CustomURLInputValue = {
 	url: string;
@@ -20,24 +20,30 @@ export type CustomURLInputValue = {
 interface CustomURLInputProps {
 	URLInputLabel?: string;
 	linkTargetLabel?: string;
+	linkRelNofollow?: string;
 	linkRelInputLabel?: string;
 	url: string;
 	linkTarget?: string;
 	rel?: string;
 	enableLinkTarget?: boolean;
+	enableRelNofollow?: boolean;
+	enableCustomRel?: boolean;
 	onChange: ( value: CustomURLInputValue ) => void;
 	disableSuggestions?: boolean;
 }
 
 export function CustomURLInput( props: CustomURLInputProps ) {
 	const {
-		URLInputLabel,
-		linkTargetLabel,
-		linkRelInputLabel,
+		URLInputLabel = __( 'リンク先URL', 'ystandard-blocks' ),
+		linkTargetLabel = __( '新しいタブで開く', 'ystandard-blocks' ),
+		linkRelNofollow = __( '「nofollow」を追加', 'ystandard-blocks' ),
+		linkRelInputLabel = __( 'リンクrel属性', 'ystandard-blocks' ),
 		url,
 		linkTarget,
 		rel,
 		enableLinkTarget = true,
+		enableRelNofollow = true,
+		enableCustomRel = true,
 		onChange,
 		disableSuggestions = false,
 	} = props;
@@ -52,26 +58,24 @@ export function CustomURLInput( props: CustomURLInputProps ) {
 
 	const handleLinkTargetChange = ( value: boolean ) => {
 		const newLinkTarget = value ? '_blank' : undefined;
-		let updatedRel = rel;
-		if ( newLinkTarget && ! rel ) {
-			updatedRel = BUTTON_NEW_TAB_REL;
-		} else if ( ! newLinkTarget && rel === BUTTON_NEW_TAB_REL ) {
-			updatedRel = undefined;
+		handleOnChange( { url, linkTarget: newLinkTarget, rel: rel } );
+	};
+	const handleNoFollowChange = ( value: boolean ) => {
+		let newRel =
+			rel?.replace( 'nofollow', '' ).trim().replace( /\s+/g, ' ' ) || '';
+		if ( value ) {
+			newRel = `${ newRel } nofollow`.trim();
 		}
-		handleOnChange( { url, linkTarget: newLinkTarget, rel: updatedRel } );
+		handleOnChange( { url, linkTarget, rel: newRel } );
 	};
 
 	const handleRelChange = ( value: string ) => {
 		handleOnChange( { url, linkTarget, rel: value } );
 	};
 
-	const _URLInputLabel = URLInputLabel || 'リンク先URL';
-	const _LinkTargetLabel = linkTargetLabel || '新しいタブで開く';
-	const _LinkRelInputLabel = linkRelInputLabel || 'リンクrel属性';
-
 	return (
 		<>
-			<BaseControl id={ 'link-url' } label={ _URLInputLabel }>
+			<BaseControl id={ 'link-url' } label={ URLInputLabel }>
 				<URLInput
 					value={ url }
 					onChange={ handleURLChange }
@@ -79,22 +83,32 @@ export function CustomURLInput( props: CustomURLInputProps ) {
 				/>
 			</BaseControl>
 			{ enableLinkTarget && (
-				<>
-					<BaseControl>
-						<ToggleControl
-							label={ _LinkTargetLabel }
-							onChange={ handleLinkTargetChange }
-							checked={ linkTarget === '_blank' }
-						/>
-					</BaseControl>
-					<BaseControl>
-						<TextControl
-							label={ _LinkRelInputLabel }
-							value={ rel || '' }
-							onChange={ handleRelChange }
-						/>
-					</BaseControl>
-				</>
+				<BaseControl>
+					<ToggleControl
+						label={ linkTargetLabel }
+						onChange={ handleLinkTargetChange }
+						checked={ linkTarget === '_blank' }
+					/>
+				</BaseControl>
+			) }
+			{ enableRelNofollow && (
+				<BaseControl>
+					<ToggleControl
+						label={ linkRelNofollow }
+						onChange={ handleNoFollowChange }
+						// @ts-expect-error
+						checked={ rel?.includes( 'nofollow' ) }
+					/>
+				</BaseControl>
+			) }
+			{ enableCustomRel && (
+				<BaseControl>
+					<TextControl
+						label={ linkRelInputLabel }
+						value={ rel || '' }
+						onChange={ handleRelChange }
+					/>
+				</BaseControl>
 			) }
 		</>
 	);

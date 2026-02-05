@@ -1,51 +1,35 @@
 /**
  * WordPress dependencies
  */
-import { useCallback, useMemo } from '@wordpress/element';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
  * aktk dependencies
  */
-import { LinkControl } from '@aktk/block-components/components/link-control';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
-/**
- * Plugin dependencies
- */
-import Notice, { noticeType } from '@aktk/blocks/deprecated/components/notice';
+import { NoticeWarning } from '@aktk/block-components/components/notice';
+import {
+	CustomURLInput,
+	type CustomURLInputValue,
+} from '@aktk/block-components/components/url-input';
 
 // @ts-ignore
 const PanelLink = ( { attributes, setAttributes } ) => {
 	const { linkTarget, rel, url, screenReaderText } = attributes;
 
-	// @ts-ignore
-	const handleOnLinkChange = ( newValue ) => {
-		setAttributes( newValue );
+	const handleScreenReaderTextChange = ( value: string ) => {
+		setAttributes( { screenReaderText: value } );
 	};
 
-	const onSetLinkRel = useCallback(
-		// @ts-ignore
-		( value ) => {
-			setAttributes( { rel: value } );
-		},
-		[ setAttributes ]
-	);
-	const onSetScreenReaderText = useCallback(
-		// @ts-ignore
-		( value ) => {
-			setAttributes( { screenReaderText: value } );
-		},
-		[ setAttributes ]
-	);
-
-	const linkControlValue = useMemo( () => {
-		return {
-			url,
-			linkTarget,
-			rel,
-		};
-	}, [ url, linkTarget, rel ] );
+	const handleCustomURLInputChange = ( value: CustomURLInputValue ) => {
+		const { url: newURL, linkTarget: newLinkTarget, rel: newRel } = value;
+		setAttributes( {
+			url: newURL,
+			linkTarget: newLinkTarget,
+			rel: newRel,
+		} );
+	};
 
 	return (
 		<PanelBody
@@ -53,34 +37,22 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 			initialOpen={ false }
 		>
 			<BaseControl>
-				<Notice
-					type={ noticeType.warning }
-					style={ { fontSize: '12px' } }
-				>
+				<CustomURLInput
+					url={ url }
+					linkTarget={ linkTarget }
+					rel={ rel }
+					onChange={ handleCustomURLInputChange }
+				/>
+			</BaseControl>
+			<BaseControl>
+				<NoticeWarning style={ { fontSize: '12px' } }>
 					<div>
 						{ __(
 							'リンクの設定をした場合、公開ページでカラム内のテキストを選択できない状態になります。',
 							'ystandard-blocks'
 						) }
 					</div>
-				</Notice>
-			</BaseControl>
-			<BaseControl>
-				<LinkControl
-					value={ linkControlValue }
-					onChange={ handleOnLinkChange }
-					isInspectorControls={ true }
-				/>
-			</BaseControl>
-			<BaseControl>
-				<TextControl
-					className={ 'ystdb-column-editor__link-rel' }
-					label={ __( 'リンク rel 属性', 'ystandard-blocks' ) }
-					value={ rel || '' }
-					onChange={ onSetLinkRel }
-					__next40pxDefaultSize
-					__nextHasNoMarginBottom
-				/>
+				</NoticeWarning>
 			</BaseControl>
 			<BaseControl>
 				<TextControl
@@ -90,7 +62,7 @@ const PanelLink = ( { attributes, setAttributes } ) => {
 						'ystandard-blocks'
 					) }
 					value={ screenReaderText || '' }
-					onChange={ onSetScreenReaderText }
+					onChange={ handleScreenReaderTextChange }
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
 				/>

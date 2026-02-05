@@ -35,7 +35,7 @@ function Save( { attributes } ) {
 						<a
 							href={ url }
 							target={ linkTarget }
-							rel={ rel }
+							rel={ rel || undefined }
 							{ ...wrapProps }
 						>
 							<SvgIcon.Content name={ icon || 'info' } />

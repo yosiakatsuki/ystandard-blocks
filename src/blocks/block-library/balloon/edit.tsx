@@ -144,7 +144,7 @@ type AvatarNameEditProps = {
  * アバター名編集コンポーネント.
  *
  * @param props
- * @constructor
+ * @class
  */
 function AvatarNameEdit( props: AvatarNameEditProps ) {
 	const {
