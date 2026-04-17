@@ -95,7 +95,7 @@
 		"@wordpress/browserslist-config": "^6.22.0",
 		"@wordpress/env": "^10.22.0",
 		"@wordpress/prettier-config": "^4.22.0",
-		"@wordpress/scripts": "^30.15.0",
+		"@wordpress/scripts": "^32.0.0",
 		"autoprefixer": "^10.4.21",
 		"babel-plugin-inline-json-import": "^0.3.2",
 		"browserslist": "^4.24.4",
