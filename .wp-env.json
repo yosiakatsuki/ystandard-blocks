@@ -1,7 +1,7 @@
 {
 	"port": 10010,
+	"testsEnvironment": false,
 	"core": "https://ja.wordpress.org/latest-ja.zip",
-	"phpVersion": "8.1",
 	"themes": [
 		"https://wp-ystandard.com/download/ystandard/v4/ystandard.zip"
 	],
@@ -9,11 +9,6 @@
 		".",
 		"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip"
 	],
-	"env": {
-		"tests": {
-			"port": 10011
-		}
-	},
 	"mappings": {
 		".wp-content": "./.wp-content"
 	}
