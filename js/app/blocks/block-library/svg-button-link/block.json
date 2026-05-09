@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "ystdb/svg-button-link",
   "title": "【非推奨】ボタン型リンク",
   "description": "【非推奨ブロック】このブロックは非推奨ブロックになりました。今後廃止予定です。",
