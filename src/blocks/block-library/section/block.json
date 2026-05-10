@@ -96,5 +96,6 @@
 	"textdomain": "ystandard-blocks",
 	"editorScript": "file:./index.tsx",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }
