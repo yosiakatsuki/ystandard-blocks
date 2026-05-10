@@ -7,7 +7,6 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		block: './src/js/block/block.js',
-		section: './blocks/section/index.js',
 		'inline-style': './blocks/inline-style/index.js',
 	},
 	output: {

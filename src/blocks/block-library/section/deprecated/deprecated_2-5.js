@@ -12,8 +12,8 @@ import {
 	BACKGROUND_TYPE_VIDEO,
 } from '../config';
 import { getBackgroundPosition, getBackgroundSize } from '../shared';
-import getCssClamp from '../../../src/js/util/_getCssClamp';
-import getDataClamp from '../../../src/js/util/_getDataClamp';
+import getCssClamp from '../../../../js/util/_getCssClamp';
+import getDataClamp from '../../../../js/util/_getDataClamp';
 
 export const deprecated25 = [
 	{

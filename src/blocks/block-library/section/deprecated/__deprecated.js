@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import getNum from '../../../src/js/util/_getNum';
+import getNum from '../../../../js/util/_getNum';
 
 import { getColorClassName, InnerBlocks } from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';

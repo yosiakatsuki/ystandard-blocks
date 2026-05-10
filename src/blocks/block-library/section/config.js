@@ -1,17 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import getNum from '../../src/js/util/_getNum';
+import getNum from '../../../js/util/_getNum';
 
-/**
- * attributes
- */
-export { default as attributes } from './attributes/attributes';
-
-export const supports = {
-	align: [ 'wide', 'full' ],
-	anchor: true,
-	className: false,
-	lightBlockWrapper: true,
-};
+// attributes と supports は block.json に移動済み.
 
 export const BACKGROUND_TYPE_IMAGE = 'image';
 export const BACKGROUND_TYPE_VIDEO = 'video';

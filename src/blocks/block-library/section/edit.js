@@ -49,16 +49,17 @@ import {
 	BACKGROUND_TYPE_VIDEO,
 } from './config';
 import { getBackgroundPosition, getBackgroundSize } from './shared';
-import getNum from '../../src/js/util/_getNum';
-import getNumberInputStep from '../../src/js/util/_getNumberInputStep';
-import ResponsiveRangeControl from '../../src/js/components/responsive-range';
-import getCssClamp from '../../src/js/util/_getCssClamp';
-import convertPHPObject2JS from '../../src/js/util/_convertPHPObject2JS';
+import getNum from '../../../js/util/_getNum';
+import getNumberInputStep from '../../../js/util/_getNumberInputStep';
+import ResponsiveRangeControl from '../../../js/components/responsive-range';
+import getCssClamp from '../../../js/util/_getCssClamp';
+import convertPHPObject2JS from '../../../js/util/_convertPHPObject2JS';
 import * as BlockOptions from './inspector-controls';
 import * as ToolbarControls from './block-controls';
 import { getBorderProperty } from './function/border';
 import PanelContentWidth from './inspector-controls/content-width';
 import ColorPaletteControl from '@aktk/components/color-palette-control';
+import './style-editor.scss';
 
 const SectionEdit = ( props ) => {
 	const {
