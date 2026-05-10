@@ -7,6 +7,7 @@ import {
 	InspectorControls,
 	withColors,
 	MediaUpload,
+	useBlockProps,
 } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, RadioControl, Button } from '@wordpress/components';
@@ -71,6 +72,8 @@ const cardEdit = ( props ) => {
 
 	const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
+	const blockProps = useBlockProps( { className: 'wp-block-html' } );
+
 	const selectedCardType = cardType ? cardType : 'horizon';
 	const selectedImageType = imageType ? imageType : 'fitText';
 	const isCardHorizon =
@@ -131,7 +134,7 @@ const cardEdit = ( props ) => {
 	};
 
 	return (
-		<div className={ 'wp-block-html' }>
+		<div { ...blockProps }>
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'リンク設定', 'ystandard-blocks' ) }>
