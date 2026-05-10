@@ -10,6 +10,7 @@ import {
 } from '@wordpress/block-editor';
 import { Fragment } from '@wordpress/element';
 import { PanelBody, RadioControl, Button } from '@wordpress/components';
+// @ts-ignore
 import ServerSideRender from '@wordpress/server-side-render';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -25,10 +26,13 @@ import RangeControl from '@aktk/block-components/wp-controls/range-control';
 /**
  * Blocks.
  */
+// @ts-ignore
 import ColorPaletteControl from '@aktk/components/color-palette-control';
 
 import { cardTypes, imageSizes, imageTypes, imageAlignList } from './config';
+import './style-editor.scss';
 
+// @ts-ignore
 const cardEdit = ( props ) => {
 	const {
 		attributes,
@@ -72,8 +76,10 @@ const cardEdit = ( props ) => {
 	const isCardHorizon =
 		'horizon' === selectedCardType || 'fixed-horizon' === selectedCardType;
 
+	// @ts-ignore
 	const updateUrl = ( value ) => {
 		setAttributes( { url: value } );
+		// @ts-ignore
 		if ( !! value && -1 === value.indexOf( ystdb.homeUrl ) ) {
 			setAttributes( {
 				linkTarget: '_blank',
@@ -91,6 +97,7 @@ const cardEdit = ( props ) => {
 	 *
 	 * @param {Object} obj
 	 */
+	// @ts-ignore
 	const mediaUploadRender = ( obj ) => {
 		if ( 0 === imageID ) {
 			return (
@@ -130,17 +137,21 @@ const cardEdit = ( props ) => {
 					<PanelBody title={ __( 'リンク設定', 'ystandard-blocks' ) }>
 						<BaseControl>
 							<URLInput
+								// @ts-ignore
 								label={ __( 'Link' ) }
 								className="ystdb-card__url-input is-use-inspector-control"
 								value={ url }
 								/* eslint-disable jsx-a11y/no-autofocus */
+								// @ts-ignore
 								autoFocus={ false }
 								/* eslint-enable jsx-a11y/no-autofocus */
 								onChange={ ( value ) => {
 									updateUrl( value );
 								} }
 								disableSuggestions={ ! isSelected }
+								// @ts-ignore
 								isFullWidth
+								// @ts-ignore
 								hasBorder
 								__nextHasNoMarginBottom
 							/>
@@ -192,6 +203,7 @@ const cardEdit = ( props ) => {
 									'ystandard-blocks'
 								) }
 								value={ backgroundColor.color }
+								// @ts-ignore
 								onChange={ ( color ) => {
 									setBackgroundColor( color );
 								} }
@@ -205,6 +217,7 @@ const cardEdit = ( props ) => {
 									'ystandard-blocks'
 								) }
 								value={ borderColor.color }
+								// @ts-ignore
 								onChange={ ( color ) => {
 									setBorderColor( color );
 								} }
@@ -239,6 +252,7 @@ const cardEdit = ( props ) => {
 									'ystandard-blocks'
 								) }
 								value={ titleColor.color }
+								// @ts-ignore
 								onChange={ ( color ) => {
 									setTitleColor( color );
 								} }
@@ -268,6 +282,7 @@ const cardEdit = ( props ) => {
 								{ __( 'カスタム画像', 'ystandard-blocks' ) }
 							</div>
 							<MediaUpload
+								// @ts-ignore
 								onSelect={ ( media ) => {
 									setAttributes( {
 										imageURL: media.url,
@@ -275,6 +290,7 @@ const cardEdit = ( props ) => {
 										imageAlt: media.alt,
 									} );
 								} }
+								// @ts-ignore
 								type={ ALLOWED_MEDIA_TYPES }
 								value={ imageID }
 								render={ mediaUploadRender }
@@ -414,6 +430,7 @@ const cardEdit = ( props ) => {
 									'ystandard-blocks'
 								) }
 								value={ dscrColor.color }
+								// @ts-ignore
 								onChange={ ( color ) => {
 									setDscrColor( color );
 								} }
@@ -446,6 +463,7 @@ const cardEdit = ( props ) => {
 									'ystandard-blocks'
 								) }
 								value={ domainColor.color }
+								// @ts-ignore
 								onChange={ ( color ) => {
 									setDomainColor( color );
 								} }
@@ -478,6 +496,7 @@ const cardEdit = ( props ) => {
 					{ ( isSelected || ! url ) && (
 						<div className={ 'ystdb-card__edit-container' }>
 							<URLInput
+								// @ts-ignore
 								label={ __(
 									'リンクを作成するURLを入力',
 									'ystandard-blocks'
@@ -485,13 +504,16 @@ const cardEdit = ( props ) => {
 								className="ystdb-card__url-input"
 								value={ url }
 								/* eslint-disable jsx-a11y/no-autofocus */
+								// @ts-ignore
 								autoFocus={ false }
 								/* eslint-enable jsx-a11y/no-autofocus */
 								onChange={ ( value ) => {
 									updateUrl( value );
 								} }
 								disableSuggestions={ ! isSelected }
+								// @ts-ignore
 								isFullWidth
+								// @ts-ignore
 								hasBorder
 								__nextHasNoMarginBottom
 							/>
@@ -517,6 +539,7 @@ const cardEdit = ( props ) => {
 	);
 };
 
+// @ts-ignore
 export default compose( [
 	withColors( 'backgroundColor', 'borderColor', {
 		titleColor: 'color',

@@ -5,6 +5,7 @@ const transforms = {
 		{
 			type: 'block',
 			blocks: [ 'core-embed/wordpress', 'core/embed' ],
+			// @ts-ignore
 			transform: ( attributes ) => {
 				return createBlock( 'ystdb/card', {
 					url: attributes.url,

@@ -301,7 +301,7 @@ class Card_Block extends Dynamic_Block {
 	 * @return string
 	 */
 	public function add_editor_embed_css( $css ) {
-		$path = YSTDB_PATH . '/css/blocks/card/block.css';
+		$path = YSTDB_PATH . '/build/blocks/card/style-index.css';
 		if ( file_exists( $path ) ) {
 			$css .= file_get_contents( $path );
 		}
@@ -885,6 +885,3 @@ class Card_Block extends Dynamic_Block {
 		return $key;
 	}
 }
-
-$card = new Card_Block();
-$card->register_block();

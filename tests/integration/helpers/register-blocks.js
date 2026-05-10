@@ -1,18 +1,17 @@
 /**
  * fixture-based test 用のブロック登録ヘルパー
  *
- * 各ブロックの index.js 経由ではなく、`attributes` / `supports` / `save` を直接
- * registerBlockType に渡すことで edit.js の依存（react-feather 等）を引き込まない。
+ * 各ブロックの index.tsx / index.js 経由ではなく、`block.json` または `config.js` から
+ * `attributes` / `supports` / `save` を直接 registerBlockType に渡すことで
+ * edit 側の依存（react-feather, @aktk/components 等）を引き込まない。
  * テスト環境で edit 関数自体は呼ばれないため、ダミーで足りる。
- *
- * 対象は v1 形式（block.json なし）の card / section ブロックのみ。
  */
 import { registerBlockType, getBlockType } from '@wordpress/blocks';
 
-import {
-	attributes as cardAttributes,
-	supports as cardSupports,
-} from '../../../blocks/card/config';
+// card は v2 化済み（block.json 経由）.
+import cardMetadata from '../../../src/blocks/block-library/card/block.json';
+
+// section は v1 形式のまま（移行前）.
 import {
 	attributes as sectionAttributes,
 	supports as sectionSupports,
@@ -34,9 +33,8 @@ function registerOnce( name, settings ) {
 
 export function registerCardTestBlock() {
 	// card は dynamic block（save は null）.
-	registerOnce( 'ystdb/card', {
-		attributes: cardAttributes,
-		supports: cardSupports,
+	registerOnce( cardMetadata.name, {
+		...cardMetadata,
 		save: () => null,
 	} );
 }

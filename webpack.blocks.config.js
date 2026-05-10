@@ -8,7 +8,6 @@ module.exports = {
 	entry: {
 		block: './src/js/block/block.js',
 		section: './blocks/section/index.js',
-		card: './blocks/card/index.js',
 		'inline-style': './blocks/inline-style/index.js',
 	},
 	output: {
