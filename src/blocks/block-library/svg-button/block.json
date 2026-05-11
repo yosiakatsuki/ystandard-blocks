@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "ystdb/svg-button",
 	"title": "【非推奨】カスタムボタン",
-	"description": "【非推奨】ボタンブロック",
+	"description": "【非推奨】このブロックは廃止予定です。ブロックの変換から「カスタムボタン」へ移行できます。管理画面の yStandard Blocks > 移行が必要なブロック一覧 で使用箇所を確認できます。",
 	"version": "2.0.0",
 	"keywords": [],
 	"attributes": {
