@@ -4,6 +4,12 @@ const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
+	// CopyPlugin はブロックビルド用に src/**/block.json と PHP を出力先へ複製するが、
+	// 当 config はブロックビルドではないため出力先（js/admin-menu/）に不要なミラーが
+	// 出来てしまう。除外する。
+	plugins: defaultConfig.plugins.filter(
+		( plugin ) => plugin.constructor.name !== 'CopyPlugin'
+	),
 	entry: {
 		'inline-style': './src/js/admin-menu/inline-style/index.js',
 		balloon: './src/js/admin-menu/balloon/index.js',

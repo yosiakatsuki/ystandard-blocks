@@ -5,10 +5,14 @@ const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
+	// CopyPlugin はブロックビルド用に src/**/block.json と PHP を出力先へ複製するが、
+	// 当 config はブロックビルドではないため出力先（js/blocks/）に不要なミラーが
+	// 出来てしまう。除外する。
+	plugins: defaultConfig.plugins.filter(
+		( plugin ) => plugin.constructor.name !== 'CopyPlugin'
+	),
 	entry: {
 		block: './src/js/block/block.js',
-		section: './blocks/section/index.js',
-		card: './blocks/card/index.js',
 		'inline-style': './blocks/inline-style/index.js',
 	},
 	output: {

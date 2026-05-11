@@ -4,10 +4,11 @@
 import { _x } from '@wordpress/i18n';
 import { useMemo } from '@wordpress/element';
 // @ts-ignore
-import { useSettings } from '@wordpress/block-editor';
+import {
+	useSettings,
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
-// @ts-ignore.
-import { store as editorStore } from '@wordpress/editor';
 
 type themeColorsOptions = {
 	enableCurrentColor?: boolean;
@@ -46,7 +47,7 @@ const useThemeColors = ( options?: themeColorsOptions ) => {
 	// useSelectから色情報を取得(主に設定画面用).
 	const dataColors = useSelect( ( select ) => {
 		// @ts-ignore
-		const settings = select( editorStore )?.getEditorSettings();
+		const settings = select( blockEditorStore )?.getSettings();
 		// @ts-ignore
 		return settings?.colors || [];
 	}, [] );
