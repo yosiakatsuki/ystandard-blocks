@@ -3,10 +3,12 @@
  */
 import { useMemo } from '@wordpress/element';
 // @ts-ignore
-import { useSettings } from '@wordpress/block-editor';
+import {
+	useSettings,
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
 import { _x } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import { store as editorStore } from '@wordpress/editor';
 
 /**
  * テーマのカラー設定を取得する（設定画面用）
@@ -27,7 +29,7 @@ const useThemeGradients = () => {
 	// useSelectから色情報を取得(主に設定画面用).
 	const dataGradients = useSelect( ( select ) => {
 		// @ts-ignore
-		const settings = select( editorStore )?.getEditorSettings();
+		const settings = select( blockEditorStore )?.getSettings();
 		// @ts-ignore
 		return settings?.gradients || [];
 	}, [] );

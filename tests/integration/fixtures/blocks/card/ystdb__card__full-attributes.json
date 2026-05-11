@@ -1,0 +1,28 @@
+[
+	{
+		"name": "ystdb/card",
+		"isValid": true,
+		"attributes": {
+			"url": "https://wp-ystandard.com/",
+			"linkTarget": "_blank",
+			"rel": "noopener noreferrer",
+			"cardType": "horizon",
+			"title": "yStandard",
+			"showImage": true,
+			"imageSize": "normal",
+			"imageType": "fitText",
+			"imageAlign": "left",
+			"imageURL": "https://wp-ystandard.com/sample.jpg",
+			"imageAlt": "sample",
+			"imageID": 123,
+			"showDscr": true,
+			"dscrCharCount": 80,
+			"dscr": "シンプルでカスタマイズしやすい WordPress テーマ",
+			"showDomain": true,
+			"backgroundColor": "primary",
+			"titleColor": "primary",
+			"caption": "おすすめテーマ"
+		},
+		"innerBlocks": []
+	}
+]

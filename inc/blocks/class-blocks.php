@@ -48,7 +48,7 @@ class Blocks {
 		$this->init();
 		add_action( 'init', [ $this, 'require_dynamic_block_file' ] );
 		add_action( 'init', [ $this, 'register_block' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_filter( 'yststd_parts_block_preview_styles', [ $this, 'add_parts_preview_style' ] );
 		add_filter( 'block_type_metadata', [ $this, 'block_type_metadata' ] );
 	}
@@ -222,9 +222,15 @@ class Blocks {
 
 
 	/**
-	 * ブロックassets
+	 * ブロックassets.
+	 *
+	 * エディター iframe 内にもスタイルを届けるため `enqueue_block_assets` で登録する.
+	 * フロントへ誤って読み込まないよう `is_admin()` でゲートする.
 	 */
 	public function enqueue_block_editor_assets() {
+		if ( ! is_admin() ) {
+			return;
+		}
 		wp_enqueue_style(
 			Config::BLOCK_EDITOR_CSS_HANDLE,
 			YSTDB_URL . '/css/ystandard-blocks-edit.css',

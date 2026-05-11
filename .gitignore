@@ -8,3 +8,4 @@ blocks-temp/
 .wp-content/
 /artifacts
 .phpunit.result.cache
+tsconfig.tsbuildinfo

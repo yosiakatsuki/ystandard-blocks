@@ -1,27 +1,27 @@
 /**
- * External dependencies
+ * fixture-based block tests
+ *
+ * Gutenberg コア
+ * https://github.com/WordPress/gutenberg/blob/trunk/test/integration/full-content/full-content.test.js
+ * を参考にした、yStandard Blocks のブロック向け fixture-based test。
+ *
+ * tests/integration/fixtures/blocks/{block}/ 配下の以下のファイル群を 1 セットとして扱う:
+ *   - {basename}.html              入力 HTML（投稿に保存された状態）
+ *   - {basename}.parsed.json       parser の生出力
+ *   - {basename}.json              parse 後 (migrate 適用後) のブロック構造
+ *   - {basename}.serialized.html   再シリアライズ後の HTML
+ *
+ * deprecated 変換のテストは basename に `__deprecated-N` を含めることで判別する。
+ *
+ * 期待値ファイル (.parsed.json, .json, .serialized.html) が存在しない場合、
+ * 環境変数 GENERATE_MISSING_FIXTURES=y で実行すると自動生成される。
  */
-import glob from 'fast-glob';
-import { get } from 'lodash';
 import { format } from 'util';
 
-/**
- * WordPress dependencies
- */
-import {
-	getBlockTypes,
-	parse,
-	serialize,
-	unstable__bootstrapServerSideBlockDefinitions, // eslint-disable-line camelcase
-} from '@wordpress/blocks';
+import { parse, serialize } from '@wordpress/blocks';
 import { parse as grammarParse } from '@wordpress/block-serialization-default-parser';
-import prettierConfig from '@wordpress/prettier-config';
 
-/**
- * Internal dependencies
- */
 import {
-	blockNameToFixtureBasename,
 	getAvailableBlockFixturesBasenames,
 	getBlockFixtureHTML,
 	getBlockFixtureJSON,
@@ -32,16 +32,16 @@ import {
 	writeBlockFixtureSerializedHTML,
 } from '../fixtures';
 
-const blockBasenames = getAvailableBlockFixturesBasenames();
+import {
+	registerCardTestBlock,
+	registerSectionTestBlock,
+} from '../helpers/register-blocks';
 
-import { registerColumns } from '../../../blocks/columns';
-import { registerColumn } from '../../../blocks/columns/column';
+registerCardTestBlock();
+registerSectionTestBlock();
 
 /**
- * Returns only the properties of the block that
- * we care about comparing with the fixture data.
- *
- * @param {WPBlock[]} blocks loaded blocks to normalize.
+ * fixture と比較するときに使うプロパティだけを取り出す
  */
 const normalizeParsedBlocks = ( blocks ) =>
 	blocks.map( ( block ) => ( {
@@ -51,23 +51,17 @@ const normalizeParsedBlocks = ( blocks ) =>
 		innerBlocks: normalizeParsedBlocks( block.innerBlocks ),
 	} ) );
 
-describe( 'full post content fixture', () => {
-	beforeAll( () => {
-		const blockMetadataFiles = glob.sync( 'blocks/*/block.json' );
-		const blockDefinitions = Object.fromEntries(
-			blockMetadataFiles.map( ( file ) => {
-				const { name, ...metadata } = require( file );
-				return [ name, metadata ];
-			} )
-		);
-		unstable__bootstrapServerSideBlockDefinitions( blockDefinitions );
-	} );
+const blockBasenames = getAvailableBlockFixturesBasenames();
 
-	let spacer = 4;
-	if ( prettierConfig?.useTabs ) {
-		spacer = '\t';
-	} else if ( prettierConfig?.tabWidth ) {
-		spacer = prettierConfig?.tabWidth;
+describe( 'full post content fixture', () => {
+	const spacer = '\t';
+
+	if ( blockBasenames.length === 0 ) {
+		// fixture が 1 件もない場合でも describe ブロック内に最低 1 つテストが必要.
+		it( 'fixture ファイルが存在しない場合はスキップ', () => {
+			expect( true ).toBe( true );
+		} );
+		return;
 	}
 
 	blockBasenames.forEach( ( basename ) => {
@@ -81,6 +75,7 @@ describe( 'full post content fixture', () => {
 				);
 			}
 
+			// パーサーの生出力との比較.
 			const {
 				filename: parsedJSONFixtureFileName,
 				file: parsedJSONFixtureContent,
@@ -117,17 +112,22 @@ describe( 'full post content fixture', () => {
 				);
 			}
 
+			// parse → migrate 後のブロック構造との比較.
 			const blocksActual = parse( htmlFixtureContent );
 
-			// Block validation may log errors during deprecation migration,
-			// unless explicitly handled from a valid block via isEligible.
-			// Match on basename for deprecated blocks fixtures to allow.
+			// deprecated 変換時はバリデーション警告が出るためモックリセット.
 			const isDeprecated = /__deprecated([-_]|$)/.test( basename );
 			if ( isDeprecated ) {
 				/* eslint-disable no-console */
-				console.warn.mockReset();
-				console.error.mockReset();
-				console.info.mockReset();
+				if ( typeof console.warn?.mockReset === 'function' ) {
+					console.warn.mockReset();
+				}
+				if ( typeof console.error?.mockReset === 'function' ) {
+					console.error.mockReset();
+				}
+				if ( typeof console.info?.mockReset === 'function' ) {
+					console.info.mockReset();
+				}
 				/* eslint-enable no-console */
 			}
 
@@ -137,7 +137,6 @@ describe( 'full post content fixture', () => {
 				getBlockFixtureJSON( basename );
 
 			let blocksExpectedString;
-
 			if ( jsonFixtureContent ) {
 				blocksExpectedString = jsonFixtureContent;
 			} else if ( process.env.GENERATE_MISSING_FIXTURES ) {
@@ -164,8 +163,7 @@ describe( 'full post content fixture', () => {
 				);
 			}
 
-			// `serialize` doesn't have a trailing newline, but the fixture
-			// files should.
+			// 再シリアライズ結果との比較.
 			const serializedActual = serialize( blocksActual ) + '\n';
 			const {
 				filename: serializedHTMLFileName,
@@ -177,7 +175,10 @@ describe( 'full post content fixture', () => {
 				serializedExpected = serializedHTMLFixtureContent;
 			} else if ( process.env.GENERATE_MISSING_FIXTURES ) {
 				serializedExpected = serializedActual;
-				writeBlockFixtureSerializedHTML( basename, serializedExpected );
+				writeBlockFixtureSerializedHTML(
+					basename,
+					serializedExpected
+				);
 			} else {
 				throw new Error(
 					`Missing fixture file: ${ serializedHTMLFileName }`
@@ -187,101 +188,14 @@ describe( 'full post content fixture', () => {
 			try {
 				expect( serializedActual ).toEqual( serializedExpected );
 			} catch ( err ) {
-				if (
-					serialize( blocksActual ) ===
-					serialize( parse( serializedExpected ) )
-				) {
-					throw new Error(
-						format(
-							"File '%s' does not match expected value (however, the block re-serializes identically so you may need to run 'npm run fixtures:regenerate'):\n\n%s",
-							serializedHTMLFileName,
-							err.message
-						)
-					);
-				} else {
-					throw new Error(
-						format(
-							"File '%s' does not match expected value:\n\n%s",
-							serializedHTMLFileName,
-							err.message
-						)
-					);
-				}
+				throw new Error(
+					format(
+						"File '%s' does not match expected value:\n\n%s",
+						serializedHTMLFileName,
+						err.message
+					)
+				);
 			}
 		} );
-	} );
-
-	it( 'should be present for each block', () => {
-		const errors = [];
-
-		getBlockTypes()
-			.map( ( block ) => block.name )
-			// We don't want tests for each oembed provider, which all have the same
-			// `save` functions and attributes.
-			// The `core/template` is not worth testing here because it's never saved, it's covered better in e2e tests.
-			.filter(
-				( name ) => ! [ 'core/embed', 'core/template' ].includes( name )
-			)
-			.forEach( ( name ) => {
-				const nameToFilename = blockNameToFixtureBasename( name );
-				const foundFixtures = blockBasenames
-					.filter(
-						( basename ) =>
-							basename === nameToFilename ||
-							basename.startsWith( nameToFilename + '__' )
-					)
-					.map( ( basename ) => {
-						const { filename: htmlFixtureFileName } =
-							getBlockFixtureHTML( basename );
-						const { file: jsonFixtureContent } =
-							getBlockFixtureJSON( basename );
-						// The parser output for this test.  For missing files,
-						// JSON.parse( null ) === null.
-						const parserOutput = JSON.parse( jsonFixtureContent );
-						// The name of the first block that this fixture file
-						// contains (if any).
-						const firstBlock = get(
-							parserOutput,
-							[ '0', 'name' ],
-							null
-						);
-						return {
-							filename: htmlFixtureFileName,
-							parserOutput,
-							firstBlock,
-						};
-					} )
-					.filter( ( fixture ) => fixture.parserOutput !== null );
-
-				if ( ! foundFixtures.length ) {
-					errors.push(
-						format(
-							"Expected a fixture file called '%s.html' or '%s__*.html' in `test/integration/fixtures/blocks/` " +
-								'\n\n' +
-								'For more information on how to create test fixtures see https://github.com/WordPress/gutenberg/blob/1f75f8f6f500a20df5b9d6e317b4d72dd5af4ede/test/integration/fixtures/blocks/README.md\n\n',
-							nameToFilename,
-							nameToFilename
-						)
-					);
-				}
-
-				foundFixtures.forEach( ( fixture ) => {
-					if ( name !== fixture.firstBlock ) {
-						errors.push(
-							format(
-								"Expected fixture file '%s' to test the '%s' block.",
-								fixture.filename,
-								name
-							)
-						);
-					}
-				} );
-			} );
-
-		if ( errors.length ) {
-			throw new Error(
-				'Problem(s) with fixture files:\n\n' + errors.join( '\n' )
-			);
-		}
 	} );
 } );

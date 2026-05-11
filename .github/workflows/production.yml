@@ -1,45 +1,50 @@
 name: Production Build
 on:
-    push:
-        branches:
-            - production
+  push:
+    branches:
+      - production
 jobs:
-    FTP-Deploy-Action:
-        name: FTP-Deploy-Action
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  ref: 'production'
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: 'production'
 
-            - name: npm install
-              run: npm install
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-            - name: Build
-              run: npm run build
+      - name: npm ci
+        run: npm ci
 
-            - name: Zip
-              run: npm run zip
+      - name: Build
+        run: npm run build
 
-            - name: Release File Copy
-              run: npm run copy:production
+      - name: Zip
+        run: npm run zip
 
-            - name: FTP-Deploy-Action
-              uses: SamKirkland/FTP-Deploy-Action@2.0.0
-              env:
-                  FTP_SERVER: ${{ secrets.FTP_SERVER }}
-                  FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-                  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-                  LOCAL_DIR: upload
-                  REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
-                  ARGS: --verbose
+      - name: Release File Copy
+        run: npm run copy:production
 
-            - name: Notify Deployment Develop Version for Discord
-              uses: sarisia/actions-status-discord@v1
-              with:
-                  nodetail: true
-                  title: '[yStandard Blocks]新バージョンのアップデート準備OK！'
-                  color: 0x059669
-              env:
-                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-              if: success()
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./upload/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}/
+          log-level: verbose
+
+      - name: Notify Deployment Production Version for Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          title: '[yStandard Blocks]新バージョンのアップデート準備OK！'
+          color: 0x059669
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}

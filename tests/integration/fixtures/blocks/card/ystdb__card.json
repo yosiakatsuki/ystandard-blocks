@@ -1,0 +1,17 @@
+[
+	{
+		"name": "ystdb/card",
+		"isValid": true,
+		"attributes": {
+			"url": "https://wp-ystandard.com/",
+			"cardType": "horizon",
+			"showImage": true,
+			"imageAlign": "left",
+			"imageID": 0,
+			"showDscr": true,
+			"dscrCharCount": 80,
+			"showDomain": true
+		},
+		"innerBlocks": []
+	}
+]

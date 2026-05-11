@@ -1,0 +1,60 @@
+@use "../../../sass/global";
+@use "style";
+
+.is-selected {
+
+	.ystdb-card__edit {
+
+		* {
+			box-sizing: border-box;
+		}
+	}
+
+	.ystdb-card__edit-container {
+		background-color: global.$color__bg-gray-light;
+	}
+}
+
+.ystdb-card__url-input {
+
+	&.block-editor-url-input {
+		padding: 1rem;
+
+		@media (min-width: 600px) {
+			min-width: 0;
+		}
+
+		&.is-use-inspector-control {
+			padding: 0;
+
+			.block-editor-url-input__input {
+				border: 1px solid #949494;
+				padding: 6px 8px;
+			}
+		}
+	}
+}
+
+.ystdb-card__preview {
+	position: relative;
+
+	&.is-rendered {
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 2;
+		}
+	}
+
+	.ystdb-card__link {
+
+		&::after {
+			display: none;
+		}
+	}
+}

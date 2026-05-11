@@ -3,7 +3,8 @@
  */
 import { useEffect, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import { store as editorStore } from '@wordpress/editor';
+// @ts-ignore
+import { store as blockEditorStore } from '@wordpress/block-editor';
 
 /**
  * テーマのフォントサイズ設定を取得する（設定画面用）
@@ -12,7 +13,7 @@ const useThemeFontSizes = () => {
 	const [ fontSizes, setFontSizes ] = useState( [] );
 	const themeFontSizes = useSelect(
 		// @ts-ignore
-		( select ) => select( editorStore ).getEditorSettings()?.fontSizes,
+		( select ) => select( blockEditorStore ).getSettings()?.fontSizes,
 		[]
 	);
 

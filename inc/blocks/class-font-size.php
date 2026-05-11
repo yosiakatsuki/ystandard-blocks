@@ -25,7 +25,7 @@ class Font_Size {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_size_css' ], 12 );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_font_size_css' ], 12 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_font_size_css' ], 12 );
 	}
 
 
@@ -44,9 +44,15 @@ class Font_Size {
 	}
 
 	/**
-	 * 編集画面用フォントサイズCSS
+	 * 編集画面用フォントサイズCSS.
+	 *
+	 * `enqueue_block_assets` 経由で iframe 内にもスタイルを届ける.
+	 * フロントへの誤読み込みを防ぐため `is_admin()` でゲートする.
 	 */
 	public function enqueue_block_editor_font_size_css() {
+		if ( ! is_admin() ) {
+			return;
+		}
 		if ( apply_filters( 'ys_is_enqueue_block_editor_font_size', false ) ) {
 			return;
 		}
