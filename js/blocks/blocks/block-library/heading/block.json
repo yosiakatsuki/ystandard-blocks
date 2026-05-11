@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "ystdb/heading",
   "title": "カスタム見出し",
   "description": "カスタム見出しブロック",

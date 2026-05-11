@@ -25,7 +25,7 @@ class Color_Palette {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_color_palette_css' ], 12 );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_color_palette_css' ], 12 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_color_palette_css' ], 12 );
 	}
 
 	/**
@@ -43,9 +43,15 @@ class Color_Palette {
 	}
 
 	/**
-	 * 編集画面用カラーパレットCSS
+	 * 編集画面用カラーパレットCSS.
+	 *
+	 * `enqueue_block_assets` 経由で iframe 内にもスタイルを届ける.
+	 * フロントへの誤読み込みを防ぐため `is_admin()` でゲートする.
 	 */
 	public function enqueue_block_editor_color_palette_css() {
+		if ( ! is_admin() ) {
+			return;
+		}
 		if ( apply_filters( 'ys_is_enqueue_block_editor_color_pallet', false ) ) {
 			return;
 		}

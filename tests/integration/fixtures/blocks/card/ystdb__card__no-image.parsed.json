@@ -1,0 +1,13 @@
+[
+	{
+		"blockName": "ystdb/card",
+		"attrs": {
+			"url": "https://wp-ystandard.com/",
+			"title": "画像なしカード",
+			"showImage": false
+		},
+		"innerBlocks": [],
+		"innerHTML": "",
+		"innerContent": []
+	}
+]

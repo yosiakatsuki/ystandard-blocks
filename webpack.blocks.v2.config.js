@@ -14,6 +14,12 @@ module.exports = {
 				'src/aktk-block-components'
 			),
 			'@aktk/blocks-old': path.resolve( __dirname, 'src/js' ),
+			// 旧 v1 ブロックから移行したファイルの import 互換用.
+			'@aktk/config': path.resolve( __dirname, 'src/js/config' ),
+			'@aktk/components': path.resolve( __dirname, 'src/js/components' ),
+			'@aktk/controls': path.resolve( __dirname, 'src/js/controls' ),
+			'@aktk/helper': path.resolve( __dirname, 'src/js/helper' ),
+			'@aktk/util': path.resolve( __dirname, 'src/js/util' ),
 		},
 	},
 	cache: false,

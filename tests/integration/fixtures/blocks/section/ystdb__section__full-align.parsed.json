@@ -1,0 +1,14 @@
+[
+	{
+		"blockName": "ystdb/section",
+		"attrs": {
+			"innerCustomWidth": 800,
+			"containerFluid": true
+		},
+		"innerBlocks": [],
+		"innerHTML": "\n<div class=\"ystdb-section is-container-fluid\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"max-width:800px;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n",
+		"innerContent": [
+			"\n<div class=\"ystdb-section is-container-fluid\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"max-width:800px;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n"
+		]
+	}
+]

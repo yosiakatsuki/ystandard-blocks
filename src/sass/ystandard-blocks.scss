@@ -1,5 +1,4 @@
 @charset "UTF-8";
 @use "./foundation" as foundation;
-@use "../../blocks/card/block" as card;
-@use "../../blocks/section/block" as section;
+// card / section は v2 化により block.json の `style` でブロック単位にバンドル.
 @use "../js/components/block" as components;

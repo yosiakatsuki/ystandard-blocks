@@ -74,7 +74,7 @@ class Inline_Style {
 		 * Block Editor.
 		 */
 		add_filter( 'ystdb_block_config', [ $this, 'add_inline_style_config' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
 		/**
 		 * Admin.
 		 */
@@ -326,9 +326,15 @@ class Inline_Style {
 	}
 
 	/**
-	 * ブロックエディター
+	 * ブロックエディター.
+	 *
+	 * `enqueue_block_assets` 経由で iframe 内にもスタイルを届ける.
+	 * フロントへの誤読み込みを防ぐため `is_admin()` でゲートする.
 	 */
 	public function enqueue_block_editor_assets() {
+		if ( ! is_admin() ) {
+			return;
+		}
 		$css = '';
 		// 管理画面用CSS取得.
 		$css .= $this->get_button_css( '.editor-styles-wrapper' );
