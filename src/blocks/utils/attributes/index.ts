@@ -49,7 +49,7 @@ export function parseObjectAttributes( value: object ) {
 	// undefinedを削除する.
 	try {
 		result = JSON.parse( JSON.stringify( value ) );
-	} catch ( error ) {
+	} catch {
 		result = {};
 	}
 	if ( ! isObject( result ) ) {

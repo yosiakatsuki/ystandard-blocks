@@ -4,6 +4,14 @@
 
 ## ブロック移行関連
 
+### カード・セクションブロックの lint 対応
+
+カード・セクションブロックは v2 → v3 移行で v1 由来のコードを `src/blocks/block-library/card/` `src/blocks/block-library/section/` 配下に取り込んだが、`@wordpress/eslint-plugin` の recommended ルールに合致しない箇所が多数あり、`eslint.config.cjs` の `ignores` で一時除外している。
+
+- 影響範囲: 上記 2 ブロックの edit / save / deprecated / inspector-controls 配下
+- 主なエラー種別: `react-hooks/rules-of-hooks`、jsdoc 系、未使用変数など
+- 対応方針: ブロック単位で段階的に lint を通す形にし、通った時点で `eslint.config.cjs` の `ignores` から外す
+
 ### `isSecondary` / `isPrimary` の deprecated 警告
 
 `@wordpress/components` の `Button` で `isSecondary` / `isPrimary` プロパティが非推奨。代わりに `variant="secondary"` / `variant="primary"` を使う。
