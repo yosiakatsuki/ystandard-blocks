@@ -3,6 +3,12 @@ const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
+	// CopyPlugin はブロックビルド用に src/**/block.json と PHP を出力先へ複製するが、
+	// 当 config はブロックビルドではないため出力先（js/app/）に不要なミラーが
+	// 出来てしまう。除外する。
+	plugins: defaultConfig.plugins.filter(
+		( plugin ) => plugin.constructor.name !== 'CopyPlugin'
+	),
 	entry: {
 		app: './src/js/app/app.js',
 		'app-ie': './src/js/app/app-ie.js',
