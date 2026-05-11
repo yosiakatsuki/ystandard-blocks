@@ -4,7 +4,8 @@ import {
 	getColorClassName,
 	InnerBlocks,
 	__experimentalGetGradientClass,
-	useBlockProps, useInnerBlocksProps,
+	useBlockProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import { SVG, Path } from '@wordpress/components';
 import {
@@ -407,7 +408,8 @@ export const deprecated_wp60 = [
 			const isImageBackground = BACKGROUND_TYPE_IMAGE === backgroundType;
 			const isVideoBackground = BACKGROUND_TYPE_VIDEO === backgroundType;
 			const showFocalPointPicker =
-				isVideoBackground || ( isImageBackground && ! backgroundImageParallax );
+				isVideoBackground ||
+				( isImageBackground && ! backgroundImageParallax );
 			const gradientClass = __experimentalGetGradientClass( gradient );
 
 			/**
@@ -418,12 +420,18 @@ export const deprecated_wp60 = [
 				'background-color',
 				backgroundColor
 			);
-			const dividerColorTopClass = getColorClassName( 'fill', dividerColorTop );
+			const dividerColorTopClass = getColorClassName(
+				'fill',
+				dividerColorTop
+			);
 			const dividerColorBottomClass = getColorClassName(
 				'fill',
 				dividerColorBottom
 			);
-			const borderColorClass = getColorClassName( 'border-color', borderColor );
+			const borderColorClass = getColorClassName(
+				'border-color',
+				borderColor
+			);
 
 			/**
 			 * アニメーション
@@ -506,14 +514,22 @@ export const deprecated_wp60 = [
 					paddingBottom,
 					paddingBottomMobile
 				),
-				marginTop: getMargin( marginTopResponsive, marginTop, marginTopMobile ),
+				marginTop: getMargin(
+					marginTopResponsive,
+					marginTop,
+					marginTopMobile
+				),
 				marginBottom: getMargin(
 					marginBottomResponsive,
 					marginBottom,
 					marginBottomMobile
 				),
-				minHeight: sectionMinHeight ? sectionMinHeight + 'px' : undefined,
-				animationDuration: hasAnimation ? `${ animationSpeed }s` : undefined,
+				minHeight: sectionMinHeight
+					? sectionMinHeight + 'px'
+					: undefined,
+				animationDuration: hasAnimation
+					? `${ animationSpeed }s`
+					: undefined,
 				animationDelay:
 					hasAnimation && 0 < animationDelay
 						? `${ animationDelay }s`
@@ -640,11 +656,11 @@ export const deprecated_wp60 = [
 				} );
 				const style = useResponsive
 					? {
-						height: getCssClamp( {
-							desktop: Math.abs( level ),
-							mobile: Math.abs( levelMobile ),
-						} ),
-					}
+							height: getCssClamp( {
+								desktop: Math.abs( level ),
+								mobile: Math.abs( levelMobile ),
+							} ),
+					  }
 					: undefined;
 
 				return (
@@ -691,7 +707,8 @@ export const deprecated_wp60 = [
 					[ textColorClass ]: textColorClass,
 				} ),
 				style: {
-					maxWidth: 0 < innerCustomWidth ? innerCustomWidth : undefined,
+					maxWidth:
+						0 < innerCustomWidth ? innerCustomWidth : undefined,
 					marginRight: 'auto',
 					marginLeft: 'auto',
 					paddingLeft: getMargin(
