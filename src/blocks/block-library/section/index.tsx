@@ -29,10 +29,7 @@ const attributes = mergeDefaultAttributes( metadata.name, metadata.attributes );
 registerBlockType( metadata.name, {
 	...metadata,
 	icon: (
-		<Layers
-			stroke={ COLORS.iconForeground }
-			style={ { fill: 'none' } }
-		/>
+		<Layers stroke={ COLORS.iconForeground } style={ { fill: 'none' } } />
 	),
 	attributes,
 	edit,

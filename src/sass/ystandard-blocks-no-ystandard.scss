@@ -2,6 +2,6 @@
 @use "global";
 
 :root {
-	--font-gray: global.$color__text-light;
+	--font-gray: #{global.$color__text-light};
 }
 
