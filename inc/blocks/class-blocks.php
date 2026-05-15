@@ -44,6 +44,7 @@ class Blocks {
 			add_filter( 'block_categories', [ $this, 'add_block_categories' ] );
 		}
 		$this->init_blocks();
+		add_filter( 'block_type_metadata_settings', [ $this, 'block_type_metadata_settings' ], 10, 2 );
 		// 以下は徐々に移行する.
 		$this->init();
 		add_action( 'init', [ $this, 'require_dynamic_block_file' ] );
@@ -51,7 +52,6 @@ class Blocks {
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_filter( 'yststd_parts_block_preview_styles', [ $this, 'add_parts_preview_style' ] );
 		add_filter( 'block_type_metadata', [ $this, 'block_type_metadata' ] );
-		add_filter( 'block_type_metadata_settings', [ $this, 'block_type_metadata_settings' ], 10, 2 );
 	}
 
 	/**
@@ -277,6 +277,7 @@ class Blocks {
 
 		$default_attributes = apply_filters( 'ys_block_default_attributes', [] );
 		if (
+			! is_array( $default_attributes ) ||
 			empty( $default_attributes[ $metadata['name'] ] ) ||
 			! is_array( $default_attributes[ $metadata['name'] ] )
 		) {

@@ -22,18 +22,16 @@ import './style.scss';
 export function registerBalloonBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<FiMessageSquare
-					stroke={ COLORS.iconForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.common,
-			edit,
-			save,
-			example: {},
-		},
+		icon: (
+			<FiMessageSquare
+				stroke={ COLORS.iconForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.common,
+		edit,
+		save,
+		example: {},
 	} );
 }
 

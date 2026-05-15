@@ -26,19 +26,17 @@ import transforms from './transforms';
 export function registerCustomButtonBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Link2
-					stroke={ COLORS.iconForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.common,
-			edit,
-			save,
-			example: {},
-			transforms,
-		},
+		icon: (
+			<Link2
+				stroke={ COLORS.iconForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.common,
+		edit,
+		save,
+		example: {},
+		transforms,
 	} );
 }
 

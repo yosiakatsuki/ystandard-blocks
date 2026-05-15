@@ -20,19 +20,14 @@ import './style.scss';
 export function registerColumnsBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Grid
-					stroke={ COLOR.iconForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.common,
-			edit,
-			save,
-			example: {},
-			variations,
-		},
+		icon: (
+			<Grid stroke={ COLOR.iconForeground } style={ { fill: 'none' } } />
+		),
+		category: CATEGORY.common,
+		edit,
+		save,
+		example: {},
+		variations,
 	} );
 }
 

@@ -18,20 +18,18 @@ import './style.scss';
 export function registerSvgButtonLinkBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Code
-					stroke={ COLOR.iconDeprecatedForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.deprecated,
-			edit,
-			save() {
-				return null;
-			},
-			example: {},
+		icon: (
+			<Code
+				stroke={ COLOR.iconDeprecatedForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.deprecated,
+		edit,
+		save() {
+			return null;
 		},
+		example: {},
 	} );
 }
 

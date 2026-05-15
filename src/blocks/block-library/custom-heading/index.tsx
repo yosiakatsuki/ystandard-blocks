@@ -25,27 +25,25 @@ import './style.scss';
 export function registerCustomHeadingBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Bookmark
-					stroke={ COLORS.iconBetaForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.beta,
-			edit,
-			save,
-			example: {},
-			transforms,
-			merge( attributes, attributesToMerge ) {
-				return {
-					content:
-						// @ts-ignore.
-						( attributes.content || '' ) +
-						// @ts-ignore.
-						( attributesToMerge.content || '' ),
-				};
-			},
+		icon: (
+			<Bookmark
+				stroke={ COLORS.iconBetaForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.beta,
+		edit,
+		save,
+		example: {},
+		transforms,
+		merge( attributes, attributesToMerge ) {
+			return {
+				content:
+					// @ts-ignore.
+					( attributes.content || '' ) +
+					// @ts-ignore.
+					( attributesToMerge.content || '' ),
+			};
 		},
 	} );
 }

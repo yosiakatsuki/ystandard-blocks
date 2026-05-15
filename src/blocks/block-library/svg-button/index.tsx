@@ -25,19 +25,17 @@ import transforms from './transforms';
 export function registerSvgButtonBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Link2
-					stroke={ COLORS.iconDeprecatedForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.deprecated,
-			edit,
-			save,
-			example: {},
-			transforms,
-		},
+		icon: (
+			<Link2
+				stroke={ COLORS.iconDeprecatedForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.deprecated,
+		edit,
+		save,
+		example: {},
+		transforms,
 	} );
 }
 

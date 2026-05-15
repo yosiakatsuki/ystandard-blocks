@@ -19,18 +19,16 @@ import './style.scss';
 export function registerGroupBlock() {
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...{
-			icon: (
-				<Maximize
-					stroke={ COLOR.iconForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.common,
-			edit,
-			save,
-			example: {},
-		},
+		icon: (
+			<Maximize
+				stroke={ COLOR.iconForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.common,
+		edit,
+		save,
+		example: {},
 	} );
 }
 
