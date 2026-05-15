@@ -12,6 +12,7 @@ namespace ystandard_blocks;
 use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\utils\Styles;
 use ystandard_blocks\utils\Version;
+use ystandard_blocks\Shared_Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -238,6 +239,7 @@ class Blocks {
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
 		);
+		wp_enqueue_style( Shared_Styles::AKTK_COMPONENTS_EDITOR_HANDLE );
 	}
 
 	/**

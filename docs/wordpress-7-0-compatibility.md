@@ -114,9 +114,13 @@ Core ブロックでは、Button の `url` / `text` / `linkTarget` / `rel`、Ima
 
 ### iframe エディター
 
-WordPress 7.0 では、投稿に挿入されているブロックがすべて Block API v3 以上の場合、投稿エディターが iframe 化される。全登録ブロックではなく、投稿内に実際に挿入されたブロックで判定される。
+WordPress 7.0 では、投稿エディターの iframe 判定が「全登録ブロック」ではなく「投稿に実際に挿入されているブロック」の Block API version を見る方式になる。投稿内のブロックがすべて Block API v3 以上の場合は iframe 化され、v2 以下のブロックが含まれる場合は iframe が外れる。
 
-このリポジトリの `src/blocks/block-library/` 配下の主要ブロックは概ね `apiVersion: 3`。ただし、旧 v1 ブロックや非推奨ブロックが混在する投稿では iframe の有無が切り替わる可能性がある。
+公式 dev note では、WordPress 7.0 時点で iframe 化を一律強制するわけではなく、段階的な移行として扱うことも明記されている。Gutenberg プラグイン 22.6 以降では classic theme でも iframe がより積極的に使われるため、WordPress 7.0 RC と Gutenberg プラグイン有効時の両方で確認する。
+
+このリポジトリの `src/blocks/block-library/` 配下の主要ブロックはすべて `apiVersion: 3`。ただし、旧 v1 ブロックや非推奨ブロックが混在する投稿では iframe の有無が切り替わる可能性がある。
+
+コード調査では、v2 ブロックの `block.json` は `style` と `editorStyle` を持ち、追加のエディター用 CSS も `enqueue_block_assets` 経由で管理画面に限定して出力する実装になっている。PHP 側で追加出力しているレスポンシブ用 CSS は `custom-button`, `custom-heading`, `svg-icon` にあり、これらは iframe 内・フロントの両方で必要なブロック表示用 CSS として扱う。
 
 既に `enqueue_block_assets` 経由で iframe 内へスタイルを届ける対応が入っているが、WP 7.0 RC で次を確認する。
 
@@ -196,9 +200,12 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
   - 対応方針: 未同期パターン、同期パターン、テンプレートパーツに各ブロックを入れて、テキスト・URL・画像が編集できるか確認する。
   - 確認方法: WP 7.0 RC のエディター操作
   - 調査メモ: JS 側の `registerBlockType()` で `attributes` を渡すと、サーバー登録済みの `block.json` attributes を上書きし、`role: "content"` が失われる場合がある。v2 ブロックは JS 側で attributes を渡さず、default 値は PHP の `block_type_metadata_settings` で `ys_block_default_attributes` から取得して注入する。
-- ⬜ `WP70-005` 高: iframe エディター内の表示確認
+- 🔄 `WP70-005` 高: iframe エディター内の表示確認
   - 対応方針: 投稿エディター、テンプレートエディター、ウィジェット編集画面で CSS と操作 UI を確認する。
   - 確認方法: WP 7.0 RC の画面確認
+  - コード調査: v2 ブロックはすべて `apiVersion: 3`。各 `block.json` に `editorStyle` と `style` があり、共通エディター CSS、インラインスタイル用 CSS、カラーパレット、フォントサイズは `enqueue_block_assets` 経由で iframe 内に届く設計になっている。
+  - 確認パターン: v2 ブロックのみの投稿、v1 または非推奨ブロックを混在させた投稿、テンプレートエディター、ウィジェット編集画面
+  - 注意点: 投稿エディターでは v2 以下のブロックを追加すると iframe が外れる可能性があるため、iframe 有無を DevTools で確認してから表示差分を見る。
 - ⬜ `WP70-006` 高: Custom CSS の影響確認
   - 対応方針: 全ブロックで Custom CSS パネルの表示、保存、フロント出力、ルートクラス注入の影響を確認する。
   - 確認方法: CSS 入力後の保存・再表示・フロント確認
