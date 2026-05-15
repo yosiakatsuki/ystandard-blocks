@@ -237,7 +237,7 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
 - ✅ `WP70-015` 低: Interactivity API 変更の影響確認
   - 対応方針: 直接利用がないため基本対応なし。将来 `viewScriptModule` や Interactivity API を導入する場合に再確認する。
   - 確認方法: `rg "@wordpress/interactivity"`
-- ⬜ `WP70-016` 高: ビルド・lint・テスト
+- ✅ `WP70-016` 高: ビルド・lint・テスト
   - 対応方針: 実装後に関連チェックを実行する。ビルド成果物は管理対象なので、仕様変更時は成果物差分も含める。
   - 確認方法: `npm run build`、`npm run lint`、`npm run test:unit-js`、必要に応じて `npm run test:unit-php`
 
