@@ -192,9 +192,10 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
 - ✅ `WP70-003` 高: `role: "content"` の実装
   - 対応方針: 既存保存形式を変えずに `block.json` の対象属性へ追加する。必要なら非推奨ブロックにも追加する。
   - 確認方法: `npm run build:block:v2`、`npm run test:integration`
-- ⬜ `WP70-004` 高: `contentOnly` パターン内の編集確認
+- 🔄 `WP70-004` 高: `contentOnly` パターン内の編集確認
   - 対応方針: 未同期パターン、同期パターン、テンプレートパーツに各ブロックを入れて、テキスト・URL・画像が編集できるか確認する。
   - 確認方法: WP 7.0 RC のエディター操作
+  - 調査メモ: `block.json` に `role: "content"` があっても、エディター側の `registerBlockType()` に渡る JS バンドル内の属性定義に `role` が残っていないと `contentOnly` の編集対象として判定されない。`mergeDefaultAttributes()` で JS 登録直前に対象属性へ `role: "content"` を補完する。
 - ⬜ `WP70-005` 高: iframe エディター内の表示確認
   - 対応方針: 投稿エディター、テンプレートエディター、ウィジェット編集画面で CSS と操作 UI を確認する。
   - 確認方法: WP 7.0 RC の画面確認
