@@ -1,0 +1,178 @@
+# WordPress 7.0 対応方針
+
+調査日: 2026-05-15
+対象: yStandard Blocks 3.24.0 時点
+
+## 前提
+
+WordPress 7.0 は 2026-05-20 リリース予定。2026-05-14 に RC4 が公開され、公式の Field Guide も公開済み。
+
+当初注目されていたリアルタイム共同編集は、2026-05-08 の公式告知で 7.0 から除外された。そのため、このプラグインの 7.0 対応では共同編集前提の保存競合対応より、ブロックエディター・パターン編集・ブロック supports・iframe エディター周辺を優先して確認する。
+
+## 参照元
+
+- [WordPress 7.0 Field Guide](https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/)
+- [WordPress 7.0 Release Candidate 4](https://wordpress.org/news/2026/05/wordpress-7-0-release-candidate-4/)
+- [WordPress 7.0 Release Party Updated Schedule](https://make.wordpress.org/core/2026/04/22/wordpress-7-0-release-party-updated-schedule/)
+- [Real-time collaboration will not ship in WordPress 7.0](https://make.wordpress.org/core/2026/05/08/rtc-removed-from-7-0/)
+- [Pattern Editing in WordPress 7.0](https://make.wordpress.org/core/2026/03/15/pattern-editing-in-wordpress-7-0/)
+- [Pattern Overrides in WP 7.0: Support for Custom Blocks](https://make.wordpress.org/core/2026/03/16/pattern-overrides-in-wp-7-0-support-for-custom-blocks/)
+- [Block Visibility in WordPress 7.0](https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/)
+- [Custom CSS for Individual Block Instances in WordPress 7.0](https://make.wordpress.org/core/2026/03/15/custom-css-for-individual-block-instances-in-wordpress-7-0/)
+- [Dimensions Support Enhancements in WordPress 7.0](https://make.wordpress.org/core/2026/03/15/dimensions-support-enhancements-in-wordpress-7-0/)
+- [Iframed Editor Changes in WordPress 7.0](https://make.wordpress.org/core/2026/02/24/iframed-editor-changes-in-wordpress-7-0/)
+- [Changes to the Interactivity API in WordPress 7.0](https://make.wordpress.org/core/2026/02/23/changes-to-the-interactivity-api-in-wordpress-7-0/)
+- [PHP-only block registration](https://make.wordpress.org/core/2026/03/03/php-only-block-registration/)
+- [Client-Side Abilities API in WordPress 7.0](https://make.wordpress.org/core/2026/03/24/client-side-abilities-api-in-wordpress-7-0/)
+
+## 影響が大きい変更点
+
+### `contentOnly` の適用範囲拡大
+
+WordPress 7.0 では、未同期パターンやテンプレートパーツ内の編集体験で `contentOnly` がより広く使われる。`contentOnly` コンテナ内で編集対象にしたいカスタムブロックは、コンテンツを表す属性に `"role": "content"` を設定する必要がある。
+
+このリポジトリでは `src/blocks/block-library/custom-heading/block.json` の `content` には設定済み。一方で、次のようなブロックはユーザーがパターン内で編集したい文字列・URL・画像属性を持つが、現時点では `role` が未設定。
+
+- `ystdb/custom-button`: `content`, `url`
+- `ystdb/heading`: `content`, `subText`, 装飾画像系
+- `ystdb/balloon`: `avatarName`, `avatarURL`, `avatarAlt`, `text`
+- `ystdb/card`: `url`, `title`, `imageURL`, `imageAlt`, `dscr`, `caption`
+- `ystdb/svg-icon`: `icon`, `url`
+- `ystdb/column`: `url`, `screenReaderText`
+- 非推奨ブロック: `ystdb/svg-button`, `ystdb/svg-button-link`
+
+方針として、既存投稿のシリアライズに影響しない範囲で `role: "content"` を追加する。コンテナ系ブロックで属性自体に編集対象のコンテンツがないものは、必要に応じて `supports.contentRole` を検討する。ただし、まずは属性単位の `role` を優先する。
+
+### iframe エディター
+
+WordPress 7.0 では、投稿に挿入されているブロックがすべて Block API v3 以上の場合、投稿エディターが iframe 化される。全登録ブロックではなく、投稿内に実際に挿入されたブロックで判定される。
+
+このリポジトリの `src/blocks/block-library/` 配下の主要ブロックは概ね `apiVersion: 3`。ただし、旧 v1 ブロックや非推奨ブロックが混在する投稿では iframe の有無が切り替わる可能性がある。
+
+既に `enqueue_block_assets` 経由で iframe 内へスタイルを届ける対応が入っているが、WP 7.0 RC で次を確認する。
+
+- ブロックエディター内で各ブロックのスタイルが欠落しない
+- 管理画面側だけに出すべき CSS が iframe 内外で過剰に効かない
+- `enqueue_block_assets` に移した CSS がフロント側へ不要に出ていないか
+- ウィジェット編集画面、テンプレートエディター、投稿エディターで表示が揃うか
+
+### ブロック単位の Custom CSS
+
+WordPress 7.0 では、個別ブロックに `style.css` としてカスタム CSS を保存する機能が追加され、`supports.customCSS` は原則として有効になる。`className: false` とは別の機能なので、追加 CSS クラス欄を非表示にしているブロックでも Custom CSS パネルが出る可能性がある。
+
+このプラグインのブロックは独自のインラインスタイル生成やレスポンシブ CSS を多く持つため、まずは全ブロックで Custom CSS の表示有無とフロント出力を確認する。通常ブロックでは有効のままでもよいが、ルート要素へのクラス注入で表示や保存に問題が出るブロックは `supports.customCSS: false` を設定する。
+
+### ブロック表示制御
+
+WordPress 7.0 では viewport 別の表示制御が追加され、ブロックの `metadata.blockVisibility` が `false` だけでなく `{ viewport: ... }` のオブジェクトを取りうる。
+
+このプラグインには `ystdb/conditional-group-block` があり、`hideSp` / `hideMd` / `hideLg` で独自の表示制御を持つ。Core の viewport 表示制御と機能が重なるため、当面は既存ブロックの仕様を維持し、Core 機能への移行は行わない。
+
+確認すべきことは次の通り。
+
+- `ystdb/conditional-group-block` と Core の viewport 表示制御を同時に設定した場合のフロント表示
+- List View 上の表示、非表示アイコン、ブロック選択の分かりやすさ
+- サーバー側でブロック属性やメタデータを解析する処理が `blockVisibility` を真偽値前提で扱っていないか
+
+### Dimensions support
+
+WordPress 7.0 では `supports.dimensions.width` と `supports.dimensions.height` が追加される。既存のカスタム幅・高さ UI を持つブロックは移行を検討できるが、7.0 対応としては必須ではない。
+
+このプラグインでは `custom-button`, `svg-icon`, `section`, `column`, `columns` などに独自の幅・高さ・余白・レスポンシブ制御がある。すぐに Core support へ移行すると保存形式・既存投稿・非推奨マイグレーションの影響が大きいため、7.0 対応では移行しない。重複 UI が出ていないかだけ確認し、Core support 活用は別タスクに分ける。
+
+## 追加機能として検討できる変更
+
+### Pattern Overrides
+
+WordPress 7.0 では、Block Bindings に対応した属性を持つカスタムブロックでも Pattern Overrides を利用できる。`block_bindings_supported_attributes` フィルターで対象属性を opt-in する。
+
+このプラグインでは、`custom-button` の `content` / `url`、`custom-heading` の `content`、`card` の `title` / `url` などが候補。ただし、Pattern Overrides はテーマやパターン設計との関係が強いため、7.0 互換性対応では必須化しない。まずは `role: "content"` を整備し、その後に提供価値が高いブロックだけ opt-in する。
+
+### Core の新ブロック・新 UI との重複
+
+WordPress 7.0 では Heading、Icons、Breadcrumbs などの新ブロックやデザインツールが強化される。`ystdb/heading`, `ystdb/custom-heading`, `ystdb/svg-icon` は Core ブロックと用途が近い。
+
+既存ブロックを急に廃止・移行する必要はない。ただし、インサーターでの見つけやすさ、変換候補、ユーザー向け名称の混乱は確認する。特に `カスタム見出し` と Core の見出し系ブロックが並ぶ場面では、説明文やキーワードが適切かを確認する。
+
+### PHP-only block registration
+
+WordPress 7.0 では `supports.autoRegister` と `render_callback` による PHP-only ブロック登録が追加される。このプラグインの既存ブロックは React ベースの編集 UI を持つため、既存ブロックを PHP-only に置き換える必要はない。
+
+将来的に、管理画面用の簡易表示ブロックやサーバー側だけで完結する補助ブロックを追加する場合の選択肢として扱う。
+
+### Abilities API / AI 関連
+
+WordPress 7.0 では AI Client、Client-Side Abilities API、Connectors API などが導入される。このプラグインは現時点で Abilities API や AI 連携を持たないため、互換性対応としての必須作業はない。
+
+将来的に「ブロック設定の自動生成」「カード情報の取得」「条件付き表示ルールの提案」などを AI 連携する場合に別途検討する。
+
+### Interactivity API
+
+WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、`core/router` の一部内部状態が非推奨になる。このリポジトリでは Interactivity API の直接利用は見当たらないため、必須対応はない。
+
+## 進行管理リスト
+
+凡例: `⬜` 未着手 / `🔄` 対応中 / `✅` 完了 / `⏸️` 保留
+
+- ✅ `WP70-001` 高: WP 7.0 RC 環境の準備
+  - 対応方針: wp-env または Local の検証サイトで WordPress 7.0 RC4 以降を用意する。本番・重要サイトでは実施しない。
+  - 確認方法: 管理画面のバージョン表示、ブロックエディター起動
+- ⬜ `WP70-002` 高: `role: "content"` の付与対象調査
+  - 対応方針: 全 `block.json` の属性を確認し、パターン内で編集対象にすべき属性を決める。
+  - 確認方法: 属性一覧レビュー
+- ⬜ `WP70-003` 高: `role: "content"` の実装
+  - 対応方針: 既存保存形式を変えずに `block.json` の対象属性へ追加する。必要なら非推奨ブロックにも追加する。
+  - 確認方法: `npm run build:block:v2`、既存 fixture の差分確認
+- ⬜ `WP70-004` 高: `contentOnly` パターン内の編集確認
+  - 対応方針: 未同期パターン、同期パターン、テンプレートパーツに各ブロックを入れて、テキスト・URL・画像が編集できるか確認する。
+  - 確認方法: WP 7.0 RC のエディター操作
+- ⬜ `WP70-005` 高: iframe エディター内の表示確認
+  - 対応方針: 投稿エディター、テンプレートエディター、ウィジェット編集画面で CSS と操作 UI を確認する。
+  - 確認方法: WP 7.0 RC の画面確認
+- ⬜ `WP70-006` 高: Custom CSS の影響確認
+  - 対応方針: 全ブロックで Custom CSS パネルの表示、保存、フロント出力、ルートクラス注入の影響を確認する。
+  - 確認方法: CSS 入力後の保存・再表示・フロント確認
+- ⬜ `WP70-007` 中: `supports.customCSS` の opt-out 判断
+  - 対応方針: 表示崩れやセキュリティ・運用上の問題があるブロックのみ `customCSS: false` を設定する。
+  - 確認方法: 問題再現ブロックの有無
+- ⬜ `WP70-008` 高: Core block visibility と条件付きグループの競合確認
+  - 対応方針: `ystdb/conditional-group-block` と Core viewport 表示制御を併用して、期待通りの表示になるか確認する。
+  - 確認方法: モバイル・タブレット・PC 幅でフロント確認
+- ⬜ `WP70-009` 中: `metadata.blockVisibility` 解析箇所の確認
+  - 対応方針: PHP/JS でブロックメタデータを読む処理が追加された場合も含め、真偽値前提の処理がないか確認する。
+  - 確認方法: `rg "blockVisibility"` と関連コードレビュー
+- ⬜ `WP70-010` 中: Dimensions support との UI 重複確認
+  - 対応方針: 独自の幅・高さ・余白 UI と Core の Dimensions UI が重複していないか確認する。7.0 では Core support へ移行しない。
+  - 確認方法: 各ブロックのインスペクター確認
+- ⬜ `WP70-011` 中: Core 新ブロックとの名称・変換確認
+  - 対応方針: `heading`, `custom-heading`, `svg-icon` と Core 側の見出し・アイコン系ブロックのインサーター表示や変換候補を確認する。
+  - 確認方法: インサーター検索、変換メニュー確認
+- ⬜ `WP70-012` 中: Pattern Overrides の候補整理
+  - 対応方針: `block_bindings_supported_attributes` に opt-in する価値がある属性を整理する。互換性対応とは分離する。
+  - 確認方法: 候補表の作成、別 Issue 化
+- ⬜ `WP70-013` 低: PHP-only block registration の採用判断
+  - 対応方針: 既存ブロックには採用しない。新規のサーバー描画のみブロックが必要になった場合だけ検討する。
+  - 確認方法: 追加要件発生時に再検討
+- ⬜ `WP70-014` 低: Abilities API / AI 連携の扱い確認
+  - 対応方針: 7.0 互換性対応では対象外。将来機能として別途検討する。
+  - 確認方法: なし
+- ⬜ `WP70-015` 低: Interactivity API 変更の影響確認
+  - 対応方針: 直接利用がないため基本対応なし。将来 `viewScriptModule` や Interactivity API を導入する場合に再確認する。
+  - 確認方法: `rg "@wordpress/interactivity"`
+- ⬜ `WP70-016` 高: ビルド・lint・テスト
+  - 対応方針: 実装後に関連チェックを実行する。ビルド成果物は管理対象なので、仕様変更時は成果物差分も含める。
+  - 確認方法: `npm run build`、`npm run lint`、`npm run test:unit-js`、必要に応じて `npm run test:unit-php`
+
+## 推奨対応順
+
+まず `WP70-001` で検証環境を作り、`WP70-004` から手動で現状の壊れ方を確認する。その結果をもとに `WP70-002` と `WP70-003` で `role: "content"` を実装する。
+
+次に `WP70-005` と `WP70-006` を確認し、必要がある場合だけ `WP70-007` を実装する。`WP70-008` は既存機能と Core 新機能の重複なので、リリース前に必ず確認する。
+
+`WP70-010` 以降は、7.0 互換性の必須対応ではなく改善候補として扱う。既存投稿の保存形式やブロック deprecations に影響する可能性があるため、WordPress 7.0 対応リリースとは別の作業単位に分ける。
+
+## 現時点の判断
+
+WordPress 7.0 対応として実装優先度が高いのは、`role: "content"` の整理、iframe エディター確認、Custom CSS の影響確認、Core block visibility と条件付きグループブロックの併用確認。
+
+Dimensions support への移行、Pattern Overrides 対応、PHP-only block registration、Abilities API / AI 連携は、互換性維持のために急いで入れる必要はない。特に保存形式が変わる可能性のある変更は、既存投稿の互換性を優先して 7.0 対応リリースから分離する。
