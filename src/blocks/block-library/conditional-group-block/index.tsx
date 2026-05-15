@@ -6,7 +6,6 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Plugin.
  */
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 import { COLOR, CATEGORY } from '@aktk/blocks/config';
 /**
  * Block
@@ -18,14 +17,8 @@ import save from './save';
 import './style.scss';
 
 export function registerGroupBlock() {
-	const attributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
-
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
 		...{
 			icon: (
 				<Maximize
@@ -34,7 +27,6 @@ export function registerGroupBlock() {
 				/>
 			),
 			category: CATEGORY.common,
-			attributes,
 			edit,
 			save,
 			example: {},

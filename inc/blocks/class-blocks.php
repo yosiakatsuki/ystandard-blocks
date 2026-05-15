@@ -51,6 +51,7 @@ class Blocks {
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_filter( 'yststd_parts_block_preview_styles', [ $this, 'add_parts_preview_style' ] );
 		add_filter( 'block_type_metadata', [ $this, 'block_type_metadata' ] );
+		add_filter( 'block_type_metadata_settings', [ $this, 'block_type_metadata_settings' ], 10, 2 );
 	}
 
 	/**
@@ -256,6 +257,43 @@ class Blocks {
 		}
 
 		return $metadata;
+	}
+
+	/**
+	 * ブロックメタデータから作成された設定を調整.
+	 *
+	 * @param array $settings ブロック設定.
+	 * @param array $metadata メタデータ.
+	 *
+	 * @return array
+	 */
+	public function block_type_metadata_settings( $settings, $metadata ) {
+		if ( empty( $metadata['name'] ) || 0 !== strpos( $metadata['name'], 'ystdb/' ) ) {
+			return $settings;
+		}
+		if ( empty( $settings['attributes'] ) || ! is_array( $settings['attributes'] ) ) {
+			return $settings;
+		}
+
+		$default_attributes = apply_filters( 'ys_block_default_attributes', [] );
+		if (
+			empty( $default_attributes[ $metadata['name'] ] ) ||
+			! is_array( $default_attributes[ $metadata['name'] ] )
+		) {
+			return $settings;
+		}
+
+		foreach ( $default_attributes[ $metadata['name'] ] as $key => $default_value ) {
+			if (
+				! isset( $settings['attributes'][ $key ] ) ||
+				! is_array( $settings['attributes'][ $key ] )
+			) {
+				continue;
+			}
+			$settings['attributes'][ $key ]['default'] = $default_value;
+		}
+
+		return $settings;
 	}
 
 	/**

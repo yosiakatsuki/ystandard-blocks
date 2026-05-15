@@ -12,7 +12,6 @@ import { COLORS } from '@aktk/block-components/config';
  * Plugin.
  */
 import { CATEGORY } from '@aktk/blocks/config';
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 /**
  * Block
  */
@@ -24,13 +23,8 @@ import { transforms } from './transform';
 import './style.scss';
 
 export function registerCustomHeadingBlock() {
-	const blockAttributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
 		...{
 			icon: (
 				<Bookmark
@@ -39,7 +33,6 @@ export function registerCustomHeadingBlock() {
 				/>
 			),
 			category: CATEGORY.beta,
-			blockAttributes,
 			edit,
 			save,
 			example: {},

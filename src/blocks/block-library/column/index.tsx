@@ -12,7 +12,6 @@ import { COLORS } from '@aktk/block-components/config';
 /**
  * yStandard.
  */
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 import { CATEGORY } from '@aktk/blocks/config';
 /**
  * Block.
@@ -25,14 +24,8 @@ import metadata from './block.json';
 import './style.scss';
 
 export function registerColumnBlock() {
-	const attributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
-
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
 		...{
 			icon: (
 				<Columns
@@ -41,7 +34,6 @@ export function registerColumnBlock() {
 				/>
 			),
 			category: CATEGORY.common,
-			attributes,
 			edit,
 			save,
 			example: {},
