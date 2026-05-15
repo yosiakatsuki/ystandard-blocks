@@ -20,7 +20,6 @@
 	"sirbrillig/phpcs-variable-analysis": "^2.8",
 	"wp-phpunit/wp-phpunit": "^6.3",
 	"phpunit/phpunit": "9.6.13",
-	"spatie/phpunit-watcher": "^1.23",
 	"yoast/phpunit-polyfills": "^1.1.0"
   },
   "scripts": {
