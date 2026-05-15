@@ -18,6 +18,8 @@ require_once __DIR__ . '/class-card-block.php';
  */
 class Card_Block_Loader {
 
+	const BLOCK_NAME = 'ystdb/card';
+
 	/**
 	 * Card_Block インスタンス.
 	 *
@@ -33,6 +35,7 @@ class Card_Block_Loader {
 		// クラス読み込み時点で 1 度だけインスタンス化する.
 		$this->card = new Card_Block();
 		add_action( 'init', [ $this, 'register_block' ] );
+		add_filter( 'block_bindings_supported_attributes_' . self::BLOCK_NAME, [ $this, 'add_block_bindings_supported_attributes' ] );
 	}
 
 	/**
@@ -45,6 +48,19 @@ class Card_Block_Loader {
 			__DIR__,
 			[ 'render_callback' => [ $this->card, '_render' ] ]
 		);
+	}
+
+	/**
+	 * Block Bindings 対応属性を追加.
+	 *
+	 * @param array $supported_attributes 対応済み属性.
+	 *
+	 * @return array
+	 */
+	public function add_block_bindings_supported_attributes( $supported_attributes ) {
+		$attributes = [ 'title', 'url', 'imageURL', 'imageAlt', 'dscr', 'caption' ];
+
+		return array_values( array_unique( array_merge( $supported_attributes, $attributes ) ) );
 	}
 }
 

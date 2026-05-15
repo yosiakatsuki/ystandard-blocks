@@ -224,9 +224,10 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
 - ✅ `WP70-011` 中: Core 新ブロックとの名称・変換確認
   - 対応方針: `heading`, `custom-heading`, `svg-icon` と Core 側の見出し・アイコン系ブロックのインサーター表示や変換候補を確認する。
   - 確認方法: インサーター検索、変換メニュー確認
-- ⬜ `WP70-012` 中: Pattern Overrides の候補整理
-  - 対応方針: `block_bindings_supported_attributes` に opt-in する価値がある属性を整理する。互換性対応とは分離する。
-  - 確認方法: 候補表の作成、別 Issue 化
+- 🔄 `WP70-012` 中: Pattern Overrides の候補整理
+  - 対応方針: `block_bindings_supported_attributes` で、同期パターン内で個別上書きしたいコンテンツ属性を opt-in する。
+  - 実装対象: `ystdb/custom-button` の `content`, `url`, `linkTarget`, `rel`、`ystdb/custom-heading` の `content`、`ystdb/heading` の `content`, `subText`、`ystdb/card` の `title`, `url`, `imageURL`, `imageAlt`, `dscr`, `caption`、`ystdb/balloon` の `avatarName`, `avatarURL`, `avatarAlt`, `text`
+  - 確認方法: 同期パターンで Pattern Overrides を有効化し、対象属性がインスタンスごとに上書きできるか確認する。
 - ⬜ `WP70-013` 低: PHP-only block registration の採用判断
   - 対応方針: 既存ブロックには採用しない。新規のサーバー描画のみブロックが必要になった場合だけ検討する。
   - 確認方法: 追加要件発生時に再検討
