@@ -109,6 +109,7 @@ function Edit( props ) {
 							size={ iconSizeLeft }
 						/>
 						<RichText
+							identifier="content"
 							tagName={ 'span' }
 							placeholder={ __(
 								'テキスト…',
