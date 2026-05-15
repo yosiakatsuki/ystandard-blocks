@@ -10,7 +10,8 @@
 		"text": {
 			"type": "string",
 			"source": "html",
-			"selector": ".ystdb-button__text"
+			"selector": ".ystdb-button__text",
+			"role": "content"
 		},
 		"borderRadius": {
 			"type": "number",
@@ -65,16 +66,19 @@
 			"type": "number"
 		},
 		"url": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"linkTarget": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"rel": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
-			"attribute": "rel"
+			"attribute": "rel",
+			"role": "content"
 		},
 		"paddingType": {
 			"type": "string",

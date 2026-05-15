@@ -189,9 +189,9 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
 - ✅ `WP70-002` 高: `role: "content"` の付与対象調査
   - 対応方針: 全 `block.json` の属性を確認し、パターン内で編集対象にすべき属性を決める。
   - 確認方法: 属性一覧レビュー、Core Button / Image / Heading の `role: "content"` 設定との比較
-- ⬜ `WP70-003` 高: `role: "content"` の実装
+- ✅ `WP70-003` 高: `role: "content"` の実装
   - 対応方針: 既存保存形式を変えずに `block.json` の対象属性へ追加する。必要なら非推奨ブロックにも追加する。
-  - 確認方法: `npm run build:block:v2`、既存 fixture の差分確認
+  - 確認方法: `npm run build:block:v2`、`npm run test:integration`
 - ⬜ `WP70-004` 高: `contentOnly` パターン内の編集確認
   - 対応方針: 未同期パターン、同期パターン、テンプレートパーツに各ブロックを入れて、テキスト・URL・画像が編集できるか確認する。
   - 確認方法: WP 7.0 RC のエディター操作

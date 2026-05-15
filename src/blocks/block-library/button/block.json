@@ -13,25 +13,29 @@
 		"content": {
 			"type": "string",
 			"source": "html",
-			"selector": ".ystdb-custom-button__content"
+			"selector": ".ystdb-custom-button__content",
+			"role": "content"
 		},
 		"url": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
-			"attribute": "href"
+			"attribute": "href",
+			"role": "content"
 		},
 		"linkTarget": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
-			"attribute": "target"
+			"attribute": "target",
+			"role": "content"
 		},
 		"rel": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "a",
-			"attribute": "rel"
+			"attribute": "rel",
+			"role": "content"
 		},
 		"iconLeft": {
 			"type": "string"
