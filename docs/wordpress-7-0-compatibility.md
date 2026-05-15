@@ -200,28 +200,28 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
   - 対応方針: 未同期パターン、同期パターン、テンプレートパーツに各ブロックを入れて、テキスト・URL・画像が編集できるか確認する。
   - 確認方法: WP 7.0 RC のエディター操作
   - 調査メモ: JS 側の `registerBlockType()` で `attributes` を渡すと、サーバー登録済みの `block.json` attributes を上書きし、`role: "content"` が失われる場合がある。v2 ブロックは JS 側で attributes を渡さず、default 値は PHP の `block_type_metadata_settings` で `ys_block_default_attributes` から取得して注入する。
-- 🔄 `WP70-005` 高: iframe エディター内の表示確認
+- ✅ `WP70-005` 高: iframe エディター内の表示確認
   - 対応方針: 投稿エディター、テンプレートエディター、ウィジェット編集画面で CSS と操作 UI を確認する。
   - 確認方法: WP 7.0 RC の画面確認
   - コード調査: v2 ブロックはすべて `apiVersion: 3`。各 `block.json` に `editorStyle` と `style` があり、共通エディター CSS、インラインスタイル用 CSS、カラーパレット、フォントサイズは `enqueue_block_assets` 経由で iframe 内に届く設計になっている。
   - 確認パターン: v2 ブロックのみの投稿、v1 または非推奨ブロックを混在させた投稿、テンプレートエディター、ウィジェット編集画面
   - 注意点: 投稿エディターでは v2 以下のブロックを追加すると iframe が外れる可能性があるため、iframe 有無を DevTools で確認してから表示差分を見る。
-- ⬜ `WP70-006` 高: Custom CSS の影響確認
+- ✅ `WP70-006` 高: Custom CSS の影響確認
   - 対応方針: 全ブロックで Custom CSS パネルの表示、保存、フロント出力、ルートクラス注入の影響を確認する。
   - 確認方法: CSS 入力後の保存・再表示・フロント確認
-- ⬜ `WP70-007` 中: `supports.customCSS` の opt-out 判断
+- ✅ `WP70-007` 中: `supports.customCSS` の opt-out 判断
   - 対応方針: 表示崩れやセキュリティ・運用上の問題があるブロックのみ `customCSS: false` を設定する。
   - 確認方法: 問題再現ブロックの有無
-- ⬜ `WP70-008` 高: Core block visibility と条件付きグループの競合確認
+- ✅ `WP70-008` 高: Core block visibility と条件付きグループの競合確認
   - 対応方針: `ystdb/conditional-group-block` と Core viewport 表示制御を併用して、期待通りの表示になるか確認する。
   - 確認方法: モバイル・タブレット・PC 幅でフロント確認
-- ⬜ `WP70-009` 中: `metadata.blockVisibility` 解析箇所の確認
+- ✅ `WP70-009` 中: `metadata.blockVisibility` 解析箇所の確認
   - 対応方針: PHP/JS でブロックメタデータを読む処理が追加された場合も含め、真偽値前提の処理がないか確認する。
   - 確認方法: `rg "blockVisibility"` と関連コードレビュー
-- ⬜ `WP70-010` 中: Dimensions support との UI 重複確認
+- ✅ `WP70-010` 中: Dimensions support との UI 重複確認
   - 対応方針: 独自の幅・高さ・余白 UI と Core の Dimensions UI が重複していないか確認する。7.0 では Core support へ移行しない。
   - 確認方法: 各ブロックのインスペクター確認
-- ⬜ `WP70-011` 中: Core 新ブロックとの名称・変換確認
+- ✅ `WP70-011` 中: Core 新ブロックとの名称・変換確認
   - 対応方針: `heading`, `custom-heading`, `svg-icon` と Core 側の見出し・アイコン系ブロックのインサーター表示や変換候補を確認する。
   - 確認方法: インサーター検索、変換メニュー確認
 - ⬜ `WP70-012` 中: Pattern Overrides の候補整理
