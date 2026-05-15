@@ -224,17 +224,17 @@ WordPress 7.0 では `@wordpress/interactivity` に `watch()` が追加され、
 - ✅ `WP70-011` 中: Core 新ブロックとの名称・変換確認
   - 対応方針: `heading`, `custom-heading`, `svg-icon` と Core 側の見出し・アイコン系ブロックのインサーター表示や変換候補を確認する。
   - 確認方法: インサーター検索、変換メニュー確認
-- 🔄 `WP70-012` 中: Pattern Overrides の候補整理
+- ✅ `WP70-012` 中: Pattern Overrides の候補整理
   - 対応方針: `block_bindings_supported_attributes` で、同期パターン内で個別上書きしたいコンテンツ属性を opt-in する。
   - 実装対象: `ystdb/custom-button` の `content`, `url`, `linkTarget`, `rel`、`ystdb/custom-heading` の `content`、`ystdb/heading` の `content`, `subText`、`ystdb/card` の `title`, `url`, `imageURL`, `imageAlt`, `dscr`, `caption`、`ystdb/balloon` の `avatarName`, `avatarURL`, `avatarAlt`, `text`
   - 確認方法: 同期パターンで Pattern Overrides を有効化し、対象属性がインスタンスごとに上書きできるか確認する。
-- ⬜ `WP70-013` 低: PHP-only block registration の採用判断
+- ✅ `WP70-013` 低: PHP-only block registration の採用判断
   - 対応方針: 既存ブロックには採用しない。新規のサーバー描画のみブロックが必要になった場合だけ検討する。
   - 確認方法: 追加要件発生時に再検討
-- ⬜ `WP70-014` 低: Abilities API / AI 連携の扱い確認
+- ✅ `WP70-014` 低: Abilities API / AI 連携の扱い確認
   - 対応方針: 7.0 互換性対応では対象外。将来機能として別途検討する。
   - 確認方法: なし
-- ⬜ `WP70-015` 低: Interactivity API 変更の影響確認
+- ✅ `WP70-015` 低: Interactivity API 変更の影響確認
   - 対応方針: 直接利用がないため基本対応なし。将来 `viewScriptModule` や Interactivity API を導入する場合に再確認する。
   - 確認方法: `rg "@wordpress/interactivity"`
 - ⬜ `WP70-016` 高: ビルド・lint・テスト
