@@ -7,9 +7,9 @@
 			"customBackgroundColor": "#f0f0f0"
 		},
 		"innerBlocks": [],
-		"innerHTML": "\n<div class=\"ystdb-section\" style=\"padding-top:120px;padding-bottom:120px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__bg has-background\" aria-hidden=\"true\" role=\"img\" style=\"background:#f0f0f0;opacity:1\"> </div><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n",
+		"innerHTML": "\n<div class=\"alignfull ystdb-section\" style=\"padding-top:120px;padding-bottom:120px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__bg has-background\" aria-hidden=\"true\" role=\"img\" style=\"background:#f0f0f0;opacity:1\"> </div><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n",
 		"innerContent": [
-			"\n<div class=\"ystdb-section\" style=\"padding-top:120px;padding-bottom:120px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__bg has-background\" aria-hidden=\"true\" role=\"img\" style=\"background:#f0f0f0;opacity:1\"> </div><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n"
+			"\n<div class=\"alignfull ystdb-section\" style=\"padding-top:120px;padding-bottom:120px;margin-top:0;margin-bottom:0\"><div class=\"ystdb-section__bg has-background\" aria-hidden=\"true\" role=\"img\" style=\"background:#f0f0f0;opacity:1\"> </div><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n"
 		]
 	}
 ]
