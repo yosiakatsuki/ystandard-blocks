@@ -9,3 +9,4 @@ blocks-temp/
 /artifacts
 .phpunit.result.cache
 tsconfig.tsbuildinfo
+release-posts/
