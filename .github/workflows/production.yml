@@ -4,22 +4,20 @@ on:
     branches:
       - production
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: 'production'
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: 'npm'
 
       - name: npm ci
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build
         run: npm run build
@@ -31,7 +29,7 @@ jobs:
         run: npm run copy:production
 
       - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -40,7 +38,24 @@ jobs:
           server-dir: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}/
           log-level: verbose
 
-      - name: Notify Deployment Production Version for Discord
+  notify:
+    name: Notify
+    needs: [ deploy ]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify failure
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          title: "Failure : Production Build"
+          color: 0x962305
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Notify success
+        if: ${{ !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
