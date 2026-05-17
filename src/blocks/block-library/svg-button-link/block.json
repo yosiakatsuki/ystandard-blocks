@@ -8,7 +8,8 @@
 	"keywords": [],
 	"attributes": {
 		"content": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"borderRadius": {
 			"type": "number",

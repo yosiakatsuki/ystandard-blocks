@@ -12,7 +12,6 @@ import { COLORS } from '@aktk/block-components/config';
  * Plugin.
  */
 import { CATEGORY } from '@aktk/blocks/config';
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 /**
  * Block
  */
@@ -24,35 +23,27 @@ import { transforms } from './transform';
 import './style.scss';
 
 export function registerCustomHeadingBlock() {
-	const blockAttributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
-		...{
-			icon: (
-				<Bookmark
-					stroke={ COLORS.iconBetaForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.beta,
-			blockAttributes,
-			edit,
-			save,
-			example: {},
-			transforms,
-			merge( attributes, attributesToMerge ) {
-				return {
-					content:
-						// @ts-ignore.
-						( attributes.content || '' ) +
-						// @ts-ignore.
-						( attributesToMerge.content || '' ),
-				};
-			},
+		icon: (
+			<Bookmark
+				stroke={ COLORS.iconBetaForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.beta,
+		edit,
+		save,
+		example: {},
+		transforms,
+		merge( attributes, attributesToMerge ) {
+			return {
+				content:
+					// @ts-ignore.
+					( attributes.content || '' ) +
+					// @ts-ignore.
+					( attributesToMerge.content || '' ),
+			};
 		},
 	} );
 }

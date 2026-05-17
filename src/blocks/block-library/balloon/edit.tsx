@@ -253,7 +253,7 @@ function BalloonEdit( props ) {
 		fontSize: getCustomFontSizeStyle( fontSizeObject, customFontSize ),
 	};
 
-	const textClasses = classnames( 'ystdb-ystdb-balloon__text', {
+	const textClasses = classnames( 'ystdb-balloon__text', {
 		[ textColor.class ]: textColor.class,
 		'has-text-color': textColor.color,
 		[ getCustomFontSizeClass( fontSizeObject ) ]: fontSizeObject?.slug,
@@ -287,6 +287,7 @@ function BalloonEdit( props ) {
 	return (
 		<div className={ balloonBodyClass } style={ balloonBodyStyles }>
 			<RichText
+				identifier="text"
 				tagName={ 'p' }
 				placeholder={ __( 'Add text…' ) }
 				value={ text }

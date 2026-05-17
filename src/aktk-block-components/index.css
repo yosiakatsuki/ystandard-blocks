@@ -1,0 +1,8 @@
+/* コンポーネント共通CSS変数 */
+:root {
+	--aktk-component--text-color--gray: #6b7280;
+	--aktk-component--border-color--gray: #d1d5db;
+}
+
+/* コンポーネントCSS */
+@import "./components/custom-spacing-select/index.css";

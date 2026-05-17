@@ -13,7 +13,8 @@
 		"avatarName": {
 			"type": "string",
 			"source": "html",
-			"selector": ".ystdb-balloon__name"
+			"selector": ".ystdb-balloon__name",
+			"role": "content"
 		},
 		"avatarNameColor": {
 			"type": "string"
@@ -32,17 +33,20 @@
 			"source": "attribute",
 			"selector": ".ystdb-balloon__avatar-image",
 			"attribute": "src",
-			"default": "https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp"
+			"default": "https://www.gravatar.com/avatar/000000000000000000000000000000?s=128&r=g&d=mp",
+			"role": "content"
 		},
 		"avatarAlt": {
 			"type": "string",
 			"source": "attribute",
 			"selector": ".ystdb-balloon__avatar-image",
-			"attribute": "alt"
+			"attribute": "alt",
+			"role": "content"
 		},
 		"avatarID": {
 			"type": "number",
-			"default": 0
+			"default": 0,
+			"role": "content"
 		},
 		"avatarSize": {
 			"type": "string",
@@ -64,7 +68,8 @@
 		"text": {
 			"type": "string",
 			"source": "html",
-			"selector": ".ystdb-balloon__text"
+			"selector": ".ystdb-balloon__text",
+			"role": "content"
 		},
 		"balloonPosition": {
 			"type": "string",

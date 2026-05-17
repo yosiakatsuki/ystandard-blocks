@@ -8,20 +8,24 @@
 	"keywords": [ "card", "カード", "blogcard", "ブログカード" ],
 	"attributes": {
 		"url": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"linkTarget": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"rel": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"cardType": {
 			"type": "string",
 			"default": "horizon"
 		},
 		"title": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"showImage": {
 			"type": "boolean",
@@ -38,14 +42,17 @@
 			"default": "left"
 		},
 		"imageURL": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"imageAlt": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"imageID": {
 			"type": "integer",
-			"default": 0
+			"default": 0,
+			"role": "content"
 		},
 		"showDscr": {
 			"type": "boolean",
@@ -56,7 +63,8 @@
 			"default": 80
 		},
 		"dscr": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"showDomain": {
 			"type": "boolean",
@@ -93,7 +101,8 @@
 			"type": "string"
 		},
 		"caption": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		}
 	},
 	"supports": {

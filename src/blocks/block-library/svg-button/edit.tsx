@@ -202,6 +202,7 @@ function SvgButton( props ) {
 								</span>
 							) }
 							<RichText
+								identifier="text"
 								tagName={ 'span' }
 								placeholder={ __( 'Add text…' ) }
 								value={ text }

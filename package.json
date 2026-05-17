@@ -22,6 +22,7 @@
 		"build:block:v2": "wp-scripts build --webpack-copy-php --webpack-src-dir=src/blocks/block-library --output-path=build/blocks --config webpack.blocks.v2.config.js",
 		"build:block:v1": "wp-scripts build --config webpack.blocks.config.js",
 		"build:block": "run-s build:block:*",
+		"build:shared-css": "wp-scripts build --config webpack.shared-css.config.js",
 		"build:icons": "node src/icons/create-svg-icon-list.js",
 		"build:admin": "wp-scripts build --config webpack.admin-menu.config.js && cp -f ./src/js/admin-menu/inline-style/schema.json ./assets/admin-menu/inline-style",
 		"build:app": "wp-scripts build --config webpack.app.config.js",
@@ -29,6 +30,7 @@
 		"watch:css:postcss": "postcss temp/css/**/*.css --base temp/css --dir css --verbose -w",
 		"watch:css:sass": "sass src/sass:temp/css ./blocks:temp/css/blocks src/js:temp/css --no-source-map --no-stop-on-error -w",
 		"watch:css": "run-p watch:css:*",
+		"watch:shared-css": "wp-scripts start --config webpack.shared-css.config.js",
 		"watch:block:v2:postcss": "postcss build/blocks/**/*.css -r",
 		"watch:block:v2:block": "wp-scripts start --webpack-copy-php --webpack-src-dir=src/blocks/block-library --output-path=build/blocks --config webpack.blocks.v2.config.js",
 		"watch:block:v2": "run-p watch:block:v2:*",
@@ -53,8 +55,6 @@
 		"test:integration": "wp-scripts test-unit-js --config tests/integration/integration.config.js",
 		"test:unit-js": "wp-scripts test-unit-js --config tests/unit/jest.config.js",
 		"test:unit-php": "wp-env start && wp-env run cli --env-cwd=wp-content/plugins/ystandard-blocks -- vendor/bin/phpunit -c phpunit.xml.dist",
-		"test:e2e": "wp-scripts test-playwright",
-		"test:e2e:debug": "wp-scripts test-playwright --debug",
 		"test": "npm run test:unit-js && npm run test:unit-php",
 		"zip:copy:base": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/phpunit' --exclude='/' --exclude='/src' --exclude='package*.json' --exclude='/blocks' --exclude='/temp' --exclude='tsconfig.json' --exclude='./ystandard-blocks*.json' . ystandard-blocks",
 		"zip:copy:blocks": "rsync -am --exclude='*.scss' --exclude='*.js' --exclude='tests/' --exclude='deprecated/' ./blocks ystandard-blocks/",
@@ -106,9 +106,7 @@
 		"cross-env": "^7.0.3",
 		"css-declaration-sorter": "^7.2.0",
 		"cssnano": "^7.0.6",
-		"deepmerge": "^4.3.1",
 		"eslint-plugin-tailwindcss": "^3.18.0",
-		"fast-glob": "^3.3.3",
 		"feather-icons": "^4.29.2",
 		"husky": "^9.1.7",
 		"jest": "^29.7.0",
@@ -125,7 +123,7 @@
 		"rimraf": "^6.0.1",
 		"sass": "^1.86.3",
 		"simple-icons": "^14.12.2",
-		"tailwindcss": "^3.4.17"
+		"tailwindcss": "^3.4.19"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
