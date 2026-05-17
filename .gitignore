@@ -10,3 +10,4 @@ blocks-temp/
 .phpunit.result.cache
 tsconfig.tsbuildinfo
 release-posts/
+archived/
