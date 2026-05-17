@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
@@ -67,7 +67,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
@@ -96,7 +96,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
@@ -114,7 +114,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
@@ -133,7 +133,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
