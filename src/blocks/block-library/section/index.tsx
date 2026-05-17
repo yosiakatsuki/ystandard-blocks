@@ -10,10 +10,6 @@ import { registerBlockType } from '@wordpress/blocks';
 import { COLORS } from '@aktk/block-components/config';
 
 /**
- * Plugin.
- */
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
-/**
  * Block.
  */
 import edit from './edit';
@@ -23,15 +19,11 @@ import { deprecated } from './deprecated/index';
 import metadata from './block.json';
 import './style.scss';
 
-const attributes = mergeDefaultAttributes( metadata.name, metadata.attributes );
-
 // @ts-ignore
 registerBlockType( metadata.name, {
-	...metadata,
 	icon: (
 		<Layers stroke={ COLORS.iconForeground } style={ { fill: 'none' } } />
 	),
-	attributes,
 	edit,
 	save,
 	deprecated,

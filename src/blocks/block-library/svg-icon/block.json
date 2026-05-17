@@ -11,7 +11,8 @@
 	"attributes": {
 		"icon": {
 			"type": "string",
-			"default": "info"
+			"default": "info",
+			"role": "content"
 		},
 		"align": {
 			"type": "string",
@@ -39,13 +40,16 @@
 			"type": "object"
 		},
 		"url": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"linkTarget": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"rel": {
-			"type": "string"
+			"type": "string",
+			"role": "content"
 		},
 		"padding": {
 			"type": "object"

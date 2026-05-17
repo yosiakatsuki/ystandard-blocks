@@ -27,24 +27,28 @@
       "type": "string",
       "source": "attribute",
       "selector": ".ystdb-column__link",
-      "attribute": "href"
+      "attribute": "href",
+      "role": "content"
     },
     "linkTarget": {
       "type": "string",
       "source": "attribute",
       "selector": ".ystdb-column__link",
-      "attribute": "target"
+      "attribute": "target",
+      "role": "content"
     },
     "rel": {
       "type": "string",
       "source": "attribute",
       "selector": ".ystdb-column__link",
-      "attribute": "rel"
+      "attribute": "rel",
+      "role": "content"
     },
     "screenReaderText": {
       "type": "string",
       "source": "text",
-      "selector": ".ystdb-column__link-screen-reader-text"
+      "selector": ".ystdb-column__link-screen-reader-text",
+      "role": "content"
     }
   },
   "supports": {

@@ -11,7 +11,6 @@ import { COLORS } from '@aktk/block-components/config';
  * Plugin.
  */
 import { CATEGORY } from '@aktk/blocks/config';
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 /**
  * Block
  */
@@ -25,26 +24,18 @@ import './style.scss';
  * Register custom heading block.
  */
 export function registerHeadingBlock() {
-	const attributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
-		...{
-			icon: (
-				<Bookmark
-					stroke={ COLORS.iconForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.common,
-			attributes,
-			edit,
-			save,
-			example: {},
-		},
+		icon: (
+			<Bookmark
+				stroke={ COLORS.iconForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.common,
+		edit,
+		save,
+		example: {},
 	} );
 }
 

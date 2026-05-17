@@ -10,7 +10,7 @@
 
 メインの開発環境は **Local（Local by Flywheel）** 上の WordPress サイトで、このプラグインをシンボリックリンクまたは直接配置して使う。初回は `composer install && npm install` を実行すること。
 
-wp-env は積極的には使わない。Playwright E2E テストなど、wp-env 前提のスクリプトを動かす必要があるときにだけ起動する。
+wp-env は積極的には使わない。PHP ユニットテストなど、wp-env 前提のスクリプトを動かす必要があるときにだけ起動する。
 
 ### ビルド / ウォッチ
 
@@ -30,7 +30,6 @@ wp-env は積極的には使わない。Playwright E2E テストなど、wp-env 
 - `npm run test:unit-js` — Jest（`tests/unit/jest.config.js`）
 - PHP ユニットテストは wp-env 前提で実行する（Local 側にテスト環境がないため）。`.wp-env.json` で `testsEnvironment: false` を指定し、テスト専用コンテナ（`tests-cli` ほか）は作成せず、開発用 `cli` コンテナ上で `vendor/bin/phpunit` を実行する方針。エントリは `npm run test:unit-php`
 - 初回セットアップ・`composer.json` 更新後は `npx wp-env run cli --env-cwd=wp-content/plugins/ystandard-blocks -- composer install --no-interaction` をコンテナ内で実行する
-- `npm run test:e2e` / `npm run test:e2e:debug` — Playwright（必要に応じて wp-env を起動）
 
 ### 翻訳
 

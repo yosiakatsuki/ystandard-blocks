@@ -12,6 +12,7 @@ namespace ystandard_blocks;
 use ystandard_blocks\helper\Helper_Amp;
 use ystandard_blocks\utils\Styles;
 use ystandard_blocks\utils\Version;
+use ystandard_blocks\Shared_Styles;
 
 defined( 'ABSPATH' ) || die();
 
@@ -44,6 +45,7 @@ class Blocks {
 			add_filter( 'block_categories', [ $this, 'add_block_categories' ] );
 		}
 		$this->init_blocks();
+		add_filter( 'block_type_metadata_settings', [ $this, 'block_type_metadata_settings' ], 10, 2 );
 		// 以下は徐々に移行する.
 		$this->init();
 		add_action( 'init', [ $this, 'require_dynamic_block_file' ] );
@@ -237,6 +239,7 @@ class Blocks {
 			[],
 			filemtime( YSTDB_PATH . '/css/ystandard-blocks-edit.css' )
 		);
+		wp_enqueue_style( Shared_Styles::AKTK_COMPONENTS_EDITOR_HANDLE );
 	}
 
 	/**
@@ -256,6 +259,44 @@ class Blocks {
 		}
 
 		return $metadata;
+	}
+
+	/**
+	 * ブロックメタデータから作成された設定を調整.
+	 *
+	 * @param array $settings ブロック設定.
+	 * @param array $metadata メタデータ.
+	 *
+	 * @return array
+	 */
+	public function block_type_metadata_settings( $settings, $metadata ) {
+		if ( empty( $metadata['name'] ) || 0 !== strpos( $metadata['name'], 'ystdb/' ) ) {
+			return $settings;
+		}
+		if ( empty( $settings['attributes'] ) || ! is_array( $settings['attributes'] ) ) {
+			return $settings;
+		}
+
+		$default_attributes = apply_filters( 'ys_block_default_attributes', [] );
+		if (
+			! is_array( $default_attributes ) ||
+			empty( $default_attributes[ $metadata['name'] ] ) ||
+			! is_array( $default_attributes[ $metadata['name'] ] )
+		) {
+			return $settings;
+		}
+
+		foreach ( $default_attributes[ $metadata['name'] ] as $key => $default_value ) {
+			if (
+				! isset( $settings['attributes'][ $key ] ) ||
+				! is_array( $settings['attributes'][ $key ] )
+			) {
+				continue;
+			}
+			$settings['attributes'][ $key ]['default'] = $default_value;
+		}
+
+		return $settings;
 	}
 
 	/**

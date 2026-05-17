@@ -3,14 +3,17 @@ on:
   push:
     branches:
       - develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: lint
+    name: Lint
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: 'develop'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -18,48 +21,31 @@ jobs:
           php-version: 8.3
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
-          coverage: xdebug
-
-      - name: Check PHP Version
-        run: php -v
+          coverage: none
 
       - name: Composer install
-        run: composer install --optimize-autoloader --prefer-dist
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
-      - name: lint
+      - name: Lint
         run: npm run lint
 
-      - name: Failed Test
-        uses: sarisia/actions-status-discord@v1
-        with:
-          nodetail: true
-          title: "Failure : lint"
-          color: 0x962305
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        if: failure()
-
-  codeCheck:
-    runs-on: ${{ matrix.operating-system }}
+  php-syntax-check:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest ]
         php: [ '7.4', '8.1', '8.2', '8.3', '8.4' ]
     name: PHP Error Check (PHP ${{ matrix.php }})
-    needs: [ lint ]
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: 'develop'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -67,75 +53,91 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
-          coverage: xdebug
+          coverage: none
 
       - name: php -l
         run: bash bin/php-l.sh
 
-      - name: Failed Test
-        uses: sarisia/actions-status-discord@v1
-        with:
-          nodetail: true
-          title: "Failure : Error Check"
-          color: 0x962305
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        if: failure()
-
-  test:
-    name: UnitTest
-    needs: [ lint, codeCheck ]
+  js-unit-test:
+    name: JS Unit Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: 'develop'
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
-        run: npm ci
+        run: npm ci --no-audit --no-fund
+
+      - name: Unit Test
+        run: npm run test:unit-js
+
+  php-unit-test:
+    name: PHP Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: none
+
+      - name: Composer install
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.16.0
+          cache: 'npm'
+
+      - name: npm ci
+        run: npm ci --no-audit --no-fund
+
+      - name: PHP Unit Test
+        run: npm run test:unit-php
+
+  build-check:
+    name: Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.16.0
+          cache: 'npm'
+
+      - name: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build
         run: npm run build
 
-      - name: Test
-        run: npm run test
-
-      - name: Failed Test
-        uses: sarisia/actions-status-discord@v1
-        with:
-          nodetail: true
-          title: "Failure : Test"
-          color: 0x962305
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        if: failure()
-
-  release:
-    name: Release
-    needs: [ lint, codeCheck, test ]
+  deploy:
+    name: Deploy
+    needs: [ lint, php-syntax-check, js-unit-test, php-unit-test, build-check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: 'develop'
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22.16.0
           cache: 'npm'
 
       - name: npm ci
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build
         run: npm run build
@@ -147,7 +149,7 @@ jobs:
         run: npm run copy:develop
 
       - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -155,7 +157,24 @@ jobs:
           local-dir: ./upload/
           server-dir: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}/
 
-      - name: Notify Deployment Develop Version for Discord
+  notify:
+    name: Notify
+    needs: [ lint, php-syntax-check, js-unit-test, php-unit-test, build-check, deploy ]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify failure
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          title: "Failure : Develop Build"
+          color: 0x962305
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Notify success
+        if: ${{ !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') && !contains(needs.*.result, 'skipped') }}
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true

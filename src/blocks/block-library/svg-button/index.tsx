@@ -21,30 +21,21 @@ import save from './save';
 import './style.scss';
 
 import transforms from './transforms';
-import { mergeDefaultAttributes } from '@aktk/blocks/utils';
 
 export function registerSvgButtonBlock() {
-	const attributes = mergeDefaultAttributes(
-		metadata.name,
-		metadata.attributes
-	);
 	// @ts-ignore
 	registerBlockType( metadata.name, {
-		...metadata,
-		...{
-			icon: (
-				<Link2
-					stroke={ COLORS.iconDeprecatedForeground }
-					style={ { fill: 'none' } }
-				/>
-			),
-			category: CATEGORY.deprecated,
-			attributes,
-			edit,
-			save,
-			example: {},
-			transforms,
-		},
+		icon: (
+			<Link2
+				stroke={ COLORS.iconDeprecatedForeground }
+				style={ { fill: 'none' } }
+			/>
+		),
+		category: CATEGORY.deprecated,
+		edit,
+		save,
+		example: {},
+		transforms,
 	} );
 }
 

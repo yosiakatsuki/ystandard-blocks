@@ -7,9 +7,9 @@
 			"animationDelay": 0.5
 		},
 		"innerBlocks": [],
-		"innerHTML": "\n<div class=\"ystdb-section has-animation\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0;animation-duration:1.5s;animation-delay:0.5s\" data-animation=\"fadein-up\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n",
+		"innerHTML": "\n<div class=\"alignfull ystdb-section has-animation\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0;animation-duration:1.5s;animation-delay:0.5s\" data-animation=\"fadein-up\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n",
 		"innerContent": [
-			"\n<div class=\"ystdb-section has-animation\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0;animation-duration:1.5s;animation-delay:0.5s\" data-animation=\"fadein-up\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n"
+			"\n<div class=\"alignfull ystdb-section has-animation\" style=\"padding-top:80px;padding-bottom:80px;margin-top:0;margin-bottom:0;animation-duration:1.5s;animation-delay:0.5s\" data-animation=\"fadein-up\"><div class=\"ystdb-section__container\"><div class=\"ystdb-section__inner\" style=\"margin-right:auto;margin-left:auto;padding-left:0;padding-right:0\"></div></div></div>\n"
 		]
 	}
 ]
