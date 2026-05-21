@@ -1,19 +1,32 @@
-import { getBlockEditorConfig } from '@aktk/helper/config';
+import classnames from 'classnames';
+/**
+ * WordPress dependencies
+ */
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { getProperty } from '@aktk/helper/object';
-import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
+/**
+ * Plugin dependencies
+ */
+import { getBlockEditorConfig } from '@aktk/blocks/utils';
 import './style-editor.scss';
 
-const buttons = getProperty(
-	getBlockEditorConfig( 'inlineStyle', {} ),
-	'buttons',
-	[]
-);
+type InlineStyleToolbarButton = {
+	enable?: boolean;
+};
+
+type InlineStyleConfig = {
+	buttons?: InlineStyleToolbarButton[];
+};
+
+const inlineStyleConfig = getBlockEditorConfig(
+	'inlineStyle',
+	{}
+) as InlineStyleConfig;
+const buttons = inlineStyleConfig?.buttons ?? [];
 
 buttons.forEach( ( button, index ) => {
-	const isEnable = getProperty( button, 'enable', true );
+	const isEnable = button?.enable ?? true;
 	const buttonNo = index + 1;
 	const title = __( '[ys]マーカー', 'ystandard-blocks' );
 	const name = `ystdb/inline-style-${ buttonNo }`;
