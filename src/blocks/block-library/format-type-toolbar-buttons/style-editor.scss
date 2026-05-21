@@ -35,17 +35,19 @@
 
 	@extend %toolbar-style;
 
-	.components-button:not(.is-pressed) {
+	&:not(.is-pressed) {
 		color: currentcolor;
 	}
 }
 
 .ystdb-inline-style-toolbar__marker {
+	display: block;
 	position: absolute;
 	top: 0;
 	right: 0;
-	left: 0;
 	bottom: 6px;
+	left: 0;
+	pointer-events: none;
 }
 
 // 5.6以下.

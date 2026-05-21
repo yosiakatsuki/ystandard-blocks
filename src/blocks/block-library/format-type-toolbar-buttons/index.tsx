@@ -1,10 +1,11 @@
 import { getBlockEditorConfig } from '@aktk/helper/config';
 import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
-import { BlockFormatControls } from '@wordpress/block-editor';
+import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { getProperty } from '@aktk/helper/object';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
+import { brush } from '@wordpress/icons';
+import './style-editor.scss';
 
 const buttons = getProperty(
 	getBlockEditorConfig( 'inlineStyle', {} ),
@@ -12,13 +13,12 @@ const buttons = getProperty(
 	[]
 );
 
-buttons.map( ( button, index ) => {
+buttons.forEach( ( button, index ) => {
 	const isEnable = getProperty( button, 'enable', true );
 	const buttonNo = index + 1;
 	const title = __( '[ys]マーカー', 'ystandard-blocks' );
 	const name = `ystdb/inline-style-${ buttonNo }`;
 	const className = `ystdb-inline--${ buttonNo }`;
-	const icon = 'admin-customizer';
 	if ( isEnable ) {
 		registerFormatType( name, {
 			title: `${ title } ${ buttonNo }`,
@@ -29,36 +29,25 @@ buttons.map( ( button, index ) => {
 				const onToggle = () =>
 					onChange( toggleFormat( value, { type: name } ) );
 				return (
-					<>
-						<BlockFormatControls>
-							<div className="editor-format-toolbar block-editor-format-toolbar">
-								<div
-									className={ classnames(
-										'ystdb-inline-style-toolbar',
-										`inline-style-${ buttonNo }`
-									) }
-								>
-									<ToolbarGroup>
-										<ToolbarButton
-											icon={ icon }
-											title={ `${ title } ${ buttonNo }` }
-											onClick={ onToggle }
-											isActive={ isActive }
-										/>
-									</ToolbarGroup>
-									<div
-										className={ classnames(
-											'ystdb-inline-style-toolbar__marker',
-											className
-										) }
-									/>
-								</div>
-							</div>
-						</BlockFormatControls>
-					</>
+					<RichTextToolbarButton
+						icon={ brush }
+						title={ `${ title } ${ buttonNo }` }
+						onClick={ onToggle }
+						isActive={ isActive }
+						className={ classnames(
+							'ystdb-inline-style-toolbar',
+							`inline-style-${ buttonNo }`
+						) }
+					>
+						<span
+							className={ classnames(
+								'ystdb-inline-style-toolbar__marker',
+								className
+							) }
+						/>
+					</RichTextToolbarButton>
 				);
 			},
 		} );
 	}
-	return true;
 } );
