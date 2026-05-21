@@ -4,7 +4,6 @@ import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { getProperty } from '@aktk/helper/object';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { brush } from '@wordpress/icons';
 import './style-editor.scss';
 
 const buttons = getProperty(
@@ -30,7 +29,8 @@ buttons.forEach( ( button, index ) => {
 					onChange( toggleFormat( value, { type: name } ) );
 				return (
 					<RichTextToolbarButton
-						icon={ brush }
+						name={ 'bold' }
+						icon={ 'admin-customizer' }
 						title={ `${ title } ${ buttonNo }` }
 						onClick={ onToggle }
 						isActive={ isActive }
