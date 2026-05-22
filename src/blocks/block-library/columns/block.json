@@ -48,7 +48,8 @@
       "wide",
       "full"
     ],
-    "className": false
+    "className": false,
+    "listView": true
   },
   "textdomain": "ystandard-blocks",
   "editorScript": "file:./index.tsx",

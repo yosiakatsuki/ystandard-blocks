@@ -9,8 +9,6 @@
 
 // Blocks.
 // card / section は v2 化により block.json の `editorStyle` でブロック単位にバンドル.
-@use "../../blocks/inline-style/edit" as toolbar-buttons;
-
 .wp-block {
 
 	&[class*="ystdb-"] {

@@ -90,6 +90,7 @@
 		"align": [ "wide", "full" ],
 		"anchor": true,
 		"className": false,
+		"listView": true,
 		"lightBlockWrapper": true
 	},
 	"example": {},

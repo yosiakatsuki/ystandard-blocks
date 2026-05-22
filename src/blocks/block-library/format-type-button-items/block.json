@@ -1,0 +1,15 @@
+{
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
+	"apiVersion": 3,
+	"name": "ystdb/format-type-button-items",
+	"title": "インラインスタイルボタン",
+	"description": "インラインスタイルのドロップダウンボタンを追加します。",
+	"category": "ystdb",
+	"textdomain": "ystandard-blocks",
+	"supports": {
+		"inserter": false,
+		"html": false
+	},
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css"
+}

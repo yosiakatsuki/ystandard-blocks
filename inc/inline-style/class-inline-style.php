@@ -340,6 +340,7 @@ class Inline_Style {
 		$css .= $this->get_button_css( '.editor-styles-wrapper' );
 		$css .= $this->get_items_css( '.editor-styles-wrapper' );
 		$css .= $this->get_button_css( '.editor-format-toolbar' );
+		$css .= $this->get_button_css( '.ystdb-inline-style-toolbar' );
 		$css .= $this->get_items_css( '.components-dropdown__content' );
 
 		wp_add_inline_style(
