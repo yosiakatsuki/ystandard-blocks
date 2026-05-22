@@ -86,11 +86,14 @@ const buttons = inlineStyleConfig?.buttons ?? [];
 function InlineStyleDropdown() {
 	return (
 		<Slot name={ INLINE_STYLE_SLOT_NAME }>
-			{ ( fills: InlineStyleFill[] ) => {
-				if ( ! fills.length ) {
+			{ ( fills ) => {
+				const inlineStyleFills = Array.isArray( fills )
+					? ( fills as unknown as InlineStyleFill[] )
+					: [];
+				if ( ! inlineStyleFills.length ) {
 					return null;
 				}
-				const controls = fills.map( ( [ { props } ] ) => ( {
+				const controls = inlineStyleFills.map( ( [ { props } ] ) => ( {
 					...props,
 					title: props.children,
 				} ) );
