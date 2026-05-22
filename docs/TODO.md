@@ -38,3 +38,11 @@ card/section 移行のために `webpack.blocks.v2.config.js` に v1 由来の a
 - 例: `@aktk/components/color-palette-control` → `@aktk/block-components/components/color-pallet-control` の `ColorPalette`（API は微妙に異なる）
 - 影響範囲: card / section の edit
 - 対応方針: ブロックごとに段階的に置き換える
+
+### 旧ブロック登録処理の整理
+
+`block.json` ベースの v2 ブロック登録へ移行した後も、PHP 側には旧 `js/blocks` 前提の処理が残っている。
+
+- `inc/blocks/class-dynamic-block.php` は `src/blocks/block-library/card/class-card-block.php` が継承しているため、現時点では削除しない
+- `inc/blocks/class-blocks.php` の旧 `js/blocks/*.js` スキャン処理は、`ystdb` 設定の `wp_localize_script()` と絡むため別工程で整理する
+- 対応方針: card の dynamic block 実装とエディター設定の受け渡しを確認したうえで、旧登録処理を段階的に廃止する
