@@ -32,6 +32,12 @@
 	&:not(.is-pressed) {
 		color: currentcolor;
 	}
+	&.is-pressed {
+		color: #fff;
+		&::before {
+			width: 100%;
+		}
+	}
 }
 
 .ystdb-inline-style-toolbar__marker {
