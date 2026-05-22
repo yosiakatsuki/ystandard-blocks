@@ -2,7 +2,11 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { registerFormatType, toggleFormat } from '@wordpress/rich-text';
+import {
+	registerFormatType,
+	toggleFormat,
+	type RichTextValue,
+} from '@wordpress/rich-text';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 /**
@@ -19,6 +23,12 @@ type InlineStyleConfig = {
 	buttons?: InlineStyleToolbarButton[];
 };
 
+type FormatEditProps = {
+	value: RichTextValue;
+	isActive: boolean;
+	onChange: ( value: RichTextValue ) => void;
+};
+
 const inlineStyleConfig = getBlockEditorConfig(
 	'inlineStyle',
 	{}
@@ -33,10 +43,13 @@ buttons.forEach( ( button, index ) => {
 	const className = `ystdb-inline--${ buttonNo }`;
 	if ( isEnable ) {
 		registerFormatType( name, {
+			name,
 			title: `${ title } ${ buttonNo }`,
 			tagName: 'span',
 			className,
-			edit( props ) {
+			interactive: false,
+			object: false,
+			edit( props: FormatEditProps ) {
 				const { value, isActive, onChange } = props;
 				const onToggle = () =>
 					onChange( toggleFormat( value, { type: name } ) );
