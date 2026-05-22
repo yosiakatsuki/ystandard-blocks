@@ -127,7 +127,9 @@
 			text-align: center;
 
 			// 下位互換.
-			&:not(.is-block--mobile):not(.is-block--tablet):not(.is-block--desktop) {
+			&:not(.is-block--mobile):not(.is-block--tablet):not(
+					.is-block--desktop
+				) {
 				display: block;
 			}
 		}
@@ -187,6 +189,16 @@
 				padding-right: var(--ys-padding-horizontal-desktop);
 				padding-left: var(--ys-padding-horizontal-desktop);
 			}
+		}
+	}
+
+	&.is-style-outline {
+		color: currentcolor;
+
+		.ystdb-button__link {
+			color: currentcolor;
+			background-color: transparent;
+			border-width: var(--ystd-button-border-width);
 		}
 	}
 }

@@ -58,6 +58,11 @@ const transforms = {
 						/is-style-outline/g,
 						''
 					);
+					newAttributes.border = {
+						color: 'currentColor',
+						width: '2px',
+						style: 'solid',
+					};
 				}
 
 				// フォントサイズ変換.
@@ -177,14 +182,15 @@ const transforms = {
 				newAttributes.width = _width;
 
 				// 角丸.
-				newAttributes.borderRadius = borderRadius
-					? {
-							topLeft: `${ borderRadius }px`,
-							topRight: `${ borderRadius }px`,
-							bottomLeft: `${ borderRadius }px`,
-							bottomRight: `${ borderRadius }px`,
-					  }
-					: undefined;
+				newAttributes.borderRadius =
+					undefined !== borderRadius
+						? {
+								topLeft: `${ borderRadius }px`,
+								topRight: `${ borderRadius }px`,
+								bottomLeft: `${ borderRadius }px`,
+								bottomRight: `${ borderRadius }px`,
+						  }
+						: undefined;
 
 				// アニメーション.
 				if (

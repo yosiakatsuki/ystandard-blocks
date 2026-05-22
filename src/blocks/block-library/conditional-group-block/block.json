@@ -51,6 +51,7 @@
     "className": false,
     "html": false,
     "align": false,
+    "listView": true,
     "ystdtdHiddenBySize": false
   },
   "textdomain": "ystandard-blocks",
