@@ -8,6 +8,7 @@
 	}
 
 	&::before {
+		width: 100% !important;
 		top: 6px;
 		left: 0 !important;
 		right: auto !important;
@@ -15,6 +16,7 @@
 		color: #222;
 		font-size: 0.6rem;
 		line-height: 1;
+		text-align: left;
 	}
 
 	&.inline-style-1::before {
@@ -34,9 +36,6 @@
 	}
 	&.is-pressed {
 		color: #fff;
-		&::before {
-			width: 100%;
-		}
 	}
 }
 
