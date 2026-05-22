@@ -70,7 +70,6 @@
 
 	.ystdb-button__icon.fa-xs,
 	.ystdb-button__icon.is-small {
-
 		svg {
 			width: 0.75em;
 			height: 0.75em;
@@ -79,7 +78,6 @@
 
 	.ystdb-button__icon.fa-2x,
 	.ystdb-button__icon.is-large {
-
 		svg {
 			width: 2em;
 			height: 2em;
@@ -88,16 +86,13 @@
 }
 
 :where(.ystdb-button__link) {
-
 	&.wp-block-button__link {
 		width: auto;
 	}
 }
 
 .wp-block-button {
-
 	&.ys-is-font-responsive {
-
 		@include global.media-breakpoint-down(md) {
 			font-size: var(--ys-font-mobile);
 		}
@@ -112,7 +107,6 @@
 	}
 
 	.ystdb-button__link {
-
 		&.is-small {
 			padding: 0.25rem 1rem;
 		}
@@ -127,34 +121,32 @@
 			text-align: center;
 
 			// 下位互換.
-			&:not(.is-block--mobile):not(.is-block--tablet):not(.is-block--desktop) {
+			&:not(.is-block--mobile):not(.is-block--tablet):not(
+					.is-block--desktop
+				) {
 				display: block;
 			}
 		}
 
 		@include global.media-breakpoint-down(md) {
-
 			&.is-block--mobile {
 				display: block;
 			}
 		}
 
 		@include global.media-breakpoint-between(md, lg) {
-
 			&.is-block--tablet {
 				display: block;
 			}
 		}
 
 		@include global.media-breakpoint(lg) {
-
 			&.is-block--desktop {
 				display: block;
 			}
 		}
 
 		&.is-vertical-padding-responsive {
-
 			@include global.media-breakpoint-down(md) {
 				padding-top: var(--ys-padding-vertical-mobile);
 				padding-bottom: var(--ys-padding-vertical-mobile);
@@ -172,7 +164,6 @@
 		}
 
 		&.is-horizontal-padding-responsive {
-
 			@include global.media-breakpoint-down(md) {
 				padding-right: var(--ys-padding-horizontal-mobile);
 				padding-left: var(--ys-padding-horizontal-mobile);
@@ -189,10 +180,18 @@
 			}
 		}
 	}
+	&.is-style-outline {
+		color: currentcolor;
+
+		.ystdb-button__link {
+			color: currentcolor;
+			background-color: transparent;
+			border-width: var(--ystd-button-border-width);
+		}
+	}
 }
 
 @keyframes shine {
-
 	0% {
 		transform: scale(0) rotate(45deg);
 		opacity: 0;
