@@ -58,6 +58,11 @@ const transforms = {
 						/is-style-outline/g,
 						''
 					);
+					newAttributes.border = {
+						color: 'currentColor',
+						width: '2px',
+						style: 'solid',
+					}
 				}
 
 				// フォントサイズ変換.
@@ -177,7 +182,7 @@ const transforms = {
 				newAttributes.width = _width;
 
 				// 角丸.
-				newAttributes.borderRadius = borderRadius
+				newAttributes.borderRadius = undefined !== borderRadius
 					? {
 							topLeft: `${ borderRadius }px`,
 							topRight: `${ borderRadius }px`,
@@ -212,6 +217,7 @@ const transforms = {
 					newAttributes.iconSizeRight = ICON_SIZE[ iconSizeRight ];
 				}
 
+				console.log(newAttributes);
 				return createBlock(
 					'ystdb/custom-button',
 					stripUndefined( newAttributes )
