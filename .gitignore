@@ -11,3 +11,6 @@ blocks-temp/
 tsconfig.tsbuildinfo
 release-posts/
 archived/
+.codex/
+.agents/skills/
+skills-lock.json
