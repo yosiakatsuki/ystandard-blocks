@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Aktk Dependencies.
  */
-import LineHeightControl from '@aktk/block-components/wp-controls/line-height-control';
+import { CustomLineHeightControl } from '@aktk/block-components/components/custom-line-height-control';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 
 /**
@@ -26,10 +26,8 @@ export function MainTextLineHeight( props ) {
 
 	return (
 		<BaseControl>
-			<LineHeightControl
-				// @ts-ignore.
+			<CustomLineHeightControl
 				label={ __( '行の高さ', 'ystandard-blocks' ) }
-				// @ts-ignore.
 				value={ lineHeight }
 				onChange={ handleOnChange }
 			/>
