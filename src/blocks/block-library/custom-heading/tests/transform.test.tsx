@@ -93,4 +93,15 @@ describe( 'Custom Heading Block transforms', () => {
 			desktop: '32px',
 		} );
 	} );
+
+	it( 'ystdb/headingの文字間隔をem付きで変換する', () => {
+		const transform = getTransform( 'from', 'ystdb/heading' );
+		const block = transform?.transform( {
+			content: 'もとは旧見出しです',
+			level: 2,
+			letterSpacing: 0.1,
+		} );
+
+		expect( block?.attributes.letterSpacing ).toBe( '0.1em' );
+	} );
 } );

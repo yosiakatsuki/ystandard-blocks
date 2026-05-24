@@ -66,6 +66,20 @@ const getPixelValue = ( value?: number | string ) => {
 	return value;
 };
 
+const getLetterSpacingValue = ( value?: number | string ) => {
+	if ( undefined === value || '' === value || 0 === value ) {
+		return undefined;
+	}
+	if ( 'number' === typeof value ) {
+		return `${ value }em`;
+	}
+	if ( /^\d+(\.\d+)?$/.test( value ) ) {
+		return `${ value }em`;
+	}
+
+	return value;
+};
+
 /**
  * ブロック変換定義
  */
@@ -145,9 +159,9 @@ export const transforms = {
 							? responsiveFontSize
 							: undefined,
 					fontWeight: attributes.fontWeight,
-					letterSpacing: attributes.letterSpacing
-						? String( attributes.letterSpacing )
-						: undefined,
+					letterSpacing: getLetterSpacingValue(
+						attributes.letterSpacing
+					),
 					clearStyle: attributes.clearStyle,
 				} );
 			},
