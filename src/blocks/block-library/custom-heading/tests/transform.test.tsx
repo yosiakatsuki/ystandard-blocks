@@ -45,6 +45,17 @@ describe( 'Custom Heading Block transforms', () => {
 		expect( block?.attributes.fontSize ).toBeUndefined();
 	} );
 
+	it( 'core/headingのフォントファミリーをcustom-headingへ変換する', () => {
+		const transform = getTransform( 'from', 'core/heading' );
+		const block = transform?.transform( {
+			content: 'フォントファミリー',
+			level: 2,
+			fontFamily: 'Georgia, serif',
+		} );
+
+		expect( block?.attributes.fontFamily ).toBe( 'Georgia, serif' );
+	} );
+
 	it( 'custom-headingのカスタムフォントサイズをcore/headingのstyleへ変換する', () => {
 		const transform = getTransform( 'to', 'core/heading' );
 		const block = transform?.transform( {
@@ -74,6 +85,17 @@ describe( 'Custom Heading Block transforms', () => {
 			},
 		} );
 		expect( block?.attributes.customFontSize ).toBeUndefined();
+	} );
+
+	it( 'custom-headingのフォントファミリーをcore/headingへ変換する', () => {
+		const transform = getTransform( 'to', 'core/heading' );
+		const block = transform?.transform( {
+			content: 'フォントファミリー',
+			level: 2,
+			fontFamily: 'Georgia, serif',
+		} );
+
+		expect( block?.attributes.fontFamily ).toBe( 'Georgia, serif' );
 	} );
 
 	it( 'ystdb/headingのレスポンシブフォントサイズをpx付きで変換する', () => {
