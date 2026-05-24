@@ -15,8 +15,9 @@ const normalizeHeadingLevel = ( level?: number ) => {
 	return HEADING_LEVELS.includes( Number( level ) ) ? Number( level ) : 2;
 };
 
-const getTypographyStyle = ( attributes: any ) => {
+const getTypographyStyle = ( attributes: any, textAlign?: string ) => {
 	const typography = {
+		textAlign,
 		fontSize:
 			! attributes.fontSize && attributes.customFontSize
 				? attributes.customFontSize
@@ -50,6 +51,10 @@ const getCustomFontSizeAttribute = ( attributes: any ) => {
 	}
 
 	return attributes.customFontSize ?? attributes?.style?.typography?.fontSize;
+};
+
+const getCoreTextAlignAttribute = ( attributes: any ) => {
+	return attributes?.style?.typography?.textAlign ?? attributes.textAlign;
 };
 
 const getPixelValue = ( value?: number | string ) => {
@@ -93,7 +98,7 @@ export const transforms = {
 				return createBlock( metadata.name, {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
-					textAlign: attributes.textAlign,
+					textAlign: getCoreTextAlignAttribute( attributes ),
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
@@ -176,12 +181,14 @@ export const transforms = {
 				return createBlock( 'core/heading', {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
-					textAlign: attributes.textAlign,
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
 					fontFamily: attributes.fontFamily,
-					style: getTypographyStyle( attributes ),
+					style: getTypographyStyle(
+						attributes,
+						attributes.textAlign
+					),
 				} );
 			},
 		},
