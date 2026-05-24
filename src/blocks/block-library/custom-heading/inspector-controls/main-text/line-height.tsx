@@ -30,6 +30,7 @@ export function MainTextLineHeight( props ) {
 				label={ __( '行の高さ', 'ystandard-blocks' ) }
 				value={ lineHeight }
 				onChange={ handleOnChange }
+				placeholder="1.3"
 			/>
 		</BaseControl>
 	);
