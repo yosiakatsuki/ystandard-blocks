@@ -69,7 +69,7 @@
 	"supports": {
 		"align": false,
 		"anchor": true,
-		"className": true,
+		"className": false,
 		"splitting": true
 	},
 	"textdomain": "ystandard-blocks",
