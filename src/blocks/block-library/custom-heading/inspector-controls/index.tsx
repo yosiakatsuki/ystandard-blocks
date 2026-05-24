@@ -6,6 +6,7 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
 /**
  * Block dependencies.
  */
+import { LayoutPanel } from './layout';
 import { MainTextPanel } from './main-text';
 import { ClearStylePanel } from './clear-style';
 
@@ -13,6 +14,7 @@ import { ClearStylePanel } from './clear-style';
 export function InspectorControls( props ) {
 	return (
 		<WPInspectorControls>
+			<LayoutPanel { ...props } />
 			<MainTextPanel { ...props } />
 			<ClearStylePanel { ...props } />
 		</WPInspectorControls>
