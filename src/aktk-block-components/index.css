@@ -5,4 +5,5 @@
 }
 
 /* コンポーネントCSS */
+@import "./components/custom-font-size-picker/index.css";
 @import "./components/custom-spacing-select/index.css";

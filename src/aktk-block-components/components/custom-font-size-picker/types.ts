@@ -13,7 +13,7 @@ export type CustomFontSizePickerOnChangeProps = {
 };
 
 export interface CustomFontSizePickerProps {
-	fontSize?: FontSize;
+	fontSize?: FontSize | string;
 	customFontSize?: string;
 	responsiveFontSize?: ResponsiveFontSize;
 	onChange: ( value: CustomFontSizePickerOnChangeProps ) => void;
@@ -21,4 +21,5 @@ export interface CustomFontSizePickerProps {
 	useResponsive?: boolean;
 	showResetButton?: boolean;
 	wpPickerDisableCustomFontSizes?: boolean;
+	fontSizes?: Array< { name: string; slug: string; size: number } >;
 }
