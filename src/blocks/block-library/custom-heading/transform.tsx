@@ -52,6 +52,20 @@ const getCustomFontSizeAttribute = ( attributes: any ) => {
 	return attributes.customFontSize ?? attributes?.style?.typography?.fontSize;
 };
 
+const getPixelValue = ( value?: number | string ) => {
+	if ( undefined === value || '' === value || 0 === value ) {
+		return undefined;
+	}
+	if ( 'number' === typeof value ) {
+		return `${ value }px`;
+	}
+	if ( /^\d+(\.\d+)?$/.test( value ) ) {
+		return `${ value }px`;
+	}
+
+	return value;
+};
+
 /**
  * ブロック変換定義
  */
@@ -102,13 +116,19 @@ export const transforms = {
 				const responsiveFontSize: any = {};
 				if ( attributes.useFontSizeResponsive ) {
 					if ( attributes.fontSizeMobile ) {
-						responsiveFontSize.mobile = attributes.fontSizeMobile;
+						responsiveFontSize.mobile = getPixelValue(
+							attributes.fontSizeMobile
+						);
 					}
 					if ( attributes.fontSizeTablet ) {
-						responsiveFontSize.tablet = attributes.fontSizeTablet;
+						responsiveFontSize.tablet = getPixelValue(
+							attributes.fontSizeTablet
+						);
 					}
 					if ( attributes.fontSizeDesktop ) {
-						responsiveFontSize.desktop = attributes.fontSizeDesktop;
+						responsiveFontSize.desktop = getPixelValue(
+							attributes.fontSizeDesktop
+						);
 					}
 				}
 

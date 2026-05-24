@@ -75,4 +75,22 @@ describe( 'Custom Heading Block transforms', () => {
 		} );
 		expect( block?.attributes.customFontSize ).toBeUndefined();
 	} );
+
+	it( 'ystdb/headingのレスポンシブフォントサイズをpx付きで変換する', () => {
+		const transform = getTransform( 'from', 'ystdb/heading' );
+		const block = transform?.transform( {
+			content: 'もとは旧見出しです',
+			level: 2,
+			useFontSizeResponsive: true,
+			fontSizeMobile: 16,
+			fontSizeTablet: 24,
+			fontSizeDesktop: 32,
+		} );
+
+		expect( block?.attributes.responsiveFontSize ).toEqual( {
+			mobile: '16px',
+			tablet: '24px',
+			desktop: '32px',
+		} );
+	} );
 } );
