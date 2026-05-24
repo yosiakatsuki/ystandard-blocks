@@ -17,6 +17,10 @@ const normalizeHeadingLevel = ( level?: number ) => {
 
 const getTypographyStyle = ( attributes: any ) => {
 	const typography = {
+		fontSize:
+			! attributes.fontSize && attributes.customFontSize
+				? attributes.customFontSize
+				: undefined,
 		fontWeight: attributes.fontWeight,
 		fontStyle: attributes.fontStyle,
 		letterSpacing: attributes.letterSpacing,
@@ -40,6 +44,14 @@ const getCustomHeadingTypographyAttributes = ( attributes: any ) => {
 	};
 };
 
+const getCustomFontSizeAttribute = ( attributes: any ) => {
+	if ( attributes.fontSize ) {
+		return attributes.customFontSize;
+	}
+
+	return attributes.customFontSize ?? attributes?.style?.typography?.fontSize;
+};
+
 /**
  * ブロック変換定義
  */
@@ -57,7 +69,7 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: attributes.customFontSize,
+					customFontSize: getCustomFontSizeAttribute( attributes ),
 					fontFamily: attributes.fontFamily,
 					...getCustomHeadingTypographyAttributes( attributes ),
 				} );
@@ -75,7 +87,7 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: attributes.customFontSize,
+					customFontSize: getCustomFontSizeAttribute( attributes ),
 					fontFamily: attributes.fontFamily,
 					...getCustomHeadingTypographyAttributes( attributes ),
 				} );
@@ -134,7 +146,6 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: attributes.customFontSize,
 					fontFamily: attributes.fontFamily,
 					style: getTypographyStyle( attributes ),
 				} );
@@ -151,7 +162,6 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: attributes.customFontSize,
 					fontFamily: attributes.fontFamily,
 					style: getTypographyStyle( attributes ),
 				} );
