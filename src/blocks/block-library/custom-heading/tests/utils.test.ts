@@ -6,6 +6,12 @@ const getBaseAttributes = (): Attributes => ( {
 	level: 2,
 } );
 
+const responsiveFontSizeKeys = {
+	desktop: '--ystdb--desktop--heading--font-size',
+	tablet: '--ystdb--tablet--heading--font-size',
+	mobile: '--ystdb--mobile--heading--font-size',
+} as const;
+
 describe( 'Custom Heading Block utils', () => {
 	describe( 'getHeadingClasses', () => {
 		it( '最小限の属性では基本クラスのみ返す', () => {
@@ -54,6 +60,17 @@ describe( 'Custom Heading Block utils', () => {
 			expect( classes ).toContain( 'has-text-align-center' );
 		} );
 
+		it( 'サブテキストがある場合は文字揃えクラスを追加しない', () => {
+			const classes = getHeadingClasses( {
+				...getBaseAttributes(),
+				hasSubText: true,
+				textAlign: 'center',
+			} );
+
+			expect( classes ).toContain( 'ystdb-custom-heading' );
+			expect( classes ).not.toContain( 'has-text-align-center' );
+		} );
+
 		it( '複数の属性から必要なクラスを追加する', () => {
 			const classes = getHeadingClasses( {
 				...getBaseAttributes(),
@@ -99,23 +116,79 @@ describe( 'Custom Heading Block utils', () => {
 			expect( styles.fontSize ).toBeUndefined();
 		} );
 
-		it( 'レスポンシブフォントサイズをCSSカスタムプロパティへ変換する', () => {
-			const styles = getHeadingStyles( {
-				...getBaseAttributes(),
-				responsiveFontSize: {
-					desktop: '32px',
-					tablet: '24px',
-					mobile: '16px',
+		it.each( [
+			[
+				'desktopのみ',
+				{ desktop: '32px' },
+				{
+					[ responsiveFontSizeKeys.desktop ]: '32px',
 				},
-			} );
+			],
+			[
+				'tabletのみ',
+				{ tablet: '24px' },
+				{
+					[ responsiveFontSizeKeys.tablet ]: '24px',
+				},
+			],
+			[
+				'mobileのみ',
+				{ mobile: '16px' },
+				{
+					[ responsiveFontSizeKeys.mobile ]: '16px',
+				},
+			],
+			[
+				'desktopとtablet',
+				{ desktop: '32px', tablet: '24px' },
+				{
+					[ responsiveFontSizeKeys.desktop ]: '32px',
+					[ responsiveFontSizeKeys.tablet ]: '24px',
+				},
+			],
+			[
+				'desktopとmobile',
+				{ desktop: '32px', mobile: '16px' },
+				{
+					[ responsiveFontSizeKeys.desktop ]: '32px',
+					[ responsiveFontSizeKeys.mobile ]: '16px',
+				},
+			],
+			[
+				'tabletとmobile',
+				{ tablet: '24px', mobile: '16px' },
+				{
+					[ responsiveFontSizeKeys.tablet ]: '24px',
+					[ responsiveFontSizeKeys.mobile ]: '16px',
+				},
+			],
+			[
+				'desktopとtabletとmobile',
+				{ desktop: '32px', tablet: '24px', mobile: '16px' },
+				{
+					[ responsiveFontSizeKeys.desktop ]: '32px',
+					[ responsiveFontSizeKeys.tablet ]: '24px',
+					[ responsiveFontSizeKeys.mobile ]: '16px',
+				},
+			],
+		] )(
+			'レスポンシブフォントサイズをCSSカスタムプロパティへ変換する: %s',
+			( _label, responsiveFontSize, expectedStyles ) => {
+				const styles = getHeadingStyles( {
+					...getBaseAttributes(),
+					responsiveFontSize,
+				} );
 
-			expect( styles ).toMatchObject( {
-				'--ystdb--desktop--heading--font-size': '32px',
-				'--ystdb--tablet--heading--font-size': '24px',
-				'--ystdb--mobile--heading--font-size': '16px',
-			} );
-			expect( styles.fontSize ).toBeUndefined();
-		} );
+				expect( styles ).toMatchObject( expectedStyles );
+				expect( styles.fontSize ).toBeUndefined();
+
+				Object.values( responsiveFontSizeKeys ).forEach( ( key ) => {
+					if ( ! Object.hasOwn( expectedStyles, key ) ) {
+						expect( styles[ key ] ).toBeUndefined();
+					}
+				} );
+			}
+		);
 
 		it( 'レスポンシブフォントサイズがある場合はカスタムフォントサイズを出力しない', () => {
 			const styles = getHeadingStyles( {

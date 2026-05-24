@@ -14,7 +14,8 @@ import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-
 import type { Attributes } from './types';
 
 export function getHeadingClasses( attributes: Attributes ) {
-	const { clearStyle, fontSize, textAlign, textColor } = attributes;
+	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
+		attributes;
 
 	const fontSizeClass = getFontSizeClass( fontSize || '' );
 	const textColorClass = getColorClassName( 'color', textColor || '' );
@@ -23,7 +24,7 @@ export function getHeadingClasses( attributes: Attributes ) {
 		[ fontSizeClass ]: !! fontSize,
 		[ textColorClass ]: !! textColor,
 		'is-clear-style': clearStyle,
-		[ `has-text-align-${ textAlign }` ]: !! textAlign,
+		[ `has-text-align-${ textAlign }` ]: !! textAlign && ! hasSubText,
 	} );
 }
 
