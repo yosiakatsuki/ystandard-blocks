@@ -40,7 +40,7 @@ export function CustomLineHeightControl( props: CustomLineHeightControlProps ) {
 	};
 
 	return (
-		<div className="aktk-component__custom-line-height-control max-w-[150px] [&_.components-input-control__input]:!h-[40px] [&_div]:w-auto">
+		<div className="aktk-component__custom-line-height-control">
 			<NumberControl
 				label={ label }
 				value={ value ?? RESET_VALUE }
