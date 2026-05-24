@@ -7,6 +7,7 @@ export interface Attributes {
 	content: string;
 	level?: number;
 	textAlign?: 'left' | 'center' | 'right';
+	hasSubText?: boolean;
 	textColor?: string;
 	customTextColor?: string;
 	fontSize?: string;

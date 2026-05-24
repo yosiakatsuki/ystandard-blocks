@@ -24,6 +24,10 @@
 		"textAlign": {
 			"type": "string"
 		},
+		"hasSubText": {
+			"type": "boolean",
+			"default": false
+		},
 		"textColor": {
 			"type": "string"
 		},
