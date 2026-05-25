@@ -5,6 +5,15 @@ import classnames from 'classnames';
 import { getFontSizeClass, getColorClassName } from '@wordpress/block-editor';
 
 /**
+ * Aktk dependencies.
+ */
+import {
+	getCustomSpacingValues,
+	type Spacing,
+} from '@aktk/block-components/components/custom-spacing-select';
+import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
+
+/**
  * Plugin dependencies.
  */
 import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-values';
@@ -12,6 +21,8 @@ import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-
  * Block dependencies.
  */
 import type { Attributes } from './types';
+
+const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
 
 export function getHeadingClasses( attributes: Attributes ) {
 	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
@@ -33,6 +44,10 @@ export function getHeadingStyles( attributes: Attributes ) {
 		fontSize,
 		customFontSize,
 		responsiveFontSize,
+		margin,
+		responsiveMargin,
+		padding,
+		responsivePadding,
 		customTextColor,
 		fontStyle,
 		fontWeight,
@@ -56,6 +71,34 @@ export function getHeadingStyles( attributes: Attributes ) {
 				] = _fontSize;
 				hasCustomFontSize = false;
 			}
+
+			// margin, padding.
+			const _margin = responsiveMargin?.[ type ];
+			const _padding = responsivePadding?.[ type ];
+
+			positions.forEach( ( position ) => {
+				// margin.
+				const marginValue = _margin?.[ position ];
+				if ( marginValue ) {
+					acc[
+						getResponsiveCustomPropName(
+							`custom-heading--margin-${ position }`,
+							type
+						)
+					] = presetTokenToCssVar( marginValue ) || marginValue;
+				}
+
+				// padding.
+				const paddingValue = _padding?.[ position ];
+				if ( paddingValue ) {
+					acc[
+						getResponsiveCustomPropName(
+							`custom-heading--padding-${ position }`,
+							type
+						)
+					] = presetTokenToCssVar( paddingValue ) || paddingValue;
+				}
+			} );
 			return acc;
 		},
 		{} as Record< string, string >
@@ -69,6 +112,8 @@ export function getHeadingStyles( attributes: Attributes ) {
 		letterSpacing: letterSpacing || undefined,
 		lineHeight,
 		fontFamily,
+		...getCustomSpacingValues( margin, 'margin' ),
+		...getCustomSpacingValues( padding, 'padding' ),
 		...responsiveStyles,
 	};
 }

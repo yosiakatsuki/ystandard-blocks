@@ -7,8 +7,8 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
  * Block dependencies.
  */
 import { LayoutPanel } from './layout';
-import { MainTextPanel } from './main-text';
-import { SpacingPanel } from './spacing';
+import { MainTextPanel } from './text-main';
+import { GroupSpacingPanel } from './spacing-group';
 import { ClearStylePanel } from './clear-style';
 
 // @ts-ignore
@@ -17,7 +17,7 @@ export function InspectorControls( props ) {
 		<WPInspectorControls>
 			<LayoutPanel { ...props } />
 			<MainTextPanel { ...props } />
-			<SpacingPanel { ...props } />
+			<GroupSpacingPanel { ...props } />
 			<ClearStylePanel { ...props } />
 		</WPInspectorControls>
 	);

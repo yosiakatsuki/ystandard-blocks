@@ -377,3 +377,16 @@ exports[`Custom Heading Block <Save /> snapshot 030: フォントファミリー
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 031: 外側余白と内側余白指定 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading"
+    style="margin-top: 1rem; margin-bottom: 2rem; padding-right: 3rem; padding-left: var(--wp--preset--spacing--40); --ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
+  >
+    <span>
+      余白指定
+    </span>
+  </h2>
+</DocumentFragment>
+`;

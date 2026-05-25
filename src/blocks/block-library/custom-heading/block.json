@@ -43,6 +43,18 @@
 		"responsiveFontSize": {
 			"type": "object"
 		},
+		"margin": {
+			"type": "object"
+		},
+		"responsiveMargin": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"responsivePadding": {
+			"type": "object"
+		},
 		"lineHeight": {
 			"type": "string"
 		},

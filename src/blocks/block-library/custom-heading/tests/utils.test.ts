@@ -12,6 +12,12 @@ const responsiveFontSizeKeys = {
 	mobile: '--ystdb--mobile--heading--font-size',
 } as const;
 
+const responsiveSpacingKeys = {
+	desktopMarginTop: '--ystdb--desktop--custom-heading--margin-top',
+	tabletMarginRight: '--ystdb--tablet--custom-heading--margin-right',
+	mobilePaddingBottom: '--ystdb--mobile--custom-heading--padding-bottom',
+} as const;
+
 describe( 'Custom Heading Block utils', () => {
 	describe( 'getHeadingClasses', () => {
 		it( '最小限の属性では基本クラスのみ返す', () => {
@@ -223,6 +229,53 @@ describe( 'Custom Heading Block utils', () => {
 				letterSpacing: '0.1em',
 				lineHeight: '1.5',
 				fontFamily: 'Georgia, serif',
+			} );
+		} );
+
+		it( '通常の外側余白と内側余白をスタイルへ変換する', () => {
+			const styles = getHeadingStyles( {
+				...getBaseAttributes(),
+				margin: {
+					top: '1rem',
+					bottom: '2rem',
+				},
+				padding: {
+					left: 'var:preset|spacing|40',
+					right: '3rem',
+				},
+			} );
+
+			expect( styles ).toMatchObject( {
+				marginTop: '1rem',
+				marginBottom: '2rem',
+				paddingLeft: 'var(--wp--preset--spacing--40)',
+				paddingRight: '3rem',
+			} );
+		} );
+
+		it( 'レスポンシブ余白をCSSカスタムプロパティへ変換する', () => {
+			const styles = getHeadingStyles( {
+				...getBaseAttributes(),
+				responsiveMargin: {
+					desktop: {
+						top: '1rem',
+					},
+					tablet: {
+						right: '2rem',
+					},
+				},
+				responsivePadding: {
+					mobile: {
+						bottom: 'var:preset|spacing|40',
+					},
+				},
+			} );
+
+			expect( styles ).toMatchObject( {
+				[ responsiveSpacingKeys.desktopMarginTop ]: '1rem',
+				[ responsiveSpacingKeys.tabletMarginRight ]: '2rem',
+				[ responsiveSpacingKeys.mobilePaddingBottom ]:
+					'var(--wp--preset--spacing--40)',
 			} );
 		} );
 	} );

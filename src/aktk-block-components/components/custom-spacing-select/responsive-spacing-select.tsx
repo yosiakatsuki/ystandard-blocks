@@ -56,15 +56,21 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 	const handleOnResponsiveChange = ( newValue?: ResponsiveSpacing ) => {
 		onChange( {
 			spacing: undefined,
-			responsiveSpacing: stripUndefined( newValue as object ) as ResponsiveSpacing,
+			responsiveSpacing: stripUndefined(
+				newValue as object
+			) as ResponsiveSpacing,
 		} );
+	};
+
+	const isResponsive = () => {
+		return !! responsiveValue?.desktop || !! responsiveValue?.tablet || !! responsiveValue?.mobile;
 	};
 
 	return (
 		<>
 			{ useResponsive ? (
 				<ResponsiveSelectTab
-					isResponsive={ isResponsive( value ) }
+					isResponsive={ isResponsive() }
 					defaultTabContent={
 						<>
 							<CustomSpacingSelectControl
@@ -113,7 +119,9 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 	);
 }
 
-function ResponsiveSpacingSelectControl( props: ResponsiveSpacingSelectControlProps ) {
+function ResponsiveSpacingSelectControl(
+	props: ResponsiveSpacingSelectControlProps
+) {
 	const {
 		value,
 		onChange,
