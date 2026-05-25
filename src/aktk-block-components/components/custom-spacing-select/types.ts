@@ -11,7 +11,7 @@ export interface ResponsiveSpacing {
 	mobile?: Spacing;
 }
 
-export type ResponsiveSpacingSelectOnChangeProps= {
+export type ResponsiveSpacingSelectOnChangeProps = {
 	spacing?: Spacing;
 	responsiveSpacing?: ResponsiveSpacing;
 };

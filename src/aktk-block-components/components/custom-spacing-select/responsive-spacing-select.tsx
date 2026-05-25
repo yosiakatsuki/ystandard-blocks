@@ -15,10 +15,7 @@ import {
 	MobileControl,
 	TabletControl,
 } from '@aktk/block-components/components/icon-control';
-import {
-	stripUndefined,
-	isResponsive,
-} from '@aktk/block-components/utils/object';
+import { stripUndefined } from '@aktk/block-components/utils/object';
 import Button from '@aktk/block-components/wp-controls/button';
 
 /**
@@ -62,15 +59,19 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 		} );
 	};
 
-	const isResponsive = () => {
-		return !! responsiveValue?.desktop || !! responsiveValue?.tablet || !! responsiveValue?.mobile;
+	const hasResponsiveValue = () => {
+		return (
+			!! responsiveValue?.desktop ||
+			!! responsiveValue?.tablet ||
+			!! responsiveValue?.mobile
+		);
 	};
 
 	return (
 		<>
 			{ useResponsive ? (
 				<ResponsiveSelectTab
-					isResponsive={ isResponsive() }
+					isResponsive={ hasResponsiveValue() }
 					defaultTabContent={
 						<>
 							<CustomSpacingSelectControl
