@@ -5,6 +5,11 @@ interface LineHeightControlProps {
 	value: string | undefined;
 	onChange: ( value: string ) => void;
 }
+
+/**
+ * @deprecated placeholderを変更できないため、今後は
+ * `components/custom-line-height-control` の CustomLineHeightControl を使う.
+ */
 export default function LineHeightControl( props: LineHeightControlProps ) {
 	const { value, onChange } = props;
 	return (

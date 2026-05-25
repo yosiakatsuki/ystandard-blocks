@@ -1,5 +1,17 @@
 .ystdb-custom-heading {
 
+	&:where(.has-text-align-left) {
+		text-align: left;
+	}
+
+	&:where(.has-text-align-center) {
+		text-align: center;
+	}
+
+	&:where(.has-text-align-right) {
+		text-align: right;
+	}
+
 	&:where(.is-clear-style:not([class*="is-style-ystdtb"])) {
 		position: relative;
 		margin: 0;

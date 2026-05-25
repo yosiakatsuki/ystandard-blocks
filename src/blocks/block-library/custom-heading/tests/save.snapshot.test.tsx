@@ -431,4 +431,34 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '031: 外側余白と内側余白指定', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '余白指定',
+					level: 2,
+					margin: {
+						top: '1rem',
+						bottom: '2rem',
+					},
+					padding: {
+						left: 'var:preset|spacing|40',
+						right: '3rem',
+					},
+					responsiveMargin: {
+						desktop: {
+							top: '4rem',
+						},
+					},
+					responsivePadding: {
+						mobile: {
+							bottom: '5rem',
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

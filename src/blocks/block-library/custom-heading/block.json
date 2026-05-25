@@ -24,6 +24,10 @@
 		"textAlign": {
 			"type": "string"
 		},
+		"hasSubText": {
+			"type": "boolean",
+			"default": false
+		},
 		"textColor": {
 			"type": "string"
 		},
@@ -37,6 +41,18 @@
 			"type": "string"
 		},
 		"responsiveFontSize": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"responsiveMargin": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"responsivePadding": {
 			"type": "object"
 		},
 		"lineHeight": {
@@ -65,11 +81,11 @@
 	"supports": {
 		"align": false,
 		"anchor": true,
-		"className": true,
+		"className": false,
 		"splitting": true
 	},
 	"textdomain": "ystandard-blocks",
 	"editorScript": "file:./index.tsx",
-	"editorStyle": "file:./index.css",
+	"editorStyle": ["ystdb-aktk-components-editor", "file:./index.css"],
 	"style": "file:./style-index.css"
 }

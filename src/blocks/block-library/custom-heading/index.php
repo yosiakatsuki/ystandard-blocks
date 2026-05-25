@@ -72,6 +72,25 @@ class Custom_Heading_Block {
 					'type'      => $type,
 				]
 			);
+			// 余白.
+			foreach ( [ 'top', 'right', 'bottom', 'left' ] as $pos ) {
+				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+					[
+						'selector'  => $selector,
+						'prop_name' => "custom-heading--margin-{$pos}",
+						'property'  => "margin-{$pos}",
+						'type'      => $type,
+					]
+				);
+				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+					[
+						'selector'  => $selector,
+						'prop_name' => "custom-heading--padding-{$pos}",
+						'property'  => "padding-{$pos}",
+						'type'      => $type,
+					]
+				);
+			}
 		}
 
 		// 結合.

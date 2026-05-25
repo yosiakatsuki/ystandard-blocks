@@ -11,7 +11,7 @@ export function MainTextFontFamily( props ) {
 
 	const handleOnChange = ( value: string ) => {
 		setAttributes( {
-			fontFamily: value,
+			fontFamily: value || undefined,
 		} );
 	};
 	return (

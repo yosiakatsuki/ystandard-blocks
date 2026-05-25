@@ -2,6 +2,7 @@
  * WordPress dependencies.
  */
 import { __ } from '@wordpress/i18n';
+
 /**
  * Aktk dependencies.
  */
@@ -11,20 +12,18 @@ import {
 	type ResponsiveSpacingSelectOnChangeProps,
 } from '@aktk/block-components/components/custom-spacing-select';
 /**
- * Plugin dependencies.
- */
-
-/**
- * Internal dependencies
+ * Block dependencies.
  */
 import type { Attributes } from '../../types';
 
-// @ts-expect-error
-export function Padding( props ) {
+// @ts-ignore.
+export function GroupSpacingPaddingControl( props ) {
 	const { attributes, setAttributes } = props;
-	const { padding, responsivePadding } = attributes as unknown as Attributes;
 
-	const handleOnChange = (
+	const { padding, responsivePadding } = attributes as Attributes;
+
+	// padding変更.
+	const handleOnPaddingChange = (
 		newValue: ResponsiveSpacingSelectOnChangeProps
 	) => {
 		setAttributes( {
@@ -34,17 +33,15 @@ export function Padding( props ) {
 	};
 
 	return (
-		<>
-			<BaseControl
-				id={ 'padding' }
-				label={ __( '内側余白', 'ystandard-blocks' ) }
-			>
-				<ResponsiveSpacingSelect
-					value={ padding }
-					responsiveValue={ responsivePadding }
-					onChange={ handleOnChange }
-				/>
-			</BaseControl>
-		</>
+		<BaseControl
+			id={ 'custom-heading-group-spacing__padding' }
+			label={ __( '内側余白', 'ystandard-blocks' ) }
+		>
+			<ResponsiveSpacingSelect
+				value={ padding }
+				responsiveValue={ responsivePadding }
+				onChange={ handleOnPaddingChange }
+			/>
+		</BaseControl>
 	);
 }

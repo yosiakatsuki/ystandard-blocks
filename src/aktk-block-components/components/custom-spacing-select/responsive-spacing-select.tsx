@@ -15,19 +15,24 @@ import {
 	MobileControl,
 	TabletControl,
 } from '@aktk/block-components/components/icon-control';
-import {
-	stripUndefined,
-	isResponsive,
-} from '@aktk/block-components/utils/object';
+import { stripUndefined } from '@aktk/block-components/utils/object';
 import Button from '@aktk/block-components/wp-controls/button';
+
 /**
  * Component Imports.
  */
-import type { ResponsiveSpacingSelectProps, ResponsiveSpacing } from './types';
+import type {
+	ResponsiveSpacingSelectProps,
+	ResponsiveSpacingSelectControlProps,
+	Spacing,
+	ResponsiveSpacing,
+} from './types';
 
+// レスポンシブ余白設定コンポーネント.
 export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 	const {
 		value,
+		responsiveValue,
 		onChange,
 		responsiveControlStyle = 'vertical',
 		useResponsive = true,
@@ -36,37 +41,49 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 		minimumCustomValue = 0,
 	} = props;
 
-	const handleOnChange = ( newValue?: ResponsiveSpacing ) => {
-		onChange( stripUndefined( newValue as object ) );
+	// デフォルトの値変更.
+	const handleOnChange = ( newValue?: Spacing ) => {
+		onChange( {
+			spacing: newValue,
+			responsiveSpacing: undefined,
+		} );
 	};
 
-	const handleOnCustomSelectChange = (
-		newValue: SpacingSizeValues | undefined
-	) => {
+	// レスポンシブ値変更.
+	const handleOnResponsiveChange = ( newValue?: ResponsiveSpacing ) => {
 		onChange( {
-			desktop: newValue,
-			tablet: undefined,
-			mobile: undefined,
+			spacing: undefined,
+			responsiveSpacing: stripUndefined(
+				newValue as object
+			) as ResponsiveSpacing,
 		} );
+	};
+
+	const hasResponsiveValue = () => {
+		return (
+			!! responsiveValue?.desktop ||
+			!! responsiveValue?.tablet ||
+			!! responsiveValue?.mobile
+		);
 	};
 
 	return (
 		<>
 			{ useResponsive ? (
 				<ResponsiveSelectTab
-					isResponsive={ isResponsive( value ) }
+					isResponsive={ hasResponsiveValue() }
 					defaultTabContent={
 						<>
 							<CustomSpacingSelectControl
 								sides={ sides }
-								values={ value?.desktop }
-								onChange={ handleOnCustomSelectChange }
+								values={ value }
+								onChange={ handleOnChange }
 								minimumCustomValue={ minimumCustomValue }
 							/>
 							{ showResetButton && (
 								<Button
 									onClick={ () =>
-										handleOnCustomSelectChange( undefined )
+										handleOnChange( undefined )
 									}
 									size={ 'small' }
 									variant={ 'secondary' }
@@ -82,8 +99,8 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 					}
 					responsiveTabContent={
 						<ResponsiveSpacingSelectControl
-							value={ value }
-							onChange={ handleOnChange }
+							value={ responsiveValue }
+							onChange={ handleOnResponsiveChange }
 							responsiveControlStyle={ responsiveControlStyle }
 							sides={ sides }
 							minimumCustomValue={ minimumCustomValue }
@@ -94,8 +111,8 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 			) : (
 				<CustomSpacingSelectControl
 					sides={ sides }
-					values={ value?.desktop }
-					onChange={ handleOnCustomSelectChange }
+					values={ value }
+					onChange={ handleOnChange }
 					minimumCustomValue={ minimumCustomValue }
 				/>
 			) }
@@ -103,7 +120,9 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 	);
 }
 
-function ResponsiveSpacingSelectControl( props: ResponsiveSpacingSelectProps ) {
+function ResponsiveSpacingSelectControl(
+	props: ResponsiveSpacingSelectControlProps
+) {
 	const {
 		value,
 		onChange,

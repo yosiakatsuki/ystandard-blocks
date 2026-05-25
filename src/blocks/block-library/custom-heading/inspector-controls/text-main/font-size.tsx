@@ -28,10 +28,7 @@ export function MainTextFontSize( props ) {
 			label={ __( 'フォントサイズ', 'ystandard-toolbox' ) }
 		>
 			<CustomFontSizePicker
-				fontSize={ {
-					slug: fontSize,
-					size: customFontSize,
-				} }
+				fontSize={ fontSize }
 				customFontSize={ customFontSize }
 				responsiveFontSize={ responsiveFontSize }
 				onChange={ handleOnChange }

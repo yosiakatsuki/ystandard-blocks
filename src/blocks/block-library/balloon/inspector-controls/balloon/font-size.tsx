@@ -29,10 +29,7 @@ export default function BalloonFontSize( props ) {
 			label={ __( '文字サイズ', 'ystandard-blocks' ) }
 		>
 			<CustomFontSizePicker
-				fontSize={ {
-					slug: fontSize,
-					size: customFontSize,
-				} }
+				fontSize={ fontSize }
 				customFontSize={ customFontSize }
 				onChange={ handleOnChange }
 				useResponsive={ false }

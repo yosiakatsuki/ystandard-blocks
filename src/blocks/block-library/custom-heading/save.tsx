@@ -7,15 +7,21 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  * Block dependencies.
  */
 import type { Attributes } from './types';
-import { getHeadingClasses, getHeadingStyles } from './utils';
+import { getMainTextClasses, getMainTextStyles } from './utils';
 
 // @ts-expect-error
 function Save( { attributes } ) {
 	const { content, level } = attributes as Attributes;
 	const TagName = 'h' + level;
+
+	// メインテキストのクラスとスタイルを生成.
+	const mainTextClasses = getMainTextClasses( attributes );
+	const mainTextStyles = getMainTextStyles( attributes );
+
+	// ブロックのpropsを生成.
 	const blockProps = useBlockProps.save( {
-		className: getHeadingClasses( attributes ),
-		style: getHeadingStyles( attributes ),
+		className: mainTextClasses,
+		style: mainTextStyles,
 	} );
 
 	return (

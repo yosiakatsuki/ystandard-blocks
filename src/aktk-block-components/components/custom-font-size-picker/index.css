@@ -1,0 +1,6 @@
+.aktk-component__custom-font-size-picker {
+	& .components-tab-panel__tabs {
+		border: none;
+		border-bottom: 1px solid rgb(243 244 246);
+	}
+}
