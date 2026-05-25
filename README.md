@@ -596,7 +596,7 @@
 
 ブロック初期値カスタマイズ用フック
 
-### `ys_get_break_points`
+### `ys_get_breakpoints`
 
 ブレークポイント定義のカスタマイズ用フック
 
