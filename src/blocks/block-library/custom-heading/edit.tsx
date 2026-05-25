@@ -33,7 +33,7 @@ function Edit( props ) {
 
 	// ブロックProps.
 	const blockProps = useBlockProps( {
-		className:mainTextClasses,
+		className: mainTextClasses,
 		style: mainTextStyles,
 	} );
 

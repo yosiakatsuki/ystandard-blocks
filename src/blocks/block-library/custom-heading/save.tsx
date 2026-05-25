@@ -18,7 +18,6 @@ function Save( { attributes } ) {
 	const mainTextClasses = getMainTextClasses( attributes );
 	const mainTextStyles = getMainTextStyles( attributes );
 
-
 	// ブロックのpropsを生成.
 	const blockProps = useBlockProps.save( {
 		className: mainTextClasses,

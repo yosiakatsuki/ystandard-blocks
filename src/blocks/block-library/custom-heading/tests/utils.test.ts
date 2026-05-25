@@ -246,10 +246,10 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect( styles ).toMatchObject( {
-				['margin-top']: '1rem',
-				['margin-bottom']: '2rem',
-				['padding-left']: 'var(--wp--preset--spacing--40)',
-				['padding-right']: '3rem',
+				'margin-top': '1rem',
+				'margin-bottom': '2rem',
+				'padding-left': 'var(--wp--preset--spacing--40)',
+				'padding-right': '3rem',
 			} );
 		} );
 
@@ -294,7 +294,8 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect( styles ).toMatchObject( {
-				[ responsiveSpacingKeys.tabletMarginRight ]: 'var(--wp--preset--spacing--40)',
+				[ responsiveSpacingKeys.tabletMarginRight ]:
+					'var(--wp--preset--spacing--40)',
 			} );
 		} );
 	} );

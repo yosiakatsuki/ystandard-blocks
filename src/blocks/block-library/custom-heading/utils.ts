@@ -24,7 +24,7 @@ const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
 /**
  * メインテキストのクラスを生成.
  * @param attributes
- * @returns
+ * @return
  */
 export function getMainTextClasses( attributes: Attributes ) {
 	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
@@ -44,7 +44,7 @@ export function getMainTextClasses( attributes: Attributes ) {
 /**
  * メインテキストのスタイルを生成.
  * @param attributes
- * @returns
+ * @return
  */
 export function getMainTextStyles( attributes: Attributes ) {
 	const {
