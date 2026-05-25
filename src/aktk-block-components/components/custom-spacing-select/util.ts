@@ -11,12 +11,12 @@ export function getCustomSpacingValues(
 	type: string
 ) {
 	const value = {
-		[ `${ type }-top` ]: presetTokenToCssVar( spacing?.top ) || undefined,
-		[ `${ type }-right` ]:
+		[ `${ type }Top` ]: presetTokenToCssVar( spacing?.top ) || undefined,
+		[ `${ type }Right` ]:
 			presetTokenToCssVar( spacing?.right ) || undefined,
-		[ `${ type }-bottom` ]:
+		[ `${ type }Bottom` ]:
 			presetTokenToCssVar( spacing?.bottom ) || undefined,
-		[ `${ type }-left` ]: presetTokenToCssVar( spacing?.left ) || undefined,
+		[ `${ type }Left` ]: presetTokenToCssVar( spacing?.left ) || undefined,
 	};
 	return stripUndefined( value );
 }

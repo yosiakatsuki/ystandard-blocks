@@ -246,10 +246,10 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect( styles ).toMatchObject( {
-				'margin-top': '1rem',
-				'margin-bottom': '2rem',
-				'padding-left': 'var(--wp--preset--spacing--40)',
-				'padding-right': '3rem',
+				marginTop: '1rem',
+				marginBottom: '2rem',
+				paddingLeft: 'var(--wp--preset--spacing--40)',
+				paddingRight: '3rem',
 			} );
 		} );
 
