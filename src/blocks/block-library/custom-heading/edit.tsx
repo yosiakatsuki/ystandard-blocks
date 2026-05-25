@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  */
 import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
-import { getHeadingClasses, getHeadingStyles } from './utils';
+import { getMainTextClasses, getMainTextStyles } from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
@@ -20,19 +20,25 @@ function Edit( props ) {
 	const { content, level, textAlign, placeholder } = attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
-	// ブロックProps.
-	const blockProps = useBlockProps( {
-		className: getHeadingClasses( {
-			...attributes,
-			textColor: textColor?.slug,
-		} ),
-		style: getHeadingStyles( {
-			...attributes,
-			customTextColor: textColor?.color,
-		} ),
+
+	// メインテキストのクラスとスタイルを生成.
+	const mainTextClasses = getMainTextClasses( {
+		...attributes,
+		textColor: textColor?.slug,
+	} );
+	const mainTextStyles = getMainTextStyles( {
+		...attributes,
+		customTextColor: textColor?.color,
 	} );
 
-	const onContentChange = ( newContent: string ) => {
+	// ブロックProps.
+	const blockProps = useBlockProps( {
+		className: mainTextClasses,
+		style: mainTextStyles,
+	} );
+
+	// メインテキストの変更.
+	const onMainTextContentChange = ( newContent: string ) => {
 		setAttributes( { content: newContent } );
 	};
 
@@ -44,7 +50,7 @@ function Edit( props ) {
 				// @ts-ignore
 				tagName={ tagName }
 				value={ content || '' }
-				onChange={ onContentChange }
+				onChange={ onMainTextContentChange }
 				onMerge={ mergeBlocks }
 				onReplace={ onReplace }
 				onRemove={ () => onReplace( [] ) }

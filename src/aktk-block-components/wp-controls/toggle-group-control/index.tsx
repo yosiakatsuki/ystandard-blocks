@@ -1,6 +1,7 @@
 import {
 	__experimentalToggleGroupControl as WPToggleGroupControl,
 	__experimentalToggleGroupControlOption as WPToggleGroupControlOption,
+	__experimentalToggleGroupControlOptionIcon as WPToggleGroupControlOptionIcon,
 } from '@wordpress/components';
 
 interface ToggleGroupControlProps {
@@ -9,6 +10,8 @@ interface ToggleGroupControlProps {
 	value: string | number;
 	isBlock?: boolean;
 	isDeselectable?: boolean;
+	hideLabelFromVision?: boolean;
+	isAdaptiveWidth?: boolean;
 	children: React.ReactNode;
 	className?: string;
 }
@@ -36,4 +39,17 @@ export function ToggleGroupControlOption(
 ) {
 	// @ts-ignore
 	return <WPToggleGroupControlOption { ...props } />;
+}
+
+interface ToggleGroupControlOptionIconProps {
+	label: string;
+	value?: string | number;
+	icon: JSX.Element;
+}
+
+export function ToggleGroupControlOptionIcon(
+	props: ToggleGroupControlOptionIconProps
+) {
+	// @ts-ignore
+	return <WPToggleGroupControlOptionIcon { ...props } />;
 }

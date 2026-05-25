@@ -1,0 +1,11 @@
+.aktk-component__custom-line-height-control {
+	max-width: 150px;
+}
+
+.aktk-component__custom-line-height-control div {
+	width: auto;
+}
+
+.aktk-component__custom-line-height-control .components-input-control__input {
+	height: 40px !important;
+}

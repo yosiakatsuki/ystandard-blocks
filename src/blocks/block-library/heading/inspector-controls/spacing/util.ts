@@ -13,7 +13,7 @@ export function getSpacing(
 ): GetSpacingResult {
 	const spacing = parseFloatWithUnit( value, undefined );
 	// 数値変換できなければ undefined を返す.
-	if ( ! spacing || undefined === value ) {
+	if ( undefined === value || undefined === spacing ) {
 		return {
 			value: undefined,
 			unit: undefined,

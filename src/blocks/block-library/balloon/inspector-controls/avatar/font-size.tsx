@@ -29,10 +29,7 @@ export default function AvatarNameFontSize( props ) {
 			label={ __( 'アバター名 文字サイズ', 'ystandard-blocks' ) }
 		>
 			<CustomFontSizePicker
-				fontSize={ {
-					slug: avatarNameSize,
-					size: customAvatarNameSize,
-				} }
+				fontSize={ avatarNameSize }
 				customFontSize={ customAvatarNameSize }
 				onChange={ handleOnChange }
 				useResponsive={ false }

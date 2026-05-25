@@ -11,6 +11,7 @@ import { Panel } from '@aktk/block-components/components/panel';
 /**
  * Block dependencies.
  */
+import { MainTextHeadingLevel } from './heading-level';
 import { MainTextFontSize } from './font-size';
 import { MainTextTextColor } from './text-color';
 import { MainTextFonWeight } from './font-weight';
@@ -23,6 +24,7 @@ import { MainTextFontFamily } from './font-family';
 export function MainTextPanel( props ) {
 	return (
 		<Panel title={ __( 'メインテキスト', 'ystandard-blocks' ) }>
+			<MainTextHeadingLevel { ...props } />
 			<MainTextFontSize { ...props } />
 			<MainTextTextColor { ...props } />
 			<MainTextFonWeight { ...props } />

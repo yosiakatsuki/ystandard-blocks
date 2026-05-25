@@ -14,7 +14,7 @@ export function CustomSpacingSelectControl( props: SpacingSizeControlProps ) {
 		onChange( newValue );
 	};
 	return (
-		<div className='aktk-component__custom-spacing-select'>
+		<div className="aktk-component__custom-spacing-select">
 			<SpacingSizesControl
 				values={ values }
 				onChange={ handleOnChange }
