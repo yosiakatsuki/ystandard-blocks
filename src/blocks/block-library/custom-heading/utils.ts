@@ -7,10 +7,7 @@ import { getFontSizeClass, getColorClassName } from '@wordpress/block-editor';
 /**
  * Aktk dependencies.
  */
-import {
-	getCustomSpacingValues,
-	type Spacing,
-} from '@aktk/block-components/components/custom-spacing-select';
+import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select';
 import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
 
 /**
@@ -24,7 +21,12 @@ import type { Attributes } from './types';
 
 const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
 
-export function getHeadingClasses( attributes: Attributes ) {
+/**
+ * メインテキストのクラスを生成.
+ * @param attributes
+ * @returns
+ */
+export function getMainTextClasses( attributes: Attributes ) {
 	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
 		attributes;
 
@@ -39,7 +41,12 @@ export function getHeadingClasses( attributes: Attributes ) {
 	} );
 }
 
-export function getHeadingStyles( attributes: Attributes ) {
+/**
+ * メインテキストのスタイルを生成.
+ * @param attributes
+ * @returns
+ */
+export function getMainTextStyles( attributes: Attributes ) {
 	const {
 		fontSize,
 		customFontSize,

@@ -1,5 +1,5 @@
 import type { Attributes } from '../types';
-import { getHeadingClasses, getHeadingStyles } from '../utils';
+import { getMainTextClasses, getMainTextStyles } from '../utils';
 
 const getBaseAttributes = (): Attributes => ( {
 	content: '',
@@ -19,15 +19,15 @@ const responsiveSpacingKeys = {
 } as const;
 
 describe( 'Custom Heading Block utils', () => {
-	describe( 'getHeadingClasses', () => {
+	describe( 'getMainTextClasses', () => {
 		it( '最小限の属性では基本クラスのみ返す', () => {
-			const classes = getHeadingClasses( getBaseAttributes() );
+			const classes = getMainTextClasses( getBaseAttributes() );
 
 			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
 		it( 'フォントサイズクラスを追加する', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				fontSize: 'large',
 			} );
@@ -37,7 +37,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '文字色クラスを追加する', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				textColor: 'ys-green',
 			} );
@@ -47,7 +47,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( 'スタイルクリアクラスを追加する', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				clearStyle: true,
 			} );
@@ -57,7 +57,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '文字揃えクラスを追加する', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				textAlign: 'center',
 			} );
@@ -67,7 +67,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( 'サブテキストがある場合は文字揃えクラスを追加しない', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				hasSubText: true,
 				textAlign: 'center',
@@ -78,7 +78,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '複数の属性から必要なクラスを追加する', () => {
-			const classes = getHeadingClasses( {
+			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				fontSize: 'large',
 				textColor: 'ys-green',
@@ -94,9 +94,9 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 	} );
 
-	describe( 'getHeadingStyles', () => {
+	describe( 'getMainTextStyles', () => {
 		it( '最小限の属性では有効なスタイル値を返さない', () => {
-			const styles = getHeadingStyles( getBaseAttributes() );
+			const styles = getMainTextStyles( getBaseAttributes() );
 
 			expect( Object.values( styles ).filter( Boolean ) ).toHaveLength(
 				0
@@ -104,7 +104,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( 'カスタムフォントサイズをfontSizeスタイルへ変換する', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				customFontSize: '15px',
 			} );
@@ -113,7 +113,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '定義済みフォントサイズがある場合はカスタムフォントサイズを出力しない', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				fontSize: 'large',
 				customFontSize: '15px',
@@ -180,7 +180,7 @@ describe( 'Custom Heading Block utils', () => {
 		] )(
 			'レスポンシブフォントサイズをCSSカスタムプロパティへ変換する: %s',
 			( _label, responsiveFontSize, expectedStyles ) => {
-				const styles = getHeadingStyles( {
+				const styles = getMainTextStyles( {
 					...getBaseAttributes(),
 					responsiveFontSize,
 				} );
@@ -197,7 +197,7 @@ describe( 'Custom Heading Block utils', () => {
 		);
 
 		it( 'レスポンシブフォントサイズがある場合はカスタムフォントサイズを出力しない', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				customFontSize: '15px',
 				responsiveFontSize: {
@@ -212,7 +212,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '文字装飾系の属性をスタイルへ変換する', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				customTextColor: '#008000',
 				fontStyle: 'italic',
@@ -233,7 +233,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '通常の外側余白と内側余白をスタイルへ変換する', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				margin: {
 					top: '1rem',
@@ -246,15 +246,15 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect( styles ).toMatchObject( {
-				marginTop: '1rem',
-				marginBottom: '2rem',
-				paddingLeft: 'var(--wp--preset--spacing--40)',
-				paddingRight: '3rem',
+				['margin-top']: '1rem',
+				['margin-bottom']: '2rem',
+				['padding-left']: 'var(--wp--preset--spacing--40)',
+				['padding-right']: '3rem',
 			} );
 		} );
 
 		it( 'レスポンシブ余白をCSSカスタムプロパティへ変換する', () => {
-			const styles = getHeadingStyles( {
+			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
 				responsiveMargin: {
 					desktop: {
@@ -276,6 +276,25 @@ describe( 'Custom Heading Block utils', () => {
 				[ responsiveSpacingKeys.tabletMarginRight ]: '2rem',
 				[ responsiveSpacingKeys.mobilePaddingBottom ]:
 					'var(--wp--preset--spacing--40)',
+			} );
+		} );
+
+		it( 'レスポンシブ余白と通常余白があった場合、レスポンシブを優先する', () => {
+			const styles = getMainTextStyles( {
+				...getBaseAttributes(),
+				margin: {
+					top: '1rem',
+					bottom: '2rem',
+				},
+				responsiveMargin: {
+					tablet: {
+						right: 'var:preset|spacing|40',
+					},
+				},
+			} );
+
+			expect( styles ).toMatchObject( {
+				[ responsiveSpacingKeys.tabletMarginRight ]: 'var(--wp--preset--spacing--40)',
 			} );
 		} );
 	} );
