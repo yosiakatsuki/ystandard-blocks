@@ -19,7 +19,7 @@ export type ResponsiveSpacingSelectOnChangeProps= {
 export interface ResponsiveSpacingSelectProps {
 	value: Spacing | undefined;
 	responsiveValue?: ResponsiveSpacing | undefined;
-	onChange: ( newValue?: ResponsiveSpacingSelectOnChangeProps ) => void;
+	onChange: ( newValue: ResponsiveSpacingSelectOnChangeProps ) => void;
 	responsiveControlStyle?: 'vertical' | 'horizontal';
 	sides?: ( 'top' | 'right' | 'bottom' | 'left' )[];
 	minimumCustomValue?: number;
@@ -29,7 +29,7 @@ export interface ResponsiveSpacingSelectProps {
 
 export interface ResponsiveSpacingSelectControlProps {
 	value: ResponsiveSpacing | undefined;
-	onChange: ( newValue?: ResponsiveSpacing ) => void;
+	onChange: ( newValue: ResponsiveSpacing ) => void;
 	responsiveControlStyle?: 'vertical' | 'horizontal';
 	sides?: ( 'top' | 'right' | 'bottom' | 'left' )[];
 	minimumCustomValue?: number;
