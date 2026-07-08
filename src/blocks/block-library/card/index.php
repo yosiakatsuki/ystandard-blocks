@@ -18,7 +18,8 @@ require_once __DIR__ . '/class-card-block.php';
  */
 class Card_Block_Loader {
 
-	const BLOCK_NAME = 'ystdb/card';
+	const BLOCK_NAME               = 'ystdb/card';
+	const LEGACY_YSTANDARD_VERSION = '4.99.99';
 
 	/**
 	 * Card_Block インスタンス.
@@ -35,6 +36,7 @@ class Card_Block_Loader {
 		// クラス読み込み時点で 1 度だけインスタンス化する.
 		$this->card = new Card_Block();
 		add_action( 'init', [ $this, 'register_block' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_card_style_for_legacy_ystandard' ] );
 		add_filter( 'block_bindings_supported_attributes_' . self::BLOCK_NAME, [ $this, 'add_block_bindings_supported_attributes' ] );
 	}
 
@@ -48,6 +50,60 @@ class Card_Block_Loader {
 			__DIR__,
 			[ 'render_callback' => [ $this->card, '_render' ] ]
 		);
+	}
+
+	/**
+	 * 旧yStandard向けにカードブロック用CSSを全ページで読み込む.
+	 *
+	 * @return void
+	 */
+	public function enqueue_card_style_for_legacy_ystandard() {
+		if ( ! $this->should_enqueue_card_style_for_legacy_ystandard() ) {
+			return;
+		}
+
+		$block_type = \WP_Block_Type_Registry::get_instance()->get_registered( self::BLOCK_NAME );
+		if ( $block_type && ! empty( $block_type->style_handles ) ) {
+			foreach ( $block_type->style_handles as $style_handle ) {
+				wp_enqueue_style( $style_handle );
+			}
+
+			return;
+		}
+
+		$style_path = __DIR__ . '/style-index.css';
+		if ( ! is_file( $style_path ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'ystdb-card-style',
+			str_replace( YSTDB_PATH, YSTDB_URL, $style_path ),
+			[],
+			filemtime( $style_path )
+		);
+	}
+
+	/**
+	 * 旧yStandard向けカードCSSを読み込むか判定.
+	 *
+	 * @return bool
+	 */
+	private function should_enqueue_card_style_for_legacy_ystandard() {
+		if ( ! Utility::is_ystandard() ) {
+			return false;
+		}
+
+		$theme_version = apply_filters( 'ys_ystandard_version', null );
+		if ( is_null( $theme_version ) ) {
+			$theme_version = Utility::get_theme_version( true );
+		}
+
+		if ( empty( $theme_version ) ) {
+			return false;
+		}
+
+		return version_compare( $theme_version, self::LEGACY_YSTANDARD_VERSION, '<=' );
 	}
 
 	/**
