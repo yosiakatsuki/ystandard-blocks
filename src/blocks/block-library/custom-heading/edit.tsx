@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
  */
 import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
+import { ToolbarControls } from './toolbar-controls';
 import { getMainTextClasses, getMainTextStyles } from './utils';
 
 // @ts-ignore.
@@ -44,6 +45,7 @@ function Edit( props ) {
 
 	return (
 		<>
+			<ToolbarControls { ...props } />
 			<InspectorControls { ...props } />
 			<RichText
 				identifier="content"
