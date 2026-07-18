@@ -79,7 +79,7 @@
 		}
 	},
 	"supports": {
-		"align": false,
+		"align": ["wide", "full"],
 		"anchor": true,
 		"className": false,
 		"splitting": true
