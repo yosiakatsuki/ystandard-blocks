@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies.
  */
-import { AlignmentToolbar } from '@wordpress/block-editor';
+import { AlignmentControl } from '@wordpress/block-editor';
 
 /**
  * Block dependencies.
@@ -18,7 +18,7 @@ export function TextAlign( props ) {
 	}
 
 	return (
-		<AlignmentToolbar
+		<AlignmentControl
 			value={ textAlign }
 			onChange={ ( nextAlign ) => {
 				setAttributes( {
