@@ -1,10 +1,11 @@
+/* コンポーネントCSS */
+@import "./components/custom-font-size-picker/index.css";
+@import "./components/custom-line-height-control/index.css";
+@import "./components/custom-spacing-select/index.css";
+@import "./components/responsive-font-size-control/index.css";
+
 /* コンポーネント共通CSS変数 */
 :root {
 	--aktk-component--text-color--gray: #6b7280;
 	--aktk-component--border-color--gray: #d1d5db;
 }
-
-/* コンポーネントCSS */
-@import "./components/custom-font-size-picker/index.css";
-@import "./components/custom-line-height-control/index.css";
-@import "./components/custom-spacing-select/index.css";

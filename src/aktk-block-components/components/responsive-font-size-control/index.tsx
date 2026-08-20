@@ -82,7 +82,7 @@ export function ResponsiveFontSizeControl(
 
 	return (
 		<BaseControl id={ id } label={ label }>
-			<div className="grid grid-cols-1 gap-4">
+			<div className="aktk-responsive-font-size-control grid grid-cols-1 gap-4">
 				<DesktopControl>
 					<div>{ renderFontSizePicker( 'desktop' ) }</div>
 				</DesktopControl>
