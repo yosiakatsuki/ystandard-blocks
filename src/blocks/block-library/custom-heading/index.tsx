@@ -19,6 +19,7 @@ import { CATEGORY } from '@aktk/blocks/config';
 import metadata from './block.json';
 import edit from './edit';
 import save from './save';
+import { deprecated } from './deprecated';
 import { transforms } from './transform';
 import './style.scss';
 
@@ -34,6 +35,7 @@ export function registerCustomHeadingBlock() {
 		category: CATEGORY.beta,
 		edit,
 		save,
+		deprecated,
 		example: {},
 		transforms,
 		merge( attributes, attributesToMerge ) {

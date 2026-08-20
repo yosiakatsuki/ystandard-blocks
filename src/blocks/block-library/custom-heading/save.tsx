@@ -25,10 +25,12 @@ function Save( { attributes } ) {
 	} );
 
 	return (
-		// @ts-ignore
-		<TagName { ...blockProps }>
-			<RichText.Content value={ content } />
-		</TagName>
+		<RichText.Content
+			// @ts-ignore
+			tagName={ TagName }
+			value={ content }
+			{ ...blockProps }
+		/>
 	);
 }
 export default Save;

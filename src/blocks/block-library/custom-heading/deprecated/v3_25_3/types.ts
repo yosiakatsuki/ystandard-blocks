@@ -7,7 +7,7 @@ import type {
 	Spacing,
 } from '@aktk/block-components/components/custom-spacing-select';
 
-export interface Attributes {
+export interface LegacyAttributes {
 	content: string;
 	level?: number;
 	textAlign?: 'left' | 'center' | 'right';
@@ -15,22 +15,8 @@ export interface Attributes {
 	textColor?: string;
 	customTextColor?: string;
 	fontSize?: string;
-	style?: {
-		typography?: {
-			fontSize?: string;
-		};
-		ystdb?: {
-			customHeading?: {
-				responsive?: {
-					main?: {
-						typography?: {
-							fontSize?: ResponsiveFontSize;
-						};
-					};
-				};
-			};
-		};
-	};
+	customFontSize?: string;
+	responsiveFontSize?: ResponsiveFontSize;
 	margin?: Spacing;
 	responsiveMargin?: ResponsiveSpacing;
 	padding?: Spacing;
@@ -44,5 +30,4 @@ export interface Attributes {
 	placeholder?: string;
 	anchor?: string;
 	className?: string;
-	clientId?: string;
 }

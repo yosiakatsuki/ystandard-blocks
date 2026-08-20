@@ -5,11 +5,7 @@
 	"title": "【β版】カスタム見出し",
 	"description": "※このブロックは開発中ブロックです。正式リリースまでに設定の追加削除など仕様変更がある点にご注意ください。将来的にyStandard Blocksのカスタム見出しブロックが廃止になり、このブロックが見出しブロックとなります。",
 	"version": "1.0.0",
-	"keywords": [
-		"heading",
-		"見出し",
-		"カスタム見出し"
-	],
+	"keywords": [ "heading", "見出し", "カスタム見出し" ],
 	"attributes": {
 		"content": {
 			"type": "rich-text",
@@ -37,10 +33,7 @@
 		"fontSize": {
 			"type": "string"
 		},
-		"customFontSize": {
-			"type": "string"
-		},
-		"responsiveFontSize": {
+		"style": {
 			"type": "object"
 		},
 		"margin": {
@@ -79,13 +72,19 @@
 		}
 	},
 	"supports": {
-		"align": ["wide", "full"],
+		"align": [ "wide", "full" ],
 		"anchor": true,
 		"className": false,
-		"splitting": true
+		"splitting": true,
+		"typography": {
+			"fontSize": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
 	},
 	"textdomain": "ystandard-blocks",
 	"editorScript": "file:./index.tsx",
-	"editorStyle": ["ystdb-aktk-components-editor", "file:./index.css"],
+	"editorStyle": [ "ystdb-aktk-components-editor", "file:./index.css" ],
 	"style": "file:./style-index.css"
 }

@@ -2,13 +2,18 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies.
  */
-import { getFontSizeClass, getColorClassName } from '@wordpress/block-editor';
+import { getColorClassName } from '@wordpress/block-editor';
 
 /**
  * Aktk dependencies.
  */
-import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select';
-import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
+import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select/util';
+import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+import { stripUndefined } from '@aktk/block-components/utils/object';
+import {
+	getResponsiveCustomProperties,
+	presetTokenToCssVar,
+} from '@aktk/block-components/utils/style-engine';
 
 /**
  * Plugin dependencies.
@@ -27,18 +32,59 @@ const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
  * @return
  */
 export function getMainTextClasses( attributes: Attributes ) {
-	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
-		attributes;
+	const { clearStyle, hasSubText, textAlign, textColor } = attributes;
 
-	const fontSizeClass = getFontSizeClass( fontSize || '' );
 	const textColorClass = getColorClassName( 'color', textColor || '' );
 
 	return classnames( 'ystdb-custom-heading', {
-		[ fontSizeClass ]: !! fontSize,
 		[ textColorClass ]: !! textColor,
 		'is-clear-style': clearStyle,
 		[ `has-text-align-${ textAlign }` ]: !! textAlign && ! hasSubText,
 	} );
+}
+
+/**
+ * メインテキストのレスポンシブフォントサイズを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブフォントサイズ.
+ */
+export function getMainResponsiveFontSize( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.typography
+		?.fontSize;
+}
+
+/**
+ * メインテキストのレスポンシブフォントサイズを更新.
+ *
+ * @param style    コアのstyle属性.
+ * @param fontSize レスポンシブフォントサイズ.
+ * @return 更新後のstyle属性.
+ */
+export function updateMainResponsiveFontSize(
+	style: Attributes[ 'style' ],
+	fontSize?: ResponsiveFontSize
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
+						typography: {
+							...style?.ystdb?.customHeading?.responsive?.main
+								?.typography,
+							fontSize,
+						},
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
 }
 
 /**
@@ -48,9 +94,6 @@ export function getMainTextClasses( attributes: Attributes ) {
  */
 export function getMainTextStyles( attributes: Attributes ) {
 	const {
-		fontSize,
-		customFontSize,
-		responsiveFontSize,
 		margin,
 		responsiveMargin,
 		padding,
@@ -62,23 +105,16 @@ export function getMainTextStyles( attributes: Attributes ) {
 		lineHeight,
 		fontFamily,
 	} = attributes;
-
-	// カスタムフォントサイズが有効かどうか.
-	let hasCustomFontSize = ! fontSize && !! customFontSize;
+	const responsiveFontSize = getMainResponsiveFontSize( attributes );
+	const responsiveFontSizeStyles = getResponsiveCustomProperties(
+		'heading--font-size',
+		responsiveFontSize
+	);
 
 	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
 	// レスポンシブ指定のあるスタイルを生成.
 	const responsiveStyles = types.reduce(
 		( acc, type ) => {
-			// font-size.
-			const _fontSize = responsiveFontSize?.[ type ];
-			if ( _fontSize && ! fontSize ) {
-				acc[
-					getResponsiveCustomPropName( 'heading--font-size', type )
-				] = _fontSize;
-				hasCustomFontSize = false;
-			}
-
 			// margin, padding.
 			const _margin = responsiveMargin?.[ type ];
 			const _padding = responsivePadding?.[ type ];
@@ -112,7 +148,6 @@ export function getMainTextStyles( attributes: Attributes ) {
 	);
 
 	return {
-		fontSize: hasCustomFontSize ? customFontSize : undefined,
 		color: customTextColor || undefined,
 		fontStyle: fontStyle || undefined,
 		fontWeight: fontWeight || undefined,
@@ -121,6 +156,7 @@ export function getMainTextStyles( attributes: Attributes ) {
 		fontFamily,
 		...getCustomSpacingValues( margin, 'margin' ),
 		...getCustomSpacingValues( padding, 'padding' ),
+		...responsiveFontSizeStyles,
 		...responsiveStyles,
 	};
 }

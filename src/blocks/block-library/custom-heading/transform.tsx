@@ -4,6 +4,11 @@
 import { createBlock } from '@wordpress/blocks';
 
 /**
+ * Aktk dependencies.
+ */
+import { stripUndefined } from '@aktk/block-components/utils/object';
+
+/**
  * Block
  */
 // @ts-ignore
@@ -19,8 +24,8 @@ const getTypographyStyle = ( attributes: any, textAlign?: string ) => {
 	const typography = {
 		textAlign,
 		fontSize:
-			! attributes.fontSize && attributes.customFontSize
-				? attributes.customFontSize
+			! attributes.fontSize && attributes?.style?.typography?.fontSize
+				? attributes.style.typography.fontSize
 				: undefined,
 		fontWeight: attributes.fontWeight,
 		fontStyle: attributes.fontStyle,
@@ -45,12 +50,29 @@ const getCustomHeadingTypographyAttributes = ( attributes: any ) => {
 	};
 };
 
-const getCustomFontSizeAttribute = ( attributes: any ) => {
-	if ( attributes.fontSize ) {
-		return attributes.customFontSize;
-	}
-
-	return attributes.customFontSize ?? attributes?.style?.typography?.fontSize;
+const getCustomHeadingStyle = (
+	attributes: any,
+	responsiveFontSize?: Record< string, string >
+) => {
+	return stripUndefined( {
+		typography: {
+			fontSize: attributes.fontSize
+				? undefined
+				: attributes?.style?.typography?.fontSize ??
+				  attributes.customFontSize,
+		},
+		ystdb: {
+			customHeading: {
+				responsive: {
+					main: {
+						typography: {
+							fontSize: responsiveFontSize,
+						},
+					},
+				},
+			},
+		},
+	} );
 };
 
 const getCoreTextAlignAttribute = ( attributes: any ) => {
@@ -102,7 +124,7 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: getCustomFontSizeAttribute( attributes ),
+					style: getCustomHeadingStyle( attributes ),
 					fontFamily: attributes.fontFamily,
 					...getCustomHeadingTypographyAttributes( attributes ),
 				} );
@@ -120,7 +142,7 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: getCustomFontSizeAttribute( attributes ),
+					style: getCustomHeadingStyle( attributes ),
 					fontFamily: attributes.fontFamily,
 					...getCustomHeadingTypographyAttributes( attributes ),
 				} );
@@ -158,11 +180,12 @@ export const transforms = {
 					textColor: attributes.textColor,
 					customTextColor: attributes.customTextColor,
 					fontSize: attributes.fontSize,
-					customFontSize: attributes.customFontSize,
-					responsiveFontSize:
+					style: getCustomHeadingStyle(
+						attributes,
 						Object.keys( responsiveFontSize ).length > 0
 							? responsiveFontSize
-							: undefined,
+							: undefined
+					),
 					fontWeight: attributes.fontWeight,
 					letterSpacing: getLetterSpacingValue(
 						attributes.letterSpacing

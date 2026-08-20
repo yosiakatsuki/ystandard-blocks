@@ -1,5 +1,12 @@
+import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+
 import type { Attributes } from '../types';
-import { getMainTextClasses, getMainTextStyles } from '../utils';
+import {
+	getMainResponsiveFontSize,
+	getMainTextClasses,
+	getMainTextStyles,
+	updateMainResponsiveFontSize,
+} from '../utils';
 
 const getBaseAttributes = (): Attributes => ( {
 	content: '',
@@ -18,6 +25,25 @@ const responsiveSpacingKeys = {
 	mobilePaddingBottom: '--ystdb--mobile--custom-heading--padding-bottom',
 } as const;
 
+const getResponsiveFontSizeAttributes = (
+	fontSize: ResponsiveFontSize
+): Attributes => ( {
+	...getBaseAttributes(),
+	style: {
+		ystdb: {
+			customHeading: {
+				responsive: {
+					main: {
+						typography: {
+							fontSize,
+						},
+					},
+				},
+			},
+		},
+	},
+} );
+
 describe( 'Custom Heading Block utils', () => {
 	describe( 'getMainTextClasses', () => {
 		it( '最小限の属性では基本クラスのみ返す', () => {
@@ -26,14 +52,13 @@ describe( 'Custom Heading Block utils', () => {
 			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
-		it( 'フォントサイズクラスを追加する', () => {
+		it( 'フォントサイズクラスはBlock Supportsに任せる', () => {
 			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				fontSize: 'large',
 			} );
 
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).toContain( 'font-size-large' );
+			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
 		it( '文字色クラスを追加する', () => {
@@ -87,7 +112,7 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).toContain( 'font-size-large' );
+			expect( classes ).not.toContain( 'font-size-large' );
 			expect( classes ).toContain( 'color-ys-green' );
 			expect( classes ).toContain( 'is-clear-style' );
 			expect( classes ).toContain( 'has-text-align-right' );
@@ -103,20 +128,14 @@ describe( 'Custom Heading Block utils', () => {
 			);
 		} );
 
-		it( 'カスタムフォントサイズをfontSizeスタイルへ変換する', () => {
+		it( '単一フォントサイズの反映はBlock Supportsに任せる', () => {
 			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
-				customFontSize: '15px',
-			} );
-
-			expect( styles.fontSize ).toBe( '15px' );
-		} );
-
-		it( '定義済みフォントサイズがある場合はカスタムフォントサイズを出力しない', () => {
-			const styles = getMainTextStyles( {
-				...getBaseAttributes(),
-				fontSize: 'large',
-				customFontSize: '15px',
+				style: {
+					typography: {
+						fontSize: '15px',
+					},
+				},
 			} );
 
 			expect( styles.fontSize ).toBeUndefined();
@@ -180,10 +199,9 @@ describe( 'Custom Heading Block utils', () => {
 		] )(
 			'レスポンシブフォントサイズをCSSカスタムプロパティへ変換する: %s',
 			( _label, responsiveFontSize, expectedStyles ) => {
-				const styles = getMainTextStyles( {
-					...getBaseAttributes(),
-					responsiveFontSize,
-				} );
+				const styles = getMainTextStyles(
+					getResponsiveFontSizeAttributes( responsiveFontSize )
+				);
 
 				expect( styles ).toMatchObject( expectedStyles );
 				expect( styles.fontSize ).toBeUndefined();
@@ -196,14 +214,17 @@ describe( 'Custom Heading Block utils', () => {
 			}
 		);
 
-		it( 'レスポンシブフォントサイズがある場合はカスタムフォントサイズを出力しない', () => {
-			const styles = getMainTextStyles( {
-				...getBaseAttributes(),
-				customFontSize: '15px',
-				responsiveFontSize: {
-					desktop: '32px',
-				},
+		it( '単一設定とレスポンシブ設定を別々に反映する', () => {
+			const attributes = getResponsiveFontSizeAttributes( {
+				desktop: '32px',
 			} );
+			attributes.style = {
+				...attributes.style,
+				typography: {
+					fontSize: '15px',
+				},
+			};
+			const styles = getMainTextStyles( attributes );
 
 			expect( styles ).toMatchObject( {
 				'--ystdb--desktop--heading--font-size': '32px',
@@ -297,6 +318,62 @@ describe( 'Custom Heading Block utils', () => {
 				[ responsiveSpacingKeys.tabletMarginRight ]:
 					'var(--wp--preset--spacing--40)',
 			} );
+		} );
+	} );
+
+	describe( 'レスポンシブフォントサイズ属性', () => {
+		it( 'style属性へ保存した値を取得する', () => {
+			const attributes = getResponsiveFontSizeAttributes( {
+				desktop: '32px',
+				tablet: '24px',
+			} );
+
+			expect( getMainResponsiveFontSize( attributes ) ).toEqual( {
+				desktop: '32px',
+				tablet: '24px',
+			} );
+		} );
+
+		it( '既存styleを保ったまま値を更新する', () => {
+			const style = updateMainResponsiveFontSize(
+				{
+					typography: {
+						fontSize: '20px',
+					},
+				},
+				{
+					mobile: '16px',
+				}
+			);
+
+			expect( style ).toEqual( {
+				typography: {
+					fontSize: '20px',
+				},
+				ystdb: {
+					customHeading: {
+						responsive: {
+							main: {
+								typography: {
+									fontSize: {
+										mobile: '16px',
+									},
+								},
+							},
+						},
+					},
+				},
+			} );
+		} );
+
+		it( 'リセット時は空の独自style階層を残さない', () => {
+			const attributes = getResponsiveFontSizeAttributes( {
+				desktop: '32px',
+			} );
+
+			expect(
+				updateMainResponsiveFontSize( attributes.style, undefined )
+			).toBeUndefined();
 		} );
 	} );
 } );

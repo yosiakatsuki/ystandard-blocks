@@ -5,9 +5,7 @@ exports[`Custom Heading Block <Save /> snapshot 001: 最小限の属性 1`] = `
   <h2
     class="ystdb-custom-heading"
   >
-    <span>
-      カスタム見出し
-    </span>
+    カスタム見出し
   </h2>
 </DocumentFragment>
 `;
@@ -17,9 +15,7 @@ exports[`Custom Heading Block <Save /> snapshot 002: レベル1の見出し 1`] 
   <h1
     class="ystdb-custom-heading"
   >
-    <span>
-      カスタム見出し H1
-    </span>
+    カスタム見出し H1
   </h1>
 </DocumentFragment>
 `;
@@ -29,34 +25,27 @@ exports[`Custom Heading Block <Save /> snapshot 003: レベル3の見出し 1`] 
   <h3
     class="ystdb-custom-heading"
   >
-    <span>
-      カスタム見出し H3
-    </span>
+    カスタム見出し H3
   </h3>
 </DocumentFragment>
 `;
 
-exports[`Custom Heading Block <Save /> snapshot 004: フォントサイズ指定 1`] = `
+exports[`Custom Heading Block <Save /> snapshot 004: プリセットフォントサイズの反映はBlock Supportsに任せる 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading font-size-large"
+    class="ystdb-custom-heading"
   >
-    <span>
-      フォントサイズ指定
-    </span>
+    フォントサイズ指定
   </h2>
 </DocumentFragment>
 `;
 
-exports[`Custom Heading Block <Save /> snapshot 005: カスタムフォントサイズ指定 1`] = `
+exports[`Custom Heading Block <Save /> snapshot 005: 任意フォントサイズの反映はBlock Supportsに任せる 1`] = `
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
-    style="font-size: 2em;"
   >
-    <span>
-      カスタムフォントサイズ指定
-    </span>
+    カスタムフォントサイズ指定
   </h2>
 </DocumentFragment>
 `;
@@ -67,9 +56,7 @@ exports[`Custom Heading Block <Save /> snapshot 006: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      レスポンシブフォントサイズ指定
-    </span>
+    レスポンシブフォントサイズ指定
   </h2>
 </DocumentFragment>
 `;
@@ -79,9 +66,7 @@ exports[`Custom Heading Block <Save /> snapshot 007: テキスト中央揃え 1`
   <h2
     class="ystdb-custom-heading has-text-align-center"
   >
-    <span>
-      テキストセンター揃え
-    </span>
+    テキストセンター揃え
   </h2>
 </DocumentFragment>
 `;
@@ -91,9 +76,7 @@ exports[`Custom Heading Block <Save /> snapshot 008: テキスト右揃え 1`] =
   <h2
     class="ystdb-custom-heading has-text-align-right"
   >
-    <span>
-      テキスト右揃え
-    </span>
+    テキスト右揃え
   </h2>
 </DocumentFragment>
 `;
@@ -103,9 +86,7 @@ exports[`Custom Heading Block <Save /> snapshot 009: スタイルクリア有効
   <h2
     class="ystdb-custom-heading is-clear-style"
   >
-    <span>
-      スタイルクリアあり
-    </span>
+    スタイルクリアあり
   </h2>
 </DocumentFragment>
 `;
@@ -113,11 +94,9 @@ exports[`Custom Heading Block <Save /> snapshot 009: スタイルクリア有効
 exports[`Custom Heading Block <Save /> snapshot 010: 複数属性の組み合わせ 1`] = `
 <DocumentFragment>
   <h3
-    class="ystdb-custom-heading font-size-large has-text-align-center"
+    class="ystdb-custom-heading has-text-align-center"
   >
-    <span>
-      全属性指定
-    </span>
+    全属性指定
   </h3>
 </DocumentFragment>
 `;
@@ -128,45 +107,39 @@ exports[`Custom Heading Block <Save /> snapshot 011: カスタムフォントサ
     class="ystdb-custom-heading has-text-align-center"
     style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      カスタム＆レスポンシブ
-    </span>
+    カスタム＆レスポンシブ
   </h2>
 </DocumentFragment>
 `;
 
-exports[`Custom Heading Block <Save /> snapshot 012: フォントサイズとカスタムフォントサイズの組み合わせ（fontSizeが優先） 1`] = `
+exports[`Custom Heading Block <Save /> snapshot 012: プリセットと任意フォントサイズの組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading font-size-large"
+    class="ystdb-custom-heading"
   >
-    <span>
-      fontSize優先
-    </span>
+    fontSize優先
   </h2>
 </DocumentFragment>
 `;
 
-exports[`Custom Heading Block <Save /> snapshot 013: フォントサイズとレスポンシブフォントサイズの組み合わせ（fontSizeが優先） 1`] = `
+exports[`Custom Heading Block <Save /> snapshot 013: プリセットとレスポンシブフォントサイズの組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading font-size-large"
+    class="ystdb-custom-heading"
+    style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      fontSize優先
-    </span>
+    fontSize優先
   </h2>
 </DocumentFragment>
 `;
 
-exports[`Custom Heading Block <Save /> snapshot 014: 全フォントサイズ指定の組み合わせ（fontSizeが優先） 1`] = `
+exports[`Custom Heading Block <Save /> snapshot 014: プリセット、任意値、レスポンシブ値の組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading font-size-large"
+    class="ystdb-custom-heading"
+    style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      fontSize優先
-    </span>
+    fontSize優先
   </h2>
 </DocumentFragment>
 `;
@@ -177,9 +150,7 @@ exports[`Custom Heading Block <Save /> snapshot 015: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--desktop--heading--font-size: 2rem;"
   >
-    <span>
-      デスクトップのみ
-    </span>
+    デスクトップのみ
   </h2>
 </DocumentFragment>
 `;
@@ -190,9 +161,7 @@ exports[`Custom Heading Block <Save /> snapshot 016: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--tablet--heading--font-size: 1.5rem;"
   >
-    <span>
-      タブレットのみ
-    </span>
+    タブレットのみ
   </h2>
 </DocumentFragment>
 `;
@@ -203,9 +172,7 @@ exports[`Custom Heading Block <Save /> snapshot 017: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      モバイルのみ
-    </span>
+    モバイルのみ
   </h2>
 </DocumentFragment>
 `;
@@ -216,9 +183,7 @@ exports[`Custom Heading Block <Save /> snapshot 018: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem;"
   >
-    <span>
-      デスクトップ＋タブレット
-    </span>
+    デスクトップ＋タブレット
   </h2>
 </DocumentFragment>
 `;
@@ -229,9 +194,7 @@ exports[`Custom Heading Block <Save /> snapshot 019: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      デスクトップ＋モバイル
-    </span>
+    デスクトップ＋モバイル
   </h2>
 </DocumentFragment>
 `;
@@ -242,9 +205,7 @@ exports[`Custom Heading Block <Save /> snapshot 020: レスポンシブフォン
     class="ystdb-custom-heading"
     style="--ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
-    <span>
-      タブレット＋モバイル
-    </span>
+    タブレット＋モバイル
   </h2>
 </DocumentFragment>
 `;
@@ -254,9 +215,7 @@ exports[`Custom Heading Block <Save /> snapshot 021: 文字色追加(クラス) 
   <h2
     class="ystdb-custom-heading color-ys-blue"
   >
-    <span>
-      文字色class指定
-    </span>
+    文字色class指定
   </h2>
 </DocumentFragment>
 `;
@@ -267,9 +226,7 @@ exports[`Custom Heading Block <Save /> snapshot 022: 文字色追加(カスタ�
     class="ystdb-custom-heading"
     style="color: rgb(255, 0, 0);"
   >
-    <span>
-      文字色カスタム指定
-    </span>
+    文字色カスタム指定
   </h2>
 </DocumentFragment>
 `;
@@ -280,9 +237,7 @@ exports[`Custom Heading Block <Save /> snapshot 023: 文字太さ(400) 1`] = `
     class="ystdb-custom-heading"
     style="font-weight: 400;"
   >
-    <span>
-      文字太さ指定(400)
-    </span>
+    文字太さ指定(400)
   </h2>
 </DocumentFragment>
 `;
@@ -293,9 +248,7 @@ exports[`Custom Heading Block <Save /> snapshot 024: 文字太さ(700) 1`] = `
     class="ystdb-custom-heading"
     style="font-weight: 700;"
   >
-    <span>
-      文字太さ指定(700)
-    </span>
+    文字太さ指定(700)
   </h2>
 </DocumentFragment>
 `;
@@ -306,9 +259,7 @@ exports[`Custom Heading Block <Save /> snapshot 025: 文字スタイル(italic) 
     class="ystdb-custom-heading"
     style="font-style: italic;"
   >
-    <span>
-      文字スタイル指定(italic)
-    </span>
+    文字スタイル指定(italic)
   </h2>
 </DocumentFragment>
 `;
@@ -319,9 +270,7 @@ exports[`Custom Heading Block <Save /> snapshot 026: 文字スタイル(normal) 
     class="ystdb-custom-heading"
     style="font-style: normal;"
   >
-    <span>
-      文字スタイル指定(normal)
-    </span>
+    文字スタイル指定(normal)
   </h2>
 </DocumentFragment>
 `;
@@ -332,9 +281,7 @@ exports[`Custom Heading Block <Save /> snapshot 027: 文字間隔指定 1`] = `
     class="ystdb-custom-heading"
     style="letter-spacing: 0.1em;"
   >
-    <span>
-      文字間隔指定
-    </span>
+    文字間隔指定
   </h2>
 </DocumentFragment>
 `;
@@ -345,9 +292,7 @@ exports[`Custom Heading Block <Save /> snapshot 028: 行の高さ指定 1`] = `
     class="ystdb-custom-heading"
     style="line-height: 1.8;"
   >
-    <span>
-      行の高さ指定
-    </span>
+    行の高さ指定
   </h2>
 </DocumentFragment>
 `;
@@ -358,9 +303,7 @@ exports[`Custom Heading Block <Save /> snapshot 029: 行の高さ指定(0指定)
     class="ystdb-custom-heading"
     style="line-height: 0;"
   >
-    <span>
-      行の高さ指定(0指定)
-    </span>
+    行の高さ指定(0指定)
   </h2>
 </DocumentFragment>
 `;
@@ -371,9 +314,7 @@ exports[`Custom Heading Block <Save /> snapshot 030: フォントファミリー
     class="ystdb-custom-heading"
     style="font-family: Arial, sans-serif;"
   >
-    <span>
-      フォントファミリー指定
-    </span>
+    フォントファミリー指定
   </h2>
 </DocumentFragment>
 `;
@@ -384,9 +325,7 @@ exports[`Custom Heading Block <Save /> snapshot 031: 外側余白と内側余白
     class="ystdb-custom-heading"
     style="margin-top: 1rem; margin-bottom: 2rem; padding-right: 3rem; padding-left: var(--wp--preset--spacing--40); --ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
   >
-    <span>
-      余白指定
-    </span>
+    余白指定
   </h2>
 </DocumentFragment>
 `;
