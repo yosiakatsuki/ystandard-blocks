@@ -1,3 +1,5 @@
+const { jest: jestGlobals } = require( '@jest/globals' );
+
 module.exports = {
 	RichText: {
 		Content: ( props ) => {
@@ -19,6 +21,7 @@ module.exports = {
 	getFontSizeClass: ( fontSize ) => {
 		return fontSize ? `font-size-${ fontSize }` : '';
 	},
+	getComputedFluidTypographyValue: jestGlobals.fn( () => null ),
 	__experimentalBorderRadiusControl: ( { onChange, values } ) => (
 		<button onClick={ () => onChange( values ) }>change</button>
 	),

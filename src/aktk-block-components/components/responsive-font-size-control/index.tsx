@@ -3,12 +3,15 @@
  */
 // @ts-ignore.
 import { useSettings } from '@wordpress/block-editor';
-import { TabPanel } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 
 /**
  * Aktk dependencies.
  */
+import {
+	DesktopControl,
+	MobileControl,
+	TabletControl,
+} from '@aktk/block-components/components/icon-control';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 import FontSizePicker from '@aktk/block-components/wp-controls/font-size-picker';
 
@@ -16,26 +19,13 @@ import FontSizePicker from '@aktk/block-components/wp-controls/font-size-picker'
  * Internal dependencies.
  */
 import type {
+	FluidTypographySettings,
+	FontSizeCalculationSettings,
 	FontSizePreset,
 	ResponsiveDevice,
 	ResponsiveFontSizeControlProps,
 } from './types';
 import { updateResponsiveFontSize } from './utils';
-
-const DEVICE_TABS = [
-	{
-		name: 'desktop',
-		title: __( 'デスクトップ', 'ystandard-blocks' ),
-	},
-	{
-		name: 'tablet',
-		title: __( 'タブレット', 'ystandard-blocks' ),
-	},
-	{
-		name: 'mobile',
-		title: __( 'モバイル', 'ystandard-blocks' ),
-	},
-];
 
 /**
  * デバイス別フォントサイズ設定.
@@ -55,49 +45,55 @@ export function ResponsiveFontSizeControl(
 		fontSizes,
 		disableCustomFontSizes = false,
 	} = props;
-	const [ themeFontSizes ] = useSettings( 'typography.fontSizes' );
+	const [ themeFontSizes, fluidTypographySettings, layoutSettings ] =
+		useSettings( 'typography.fontSizes', 'typography.fluid', 'layout' );
 	const availableFontSizes = ( fontSizes ?? themeFontSizes ) as
 		| FontSizePreset[]
 		| undefined;
+	const calculationSettings: FontSizeCalculationSettings = {
+		fluid: fluidTypographySettings as FluidTypographySettings | undefined,
+		layout: layoutSettings as FontSizeCalculationSettings[ 'layout' ],
+	};
+	const renderFontSizePicker = ( device: ResponsiveDevice ) => (
+		<FontSizePicker
+			value={ value?.[ device ] }
+			fontSizes={ availableFontSizes }
+			disableCustomFontSizes={ disableCustomFontSizes }
+			onChange={ ( newValue, selectedItem ) => {
+				onChange(
+					updateResponsiveFontSize(
+						value,
+						device,
+						newValue,
+						selectedItem,
+						calculationSettings
+					)
+				);
+			} }
+		/>
+	);
 
 	return (
 		<BaseControl id={ id } label={ label }>
-			<TabPanel
-				className="aktk-responsive-font-size-control"
-				tabs={ DEVICE_TABS }
-				initialTabName="desktop"
-			>
-				{ ( tab ) => {
-					const device = tab.name as ResponsiveDevice;
-
-					return (
-						<div className="pt-4">
-							<FontSizePicker
-								value={ value?.[ device ] }
-								fontSizes={ availableFontSizes }
-								disableCustomFontSizes={
-									disableCustomFontSizes
-								}
-								onChange={ ( newValue, selectedItem ) => {
-									onChange(
-										updateResponsiveFontSize(
-											value,
-											device,
-											newValue,
-											selectedItem
-										)
-									);
-								} }
-							/>
-						</div>
-					);
-				} }
-			</TabPanel>
+			<div className="grid grid-cols-1 gap-4">
+				<DesktopControl>
+					<div>{ renderFontSizePicker( 'desktop' ) }</div>
+				</DesktopControl>
+				<TabletControl>
+					<div>{ renderFontSizePicker( 'tablet' ) }</div>
+				</TabletControl>
+				<MobileControl>
+					<div>{ renderFontSizePicker( 'mobile' ) }</div>
+				</MobileControl>
+			</div>
 		</BaseControl>
 	);
 }
 
 export type {
+	FluidFontSizePreset,
+	FluidTypographySettings,
+	FontSizeCalculationSettings,
 	FontSizePreset,
 	FontSizeValue,
 	ResponsiveDevice,
