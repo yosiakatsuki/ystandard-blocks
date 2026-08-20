@@ -25,7 +25,10 @@ import type {
 	ResponsiveDevice,
 	ResponsiveFontSizeControlProps,
 } from './types';
-import { updateResponsiveFontSize } from './utils';
+import {
+	fontSizeCssValueToPickerValue,
+	updateResponsiveFontSize,
+} from './utils';
 
 /**
  * デバイス別フォントサイズ設定.
@@ -56,7 +59,11 @@ export function ResponsiveFontSizeControl(
 	};
 	const renderFontSizePicker = ( device: ResponsiveDevice ) => (
 		<FontSizePicker
-			value={ value?.[ device ] }
+			value={ fontSizeCssValueToPickerValue(
+				value?.[ device ],
+				availableFontSizes,
+				calculationSettings
+			) }
 			fontSizes={ availableFontSizes }
 			disableCustomFontSizes={ disableCustomFontSizes }
 			onChange={ ( newValue, selectedItem ) => {
@@ -100,4 +107,8 @@ export type {
 	ResponsiveFontSize,
 	ResponsiveFontSizeControlProps,
 } from './types';
-export { fontSizeValueToCssValue, updateResponsiveFontSize } from './utils';
+export {
+	fontSizeCssValueToPickerValue,
+	fontSizeValueToCssValue,
+	updateResponsiveFontSize,
+} from './utils';

@@ -1,6 +1,10 @@
 import { getComputedFluidTypographyValue } from '@wordpress/block-editor';
 
-import { fontSizeValueToCssValue, updateResponsiveFontSize } from '../utils';
+import {
+	fontSizeCssValueToPickerValue,
+	fontSizeValueToCssValue,
+	updateResponsiveFontSize,
+} from '../utils';
 
 const mockedGetComputedFluidTypographyValue =
 	getComputedFluidTypographyValue as jest.Mock;
@@ -85,6 +89,54 @@ describe( 'fontSizeValueToCssValue', () => {
 			)
 		).toBe( '1.141rem' );
 		expect( mockedGetComputedFluidTypographyValue ).not.toHaveBeenCalled();
+	} );
+} );
+
+describe( 'fontSizeCssValueToPickerValue', () => {
+	beforeEach( () => {
+		mockedGetComputedFluidTypographyValue.mockReset();
+		mockedGetComputedFluidTypographyValue.mockReturnValue( null );
+	} );
+
+	it( '保存済みclamp値を流体プリセットのsize値へ変換する', () => {
+		const fluidValue =
+			'clamp(1rem, 1rem + ((1vw - 0.244rem) * 0.247), 1.125rem)';
+		mockedGetComputedFluidTypographyValue.mockReturnValue( fluidValue );
+
+		expect(
+			fontSizeCssValueToPickerValue(
+				fluidValue,
+				[
+					{
+						name: '18-16',
+						slug: 'ys-18-16',
+						size: '1.141rem',
+						fluid: {
+							min: '1rem',
+							max: '1.125rem',
+						},
+					},
+				],
+				{
+					fluid: {
+						minFontSize: '8px',
+						minViewportWidth: '390px',
+						maxViewportWidth: '1200px',
+					},
+				}
+			)
+		).toBe( '1.141rem' );
+	} );
+
+	it( 'プリセットに一致しないCSS値はそのまま返す', () => {
+		expect(
+			fontSizeCssValueToPickerValue( '2.25rem', [
+				{
+					slug: 'large',
+					size: '2rem',
+				},
+			] )
+		).toBe( '2.25rem' );
 	} );
 } );
 

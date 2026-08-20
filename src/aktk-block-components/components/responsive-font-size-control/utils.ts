@@ -100,6 +100,32 @@ export function fontSizeValueToCssValue(
 }
 
 /**
+ * 保存済みCSS値をFontSizePickerが選択状態を判定できる値に変換.
+ *
+ * @param value               保存済みCSS値.
+ * @param fontSizes           選択可能なフォントサイズプリセット.
+ * @param calculationSettings 流体タイポグラフィの計算設定.
+ * @return FontSizePickerへ渡すフォントサイズ.
+ */
+export function fontSizeCssValueToPickerValue(
+	value: string | undefined,
+	fontSizes?: FontSizePreset[],
+	calculationSettings?: FontSizeCalculationSettings
+) {
+	const selectedPreset = fontSizes?.find(
+		( fontSize ) =>
+			value ===
+			fontSizeValueToCssValue(
+				fontSize.size,
+				fontSize,
+				calculationSettings
+			)
+	);
+
+	return selectedPreset?.size ?? value;
+}
+
+/**
  * 指定デバイスのレスポンシブフォントサイズを更新.
  *
  * @param values              更新前の値.
