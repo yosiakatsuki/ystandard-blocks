@@ -123,7 +123,7 @@ type CustomHeadingStyle = {
 カスタム見出しの場合は次の対応になる。
 
 -   メインテキストのフォントサイズは`fontSize`または`style.typography.fontSize`へ保存する。
--   サブテキストのフォントサイズは`style.ystdb.customHeadingTry`へ保存する。
+-   サブテキストのフォントサイズは`style.ystdb.customHeading`へ保存する。
 -   メインテキストとサブテキストの内容は独立した内容属性へ保存する。
 -   サブテキストを使うかどうかは独立した構造属性へ保存する。
 
@@ -210,13 +210,19 @@ const value =
 
 独自設定を`ToolsPanel`へ配置するときは、表示、個別リセット、パネル全体のリセットを同じ正規データへ接続する。
 
+-   複数要素を持つブロックでは、「タイポグラフィ」「色」「余白」のような設定種類ではなく、「メインテキスト」「サブテキスト」「カードタイトル」のような適用対象でパネルを分ける。
+-   一つの要素パネルへ、フォントサイズ、色、余白など種類の異なる設定をまとめる。
+-   要素別パネルは`InspectorControls group="styles"`へ配置する。
+-   内容、要素の有無、表示位置など、構造に関係する設定はスタイルパネルへ混ぜず、設定タブへ配置する。
 -   `hasValue`は`style.ystdb.<blockKey>`の現在値を参照する。
 -   `onDeselect`は対象設定だけを削除し、他の`style`分岐を保持する。
--   タイポグラフィなどコアパネル全体のリセットでは、`resetAllFilter`を使って同じ分類の独自設定も削除する。
+-   要素パネルの「すべてリセット」では、その要素が持つタイポグラフィ、色、余白などの単一設定だけを削除する。
 -   リセット後も新形式であることを示す`version`を保持する。
 -   UI部品はラベル、設定値、保存先のパス、リセット関数を差し替えて再利用できる形にする。
 
-通常設定とレスポンシブ設定は別の`ToolsPanel`へ配置する。同じ入力欄のタブ切り替えで兼用しない。
+コア標準属性を保存先に使う場合も、UIをコアのプロパティ別パネルへ置く必要はない。要素別パネルのコントロールからコア属性を更新し、theme.jsonのプリセット、Block Supports、スタイルコピーとの互換性を維持する。
+
+同じ適用対象でも、通常設定とレスポンシブ設定は別の`ToolsPanel`へ配置する。同じ入力欄のタブ切り替えで兼用せず、たとえば「メインテキスト」と「メインテキスト（レスポンシブ）」に分ける。
 
 ## コピーの保証範囲
 
@@ -270,23 +276,13 @@ const value =
 
 クリップボード操作そのものを自動テストしにくい場合は、コアが貼り付ける形の`style`属性を対象ブロックへ渡し、読み取り、保存HTML、リセットをユニットテストする。実際の「スタイルをコピー」「スタイルを貼り付け」はHTTPSのLocal環境で画面確認する。
 
-## 参照実装
-
-試作ブロック`ystdb/custom-heading-try`で、メインテキストとサブテキストのフォントサイズを使ってこの方式を検証している。
-
--   [`block.json`](../src/blocks/block-library/custom-heading-try/block.json)
--   [`utils.ts`](../src/blocks/block-library/custom-heading-try/utils.ts)
--   [`inspector-controls/index.tsx`](../src/blocks/block-library/custom-heading-try/inspector-controls/index.tsx)
--   [`utils.test.ts`](../src/blocks/block-library/custom-heading-try/tests/utils.test.ts)
--   [`save.test.tsx`](../src/blocks/block-library/custom-heading-try/tests/save.test.tsx)
-
-試作では次の点を確認済み。
+## 採用する設計ポイント
 
 -   メインテキストはコア標準の`fontSize`と`style.typography.fontSize`を使う。
--   サブテキストは`style.ystdb.customHeadingTry`へ保存する。
+-   サブテキストなど、コアで表現できない内部要素の見た目は`style.ystdb.<blockKey>`へ保存する。
 -   コピーされた`style`の値を表示と保存HTMLで優先する。
 -   `version`で新形式の未設定と旧形式を区別する。
--   コアのタイポグラフィパネル全体のリセットへサブテキスト設定を連動する。
+-   設定UIは「タイポグラフィ」などの種類別ではなく、「メインテキスト」「サブテキスト」などの適用対象別に構成する。
 
 ## 依存関係更新時の確認
 
