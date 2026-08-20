@@ -5,6 +5,7 @@ ystandard-blocks/
 *.map
 temp/
 blocks-temp/
+/src/blocks/block-library/custom-heading-try/
 .wp-content/
 /artifacts
 .phpunit.result.cache

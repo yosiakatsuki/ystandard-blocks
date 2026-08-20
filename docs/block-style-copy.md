@@ -1,0 +1,300 @@
+# ブロックのスタイルコピー設計ガイド
+
+## 目的
+
+WordPressコアの「スタイルをコピー」「スタイルを貼り付け」を活用し、yStandard BlocksおよびyStandard Toolboxの独自ブロックでも、コア設定と独自設定を一度にコピーできるようにするための設計方針をまとめる。
+
+カスタム見出しに限らず、複数の表示要素を持つカード、ボタン、吹き出し、アイコン付き要素など、今後開発・改修するブロックで参照する。
+
+調査基準は2026年8月20日、リポジトリ内の`@wordpress/block-editor`は`14.21.0`、`@wordpress/blocks`は`14.15.0`。
+
+## 結論
+
+-   コアで表現できる設定はBlock Supportsとコア標準属性を使う。
+-   コアでは表現できない独自の見た目設定は、トップレベルの独自属性だけに保存せず、`style.ystdb.<blockKey>`配下を正規の保存先にする。
+-   内容、構造、機能のON/OFFはスタイルとして扱わず、独立した属性へ保存する。
+-   コアの貼り付け処理がコピーする`style`属性へ独自設定を同乗させ、独自のクリップボード処理は作らない。
+-   同じブロック間では独自設定までコピーする。異なるブロック間では、両方が対応するコア設定だけを相互運用の保証範囲にする。
+
+## WordPressコアの動作
+
+コアのスタイルコピーは、選択したブロック全体をシリアライズしてクリップボードへ保存する。貼り付け時にはコピー内容をブロックとして解析し、次のスタイル属性だけを抽出して貼り付け先へ反映する。
+
+-   `align`
+-   `borderColor`
+-   `backgroundColor`
+-   `textAlign`
+-   `textColor`
+-   `gradient`
+-   `className`
+-   `fontFamily`
+-   `fontSize`
+-   `layout`
+-   `style`
+
+各属性は、コピー元と貼り付け先の両方が対応するBlock Supportsを持つ場合だけ反映される。`style`属性は、タイポグラフィ、色、枠線、余白など、対象ブロックがいずれかのスタイルサポートを持つ場合にコピー対象になる。
+
+貼り付けは属性単位で上書きされる。コピー元に値がないスタイル属性は、貼り付け先でも未設定へ戻る。`style`はオブジェクト全体が対象になるため、その内部にある`style.ystdb`も一緒に移動する。
+
+現在の実装は、インストール済みパッケージの`node_modules/@wordpress/block-editor/src/components/use-paste-styles/index.js`または[Gutenbergの`use-paste-styles`](https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/use-paste-styles/index.js)で確認できる。ただし、内部実装はWordPressパッケージ更新で変わる可能性があるため、依存関係の更新時に再確認する。
+
+## 属性の分類
+
+設定を追加するときは、保存先を次の基準で決める。
+
+| 種類                   | 例                                                               | 保存先                                                                               | スタイルコピー            |
+| ---------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------- |
+| コアで表現できる見た目 | メインのフォントサイズ、文字色、余白、枠線、角丸                 | コア標準属性、`style.typography`、`style.color`、`style.spacing`、`style.border`など | コアに任せる              |
+| 複数要素の独自の見た目 | サブテキストのフォントサイズ、カードタイトルの色、区切り線の太さ | `style.ystdb.<blockKey>`                                                             | `style`と一緒にコピーする |
+| 内容                   | 見出し本文、サブテキスト、カードタイトル                         | `role: "content"`を持つ内容属性                                                      | コピーしない              |
+| 構造                   | サブテキストを使う、画像を表示する                               | トップレベルの独自属性                                                               | コピーしない              |
+| 動作                   | リンク先、新しいタブで開く、アニメーションの有効化               | トップレベルの独自属性                                                               | 原則コピーしない          |
+
+`role: "content"`は内容属性を示すために使うが、スタイルコピーを有効にする仕組みではない。スタイル貼り付けは、Block Supportsとコアが定義するスタイル属性によって対象を判断する。
+
+## 基本の保存構造
+
+ブロックごとの独自設定は、次の構造を基本とする。
+
+```ts
+type BlockStyle = {
+	style?: {
+		typography?: {
+			fontSize?: string;
+		};
+		ystdb?: {
+			exampleBlock?: {
+				version: number;
+				// ブロック固有の見た目設定.
+			};
+		};
+	};
+};
+```
+
+実際の型では`exampleBlock`をブロック固有のキーへ置き換える。
+
+```ts
+type CustomHeadingStyle = {
+	style?: {
+		typography?: {
+			fontSize?: string;
+		};
+		ystdb?: {
+			customHeading?: {
+				version: number;
+				subFontSize?: string;
+				subCustomFontSize?: string;
+			};
+		};
+	};
+};
+```
+
+`ystdb`直下へ設定を並べず、ブロック固有のキーを必ず挟む。これにより、異なるブロックの独自設定が同じ名前で衝突することを防ぐ。
+
+`version`は独自スタイル構造のバージョンとして使う。単なる将来拡張用ではなく、「新しい保存形式に移行済みだが値は未設定」と「古い保存形式なので値が存在しない」を区別する役割を持つ。
+
+## Block Supports
+
+メイン要素の設定は、可能な限り`block.json`の`supports`で有効にする。
+
+```json
+{
+	"supports": {
+		"typography": {
+			"fontSize": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
+	}
+}
+```
+
+この設定により、フォントサイズのプリセットは`fontSize`、任意値は`style.typography.fontSize`へ保存され、コアのスタイルコピー対象になる。
+
+独自設定をコピーするためだけに、実際には使わないBlock Supportsを有効にしない。コアのスタイルサポートを一つも利用しないブロックでは`style`がコピー対象にならないため、そのブロックでコアのスタイルコピーへ対応する必要性と実装方法を個別に判断する。
+
+## 複数要素を持つブロック
+
+ブロック全体に対するコア設定と、内部要素ごとの独自設定を分ける。
+
+カスタム見出しの場合は次の対応になる。
+
+-   メインテキストのフォントサイズは`fontSize`または`style.typography.fontSize`へ保存する。
+-   サブテキストのフォントサイズは`style.ystdb.customHeadingTry`へ保存する。
+-   メインテキストとサブテキストの内容は独立した内容属性へ保存する。
+-   サブテキストを使うかどうかは独立した構造属性へ保存する。
+
+コアのStyle Engineは`style.ystdb`をCSSへ変換しない。ブロックの`edit`、`save`、動的ブロックの場合は`render`で必要な値を読み、対象の子要素へクラス、インラインスタイル、CSSカスタムプロパティのいずれかで反映する。
+
+## 単一設定とレスポンシブ設定
+
+単一設定とレスポンシブ設定は、UIと保存先を分離する。両方を同時に保存でき、表示時はレスポンシブ設定を優先する。
+
+```ts
+type ResponsiveValue< T > = {
+	desktop?: T;
+	tablet?: T;
+	mobile?: T;
+};
+```
+
+コアで表現できる単一設定はコア標準属性へ保存する。独自のレスポンシブ設定は`style.ystdb.<blockKey>`配下へ保存する。
+
+```ts
+type CustomStyle = {
+	version: number;
+	responsive?: {
+		subFontSize?: ResponsiveValue< string >;
+	};
+};
+```
+
+値の解決は、各画面幅の値が存在すればそれを使い、未設定なら単一設定へ戻す。
+
+```ts
+const resolvedValue = responsiveValue?.[ device ] ?? singleValue;
+```
+
+スタイルコピーでは単一設定とレスポンシブ設定の両方が移る。貼り付け後も優先順位は変えない。
+
+## 更新処理
+
+`style`を更新するときは、コア設定と他の独自設定を保持しながら対象部分だけを書き換える。
+
+```ts
+function updateCustomStyle(
+	style: Attributes[ 'style' ],
+	value?: string
+): Attributes[ 'style' ] {
+	return {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			exampleBlock: {
+				...style?.ystdb?.exampleBlock,
+				version: 1,
+				value,
+			},
+		},
+	};
+}
+```
+
+実装時は、未設定値をブロックコメントへ残さないように`undefined`を除去する。ただし、リセット後も新形式であることを示す`version`は残す。
+
+## 読み取り処理と旧属性からの移行
+
+既存ブロックを新しい保存構造へ移行するときは、正規の読み取り順を統一する。
+
+-   `style.ystdb.<blockKey>`に対応バージョンがあれば、その値を使う。
+-   対応バージョンがなければ、旧トップレベル属性へフォールバックする。
+-   対応バージョンがあり、対象値だけが存在しない場合は「未設定」と判断する。旧属性へ戻らない。
+
+```ts
+const customStyle = attributes.style?.ystdb?.exampleBlock;
+const hasCurrentStyle = customStyle?.version === 1;
+
+const value =
+	customStyle?.value ??
+	( hasCurrentStyle ? undefined : attributes.legacyValue );
+```
+
+この判定がないと、設定をリセットしたコピー元から貼り付けた場合に、貼り付け先へ残っている旧属性が復活する。
+
+属性スキーマまたは保存HTMLを変更するときは、プロジェクトの方針に従って`deprecated`とマイグレーションを追加する。エディター上の`useEffect`だけで互換性を完結させず、既存投稿を解析・保存できることをテストする。
+
+## ToolsPanelとの連携
+
+独自設定を`ToolsPanel`へ配置するときは、表示、個別リセット、パネル全体のリセットを同じ正規データへ接続する。
+
+-   `hasValue`は`style.ystdb.<blockKey>`の現在値を参照する。
+-   `onDeselect`は対象設定だけを削除し、他の`style`分岐を保持する。
+-   タイポグラフィなどコアパネル全体のリセットでは、`resetAllFilter`を使って同じ分類の独自設定も削除する。
+-   リセット後も新形式であることを示す`version`を保持する。
+-   UI部品はラベル、設定値、保存先のパス、リセット関数を差し替えて再利用できる形にする。
+
+通常設定とレスポンシブ設定は別の`ToolsPanel`へ配置する。同じ入力欄のタブ切り替えで兼用しない。
+
+## コピーの保証範囲
+
+### 同じブロック間
+
+同じブロック間では、次を保証する。
+
+-   共通するコア設定がコピーされる。
+-   `style.ystdb.<blockKey>`の独自設定がコピーされる。
+-   内容属性は変わらない。
+-   構造属性と機能のON/OFFは変わらない。
+-   コピー元でリセットされた設定は、貼り付け先でもリセットされる。
+
+### 異なるブロック間
+
+異なるブロック間では、両方が対応するコア設定だけを保証する。
+
+`style`はオブジェクト全体でコピーされるため、コピー元の`style.ystdb`が貼り付け先へ入る場合がある。貼り付け先は、自分の`blockKey`以外の独自データを表示へ反映しない。
+
+独自設定の相互変換が必要な場合は、スタイルコピーへ暗黙に期待せず、ブロック変換または専用の属性マッピングを設計する。コアブロックへ変換するときは、不要な`style.ystdb`を除外する。
+
+## クリップボードとHTTPS
+
+スタイルの貼り付けはブラウザのClipboard APIを使用するため、安全なコンテキストが必要になる。
+
+-   本番・通常の開発環境ではHTTPSを使う。
+-   HTTPでも`localhost`は安全なコンテキストとして扱われる。
+-   `.local`などの独自ホスト名をHTTPで使う場合、Chromeではスタイルを貼り付けできない。
+-   一時的な開発ではChromeの`Insecure origins treated as secure`で対象オリジンだけを許可できる。
+-   動作確認前に`window.isSecureContext`が`true`、`navigator.clipboard`が利用可能であることを確認する。
+
+この制約はブロック実装の不具合ではない。スタイルコピーの画面検証条件として、開発環境のチェック項目へ含める。
+
+## テスト項目
+
+独自スタイルへ対応したブロックでは、最低限次を確認する。
+
+-   コアのプリセット値を同じブロックへコピーできる。
+-   コアの任意値を同じブロックへコピーできる。
+-   `style.ystdb.<blockKey>`の独自値を同じブロックへコピーできる。
+-   独自値のリセット状態を貼り付けできる。
+-   コピー後も本文やラベルなどの内容が変わらない。
+-   コピー後も表示要素のON/OFFやリンクなどの動作設定が変わらない。
+-   単一設定とレスポンシブ設定が両方コピーされる。
+-   レスポンシブ設定がある画面幅ではレスポンシブ値が優先される。
+-   レスポンシブ設定がない画面幅では単一値へ戻る。
+-   パネルの個別リセットと全体リセットが保存データへ一致して反映される。
+-   保存して再読み込みしてもブロックが無効にならない。
+-   エディターとフロントで同じ結果になる。
+-   異なるブロックへ貼り付けても、未対応の独自設定によって表示が壊れない。
+
+クリップボード操作そのものを自動テストしにくい場合は、コアが貼り付ける形の`style`属性を対象ブロックへ渡し、読み取り、保存HTML、リセットをユニットテストする。実際の「スタイルをコピー」「スタイルを貼り付け」はHTTPSのLocal環境で画面確認する。
+
+## 参照実装
+
+試作ブロック`ystdb/custom-heading-try`で、メインテキストとサブテキストのフォントサイズを使ってこの方式を検証している。
+
+-   [`block.json`](../src/blocks/block-library/custom-heading-try/block.json)
+-   [`utils.ts`](../src/blocks/block-library/custom-heading-try/utils.ts)
+-   [`inspector-controls/index.tsx`](../src/blocks/block-library/custom-heading-try/inspector-controls/index.tsx)
+-   [`utils.test.ts`](../src/blocks/block-library/custom-heading-try/tests/utils.test.ts)
+-   [`save.test.tsx`](../src/blocks/block-library/custom-heading-try/tests/save.test.tsx)
+
+試作では次の点を確認済み。
+
+-   メインテキストはコア標準の`fontSize`と`style.typography.fontSize`を使う。
+-   サブテキストは`style.ystdb.customHeadingTry`へ保存する。
+-   コピーされた`style`の値を表示と保存HTMLで優先する。
+-   `version`で新形式の未設定と旧形式を区別する。
+-   コアのタイポグラフィパネル全体のリセットへサブテキスト設定を連動する。
+
+## 依存関係更新時の確認
+
+WordPressまたは`@wordpress/block-editor`を更新したときは、次を再確認する。
+
+-   スタイル貼り付けの対象属性に変更がないか。
+-   `style`が引き続きオブジェクト全体でコピーされるか。
+-   コピー元と貼り付け先のBlock Supports判定に変更がないか。
+-   `ToolsPanel`と`resetAllFilter`のAPIに変更がないか。
+-   未対応の`style.ystdb`がStyle Engineで無視されるか。
+-   同じブロック間のコピー、リセット、内容保持が従来どおり動くか。
