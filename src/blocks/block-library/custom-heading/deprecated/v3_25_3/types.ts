@@ -1,11 +1,13 @@
-/**
- * Aktk dependencies.
- */
-import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
 import type {
 	ResponsiveSpacing,
 	Spacing,
 } from '@aktk/block-components/components/custom-spacing-select';
+
+type ResponsiveFontSize = {
+	desktop?: string;
+	tablet?: string;
+	mobile?: string;
+};
 
 export interface LegacyAttributes {
 	content: string;

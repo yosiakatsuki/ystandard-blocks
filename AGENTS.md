@@ -10,7 +10,7 @@
 
 メインの開発環境は **Local（Local by Flywheel）** 上の WordPress サイトで、このプラグインをシンボリックリンクまたは直接配置して使う。初回は `composer install && npm install` を実行すること。
 
-wp-env は積極的には使わない。PHP ユニットテストなど、wp-env 前提のスクリプトを動かす必要があるときにだけ起動する。
+PHPユニットテストはWordPress Playground CLIを標準経路として実行する。wp-envはDocker環境での動作確認が必要な場合にだけ使用する。
 
 ### ビルド / ウォッチ
 
@@ -28,8 +28,9 @@ wp-env は積極的には使わない。PHP ユニットテストなど、wp-env
 ### テスト
 
 - `npm run test:unit-js` — Jest（`tests/unit/jest.config.js`）
-- PHP ユニットテストは wp-env 前提で実行する（Local 側にテスト環境がないため）。`.wp-env.json` で `testsEnvironment: false` を指定し、テスト専用コンテナ（`tests-cli` ほか）は作成せず、開発用 `cli` コンテナ上で `vendor/bin/phpunit` を実行する方針。エントリは `npm run test:unit-php`
-- 初回セットアップ・`composer.json` 更新後は `npx wp-env run cli --env-cwd=wp-content/plugins/ystandard-blocks -- composer install --no-interaction` をコンテナ内で実行する
+- `npm run test:unit-php` — WordPress Playground CLI上のWordPress 7.1／PHP 8.3でPHPUnitを実行する。Dockerは不要
+- `npm run wpenv:test:unit-php` — Docker上のwp-envでPHPUnitを実行する予備経路。`.wp-env.json`では`testsEnvironment: false`を指定し、開発用`cli`コンテナを使用する
+- Playground CLIの実行にはNode.js 20.18以降が必要。初回セットアップ・`composer.json`更新後はホスト側で`composer install`を実行する
 
 ### 翻訳
 

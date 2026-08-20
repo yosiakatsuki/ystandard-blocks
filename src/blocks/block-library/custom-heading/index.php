@@ -60,8 +60,9 @@ class Custom_Heading_Block {
 			'tablet'  => '',
 			'mobile'  => '',
 		];
-		$selector   = '.ystdb-custom-heading';
-		$css        = '';
+		// プリセットの !important 指定よりレスポンシブ値を優先するため、詳細度を 0.1.1 にする.
+		$selector = ':is(h1,h2,h3,h4,h5,h6,hgroup).ystdb-custom-heading';
+		$css      = '';
 		foreach ( $types as $type ) {
 			// フォントサイズ.
 			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(

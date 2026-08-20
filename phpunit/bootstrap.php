@@ -8,6 +8,16 @@
 // Require composer dependencies.
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 
+// Playground内のwp-phpunitからテスト設定を読み込めるようにする.
+if ( file_exists( '/wordpress/wp-load.php' ) ) {
+	putenv( 'WP_PHPUNIT__TESTS_CONFIG=' . __DIR__ . '/wp-tests-config.php' );
+	// 毎回生成されるPlaygroundのDBをそのままテストに使用する.
+	putenv( 'WP_TESTS_SKIP_INSTALL=1' );
+	putenv( 'WP_PHPUNIT__TABLE_PREFIX=wp_' );
+}
+
+require_once __DIR__ . '/wp-tests-config.php';
+
 // If we're running in WP's build directory, ensure that WP knows that, too.
 if ( 'build' === getenv( 'LOCAL_DIR' ) ) {
 	define( 'WP_RUN_CORE_TESTS', true );

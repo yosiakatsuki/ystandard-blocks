@@ -8,7 +8,7 @@ import { getColorClassName } from '@wordpress/block-editor';
  * Aktk dependencies.
  */
 import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select/util';
-import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
 import { stripUndefined } from '@aktk/block-components/utils/object';
 import {
 	getResponsiveCustomProperties,

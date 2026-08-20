@@ -1,7 +1,7 @@
 /**
  * Aktk dependencies.
  */
-import type { ResponsiveFontSize } from '@aktk/block-components/components/custom-font-size-picker';
+import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
 import type {
 	ResponsiveSpacing,
 	Spacing,
