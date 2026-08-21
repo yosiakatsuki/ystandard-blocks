@@ -28,16 +28,35 @@ export const deprecatedV3253 = {
 	supports,
 	// @ts-ignore.
 	migrate( legacyAttributes: LegacyAttributes ) {
-		const { customFontSize, responsiveFontSize, ...migratedAttributes } =
-			legacyAttributes;
+		const {
+			customFontSize,
+			responsiveFontSize,
+			customTextColor,
+			textAlign,
+			lineHeight,
+			letterSpacing,
+			fontWeight,
+			fontStyle,
+			fontFamily,
+			...migratedAttributes
+		} = legacyAttributes;
 		const hasPresetFontSize = !! legacyAttributes.fontSize;
 		const hasResponsiveSize = hasResponsiveFontSize( legacyAttributes );
 		const style = stripUndefined( {
+			color: {
+				text: customTextColor,
+			},
 			typography: {
 				fontSize:
 					! hasPresetFontSize && ! hasResponsiveSize
 						? customFontSize
 						: undefined,
+				fontFamily,
+				fontStyle,
+				fontWeight,
+				letterSpacing,
+				lineHeight,
+				textAlign: legacyAttributes.hasSubText ? undefined : textAlign,
 			},
 			ystdb: {
 				customHeading: {

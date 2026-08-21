@@ -1,6 +1,6 @@
 # カスタム見出しブロック改修計画
 
-更新日: 2026-08-20
+更新日: 2026-08-21
 
 対象ブロック: `ystdb/custom-heading`
 
@@ -13,12 +13,14 @@
 ## 今回確定した方針
 
 - WordPress標準のBlock Supportsで表示される設定は、メインテキストの設定として扱う。
-- コアのタイポグラフィパネルに表示される「フォントサイズ」は、メインテキストの単一設定とする。
-- メインテキスト用として同じフォントサイズ設定を独自UIに重複表示しない。
+- コア見出しのタイポグラフィパネルに表示される「色」「サイズ」「フォント」「外観」「行の高さ」「文字間隔」「装飾」「大文字小文字」「テキストを合わせる」を使用できるようにする。
+- コアのタイポグラフィパネルに表示される設定は、すべてメインテキストの単一設定とする。
+- メインテキスト用として同じ設定を独自UIに重複表示しない。
 - サブテキストなど、コア設定だけでは対象を区別できない項目を同じタイポグラフィパネルへ追加する。
 - 単一設定は可能な限りWordPressコアのコンポーネントと属性構造を使う。
 - レスポンシブ設定は単一設定と別のUIパネル、別の属性領域に置く。
 - 単一設定とレスポンシブ設定は併用でき、対象デバイスのレスポンシブ値が存在するときはレスポンシブ値を優先する。
+- 「テキストを合わせる」を有効にした場合はコア仕様に従い、レスポンシブフォントサイズを含む他の文字サイズ指定より優先する。レスポンシブ値は削除せず、CSS出力だけ停止する。
 - 公開済みブロックの属性や保存HTMLを変更するときは、変更と同時にdeprecated定義と移行テストを追加する。
 - 段階移行の途中でリリースする場合、その時点の保存形式も後から復元できるように固定する。
 
@@ -36,11 +38,11 @@
 - 保存HTMLは`h1`から`h6`のいずれか1要素で構成される。
 - メインテキストは`content`に保存される。
 - `hasSubText`属性は存在するが、サブテキストの入力UIと保存HTMLは未実装である。
-- deprecated定義はまだ登録されていない。
+- v3.25.3までの属性定義と保存処理は`deprecated/v3_25_3`へ固定し、deprecated定義として登録済みである。
 
 ### 現在のスタイル属性
 
-主なスタイル値はブロック独自のトップレベル属性に保存されている。
+公開済み仕様では、主なスタイル値がブロック独自のトップレベル属性に保存されている。
 
 - フォントサイズ: `fontSize`、`customFontSize`、`responsiveFontSize`
 - 文字色: `textColor`、`customTextColor`
@@ -49,6 +51,8 @@
 - その他: `textAlign`、`clearStyle`
 
 このままでは、WordPress標準のスタイルコピーが認識する`style`属性へ独自設定が集約されず、コピー対象から外れる値が残る。
+
+現行実装では、メインテキストの色とタイポグラフィをコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換する。余白と`clearStyle`は後続の段階移行対象とする。
 
 ## 目標とする設定の責務
 
@@ -74,16 +78,25 @@
 - 任意のフォントサイズ: `style.typography.fontSize`
 - 文字色プリセット: `textColor`
 - 任意の文字色: `style.color.text`
+- 背景色プリセット: `backgroundColor`
+- 任意の背景色: `style.color.background`
+- グラデーションプリセット: `gradient`
+- 任意のグラデーション: `style.color.gradient`
+- リンク色: `style.elements.link.color.text`
 - 行の高さ: `style.typography.lineHeight`
 - 文字間隔: `style.typography.letterSpacing`
 - 文字の太さ: `style.typography.fontWeight`
 - 文字スタイル: `style.typography.fontStyle`
 - フォントファミリー: コアプリセットは`fontFamily`、任意値は`style.typography.fontFamily`
 - 文字揃え: `style.typography.textAlign`
+- 文字装飾: `style.typography.textDecoration`
+- 大文字小文字: `style.typography.textTransform`
+- 書字方向: `style.typography.writingMode`
+- テキストを合わせる: `fitText`
 - 余白: `style.spacing.margin`
 - 内側余白: `style.spacing.padding`
 
-コアのタイポグラフィパネルに残る「フォントサイズ」は、このメインテキスト用属性を直接操作する。
+コアのタイポグラフィパネルに表示される各項目は、このメインテキスト用属性を直接操作する。WordPressやテーマ設定によって利用できない項目は、コア見出しと同様にUIへ表示されない。
 
 ### 独自対象とレスポンシブスタイル
 
@@ -222,8 +235,8 @@ custom-heading/
 | `letterSpacing` | `style.typography.letterSpacing` | Block Supports有効化と同時に移行 |
 | `fontWeight` | `style.typography.fontWeight` | Block Supports有効化と同時に移行 |
 | `fontStyle` | `style.typography.fontStyle` | Block Supports有効化と同時に移行 |
-| `fontFamily` | `fontFamily`または`style.typography.fontFamily` | 旧値がCSS文字列なら任意値へ移す |
-| `textAlign` | `style.typography.textAlign` | 保存HTMLとツールバーの互換性を確認 |
+| `fontFamily` | `style.typography.fontFamily` | 旧UIが保存したCSS文字列を任意値へ移す |
+| `textAlign` | `style.typography.textAlign` | ツールバーもコア属性を操作する |
 | `margin` | `style.spacing.margin` | 適用対象の検証後に移行 |
 | `padding` | `style.spacing.padding` | 適用対象の検証後に移行 |
 | `responsiveMargin` | `style.ystdb.customHeading.responsive.main.spacing.margin` | 単一設定とは別管理 |

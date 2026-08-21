@@ -1,8 +1,7 @@
 /**
  * WordPress dependencies.
  */
-import { useBlockProps, RichText, withColors } from '@wordpress/block-editor';
-import { compose } from '@wordpress/compose';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Platform } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -16,21 +15,14 @@ import { getMainTextClasses, getMainTextStyles } from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
-	const { attributes, setAttributes, textColor, mergeBlocks, onReplace } =
-		props;
-	const { content, level, textAlign, placeholder } = attributes as Attributes;
+	const { attributes, setAttributes, mergeBlocks, onReplace } = props;
+	const { content, level, placeholder } = attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
 
 	// メインテキストのクラスとスタイルを生成.
-	const mainTextClasses = getMainTextClasses( {
-		...attributes,
-		textColor: textColor?.slug,
-	} );
-	const mainTextStyles = getMainTextStyles( {
-		...attributes,
-		customTextColor: textColor?.color,
-	} );
+	const mainTextClasses = getMainTextClasses( attributes );
+	const mainTextStyles = getMainTextStyles( attributes );
 
 	// ブロックProps.
 	const blockProps = useBlockProps( {
@@ -60,7 +52,6 @@ function Edit( props ) {
 					placeholder ||
 					__( 'カスタム見出しテキスト…', 'ystandard-blocks' )
 				}
-				textAlign={ textAlign }
 				// @ts-ignore
 				{ ...( Platform.isNative && { deleteEnter: true } ) }
 				{ ...blockProps }
@@ -69,7 +60,4 @@ function Edit( props ) {
 	);
 }
 
-// @ts-expect-error
-export default compose( [
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Edit );
+export default Edit;

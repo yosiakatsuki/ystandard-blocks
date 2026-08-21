@@ -10,14 +10,28 @@ import type {
 export interface Attributes {
 	content: string;
 	level?: number;
-	textAlign?: 'left' | 'center' | 'right';
 	hasSubText?: boolean;
 	textColor?: string;
-	customTextColor?: string;
 	fontSize?: string;
+	fontFamily?: string;
+	fitText?: boolean;
 	style?: {
+		color?: {
+			background?: string;
+			gradient?: string;
+			text?: string;
+		};
 		typography?: {
 			fontSize?: string;
+			fontFamily?: string;
+			fontStyle?: string;
+			fontWeight?: string;
+			lineHeight?: string | number;
+			letterSpacing?: string;
+			textAlign?: 'left' | 'center' | 'right' | 'justify';
+			textDecoration?: string;
+			textTransform?: string;
+			writingMode?: string;
 		};
 		ystdb?: {
 			customHeading?: {
@@ -35,11 +49,6 @@ export interface Attributes {
 	responsiveMargin?: ResponsiveSpacing;
 	padding?: Spacing;
 	responsivePadding?: ResponsiveSpacing;
-	fontWeight?: string;
-	fontStyle?: string;
-	lineHeight?: string;
-	letterSpacing?: string;
-	fontFamily?: string;
 	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;

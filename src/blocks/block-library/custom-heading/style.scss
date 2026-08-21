@@ -17,7 +17,6 @@
 		margin: 0;
 		padding: 0;
 		border: 0;
-		background: none;
 		font-weight: 400;
 		box-shadow: none;
 
@@ -28,6 +27,10 @@
 
 		&:where(:not(.has-text-color)) {
 			color: inherit;
+		}
+
+		&:where(:not(.has-background)) {
+			background: none;
 		}
 	}
 }

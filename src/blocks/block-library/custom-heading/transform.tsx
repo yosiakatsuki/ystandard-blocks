@@ -20,42 +20,41 @@ const normalizeHeadingLevel = ( level?: number ) => {
 	return HEADING_LEVELS.includes( Number( level ) ) ? Number( level ) : 2;
 };
 
-const getTypographyStyle = ( attributes: any, textAlign?: string ) => {
-	const typography = {
-		textAlign,
-		fontSize:
-			! attributes.fontSize && attributes?.style?.typography?.fontSize
-				? attributes.style.typography.fontSize
-				: undefined,
-		fontWeight: attributes.fontWeight,
-		fontStyle: attributes.fontStyle,
-		letterSpacing: attributes.letterSpacing,
-		lineHeight: attributes.lineHeight,
-	};
-	const filteredTypography = Object.fromEntries(
-		Object.entries( typography ).filter( ( [ , value ] ) => !! value )
-	);
+const getTypographyStyle = (
+	attributes: any,
+	typographyOverrides: Record< string, unknown > = {}
+) => {
+	const coreStyle = { ...( attributes.style ?? {} ) };
+	// 独自レスポンシブ値はコアブロックで解釈できないため引き渡さない.
+	delete coreStyle.ystdb;
 
-	return Object.keys( filteredTypography ).length > 0
-		? { typography: filteredTypography }
-		: undefined;
-};
-
-const getCustomHeadingTypographyAttributes = ( attributes: any ) => {
-	return {
-		fontWeight: attributes?.style?.typography?.fontWeight,
-		fontStyle: attributes?.style?.typography?.fontStyle,
-		letterSpacing: attributes?.style?.typography?.letterSpacing,
-		lineHeight: attributes?.style?.typography?.lineHeight,
-	};
+	return stripUndefined( {
+		...coreStyle,
+		typography: {
+			...attributes.style?.typography,
+			...typographyOverrides,
+			fontSize: attributes.fontSize
+				? undefined
+				: attributes.style?.typography?.fontSize,
+		},
+	} );
 };
 
 const getCustomHeadingStyle = (
 	attributes: any,
-	responsiveFontSize?: Record< string, string >
+	responsiveFontSize?: Record< string, string >,
+	typographyOverrides: Record< string, unknown > = {},
+	colorOverrides: Record< string, unknown > = {}
 ) => {
 	return stripUndefined( {
+		...attributes.style,
+		color: {
+			...attributes.style?.color,
+			...colorOverrides,
+		},
 		typography: {
+			...attributes.style?.typography,
+			...typographyOverrides,
 			fontSize: attributes.fontSize
 				? undefined
 				: attributes?.style?.typography?.fontSize ??
@@ -76,16 +75,29 @@ const getCustomHeadingStyle = (
 };
 
 const getCoreTextAlignAttribute = ( attributes: any ) => {
-	return attributes?.style?.typography?.textAlign ?? attributes.textAlign;
+	return (
+		attributes?.style?.typography?.textAlign ??
+		attributes.textAlign ??
+		attributes.align
+	);
 };
 
+const getColorAttributes = ( attributes: any ) => ( {
+	textColor: attributes.textColor,
+	backgroundColor: attributes.backgroundColor,
+	gradient: attributes.gradient,
+} );
+
 const getPixelValue = ( value?: number | string ) => {
+	// 未指定値と旧UIで無効扱いだった0は移行先へ持ち込まない.
 	if ( undefined === value || '' === value || 0 === value ) {
 		return undefined;
 	}
+	// 数値属性は旧UIと同じpx単位へ正規化する.
 	if ( 'number' === typeof value ) {
 		return `${ value }px`;
 	}
+	// 数字だけの文字列も旧UIと同じpx単位へ正規化する.
 	if ( /^\d+(\.\d+)?$/.test( value ) ) {
 		return `${ value }px`;
 	}
@@ -94,12 +106,15 @@ const getPixelValue = ( value?: number | string ) => {
 };
 
 const getLetterSpacingValue = ( value?: number | string ) => {
+	// 未指定値と旧UIで無効扱いだった0は移行先へ持ち込まない.
 	if ( undefined === value || '' === value || 0 === value ) {
 		return undefined;
 	}
+	// 数値属性は旧UIと同じem単位へ正規化する.
 	if ( 'number' === typeof value ) {
 		return `${ value }em`;
 	}
+	// 数字だけの文字列も旧UIと同じem単位へ正規化する.
 	if ( /^\d+(\.\d+)?$/.test( value ) ) {
 		return `${ value }em`;
 	}
@@ -120,13 +135,13 @@ export const transforms = {
 				return createBlock( metadata.name, {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
-					textAlign: getCoreTextAlignAttribute( attributes ),
-					textColor: attributes.textColor,
-					customTextColor: attributes.customTextColor,
+					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
-					style: getCustomHeadingStyle( attributes ),
+					style: getCustomHeadingStyle( attributes, undefined, {
+						textAlign: getCoreTextAlignAttribute( attributes ),
+					} ),
 					fontFamily: attributes.fontFamily,
-					...getCustomHeadingTypographyAttributes( attributes ),
+					fitText: attributes.fitText,
 				} );
 			},
 		},
@@ -138,13 +153,12 @@ export const transforms = {
 				return createBlock( metadata.name, {
 					content: attributes.content,
 					level: 2,
-					textAlign: attributes.align,
-					textColor: attributes.textColor,
-					customTextColor: attributes.customTextColor,
+					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
-					style: getCustomHeadingStyle( attributes ),
+					style: getCustomHeadingStyle( attributes, undefined, {
+						textAlign: getCoreTextAlignAttribute( attributes ),
+					} ),
 					fontFamily: attributes.fontFamily,
-					...getCustomHeadingTypographyAttributes( attributes ),
 				} );
 			},
 		},
@@ -155,17 +169,21 @@ export const transforms = {
 			transform: ( attributes: any ) => {
 				// responsiveFontSize オブジェクトの構築
 				const responsiveFontSize: any = {};
+				// 旧ブロックでレスポンシブ指定が有効な場合だけ各値を移行する.
 				if ( attributes.useFontSizeResponsive ) {
+					// モバイル値が保存されている場合だけ単位を補って移行する.
 					if ( attributes.fontSizeMobile ) {
 						responsiveFontSize.mobile = getPixelValue(
 							attributes.fontSizeMobile
 						);
 					}
+					// タブレット値が保存されている場合だけ単位を補って移行する.
 					if ( attributes.fontSizeTablet ) {
 						responsiveFontSize.tablet = getPixelValue(
 							attributes.fontSizeTablet
 						);
 					}
+					// デスクトップ値が保存されている場合だけ単位を補って移行する.
 					if ( attributes.fontSizeDesktop ) {
 						responsiveFontSize.desktop = getPixelValue(
 							attributes.fontSizeDesktop
@@ -176,19 +194,21 @@ export const transforms = {
 				return createBlock( metadata.name, {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
-					textAlign: attributes.align, // align -> textAlign
-					textColor: attributes.textColor,
-					customTextColor: attributes.customTextColor,
+					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
 					style: getCustomHeadingStyle(
 						attributes,
 						Object.keys( responsiveFontSize ).length > 0
 							? responsiveFontSize
-							: undefined
-					),
-					fontWeight: attributes.fontWeight,
-					letterSpacing: getLetterSpacingValue(
-						attributes.letterSpacing
+							: undefined,
+						{
+							textAlign: attributes.align,
+							fontWeight: attributes.fontWeight,
+							letterSpacing: getLetterSpacingValue(
+								attributes.letterSpacing
+							),
+						},
+						{ text: attributes.customTextColor }
 					),
 					clearStyle: attributes.clearStyle,
 				} );
@@ -204,14 +224,11 @@ export const transforms = {
 				return createBlock( 'core/heading', {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
-					textColor: attributes.textColor,
-					customTextColor: attributes.customTextColor,
+					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
 					fontFamily: attributes.fontFamily,
-					style: getTypographyStyle(
-						attributes,
-						attributes.textAlign
-					),
+					fitText: attributes.fitText,
+					style: getTypographyStyle( attributes ),
 				} );
 			},
 		},
@@ -222,12 +239,13 @@ export const transforms = {
 			transform: ( attributes: any ) => {
 				return createBlock( 'core/paragraph', {
 					content: attributes.content,
-					align: attributes.textAlign,
-					textColor: attributes.textColor,
-					customTextColor: attributes.customTextColor,
+					align: getCoreTextAlignAttribute( attributes ),
+					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
 					fontFamily: attributes.fontFamily,
-					style: getTypographyStyle( attributes ),
+					style: getTypographyStyle( attributes, {
+						textAlign: undefined,
+					} ),
 				} );
 			},
 		},

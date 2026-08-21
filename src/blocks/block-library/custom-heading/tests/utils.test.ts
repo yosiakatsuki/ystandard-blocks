@@ -61,14 +61,13 @@ describe( 'Custom Heading Block utils', () => {
 			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
-		it( '文字色クラスを追加する', () => {
+		it( '文字色クラスはBlock Supportsに任せる', () => {
 			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
 				textColor: 'ys-green',
 			} );
 
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).toContain( 'color-ys-green' );
+			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
 		it( 'スタイルクリアクラスを追加する', () => {
@@ -81,25 +80,17 @@ describe( 'Custom Heading Block utils', () => {
 			expect( classes ).toContain( 'is-clear-style' );
 		} );
 
-		it( '文字揃えクラスを追加する', () => {
+		it( '文字揃えクラスはBlock Supportsに任せる', () => {
 			const classes = getMainTextClasses( {
 				...getBaseAttributes(),
-				textAlign: 'center',
+				style: {
+					typography: {
+						textAlign: 'center',
+					},
+				},
 			} );
 
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).toContain( 'has-text-align-center' );
-		} );
-
-		it( 'サブテキストがある場合は文字揃えクラスを追加しない', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				hasSubText: true,
-				textAlign: 'center',
-			} );
-
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).not.toContain( 'has-text-align-center' );
+			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
 
 		it( '複数の属性から必要なクラスを追加する', () => {
@@ -108,14 +99,18 @@ describe( 'Custom Heading Block utils', () => {
 				fontSize: 'large',
 				textColor: 'ys-green',
 				clearStyle: true,
-				textAlign: 'right',
+				style: {
+					typography: {
+						textAlign: 'right',
+					},
+				},
 			} );
 
 			expect( classes ).toContain( 'ystdb-custom-heading' );
 			expect( classes ).not.toContain( 'font-size-large' );
-			expect( classes ).toContain( 'color-ys-green' );
+			expect( classes ).not.toContain( 'color-ys-green' );
 			expect( classes ).toContain( 'is-clear-style' );
-			expect( classes ).toContain( 'has-text-align-right' );
+			expect( classes ).not.toContain( 'has-text-align-right' );
 		} );
 	} );
 
@@ -232,25 +227,42 @@ describe( 'Custom Heading Block utils', () => {
 			expect( styles.fontSize ).toBeUndefined();
 		} );
 
-		it( '文字装飾系の属性をスタイルへ変換する', () => {
+		it( '単一タイポグラフィ設定の反映はBlock Supportsに任せる', () => {
 			const styles = getMainTextStyles( {
 				...getBaseAttributes(),
-				customTextColor: '#008000',
-				fontStyle: 'italic',
-				fontWeight: '700',
-				letterSpacing: '0.1em',
-				lineHeight: '1.5',
 				fontFamily: 'Georgia, serif',
+				style: {
+					color: {
+						text: '#008000',
+					},
+					typography: {
+						fontStyle: 'italic',
+						fontWeight: '700',
+						letterSpacing: '0.1em',
+						lineHeight: '1.5',
+					},
+				},
 			} );
 
-			expect( styles ).toMatchObject( {
-				color: '#008000',
-				fontStyle: 'italic',
-				fontWeight: '700',
-				letterSpacing: '0.1em',
-				lineHeight: '1.5',
-				fontFamily: 'Georgia, serif',
+			expect( styles.color ).toBeUndefined();
+			expect( styles.fontStyle ).toBeUndefined();
+			expect( styles.fontWeight ).toBeUndefined();
+			expect( styles.letterSpacing ).toBeUndefined();
+			expect( styles.lineHeight ).toBeUndefined();
+			expect( styles.fontFamily ).toBeUndefined();
+		} );
+
+		it( 'テキストを合わせる場合はレスポンシブフォントサイズを出力しない', () => {
+			const attributes = getResponsiveFontSizeAttributes( {
+				desktop: '32px',
+				mobile: '16px',
 			} );
+			attributes.fitText = true;
+
+			const styles = getMainTextStyles( attributes );
+
+			expect( styles[ responsiveFontSizeKeys.desktop ] ).toBeUndefined();
+			expect( styles[ responsiveFontSizeKeys.mobile ] ).toBeUndefined();
 		} );
 
 		it( '通常の外側余白と内側余白をスタイルへ変換する', () => {

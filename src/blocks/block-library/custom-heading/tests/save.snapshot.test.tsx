@@ -123,7 +123,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'テキストセンター揃え',
 					level: 2,
-					textAlign: 'center',
+					style: {
+						typography: {
+							textAlign: 'center',
+						},
+					},
 				} }
 			/>
 		);
@@ -136,7 +140,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'テキスト右揃え',
 					level: 2,
-					textAlign: 'right',
+					style: {
+						typography: {
+							textAlign: 'right',
+						},
+					},
 				} }
 			/>
 		);
@@ -162,8 +170,12 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '全属性指定',
 					level: 3,
-					textAlign: 'center',
 					fontSize: 'large',
+					style: {
+						typography: {
+							textAlign: 'center',
+						},
+					},
 					clearStyle: false,
 				} }
 			/>
@@ -177,12 +189,17 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'カスタム＆レスポンシブ',
 					level: 2,
-					...getFontSizeStyle( '2em', {
-						desktop: '2rem',
-						tablet: '1.5rem',
-						mobile: '1.2rem',
-					} ),
-					textAlign: 'center',
+					style: {
+						...getFontSizeStyle( '2em', {
+							desktop: '2rem',
+							tablet: '1.5rem',
+							mobile: '1.2rem',
+						} ).style,
+						typography: {
+							fontSize: '2em',
+							textAlign: 'center',
+						},
+					},
 				} }
 			/>
 		);
@@ -353,7 +370,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字色カスタム指定',
 					level: 2,
-					customTextColor: '#ff0000',
+					style: {
+						color: {
+							text: '#ff0000',
+						},
+					},
 				} }
 			/>
 		);
@@ -366,7 +387,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字太さ指定(400)',
 					level: 2,
-					fontWeight: '400',
+					style: {
+						typography: {
+							fontWeight: '400',
+						},
+					},
 				} }
 			/>
 		);
@@ -379,7 +404,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字太さ指定(700)',
 					level: 2,
-					fontWeight: '700',
+					style: {
+						typography: {
+							fontWeight: '700',
+						},
+					},
 				} }
 			/>
 		);
@@ -392,7 +421,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字スタイル指定(italic)',
 					level: 2,
-					fontStyle: 'italic',
+					style: {
+						typography: {
+							fontStyle: 'italic',
+						},
+					},
 				} }
 			/>
 		);
@@ -405,7 +438,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字スタイル指定(normal)',
 					level: 2,
-					fontStyle: 'normal',
+					style: {
+						typography: {
+							fontStyle: 'normal',
+						},
+					},
 				} }
 			/>
 		);
@@ -418,7 +455,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字間隔指定',
 					level: 2,
-					letterSpacing: '0.1em',
+					style: {
+						typography: {
+							letterSpacing: '0.1em',
+						},
+					},
 				} }
 			/>
 		);
@@ -431,7 +472,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '行の高さ指定',
 					level: 2,
-					lineHeight: 1.8,
+					style: {
+						typography: {
+							lineHeight: 1.8,
+						},
+					},
 				} }
 			/>
 		);
@@ -444,7 +489,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '行の高さ指定(0指定)',
 					level: 2,
-					lineHeight: 0,
+					style: {
+						typography: {
+							lineHeight: 0,
+						},
+					},
 				} }
 			/>
 		);
@@ -457,7 +506,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'フォントファミリー指定',
 					level: 2,
-					fontFamily: 'Arial, sans-serif',
+					style: {
+						typography: {
+							fontFamily: 'Arial, sans-serif',
+						},
+					},
 				} }
 			/>
 		);

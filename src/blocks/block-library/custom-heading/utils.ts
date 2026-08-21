@@ -1,8 +1,4 @@
 import classnames from 'classnames';
-/**
- * WordPress dependencies.
- */
-import { getColorClassName } from '@wordpress/block-editor';
 
 /**
  * Aktk dependencies.
@@ -32,14 +28,10 @@ const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
  * @return
  */
 export function getMainTextClasses( attributes: Attributes ) {
-	const { clearStyle, hasSubText, textAlign, textColor } = attributes;
-
-	const textColorClass = getColorClassName( 'color', textColor || '' );
+	const { clearStyle } = attributes;
 
 	return classnames( 'ystdb-custom-heading', {
-		[ textColorClass ]: !! textColor,
 		'is-clear-style': clearStyle,
-		[ `has-text-align-${ textAlign }` ]: !! textAlign && ! hasSubText,
 	} );
 }
 
@@ -93,19 +85,11 @@ export function updateMainResponsiveFontSize(
  * @return
  */
 export function getMainTextStyles( attributes: Attributes ) {
-	const {
-		margin,
-		responsiveMargin,
-		padding,
-		responsivePadding,
-		customTextColor,
-		fontStyle,
-		fontWeight,
-		letterSpacing,
-		lineHeight,
-		fontFamily,
-	} = attributes;
-	const responsiveFontSize = getMainResponsiveFontSize( attributes );
+	const { margin, responsiveMargin, padding, responsivePadding } = attributes;
+	// 「テキストを合わせる」は他の文字サイズ指定より優先するコア仕様に揃える.
+	const responsiveFontSize = attributes.fitText
+		? undefined
+		: getMainResponsiveFontSize( attributes );
 	const responsiveFontSizeStyles = getResponsiveCustomProperties(
 		'heading--font-size',
 		responsiveFontSize
@@ -148,12 +132,6 @@ export function getMainTextStyles( attributes: Attributes ) {
 	);
 
 	return {
-		color: customTextColor || undefined,
-		fontStyle: fontStyle || undefined,
-		fontWeight: fontWeight || undefined,
-		letterSpacing: letterSpacing || undefined,
-		lineHeight,
-		fontFamily,
 		...getCustomSpacingValues( margin, 'margin' ),
 		...getCustomSpacingValues( padding, 'padding' ),
 		...responsiveFontSizeStyles,

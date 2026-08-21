@@ -17,17 +17,11 @@
 			"type": "number",
 			"default": 2
 		},
-		"textAlign": {
-			"type": "string"
-		},
 		"hasSubText": {
 			"type": "boolean",
 			"default": false
 		},
 		"textColor": {
-			"type": "string"
-		},
-		"customTextColor": {
 			"type": "string"
 		},
 		"fontSize": {
@@ -48,18 +42,6 @@
 		"responsivePadding": {
 			"type": "object"
 		},
-		"lineHeight": {
-			"type": "string"
-		},
-		"letterSpacing": {
-			"type": "string"
-		},
-		"fontWeight": {
-			"type": "string"
-		},
-		"fontStyle": {
-			"type": "string"
-		},
 		"fontFamily": {
 			"type": "string"
 		},
@@ -76,8 +58,26 @@
 		"anchor": true,
 		"className": false,
 		"splitting": true,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
 		"typography": {
 			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalWritingMode": true,
+			"fitText": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
 			}

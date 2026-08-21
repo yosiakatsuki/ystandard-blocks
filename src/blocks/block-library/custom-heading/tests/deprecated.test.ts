@@ -69,4 +69,51 @@ describe( 'Custom Heading Block deprecated', () => {
 			fontSize: 'large',
 		} );
 	} );
+
+	it( '旧タイポグラフィ属性をコアのstyle属性へ移行する', () => {
+		const attributes = deprecatedV3253.migrate( {
+			content: '見出し',
+			level: 2,
+			customTextColor: '#123456',
+			textAlign: 'center',
+			fontFamily: 'Georgia, serif',
+			fontStyle: 'italic',
+			fontWeight: '700',
+			letterSpacing: '0.1em',
+			lineHeight: '1.5',
+		} );
+
+		expect( attributes ).toEqual( {
+			content: '見出し',
+			level: 2,
+			style: {
+				color: {
+					text: '#123456',
+				},
+				typography: {
+					textAlign: 'center',
+					fontFamily: 'Georgia, serif',
+					fontStyle: 'italic',
+					fontWeight: '700',
+					letterSpacing: '0.1em',
+					lineHeight: '1.5',
+				},
+			},
+		} );
+	} );
+
+	it( 'サブテキスト使用時は旧仕様で無効だった文字揃えを移行しない', () => {
+		const attributes = deprecatedV3253.migrate( {
+			content: '見出し',
+			level: 2,
+			hasSubText: true,
+			textAlign: 'center',
+		} );
+
+		expect( attributes ).toEqual( {
+			content: '見出し',
+			level: 2,
+			hasSubText: true,
+		} );
+	} );
 } );

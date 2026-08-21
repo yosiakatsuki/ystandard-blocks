@@ -76,7 +76,45 @@ describe( 'Custom Heading Block transforms', () => {
 			},
 		} );
 
-		expect( block?.attributes.textAlign ).toBe( 'center' );
+		expect( block?.attributes.style ).toEqual( {
+			typography: {
+				textAlign: 'center',
+			},
+		} );
+		expect( block?.attributes.textAlign ).toBeUndefined();
+	} );
+
+	it( 'core/headingのタイポグラフィ設定をまとめて保持する', () => {
+		const transform = getTransform( 'from', 'core/heading' );
+		const block = transform?.transform( {
+			content: 'タイポグラフィ',
+			level: 2,
+			fitText: true,
+			style: {
+				typography: {
+					fontStyle: 'italic',
+					fontWeight: '700',
+					lineHeight: '1.5',
+					letterSpacing: '0.1em',
+					textDecoration: 'underline',
+					textTransform: 'uppercase',
+					writingMode: 'vertical-rl',
+				},
+			},
+		} );
+
+		expect( block?.attributes.style ).toEqual( {
+			typography: {
+				fontStyle: 'italic',
+				fontWeight: '700',
+				lineHeight: '1.5',
+				letterSpacing: '0.1em',
+				textDecoration: 'underline',
+				textTransform: 'uppercase',
+				writingMode: 'vertical-rl',
+			},
+		} );
+		expect( block?.attributes.fitText ).toBe( true );
 	} );
 
 	it( 'custom-headingのカスタムフォントサイズをcore/headingのstyleへ変換する', () => {
@@ -132,7 +170,11 @@ describe( 'Custom Heading Block transforms', () => {
 		const block = transform?.transform( {
 			content: '中央揃え',
 			level: 2,
-			textAlign: 'center',
+			style: {
+				typography: {
+					textAlign: 'center',
+				},
+			},
 		} );
 
 		expect( block?.attributes.style ).toEqual( {
@@ -141,6 +183,52 @@ describe( 'Custom Heading Block transforms', () => {
 			},
 		} );
 		expect( block?.attributes.textAlign ).toBeUndefined();
+	} );
+
+	it( 'custom-headingのタイポグラフィ設定をcore/headingへ保持する', () => {
+		const transform = getTransform( 'to', 'core/heading' );
+		const block = transform?.transform( {
+			content: 'タイポグラフィ',
+			level: 2,
+			fitText: true,
+			style: {
+				typography: {
+					fontStyle: 'italic',
+					fontWeight: '700',
+					lineHeight: '1.5',
+					letterSpacing: '0.1em',
+					textDecoration: 'underline',
+					textTransform: 'uppercase',
+					writingMode: 'vertical-rl',
+				},
+				ystdb: {
+					customHeading: {
+						responsive: {
+							main: {
+								typography: {
+									fontSize: {
+										mobile: '16px',
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		} );
+
+		expect( block?.attributes.style ).toEqual( {
+			typography: {
+				fontStyle: 'italic',
+				fontWeight: '700',
+				lineHeight: '1.5',
+				letterSpacing: '0.1em',
+				textDecoration: 'underline',
+				textTransform: 'uppercase',
+				writingMode: 'vertical-rl',
+			},
+		} );
+		expect( block?.attributes.fitText ).toBe( true );
 	} );
 
 	it( 'ystdb/headingのレスポンシブフォントサイズをpx付きで変換する', () => {
@@ -181,6 +269,25 @@ describe( 'Custom Heading Block transforms', () => {
 			letterSpacing: 0.1,
 		} );
 
-		expect( block?.attributes.letterSpacing ).toBe( '0.1em' );
+		expect( block?.attributes.style ).toEqual( {
+			typography: {
+				letterSpacing: '0.1em',
+			},
+		} );
+	} );
+
+	it( 'ystdb/headingの任意文字色をコアのstyle属性へ変換する', () => {
+		const transform = getTransform( 'from', 'ystdb/heading' );
+		const block = transform?.transform( {
+			content: 'もとは旧見出しです',
+			level: 2,
+			customTextColor: '#123456',
+		} );
+
+		expect( block?.attributes.style ).toEqual( {
+			color: {
+				text: '#123456',
+			},
+		} );
 	} );
 } );
