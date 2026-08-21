@@ -17,7 +17,6 @@ import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-su
  */
 import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
-import { ToolbarControls } from './toolbar-controls';
 import {
 	getCustomHeadingElementStyle,
 	getMainTextClasses,
@@ -110,7 +109,6 @@ function Edit( props ) {
 
 	return (
 		<>
-			<ToolbarControls { ...props } />
 			<InspectorControls { ...props } />
 			{ hasSubText ? (
 				<hgroup { ...blockProps }>
