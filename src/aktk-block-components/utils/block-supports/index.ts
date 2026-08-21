@@ -69,6 +69,11 @@ export function getInnerBlockSupportProps(
 	const color = getColorClassesAndStyles( attributes );
 	const spacing = getSpacingClassesAndStyles( attributes );
 	const border = getBorderClassesAndStyles( attributes );
+	const blockGap = attributes.style?.spacing?.blockGap;
+	const blockGapValue =
+		'string' === typeof blockGap
+			? presetTokenToCssVar( blockGap ) || blockGap
+			: undefined;
 	const linkColor = attributes.style?.elements?.link?.color?.text;
 	const linkColorValue = linkColor
 		? presetTokenToCssVar( linkColor ) || linkColor
@@ -85,6 +90,7 @@ export function getInnerBlockSupportProps(
 			...typography.style,
 			...color.style,
 			...spacing.style,
+			...( blockGapValue ? { gap: blockGapValue } : {} ),
 			...border.style,
 			...( linkColorValue
 				? { '--wp--style--color--link': linkColorValue }

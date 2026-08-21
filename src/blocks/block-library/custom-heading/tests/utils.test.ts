@@ -6,6 +6,7 @@ import {
 	getMainResponsiveSpacing,
 	getMainResponsiveFontSize,
 	getCustomHeadingElementStyle,
+	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
 	updateMainResponsiveSpacing,
@@ -73,70 +74,36 @@ const getResponsiveSpacingAttributes = (
 describe( 'Custom Heading Block utils', () => {
 	describe( 'getMainTextClasses', () => {
 		it( '最小限の属性では基本クラスのみ返す', () => {
-			const classes = getMainTextClasses( getBaseAttributes() );
+			const classes = getMainTextClasses();
 
 			expect( classes ).toBe( 'ystdb-custom-heading' );
 		} );
+	} );
 
-		it( 'フォントサイズクラスはBlock Supportsに任せる', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				fontSize: 'large',
-			} );
-
-			expect( classes ).toBe( 'ystdb-custom-heading' );
+	describe( 'getHeadingGroupClasses', () => {
+		it( '並び方向が未設定の場合は基本クラスのみ返す', () => {
+			expect( getHeadingGroupClasses( getBaseAttributes() ) ).toBe(
+				'ystdb-custom-heading-group'
+			);
 		} );
 
-		it( '文字色クラスはBlock Supportsに任せる', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				textColor: 'ys-green',
-			} );
-
-			expect( classes ).toBe( 'ystdb-custom-heading' );
-		} );
-
-		it( 'スタイルクリアクラスを追加する', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				clearStyle: true,
-			} );
-
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).toContain( 'is-clear-style' );
-		} );
-
-		it( '文字揃えクラスはBlock Supportsに任せる', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				style: {
-					typography: {
-						textAlign: 'center',
+		it( '横並びの場合は方向クラスを追加する', () => {
+			expect(
+				getHeadingGroupClasses( {
+					...getBaseAttributes(),
+					style: {
+						ystdb: {
+							customHeading: {
+								group: {
+									layout: {
+										orientation: 'horizontal',
+									},
+								},
+							},
+						},
 					},
-				},
-			} );
-
-			expect( classes ).toBe( 'ystdb-custom-heading' );
-		} );
-
-		it( '複数の属性から必要なクラスを追加する', () => {
-			const classes = getMainTextClasses( {
-				...getBaseAttributes(),
-				fontSize: 'large',
-				textColor: 'ys-green',
-				clearStyle: true,
-				style: {
-					typography: {
-						textAlign: 'right',
-					},
-				},
-			} );
-
-			expect( classes ).toContain( 'ystdb-custom-heading' );
-			expect( classes ).not.toContain( 'font-size-large' );
-			expect( classes ).not.toContain( 'color-ys-green' );
-			expect( classes ).toContain( 'is-clear-style' );
-			expect( classes ).not.toContain( 'has-text-align-right' );
+				} )
+			).toBe( 'ystdb-custom-heading-group is-horizontal' );
 		} );
 	} );
 

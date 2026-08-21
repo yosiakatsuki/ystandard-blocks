@@ -66,7 +66,6 @@ export interface Attributes {
 			};
 		};
 	};
-	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;
 	className?: string;

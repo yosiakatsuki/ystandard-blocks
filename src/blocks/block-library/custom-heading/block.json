@@ -39,10 +39,6 @@
 		"fontFamily": {
 			"type": "string"
 		},
-		"clearStyle": {
-			"type": "boolean",
-			"default": true
-		},
 		"placeholder": {
 			"type": "string"
 		}

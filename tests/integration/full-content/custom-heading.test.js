@@ -27,6 +27,18 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 					spacing: {
 						margin: { top: '1rem' },
 					},
+					ystdb: {
+						customHeading: {
+							group: {
+								layout: {
+									orientation: 'horizontal',
+								},
+								spacing: {
+									blockGap: 'var:preset|spacing|40',
+								},
+							},
+						},
+					},
 				},
 			} ),
 		] );
@@ -36,6 +48,10 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 		expect( block.attributes.subText.toHTMLString() ).toBe(
 			'サブテキスト'
 		);
+		expect( block.attributes.style.ystdb.customHeading.group ).toEqual( {
+			layout: { orientation: 'horizontal' },
+			spacing: { blockGap: 'var:preset|spacing|40' },
+		} );
 		expect( serialize( [ block ] ) ).toBe( content );
 	} );
 

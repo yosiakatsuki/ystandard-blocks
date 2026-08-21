@@ -24,6 +24,9 @@ export type ElementBorder = ElementBorderSide & {
 };
 
 export type ElementStyle = {
+	layout?: {
+		orientation?: 'vertical' | 'horizontal';
+	};
 	typography?: {
 		fontSize?: string;
 		fontFamily?: string;
@@ -41,6 +44,7 @@ export type ElementStyle = {
 	};
 	border?: ElementBorder;
 	spacing?: {
+		blockGap?: string;
 		margin?: Spacing;
 		padding?: Spacing;
 	};

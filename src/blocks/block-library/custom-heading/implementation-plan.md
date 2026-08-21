@@ -29,6 +29,10 @@
 -   メインテキストの単一余白はコアの`spacing`サポートを使い、`hgroup`とサブテキストの余白は独自設定で管理する。
 -   レスポンシブ余白は単一設定と別パネルで管理し、新しい共通コントロールへ移行する。
 -   yStandard独自パネルにはysアイコンを表示し、コアパネルとの違いを判別できるようにする。
+-   「スタイル削除」は現行属性とUIから廃止し、旧HTMLの認識に必要なdeprecated実装だけに残す。
+-   `hgroup`はflexコンテナとし、縦並びを既定にして横並びも選択できるようにする。
+-   見出しグループの「ブロックの間隔」は`style.ystdb.customHeading.group.spacing.blockGap`へ保存する。
+-   背景色またはグラデーションを設定した要素には、明示的な余白で上書きできる仮の`padding: 0.25em`を適用する。
 
 ## 現状
 
@@ -56,11 +60,11 @@
 -   文字色: `textColor`、`customTextColor`
 -   タイポグラフィ: `lineHeight`、`letterSpacing`、`fontWeight`、`fontStyle`、`fontFamily`
 -   余白: `margin`、`responsiveMargin`、`padding`、`responsivePadding`
--   その他: `textAlign`、`clearStyle`
+-   その他: `textAlign`、`clearStyle`（現行仕様では廃止）
 
 このままでは、WordPress標準のスタイルコピーが認識する`style`属性へ独自設定が集約されず、コピー対象から外れる値が残る。
 
-現行実装では、メインテキストの色、タイポグラフィ、単一余白、枠線をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換している。Block Supportsの自動シリアライズを停止し、共通アダプターで生成したクラスとスタイルを見出しタグだけへ出力する。サブテキストと見出しグループの単一スタイルも同じアダプターで各要素へ出力する。レスポンシブ余白は単一余白から分離した独自パネルで新しい`ResponsiveSpacingControl`を利用し、`clearStyle`は後続の段階移行対象とする。
+現行実装では、メインテキストの色、タイポグラフィ、単一余白、枠線をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換している。Block Supportsの自動シリアライズを停止し、共通アダプターで生成したクラスとスタイルを見出しタグだけへ出力する。サブテキストと見出しグループの単一スタイルも同じアダプターで各要素へ出力する。レスポンシブ余白は単一余白から分離した独自パネルで新しい`ResponsiveSpacingControl`を利用する。旧`clearStyle`は現行属性とUIへ引き継がず、公開済みHTMLの認識に必要なdeprecated実装だけへ残す。
 
 ## 目標とする設定の責務
 
@@ -72,7 +76,6 @@
 -   `level`
 -   `hasSubText`
 -   `subText`
--   `subTextPosition`
 -   `placeholder`
 -   `anchor`
 
@@ -118,6 +121,7 @@
 		"ystdb": {
 			"customHeading": {
 				"group": {
+					"layout": {},
 					"spacing": {},
 					"border": {},
 					"color": {}
@@ -148,6 +152,8 @@
 ```
 
 `main`はメイン見出し、`group`は`hgroup`、`sub`はサブテキストを表す。このキー名を確定仕様とし、以後は同じ意味のキーを変更しない。
+
+`group.layout.orientation`は見出しグループの並び方向を表し、未設定時は縦並び、`horizontal`のときは横並びとする。`group.spacing.blockGap`は見出しとサブテキストの間隔を表し、プリセットまたは任意のCSS値を保存する。
 
 ### レスポンシブ値の優先順位
 
@@ -184,6 +190,8 @@ responsiveValue[ device ] ?? singleValue;
 
 `hgroup`とサブテキストの余白、枠線、角丸、背景色、グラデーションは、メインテキスト用Block Supportsとは別の独自設定として追加する。適用対象を設定名と保存先で明示し、Block Supportsの出力が`hgroup`へ漏れないようにする。背景のコントロールとメインテキストの枠線・角丸は初期表示せず、`+`メニューから追加する。
 
+メインテキスト、サブテキスト、見出しグループに背景色またはグラデーションがある場合は、仮の既定値として`padding: 0.25em`を適用する。属性へ値を自動保存せず、利用者が設定したパディングで上書きできるCSS既定値にする。
+
 レスポンシブ余白には[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)で定めた新しい共通コントロールを使う。現在のメイン見出し用マージンはサブテキストなしでルート要素になるため上下だけを許可する。将来追加する`hgroup`用マージンも上下だけを許可する。
 
 ### リセット
@@ -215,6 +223,8 @@ responsiveValue[ device ] ?? singleValue;
 ```
 
 このブロックは`supports.className: false`を維持するため、保存HTMLへ`wp-block-ystdb-custom-heading`を追加しない。`.ystdb-custom-heading`は常に見出しタグだけへ付ける。
+
+`hgroup`は常にflexコンテナとし、既定は縦並びにする。横並びを選択した場合は`.is-horizontal`を追加する。見出しとサブテキストの既定間隔は`0.5em`とし、`group.spacing.blockGap`が設定された場合は共通アダプターが出力する`gap`で上書きする。
 
 サブテキストなしでは、ブロックのルート要素とメイン見出しが同じ要素になる。サブテキストありでは、ルート用Block Propsを`hgroup`へ、メインテキスト用のクラスとスタイルを内側の見出しタグへ分ける。
 
@@ -282,7 +292,7 @@ custom-heading/
 | `padding`            | `style.spacing.padding`                                         | 適用対象の検証後に移行                |
 | `responsiveMargin`   | `style.ystdb.customHeading.responsive.main.spacing.margin`      | メイン見出しの単一設定とは別管理      |
 | `responsivePadding`  | `style.ystdb.customHeading.responsive.main.spacing.padding`     | メイン見出しの単一設定とは別管理      |
-| `clearStyle`         | `style.ystdb.customHeading`配下                                 | 見た目としてスタイルコピー対象にする  |
+| `clearStyle`         | 移行しない                                                      | deprecatedの旧HTML認識だけに使用する  |
 
 ### `hasSubText`の扱い
 

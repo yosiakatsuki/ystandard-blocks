@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	ElementBackgroundPanel,
 	ElementBorderPanel,
+	ElementLayoutPanel,
 	ElementSpacingPanel,
 	ElementTypographyPanel,
 } from '@aktk/block-components/components/element-style-controls';
@@ -82,6 +83,13 @@ export function ElementStylePanels( props ) {
 				onChange={ ( style ) => updateStyle( 'group', style ) }
 				marginSides={ [ 'top', 'bottom' ] }
 				paddingSides={ [ 'top', 'right', 'bottom', 'left' ] }
+				showBlockGap
+			/>
+			<ElementLayoutPanel
+				label={ __( '見出しグループ（配置）', 'ystandard-blocks' ) }
+				panelId="ystdb-custom-heading-group-layout"
+				value={ groupStyle }
+				onChange={ ( style ) => updateStyle( 'group', style ) }
 			/>
 			<ElementBackgroundPanel
 				label={ __( '見出しグループ（背景）', 'ystandard-blocks' ) }

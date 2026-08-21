@@ -8,7 +8,6 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
  */
 import { MainTextPanel } from './text-main';
 import { SubTextPanel } from './sub-text';
-import { ClearStylePanel } from './clear-style';
 import { ResponsiveMainPanel } from './styles/responsive-main';
 import { ElementStylePanels } from './styles/element-styles';
 
@@ -19,7 +18,6 @@ export function InspectorControls( props ) {
 			<WPInspectorControls>
 				<MainTextPanel { ...props } />
 				<SubTextPanel { ...props } />
-				<ClearStylePanel { ...props } />
 			</WPInspectorControls>
 			<WPInspectorControls group="styles">
 				<ElementStylePanels { ...props } />

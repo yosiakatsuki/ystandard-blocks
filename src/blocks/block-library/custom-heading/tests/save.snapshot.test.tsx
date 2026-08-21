@@ -151,19 +151,6 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '009: スタイルクリア有効', () => {
-		const { asFragment } = render(
-			<Save
-				attributes={ {
-					content: 'スタイルクリアあり',
-					level: 2,
-					clearStyle: true,
-				} }
-			/>
-		);
-		expect( asFragment() ).toMatchSnapshot();
-	} );
-
 	it( '010: 複数属性の組み合わせ', () => {
 		const { asFragment } = render(
 			<Save
@@ -176,7 +163,6 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 							textAlign: 'center',
 						},
 					},
-					clearStyle: false,
 				} }
 			/>
 		);
@@ -694,6 +680,34 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 											top: '1rem',
 											bottom: '1rem',
 										},
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '038: 見出しグループを横並びにしてブロック間隔を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								group: {
+									layout: {
+										orientation: 'horizontal',
+									},
+									spacing: {
+										blockGap: 'var:preset|spacing|40',
 									},
 								},
 							},

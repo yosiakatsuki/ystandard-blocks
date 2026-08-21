@@ -8,6 +8,10 @@ describe( 'Custom Heading Block Supports', () => {
 		);
 	} );
 
+	it( 'スタイル削除設定を現行属性へ公開しない', () => {
+		expect( metadata.attributes ).not.toHaveProperty( 'clearStyle' );
+	} );
+
 	it( 'コア見出しと同じタイポグラフィ設定を有効にする', () => {
 		expect( metadata.supports.typography ).toEqual( {
 			fontSize: true,

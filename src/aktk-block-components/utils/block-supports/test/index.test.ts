@@ -56,4 +56,16 @@ describe( 'getInnerBlockSupportProps', () => {
 			'--wp--style--color--link': 'var(--wp--preset--color--ys-blue)',
 		} );
 	} );
+
+	it( 'ブロックの間隔をgapへ変換する', () => {
+		const props = getInnerBlockSupportProps( {
+			style: {
+				spacing: {
+					blockGap: 'var:preset|spacing|40',
+				},
+			},
+		} );
+
+		expect( props.style.gap ).toBe( 'var(--wp--preset--spacing--40)' );
+	} );
 } );

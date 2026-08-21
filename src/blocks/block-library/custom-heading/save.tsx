@@ -16,6 +16,7 @@ import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-su
 import type { Attributes } from './types';
 import {
 	getCustomHeadingElementStyle,
+	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
 } from './utils';
@@ -26,7 +27,7 @@ function Save( { attributes } ) {
 	const TagName = 'h' + level;
 
 	// メインテキストのクラスとスタイルを生成.
-	const mainTextClasses = getMainTextClasses( attributes );
+	const mainTextClasses = getMainTextClasses();
 	const mainTextStyles = getMainTextStyles( attributes );
 	const mainBlockSupportProps = getInnerBlockSupportProps( attributes );
 	const mainTextProps = {
@@ -54,7 +55,7 @@ function Save( { attributes } ) {
 	} );
 	const groupProps = {
 		className: classnames(
-			'ystdb-custom-heading-group',
+			getHeadingGroupClasses( attributes ),
 			groupBlockSupportProps.className
 		),
 		style: groupBlockSupportProps.style,

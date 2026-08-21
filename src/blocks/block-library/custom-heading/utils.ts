@@ -1,5 +1,3 @@
-import classnames from 'classnames';
-
 /**
  * Aktk dependencies.
  */
@@ -29,12 +27,23 @@ export type CustomHeadingElement = 'group' | 'sub';
  * @param attributes
  * @return
  */
-export function getMainTextClasses( attributes: Attributes ) {
-	const { clearStyle } = attributes;
+export function getMainTextClasses() {
+	return 'ystdb-custom-heading';
+}
 
-	return classnames( 'ystdb-custom-heading', {
-		'is-clear-style': clearStyle,
-	} );
+/**
+ * 見出しグループのクラスを生成.
+ *
+ * @param attributes ブロック属性.
+ * @return 見出しグループのクラス.
+ */
+export function getHeadingGroupClasses( attributes: Attributes ) {
+	const orientation = getCustomHeadingElementStyle( attributes, 'group' )
+		?.layout?.orientation;
+
+	return orientation === 'horizontal'
+		? 'ystdb-custom-heading-group is-horizontal'
+		: 'ystdb-custom-heading-group';
 }
 
 /**

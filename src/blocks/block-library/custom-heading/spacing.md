@@ -11,6 +11,7 @@
 
 -   WordPressコアの`spacing`サポートはメイン見出し専用とする。
 -   `hgroup`とサブテキストの余白は、`style.ystdb.customHeading`配下の独自設定とする。
+-   見出しとサブテキストの間隔は、`hgroup`の`spacing.blockGap`で管理する。
 -   単一設定とレスポンシブ設定は別のUI、別の保存領域で同時に保持する。
 -   対象デバイスのレスポンシブ値がある場合だけ、単一値より優先する。
 -   余白の項目名は「マージン」「パディング」とする。
@@ -40,6 +41,7 @@
 
 -   コアBlock Supportsのマージンとパディングは`.ystdb-custom-heading`へ適用する。
 -   `hgroup`のマージンとパディングは`.ystdb-custom-heading-group`へ適用する。
+-   見出しとサブテキストのブロック間隔は`.ystdb-custom-heading-group`の`gap`へ適用する。
 -   サブテキストのマージンとパディングは`.ystdb-custom-heading-sub`へ適用する。
 -   `.ystdb-custom-heading`を`hgroup`へ付けない。
 
@@ -53,7 +55,7 @@
 -   `hgroup`用の独自項目: 見出しグループ
 -   サブテキスト用の独自項目: サブテキスト
 
-独自項目は`ToolsPanelItem`として追加する。設定値がある項目は表示し、未使用の項目は`+`メニューから追加できるようにする。
+独自項目は`ToolsPanelItem`として追加する。設定値がある項目は表示し、未使用の項目は`+`メニューから追加できるようにする。見出しグループの「ブロックの間隔」は、見出しとサブテキストの関係を直接調整する主要項目として初期表示する。
 
 レスポンシブ設定は、単一設定とは別のyStandardパネルへ配置する。各パネル内のコントロールには「マージン」または「パディング」のラベルを常に表示する。
 
@@ -86,6 +88,7 @@ style.spacing.padding
 type CustomHeadingStyle = {
 	group?: {
 		spacing?: {
+			blockGap?: string;
 			margin?: SpacingValue;
 			padding?: SpacingValue;
 		};
@@ -118,6 +121,8 @@ type CustomHeadingStyle = {
 
 `useBlockProps`と`useBlockProps.save()`は、ブロックの識別に必要なルートPropsを引き続き生成する。サブテキストがある場合はルートPropsを`hgroup`へ付け、メイン見出し用のspacing出力とは分ける。
 
+`spacing.blockGap`は共通Block Supportsアダプターで`gap`へ変換する。プリセット値は他の余白と同じ`var:preset|spacing|...`形式で保存し、出力時にCSS変数へ変換する。未設定時はCSSの既定値`0.5em`を使用する。
+
 ## 値の優先順位とリセット
 
 ```ts
@@ -142,6 +147,7 @@ const effectiveValue = responsiveValue?.[ device ] ?? singleValue;
 
 -   サブテキストの有無にかかわらず、コアの余白が見出しタグだけへ適用される。
 -   `hgroup`とサブテキストの余白を別々に設定、リセットできる。
+-   見出しグループのブロック間隔を設定、リセットでき、未設定時は`0.5em`になる。
 -   レスポンシブ余白に「マージン」「パディング」のラベルが表示される。
 -   `hgroup`のマージンで左右と横方向を選択できない。
 -   上下左右と縦横の許可状態を呼び出し側から指定できる。

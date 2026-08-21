@@ -211,7 +211,6 @@ export const transforms = {
 						},
 						{ text: attributes.customTextColor }
 					),
-					clearStyle: attributes.clearStyle,
 				} );
 			},
 		},

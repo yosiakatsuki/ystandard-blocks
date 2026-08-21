@@ -19,6 +19,7 @@ import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
 import {
 	getCustomHeadingElementStyle,
+	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
 } from './utils';
@@ -32,7 +33,7 @@ function Edit( props ) {
 	const tagName = 'h' + level;
 
 	// メインテキストのクラスとスタイルを生成.
-	const mainTextClasses = getMainTextClasses( attributes );
+	const mainTextClasses = getMainTextClasses();
 	const mainTextStyles = getMainTextStyles( attributes );
 	const [ fluidTypographySettings, layoutSettings ] = useSettings(
 		'typography.fluid',
@@ -69,7 +70,7 @@ function Edit( props ) {
 	} );
 	const groupProps = {
 		className: classnames(
-			'ystdb-custom-heading-group',
+			getHeadingGroupClasses( attributes ),
 			groupBlockSupportProps.className
 		),
 		style: groupBlockSupportProps.style,

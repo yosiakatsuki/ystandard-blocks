@@ -1,6 +1,19 @@
 import { deprecatedV3253 } from '../deprecated/v3_25_3';
 
 describe( 'Custom Heading Block deprecated', () => {
+	it( '廃止したスタイル削除設定を現行属性へ移行しない', () => {
+		const attributes = deprecatedV3253.migrate( {
+			content: '見出し',
+			level: 2,
+			clearStyle: true,
+		} );
+
+		expect( attributes ).toEqual( {
+			content: '見出し',
+			level: 2,
+		} );
+	} );
+
 	it( '任意フォントサイズをコアのstyle属性へ移行する', () => {
 		const attributes = deprecatedV3253.migrate( {
 			content: '見出し',

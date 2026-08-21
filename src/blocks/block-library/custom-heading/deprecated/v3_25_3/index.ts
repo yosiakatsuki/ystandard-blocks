@@ -45,6 +45,8 @@ export const deprecatedV3253 = {
 			hasSubText,
 			...migratedAttributes
 		} = legacyAttributes;
+		// 廃止した設定を現行属性へ持ち込まず、旧HTMLの認識だけに使用する.
+		delete migratedAttributes.clearStyle;
 		const hasPresetFontSize = !! legacyAttributes.fontSize;
 		const hasResponsiveSize = hasResponsiveFontSize( legacyAttributes );
 		const style = stripUndefined( {
