@@ -24,7 +24,7 @@
 		"subText": {
 			"type": "rich-text",
 			"source": "rich-text",
-			"selector": ".ystdb-custom-heading__sub",
+			"selector": ".ystdb-custom-heading-sub",
 			"role": "content"
 		},
 		"textColor": {
@@ -55,6 +55,7 @@
 		"color": {
 			"gradients": true,
 			"link": true,
+			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"background": true,
 				"text": true
@@ -72,6 +73,7 @@
 			"__experimentalTextDecoration": true,
 			"__experimentalWritingMode": true,
 			"fitText": true,
+			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
 			}
@@ -79,6 +81,7 @@
 		"spacing": {
 			"margin": true,
 			"padding": true,
+			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"margin": false,
 				"padding": false

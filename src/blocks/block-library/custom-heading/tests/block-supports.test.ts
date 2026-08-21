@@ -3,6 +3,9 @@ import metadata from '../block.json';
 describe( 'Custom Heading Block Supports', () => {
 	it( 'サブテキストをコンテンツとして扱う', () => {
 		expect( metadata.attributes.subText.role ).toBe( 'content' );
+		expect( metadata.attributes.subText.selector ).toBe(
+			'.ystdb-custom-heading-sub'
+		);
 	} );
 
 	it( 'コア見出しと同じタイポグラフィ設定を有効にする', () => {
@@ -18,6 +21,7 @@ describe( 'Custom Heading Block Supports', () => {
 			__experimentalTextDecoration: true,
 			__experimentalWritingMode: true,
 			fitText: true,
+			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
 				fontSize: true,
 			},
@@ -28,6 +32,7 @@ describe( 'Custom Heading Block Supports', () => {
 		expect( metadata.supports.color ).toEqual( {
 			gradients: true,
 			link: true,
+			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
 				background: true,
 				text: true,
@@ -39,6 +44,7 @@ describe( 'Custom Heading Block Supports', () => {
 		expect( metadata.supports.spacing ).toEqual( {
 			margin: true,
 			padding: true,
+			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
 				margin: false,
 				padding: false,

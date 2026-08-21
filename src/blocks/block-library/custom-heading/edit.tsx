@@ -1,9 +1,21 @@
+import classnames from 'classnames';
+
 /**
  * WordPress dependencies.
  */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import {
+	RichText,
+	// @ts-expect-error 型定義が同梱されていないWordPress公開API.
+	useSettings,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { Platform } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk dependencies.
+ */
+import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-supports';
 
 /**
  * Block dependencies.
@@ -24,12 +36,31 @@ function Edit( props ) {
 	// メインテキストのクラスとスタイルを生成.
 	const mainTextClasses = getMainTextClasses( attributes );
 	const mainTextStyles = getMainTextStyles( attributes );
+	const [ fluidTypographySettings, layoutSettings ] = useSettings(
+		'typography.fluid',
+		'layout'
+	);
+	const mainBlockSupportProps = getInnerBlockSupportProps( attributes, {
+		typography: {
+			fluid: fluidTypographySettings,
+		},
+		layout: layoutSettings,
+	} );
+	const mainTextProps = {
+		className: classnames(
+			mainTextClasses,
+			mainBlockSupportProps.className
+		),
+		style: {
+			...mainBlockSupportProps.style,
+			...mainTextStyles,
+		},
+	};
 
 	// ブロックProps.
-	const blockProps = useBlockProps( {
-		className: mainTextClasses,
-		style: mainTextStyles,
-	} );
+	const blockProps = useBlockProps(
+		hasSubText ? { className: 'ystdb-custom-heading-group' } : mainTextProps
+	);
 
 	// メインテキストの変更.
 	const onMainTextContentChange = ( newContent: string ) => {
@@ -44,7 +75,7 @@ function Edit( props ) {
 			identifier="content"
 			// @ts-ignore
 			tagName={ tagName }
-			className="ystdb-custom-heading__main"
+			{ ...mainTextProps }
 			value={ content || '' }
 			onChange={ onMainTextContentChange }
 			onMerge={ mergeBlocks }
@@ -69,7 +100,7 @@ function Edit( props ) {
 					<RichText
 						identifier="subText"
 						tagName="p"
-						className="ystdb-custom-heading__sub"
+						className="ystdb-custom-heading-sub"
 						value={ subText || '' }
 						onChange={ onSubTextContentChange }
 						placeholder={ __(

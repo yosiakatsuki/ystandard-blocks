@@ -3,7 +3,7 @@ import classnames from 'classnames';
 /**
  * Aktk dependencies.
  */
-import type { ResponsiveSpacing } from '@aktk/block-components/components/custom-spacing-select';
+import type { ResponsiveSpacing } from '@aktk/block-components/components/responsive-spacing-control';
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
 import { stripUndefined } from '@aktk/block-components/utils/object';
 import {
@@ -80,17 +80,17 @@ export function updateMainResponsiveFontSize(
 }
 
 /**
- * 見出し全体のレスポンシブ余白を取得.
+ * メインテキストのレスポンシブ余白を取得.
  *
  * @param attributes ブロック属性.
  * @return レスポンシブ余白.
  */
-export function getGroupResponsiveSpacing( attributes: Attributes ) {
-	return attributes.style?.ystdb?.customHeading?.responsive?.group?.spacing;
+export function getMainResponsiveSpacing( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.spacing;
 }
 
 /**
- * 見出し全体のレスポンシブ余白を更新.
+ * メインテキストのレスポンシブ余白を更新.
  *
  * @param style           コアのstyle属性.
  * @param spacing         レスポンシブ余白.
@@ -98,7 +98,7 @@ export function getGroupResponsiveSpacing( attributes: Attributes ) {
  * @param spacing.padding 内側余白.
  * @return 更新後のstyle属性.
  */
-export function updateGroupResponsiveSpacing(
+export function updateMainResponsiveSpacing(
 	style: Attributes[ 'style' ],
 	spacing?: {
 		margin?: ResponsiveSpacing;
@@ -113,8 +113,8 @@ export function updateGroupResponsiveSpacing(
 				...style?.ystdb?.customHeading,
 				responsive: {
 					...style?.ystdb?.customHeading?.responsive,
-					group: {
-						...style?.ystdb?.customHeading?.responsive?.group,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
 						spacing,
 					},
 				},
@@ -130,7 +130,7 @@ export function updateGroupResponsiveSpacing(
  */
 export function getMainTextStyles( attributes: Attributes ) {
 	const { margin: responsiveMargin, padding: responsivePadding } =
-		getGroupResponsiveSpacing( attributes ) ?? {};
+		getMainResponsiveSpacing( attributes ) ?? {};
 	// 「テキストを合わせる」は他の文字サイズ指定より優先するコア仕様に揃える.
 	const responsiveFontSize = attributes.fitText
 		? undefined
@@ -149,7 +149,7 @@ export function getMainTextStyles( attributes: Attributes ) {
 			const _padding = responsivePadding?.[ type ];
 
 			positions.forEach( ( position ) => {
-				// margin.
+				// 未設定の辺は出力せず、単一設定へフォールバックさせる.
 				const marginValue = _margin?.[ position ];
 				if ( marginValue ) {
 					acc[
@@ -160,7 +160,7 @@ export function getMainTextStyles( attributes: Attributes ) {
 					] = presetTokenToCssVar( marginValue ) || marginValue;
 				}
 
-				// padding.
+				// 未設定の辺は出力せず、単一設定へフォールバックさせる.
 				const paddingValue = _padding?.[ position ];
 				if ( paddingValue ) {
 					acc[

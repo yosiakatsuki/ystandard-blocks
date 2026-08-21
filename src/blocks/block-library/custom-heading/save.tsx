@@ -1,7 +1,14 @@
+import classnames from 'classnames';
+
 /**
  * WordPress dependencies.
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+
+/**
+ * Aktk dependencies.
+ */
+import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-supports';
 
 /**
  * Block dependencies.
@@ -17,24 +24,34 @@ function Save( { attributes } ) {
 	// メインテキストのクラスとスタイルを生成.
 	const mainTextClasses = getMainTextClasses( attributes );
 	const mainTextStyles = getMainTextStyles( attributes );
+	const mainBlockSupportProps = getInnerBlockSupportProps( attributes );
+	const mainTextProps = {
+		className: classnames(
+			mainTextClasses,
+			mainBlockSupportProps.className
+		),
+		style: {
+			...mainBlockSupportProps.style,
+			...mainTextStyles,
+		},
+	};
 
 	// ブロックのpropsを生成.
-	const blockProps = useBlockProps.save( {
-		className: mainTextClasses,
-		style: mainTextStyles,
-	} );
+	const blockProps = useBlockProps.save(
+		hasSubText ? { className: 'ystdb-custom-heading-group' } : mainTextProps
+	);
 
 	return hasSubText ? (
 		<hgroup { ...blockProps }>
 			<RichText.Content
 				// @ts-ignore
 				tagName={ TagName }
-				className="ystdb-custom-heading__main"
+				{ ...mainTextProps }
 				value={ content }
 			/>
 			<RichText.Content
 				tagName="p"
-				className="ystdb-custom-heading__sub"
+				className="ystdb-custom-heading-sub"
 				value={ subText || '' }
 			/>
 		</hgroup>

@@ -5,7 +5,7 @@ import type { ResponsiveFontSize } from '@aktk/block-components/components/respo
 import type {
 	ResponsiveSpacing,
 	Spacing,
-} from '@aktk/block-components/components/custom-spacing-select';
+} from '@aktk/block-components/components/responsive-spacing-control';
 
 export interface Attributes {
 	content: string;
@@ -13,6 +13,8 @@ export interface Attributes {
 	hasSubText?: boolean;
 	subText?: string;
 	textColor?: string;
+	backgroundColor?: string;
+	gradient?: string;
 	fontSize?: string;
 	fontFamily?: string;
 	fitText?: boolean;
@@ -21,6 +23,13 @@ export interface Attributes {
 			background?: string;
 			gradient?: string;
 			text?: string;
+		};
+		elements?: {
+			link?: {
+				color?: {
+					text?: string;
+				};
+			};
 		};
 		spacing?: {
 			margin?: Spacing;
@@ -41,15 +50,13 @@ export interface Attributes {
 		ystdb?: {
 			customHeading?: {
 				responsive?: {
-					group?: {
-						spacing?: {
-							margin?: ResponsiveSpacing;
-							padding?: ResponsiveSpacing;
-						};
-					};
 					main?: {
 						typography?: {
 							fontSize?: ResponsiveFontSize;
+						};
+						spacing?: {
+							margin?: ResponsiveSpacing;
+							padding?: ResponsiveSpacing;
 						};
 					};
 				};

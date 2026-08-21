@@ -33,7 +33,7 @@ exports[`Custom Heading Block <Save /> snapshot 003: レベル3の見出し 1`] 
 exports[`Custom Heading Block <Save /> snapshot 004: プリセットフォントサイズの反映はBlock Supportsに任せる 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-large-font-size"
   >
     フォントサイズ指定
   </h2>
@@ -44,6 +44,7 @@ exports[`Custom Heading Block <Save /> snapshot 005: 任意フォントサイズ
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-size: 2em;"
   >
     カスタムフォントサイズ指定
   </h2>
@@ -64,7 +65,7 @@ exports[`Custom Heading Block <Save /> snapshot 006: レスポンシブフォン
 exports[`Custom Heading Block <Save /> snapshot 007: テキスト中央揃え 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-text-align-center"
   >
     テキストセンター揃え
   </h2>
@@ -74,7 +75,7 @@ exports[`Custom Heading Block <Save /> snapshot 007: テキスト中央揃え 1`
 exports[`Custom Heading Block <Save /> snapshot 008: テキスト右揃え 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-text-align-right"
   >
     テキスト右揃え
   </h2>
@@ -94,7 +95,7 @@ exports[`Custom Heading Block <Save /> snapshot 009: スタイルクリア有効
 exports[`Custom Heading Block <Save /> snapshot 010: 複数属性の組み合わせ 1`] = `
 <DocumentFragment>
   <h3
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-text-align-center has-large-font-size"
   >
     全属性指定
   </h3>
@@ -104,8 +105,8 @@ exports[`Custom Heading Block <Save /> snapshot 010: 複数属性の組み合わ
 exports[`Custom Heading Block <Save /> snapshot 011: カスタムフォントサイズとレスポンシブフォントサイズの組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
-    style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
+    class="ystdb-custom-heading has-text-align-center"
+    style="font-size: 2em; --ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
     カスタム＆レスポンシブ
   </h2>
@@ -115,7 +116,8 @@ exports[`Custom Heading Block <Save /> snapshot 011: カスタムフォントサ
 exports[`Custom Heading Block <Save /> snapshot 012: プリセットと任意フォントサイズの組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-large-font-size"
+    style="font-size: 3em;"
   >
     fontSize優先
   </h2>
@@ -125,7 +127,7 @@ exports[`Custom Heading Block <Save /> snapshot 012: プリセットと任意フ
 exports[`Custom Heading Block <Save /> snapshot 013: プリセットとレスポンシブフォントサイズの組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-large-font-size"
     style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
     fontSize優先
@@ -136,8 +138,8 @@ exports[`Custom Heading Block <Save /> snapshot 013: プリセットとレスポ
 exports[`Custom Heading Block <Save /> snapshot 014: プリセット、任意値、レスポンシブ値の組み合わせ 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
-    style="--ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
+    class="ystdb-custom-heading has-large-font-size"
+    style="font-size: 3em; --ystdb--desktop--heading--font-size: 2rem; --ystdb--tablet--heading--font-size: 1.5rem; --ystdb--mobile--heading--font-size: 1.2rem;"
   >
     fontSize優先
   </h2>
@@ -213,7 +215,7 @@ exports[`Custom Heading Block <Save /> snapshot 020: レスポンシブフォン
 exports[`Custom Heading Block <Save /> snapshot 021: 文字色追加(クラス) 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-ys-blue-color has-text-color"
   >
     文字色class指定
   </h2>
@@ -223,7 +225,8 @@ exports[`Custom Heading Block <Save /> snapshot 021: 文字色追加(クラス) 
 exports[`Custom Heading Block <Save /> snapshot 022: 文字色追加(カスタム) 1`] = `
 <DocumentFragment>
   <h2
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading has-text-color"
+    style="color: rgb(255, 0, 0);"
   >
     文字色カスタム指定
   </h2>
@@ -234,6 +237,7 @@ exports[`Custom Heading Block <Save /> snapshot 023: 文字太さ(400) 1`] = `
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-weight: 400;"
   >
     文字太さ指定(400)
   </h2>
@@ -244,6 +248,7 @@ exports[`Custom Heading Block <Save /> snapshot 024: 文字太さ(700) 1`] = `
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-weight: 700;"
   >
     文字太さ指定(700)
   </h2>
@@ -254,6 +259,7 @@ exports[`Custom Heading Block <Save /> snapshot 025: 文字スタイル(italic) 
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-style: italic;"
   >
     文字スタイル指定(italic)
   </h2>
@@ -264,6 +270,7 @@ exports[`Custom Heading Block <Save /> snapshot 026: 文字スタイル(normal) 
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-style: normal;"
   >
     文字スタイル指定(normal)
   </h2>
@@ -274,6 +281,7 @@ exports[`Custom Heading Block <Save /> snapshot 027: 文字間隔指定 1`] = `
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="letter-spacing: 0.1em;"
   >
     文字間隔指定
   </h2>
@@ -284,6 +292,7 @@ exports[`Custom Heading Block <Save /> snapshot 028: 行の高さ指定 1`] = `
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="line-height: 1.8;"
   >
     行の高さ指定
   </h2>
@@ -294,6 +303,7 @@ exports[`Custom Heading Block <Save /> snapshot 029: 行の高さ指定(0指定)
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="line-height: 0;"
   >
     行の高さ指定(0指定)
   </h2>
@@ -304,6 +314,7 @@ exports[`Custom Heading Block <Save /> snapshot 030: フォントファミリー
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
+    style="font-family: Arial, sans-serif;"
   >
     フォントファミリー指定
   </h2>
@@ -314,7 +325,7 @@ exports[`Custom Heading Block <Save /> snapshot 031: 外側余白と内側余白
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
-    style="--ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
+    style="margin-top: 1rem; margin-bottom: 2rem; padding-left: var(--wp--preset--spacing--40); padding-right: 3rem; --ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
   >
     余白指定
   </h2>
@@ -324,15 +335,15 @@ exports[`Custom Heading Block <Save /> snapshot 031: 外側余白と内側余白
 exports[`Custom Heading Block <Save /> snapshot 032: サブテキストあり 1`] = `
 <DocumentFragment>
   <hgroup
-    class="ystdb-custom-heading"
+    class="ystdb-custom-heading-group"
   >
     <h2
-      class="ystdb-custom-heading__main"
+      class="ystdb-custom-heading"
     >
       メインテキスト
     </h2>
     <p
-      class="ystdb-custom-heading__sub"
+      class="ystdb-custom-heading-sub"
     >
       サブテキスト
     </p>
@@ -347,5 +358,36 @@ exports[`Custom Heading Block <Save /> snapshot 033: サブテキスト設定を
   >
     メインテキスト
   </h3>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 034: サブテキストありでもBlock Supportsを見出しへ適用する 1`] = `
+<DocumentFragment>
+  <hgroup
+    class="ystdb-custom-heading-group"
+  >
+    <h2
+      class="ystdb-custom-heading has-large-font-size has-ys-blue-color has-text-color"
+      style="margin-top: 1rem;"
+    >
+      メインテキスト
+    </h2>
+    <p
+      class="ystdb-custom-heading-sub"
+    >
+      サブテキスト
+    </p>
+  </hgroup>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 035: リンク色を見出しへ適用する 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading has-link-color"
+    style="--wp--style--color--link: var(--wp--preset--color--ys-blue);"
+  >
+    リンクを含む見出し
+  </h2>
 </DocumentFragment>
 `;

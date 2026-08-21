@@ -1,22 +1,17 @@
-.ystdb-custom-heading {
+.ystdb-custom-heading-group {
 
-	&:where(hgroup) {
-
-		> .ystdb-custom-heading__main {
-			margin: 0;
-			padding: 0;
-			font: inherit;
-			letter-spacing: inherit;
-			text-decoration: inherit;
-			text-transform: inherit;
-			writing-mode: inherit;
-		}
-
-		> .ystdb-custom-heading__sub {
-			margin: 0.5em 0 0;
-			padding: 0;
-		}
+	> :where(.ystdb-custom-heading) {
+		margin: 0;
+		padding: 0;
 	}
+
+	> .ystdb-custom-heading-sub {
+		margin: 0.5em 0 0;
+		padding: 0;
+	}
+}
+
+.ystdb-custom-heading {
 
 	&:where(.has-text-align-left) {
 		text-align: left;

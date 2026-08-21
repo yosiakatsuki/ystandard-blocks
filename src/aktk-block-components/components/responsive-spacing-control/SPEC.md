@@ -8,9 +8,11 @@
 
 既存の`custom-spacing-select`は変更せず、新しいコンポーネントを独立して作る。利用箇所を順次移行し、既存コンポーネントが未使用になった時点で安全に廃止できる構成にする。
 
-## 現状
+## 実装状況
 
-カスタム見出しのレスポンシブ余白は、`custom-spacing-select/responsive-spacing-select.tsx`にある既存の`ResponsiveSpacingSelectControl`を利用している。
+`ResponsiveSpacingControl`は本ディレクトリに実装済みで、カスタム見出しのメインテキスト用レスポンシブ余白から利用を開始している。
+
+`custom-spacing-select/responsive-spacing-select.tsx`にある既存の`ResponsiveSpacingSelectControl`は、既存ブロックとの互換性のため変更せず残している。
 
 このコントロールには次の課題がある。
 
@@ -27,8 +29,6 @@ src/aktk-block-components/components/responsive-spacing-control/
   SPEC.md
   index.tsx
   types.ts
-  device-spacing-control.tsx
-  style.scss
   utils.ts
   tests/
 ```
@@ -55,6 +55,7 @@ type ResponsiveSpacingValue = {
 };
 
 type ResponsiveSpacingControlProps = {
+	id?: string;
 	label: string;
 	value?: ResponsiveSpacingValue;
 	onChange: ( value?: ResponsiveSpacingValue ) => void;
@@ -64,6 +65,7 @@ type ResponsiveSpacingControlProps = {
 };
 ```
 
+-   `id`はコントロールを識別する必要がある呼び出し側から任意で指定できる。
 -   `label`は必須とし、画面上に表示する。
 -   `allowedSides`は表示、操作を許可する方向だけを渡す。
 -   `allowedSides`は必須とし、呼び出し側が適用対象の方針を明示する。

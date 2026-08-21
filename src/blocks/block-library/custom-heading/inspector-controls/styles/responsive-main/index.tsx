@@ -7,6 +7,10 @@ import { __ } from '@wordpress/i18n';
  * Aktk dependencies.
  */
 import { ResponsiveFontSizeControl } from '@aktk/block-components/components/responsive-font-size-control';
+import {
+	hasResponsiveSpacingValue,
+	ResponsiveSpacingControl,
+} from '@aktk/block-components/components/responsive-spacing-control';
 import { PanelIcon } from '@aktk/block-components/components/ystandard-icon';
 import {
 	ToolsPanel,
@@ -19,7 +23,9 @@ import {
 import type { Attributes } from '../../../types';
 import {
 	getMainResponsiveFontSize,
+	getMainResponsiveSpacing,
 	updateMainResponsiveFontSize,
+	updateMainResponsiveSpacing,
 } from '../../../utils';
 
 // @ts-ignore.
@@ -28,6 +34,8 @@ export function ResponsiveMainPanel( props ) {
 	const responsiveFontSize = getMainResponsiveFontSize(
 		attributes as Attributes
 	);
+	const { margin: responsiveMargin, padding: responsivePadding } =
+		getMainResponsiveSpacing( attributes as Attributes ) ?? {};
 	const hasResponsiveFontSize = () =>
 		Object.values( responsiveFontSize ?? {} ).some(
 			( fontSize ) => undefined !== fontSize && '' !== fontSize
@@ -37,11 +45,38 @@ export function ResponsiveMainPanel( props ) {
 			style: updateMainResponsiveFontSize( attributes.style, undefined ),
 		} );
 	};
+	const hasMargin = () => hasResponsiveSpacingValue( responsiveMargin );
+	const hasPadding = () => hasResponsiveSpacingValue( responsivePadding );
+	const resetMargin = () => {
+		setAttributes( {
+			style: updateMainResponsiveSpacing( attributes.style, {
+				margin: undefined,
+				padding: responsivePadding,
+			} ),
+		} );
+	};
+	const resetPadding = () => {
+		setAttributes( {
+			style: updateMainResponsiveSpacing( attributes.style, {
+				margin: responsiveMargin,
+				padding: undefined,
+			} ),
+		} );
+	};
+	const resetAll = () => {
+		const style = updateMainResponsiveFontSize(
+			attributes.style,
+			undefined
+		);
+		setAttributes( {
+			style: updateMainResponsiveSpacing( style, undefined ),
+		} );
+	};
 
 	return (
 		<ToolsPanel
 			label={ __( 'レスポンシブ（メイン）', 'ystandard-blocks' ) }
-			resetAll={ resetResponsiveFontSize }
+			resetAll={ resetAll }
 			icon={ <PanelIcon /> }
 		>
 			<ToolsPanelItem
@@ -61,6 +96,53 @@ export function ResponsiveMainPanel( props ) {
 							),
 						} );
 					} }
+				/>
+			</ToolsPanelItem>
+			<ToolsPanelItem
+				hasValue={ hasMargin }
+				label={ __( 'マージン', 'ystandard-blocks' ) }
+				onDeselect={ resetMargin }
+			>
+				<ResponsiveSpacingControl
+					id="custom-heading-responsive-main-margin"
+					label={ __( 'マージン', 'ystandard-blocks' ) }
+					value={ responsiveMargin }
+					onChange={ ( margin ) => {
+						setAttributes( {
+							style: updateMainResponsiveSpacing(
+								attributes.style,
+								{
+									margin,
+									padding: responsivePadding,
+								}
+							),
+						} );
+					} }
+					allowedSides={ [ 'top', 'bottom' ] }
+					minimumCustomValue={ -9999 }
+				/>
+			</ToolsPanelItem>
+			<ToolsPanelItem
+				hasValue={ hasPadding }
+				label={ __( 'パディング', 'ystandard-blocks' ) }
+				onDeselect={ resetPadding }
+			>
+				<ResponsiveSpacingControl
+					id="custom-heading-responsive-main-padding"
+					label={ __( 'パディング', 'ystandard-blocks' ) }
+					value={ responsivePadding }
+					onChange={ ( padding ) => {
+						setAttributes( {
+							style: updateMainResponsiveSpacing(
+								attributes.style,
+								{
+									margin: responsiveMargin,
+									padding,
+								}
+							),
+						} );
+					} }
+					allowedSides={ [ 'top', 'right', 'bottom', 'left' ] }
 				/>
 			</ToolsPanelItem>
 		</ToolsPanel>

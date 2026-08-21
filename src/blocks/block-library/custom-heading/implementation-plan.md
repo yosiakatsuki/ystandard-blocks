@@ -42,7 +42,7 @@
 ### 現在の保存構造
 
 -   サブテキストを使わない場合、保存HTMLは`h1`から`h6`のいずれか1要素で構成される。
--   サブテキストを使う場合、`hgroup`の中にメイン見出しとサブテキストを保存する。現行実装では`hgroup`にも`.ystdb-custom-heading`が付くため、次の保存形式でクラスの責務を分離する。
+-   サブテキストを使う場合、`hgroup`の中にメイン見出しとサブテキストを保存する。`.ystdb-custom-heading`は内側の見出しだけへ付け、`hgroup`には`.ystdb-custom-heading-group`を付ける。
 -   メインテキストは`content`に保存される。
 -   サブテキストは`subText`に保存し、`hasSubText`のON/OFFでは内容を削除しない。
 -   サブテキスト固有のスタイル設定は未実装である。
@@ -60,7 +60,7 @@
 
 このままでは、WordPress標準のスタイルコピーが認識する`style`属性へ独自設定が集約されず、コピー対象から外れる値が残る。
 
-現行実装では、メインテキストの色とタイポグラフィ、単一余白をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換している。ただし、サブテキスト使用時はBlock Supportsの出力先が`hgroup`になっているため、次の変更で見出しタグへ限定する。レスポンシブ余白は単一余白から分離した独自パネルに残し、`clearStyle`は後続の段階移行対象とする。
+現行実装では、メインテキストの色とタイポグラフィ、単一余白をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換している。Block Supportsの自動シリアライズを停止し、共通アダプターで生成したクラスとスタイルを見出しタグだけへ出力する。レスポンシブ余白は単一余白から分離した独自パネルで新しい`ResponsiveSpacingControl`を利用し、`clearStyle`は後続の段階移行対象とする。
 
 ## 目標とする設定の責務
 
@@ -184,7 +184,7 @@ responsiveValue[ device ] ?? singleValue;
 
 `hgroup`とサブテキストの余白、枠線、角丸、背景色は、メインテキスト用Block Supportsとは別の独自設定として追加する。適用対象を設定名と保存先で明示し、Block Supportsの出力が`hgroup`へ漏れないようにする。
 
-レスポンシブ余白には[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)で定めた新しい共通コントロールを使う。ブロックのルート要素である`hgroup`のマージンは、上下だけを許可する。
+レスポンシブ余白には[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)で定めた新しい共通コントロールを使う。現在のメイン見出し用マージンはサブテキストなしでルート要素になるため上下だけを許可する。将来追加する`hgroup`用マージンも上下だけを許可する。
 
 ### リセット
 
@@ -200,7 +200,7 @@ responsiveValue[ device ] ?? singleValue;
 既存投稿との互換性と不要なDOM変更を避けるため、現在の見出し要素1つの構造を維持する。
 
 ```html
-<h2 class="wp-block-ystdb-custom-heading ystdb-custom-heading">見出し</h2>
+<h2 class="ystdb-custom-heading">見出し</h2>
 ```
 
 ### サブテキストあり
@@ -208,13 +208,13 @@ responsiveValue[ device ] ?? singleValue;
 サブテキストを使う場合だけ`hgroup`で囲む。
 
 ```html
-<hgroup class="wp-block-ystdb-custom-heading ystdb-custom-heading-group">
+<hgroup class="ystdb-custom-heading-group">
 	<h2 class="ystdb-custom-heading">見出し</h2>
 	<p class="ystdb-custom-heading-sub">サブテキスト</p>
 </hgroup>
 ```
 
-`wp-block-ystdb-custom-heading`はブロックの識別とエディター選択に必要なルートクラスであり、見出し専用の見た目を表すクラスではない。`.ystdb-custom-heading`は常に見出しタグだけへ付ける。
+このブロックは`supports.className: false`を維持するため、保存HTMLへ`wp-block-ystdb-custom-heading`を追加しない。`.ystdb-custom-heading`は常に見出しタグだけへ付ける。
 
 サブテキストなしでは、ブロックのルート要素とメイン見出しが同じ要素になる。サブテキストありでは、ルート用Block Propsを`hgroup`へ、メインテキスト用のクラスとスタイルを内側の見出しタグへ分ける。
 
@@ -236,6 +236,8 @@ responsiveValue[ device ] ?? singleValue;
 実験的APIへの依存は1つのアダプターへ隔離し、`edit`と`save`で同じ結果を使用する。WordPressのバージョン差でAPIが変わった場合も、ブロック本体ではなくアダプターだけを修正できる構成にする。
 
 プリセット、任意値、fluidフォントサイズ、リンク色、`fitText`は取得関数ごとに出力差があるため、実装時に個別テストを追加する。取得関数だけでは見出しタグへ正しく出力できない項目は、その項目だけ共通スタイル出力を補完するか、対応を保留する。Block Supports全体を`hgroup`へ戻すフォールバックは採用しない。
+
+`fitText`有効時にWordPressがルート要素へ追加するInteractivity API属性は、サブテキスト使用時だけPHPのrender filterで`hgroup`から内側の見出しへ移す。サブテキストなしでは見出しがルート要素なので、コアの出力をそのまま使う。
 
 ## マイグレーション方針
 
@@ -480,9 +482,9 @@ v3.25.2からv3.25.3の実装で生成したHTMLを固定fixtureとして保存�
 -   スタイルコピーで文章や見出しレベルが書き換わる。
 -   コア設定と独自設定のどちらが正本か判定できない状態になる。
 
-## 次の実装対象
+## 現在までの実装結果
 
-次の実装は、保存形式の保護、要素ごとの責務分離、新しいレスポンシブ余白コントロールまでを1単位とする。
+保存形式の保護、要素ごとの責務分離、新しいレスポンシブ余白コントロールまでを実装した。
 
 -   現行ブランチの属性、supports、保存HTMLを新しいdeprecatedへ固定する。
 -   `.ystdb-custom-heading`を見出しタグ専用に変更し、`hgroup`とサブテキストへ専用クラスを付ける。
@@ -491,4 +493,6 @@ v3.25.2からv3.25.3の実装で生成したHTMLを固定fixtureとして保存�
 -   カスタム見出しのレスポンシブ余白を新しいコントロールへ切り替える。
 -   「マージン」「パディング」のラベルと、対象ごとの`allowedSides`を指定する。
 
-この単位の完了後に、`hgroup`とサブテキスト固有の単一スタイル、枠線、角丸を対象ごとに追加する。
+## 次の実装対象
+
+次は、`hgroup`とサブテキスト固有の単一スタイルを対象ごとに追加する。余白から開始し、同じ対象分離とリセットを維持したまま枠線、角丸へ進む。

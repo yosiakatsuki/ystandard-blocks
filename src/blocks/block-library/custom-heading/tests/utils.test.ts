@@ -1,13 +1,13 @@
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
-import type { ResponsiveSpacing } from '@aktk/block-components/components/custom-spacing-select';
+import type { ResponsiveSpacing } from '@aktk/block-components/components/responsive-spacing-control';
 
 import type { Attributes } from '../types';
 import {
-	getGroupResponsiveSpacing,
+	getMainResponsiveSpacing,
 	getMainResponsiveFontSize,
 	getMainTextClasses,
 	getMainTextStyles,
-	updateGroupResponsiveSpacing,
+	updateMainResponsiveSpacing,
 	updateMainResponsiveFontSize,
 } from '../utils';
 
@@ -56,7 +56,7 @@ const getResponsiveSpacingAttributes = (
 		ystdb: {
 			customHeading: {
 				responsive: {
-					group: {
+					main: {
 						spacing: {
 							margin,
 							padding,
@@ -338,7 +338,7 @@ describe( 'Custom Heading Block utils', () => {
 				desktop: { top: '2rem' },
 			} );
 
-			expect( getGroupResponsiveSpacing( attributes ) ).toEqual( {
+			expect( getMainResponsiveSpacing( attributes ) ).toEqual( {
 				margin: {
 					desktop: { top: '2rem' },
 				},
@@ -346,7 +346,7 @@ describe( 'Custom Heading Block utils', () => {
 		} );
 
 		it( '既存styleを保ったまま値を更新する', () => {
-			const style = updateGroupResponsiveSpacing(
+			const style = updateMainResponsiveSpacing(
 				{
 					typography: { fontSize: '20px' },
 				},
@@ -362,7 +362,7 @@ describe( 'Custom Heading Block utils', () => {
 				ystdb: {
 					customHeading: {
 						responsive: {
-							group: {
+							main: {
 								spacing: {
 									padding: {
 										mobile: { bottom: '1rem' },
@@ -381,7 +381,7 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 
 			expect(
-				updateGroupResponsiveSpacing( attributes.style, undefined )
+				updateMainResponsiveSpacing( attributes.style, undefined )
 			).toBeUndefined();
 		} );
 	} );

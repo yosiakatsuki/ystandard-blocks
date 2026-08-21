@@ -22,7 +22,7 @@
 ### サブテキストなし
 
 ```html
-<h2 class="wp-block-ystdb-custom-heading ystdb-custom-heading">
+<h2 class="ystdb-custom-heading">
 	メインテキスト
 </h2>
 ```
@@ -32,7 +32,7 @@
 ### サブテキストあり
 
 ```html
-<hgroup class="wp-block-ystdb-custom-heading ystdb-custom-heading-group">
+<hgroup class="ystdb-custom-heading-group">
 	<h2 class="ystdb-custom-heading">メインテキスト</h2>
 	<p class="ystdb-custom-heading-sub">サブテキスト</p>
 </hgroup>
@@ -43,7 +43,7 @@
 -   サブテキストのマージンとパディングは`.ystdb-custom-heading-sub`へ適用する。
 -   `.ystdb-custom-heading`を`hgroup`へ付けない。
 
-`wp-block-ystdb-custom-heading`はブロックを識別するルートクラスであり、見出し専用スタイルの対象には使わない。
+このブロックは`supports.className: false`を維持するため、保存HTMLへ`wp-block-ystdb-custom-heading`を追加しない。
 
 ## UI
 
@@ -63,11 +63,11 @@
 
 | 対象                 | マージン                                            | パディング                                          |
 | -------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| メイン見出し         | `top`、`right`、`bottom`、`left`                    | `top`、`right`、`bottom`、`left`                    |
+| メイン見出し         | `top`、`bottom`                                     | `top`、`right`、`bottom`、`left`                    |
 | `hgroup`             | `top`、`bottom`                                     | `top`、`right`、`bottom`、`left`                    |
 | サブテキスト         | `top`、`right`、`bottom`、`left`                    | `top`、`right`、`bottom`、`left`                    |
 
-ブロックのルート要素になる`hgroup`では、左右マージンと横方向マージンを許可しない。左右位置はブロックの配置、幅、親レイアウトへ任せる。
+サブテキストなしでブロックのルート要素になるメイン見出しと、サブテキストありでルート要素になる`hgroup`では、左右マージンと横方向マージンを許可しない。左右位置はブロックの配置、幅、親レイアウトへ任せる。
 
 内部要素を縦横単位で設定するUIが適する場合は、各辺の代わりに`vertical`と`horizontal`を許可できる。各辺と縦横のどちらを表示するかは呼び出し側が明示し、コントロール自身では推測しない。
 

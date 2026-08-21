@@ -166,7 +166,7 @@ describe( 'Custom Heading Block deprecated', () => {
 				ystdb: {
 					customHeading: {
 						responsive: {
-							group: {
+							main: {
 								spacing: {
 									margin: {
 										desktop: { top: '2rem' },

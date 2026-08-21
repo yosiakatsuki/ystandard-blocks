@@ -70,17 +70,15 @@ export const deprecatedV3253 = {
 			ystdb: {
 				customHeading: {
 					responsive: {
-						group: {
-							spacing: {
-								margin: responsiveMargin,
-								padding: responsivePadding,
-							},
-						},
 						main: {
 							typography: {
 								fontSize: ! hasPresetFontSize
 									? responsiveFontSize
 									: undefined,
+							},
+							spacing: {
+								margin: responsiveMargin,
+								padding: responsivePadding,
 							},
 						},
 					},

@@ -537,7 +537,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 						ystdb: {
 							customHeading: {
 								responsive: {
-									group: {
+									main: {
 										spacing: {
 											margin: {
 												desktop: {
@@ -583,6 +583,50 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 					level: 3,
 					hasSubText: false,
 					subText: '保持されるサブテキスト',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '034: サブテキストありでもBlock Supportsを見出しへ適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					fontSize: 'large',
+					textColor: 'ys-blue',
+					style: {
+						spacing: {
+							margin: {
+								top: '1rem',
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '035: リンク色を見出しへ適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'リンクを含む見出し',
+					level: 2,
+					style: {
+						elements: {
+							link: {
+								color: {
+									text: 'var:preset|color|ys-blue',
+								},
+							},
+						},
+					},
 				} }
 			/>
 		);
