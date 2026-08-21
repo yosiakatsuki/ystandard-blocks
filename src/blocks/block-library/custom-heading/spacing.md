@@ -1,44 +1,25 @@
 # カスタム見出しの余白設定メモ
 
-> [!NOTE]
-> 最新の全体方針は`implementation-plan.md`を参照する。本書は余白設定の適用対象と保存先を補足する資料として扱う。
+更新日: 2026-08-21
 
-現行実装では、見出し全体の単一余白をコアの`style.spacing`へ保存する。公開済みの`margin`と`padding`はdeprecated migrationで移行し、レスポンシブ余白は`style.ystdb.customHeading.responsive.group.spacing`へ保存して単一設定と別のyStandardパネルへ表示する。
+> [!NOTE]
+> 最新の全体方針は`implementation-plan.md`、共通UIの仕様は[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)を参照する。本書はカスタム見出し内の適用対象と保存先を補足する。
 
 ## 方針
 
-余白だけを集めた「余白」パネルは作らない。フォントサイズ、色などと同じく、余白も適用対象ごとのスタイルパネルへ配置する。
+メイン見出し、`hgroup`、サブテキストの余白を別々に管理する。
 
--   見出し全体に関係する余白は「見出し全体」パネルへ置く。
--   メインテキストに関係する余白は「メインテキスト」パネルへ置く。
--   サブテキストに関係する余白は「サブテキスト」パネルへ置く。
--   区切り線に関係する余白は「区切り線」パネルへ置く。
+-   WordPressコアの`spacing`サポートはメイン見出し専用とする。
+-   `hgroup`とサブテキストの余白は、`style.ystdb.customHeading`配下の独自設定とする。
+-   単一設定とレスポンシブ設定は別のUI、別の保存領域で同時に保持する。
+-   対象デバイスのレスポンシブ値がある場合だけ、単一値より優先する。
+-   余白の項目名は「マージン」「パディング」とする。
 
-単一設定とレスポンシブ設定は同じ入力部品内で切り替えない。同じ適用対象でも別属性・別パネルで同時に保持し、該当画面幅のレスポンシブ値を優先する。
-
-## UI
-
-単一設定は次の要素別パネルへ配置する。
-
-| パネル         | 余白設定                               |
-| -------------- | -------------------------------------- |
-| 見出し全体     | ブロック外側の余白                     |
-| メインテキスト | 見出しテキスト周辺の外側余白と内側余白 |
-| サブテキスト   | サブテキスト周辺の外側余白と内側余白   |
-| 区切り線       | 区切り線の上下余白                     |
-
-レスポンシブ設定が必要な項目は、次の別パネルへ配置する。
-
--   「見出し全体（レスポンシブ）」
--   「メインテキスト（レスポンシブ）」
--   「サブテキスト（レスポンシブ）」
--   「区切り線（レスポンシブ）」
-
-余白設定は各パネルの`ToolsPanelItem`とし、値がある項目は表示、未使用の項目は`+`メニューから追加できるようにする。項目を外した場合はその余白だけを削除し、同じパネルにあるフォントサイズや色は変更しない。
+既存ブロックの「外側余白」「内側余白」などは一括変更しない。新規設定から適用し、既存設定は各ブロックの改修時に順次合わせる。
 
 ## HTML構造との対応
 
-サブテキストがない場合は`h1`〜`h6`単体を保存する。
+### サブテキストなし
 
 ```html
 <h2 class="wp-block-ystdb-custom-heading ystdb-custom-heading">
@@ -46,74 +27,124 @@
 </h2>
 ```
 
-この場合、見出し全体とメインテキストは同じHTML要素になる。見出し全体の外側余白と、メインテキストの内側余白のように責務を分け、同じCSSプロパティを二つのパネルから変更しない。
+ブロックのルート要素とメイン見出しが同じ要素になる。コアBlock Supportsのマージンとパディングをこの見出しタグへ適用する。
 
-サブテキストがある場合は`hgroup`を保存する。
+### サブテキストあり
 
 ```html
-<hgroup class="wp-block-ystdb-custom-heading ystdb-custom-heading">
-	<h2 class="ystdb-custom-heading__main">メインテキスト</h2>
-	<p class="ystdb-custom-heading__sub">サブテキスト</p>
+<hgroup class="wp-block-ystdb-custom-heading ystdb-custom-heading-group">
+	<h2 class="ystdb-custom-heading">メインテキスト</h2>
+	<p class="ystdb-custom-heading-sub">サブテキスト</p>
 </hgroup>
 ```
 
-この場合は次の要素へ適用する。
+-   コアBlock Supportsのマージンとパディングは`.ystdb-custom-heading`へ適用する。
+-   `hgroup`のマージンとパディングは`.ystdb-custom-heading-group`へ適用する。
+-   サブテキストのマージンとパディングは`.ystdb-custom-heading-sub`へ適用する。
+-   `.ystdb-custom-heading`を`hgroup`へ付けない。
 
--   見出し全体の余白は`hgroup`へ適用する。
--   メインテキストの余白は見出し要素へ適用する。
--   サブテキストの余白は`p`へ適用する。
--   区切り線の余白は疑似要素の配置へ反映する。
+`wp-block-ystdb-custom-heading`はブロックを識別するルートクラスであり、見出し専用スタイルの対象には使わない。
 
-区切り線はHTML要素として`hgroup`へ追加せず、メインテキストの疑似要素で表示する。
+## UI
+
+単一設定はWordPressコアのスタイルグループへ配置する。
+
+-   コアの余白設定: メイン見出し
+-   `hgroup`用の独自項目: 見出しグループ
+-   サブテキスト用の独自項目: サブテキスト
+
+独自項目は`ToolsPanelItem`として追加する。設定値がある項目は表示し、未使用の項目は`+`メニューから追加できるようにする。
+
+レスポンシブ設定は、単一設定とは別のyStandardパネルへ配置する。各パネル内のコントロールには「マージン」または「パディング」のラベルを常に表示する。
+
+## 設定できる方向
+
+新しい`ResponsiveSpacingControl`の`allowedSides`で、対象ごとに設定可能な方向を制限する。
+
+| 対象                 | マージン                                            | パディング                                          |
+| -------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| メイン見出し         | `top`、`right`、`bottom`、`left`                    | `top`、`right`、`bottom`、`left`                    |
+| `hgroup`             | `top`、`bottom`                                     | `top`、`right`、`bottom`、`left`                    |
+| サブテキスト         | `top`、`right`、`bottom`、`left`                    | `top`、`right`、`bottom`、`left`                    |
+
+ブロックのルート要素になる`hgroup`では、左右マージンと横方向マージンを許可しない。左右位置はブロックの配置、幅、親レイアウトへ任せる。
+
+内部要素を縦横単位で設定するUIが適する場合は、各辺の代わりに`vertical`と`horizontal`を許可できる。各辺と縦横のどちらを表示するかは呼び出し側が明示し、コントロール自身では推測しない。
 
 ## 保存先
 
-コア標準属性で表現できる見出し全体の余白は`style.spacing`を使う。内部要素の余白とレスポンシブ値は、スタイルコピーの対象になる`style.ystdb.customHeading`配下へ保存する。
+メイン見出しの単一余白はコア属性を正本にする。
+
+```text
+style.spacing.margin
+style.spacing.padding
+```
+
+`hgroup`、サブテキスト、レスポンシブ値はスタイルコピーの対象になる独自領域へ保存する。
 
 ```ts
 type CustomHeadingStyle = {
-	main?: {
+	group?: {
 		spacing?: {
 			margin?: SpacingValue;
 			padding?: SpacingValue;
 		};
 	};
-	subText?: {
+	sub?: {
 		spacing?: {
 			margin?: SpacingValue;
 			padding?: SpacingValue;
-		};
-	};
-	divider?: {
-		spacing?: {
-			margin?: SpacingValue;
 		};
 	};
 	responsive?: {
-		main?: ResponsiveSpacingValue;
-		subText?: ResponsiveSpacingValue;
-		divider?: ResponsiveSpacingValue;
+		main?: {
+			spacing?: ResponsiveSpacingValue;
+		};
+		group?: {
+			spacing?: ResponsiveSpacingValue;
+		};
+		sub?: {
+			spacing?: ResponsiveSpacingValue;
+		};
 	};
 };
 ```
 
-単一設定のリセットでは単一設定だけを削除し、レスポンシブ設定は残す。レスポンシブ設定のリセットではレスポンシブ設定だけを削除し、単一設定は残す。
+メイン見出しは`main`、`hgroup`は`group`、サブテキストは`sub`に統一する。
 
-## スタイル出力
+## Block Supportsの出力
 
-単一値とレスポンシブ値は、共通の値解決関数とCSSカスタムプロパティで出力する。
+`block.json`ではspacingサポートのUIとコア属性を利用し、自動シリアライズは停止する。コアのspacing取得関数から生成したクラスとスタイルを、エディターと保存HTMLのメイン見出しへ適用する。
+
+`useBlockProps`と`useBlockProps.save()`は、ブロックの識別に必要なルートPropsを引き続き生成する。サブテキストがある場合はルートPropsを`hgroup`へ付け、メイン見出し用のspacing出力とは分ける。
+
+## 値の優先順位とリセット
 
 ```ts
 const effectiveValue = responsiveValue?.[ device ] ?? singleValue;
 ```
 
-コアが出力するインラインスタイルよりレスポンシブ指定が確実に優先されるよう、単一値を直接出力したあとにメディアクエリで偶然上書きできることへ依存しない。
+-   レスポンシブ値が未設定なら単一値を使う。
+-   レスポンシブ値が設定済みなら、その端末ではレスポンシブ値を使う。
+-   単一設定のリセットでは単一値だけを削除する。
+-   レスポンシブ設定のリセットではレスポンシブ値だけを削除する。
+-   `0`は有効値として扱う。
+
+## マイグレーション
+
+-   v3.25.3までの`margin`と`padding`は、メイン見出しの`style.spacing`へ移す。
+-   v3.25.3までの`responsiveMargin`と`responsivePadding`は、`style.ystdb.customHeading.responsive.main.spacing`へ移す。
+-   現行ブランチで`hgroup`へ`.ystdb-custom-heading`とBlock Supportsの余白を付ける保存形式は、クラス変更前にdeprecatedへ固定する。
+-   deprecatedの`migrate`は各旧形式から最新形式へ直接変換する。
+-   保存HTMLと属性スキーマの変更には、parse、serialize、再parseのテストを追加する。
 
 ## 検証項目
 
--   「メインテキスト」パネルへフォントサイズ、色、余白を一緒に配置しても操作しやすいこと。
--   「サブテキスト」パネルを同じ設定部品で構成できること。
--   サブテキストのON/OFFで、設定値を失わないこと。
--   単一設定とレスポンシブ設定を別々に追加・リセットできること。
--   サブテキストなしのHTMLで、見出し全体とメインテキストの余白設定が競合しないこと。
--   スタイルコピーで内部要素とレスポンシブの余白まで移ること。
+-   サブテキストの有無にかかわらず、コアの余白が見出しタグだけへ適用される。
+-   `hgroup`とサブテキストの余白を別々に設定、リセットできる。
+-   レスポンシブ余白に「マージン」「パディング」のラベルが表示される。
+-   `hgroup`のマージンで左右と横方向を選択できない。
+-   上下左右と縦横の許可状態を呼び出し側から指定できる。
+-   単一設定とレスポンシブ設定を別々に追加、リセットできる。
+-   スタイルコピーでメイン、`hgroup`、サブテキストの余白がコピーされる。
+-   公開済みHTMLと現行ブランチのHTMLが、deprecated経由で検証エラーなく移行できる。

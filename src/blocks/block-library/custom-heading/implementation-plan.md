@@ -13,6 +13,9 @@
 ## 今回確定した方針
 
 -   WordPress標準のBlock Supportsで表示される設定は、メインテキストの設定として扱う。
+-   Block Supportsが生成する見た目のクラスとスタイルは、見出しタグだけへ適用する。
+-   `.ystdb-custom-heading`は見出しタグ専用とし、`hgroup`とサブテキストには別のクラスを使用する。
+-   `hgroup`とサブテキストのスタイルは、メインテキストとは別の設定領域で管理する。
 -   コア見出しのタイポグラフィパネルに表示される「色」「サイズ」「フォント」「外観」「行の高さ」「文字間隔」「装飾」「大文字小文字」「テキストを合わせる」を使用できるようにする。
 -   コアのタイポグラフィパネルに表示される設定は、すべてメインテキストの単一設定とする。
 -   メインテキスト用として同じ設定を独自UIに重複表示しない。
@@ -23,7 +26,8 @@
 -   「テキストを合わせる」を有効にした場合はコア仕様に従い、レスポンシブフォントサイズを含む他の文字サイズ指定より優先する。レスポンシブ値は削除せず、CSS出力だけ停止する。
 -   公開済みブロックの属性や保存HTMLを変更するときは、変更と同時にdeprecated定義と移行テストを追加する。
 -   段階移行の途中でリリースする場合、その時点の保存形式も後から復元できるように固定する。
--   見出し全体の単一余白はコアの`spacing`サポートを使い、レスポンシブ余白は別パネルで管理する。
+-   メインテキストの単一余白はコアの`spacing`サポートを使い、`hgroup`とサブテキストの余白は独自設定で管理する。
+-   レスポンシブ余白は単一設定と別パネルで管理し、新しい共通コントロールへ移行する。
 -   yStandard独自パネルにはysアイコンを表示し、コアパネルとの違いを判別できるようにする。
 
 ## 現状
@@ -38,7 +42,7 @@
 ### 現在の保存構造
 
 -   サブテキストを使わない場合、保存HTMLは`h1`から`h6`のいずれか1要素で構成される。
--   サブテキストを使う場合、`hgroup`の中にメイン見出しとサブテキストを保存する。
+-   サブテキストを使う場合、`hgroup`の中にメイン見出しとサブテキストを保存する。現行実装では`hgroup`にも`.ystdb-custom-heading`が付くため、次の保存形式でクラスの責務を分離する。
 -   メインテキストは`content`に保存される。
 -   サブテキストは`subText`に保存し、`hasSubText`のON/OFFでは内容を削除しない。
 -   サブテキスト固有のスタイル設定は未実装である。
@@ -56,7 +60,7 @@
 
 このままでは、WordPress標準のスタイルコピーが認識する`style`属性へ独自設定が集約されず、コピー対象から外れる値が残る。
 
-現行実装では、メインテキストの色とタイポグラフィ、見出し全体の単一余白をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換する。レスポンシブ余白は単一余白から分離した独自パネルに残し、`clearStyle`は後続の段階移行対象とする。
+現行実装では、メインテキストの色とタイポグラフィ、単一余白をコアBlock Supportsへ移行し、旧トップレベル属性はdeprecatedの`migrate`でコア属性へ変換している。ただし、サブテキスト使用時はBlock Supportsの出力先が`hgroup`になっているため、次の変更で見出しタグへ限定する。レスポンシブ余白は単一余白から分離した独自パネルに残し、`clearStyle`は後続の段階移行対象とする。
 
 ## 目標とする設定の責務
 
@@ -97,8 +101,8 @@
 -   大文字小文字: `style.typography.textTransform`
 -   書字方向: `style.typography.writingMode`
 -   テキストを合わせる: `fitText`
--   余白: `style.spacing.margin`
--   内側余白: `style.spacing.padding`
+-   マージン: `style.spacing.margin`
+-   パディング: `style.spacing.padding`
 
 コアのタイポグラフィパネルに表示される各項目は、このメインテキスト用属性を直接操作する。WordPressやテーマ設定によって利用できない項目は、コア見出しと同様にUIへ表示されない。
 
@@ -113,6 +117,11 @@
 	"style": {
 		"ystdb": {
 			"customHeading": {
+				"group": {
+					"spacing": {},
+					"border": {},
+					"color": {}
+				},
 				"sub": {
 					"typography": {},
 					"color": {},
@@ -121,6 +130,9 @@
 				"responsive": {
 					"main": {
 						"typography": {},
+						"spacing": {}
+					},
+					"group": {
 						"spacing": {}
 					},
 					"sub": {
@@ -134,7 +146,7 @@
 }
 ```
 
-実装前に実データを使ってキー名を確定し、以後は同じ意味のキーを変更しない。
+`main`はメイン見出し、`group`は`hgroup`、`sub`はサブテキストを表す。実装前に実データを使って残りのキー名を確定し、以後は同じ意味のキーを変更しない。
 
 ### レスポンシブ値の優先順位
 
@@ -166,11 +178,13 @@ responsiveValue[ device ] ?? singleValue;
 
 コアBlock Supportsを有効にする項目は、それぞれWordPress標準のパネルを使う。
 
--   コアの標準設定はメインテキスト、またはブロック全体のどちらに作用するかを項目ごとに明示する。
+-   コアの標準設定はメインテキストへ作用させる。
 -   サブテキストなど複数対象が必要な項目だけ、該当するコアパネルへ独自項目を追加する。
 -   レスポンシブ設定はコアパネルへ混在させず、専用のレスポンシブパネルへ置く。
 
-見出し全体の余白は`hgroup`を含むブロックのルート要素へ適用する。枠線、角丸、背景色は継承だけでは内側の見出し要素へ適用できないため、Block Supportsのクラスとインラインスタイルがどの要素へ付くかを検証してから有効化する。
+`hgroup`とサブテキストの余白、枠線、角丸、背景色は、メインテキスト用Block Supportsとは別の独自設定として追加する。適用対象を設定名と保存先で明示し、Block Supportsの出力が`hgroup`へ漏れないようにする。
+
+レスポンシブ余白には[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)で定めた新しい共通コントロールを使う。ブロックのルート要素である`hgroup`のマージンは、上下だけを許可する。
 
 ### リセット
 
@@ -186,7 +200,7 @@ responsiveValue[ device ] ?? singleValue;
 既存投稿との互換性と不要なDOM変更を避けるため、現在の見出し要素1つの構造を維持する。
 
 ```html
-<h2 class="ystdb-custom-heading">見出し</h2>
+<h2 class="wp-block-ystdb-custom-heading ystdb-custom-heading">見出し</h2>
 ```
 
 ### サブテキストあり
@@ -194,13 +208,34 @@ responsiveValue[ device ] ?? singleValue;
 サブテキストを使う場合だけ`hgroup`で囲む。
 
 ```html
-<hgroup class="ystdb-custom-heading">
-	<h2 class="ystdb-custom-heading__main">見出し</h2>
-	<p class="ystdb-custom-heading__sub">サブテキスト</p>
+<hgroup class="wp-block-ystdb-custom-heading ystdb-custom-heading-group">
+	<h2 class="ystdb-custom-heading">見出し</h2>
+	<p class="ystdb-custom-heading-sub">サブテキスト</p>
 </hgroup>
 ```
 
-実装時には、ブロック全体に必要なクラス、コアBlock Supportsが生成するクラス、メインテキストへ適用するスタイルを分ける。単に`useBlockProps.save()`をラッパーへ移すだけでは、コアのフォントサイズがメインテキストへ正しく作用しない可能性があるため、エディターとフロントの両方で検証する。
+`wp-block-ystdb-custom-heading`はブロックの識別とエディター選択に必要なルートクラスであり、見出し専用の見た目を表すクラスではない。`.ystdb-custom-heading`は常に見出しタグだけへ付ける。
+
+サブテキストなしでは、ブロックのルート要素とメイン見出しが同じ要素になる。サブテキストありでは、ルート用Block Propsを`hgroup`へ、メインテキスト用のクラスとスタイルを内側の見出しタグへ分ける。
+
+### Block Supportsの出力先
+
+属性の保存形式とWordPress標準UIは維持しつつ、Block Supportsによる自動シリアライズを対象カテゴリごとに停止する。
+
+-   `supports.typography.__experimentalSkipSerialization`
+-   `supports.color.__experimentalSkipSerialization`
+-   `supports.spacing.__experimentalSkipSerialization`
+-   枠線を有効化するときは`supports.__experimentalBorder.__experimentalSkipSerialization`
+
+メインテキスト用のクラスとスタイルは、WordPressが公開している次の取得関数をローカルのアダプターから呼び出す。
+
+-   `getTypographyClassesAndStyles`
+-   `__experimentalGetColorClassesAndStyles`
+-   `__experimentalGetSpacingClassesAndStyles`
+
+実験的APIへの依存は1つのアダプターへ隔離し、`edit`と`save`で同じ結果を使用する。WordPressのバージョン差でAPIが変わった場合も、ブロック本体ではなくアダプターだけを修正できる構成にする。
+
+プリセット、任意値、fluidフォントサイズ、リンク色、`fitText`は取得関数ごとに出力差があるため、実装時に個別テストを追加する。取得関数だけでは見出しタグへ正しく出力できない項目は、その項目だけ共通スタイル出力を補完するか、対応を保留する。Block Supports全体を`hgroup`へ戻すフォールバックは採用しない。
 
 ## マイグレーション方針
 
@@ -225,6 +260,7 @@ custom-heading/
 -   deprecated配列は新しい仕様から古い仕様の順に並べる。
 -   各`migrate`は一つ前の形式ではなく、その時点の最新属性へ直接変換する。
 -   エディター表示後の`useEffect`による暗黙の属性書き換えは使わない。
+-   `.ystdb-custom-heading`が`hgroup`へ付く現行ブランチの保存形式は、クラス変更前に新しいdeprecatedへ固定する。
 
 ### 旧属性から新属性への対応
 
@@ -243,8 +279,8 @@ custom-heading/
 | `textAlign`          | `style.typography.textAlign`                                    | ツールバーもコア属性を操作する        |
 | `margin`             | `style.spacing.margin`                                          | 適用対象の検証後に移行                |
 | `padding`            | `style.spacing.padding`                                         | 適用対象の検証後に移行                |
-| `responsiveMargin`   | `style.ystdb.customHeading.responsive.group.spacing.margin`     | 単一設定とは別管理                    |
-| `responsivePadding`  | `style.ystdb.customHeading.responsive.group.spacing.padding`    | 単一設定とは別管理                    |
+| `responsiveMargin`   | `style.ystdb.customHeading.responsive.main.spacing.margin`      | メイン見出しの単一設定とは別管理      |
+| `responsivePadding`  | `style.ystdb.customHeading.responsive.main.spacing.padding`     | メイン見出しの単一設定とは別管理      |
 | `clearStyle`         | `style.ystdb.customHeading`配下                                 | 見た目としてスタイルコピー対象にする  |
 
 ### `hasSubText`の扱い
@@ -316,20 +352,20 @@ custom-heading/
 
 ### Block Supportsの適用先検証
 
-枠線、角丸、背景色を本実装する前に、小さな技術検証を行う。余白は見出し全体へ適用する仕様で確定済みとする。
+枠線、角丸、背景色を本実装する前に、小さな技術検証を行う。コアBlock Supportsは見出しタグへ適用する仕様とする。
 
 確認内容:
 
 -   サブテキストなしの見出し要素へ`useBlockProps`のクラスとstyleが正しく付くか。
--   サブテキストありの`hgroup`で、コアのタイポグラフィを内側のメイン見出しへ適用できるか。
--   枠線、角丸、背景色をメイン見出しへ付けるか、ブロック全体へ付けるか。
+-   サブテキストありの`hgroup`で、コアのタイポグラフィ、色、余白を内側のメイン見出しへ適用できるか。
+-   枠線、角丸、背景色をメイン見出しへ付け、`hgroup`へ漏らさず出力できるか。
 -   エディターとフロントで同じDOM責務と見た目になるか。
 -   WordPress標準のスタイルコピーとリセットが対象要素を変えないか。
 
 判断基準:
 
--   公開APIで安定して適用先を分けられるならBlock Supportsを有効にする。
--   適用先を安定して分けられない場合は、該当設定をブロック全体の設定として扱うか、独自属性と出力処理を使うかを項目ごとに決める。
+-   公開APIまたは局所化したアダプターで安定して適用先を分けられるならBlock Supportsを有効にする。
+-   適用先を安定して分けられない場合は、該当項目の対応を保留するか、コア属性を維持した独自出力処理を使う。
 -   適用先が未確定のまま枠線、角丸、背景色をまとめて有効にしない。
 
 ### サブテキスト
@@ -355,8 +391,12 @@ custom-heading/
 Block Supportsの適用先検証で確定した責務に従い、項目を1カテゴリずつ追加する。
 
 -   単一設定はWordPressコアのパネルと属性構造を優先する。
--   複数対象が必要な設定だけコアパネルへ独自項目を追加する。
+-   コアBlock Supportsの単一設定はメイン見出しへ適用する。
+-   `hgroup`とサブテキストの設定は、対象ごとの独自属性としてコアパネルへ追加する。
 -   レスポンシブ設定は専用パネルへ分離する。
+-   レスポンシブ余白は新しい`ResponsiveSpacingControl`へ移行する。
+-   `hgroup`のマージンは上下だけを許可し、左右と横方向を表示しない。
+-   余白の項目名は「マージン」「パディング」に統一する。
 -   各カテゴリの「すべてリセット」とスタイルコピーを同時に実装する。
 
 ### 変換、表示名、リリース準備
@@ -401,11 +441,13 @@ v3.25.2からv3.25.3の実装で生成したHTMLを固定fixtureとして保存�
 -   2回目のserializeで不要な差分が発生しない。
 -   サブテキストなしでは既存HTML構造を維持する。
 -   サブテキストありでは`hgroup`を保存する。
+-   `.ystdb-custom-heading`は、サブテキストの有無にかかわらず見出しタグだけへ付く。
+-   `hgroup`とサブテキストに、それぞれ専用クラスが付く。
 
 ### スタイルコピー
 
 -   コアのメインテキスト設定がコピーされる。
--   `style.ystdb`内のサブテキストとレスポンシブ設定がコピーされる。
+-   `style.ystdb`内の`hgroup`、サブテキスト、レスポンシブ設定がコピーされる。
 -   `content`、`subText`、`level`、`hasSubText`などの内容と構造はコピーされない。
 -   ペースト先に存在した古い同カテゴリ設定が意図どおり置換または解除される。
 
@@ -415,6 +457,8 @@ v3.25.2からv3.25.3の実装で生成したHTMLを固定fixtureとして保存�
 -   メインテキスト用のフォントサイズ設定が重複表示されない。
 -   サブテキスト設定はサブテキスト使用時だけ表示される。
 -   単一設定とレスポンシブ設定が別パネルに表示される。
+-   レスポンシブ余白に「マージン」「パディング」のラベルが表示される。
+-   許可されていない余白方向がUIへ表示されない。
 -   カテゴリ全体と個別項目のリセットが正しく動作する。
 
 ## リリース単位のルール
@@ -436,15 +480,15 @@ v3.25.2からv3.25.3の実装で生成したHTMLを固定fixtureとして保存�
 -   スタイルコピーで文章や見出しレベルが書き換わる。
 -   コア設定と独自設定のどちらが正本か判定できない状態になる。
 
-## 最初の実装対象
+## 次の実装対象
 
-最初の実装は「互換性の土台」と「メインテキストのフォントサイズ」までを1単位とする。
+次の実装は、保存形式の保護、要素ごとの責務分離、新しいレスポンシブ余白コントロールまでを1単位とする。
 
-この単位で、次の中心方針を先に検証できる。
+-   現行ブランチの属性、supports、保存HTMLを新しいdeprecatedへ固定する。
+-   `.ystdb-custom-heading`を見出しタグ専用に変更し、`hgroup`とサブテキストへ専用クラスを付ける。
+-   コアBlock Supportsの自動シリアライズを止め、メイン見出しへクラスとスタイルを出力するアダプターを追加する。
+-   `ResponsiveSpacingControl`を既存コントロールから独立して実装する。
+-   カスタム見出しのレスポンシブ余白を新しいコントロールへ切り替える。
+-   「マージン」「パディング」のラベルと、対象ごとの`allowedSides`を指定する。
 
--   コアの標準設定をメインテキストとして扱う。
--   独自レスポンシブ設定を別管理し、単一設定より優先する。
--   WordPress標準のスタイルコピーでコア属性と`style.ystdb`をまとめてコピーする。
--   公開済み投稿をdeprecatedで安全に移行する。
-
-フォントサイズと残りのタイポグラフィ、サブテキスト入力、見出し全体の余白までを実装済みとする。次はサブテキスト固有のスタイル、枠線、角丸へ進む。
+この単位の完了後に、`hgroup`とサブテキスト固有の単一スタイル、枠線、角丸を対象ごとに追加する。
