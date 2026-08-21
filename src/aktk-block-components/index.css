@@ -3,6 +3,7 @@
 @import "./components/custom-line-height-control/index.css";
 @import "./components/custom-spacing-select/index.css";
 @import "./components/responsive-font-size-control/index.css";
+@import "./components/responsive-spacing-control/index.css";
 
 /* コンポーネント共通CSS変数 */
 :root {

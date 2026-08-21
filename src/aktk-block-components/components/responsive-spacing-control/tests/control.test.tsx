@@ -1,11 +1,11 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { ResponsiveSpacingControl } from '../index';
 
 describe( 'ResponsiveSpacingControl', () => {
 	it( 'ラベルと3端末のコントロールを縦に表示する', () => {
-		render(
+		const { container } = render(
 			<ResponsiveSpacingControl
 				label="マージン"
 				value={ {
@@ -18,14 +18,26 @@ describe( 'ResponsiveSpacingControl', () => {
 
 		expect( screen.getByText( 'マージン' ) ).toBeTruthy();
 		expect(
-			screen.getByRole( 'group', { name: 'デスクトップ' } )
-		).toBeTruthy();
-		expect(
-			screen.getByRole( 'group', { name: 'タブレット' } )
-		).toBeTruthy();
-		expect(
-			screen.getByRole( 'group', { name: 'モバイル' } )
-		).toBeTruthy();
+			container.querySelector( '.aktk-responsive-spacing-control' )
+				?.className
+		).toBe( 'aktk-responsive-spacing-control' );
+		const deviceControls = [
+			screen.getByRole( 'group', { name: 'デスクトップ' } ),
+			screen.getByRole( 'group', { name: 'タブレット' } ),
+			screen.getByRole( 'group', { name: 'モバイル' } ),
+		];
+
+		deviceControls.forEach( ( control ) => {
+			expect( control.className ).toBe(
+				'aktk-responsive-spacing-control__device'
+			);
+			expect( control.querySelector( 'svg' ) ).toBeTruthy();
+			expect(
+				control.querySelector(
+					'.aktk-responsive-spacing-control__input'
+				)
+			).toBeTruthy();
+		} );
 
 		screen
 			.getAllByRole( 'button', { name: 'spacing' } )
@@ -34,23 +46,9 @@ describe( 'ResponsiveSpacingControl', () => {
 					'top,bottom'
 				);
 			} );
-	} );
 
-	it( 'リセット時にレスポンシブ値だけを未設定にする', () => {
-		const onChange = jest.fn();
-		render(
-			<ResponsiveSpacingControl
-				label="パディング"
-				value={ {
-					desktop: { top: '1rem' },
-				} }
-				onChange={ onChange }
-				allowedSides={ [ 'top', 'right', 'bottom', 'left' ] }
-			/>
-		);
-
-		fireEvent.click( screen.getByRole( 'button', { name: 'リセット' } ) );
-
-		expect( onChange ).toHaveBeenCalledWith( undefined );
+		expect(
+			screen.queryByRole( 'button', { name: 'リセット' } )
+		).toBeNull();
 	} );
 } );

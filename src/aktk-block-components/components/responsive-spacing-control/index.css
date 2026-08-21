@@ -1,0 +1,21 @@
+.aktk-responsive-spacing-control {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1rem;
+}
+
+.aktk-responsive-spacing-control__device {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.25rem;
+}
+
+.aktk-responsive-spacing-control__device > svg {
+	flex-shrink: 0;
+	color: var(--aktk-component--text-color--gray);
+}
+
+.aktk-responsive-spacing-control__input {
+	flex-grow: 1;
+	min-width: 0;
+}

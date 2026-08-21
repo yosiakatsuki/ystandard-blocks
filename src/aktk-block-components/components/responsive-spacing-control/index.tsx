@@ -1,3 +1,5 @@
+import { Monitor, Smartphone, Tablet } from 'react-feather';
+
 /**
  * WordPress dependencies.
  */
@@ -6,13 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Aktk dependencies.
  */
-import {
-	DesktopControl,
-	MobileControl,
-	TabletControl,
-} from '@aktk/block-components/components/icon-control';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
-import Button from '@aktk/block-components/wp-controls/button';
 import SpacingSizesControl from '@aktk/block-components/wp-controls/spacing-size-control';
 
 /**
@@ -24,11 +20,7 @@ import type {
 } from './types';
 import { updateResponsiveSpacing } from './utils';
 
-type DeviceControlProps = {
-	children: React.ReactNode;
-};
-
-type DeviceControl = React.ComponentType< DeviceControlProps >;
+const ICON_SIZE = 20;
 
 /**
  * レスポンシブ余白コントロール.
@@ -45,66 +37,69 @@ export function ResponsiveSpacingControl(
 		onChange,
 		allowedSides,
 		minimumCustomValue = 0,
-		showResetButton = true,
 	} = props;
 
 	const renderDeviceControl = (
 		device: ResponsiveSpacingDevice,
 		deviceLabel: string,
-		Control: DeviceControl
+		icon: JSX.Element
 	) => (
-		<div role="group" aria-label={ deviceLabel }>
-			<Control>
-				<div>
-					<SpacingSizesControl
-						values={ value?.[ device ] }
-						onChange={ ( deviceValue ) =>
-							onChange(
-								updateResponsiveSpacing(
-									value,
-									device,
-									deviceValue
-								)
+		<div
+			className="aktk-responsive-spacing-control__device"
+			role="group"
+			aria-label={ deviceLabel }
+		>
+			{ icon }
+			<div className="aktk-responsive-spacing-control__input">
+				<SpacingSizesControl
+					values={ value?.[ device ] }
+					onChange={ ( deviceValue ) =>
+						onChange(
+							updateResponsiveSpacing(
+								value,
+								device,
+								deviceValue
 							)
-						}
-						sides={ allowedSides }
-						minimumCustomValue={ minimumCustomValue }
-					/>
-				</div>
-			</Control>
+						)
+					}
+					sides={ allowedSides }
+					minimumCustomValue={ minimumCustomValue }
+				/>
+			</div>
 		</div>
 	);
 
 	return (
 		<BaseControl id={ id } label={ label }>
-			<div className="aktk-responsive-spacing-control grid grid-cols-1 gap-4">
+			<div className="aktk-responsive-spacing-control">
 				{ renderDeviceControl(
 					'desktop',
 					__( 'デスクトップ', 'ystandard-blocks' ),
-					DesktopControl
+					<Monitor
+						aria-hidden="true"
+						focusable="false"
+						size={ ICON_SIZE }
+					/>
 				) }
 				{ renderDeviceControl(
 					'tablet',
 					__( 'タブレット', 'ystandard-blocks' ),
-					TabletControl
+					<Tablet
+						aria-hidden="true"
+						focusable="false"
+						size={ ICON_SIZE }
+					/>
 				) }
 				{ renderDeviceControl(
 					'mobile',
 					__( 'モバイル', 'ystandard-blocks' ),
-					MobileControl
+					<Smartphone
+						aria-hidden="true"
+						focusable="false"
+						size={ ICON_SIZE }
+					/>
 				) }
 			</div>
-			{ showResetButton && (
-				<Button
-					onClick={ () => onChange( undefined ) }
-					size="small"
-					variant="secondary"
-					isDestructive
-					className="mt-2 w-full justify-center text-center"
-				>
-					{ __( 'リセット', 'ystandard-blocks' ) }
-				</Button>
-			) }
 		</BaseControl>
 	);
 }

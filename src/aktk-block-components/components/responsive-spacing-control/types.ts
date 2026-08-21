@@ -23,5 +23,4 @@ export interface ResponsiveSpacingControlProps {
 	onChange: ( value?: ResponsiveSpacing ) => void;
 	allowedSides: SpacingSide[];
 	minimumCustomValue?: number;
-	showResetButton?: boolean;
 }

@@ -27,6 +27,7 @@
 ```text
 src/aktk-block-components/components/responsive-spacing-control/
   SPEC.md
+  index.css
   index.tsx
   types.ts
   utils.ts
@@ -61,7 +62,6 @@ type ResponsiveSpacingControlProps = {
 	onChange: ( value?: ResponsiveSpacingValue ) => void;
 	allowedSides: SpacingSide[];
 	minimumCustomValue?: number;
-	showResetButton?: boolean;
 };
 ```
 
@@ -79,7 +79,9 @@ type ResponsiveSpacingControlProps = {
 -   コントロール上部に設定名を表示する。
 -   余白の設定名は「マージン」「パディング」に統一する。
 -   デスクトップ、タブレット、モバイルの3設定を、端末アイコン付きで縦に並べる。
+-   端末アイコンと入力項目は上端で揃える。
 -   タブ切り替えは使用しない。
+-   Tailwindユーティリティーは使用せず、`index.css`の専用クラスでレイアウトする。
 -   各端末の入力には、端末名をアクセシブルな名前として渡す。
 -   `ToolsPanelItem`の項目名と内部コントロールのラベルは、どちらも「マージン」または「パディング」とする。項目を単独で開いた場合でも設定対象が分かる状態を優先する。
 
@@ -113,7 +115,7 @@ const effectiveValue = responsiveValue?.[ device ] ?? singleValue;
 ## リセット
 
 -   `ToolsPanelItem`のリセットでは、その項目のレスポンシブ値だけを削除する。
--   コントロール内のリセットも、デスクトップ、タブレット、モバイルの値だけを削除する。
+-   パネルと項目のリセットを利用するため、コントロール内にリセットボタンは表示しない。
 -   単一設定は削除しない。
 -   許可方向を変更しただけでは既存値を削除しない。
 
@@ -129,10 +131,13 @@ const effectiveValue = responsiveValue?.[ device ] ?? singleValue;
 
 -   「マージン」「パディング」のラベルが常に表示される。
 -   3端末の入力がアイコン付きで縦に並ぶ。
+-   端末アイコンと入力項目が上端で揃う。
+-   Tailwindユーティリティーに依存しない。
 -   `top`、`right`、`bottom`、`left`を個別に許可、禁止できる。
 -   `vertical`と`horizontal`を許可、禁止できる。
 -   ブロックのルート要素のマージンで左右方向を設定できない。
 -   プリセット値、任意値、`0`を保持できる。
--   全端末をリセットすると`undefined`になる。
+-   全端末の値を削除すると`undefined`になる。
 -   リセットしても単一設定は残る。
+-   コントロール内にリセットボタンを表示しない。
 -   新コンポーネントが`custom-spacing-select`を参照していない。
