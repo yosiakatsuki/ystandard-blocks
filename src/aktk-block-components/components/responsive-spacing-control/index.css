@@ -19,3 +19,15 @@
 	flex-grow: 1;
 	min-width: 0;
 }
+
+.aktk-responsive-spacing-control--single-size {
+	gap: 0.1rem;
+
+	.spacing-sizes-control__header {
+		display: none;
+	}
+	.aktk-responsive-spacing-control__device {
+		align-items: center;
+		gap: 0.5rem;
+	}
+}

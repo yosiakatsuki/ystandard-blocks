@@ -64,7 +64,7 @@ export function ResponsiveSpacingSizeControl(
 
 	return (
 		<BaseControl id={ id } label={ label }>
-			<div className="aktk-responsive-spacing-control">
+			<div className="aktk-responsive-spacing-control aktk-responsive-spacing-control--single-size">
 				{ renderDeviceControl(
 					'desktop',
 					__( 'デスクトップ', 'ystandard-blocks' ),

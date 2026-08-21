@@ -89,6 +89,7 @@ type ResponsiveSpacingControlProps = {
 -   Tailwindユーティリティーは使用せず、`index.css`の専用クラスでレイアウトする。
 -   各端末の入力には、端末名をアクセシブルな名前として渡す。
 -   `ToolsPanelItem`の項目名と内部コントロールのラベルは、どちらも「マージン」または「パディング」とする。項目を単独で開いた場合でも設定対象が分かる状態を優先する。
+-   `ResponsiveSpacingSizeControl`では、単一値の入力と重複する`.spacing-sizes-control__header`を表示しない。
 
 この命名は今後作成するコントロールに適用する。既存の「外側余白」「内側余白」などは一括変更せず、各ブロックの改修時に順次合わせる。
 
@@ -145,4 +146,5 @@ const effectiveValue = responsiveValue?.[ device ] ?? singleValue;
 -   全端末の値を削除すると`undefined`になる。
 -   リセットしても単一設定は残る。
 -   コントロール内にリセットボタンを表示しない。
+-   `ResponsiveSpacingSizeControl`で`.spacing-sizes-control__header`が表示されない。
 -   新コンポーネントが`custom-spacing-select`を参照していない。
