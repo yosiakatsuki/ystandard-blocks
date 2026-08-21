@@ -114,7 +114,7 @@ describe( 'Custom Heading Block transforms', () => {
 				writingMode: 'vertical-rl',
 			},
 		} );
-		expect( block?.attributes.fitText ).toBe( true );
+		expect( block?.attributes.fitText ).toBeUndefined();
 	} );
 
 	it( 'custom-headingのカスタムフォントサイズをcore/headingのstyleへ変換する', () => {
@@ -228,7 +228,7 @@ describe( 'Custom Heading Block transforms', () => {
 				writingMode: 'vertical-rl',
 			},
 		} );
-		expect( block?.attributes.fitText ).toBe( true );
+		expect( block?.attributes.fitText ).toBeUndefined();
 	} );
 
 	it( 'ystdb/headingのレスポンシブフォントサイズをpx付きで変換する', () => {

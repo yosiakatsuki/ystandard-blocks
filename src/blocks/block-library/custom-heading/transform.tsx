@@ -141,7 +141,6 @@ export const transforms = {
 						textAlign: getCoreTextAlignAttribute( attributes ),
 					} ),
 					fontFamily: attributes.fontFamily,
-					fitText: attributes.fitText,
 				} );
 			},
 		},
@@ -231,7 +230,6 @@ export const transforms = {
 					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
 					fontFamily: attributes.fontFamily,
-					fitText: attributes.fitText,
 					style: getTypographyStyle( attributes ),
 				} );
 			},

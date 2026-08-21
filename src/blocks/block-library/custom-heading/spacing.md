@@ -3,7 +3,7 @@
 更新日: 2026-08-21
 
 > [!NOTE]
-> 最新の全体方針は`implementation-plan.md`、共通UIの仕様は[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)を参照する。本書はカスタム見出し内の適用対象と保存先を補足する。
+> 最新の全体方針は`implementation-plan.md`、単一スタイルは[`スタイル設定仕様`](./style-settings.md)、共通UIは[`ResponsiveSpacingControlの仕様`](../../../aktk-block-components/components/responsive-spacing-control/SPEC.md)を参照する。本書はカスタム見出し内の適用対象と保存先を補足する。
 
 ## 方針
 

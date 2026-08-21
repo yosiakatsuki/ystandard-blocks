@@ -632,4 +632,76 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '036: メインテキストへ枠線と角丸を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '枠線付き見出し',
+					level: 2,
+					style: {
+						border: {
+							color: '#111111',
+							radius: '8px',
+							style: 'solid',
+							width: '1px',
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '037: サブテキストと見出しグループへ独自スタイルを適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								sub: {
+									typography: {
+										fontSize: 'var:preset|font-size|small',
+										fontWeight: '700',
+									},
+									color: { text: '#333333' },
+									border: {
+										color: '#cccccc',
+										radius: '4px',
+										style: 'solid',
+										width: '1px',
+									},
+									spacing: {
+										padding: {
+											left: '1rem',
+											right: '1rem',
+										},
+									},
+								},
+								group: {
+									color: {
+										background: '#f7f7f7',
+									},
+									border: { radius: '12px' },
+									spacing: {
+										margin: { top: '2rem', bottom: '2rem' },
+										padding: {
+											top: '1rem',
+											bottom: '1rem',
+										},
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

@@ -32,7 +32,6 @@ class Custom_Heading_Block {
 		add_action( 'init', [ $this, 'register_block' ], 100 );
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_responsive_style' ] );
 		add_filter( 'block_bindings_supported_attributes_' . self::BLOCK_NAME, [ $this, 'add_block_bindings_supported_attributes' ] );
-		add_filter( 'render_block', [ $this, 'move_fit_text_attributes_to_heading' ], 20, 2 );
 	}
 
 	/**
@@ -113,60 +112,6 @@ class Custom_Heading_Block {
 	 */
 	public function register_block() {
 		register_block_type( __DIR__ );
-	}
-
-	/**
-	 * テキスト合わせ用の属性をhgroupから見出しへ移動.
-	 *
-	 * @param string $block_content ブロックHTML.
-	 * @param array  $block         ブロック情報.
-	 *
-	 * @return string
-	 */
-	public function move_fit_text_attributes_to_heading( $block_content, $block ) {
-		// コアのfit text処理より後に動かすため、共通フック上で対象ブロックだけを処理する.
-		if ( self::BLOCK_NAME !== ( $block['blockName'] ?? '' ) ) {
-			return $block_content;
-		}
-
-		// サブテキストなしでは見出し自体がルート要素なので、コアの出力をそのまま使う.
-		if ( empty( $block['attrs']['fitText'] ) || empty( $block['attrs']['hasSubText'] ) ) {
-			return $block_content;
-		}
-
-		$processor = new \WP_HTML_Tag_Processor( $block_content );
-
-		// 保存HTMLが想定構造でない場合は、内容を壊さないように変更を中断する.
-		if ( ! $processor->next_tag( 'HGROUP' ) ) {
-			return $block_content;
-		}
-
-		$attribute_names  = [
-			'data-wp-interactive',
-			'data-wp-context---core-fit-text',
-			'data-wp-init---core-fit-text',
-			'data-wp-style--font-size',
-		];
-		$attribute_values = [];
-
-		foreach ( $attribute_names as $attribute_name ) {
-			$attribute_values[ $attribute_name ] = $processor->get_attribute( $attribute_name );
-			$processor->remove_attribute( $attribute_name );
-		}
-
-		// hgroup直下の最初の要素が見出しでない場合は、別要素への誤適用を避ける.
-		if ( ! $processor->next_tag() || ! in_array( $processor->get_tag(), [ 'H1', 'H2', 'H3', 'H4', 'H5', 'H6' ], true ) ) {
-			return $block_content;
-		}
-
-		foreach ( $attribute_values as $attribute_name => $attribute_value ) {
-			// コアが出力した属性だけを移し、未対応バージョンでは新しい属性を追加しない.
-			if ( null !== $attribute_value ) {
-				$processor->set_attribute( $attribute_name, $attribute_value );
-			}
-		}
-
-		return $processor->get_updated_html();
 	}
 
 	/**

@@ -20,7 +20,6 @@ describe( 'Custom Heading Block Supports', () => {
 			__experimentalTextTransform: true,
 			__experimentalTextDecoration: true,
 			__experimentalWritingMode: true,
-			fitText: true,
 			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
 				fontSize: true,
@@ -34,7 +33,7 @@ describe( 'Custom Heading Block Supports', () => {
 			link: true,
 			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
-				background: true,
+				background: false,
 				text: true,
 			},
 		} );
@@ -42,7 +41,7 @@ describe( 'Custom Heading Block Supports', () => {
 
 	it( 'コア見出しと同じ余白設定を有効にする', () => {
 		expect( metadata.supports.spacing ).toEqual( {
-			margin: true,
+			margin: [ 'top', 'bottom' ],
 			padding: true,
 			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
@@ -50,5 +49,25 @@ describe( 'Custom Heading Block Supports', () => {
 				padding: false,
 			},
 		} );
+	} );
+
+	it( 'メインテキストの枠線と角丸を有効にする', () => {
+		expect( metadata.supports.__experimentalBorder ).toEqual( {
+			color: true,
+			radius: true,
+			style: true,
+			width: true,
+			__experimentalSkipSerialization: true,
+			__experimentalDefaultControls: {
+				color: false,
+				radius: false,
+				style: false,
+				width: false,
+			},
+		} );
+	} );
+
+	it( 'テキストを合わせる設定を無効にする', () => {
+		expect( metadata.supports.typography ).not.toHaveProperty( 'fitText' );
 	} );
 } );

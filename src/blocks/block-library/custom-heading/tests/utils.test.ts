@@ -5,10 +5,12 @@ import type { Attributes } from '../types';
 import {
 	getMainResponsiveSpacing,
 	getMainResponsiveFontSize,
+	getCustomHeadingElementStyle,
 	getMainTextClasses,
 	getMainTextStyles,
 	updateMainResponsiveSpacing,
 	updateMainResponsiveFontSize,
+	updateCustomHeadingElementStyle,
 } from '../utils';
 
 const getBaseAttributes = (): Attributes => ( {
@@ -276,19 +278,6 @@ describe( 'Custom Heading Block utils', () => {
 			expect( styles.fontFamily ).toBeUndefined();
 		} );
 
-		it( 'テキストを合わせる場合はレスポンシブフォントサイズを出力しない', () => {
-			const attributes = getResponsiveFontSizeAttributes( {
-				desktop: '32px',
-				mobile: '16px',
-			} );
-			attributes.fitText = true;
-
-			const styles = getMainTextStyles( attributes );
-
-			expect( styles[ responsiveFontSizeKeys.desktop ] ).toBeUndefined();
-			expect( styles[ responsiveFontSizeKeys.mobile ] ).toBeUndefined();
-		} );
-
 		it( 'レスポンシブ余白をCSSカスタムプロパティへ変換する', () => {
 			const styles = getMainTextStyles(
 				getResponsiveSpacingAttributes(
@@ -328,6 +317,62 @@ describe( 'Custom Heading Block utils', () => {
 			expect( styles ).toMatchObject( {
 				[ responsiveSpacingKeys.tabletMarginRight ]:
 					'var(--wp--preset--spacing--40)',
+			} );
+		} );
+	} );
+
+	describe( 'サブテキストと見出しグループのスタイル属性', () => {
+		it( '対象ごとのスタイルを取得する', () => {
+			const attributes: Attributes = {
+				...getBaseAttributes(),
+				style: {
+					ystdb: {
+						customHeading: {
+							sub: {
+								color: { text: '#333333' },
+							},
+							group: {
+								spacing: { margin: { top: '2rem' } },
+							},
+						},
+					},
+				},
+			};
+
+			expect( getCustomHeadingElementStyle( attributes, 'sub' ) ).toEqual(
+				{
+					color: { text: '#333333' },
+				}
+			);
+			expect(
+				getCustomHeadingElementStyle( attributes, 'group' )
+			).toEqual( {
+				spacing: { margin: { top: '2rem' } },
+			} );
+		} );
+
+		it( '既存styleを保ったまま対象要素だけを更新する', () => {
+			const style = updateCustomHeadingElementStyle(
+				{
+					typography: { fontSize: '2rem' },
+					ystdb: {
+						customHeading: {
+							group: { color: { background: '#ffffff' } },
+						},
+					},
+				},
+				'sub',
+				{ typography: { fontSize: '1rem' } }
+			);
+
+			expect( style ).toEqual( {
+				typography: { fontSize: '2rem' },
+				ystdb: {
+					customHeading: {
+						group: { color: { background: '#ffffff' } },
+						sub: { typography: { fontSize: '1rem' } },
+					},
+				},
 			} );
 		} );
 	} );

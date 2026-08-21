@@ -2,6 +2,7 @@
  * Aktk dependencies.
  */
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
 import type {
 	ResponsiveSpacing,
 	Spacing,
@@ -17,8 +18,8 @@ export interface Attributes {
 	gradient?: string;
 	fontSize?: string;
 	fontFamily?: string;
-	fitText?: boolean;
 	style?: {
+		border?: ElementStyle[ 'border' ];
 		color?: {
 			background?: string;
 			gradient?: string;
@@ -49,6 +50,8 @@ export interface Attributes {
 		};
 		ystdb?: {
 			customHeading?: {
+				group?: ElementStyle;
+				sub?: ElementStyle;
 				responsive?: {
 					main?: {
 						typography?: {

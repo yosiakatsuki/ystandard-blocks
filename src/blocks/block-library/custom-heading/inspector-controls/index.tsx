@@ -10,6 +10,7 @@ import { MainTextPanel } from './text-main';
 import { SubTextPanel } from './sub-text';
 import { ClearStylePanel } from './clear-style';
 import { ResponsiveMainPanel } from './styles/responsive-main';
+import { ElementStylePanels } from './styles/element-styles';
 
 // @ts-ignore
 export function InspectorControls( props ) {
@@ -21,6 +22,7 @@ export function InspectorControls( props ) {
 				<ClearStylePanel { ...props } />
 			</WPInspectorControls>
 			<WPInspectorControls group="styles">
+				<ElementStylePanels { ...props } />
 				<ResponsiveMainPanel { ...props } />
 			</WPInspectorControls>
 		</>

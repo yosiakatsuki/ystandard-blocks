@@ -5,6 +5,7 @@ import classnames from 'classnames';
  */
 import type { ResponsiveSpacing } from '@aktk/block-components/components/responsive-spacing-control';
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
 import { stripUndefined } from '@aktk/block-components/utils/object';
 import {
 	getResponsiveCustomProperties,
@@ -21,6 +22,7 @@ import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-
 import type { Attributes } from './types';
 
 const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
+export type CustomHeadingElement = 'group' | 'sub';
 
 /**
  * メインテキストのクラスを生成.
@@ -124,6 +126,45 @@ export function updateMainResponsiveSpacing(
 }
 
 /**
+ * サブテキストまたは見出しグループのスタイルを取得.
+ *
+ * @param attributes ブロック属性.
+ * @param element    取得対象.
+ * @return 対象要素のスタイル.
+ */
+export function getCustomHeadingElementStyle(
+	attributes: Attributes,
+	element: CustomHeadingElement
+) {
+	return attributes.style?.ystdb?.customHeading?.[ element ];
+}
+
+/**
+ * サブテキストまたは見出しグループのスタイルを更新.
+ *
+ * @param style        コアのstyle属性.
+ * @param element      更新対象.
+ * @param elementStyle 対象要素のスタイル.
+ * @return 更新後のstyle属性.
+ */
+export function updateCustomHeadingElementStyle(
+	style: Attributes[ 'style' ],
+	element: CustomHeadingElement,
+	elementStyle?: ElementStyle
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				[ element ]: elementStyle,
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
  * メインテキストのスタイルを生成.
  * @param attributes
  * @return
@@ -131,10 +172,7 @@ export function updateMainResponsiveSpacing(
 export function getMainTextStyles( attributes: Attributes ) {
 	const { margin: responsiveMargin, padding: responsivePadding } =
 		getMainResponsiveSpacing( attributes ) ?? {};
-	// 「テキストを合わせる」は他の文字サイズ指定より優先するコア仕様に揃える.
-	const responsiveFontSize = attributes.fitText
-		? undefined
-		: getMainResponsiveFontSize( attributes );
+	const responsiveFontSize = getMainResponsiveFontSize( attributes );
 	const responsiveFontSizeStyles = getResponsiveCustomProperties(
 		'heading--font-size',
 		responsiveFontSize

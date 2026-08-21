@@ -391,3 +391,35 @@ exports[`Custom Heading Block <Save /> snapshot 035: リンク色を見出しへ
   </h2>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 036: メインテキストへ枠線と角丸を適用する 1`] = `
+<DocumentFragment>
+  <h2
+    class="ystdb-custom-heading has-border-color"
+    style="border-color: rgb(17, 17, 17); border-style: solid; border-width: 1px; border-radius: 8px;"
+  >
+    枠線付き見出し
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 037: サブテキストと見出しグループへ独自スタイルを適用する 1`] = `
+<DocumentFragment>
+  <hgroup
+    class="ystdb-custom-heading-group has-background"
+    style="background-color: rgb(247, 247, 247); margin-top: 2rem; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem; border-radius: 12px;"
+  >
+    <h2
+      class="ystdb-custom-heading"
+    >
+      メインテキスト
+    </h2>
+    <p
+      class="ystdb-custom-heading-sub has-text-color has-border-color"
+      style="font-size: var(--wp--preset--font-size--small); font-weight: 700; color: rgb(51, 51, 51); padding-left: 1rem; padding-right: 1rem; border-color: rgb(204, 204, 204); border-style: solid; border-width: 1px; border-radius: 4px;"
+    >
+      サブテキスト
+    </p>
+  </hgroup>
+</DocumentFragment>
+`;

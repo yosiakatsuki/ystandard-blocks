@@ -31,7 +31,13 @@ module.exports = {
 	getComputedFluidTypographyValue: jestGlobals.fn( () => null ),
 	getTypographyClassesAndStyles: ( attributes ) => {
 		const typography = attributes?.style?.typography || {};
-		const { textAlign, ...style } = typography;
+		const { textAlign, ...styleValues } = typography;
+		const style = Object.fromEntries(
+			Object.entries( styleValues ).map( ( [ key, value ] ) => [
+				key,
+				presetTokenToCssVar( value ),
+			] )
+		);
 		return {
 			className: [
 				attributes?.fontFamily
@@ -68,11 +74,19 @@ module.exports = {
 				.filter( Boolean )
 				.join( ' ' ),
 			style: {
-				...( color.text ? { color: color.text } : {} ),
-				...( color.background
-					? { backgroundColor: color.background }
+				...( color.text
+					? { color: presetTokenToCssVar( color.text ) }
 					: {} ),
-				...( color.gradient ? { background: color.gradient } : {} ),
+				...( color.background
+					? {
+							backgroundColor: presetTokenToCssVar(
+								color.background
+							),
+					  }
+					: {} ),
+				...( color.gradient
+					? { background: presetTokenToCssVar( color.gradient ) }
+					: {} ),
 			},
 		};
 	},
@@ -91,6 +105,28 @@ module.exports = {
 			);
 		} );
 		return { style };
+	},
+	__experimentalGetBorderClassesAndStyles: ( attributes ) => {
+		const border = attributes?.style?.border || {};
+		const style = {};
+		[ 'color', 'style', 'width' ].forEach( ( property ) => {
+			// 一括指定された枠線だけを単一CSSプロパティへ変換する.
+			if ( border[ property ] ) {
+				style[
+					`border${
+						property.charAt( 0 ).toUpperCase() + property.slice( 1 )
+					}`
+				] = presetTokenToCssVar( border[ property ] );
+			}
+		} );
+		// 角丸の一括指定はborder-radiusへ変換する.
+		if ( 'string' === typeof border.radius ) {
+			style.borderRadius = presetTokenToCssVar( border.radius );
+		}
+		return {
+			className: border.color ? 'has-border-color' : '',
+			style,
+		};
 	},
 	__experimentalSpacingSizesControl: ( {
 		label,

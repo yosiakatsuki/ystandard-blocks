@@ -7,8 +7,9 @@ import {
 	// @ts-expect-error WordPressが内部要素向けに公開している実験的API.
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 	// @ts-expect-error WordPressが内部要素向けに公開している実験的API.
+	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
+	// @ts-expect-error WordPressが内部要素向けに公開している実験的API.
 	__experimentalGetSpacingClassesAndStyles as getSpacingClassesAndStyles,
-	// @ts-expect-error 型定義が同梱されていないWordPress公開API.
 	getTypographyClassesAndStyles,
 } from '@wordpress/block-editor';
 
@@ -16,11 +17,13 @@ import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
 
 type BlockSupportAttributes = {
 	backgroundColor?: string;
+	borderColor?: string;
 	fontFamily?: string;
 	fontSize?: string;
 	gradient?: string;
 	textColor?: string;
 	style?: {
+		border?: Record< string, unknown >;
 		color?: Record< string, unknown >;
 		elements?: {
 			link?: {
@@ -57,14 +60,24 @@ export function getInnerBlockSupportProps(
 	attributes: BlockSupportAttributes,
 	settings?: BlockSupportSettings
 ): InnerBlockSupportProps {
-	const typography = getTypographyClassesAndStyles( attributes, settings );
+	const typography = (
+		getTypographyClassesAndStyles as unknown as (
+			blockAttributes: BlockSupportAttributes,
+			blockSettings?: BlockSupportSettings
+		) => InnerBlockSupportProps
+	 )( attributes, settings );
 	const color = getColorClassesAndStyles( attributes );
 	const spacing = getSpacingClassesAndStyles( attributes );
+	const border = getBorderClassesAndStyles( attributes );
 	const linkColor = attributes.style?.elements?.link?.color?.text;
 	const linkColorValue = linkColor
 		? presetTokenToCssVar( linkColor ) || linkColor
 		: undefined;
-	const className = classnames( typography.className, color.className );
+	const className = classnames(
+		typography.className,
+		color.className,
+		border.className
+	);
 
 	return {
 		className: className || undefined,
@@ -72,6 +85,7 @@ export function getInnerBlockSupportProps(
 			...typography.style,
 			...color.style,
 			...spacing.style,
+			...border.style,
 			...( linkColorValue
 				? { '--wp--style--color--link': linkColorValue }
 				: {} ),

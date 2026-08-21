@@ -57,7 +57,7 @@
 			"link": true,
 			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
-				"background": true,
+				"background": false,
 				"text": true
 			}
 		},
@@ -72,19 +72,31 @@
 			"__experimentalTextTransform": true,
 			"__experimentalTextDecoration": true,
 			"__experimentalWritingMode": true,
-			"fitText": true,
 			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
 			}
 		},
 		"spacing": {
-			"margin": true,
+			"margin": [ "top", "bottom" ],
 			"padding": true,
 			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"margin": false,
 				"padding": false
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"color": false,
+				"radius": false,
+				"style": false,
+				"width": false
 			}
 		}
 	},

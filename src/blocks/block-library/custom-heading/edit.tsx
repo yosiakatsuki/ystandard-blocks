@@ -3,12 +3,7 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies.
  */
-import {
-	RichText,
-	// @ts-expect-error 型定義が同梱されていないWordPress公開API.
-	useSettings,
-	useBlockProps,
-} from '@wordpress/block-editor';
+import { RichText, useSettings, useBlockProps } from '@wordpress/block-editor';
 import { Platform } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -23,7 +18,11 @@ import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-su
 import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
 import { ToolbarControls } from './toolbar-controls';
-import { getMainTextClasses, getMainTextStyles } from './utils';
+import {
+	getCustomHeadingElementStyle,
+	getMainTextClasses,
+	getMainTextStyles,
+} from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
@@ -56,11 +55,29 @@ function Edit( props ) {
 			...mainTextStyles,
 		},
 	};
+	const subTextBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'sub' ),
+	} );
+	const subTextProps = {
+		className: classnames(
+			'ystdb-custom-heading-sub',
+			subTextBlockSupportProps.className
+		),
+		style: subTextBlockSupportProps.style,
+	};
+	const groupBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'group' ),
+	} );
+	const groupProps = {
+		className: classnames(
+			'ystdb-custom-heading-group',
+			groupBlockSupportProps.className
+		),
+		style: groupBlockSupportProps.style,
+	};
 
 	// ブロックProps.
-	const blockProps = useBlockProps(
-		hasSubText ? { className: 'ystdb-custom-heading-group' } : mainTextProps
-	);
+	const blockProps = useBlockProps( hasSubText ? groupProps : mainTextProps );
 
 	// メインテキストの変更.
 	const onMainTextContentChange = ( newContent: string ) => {
@@ -100,7 +117,7 @@ function Edit( props ) {
 					<RichText
 						identifier="subText"
 						tagName="p"
-						className="ystdb-custom-heading-sub"
+						{ ...subTextProps }
 						value={ subText || '' }
 						onChange={ onSubTextContentChange }
 						placeholder={ __(

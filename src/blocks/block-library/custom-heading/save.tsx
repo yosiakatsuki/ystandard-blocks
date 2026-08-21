@@ -14,7 +14,11 @@ import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-su
  * Block dependencies.
  */
 import type { Attributes } from './types';
-import { getMainTextClasses, getMainTextStyles } from './utils';
+import {
+	getCustomHeadingElementStyle,
+	getMainTextClasses,
+	getMainTextStyles,
+} from './utils';
 
 // @ts-expect-error
 function Save( { attributes } ) {
@@ -35,10 +39,30 @@ function Save( { attributes } ) {
 			...mainTextStyles,
 		},
 	};
+	const subTextBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'sub' ),
+	} );
+	const subTextProps = {
+		className: classnames(
+			'ystdb-custom-heading-sub',
+			subTextBlockSupportProps.className
+		),
+		style: subTextBlockSupportProps.style,
+	};
+	const groupBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'group' ),
+	} );
+	const groupProps = {
+		className: classnames(
+			'ystdb-custom-heading-group',
+			groupBlockSupportProps.className
+		),
+		style: groupBlockSupportProps.style,
+	};
 
 	// ブロックのpropsを生成.
 	const blockProps = useBlockProps.save(
-		hasSubText ? { className: 'ystdb-custom-heading-group' } : mainTextProps
+		hasSubText ? groupProps : mainTextProps
 	);
 
 	return hasSubText ? (
@@ -51,7 +75,7 @@ function Save( { attributes } ) {
 			/>
 			<RichText.Content
 				tagName="p"
-				className="ystdb-custom-heading-sub"
+				{ ...subTextProps }
 				value={ subText || '' }
 			/>
 		</hgroup>
