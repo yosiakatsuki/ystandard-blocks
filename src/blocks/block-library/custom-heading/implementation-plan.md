@@ -31,6 +31,7 @@
 -   yStandard独自パネルにはysアイコンを表示し、コアパネルとの違いを判別できるようにする。
 -   「スタイル削除」は現行属性とUIから廃止し、旧HTMLの認識に必要なdeprecated実装だけに残す。
 -   `hgroup`はflexコンテナとし、縦並びを既定にして横並びも選択できるようにする。
+-   見出しグループの`align-items`と`justify-content`は別々に設定し、`group.layout`へCSSプロパティと対応するキーで保存する。
 -   見出しグループの「ブロックの間隔」は`style.ystdb.customHeading.group.spacing.blockGap`へ保存する。
 -   背景色またはグラデーションを設定した要素には、明示的な余白で上書きできる仮の`padding: 0.25em`を適用する。
 
@@ -153,7 +154,7 @@
 
 `main`はメイン見出し、`group`は`hgroup`、`sub`はサブテキストを表す。このキー名を確定仕様とし、以後は同じ意味のキーを変更しない。
 
-`group.layout.orientation`は見出しグループの並び方向を表し、未設定時は縦並び、`horizontal`のときは横並びとする。`group.spacing.blockGap`は見出しとサブテキストの間隔を表し、プリセットまたは任意のCSS値を保存する。
+`group.layout.orientation`は見出しグループの並び方向を表し、未設定時は縦並び、`horizontal`のときは横並びとする。`group.layout.alignItems`と`group.layout.justifyContent`は各CSSプロパティへ直接対応させる。`group.spacing.blockGap`は見出しとサブテキストの間隔を表し、プリセットまたは任意のCSS値を保存する。
 
 ### レスポンシブ値の優先順位
 

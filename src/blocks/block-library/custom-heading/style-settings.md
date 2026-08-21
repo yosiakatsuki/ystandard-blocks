@@ -43,11 +43,15 @@ WordPressコアのパネルを利用し、Block Supportsが生成したクラス
 サブテキストを使用して`hgroup`が存在する場合だけ、次のToolsPanelをスタイルグループへ表示する。
 
 -   見出しグループ（余白）: ブロックの間隔、パディング、マージン
--   見出しグループ（配置）: 縦並び、横並び
+-   見出しグループ（配置）: 縦並び、横並び、横方向の配置、縦方向の配置
 -   見出しグループ（背景）: 色、グラデーション
 -   見出しグループ（枠線）: 枠線、角丸
 
 `hgroup`は`display: flex`とし、既定は縦並びにする。横並びを選択した場合だけ`layout.orientation`へ`horizontal`を保存する。縦並びへ戻した場合は既定値と重複する保存値を残さない。
+
+配置には`align-items`と`justify-content`を個別に設定する。縦並びでは`align-items`を「横方向の配置」、`justify-content`を「縦方向の配置」と表示し、横並びではラベルを入れ替える。保存先は`group.layout.alignItems`と`group.layout.justifyContent`とし、並び方向を変更しても値は保持する。共通コンポーネントの詳細は[`ElementLayoutPanel配置設定仕様`](../../../aktk-block-components/components/element-style-controls/layout-panel.md)を正本にする。
+
+縦並び時の`justify-content`は、見出しグループの高さが内容より大きい場合にだけ見た目へ反映される。UIにはこの条件をヘルプとして表示し、今回の設定追加に合わせた高さの自動付与は行わない。
 
 背景の色とグラデーションは初期表示しない。見出しグループはブロックのルート要素になるため、マージンは上下だけ、パディングは4方向を指定できる。「ブロックの間隔」では見出しとサブテキストの`gap`を設定し、未設定時は`0.5em`を適用する。
 
@@ -67,7 +71,11 @@ WordPressコアのパネルを利用し、Block Supportsが生成したクラス
 					"spacing": {}
 				},
 				"group": {
-					"layout": {},
+					"layout": {
+						"orientation": "horizontal",
+						"alignItems": "center",
+						"justifyContent": "space-between"
+					},
 					"color": {},
 					"border": {},
 					"spacing": {
