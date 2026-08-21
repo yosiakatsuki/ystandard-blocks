@@ -44,6 +44,16 @@ export type ElementLayout = {
 	justifyContent?: ElementJustifyContent;
 };
 
+export type ElementLayoutDefaultValues = {
+	orientation?: ElementLayoutOrientation;
+	alignItems?: Partial<
+		Record< ElementLayoutOrientation, ElementAlignItems >
+	>;
+	justifyContent?: Partial<
+		Record< ElementLayoutOrientation, ElementJustifyContent >
+	>;
+};
+
 export type ElementStyle = {
 	layout?: ElementLayout;
 	typography?: {
@@ -74,4 +84,8 @@ export interface ElementStylePanelProps {
 	panelId: string;
 	value?: ElementStyle;
 	onChange: ( value?: ElementStyle ) => void;
+}
+
+export interface ElementLayoutPanelProps extends ElementStylePanelProps {
+	defaultValues?: ElementLayoutDefaultValues;
 }

@@ -5,3 +5,6 @@ export * from './color-panel';
 export * from './border-panel';
 export * from './spacing-panel';
 export * from './layout-panel';
+export * from './layout-alignment-control';
+export * from './layout-defaults';
+export * from './layout-orientation-control';

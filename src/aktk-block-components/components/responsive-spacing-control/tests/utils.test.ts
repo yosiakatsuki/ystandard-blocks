@@ -1,4 +1,9 @@
-import { hasResponsiveSpacingValue, updateResponsiveSpacing } from '../utils';
+import {
+	hasResponsiveSpacingSizeValue,
+	hasResponsiveSpacingValue,
+	updateResponsiveSpacing,
+	updateResponsiveSpacingSize,
+} from '../utils';
 
 describe( 'responsive-spacing-control utils', () => {
 	it( '指定デバイスの値だけを更新する', () => {
@@ -42,6 +47,28 @@ describe( 'responsive-spacing-control utils', () => {
 		expect(
 			hasResponsiveSpacingValue( {
 				desktop: {},
+			} )
+		).toBe( false );
+	} );
+
+	it( '単一余白値の指定デバイスだけを更新する', () => {
+		expect(
+			updateResponsiveSpacingSize(
+				{ desktop: '1rem', mobile: '2rem' },
+				'tablet',
+				'var:preset|spacing|40'
+			)
+		).toEqual( {
+			desktop: '1rem',
+			tablet: 'var:preset|spacing|40',
+			mobile: '2rem',
+		} );
+	} );
+
+	it( '単一余白値の空文字を未設定として扱う', () => {
+		expect(
+			hasResponsiveSpacingSizeValue( {
+				desktop: '',
 			} )
 		).toBe( false );
 	} );

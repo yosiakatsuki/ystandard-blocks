@@ -453,3 +453,24 @@ exports[`Custom Heading Block <Save /> snapshot 039: 見出しグループへ配
   </hgroup>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 040: サブテキストと見出しグループへレスポンシブ設定を適用する 1`] = `
+<DocumentFragment>
+  <hgroup
+    class="ystdb-custom-heading-group"
+    style="--ystdb--tablet--custom-heading-group--margin-top: 3rem; --ystdb--desktop--custom-heading-group--block-gap: 1rem; --ystdb--mobile--custom-heading-group--flex-direction: row; --ystdb--mobile--custom-heading-group--align-items: baseline; --ystdb--mobile--custom-heading-group--justify-content: center;"
+  >
+    <h2
+      class="ystdb-custom-heading"
+    >
+      メインテキスト
+    </h2>
+    <p
+      class="ystdb-custom-heading-sub"
+      style="--ystdb--tablet--custom-heading-sub--font-size: 1rem; --ystdb--mobile--custom-heading-sub--padding-left: 2rem;"
+    >
+      サブテキスト
+    </p>
+  </hgroup>
+</DocumentFragment>
+`;

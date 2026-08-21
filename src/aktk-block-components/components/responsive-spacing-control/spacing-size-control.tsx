@@ -11,34 +11,24 @@ import { __ } from '@wordpress/i18n';
 import BaseControl from '@aktk/block-components/wp-controls/base-control';
 import SpacingSizesControl from '@aktk/block-components/wp-controls/spacing-size-control';
 
-/**
- * Internal dependencies.
- */
 import type {
-	ResponsiveSpacingControlProps,
 	ResponsiveSpacingDevice,
+	ResponsiveSpacingSizeControlProps,
 } from './types';
-import { updateResponsiveSpacing } from './utils';
+import { updateResponsiveSpacingSize } from './utils';
 
 const ICON_SIZE = 20;
 
 /**
- * レスポンシブ余白コントロール.
+ * デバイス別に単一の余白値を設定するコントロール.
  *
  * @param props コンポーネントプロパティ.
+ * @return レスポンシブ余白値コントロール.
  */
-export function ResponsiveSpacingControl(
-	props: ResponsiveSpacingControlProps
-): JSX.Element {
-	const {
-		id,
-		label,
-		value,
-		onChange,
-		allowedSides,
-		minimumCustomValue = 0,
-	} = props;
-
+export function ResponsiveSpacingSizeControl(
+	props: ResponsiveSpacingSizeControlProps
+) {
+	const { id, label, minimumCustomValue = 0, onChange, value } = props;
 	const renderDeviceControl = (
 		device: ResponsiveSpacingDevice,
 		deviceLabel: string,
@@ -52,18 +42,21 @@ export function ResponsiveSpacingControl(
 			{ icon }
 			<div className="aktk-responsive-spacing-control__input">
 				<SpacingSizesControl
-					values={ value?.[ device ] }
+					values={
+						value?.[ device ] ? { top: value[ device ] } : undefined
+					}
 					onChange={ ( deviceValue ) =>
 						onChange(
-							updateResponsiveSpacing(
+							updateResponsiveSpacingSize(
 								value,
 								device,
-								deviceValue
+								deviceValue?.top
 							)
 						)
 					}
-					sides={ allowedSides }
+					sides={ [ 'top' ] }
 					minimumCustomValue={ minimumCustomValue }
+					showSideInLabel={ false }
 				/>
 			</div>
 		</div>
@@ -103,19 +96,3 @@ export function ResponsiveSpacingControl(
 		</BaseControl>
 	);
 }
-
-export type {
-	ResponsiveSpacing,
-	ResponsiveSpacingControlProps,
-	ResponsiveSpacingDevice,
-	ResponsiveSpacingSizeControlProps,
-	Spacing,
-	SpacingSide,
-} from './types';
-export { ResponsiveSpacingSizeControl } from './spacing-size-control';
-export {
-	hasResponsiveSpacingSizeValue,
-	hasResponsiveSpacingValue,
-	updateResponsiveSpacing,
-	updateResponsiveSpacingSize,
-} from './utils';

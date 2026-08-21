@@ -11,7 +11,7 @@ import { ToggleGroup } from '@aktk/block-components/components/toggle-group';
 import type { ElementLayoutOrientation } from './types';
 
 type LayoutOrientationControlProps = {
-	onChange: ( value?: ElementLayoutOrientation ) => void;
+	onChange: ( value: ElementLayoutOrientation ) => void;
 	value: ElementLayoutOrientation;
 };
 
@@ -40,11 +40,15 @@ export function LayoutOrientationControl(
 					value: 'horizontal',
 				},
 			] }
-			onChange={ ( nextOrientation ) =>
-				onChange(
-					'horizontal' === nextOrientation ? 'horizontal' : undefined
-				)
-			}
+			onChange={ ( nextOrientation ) => {
+				// 実験的コンポーネントが未選択値を返す場合は保存値を変更しない.
+				if (
+					'vertical' === nextOrientation ||
+					'horizontal' === nextOrientation
+				) {
+					onChange( nextOrientation );
+				}
+			} }
 			isBlock
 		/>
 	);

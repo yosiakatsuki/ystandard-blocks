@@ -12,27 +12,10 @@ import {
 } from '@aktk/block-components/wp-controls/tools-panel';
 
 import { LayoutAlignmentControl } from './layout-alignment-control';
+import { getElementLayoutDefaultValues } from './layout-defaults';
 import { LayoutOrientationControl } from './layout-orientation-control';
-import type {
-	ElementAlignItems,
-	ElementLayout,
-	ElementStylePanelProps,
-} from './types';
+import type { ElementLayout, ElementLayoutPanelProps } from './types';
 import { hasElementStyleValue, updateElementStyle } from './utils';
-
-const DEFAULT_JUSTIFY_CONTENT = 'flex-start';
-
-/**
- * 並び方向に対応するalign-itemsの既定値を取得.
- *
- * @param orientation 並び方向.
- * @return align-itemsの既定値.
- */
-function getDefaultAlignItems(
-	orientation: ElementLayout[ 'orientation' ]
-): ElementAlignItems {
-	return 'horizontal' === orientation ? 'baseline' : 'stretch';
-}
 
 /**
  * 要素の並び方向設定パネル.
@@ -40,20 +23,23 @@ function getDefaultAlignItems(
  * @param props コンポーネントプロパティ.
  * @return 並び方向設定パネル.
  */
-export function ElementLayoutPanel( props: ElementStylePanelProps ) {
-	const { label, panelId, value, onChange } = props;
-	const orientation = value?.layout?.orientation ?? 'vertical';
+export function ElementLayoutPanel( props: ElementLayoutPanelProps ) {
+	const { defaultValues, label, panelId, value, onChange } = props;
+	const initialDefaults = getElementLayoutDefaultValues( defaultValues );
+	const orientation =
+		value?.layout?.orientation ?? initialDefaults.orientation;
 	const isHorizontal = 'horizontal' === orientation;
-	const defaultAlignItems = getDefaultAlignItems( orientation );
+	const {
+		alignItems: defaultAlignItems,
+		justifyContent: defaultJustifyContent,
+	} = getElementLayoutDefaultValues( defaultValues, orientation );
 	const alignItems = value?.layout?.alignItems ?? defaultAlignItems;
 	const justifyContent =
-		value?.layout?.justifyContent ?? DEFAULT_JUSTIFY_CONTENT;
+		value?.layout?.justifyContent ?? defaultJustifyContent;
 	const alignItemsLabel = isHorizontal
 		? __( '縦方向の配置', 'ystandard-blocks' )
 		: __( '横方向の配置', 'ystandard-blocks' );
-	const justifyContentLabel = isHorizontal
-		? __( '横方向の配置', 'ystandard-blocks' )
-		: __( '縦方向の配置', 'ystandard-blocks' );
+	const justifyContentLabel = __( '横方向の配置', 'ystandard-blocks' );
 	const updateLayout = < Key extends keyof ElementLayout >(
 		property: Key,
 		propertyValue: ElementLayout[ Key ]
@@ -81,9 +67,14 @@ export function ElementLayoutPanel( props: ElementStylePanelProps ) {
 				isShownByDefault
 			>
 				<LayoutOrientationControl
-					value={ value?.layout?.orientation ?? 'vertical' }
+					value={ orientation }
 					onChange={ ( nextOrientation ) =>
-						updateLayout( 'orientation', nextOrientation )
+						updateLayout(
+							'orientation',
+							nextOrientation === initialDefaults.orientation
+								? undefined
+								: nextOrientation
+						)
 					}
 				/>
 			</ToolsPanelItem>
@@ -98,6 +89,7 @@ export function ElementLayoutPanel( props: ElementStylePanelProps ) {
 				isShownByDefault
 			>
 				<LayoutAlignmentControl
+					allowBaseline={ isHorizontal }
 					axis={ isHorizontal ? 'vertical' : 'horizontal' }
 					label={ alignItemsLabel }
 					property="alignItems"
@@ -112,39 +104,35 @@ export function ElementLayoutPanel( props: ElementStylePanelProps ) {
 					}
 				/>
 			</ToolsPanelItem>
-			<ToolsPanelItem
-				className="single-column"
-				panelId={ panelId }
-				label={ justifyContentLabel }
-				hasValue={ () =>
-					hasElementStyleValue( value?.layout?.justifyContent )
-				}
-				onDeselect={ () => updateLayout( 'justifyContent', undefined ) }
-				isShownByDefault
-			>
-				<LayoutAlignmentControl
-					axis={ isHorizontal ? 'horizontal' : 'vertical' }
+			{ isHorizontal && (
+				<ToolsPanelItem
+					className="single-column"
+					panelId={ panelId }
 					label={ justifyContentLabel }
-					help={
-						isHorizontal
-							? undefined
-							: __(
-									'見出しグループの高さが内容より大きい場合に反映されます。',
-									'ystandard-blocks'
-							  )
+					hasValue={ () =>
+						hasElementStyleValue( value?.layout?.justifyContent )
 					}
-					property="justifyContent"
-					value={ justifyContent }
-					onChange={ ( nextJustifyContent ) =>
-						updateLayout(
-							'justifyContent',
-							nextJustifyContent === DEFAULT_JUSTIFY_CONTENT
-								? undefined
-								: nextJustifyContent
-						)
+					onDeselect={ () =>
+						updateLayout( 'justifyContent', undefined )
 					}
-				/>
-			</ToolsPanelItem>
+					isShownByDefault
+				>
+					<LayoutAlignmentControl
+						axis="horizontal"
+						label={ justifyContentLabel }
+						property="justifyContent"
+						value={ justifyContent }
+						onChange={ ( nextJustifyContent ) =>
+							updateLayout(
+								'justifyContent',
+								nextJustifyContent === defaultJustifyContent
+									? undefined
+									: nextJustifyContent
+							)
+						}
+					/>
+				</ToolsPanelItem>
+			) }
 		</ToolsPanel>
 	);
 }

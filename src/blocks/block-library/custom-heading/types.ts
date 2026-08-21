@@ -2,11 +2,32 @@
  * Aktk dependencies.
  */
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type { ResponsiveLayout } from '@aktk/block-components/components/responsive-layout-control';
 import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
 import type {
 	ResponsiveSpacing,
 	Spacing,
 } from '@aktk/block-components/components/responsive-spacing-control';
+import type { ResponsiveValues } from '@aktk/block-components/types';
+
+export type ResponsiveTextStyle = {
+	typography?: {
+		fontSize?: ResponsiveFontSize;
+	};
+	spacing?: {
+		margin?: ResponsiveSpacing;
+		padding?: ResponsiveSpacing;
+	};
+};
+
+export type ResponsiveGroupStyle = {
+	layout?: ResponsiveLayout;
+	spacing?: {
+		blockGap?: ResponsiveValues;
+		margin?: ResponsiveSpacing;
+		padding?: ResponsiveSpacing;
+	};
+};
 
 export interface Attributes {
 	content: string;
@@ -53,15 +74,9 @@ export interface Attributes {
 				group?: ElementStyle;
 				sub?: ElementStyle;
 				responsive?: {
-					main?: {
-						typography?: {
-							fontSize?: ResponsiveFontSize;
-						};
-						spacing?: {
-							margin?: ResponsiveSpacing;
-							padding?: ResponsiveSpacing;
-						};
-					};
+					main?: ResponsiveTextStyle;
+					sub?: ResponsiveTextStyle;
+					group?: ResponsiveGroupStyle;
 				};
 			};
 		};

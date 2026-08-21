@@ -31,6 +31,7 @@ type LayoutAlignmentValue< Property extends LayoutAlignmentProperty > =
 	Property extends 'alignItems' ? ElementAlignItems : ElementJustifyContent;
 
 type LayoutAlignmentControlProps< Property extends LayoutAlignmentProperty > = {
+	allowBaseline?: boolean;
 	axis: 'horizontal' | 'vertical';
 	help?: React.ReactNode;
 	label: string;
@@ -48,7 +49,15 @@ type LayoutAlignmentControlProps< Property extends LayoutAlignmentProperty > = {
 export function LayoutAlignmentControl<
 	Property extends LayoutAlignmentProperty,
 >( props: LayoutAlignmentControlProps< Property > ) {
-	const { axis, help, label, onChange, property, value } = props;
+	const {
+		allowBaseline = true,
+		axis,
+		help,
+		label,
+		onChange,
+		property,
+		value,
+	} = props;
 	const isHorizontal = 'horizontal' === axis;
 	const startOption = {
 		icon: isHorizontal ? justifyLeft : justifyTop,
@@ -94,7 +103,7 @@ export function LayoutAlignmentControl<
 		centerOption,
 		endOption,
 		additionalOption,
-		...( 'alignItems' === property
+		...( 'alignItems' === property && allowBaseline
 			? [
 					{
 						icon: justifyCenterVertical,

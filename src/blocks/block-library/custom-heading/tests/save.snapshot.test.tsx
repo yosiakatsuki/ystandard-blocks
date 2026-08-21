@@ -744,4 +744,51 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '040: サブテキストと見出しグループへレスポンシブ設定を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								responsive: {
+									sub: {
+										typography: {
+											fontSize: { tablet: '1rem' },
+										},
+										spacing: {
+											padding: {
+												mobile: { left: '2rem' },
+											},
+										},
+									},
+									group: {
+										spacing: {
+											blockGap: { desktop: '1rem' },
+											margin: {
+												tablet: { top: '3rem' },
+											},
+										},
+										layout: {
+											mobile: {
+												orientation: 'horizontal',
+												alignItems: 'baseline',
+												justifyContent: 'center',
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

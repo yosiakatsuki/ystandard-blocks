@@ -16,9 +16,11 @@ import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-su
 import type { Attributes } from './types';
 import {
 	getCustomHeadingElementStyle,
+	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
+	getSubTextResponsiveStyles,
 } from './utils';
 
 // @ts-expect-error
@@ -48,7 +50,10 @@ function Save( { attributes } ) {
 			'ystdb-custom-heading-sub',
 			subTextBlockSupportProps.className
 		),
-		style: subTextBlockSupportProps.style,
+		style: {
+			...subTextBlockSupportProps.style,
+			...getSubTextResponsiveStyles( attributes ),
+		},
 	};
 	const groupBlockSupportProps = getInnerBlockSupportProps( {
 		style: getCustomHeadingElementStyle( attributes, 'group' ),
@@ -58,7 +63,10 @@ function Save( { attributes } ) {
 			getHeadingGroupClasses( attributes ),
 			groupBlockSupportProps.className
 		),
-		style: groupBlockSupportProps.style,
+		style: {
+			...groupBlockSupportProps.style,
+			...getGroupResponsiveStyles( attributes ),
+		},
 	};
 
 	// ブロックのpropsを生成.

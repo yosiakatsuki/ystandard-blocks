@@ -29,12 +29,15 @@ src/aktk-block-components/components/responsive-spacing-control/
   SPEC.md
   index.css
   index.tsx
+  spacing-size-control.tsx
   types.ts
   utils.ts
   tests/
 ```
 
 コンポーネント名は`ResponsiveSpacingControl`とする。既存の`ResponsiveSpacingSelect`、`ResponsiveSpacingSelectControl`は名前を変更せず、移行期間中も旧仕様として扱う。
+
+ブロックの間隔など1つの余白値をデバイス別に設定する場合は、同じディレクトリの`ResponsiveSpacingSizeControl`を使用する。内部ではWordPressコアの`SpacingSizesControl`を単一値として利用し、プリセット値と任意値を保持する。
 
 新コンポーネントは`custom-spacing-select`を参照しない。WordPressコアの余白入力をラップした`SpacingSizesControl`など、既存の低レベル部品を直接利用する。
 
@@ -73,6 +76,8 @@ type ResponsiveSpacingControlProps = {
 -   既存値に許可されていない方向が含まれる場合は、表示だけを理由に自動削除しない。削除は利用側のマイグレーションまたは明示的なリセットで行う。
 -   デスクトップ、タブレット、モバイルの値がすべて未設定になった場合は`onChange( undefined )`を返す。
 -   `0`を有効値として扱い、未設定判定に真偽値を使わない。
+
+`ResponsiveSpacingSizeControl`は`desktop`、`tablet`、`mobile`それぞれに文字列の余白値を持ち、すべて未設定になった場合は`undefined`を返す。
 
 ## UI
 

@@ -1,0 +1,18 @@
+.aktk-responsive-layout-control__tabs .components-tab-panel__tabs {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	border-bottom: 1px solid var(--aktk-component--border-color--gray);
+}
+
+.aktk-responsive-layout-control__tabs .components-tab-panel__tabs-item {
+	justify-content: center;
+}
+
+.aktk-responsive-layout-control__tabs .components-tab-panel__tab-content {
+	padding-top: 16px;
+}
+
+.aktk-responsive-layout-control__controls {
+	display: grid;
+	gap: 16px;
+}

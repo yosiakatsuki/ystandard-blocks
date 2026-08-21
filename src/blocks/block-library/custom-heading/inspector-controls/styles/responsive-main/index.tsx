@@ -31,6 +31,7 @@ import {
 // @ts-ignore.
 export function ResponsiveMainPanel( props ) {
 	const { attributes, setAttributes } = props;
+	const panelId = 'ystdb-custom-heading-responsive-main';
 	const responsiveFontSize = getMainResponsiveFontSize(
 		attributes as Attributes
 	);
@@ -76,13 +77,17 @@ export function ResponsiveMainPanel( props ) {
 	return (
 		<ToolsPanel
 			label={ __( 'レスポンシブ（メイン）', 'ystandard-blocks' ) }
+			panelId={ panelId }
 			resetAll={ resetAll }
 			icon={ <PanelIcon /> }
 		>
 			<ToolsPanelItem
+				className="single-column"
 				hasValue={ hasResponsiveFontSize }
 				label={ __( 'フォントサイズ', 'ystandard-blocks' ) }
 				onDeselect={ resetResponsiveFontSize }
+				panelId={ panelId }
+				isShownByDefault={ false }
 			>
 				<ResponsiveFontSizeControl
 					id="custom-heading-responsive-main-font-size"
@@ -99,9 +104,38 @@ export function ResponsiveMainPanel( props ) {
 				/>
 			</ToolsPanelItem>
 			<ToolsPanelItem
+				className="single-column"
+				hasValue={ hasPadding }
+				label={ __( 'パディング', 'ystandard-blocks' ) }
+				onDeselect={ resetPadding }
+				panelId={ panelId }
+				isShownByDefault={ false }
+			>
+				<ResponsiveSpacingControl
+					id="custom-heading-responsive-main-padding"
+					label={ __( 'パディング', 'ystandard-blocks' ) }
+					value={ responsivePadding }
+					onChange={ ( padding ) => {
+						setAttributes( {
+							style: updateMainResponsiveSpacing(
+								attributes.style,
+								{
+									margin: responsiveMargin,
+									padding,
+								}
+							),
+						} );
+					} }
+					allowedSides={ [ 'top', 'right', 'bottom', 'left' ] }
+				/>
+			</ToolsPanelItem>
+			<ToolsPanelItem
+				className="single-column"
 				hasValue={ hasMargin }
 				label={ __( 'マージン', 'ystandard-blocks' ) }
 				onDeselect={ resetMargin }
+				panelId={ panelId }
+				isShownByDefault={ false }
 			>
 				<ResponsiveSpacingControl
 					id="custom-heading-responsive-main-margin"
@@ -120,29 +154,6 @@ export function ResponsiveMainPanel( props ) {
 					} }
 					allowedSides={ [ 'top', 'bottom' ] }
 					minimumCustomValue={ -9999 }
-				/>
-			</ToolsPanelItem>
-			<ToolsPanelItem
-				hasValue={ hasPadding }
-				label={ __( 'パディング', 'ystandard-blocks' ) }
-				onDeselect={ resetPadding }
-			>
-				<ResponsiveSpacingControl
-					id="custom-heading-responsive-main-padding"
-					label={ __( 'パディング', 'ystandard-blocks' ) }
-					value={ responsivePadding }
-					onChange={ ( padding ) => {
-						setAttributes( {
-							style: updateMainResponsiveSpacing(
-								attributes.style,
-								{
-									margin: responsiveMargin,
-									padding,
-								}
-							),
-						} );
-					} }
-					allowedSides={ [ 'top', 'right', 'bottom', 'left' ] }
 				/>
 			</ToolsPanelItem>
 		</ToolsPanel>

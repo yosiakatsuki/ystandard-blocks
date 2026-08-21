@@ -19,9 +19,11 @@ import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
 import {
 	getCustomHeadingElementStyle,
+	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
+	getSubTextResponsiveStyles,
 } from './utils';
 
 // @ts-ignore.
@@ -63,7 +65,10 @@ function Edit( props ) {
 			'ystdb-custom-heading-sub',
 			subTextBlockSupportProps.className
 		),
-		style: subTextBlockSupportProps.style,
+		style: {
+			...subTextBlockSupportProps.style,
+			...getSubTextResponsiveStyles( attributes ),
+		},
 	};
 	const groupBlockSupportProps = getInnerBlockSupportProps( {
 		style: getCustomHeadingElementStyle( attributes, 'group' ),
@@ -73,7 +78,10 @@ function Edit( props ) {
 			getHeadingGroupClasses( attributes ),
 			groupBlockSupportProps.className
 		),
-		style: groupBlockSupportProps.style,
+		style: {
+			...groupBlockSupportProps.style,
+			...getGroupResponsiveStyles( attributes ),
+		},
 	};
 
 	// ブロックProps.

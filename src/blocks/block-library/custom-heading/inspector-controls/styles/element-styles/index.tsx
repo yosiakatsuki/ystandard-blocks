@@ -22,6 +22,7 @@ import {
 	getCustomHeadingElementStyle,
 	updateCustomHeadingElementStyle,
 } from '../../../utils';
+import { CUSTOM_HEADING_LAYOUT_DEFAULT_VALUES } from '../../../config';
 
 // @ts-ignore.
 export function ElementStylePanels( props ) {
@@ -86,6 +87,7 @@ export function ElementStylePanels( props ) {
 				showBlockGap
 			/>
 			<ElementLayoutPanel
+				defaultValues={ CUSTOM_HEADING_LAYOUT_DEFAULT_VALUES }
 				label={ __( '見出しグループ（配置）', 'ystandard-blocks' ) }
 				panelId="ystdb-custom-heading-group-layout"
 				value={ groupStyle }

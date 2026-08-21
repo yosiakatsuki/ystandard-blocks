@@ -6,12 +6,16 @@ import {
 	getMainResponsiveSpacing,
 	getMainResponsiveFontSize,
 	getCustomHeadingElementStyle,
+	getCustomHeadingResponsiveElementStyle,
+	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
 	getMainTextClasses,
 	getMainTextStyles,
+	getSubTextResponsiveStyles,
 	updateMainResponsiveSpacing,
 	updateMainResponsiveFontSize,
 	updateCustomHeadingElementStyle,
+	updateCustomHeadingResponsiveElementStyle,
 } from '../utils';
 
 const getBaseAttributes = (): Attributes => ( {
@@ -338,6 +342,131 @@ describe( 'Custom Heading Block utils', () => {
 					customHeading: {
 						group: { color: { background: '#ffffff' } },
 						sub: { typography: { fontSize: '1rem' } },
+					},
+				},
+			} );
+		} );
+	} );
+
+	describe( 'サブテキストと見出しグループのレスポンシブ属性', () => {
+		const attributes: Attributes = {
+			...getBaseAttributes(),
+			style: {
+				ystdb: {
+					customHeading: {
+						responsive: {
+							sub: {
+								typography: {
+									fontSize: { tablet: '1rem' },
+								},
+								spacing: {
+									padding: {
+										mobile: { left: '2rem' },
+									},
+								},
+							},
+							group: {
+								spacing: {
+									blockGap: {
+										desktop: 'var:preset|spacing|40',
+									},
+									margin: {
+										tablet: { top: '3rem' },
+									},
+								},
+								layout: {
+									mobile: {
+										orientation: 'horizontal',
+										alignItems: 'baseline',
+										justifyContent: 'center',
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		};
+
+		it( '対象ごとのレスポンシブ値を取得する', () => {
+			expect(
+				getCustomHeadingResponsiveElementStyle( attributes, 'sub' )
+			).toEqual( {
+				typography: { fontSize: { tablet: '1rem' } },
+				spacing: { padding: { mobile: { left: '2rem' } } },
+			} );
+		} );
+
+		it( 'サブテキストの文字サイズと余白をCSS変数へ変換する', () => {
+			expect( getSubTextResponsiveStyles( attributes ) ).toEqual( {
+				'--ystdb--tablet--custom-heading-sub--font-size': '1rem',
+				'--ystdb--mobile--custom-heading-sub--padding-left': '2rem',
+			} );
+		} );
+
+		it( '見出しグループの間隔と配置をCSS変数へ変換する', () => {
+			expect( getGroupResponsiveStyles( attributes ) ).toEqual( {
+				'--ystdb--desktop--custom-heading-group--block-gap':
+					'var(--wp--preset--spacing--40)',
+				'--ystdb--tablet--custom-heading-group--margin-top': '3rem',
+				'--ystdb--mobile--custom-heading-group--flex-direction': 'row',
+				'--ystdb--mobile--custom-heading-group--align-items':
+					'baseline',
+				'--ystdb--mobile--custom-heading-group--justify-content':
+					'center',
+			} );
+		} );
+
+		it( '並び方向だけがある場合はブロックの初期配置も出力する', () => {
+			const orientationOnlyAttributes: Attributes = {
+				...getBaseAttributes(),
+				style: {
+					ystdb: {
+						customHeading: {
+							responsive: {
+								group: {
+									layout: {
+										tablet: {
+											orientation: 'horizontal',
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			};
+
+			expect(
+				getGroupResponsiveStyles( orientationOnlyAttributes )
+			).toEqual( {
+				'--ystdb--tablet--custom-heading-group--flex-direction': 'row',
+				'--ystdb--tablet--custom-heading-group--align-items':
+					'baseline',
+				'--ystdb--tablet--custom-heading-group--justify-content':
+					'flex-start',
+			} );
+		} );
+
+		it( '既存styleを保ったまま対象要素だけを更新する', () => {
+			expect(
+				updateCustomHeadingResponsiveElementStyle(
+					attributes.style,
+					'sub',
+					{ typography: { fontSize: { desktop: '2rem' } } }
+				)
+			).toMatchObject( {
+				ystdb: {
+					customHeading: {
+						responsive: {
+							sub: {
+								typography: {
+									fontSize: { desktop: '2rem' },
+								},
+							},
+							group: attributes.style?.ystdb?.customHeading
+								?.responsive?.group,
+						},
 					},
 				},
 			} );
