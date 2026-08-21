@@ -27,16 +27,16 @@ describe( 'Custom Heading Block Supports', () => {
 		} );
 	} );
 
-	it( 'コア見出しと同じ色設定を有効にする', () => {
+	it( 'メインテキストの色設定を有効にし、リンク色は無効にする', () => {
 		expect( metadata.supports.color ).toEqual( {
 			gradients: true,
-			link: true,
 			__experimentalSkipSerialization: true,
 			__experimentalDefaultControls: {
 				background: false,
 				text: true,
 			},
 		} );
+		expect( metadata.supports.color ).not.toHaveProperty( 'link' );
 	} );
 
 	it( 'コア見出しと同じ余白設定を有効にする', () => {

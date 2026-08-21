@@ -54,7 +54,6 @@
 		"splitting": true,
 		"color": {
 			"gradients": true,
-			"link": true,
 			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"background": false,

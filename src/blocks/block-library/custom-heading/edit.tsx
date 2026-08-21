@@ -90,6 +90,7 @@ function Edit( props ) {
 	const mainText = (
 		<RichText
 			identifier="content"
+			withoutInteractiveFormatting
 			// @ts-ignore
 			tagName={ tagName }
 			{ ...mainTextProps }
@@ -116,6 +117,7 @@ function Edit( props ) {
 					{ mainText }
 					<RichText
 						identifier="subText"
+						withoutInteractiveFormatting
 						tagName="p"
 						{ ...subTextProps }
 						value={ subText || '' }
@@ -129,6 +131,7 @@ function Edit( props ) {
 			) : (
 				<RichText
 					identifier="content"
+					withoutInteractiveFormatting
 					// @ts-ignore
 					tagName={ tagName }
 					value={ content || '' }

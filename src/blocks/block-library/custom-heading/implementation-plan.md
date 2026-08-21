@@ -78,6 +78,8 @@
 
 `subText`には`role: "content"`を指定し、スタイルコピーで文章そのものがコピーされない構造にする。
 
+見出し内でリンクを利用するケースは対象外とし、メインテキストとサブテキストのRichTextではインタラクティブな書式を無効化する。リンク色を設定する「要素」パネルも表示しない。既存投稿に保存済みのリンクは互換性維持のため自動削除しない。
+
 ### メインテキストの単一スタイル
 
 コアBlock Supportsが扱える値は、コアの属性構造を正本にする。
@@ -90,7 +92,6 @@
 -   任意の背景色: `style.color.background`
 -   グラデーションプリセット: `gradient`
 -   任意のグラデーション: `style.color.gradient`
--   リンク色: `style.elements.link.color.text`
 -   行の高さ: `style.typography.lineHeight`
 -   文字間隔: `style.typography.letterSpacing`
 -   文字の太さ: `style.typography.fontWeight`
