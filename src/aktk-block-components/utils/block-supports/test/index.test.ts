@@ -68,4 +68,34 @@ describe( 'getInnerBlockSupportProps', () => {
 
 		expect( props.style.gap ).toBe( 'var(--wp--preset--spacing--40)' );
 	} );
+
+	it( '内部要素のflex配置をインラインスタイルへ変換する', () => {
+		const props = getInnerBlockSupportProps( {
+			style: {
+				layout: {
+					alignItems: 'center',
+					justifyContent: 'space-between',
+				},
+			},
+		} );
+
+		expect( props.style ).toMatchObject( {
+			alignItems: 'center',
+			justifyContent: 'space-between',
+		} );
+	} );
+
+	it( '許可していないflex配置値は出力しない', () => {
+		const props = getInnerBlockSupportProps( {
+			style: {
+				layout: {
+					alignItems: 'unsafe-value',
+					justifyContent: 'unsafe-value',
+				},
+			},
+		} );
+
+		expect( props.style.alignItems ).toBeUndefined();
+		expect( props.style.justifyContent ).toBeUndefined();
+	} );
 } );

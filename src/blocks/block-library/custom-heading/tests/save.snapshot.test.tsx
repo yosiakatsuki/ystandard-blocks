@@ -718,4 +718,30 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		);
 		expect( asFragment() ).toMatchSnapshot();
 	} );
+
+	it( '039: 見出しグループへ配置設定を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								group: {
+									layout: {
+										alignItems: 'center',
+										justifyContent: 'space-between',
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
 } );

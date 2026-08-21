@@ -15,7 +15,12 @@ flexコンテナとなる内部要素の並び方向、`align-items`、`justify-
 ```ts
 type ElementLayout = {
 	orientation?: 'vertical' | 'horizontal';
-	alignItems?: 'stretch' | 'flex-start' | 'center' | 'flex-end';
+	alignItems?:
+		| 'stretch'
+		| 'flex-start'
+		| 'center'
+		| 'flex-end'
+		| 'baseline';
 	justifyContent?:
 		| 'flex-start'
 		| 'center'
@@ -29,7 +34,7 @@ CSSプロパティと保存キーを一致させる。WordPressコアのflexレ�
 既定値は次のとおりとし、既定値と同じ値は属性へ保存しない。
 
 -   `orientation`: `vertical`
--   `alignItems`: `stretch`
+-   `alignItems`: 縦並びでは`stretch`、横並びでは`baseline`
 -   `justifyContent`: `flex-start`
 
 未設定と既定値を同じ見た目にし、スタイルコピー時に不要な値を増やさない。
@@ -57,12 +62,13 @@ CSSプロパティと保存キーを一致させる。WordPressコアのflexレ�
 
 ## 選択肢
 
-`align-items`は次の4種類とする。
+`align-items`は次の5種類とする。
 
 -   開始位置: `flex-start`
 -   中央: `center`
 -   終了位置: `flex-end`
 -   幅または高さを揃える: `stretch`
+-   テキストの基準線を揃える: `baseline`
 
 `justify-content`は次の4種類とする。
 
@@ -73,7 +79,7 @@ CSSプロパティと保存キーを一致させる。WordPressコアのflexレ�
 
 WordPressコアのToggleGroupControlと配置アイコンを利用する。`AlignmentMatrixControl`は`stretch`と`space-between`を表現できず、2つのプロパティを個別にリセットできないため使用しない。
 
-`baseline`、`space-around`、`space-evenly`は初期仕様へ含めない。見出しグループでの利用頻度とWordPressコアのflex設定との一貫性を優先し、必要性が確認できた場合に追加する。
+`space-around`、`space-evenly`は初期仕様へ含めない。見出しグループでの利用頻度とWordPressコアのflex設定との一貫性を優先し、必要性が確認できた場合に追加する。
 
 ## 並び方向を変更した場合
 
@@ -95,6 +101,11 @@ WordPressコアのToggleGroupControlと配置アイコンを利用する。`Alig
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: flex-start;
+}
+
+.ystdb-custom-heading-group.is-horizontal {
+	flex-direction: row;
+	align-items: baseline;
 }
 ```
 

@@ -433,3 +433,23 @@ exports[`Custom Heading Block <Save /> snapshot 038: 見出しグループを横
   </hgroup>
 </DocumentFragment>
 `;
+
+exports[`Custom Heading Block <Save /> snapshot 039: 見出しグループへ配置設定を適用する 1`] = `
+<DocumentFragment>
+  <hgroup
+    class="ystdb-custom-heading-group"
+    style="align-items: center; justify-content: space-between;"
+  >
+    <h2
+      class="ystdb-custom-heading"
+    >
+      メインテキスト
+    </h2>
+    <p
+      class="ystdb-custom-heading-sub"
+    >
+      サブテキスト
+    </p>
+  </hgroup>
+</DocumentFragment>
+`;

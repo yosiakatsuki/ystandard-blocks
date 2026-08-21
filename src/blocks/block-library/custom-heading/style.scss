@@ -1,6 +1,8 @@
 .ystdb-custom-heading-group {
 	display: flex;
 	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
 	gap: 0.5em;
 
 	&:where(.is-horizontal) {
@@ -28,6 +30,7 @@
 }
 
 .ystdb-custom-heading {
+
 	&:where(.has-text-align-left) {
 		text-align: left;
 	}

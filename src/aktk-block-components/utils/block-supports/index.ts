@@ -32,10 +32,28 @@ type BlockSupportAttributes = {
 				};
 			};
 		};
+		layout?: {
+			alignItems?: string;
+			justifyContent?: string;
+		};
 		spacing?: Record< string, unknown >;
 		typography?: Record< string, unknown >;
 	};
 };
+
+const alignItemsValues = [
+	'stretch',
+	'flex-start',
+	'center',
+	'flex-end',
+	'baseline',
+];
+const justifyContentValues = [
+	'flex-start',
+	'center',
+	'flex-end',
+	'space-between',
+];
 
 type BlockSupportSettings = {
 	layout?: Record< string, unknown >;
@@ -69,6 +87,16 @@ export function getInnerBlockSupportProps(
 	const color = getColorClassesAndStyles( attributes );
 	const spacing = getSpacingClassesAndStyles( attributes );
 	const border = getBorderClassesAndStyles( attributes );
+	const alignItems = attributes.style?.layout?.alignItems;
+	const alignItemsValue =
+		alignItems && alignItemsValues.includes( alignItems )
+			? alignItems
+			: undefined;
+	const justifyContent = attributes.style?.layout?.justifyContent;
+	const justifyContentValue =
+		justifyContent && justifyContentValues.includes( justifyContent )
+			? justifyContent
+			: undefined;
 	const blockGap = attributes.style?.spacing?.blockGap;
 	const blockGapValue =
 		'string' === typeof blockGap
@@ -90,6 +118,10 @@ export function getInnerBlockSupportProps(
 			...typography.style,
 			...color.style,
 			...spacing.style,
+			...( alignItemsValue ? { alignItems: alignItemsValue } : {} ),
+			...( justifyContentValue
+				? { justifyContent: justifyContentValue }
+				: {} ),
 			...( blockGapValue ? { gap: blockGapValue } : {} ),
 			...border.style,
 			...( linkColorValue

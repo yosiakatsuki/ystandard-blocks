@@ -23,10 +23,29 @@ export type ElementBorder = ElementBorderSide & {
 	radius?: ElementBorderRadius;
 };
 
+export type ElementLayoutOrientation = 'vertical' | 'horizontal';
+
+export type ElementAlignItems =
+	| 'stretch'
+	| 'flex-start'
+	| 'center'
+	| 'flex-end'
+	| 'baseline';
+
+export type ElementJustifyContent =
+	| 'flex-start'
+	| 'center'
+	| 'flex-end'
+	| 'space-between';
+
+export type ElementLayout = {
+	orientation?: ElementLayoutOrientation;
+	alignItems?: ElementAlignItems;
+	justifyContent?: ElementJustifyContent;
+};
+
 export type ElementStyle = {
-	layout?: {
-		orientation?: 'vertical' | 'horizontal';
-	};
+	layout?: ElementLayout;
 	typography?: {
 		fontSize?: string;
 		fontFamily?: string;

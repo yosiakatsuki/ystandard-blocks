@@ -32,6 +32,8 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 							group: {
 								layout: {
 									orientation: 'horizontal',
+									alignItems: 'center',
+									justifyContent: 'space-between',
 								},
 								spacing: {
 									blockGap: 'var:preset|spacing|40',
@@ -49,7 +51,11 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 			'サブテキスト'
 		);
 		expect( block.attributes.style.ystdb.customHeading.group ).toEqual( {
-			layout: { orientation: 'horizontal' },
+			layout: {
+				orientation: 'horizontal',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+			},
 			spacing: { blockGap: 'var:preset|spacing|40' },
 		} );
 		expect( serialize( [ block ] ) ).toBe( content );
