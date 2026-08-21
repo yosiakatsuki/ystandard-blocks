@@ -38,6 +38,11 @@ export const deprecatedV3253 = {
 			fontWeight,
 			fontStyle,
 			fontFamily,
+			margin,
+			padding,
+			responsiveMargin,
+			responsivePadding,
+			hasSubText,
 			...migratedAttributes
 		} = legacyAttributes;
 		const hasPresetFontSize = !! legacyAttributes.fontSize;
@@ -45,6 +50,10 @@ export const deprecatedV3253 = {
 		const style = stripUndefined( {
 			color: {
 				text: customTextColor,
+			},
+			spacing: {
+				margin,
+				padding,
 			},
 			typography: {
 				fontSize:
@@ -61,6 +70,12 @@ export const deprecatedV3253 = {
 			ystdb: {
 				customHeading: {
 					responsive: {
+						group: {
+							spacing: {
+								margin: responsiveMargin,
+								padding: responsivePadding,
+							},
+						},
 						main: {
 							typography: {
 								fontSize: ! hasPresetFontSize
@@ -75,6 +90,7 @@ export const deprecatedV3253 = {
 
 		return {
 			...migratedAttributes,
+			...( hasSubText ? { hasSubText: false } : {} ),
 			...( style ? { style } : {} ),
 		};
 	},

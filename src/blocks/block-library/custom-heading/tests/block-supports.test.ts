@@ -1,6 +1,10 @@
 import metadata from '../block.json';
 
 describe( 'Custom Heading Block Supports', () => {
+	it( 'サブテキストをコンテンツとして扱う', () => {
+		expect( metadata.attributes.subText.role ).toBe( 'content' );
+	} );
+
 	it( 'コア見出しと同じタイポグラフィ設定を有効にする', () => {
 		expect( metadata.supports.typography ).toEqual( {
 			fontSize: true,
@@ -27,6 +31,17 @@ describe( 'Custom Heading Block Supports', () => {
 			__experimentalDefaultControls: {
 				background: true,
 				text: true,
+			},
+		} );
+	} );
+
+	it( 'コア見出しと同じ余白設定を有効にする', () => {
+		expect( metadata.supports.spacing ).toEqual( {
+			margin: true,
+			padding: true,
+			__experimentalDefaultControls: {
+				margin: false,
+				padding: false,
 			},
 		} );
 	} );

@@ -523,24 +523,66 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '余白指定',
 					level: 2,
-					margin: {
-						top: '1rem',
-						bottom: '2rem',
-					},
-					padding: {
-						left: 'var:preset|spacing|40',
-						right: '3rem',
-					},
-					responsiveMargin: {
-						desktop: {
-							top: '4rem',
+					style: {
+						spacing: {
+							margin: {
+								top: '1rem',
+								bottom: '2rem',
+							},
+							padding: {
+								left: 'var:preset|spacing|40',
+								right: '3rem',
+							},
+						},
+						ystdb: {
+							customHeading: {
+								responsive: {
+									group: {
+										spacing: {
+											margin: {
+												desktop: {
+													top: '4rem',
+												},
+											},
+											padding: {
+												mobile: {
+													bottom: '5rem',
+												},
+											},
+										},
+									},
+								},
+							},
 						},
 					},
-					responsivePadding: {
-						mobile: {
-							bottom: '5rem',
-						},
-					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '032: サブテキストあり', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '033: サブテキスト設定を無効にした場合は見出し単体を維持する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 3,
+					hasSubText: false,
+					subText: '保持されるサブテキスト',
 				} }
 			/>
 		);

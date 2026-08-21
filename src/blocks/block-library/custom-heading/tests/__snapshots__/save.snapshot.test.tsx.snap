@@ -314,9 +314,38 @@ exports[`Custom Heading Block <Save /> snapshot 031: 外側余白と内側余白
 <DocumentFragment>
   <h2
     class="ystdb-custom-heading"
-    style="margin-top: 1rem; margin-bottom: 2rem; padding-right: 3rem; padding-left: var(--wp--preset--spacing--40); --ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
+    style="--ystdb--desktop--custom-heading--margin-top: 4rem; --ystdb--mobile--custom-heading--padding-bottom: 5rem;"
   >
     余白指定
   </h2>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 032: サブテキストあり 1`] = `
+<DocumentFragment>
+  <hgroup
+    class="ystdb-custom-heading"
+  >
+    <h2
+      class="ystdb-custom-heading__main"
+    >
+      メインテキスト
+    </h2>
+    <p
+      class="ystdb-custom-heading__sub"
+    >
+      サブテキスト
+    </p>
+  </hgroup>
+</DocumentFragment>
+`;
+
+exports[`Custom Heading Block <Save /> snapshot 033: サブテキスト設定を無効にした場合は見出し単体を維持する 1`] = `
+<DocumentFragment>
+  <h3
+    class="ystdb-custom-heading"
+  >
+    メインテキスト
+  </h3>
 </DocumentFragment>
 `;

@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
  * Aktk dependencies.
  */
 import { ResponsiveFontSizeControl } from '@aktk/block-components/components/responsive-font-size-control';
+import { PanelIcon } from '@aktk/block-components/components/ystandard-icon';
 import {
 	ToolsPanel,
 	ToolsPanelItem,
@@ -41,6 +42,7 @@ export function ResponsiveMainPanel( props ) {
 		<ToolsPanel
 			label={ __( 'レスポンシブ（メイン）', 'ystandard-blocks' ) }
 			resetAll={ resetResponsiveFontSize }
+			icon={ <PanelIcon /> }
 		>
 			<ToolsPanelItem
 				hasValue={ hasResponsiveFontSize }

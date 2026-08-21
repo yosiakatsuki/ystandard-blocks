@@ -290,4 +290,36 @@ describe( 'Custom Heading Block transforms', () => {
 			},
 		} );
 	} );
+
+	it( 'ystdb/headingのサブテキストを保持する', () => {
+		const transform = getTransform( 'from', 'ystdb/heading' );
+		const block = transform?.transform( {
+			content: 'メインテキスト',
+			level: 2,
+			subText: 'サブテキスト',
+		} );
+
+		expect( block?.attributes.hasSubText ).toBe( true );
+		expect( block?.attributes.subText ).toBe( 'サブテキスト' );
+	} );
+
+	it.each( [ 'core/heading', 'core/paragraph' ] )(
+		'サブテキスト使用時は%sへの変換を表示しない',
+		( blockName ) => {
+			const transform = getTransform( 'to', blockName );
+
+			expect(
+				transform?.isMatch?.( {
+					hasSubText: true,
+					subText: 'サブテキスト',
+				} )
+			).toBe( false );
+			expect(
+				transform?.isMatch?.( {
+					hasSubText: false,
+					subText: '',
+				} )
+			).toBe( true );
+		}
+	);
 } );

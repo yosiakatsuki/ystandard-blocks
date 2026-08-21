@@ -3,6 +3,8 @@
 > [!NOTE]
 > 最新の全体方針は`implementation-plan.md`を参照する。本書は余白設定の適用対象と保存先を補足する資料として扱う。
 
+現行実装では、見出し全体の単一余白をコアの`style.spacing`へ保存する。公開済みの`margin`と`padding`はdeprecated migrationで移行し、レスポンシブ余白は`style.ystdb.customHeading.responsive.group.spacing`へ保存して単一設定と別のyStandardパネルへ表示する。
+
 ## 方針
 
 余白だけを集めた「余白」パネルは作らない。フォントサイズ、色などと同じく、余白も適用対象ごとのスタイルパネルへ配置する。

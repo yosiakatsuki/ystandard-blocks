@@ -8,8 +8,11 @@ import {
 	__experimentalToolsPanelItem as WPToolsPanelItem,
 } from '@wordpress/components';
 import { useViewportMatch } from '@wordpress/compose';
+import './style.scss';
 
-type ToolsPanelProps = React.ComponentProps< typeof WPToolsPanel >;
+type ToolsPanelProps = React.ComponentProps< typeof WPToolsPanel > & {
+	icon?: React.ReactNode;
+};
 type ToolsPanelItemProps = React.ComponentProps< typeof WPToolsPanelItem >;
 
 /**
@@ -35,12 +38,23 @@ function useToolsPanelDropdownMenuProps() {
  */
 export function ToolsPanel( props: ToolsPanelProps ): JSX.Element {
 	const dropdownMenuProps = useToolsPanelDropdownMenuProps();
-
-	return (
+	const { icon, ...panelProps } = props;
+	const panel = (
 		<WPToolsPanel
-			{ ...props }
-			dropdownMenuProps={ props.dropdownMenuProps ?? dropdownMenuProps }
+			{ ...panelProps }
+			dropdownMenuProps={
+				panelProps.dropdownMenuProps ?? dropdownMenuProps
+			}
 		/>
+	);
+
+	return icon ? (
+		<div className="aktk-component-tools-panel--with-icon">
+			<span className="aktk-component-tools-panel__icon">{ icon }</span>
+			{ panel }
+		</div>
+	) : (
+		panel
 	);
 }
 

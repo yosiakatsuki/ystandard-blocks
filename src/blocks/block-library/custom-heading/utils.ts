@@ -3,7 +3,7 @@ import classnames from 'classnames';
 /**
  * Aktk dependencies.
  */
-import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select/util';
+import type { ResponsiveSpacing } from '@aktk/block-components/components/custom-spacing-select';
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
 import { stripUndefined } from '@aktk/block-components/utils/object';
 import {
@@ -80,12 +80,57 @@ export function updateMainResponsiveFontSize(
 }
 
 /**
+ * 見出し全体のレスポンシブ余白を取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブ余白.
+ */
+export function getGroupResponsiveSpacing( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.group?.spacing;
+}
+
+/**
+ * 見出し全体のレスポンシブ余白を更新.
+ *
+ * @param style           コアのstyle属性.
+ * @param spacing         レスポンシブ余白.
+ * @param spacing.margin  外側余白.
+ * @param spacing.padding 内側余白.
+ * @return 更新後のstyle属性.
+ */
+export function updateGroupResponsiveSpacing(
+	style: Attributes[ 'style' ],
+	spacing?: {
+		margin?: ResponsiveSpacing;
+		padding?: ResponsiveSpacing;
+	}
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					group: {
+						...style?.ystdb?.customHeading?.responsive?.group,
+						spacing,
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
  * メインテキストのスタイルを生成.
  * @param attributes
  * @return
  */
 export function getMainTextStyles( attributes: Attributes ) {
-	const { margin, responsiveMargin, padding, responsivePadding } = attributes;
+	const { margin: responsiveMargin, padding: responsivePadding } =
+		getGroupResponsiveSpacing( attributes ) ?? {};
 	// 「テキストを合わせる」は他の文字サイズ指定より優先するコア仕様に揃える.
 	const responsiveFontSize = attributes.fitText
 		? undefined
@@ -132,8 +177,6 @@ export function getMainTextStyles( attributes: Attributes ) {
 	);
 
 	return {
-		...getCustomSpacingValues( margin, 'margin' ),
-		...getCustomSpacingValues( padding, 'padding' ),
 		...responsiveFontSizeStyles,
 		...responsiveStyles,
 	};

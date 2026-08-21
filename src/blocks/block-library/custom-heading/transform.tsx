@@ -194,6 +194,8 @@ export const transforms = {
 				return createBlock( metadata.name, {
 					content: attributes.content,
 					level: normalizeHeadingLevel( attributes.level ),
+					hasSubText: !! attributes.subText,
+					subText: attributes.subText,
 					...getColorAttributes( attributes ),
 					fontSize: attributes.fontSize,
 					style: getCustomHeadingStyle(
@@ -220,6 +222,8 @@ export const transforms = {
 		{
 			type: 'block',
 			blocks: [ 'core/heading' ],
+			isMatch: ( attributes: any ) =>
+				! attributes.hasSubText && ! attributes.subText,
 			transform: ( attributes: any ) => {
 				return createBlock( 'core/heading', {
 					content: attributes.content,
@@ -236,6 +240,8 @@ export const transforms = {
 		{
 			type: 'block',
 			blocks: [ 'core/paragraph' ],
+			isMatch: ( attributes: any ) =>
+				! attributes.hasSubText && ! attributes.subText,
 			transform: ( attributes: any ) => {
 				return createBlock( 'core/paragraph', {
 					content: attributes.content,

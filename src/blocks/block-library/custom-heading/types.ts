@@ -11,6 +11,7 @@ export interface Attributes {
 	content: string;
 	level?: number;
 	hasSubText?: boolean;
+	subText?: string;
 	textColor?: string;
 	fontSize?: string;
 	fontFamily?: string;
@@ -20,6 +21,10 @@ export interface Attributes {
 			background?: string;
 			gradient?: string;
 			text?: string;
+		};
+		spacing?: {
+			margin?: Spacing;
+			padding?: Spacing;
 		};
 		typography?: {
 			fontSize?: string;
@@ -36,6 +41,12 @@ export interface Attributes {
 		ystdb?: {
 			customHeading?: {
 				responsive?: {
+					group?: {
+						spacing?: {
+							margin?: ResponsiveSpacing;
+							padding?: ResponsiveSpacing;
+						};
+					};
 					main?: {
 						typography?: {
 							fontSize?: ResponsiveFontSize;
@@ -45,10 +56,6 @@ export interface Attributes {
 			};
 		};
 	};
-	margin?: Spacing;
-	responsiveMargin?: ResponsiveSpacing;
-	padding?: Spacing;
-	responsivePadding?: ResponsiveSpacing;
 	clearStyle?: boolean;
 	placeholder?: string;
 	anchor?: string;

@@ -21,6 +21,12 @@
 			"type": "boolean",
 			"default": false
 		},
+		"subText": {
+			"type": "rich-text",
+			"source": "rich-text",
+			"selector": ".ystdb-custom-heading__sub",
+			"role": "content"
+		},
 		"textColor": {
 			"type": "string"
 		},
@@ -28,18 +34,6 @@
 			"type": "string"
 		},
 		"style": {
-			"type": "object"
-		},
-		"margin": {
-			"type": "object"
-		},
-		"responsiveMargin": {
-			"type": "object"
-		},
-		"padding": {
-			"type": "object"
-		},
-		"responsivePadding": {
 			"type": "object"
 		},
 		"fontFamily": {
@@ -80,6 +74,14 @@
 			"fitText": true,
 			"__experimentalDefaultControls": {
 				"fontSize": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
 			}
 		}
 	},

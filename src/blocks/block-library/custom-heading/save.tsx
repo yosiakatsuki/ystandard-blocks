@@ -11,7 +11,7 @@ import { getMainTextClasses, getMainTextStyles } from './utils';
 
 // @ts-expect-error
 function Save( { attributes } ) {
-	const { content, level } = attributes as Attributes;
+	const { content, level, hasSubText, subText } = attributes as Attributes;
 	const TagName = 'h' + level;
 
 	// メインテキストのクラスとスタイルを生成.
@@ -24,7 +24,21 @@ function Save( { attributes } ) {
 		style: mainTextStyles,
 	} );
 
-	return (
+	return hasSubText ? (
+		<hgroup { ...blockProps }>
+			<RichText.Content
+				// @ts-ignore
+				tagName={ TagName }
+				className="ystdb-custom-heading__main"
+				value={ content }
+			/>
+			<RichText.Content
+				tagName="p"
+				className="ystdb-custom-heading__sub"
+				value={ subText || '' }
+			/>
+		</hgroup>
+	) : (
 		<RichText.Content
 			// @ts-ignore
 			tagName={ TagName }

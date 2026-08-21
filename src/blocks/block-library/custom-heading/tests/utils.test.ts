@@ -1,10 +1,13 @@
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type { ResponsiveSpacing } from '@aktk/block-components/components/custom-spacing-select';
 
 import type { Attributes } from '../types';
 import {
+	getGroupResponsiveSpacing,
 	getMainResponsiveFontSize,
 	getMainTextClasses,
 	getMainTextStyles,
+	updateGroupResponsiveSpacing,
 	updateMainResponsiveFontSize,
 } from '../utils';
 
@@ -36,6 +39,27 @@ const getResponsiveFontSizeAttributes = (
 					main: {
 						typography: {
 							fontSize,
+						},
+					},
+				},
+			},
+		},
+	},
+} );
+
+const getResponsiveSpacingAttributes = (
+	margin?: ResponsiveSpacing,
+	padding?: ResponsiveSpacing
+): Attributes => ( {
+	...getBaseAttributes(),
+	style: {
+		ystdb: {
+			customHeading: {
+				responsive: {
+					group: {
+						spacing: {
+							margin,
+							padding,
 						},
 					},
 				},
@@ -265,44 +289,24 @@ describe( 'Custom Heading Block utils', () => {
 			expect( styles[ responsiveFontSizeKeys.mobile ] ).toBeUndefined();
 		} );
 
-		it( '通常の外側余白と内側余白をスタイルへ変換する', () => {
-			const styles = getMainTextStyles( {
-				...getBaseAttributes(),
-				margin: {
-					top: '1rem',
-					bottom: '2rem',
-				},
-				padding: {
-					left: 'var:preset|spacing|40',
-					right: '3rem',
-				},
-			} );
-
-			expect( styles ).toMatchObject( {
-				marginTop: '1rem',
-				marginBottom: '2rem',
-				paddingLeft: 'var(--wp--preset--spacing--40)',
-				paddingRight: '3rem',
-			} );
-		} );
-
 		it( 'レスポンシブ余白をCSSカスタムプロパティへ変換する', () => {
-			const styles = getMainTextStyles( {
-				...getBaseAttributes(),
-				responsiveMargin: {
-					desktop: {
-						top: '1rem',
+			const styles = getMainTextStyles(
+				getResponsiveSpacingAttributes(
+					{
+						desktop: {
+							top: '1rem',
+						},
+						tablet: {
+							right: '2rem',
+						},
 					},
-					tablet: {
-						right: '2rem',
-					},
-				},
-				responsivePadding: {
-					mobile: {
-						bottom: 'var:preset|spacing|40',
-					},
-				},
-			} );
+					{
+						mobile: {
+							bottom: 'var:preset|spacing|40',
+						},
+					}
+				)
+			);
 
 			expect( styles ).toMatchObject( {
 				[ responsiveSpacingKeys.desktopMarginTop ]: '1rem',
@@ -312,24 +316,73 @@ describe( 'Custom Heading Block utils', () => {
 			} );
 		} );
 
-		it( 'レスポンシブ余白と通常余白があった場合、レスポンシブを優先する', () => {
-			const styles = getMainTextStyles( {
-				...getBaseAttributes(),
-				margin: {
-					top: '1rem',
-					bottom: '2rem',
-				},
-				responsiveMargin: {
+		it( 'レスポンシブ余白のプリセット値をCSS変数へ変換する', () => {
+			const styles = getMainTextStyles(
+				getResponsiveSpacingAttributes( {
 					tablet: {
 						right: 'var:preset|spacing|40',
 					},
-				},
-			} );
+				} )
+			);
 
 			expect( styles ).toMatchObject( {
 				[ responsiveSpacingKeys.tabletMarginRight ]:
 					'var(--wp--preset--spacing--40)',
 			} );
+		} );
+	} );
+
+	describe( 'レスポンシブ余白属性', () => {
+		it( 'style属性へ保存した値を取得する', () => {
+			const attributes = getResponsiveSpacingAttributes( {
+				desktop: { top: '2rem' },
+			} );
+
+			expect( getGroupResponsiveSpacing( attributes ) ).toEqual( {
+				margin: {
+					desktop: { top: '2rem' },
+				},
+			} );
+		} );
+
+		it( '既存styleを保ったまま値を更新する', () => {
+			const style = updateGroupResponsiveSpacing(
+				{
+					typography: { fontSize: '20px' },
+				},
+				{
+					padding: {
+						mobile: { bottom: '1rem' },
+					},
+				}
+			);
+
+			expect( style ).toEqual( {
+				typography: { fontSize: '20px' },
+				ystdb: {
+					customHeading: {
+						responsive: {
+							group: {
+								spacing: {
+									padding: {
+										mobile: { bottom: '1rem' },
+									},
+								},
+							},
+						},
+					},
+				},
+			} );
+		} );
+
+		it( 'リセット時は空の独自style階層を残さない', () => {
+			const attributes = getResponsiveSpacingAttributes( {
+				desktop: { top: '2rem' },
+			} );
+
+			expect(
+				updateGroupResponsiveSpacing( attributes.style, undefined )
+			).toBeUndefined();
 		} );
 	} );
 

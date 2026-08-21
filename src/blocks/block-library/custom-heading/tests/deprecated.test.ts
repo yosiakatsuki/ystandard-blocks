@@ -102,7 +102,7 @@ describe( 'Custom Heading Block deprecated', () => {
 		} );
 	} );
 
-	it( 'サブテキスト使用時は旧仕様で無効だった文字揃えを移行しない', () => {
+	it( '内容のない旧サブテキスト設定を無効へ正規化する', () => {
 		const attributes = deprecatedV3253.migrate( {
 			content: '見出し',
 			level: 2,
@@ -113,7 +113,73 @@ describe( 'Custom Heading Block deprecated', () => {
 		expect( attributes ).toEqual( {
 			content: '見出し',
 			level: 2,
-			hasSubText: true,
+			hasSubText: false,
+		} );
+	} );
+
+	it( '旧余白属性をコアのstyle属性へ移行する', () => {
+		const attributes = deprecatedV3253.migrate( {
+			content: '見出し',
+			level: 2,
+			margin: {
+				top: '1rem',
+				bottom: 'var:preset|spacing|40',
+			},
+			padding: {
+				left: '2rem',
+			},
+		} );
+
+		expect( attributes ).toEqual( {
+			content: '見出し',
+			level: 2,
+			style: {
+				spacing: {
+					margin: {
+						top: '1rem',
+						bottom: 'var:preset|spacing|40',
+					},
+					padding: {
+						left: '2rem',
+					},
+				},
+			},
+		} );
+	} );
+
+	it( '旧レスポンシブ余白属性をstyle.ystdbへ移行する', () => {
+		const attributes = deprecatedV3253.migrate( {
+			content: '見出し',
+			level: 2,
+			responsiveMargin: {
+				desktop: { top: '2rem' },
+			},
+			responsivePadding: {
+				mobile: { bottom: '1rem' },
+			},
+		} );
+
+		expect( attributes ).toEqual( {
+			content: '見出し',
+			level: 2,
+			style: {
+				ystdb: {
+					customHeading: {
+						responsive: {
+							group: {
+								spacing: {
+									margin: {
+										desktop: { top: '2rem' },
+									},
+									padding: {
+										mobile: { bottom: '1rem' },
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 		} );
 	} );
 } );
