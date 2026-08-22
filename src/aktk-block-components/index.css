@@ -2,6 +2,7 @@
 @import "./components/custom-font-size-picker/index.css";
 @import "./components/custom-line-height-control/index.css";
 @import "./components/custom-spacing-select/index.css";
+@import "./components/element-style-controls/index.css";
 @import "./components/responsive-font-size-control/index.css";
 @import "./components/responsive-spacing-control/index.css";
 @import "./components/responsive-layout-control/index.css";

@@ -36,35 +36,44 @@ export function ElementBackgroundPanel( props: ElementStylePanelProps ) {
 	const resetAll = () => updateColor( undefined, undefined );
 
 	return (
-		<ToolsPanel label={ label } panelId={ panelId } resetAll={ resetAll }>
-			<ColorGradientSettingsDropdown
-				panelId={ panelId }
-				colors={ colors }
-				gradients={ gradients }
-				__experimentalIsRenderedInSidebar
-				settings={ [
-					{
-						label: __( '色', 'ystandard-blocks' ),
-						colorValue: value?.color?.background,
-						onColorChange: ( background ) =>
-							updateColor( background, undefined ),
-						onGradientChange: () => undefined,
-						gradients: [],
-						disableCustomGradients: true,
-						isShownByDefault: false,
-					},
-					{
-						label: __( 'グラデーション', 'ystandard-blocks' ),
-						gradientValue: value?.color?.gradient,
-						onColorChange: () => undefined,
-						onGradientChange: ( gradient ) =>
-							updateColor( undefined, gradient ),
-						colors: [],
-						disableCustomColors: true,
-						isShownByDefault: false,
-					},
-				] }
-			/>
+		<ToolsPanel
+			className="aktk-element-background-panel"
+			label={ label }
+			panelId={ panelId }
+			resetAll={ resetAll }
+		>
+			<div className="aktk-element-background-panel__content">
+				<ColorGradientSettingsDropdown
+					panelId={ panelId }
+					colors={ colors }
+					gradients={ gradients }
+					__experimentalIsRenderedInSidebar
+					settings={ [
+						{
+							label: __( '色', 'ystandard-blocks' ),
+							colorValue: value?.color?.background,
+							onColorChange: ( background ) =>
+								updateColor( background, undefined ),
+							onGradientChange: () => undefined,
+							clearable: true,
+							gradients: [],
+							disableCustomGradients: true,
+							isShownByDefault: false,
+						},
+						{
+							label: __( 'グラデーション', 'ystandard-blocks' ),
+							gradientValue: value?.color?.gradient,
+							onColorChange: () => undefined,
+							onGradientChange: ( gradient ) =>
+								updateColor( undefined, gradient ),
+							clearable: true,
+							colors: [],
+							disableCustomColors: true,
+							isShownByDefault: false,
+						},
+					] }
+				/>
+			</div>
 		</ToolsPanel>
 	);
 }

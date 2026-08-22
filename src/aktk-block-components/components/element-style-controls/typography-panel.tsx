@@ -143,6 +143,7 @@ export function ElementTypographyPanel( props: ElementStylePanelProps ) {
 						colorValue: value?.color?.text,
 						onColorChange: updateTextColor,
 						onGradientChange: () => undefined,
+						clearable: true,
 						gradients: [],
 						disableCustomGradients: true,
 						isShownByDefault: true,

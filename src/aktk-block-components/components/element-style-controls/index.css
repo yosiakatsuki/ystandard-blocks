@@ -1,0 +1,7 @@
+.aktk-element-background-panel__content {
+	row-gap: 0;
+	column-gap: 16px;
+	display: grid;
+	grid-column: 1 / -1;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
