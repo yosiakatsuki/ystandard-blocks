@@ -7,7 +7,7 @@
 		"changelog": "<h2>更新履歴</h2><p>更新履歴は下記ページを参照<br><a href='https://github.com/yosiakatsuki/ystandard-blocks/blob/master/README.md#%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4' target='_blank'>更新履歴(GitHub)</a></p>"
 	},
 	"requires": "6.7.0",
-	"tested": "7.0.0",
+	"tested": "7.1.0",
 	"icons": {
 		"1x": "https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/icon.png",
 		"2x": "https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/icon@2x.png",
