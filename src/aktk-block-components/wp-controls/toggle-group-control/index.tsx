@@ -6,6 +6,7 @@ import {
 
 interface ToggleGroupControlProps {
 	label?: string;
+	help?: React.ReactNode;
 	onChange: ( value?: string | number ) => void;
 	value: string | number;
 	isBlock?: boolean;

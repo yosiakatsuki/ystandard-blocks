@@ -1,0 +1,25 @@
+.aktk-component-tools-panel--with-icon {
+	position: relative;
+
+	> .aktk-component-tools-panel__icon {
+		position: absolute;
+		top: 19px;
+		left: 16px;
+		z-index: 1;
+		display: flex;
+		width: 18px;
+		height: 18px;
+		color: currentcolor;
+		pointer-events: none;
+
+		svg {
+			width: 100%;
+			height: 100%;
+			fill: currentcolor;
+		}
+	}
+
+	> div > div:first-child > h2 {
+		padding-left: 26px;
+	}
+}

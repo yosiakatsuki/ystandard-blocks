@@ -120,7 +120,7 @@ export function ResponsiveSpacingSelect( props: ResponsiveSpacingSelectProps ) {
 	);
 }
 
-function ResponsiveSpacingSelectControl(
+export function ResponsiveSpacingSelectControl(
 	props: ResponsiveSpacingSelectControlProps
 ) {
 	const {

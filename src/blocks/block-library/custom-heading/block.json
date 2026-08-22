@@ -5,11 +5,7 @@
 	"title": "【β版】カスタム見出し",
 	"description": "※このブロックは開発中ブロックです。正式リリースまでに設定の追加削除など仕様変更がある点にご注意ください。将来的にyStandard Blocksのカスタム見出しブロックが廃止になり、このブロックが見出しブロックとなります。",
 	"version": "1.0.0",
-	"keywords": [
-		"heading",
-		"見出し",
-		"カスタム見出し"
-	],
+	"keywords": [ "heading", "見出し", "カスタム見出し" ],
 	"attributes": {
 		"content": {
 			"type": "rich-text",
@@ -21,71 +17,86 @@
 			"type": "number",
 			"default": 2
 		},
-		"textAlign": {
-			"type": "string"
-		},
 		"hasSubText": {
 			"type": "boolean",
 			"default": false
 		},
-		"textColor": {
-			"type": "string"
+		"subText": {
+			"type": "rich-text",
+			"source": "rich-text",
+			"selector": ".ystdb-custom-heading-sub",
+			"role": "content"
 		},
-		"customTextColor": {
+		"textColor": {
 			"type": "string"
 		},
 		"fontSize": {
 			"type": "string"
 		},
-		"customFontSize": {
-			"type": "string"
-		},
-		"responsiveFontSize": {
+		"style": {
 			"type": "object"
-		},
-		"margin": {
-			"type": "object"
-		},
-		"responsiveMargin": {
-			"type": "object"
-		},
-		"padding": {
-			"type": "object"
-		},
-		"responsivePadding": {
-			"type": "object"
-		},
-		"lineHeight": {
-			"type": "string"
-		},
-		"letterSpacing": {
-			"type": "string"
-		},
-		"fontWeight": {
-			"type": "string"
-		},
-		"fontStyle": {
-			"type": "string"
 		},
 		"fontFamily": {
 			"type": "string"
-		},
-		"clearStyle": {
-			"type": "boolean",
-			"default": true
 		},
 		"placeholder": {
 			"type": "string"
 		}
 	},
 	"supports": {
-		"align": false,
+		"align": [ "wide", "full" ],
 		"anchor": true,
 		"className": false,
-		"splitting": true
+		"splitting": true,
+		"color": {
+			"gradients": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"background": false,
+				"text": true
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalWritingMode": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"spacing": {
+			"margin": [ "top", "bottom" ],
+			"padding": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"color": false,
+				"radius": false,
+				"style": false,
+				"width": false
+			}
+		}
 	},
 	"textdomain": "ystandard-blocks",
 	"editorScript": "file:./index.tsx",
-	"editorStyle": ["ystdb-aktk-components-editor", "file:./index.css"],
+	"editorStyle": [ "ystdb-aktk-components-editor", "file:./index.css" ],
 	"style": "file:./style-index.css"
 }

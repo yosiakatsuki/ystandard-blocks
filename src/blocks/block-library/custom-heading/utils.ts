@@ -1,14 +1,19 @@
-import classnames from 'classnames';
-/**
- * WordPress dependencies.
- */
-import { getFontSizeClass, getColorClassName } from '@wordpress/block-editor';
-
 /**
  * Aktk dependencies.
  */
-import { getCustomSpacingValues } from '@aktk/block-components/components/custom-spacing-select';
-import { presetTokenToCssVar } from '@aktk/block-components/utils/style-engine';
+import type { ResponsiveSpacing } from '@aktk/block-components/components/responsive-spacing-control';
+import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type {
+	ResponsiveTextAlign,
+	TextAlign,
+} from '@aktk/block-components/components/responsive-text-align-control';
+import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
+import { getElementLayoutDefaultValues } from '@aktk/block-components/components/element-style-controls/layout-defaults';
+import { stripUndefined } from '@aktk/block-components/utils/object';
+import {
+	getResponsiveCustomProperties,
+	presetTokenToCssVar,
+} from '@aktk/block-components/utils/style-engine';
 
 /**
  * Plugin dependencies.
@@ -17,28 +22,369 @@ import { getResponsiveCustomPropName } from '@aktk/blocks/components/responsive-
 /**
  * Block dependencies.
  */
-import type { Attributes } from './types';
+import type {
+	Attributes,
+	ResponsiveGroupStyle,
+	ResponsiveTextStyle,
+} from './types';
+import { CUSTOM_HEADING_LAYOUT_DEFAULT_VALUES } from './config';
 
 const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
+const textAlignValues: TextAlign[] = [ 'left', 'center', 'right' ];
+export type CustomHeadingElement = 'group' | 'sub';
+type ResponsiveElementStyleMap = {
+	group: ResponsiveGroupStyle;
+	sub: ResponsiveTextStyle;
+};
 
 /**
  * メインテキストのクラスを生成.
  * @param attributes
  * @return
  */
-export function getMainTextClasses( attributes: Attributes ) {
-	const { clearStyle, fontSize, hasSubText, textAlign, textColor } =
-		attributes;
+export function getMainTextClasses() {
+	return 'ystdb-custom-heading';
+}
 
-	const fontSizeClass = getFontSizeClass( fontSize || '' );
-	const textColorClass = getColorClassName( 'color', textColor || '' );
+/**
+ * 単一設定の文字揃えクラスを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return 文字揃えクラス.
+ */
+export function getTextAlignClass( attributes: Attributes ) {
+	const textAlign = attributes.style?.typography?.textAlign;
 
-	return classnames( 'ystdb-custom-heading', {
-		[ fontSizeClass ]: !! fontSize,
-		[ textColorClass ]: !! textColor,
-		'is-clear-style': clearStyle,
-		[ `has-text-align-${ textAlign }` ]: !! textAlign && ! hasSubText,
+	return textAlign && textAlignValues.includes( textAlign )
+		? `has-text-align-${ textAlign }`
+		: undefined;
+}
+
+/**
+ * メインテキストへ適用するBlock Supports属性を取得.
+ *
+ * @param attributes ブロック属性.
+ * @return メインテキスト用Block Supports属性.
+ */
+export function getMainTextBlockSupportAttributes( attributes: Attributes ) {
+	// 見出しだけの場合はコアの文字揃えを含む全設定をそのまま適用する.
+	if ( ! attributes.hasSubText ) {
+		return attributes;
+	}
+
+	return {
+		...attributes,
+		style: stripUndefined( {
+			...attributes.style,
+			typography: {
+				...attributes.style?.typography,
+				textAlign: undefined,
+			},
+		} ) as Attributes[ 'style' ],
+	};
+}
+
+/**
+ * 見出しグループのクラスを生成.
+ *
+ * @param attributes ブロック属性.
+ * @return 見出しグループのクラス.
+ */
+export function getHeadingGroupClasses( attributes: Attributes ) {
+	const orientation = getCustomHeadingElementStyle( attributes, 'group' )
+		?.layout?.orientation;
+
+	return [
+		'ystdb-custom-heading-group',
+		'horizontal' === orientation ? 'is-horizontal' : undefined,
+		attributes.hasSubText ? getTextAlignClass( attributes ) : undefined,
+	]
+		.filter( Boolean )
+		.join( ' ' );
+}
+
+/**
+ * メインテキストのレスポンシブフォントサイズを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブフォントサイズ.
+ */
+export function getMainResponsiveFontSize( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.typography
+		?.fontSize;
+}
+
+/**
+ * メインテキストのレスポンシブ文字揃えを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブ文字揃え.
+ */
+export function getMainResponsiveTextAlign( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.typography
+		?.textAlign;
+}
+
+/**
+ * メインテキストのレスポンシブフォントサイズを更新.
+ *
+ * @param style    コアのstyle属性.
+ * @param fontSize レスポンシブフォントサイズ.
+ * @return 更新後のstyle属性.
+ */
+export function updateMainResponsiveFontSize(
+	style: Attributes[ 'style' ],
+	fontSize?: ResponsiveFontSize
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
+						typography: {
+							...style?.ystdb?.customHeading?.responsive?.main
+								?.typography,
+							fontSize,
+						},
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * メインテキストのレスポンシブ文字揃えを更新.
+ *
+ * @param style     コアのstyle属性.
+ * @param textAlign レスポンシブ文字揃え.
+ * @return 更新後のstyle属性.
+ */
+export function updateMainResponsiveTextAlign(
+	style: Attributes[ 'style' ],
+	textAlign?: ResponsiveTextAlign
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
+						typography: {
+							...style?.ystdb?.customHeading?.responsive?.main
+								?.typography,
+							textAlign,
+						},
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * メインテキストのレスポンシブ余白を取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブ余白.
+ */
+export function getMainResponsiveSpacing( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.spacing;
+}
+
+/**
+ * メインテキストのレスポンシブ余白を更新.
+ *
+ * @param style           コアのstyle属性.
+ * @param spacing         レスポンシブ余白.
+ * @param spacing.margin  外側余白.
+ * @param spacing.padding 内側余白.
+ * @return 更新後のstyle属性.
+ */
+export function updateMainResponsiveSpacing(
+	style: Attributes[ 'style' ],
+	spacing?: {
+		margin?: ResponsiveSpacing;
+		padding?: ResponsiveSpacing;
+	}
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
+						spacing,
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * サブテキストまたは見出しグループのスタイルを取得.
+ *
+ * @param attributes ブロック属性.
+ * @param element    取得対象.
+ * @return 対象要素のスタイル.
+ */
+export function getCustomHeadingElementStyle(
+	attributes: Attributes,
+	element: CustomHeadingElement
+) {
+	return attributes.style?.ystdb?.customHeading?.[ element ];
+}
+
+/**
+ * サブテキストまたは見出しグループのスタイルを更新.
+ *
+ * @param style        コアのstyle属性.
+ * @param element      更新対象.
+ * @param elementStyle 対象要素のスタイル.
+ * @return 更新後のstyle属性.
+ */
+export function updateCustomHeadingElementStyle(
+	style: Attributes[ 'style' ],
+	element: CustomHeadingElement,
+	elementStyle?: ElementStyle
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				[ element ]: elementStyle,
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * サブテキストまたは見出しグループのレスポンシブスタイルを取得.
+ *
+ * @param attributes ブロック属性.
+ * @param element    取得対象.
+ * @return 対象要素のレスポンシブスタイル.
+ */
+export function getCustomHeadingResponsiveElementStyle<
+	Element extends keyof ResponsiveElementStyleMap,
+>( attributes: Attributes, element: Element ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.[ element ] as
+		| ResponsiveElementStyleMap[ Element ]
+		| undefined;
+}
+
+/**
+ * サブテキストまたは見出しグループのレスポンシブスタイルを更新.
+ *
+ * @param style        コアのstyle属性.
+ * @param element      更新対象.
+ * @param elementStyle 対象要素のレスポンシブスタイル.
+ * @return 更新後のstyle属性.
+ */
+export function updateCustomHeadingResponsiveElementStyle<
+	Element extends keyof ResponsiveElementStyleMap,
+>(
+	style: Attributes[ 'style' ],
+	element: Element,
+	elementStyle?: ResponsiveElementStyleMap[ Element ]
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					[ element ]: elementStyle,
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * レスポンシブ余白をCSSカスタムプロパティへ変換.
+ *
+ * @param prefix  カスタムプロパティ名の接頭辞.
+ * @param spacing レスポンシブ余白.
+ * @return CSSカスタムプロパティ.
+ */
+function getResponsiveSpacingStyles(
+	prefix: string,
+	spacing?: ResponsiveTextStyle[ 'spacing' ]
+) {
+	const styles: Record< string, string > = {};
+	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
+
+	types.forEach( ( type ) => {
+		const margin = spacing?.margin?.[ type ];
+		const padding = spacing?.padding?.[ type ];
+
+		positions.forEach( ( position ) => {
+			const marginValue = margin?.[ position ];
+			// 未設定の辺は単一設定へフォールバックさせる.
+			if ( marginValue ) {
+				styles[
+					getResponsiveCustomPropName(
+						`${ prefix }--margin-${ position }`,
+						type
+					)
+				] = presetTokenToCssVar( marginValue ) || marginValue;
+			}
+
+			const paddingValue = padding?.[ position ];
+			// 未設定の辺は単一設定へフォールバックさせる.
+			if ( paddingValue ) {
+				styles[
+					getResponsiveCustomPropName(
+						`${ prefix }--padding-${ position }`,
+						type
+					)
+				] = presetTokenToCssVar( paddingValue ) || paddingValue;
+			}
+		} );
 	} );
+
+	return styles;
+}
+
+/**
+ * レスポンシブ文字スタイルをCSSカスタムプロパティへ変換.
+ *
+ * @param fontSizeProperty フォントサイズのカスタムプロパティ名.
+ * @param spacingPrefix    余白のカスタムプロパティ名の接頭辞.
+ * @param style            レスポンシブ文字スタイル.
+ * @return CSSカスタムプロパティ.
+ */
+function getResponsiveTextStyles(
+	fontSizeProperty: string,
+	spacingPrefix: string,
+	style?: ResponsiveTextStyle
+) {
+	return {
+		...getResponsiveCustomProperties(
+			fontSizeProperty,
+			style?.typography?.fontSize
+		),
+		...getResponsiveSpacingStyles( spacingPrefix, style?.spacing ),
+	};
 }
 
 /**
@@ -47,80 +393,112 @@ export function getMainTextClasses( attributes: Attributes ) {
  * @return
  */
 export function getMainTextStyles( attributes: Attributes ) {
-	const {
-		fontSize,
-		customFontSize,
-		responsiveFontSize,
-		margin,
-		responsiveMargin,
-		padding,
-		responsivePadding,
-		customTextColor,
-		fontStyle,
-		fontWeight,
-		letterSpacing,
-		lineHeight,
-		fontFamily,
-	} = attributes;
+	return {
+		...getResponsiveTextStyles( 'heading--font-size', 'custom-heading', {
+			typography: {
+				fontSize: getMainResponsiveFontSize( attributes ),
+			},
+			spacing: getMainResponsiveSpacing( attributes ),
+		} ),
+		...getResponsiveCustomProperties(
+			'custom-heading--text-align',
+			attributes.hasSubText
+				? undefined
+				: getMainResponsiveTextAlign( attributes )
+		),
+	};
+}
 
-	// カスタムフォントサイズが有効かどうか.
-	let hasCustomFontSize = ! fontSize && !! customFontSize;
-
-	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
-	// レスポンシブ指定のあるスタイルを生成.
-	const responsiveStyles = types.reduce(
-		( acc, type ) => {
-			// font-size.
-			const _fontSize = responsiveFontSize?.[ type ];
-			if ( _fontSize && ! fontSize ) {
-				acc[
-					getResponsiveCustomPropName( 'heading--font-size', type )
-				] = _fontSize;
-				hasCustomFontSize = false;
-			}
-
-			// margin, padding.
-			const _margin = responsiveMargin?.[ type ];
-			const _padding = responsivePadding?.[ type ];
-
-			positions.forEach( ( position ) => {
-				// margin.
-				const marginValue = _margin?.[ position ];
-				if ( marginValue ) {
-					acc[
-						getResponsiveCustomPropName(
-							`custom-heading--margin-${ position }`,
-							type
-						)
-					] = presetTokenToCssVar( marginValue ) || marginValue;
-				}
-
-				// padding.
-				const paddingValue = _padding?.[ position ];
-				if ( paddingValue ) {
-					acc[
-						getResponsiveCustomPropName(
-							`custom-heading--padding-${ position }`,
-							type
-						)
-					] = presetTokenToCssVar( paddingValue ) || paddingValue;
-				}
-			} );
-			return acc;
-		},
-		{} as Record< string, string >
+/**
+ * サブテキストのレスポンシブスタイルを生成.
+ *
+ * @param attributes ブロック属性.
+ * @return CSSカスタムプロパティ.
+ */
+export function getSubTextResponsiveStyles( attributes: Attributes ) {
+	return getResponsiveTextStyles(
+		'custom-heading-sub--font-size',
+		'custom-heading-sub',
+		getCustomHeadingResponsiveElementStyle( attributes, 'sub' )
 	);
+}
+
+/**
+ * 見出しグループのレスポンシブスタイルを生成.
+ *
+ * @param attributes ブロック属性.
+ * @return CSSカスタムプロパティ.
+ */
+export function getGroupResponsiveStyles( attributes: Attributes ) {
+	const style = getCustomHeadingResponsiveElementStyle( attributes, 'group' );
+	const blockGapStyles = getResponsiveCustomProperties(
+		'custom-heading-group--block-gap',
+		style?.spacing?.blockGap,
+		( value ) =>
+			'string' === typeof value
+				? presetTokenToCssVar( value ) || value
+				: value
+	);
+	const layoutStyles: Record< string, string > = {};
+	const types = [ 'desktop', 'tablet', 'mobile' ] as const;
+
+	types.forEach( ( type ) => {
+		const layout = style?.layout?.[ type ];
+		const layoutDefaults = getElementLayoutDefaultValues(
+			CUSTOM_HEADING_LAYOUT_DEFAULT_VALUES,
+			layout?.orientation
+		);
+
+		// 並び方向がある場合だけflex-directionを上書きする.
+		if ( layout?.orientation ) {
+			layoutStyles[
+				getResponsiveCustomPropName(
+					'custom-heading-group--flex-direction',
+					type
+				)
+			] = 'horizontal' === layout.orientation ? 'row' : 'column';
+			layoutStyles[
+				getResponsiveCustomPropName(
+					'custom-heading-group--align-items',
+					type
+				)
+			] = layout.alignItems ?? layoutDefaults.alignItems;
+			layoutStyles[
+				getResponsiveCustomPropName(
+					'custom-heading-group--justify-content',
+					type
+				)
+			] = layout.justifyContent ?? layoutDefaults.justifyContent;
+		}
+
+		// 配置がある場合だけ単一設定を上書きする.
+		if ( layout?.alignItems && ! layout.orientation ) {
+			layoutStyles[
+				getResponsiveCustomPropName(
+					'custom-heading-group--align-items',
+					type
+				)
+			] = layout.alignItems;
+		}
+
+		// 配置がある場合だけ単一設定を上書きする.
+		if ( layout?.justifyContent && ! layout.orientation ) {
+			layoutStyles[
+				getResponsiveCustomPropName(
+					'custom-heading-group--justify-content',
+					type
+				)
+			] = layout.justifyContent;
+		}
+	} );
 
 	return {
-		fontSize: hasCustomFontSize ? customFontSize : undefined,
-		color: customTextColor || undefined,
-		fontStyle: fontStyle || undefined,
-		fontWeight: fontWeight || undefined,
-		letterSpacing: letterSpacing || undefined,
-		lineHeight,
-		fontFamily,
-		...getCustomSpacingValues( margin, 'margin' ),
-		...getCustomSpacingValues( padding, 'padding' ),
-		...responsiveStyles,
+		...getResponsiveCustomProperties(
+			'custom-heading-group--text-align',
+			style?.typography?.textAlign
+		),
+		...getResponsiveSpacingStyles( 'custom-heading-group', style?.spacing ),
+		...blockGapStyles,
+		...layoutStyles,
 	};
 }

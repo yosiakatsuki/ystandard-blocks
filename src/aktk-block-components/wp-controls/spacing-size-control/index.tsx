@@ -32,6 +32,7 @@ export interface SpacingSizeControlProps {
 		| 'vertical'
 	)[];
 	minimumCustomValue?: number;
+	showSideInLabel?: boolean;
 }
 
 export default function SpacingSizesControl( props: SpacingSizeControlProps ) {
@@ -41,6 +42,7 @@ export default function SpacingSizesControl( props: SpacingSizeControlProps ) {
 		label,
 		sides = [ 'top', 'right', 'bottom', 'left' ],
 		minimumCustomValue = 0,
+		showSideInLabel,
 	} = props;
 	const controlLabel = label || '';
 	return (
@@ -50,6 +52,7 @@ export default function SpacingSizesControl( props: SpacingSizeControlProps ) {
 			label={ controlLabel }
 			sides={ sides }
 			minimumCustomValue={ minimumCustomValue }
+			showSideInLabel={ showSideInLabel }
 		/>
 	);
 }

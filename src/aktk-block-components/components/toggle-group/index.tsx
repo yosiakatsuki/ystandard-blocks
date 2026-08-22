@@ -13,6 +13,7 @@ interface ToggleGroupProps {
 	value: string | number;
 	isBlock?: boolean;
 	isDeselectable?: boolean;
+	isMultiline?: boolean;
 	options: Array< {
 		label: string;
 		value: string | number;
@@ -29,13 +30,17 @@ export function ToggleGroup( props: ToggleGroupProps ) {
 		value,
 		isBlock,
 		isDeselectable,
+		isMultiline,
 		options,
 		className,
 	} = props;
 
 	const controlClasses = classnames(
 		className,
-		'aktk-components__toggle-group'
+		'aktk-components__toggle-group',
+		{
+			'aktk-components__toggle-group--multiline': isMultiline,
+		}
 	);
 
 	return (

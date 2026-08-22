@@ -60,33 +60,104 @@ class Custom_Heading_Block {
 			'tablet'  => '',
 			'mobile'  => '',
 		];
-		$selector   = '.ystdb-custom-heading';
-		$css        = '';
+		// プリセットの !important 指定よりレスポンシブ値を優先するため、詳細度を 0.1.1 にする.
+		$main_selector       = ':is(h1,h2,h3,h4,h5,h6).ystdb-custom-heading';
+		$sub_selector        = ':is(p).ystdb-custom-heading-sub';
+		$group_selector      = ':is(hgroup).ystdb-custom-heading-group';
+		$text_elements       = [
+			[
+				'selector'  => $main_selector,
+				'font_prop' => 'heading--font-size',
+			],
+			[
+				'selector'  => $sub_selector,
+				'font_prop' => 'custom-heading-sub--font-size',
+			],
+		];
+		$text_align_elements = [
+			[
+				'selector'  => $main_selector,
+				'prop_name' => 'custom-heading--text-align',
+			],
+			[
+				'selector'  => $group_selector,
+				'prop_name' => 'custom-heading-group--text-align',
+			],
+		];
+		$spacing_elements    = [
+			[
+				'selector' => $main_selector,
+				'prefix'   => 'custom-heading',
+			],
+			[
+				'selector' => $sub_selector,
+				'prefix'   => 'custom-heading-sub',
+			],
+			[
+				'selector' => $group_selector,
+				'prefix'   => 'custom-heading-group',
+			],
+		];
+		$layout_properties   = [
+			'flex-direction'  => 'flex-direction',
+			'align-items'     => 'align-items',
+			'justify-content' => 'justify-content',
+		];
+		$css                 = '';
 		foreach ( $types as $type ) {
 			// フォントサイズ.
-			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
-				[
-					'selector'  => $selector,
-					'prop_name' => 'heading--font-size',
-					'property'  => 'font-size',
-					'type'      => $type,
-				]
-			);
-			// 余白.
-			foreach ( [ 'top', 'right', 'bottom', 'left' ] as $pos ) {
+			foreach ( $text_elements as $text_element ) {
 				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
 					[
-						'selector'  => $selector,
-						'prop_name' => "custom-heading--margin-{$pos}",
-						'property'  => "margin-{$pos}",
+						'selector'  => $text_element['selector'],
+						'prop_name' => $text_element['font_prop'],
+						'property'  => 'font-size',
 						'type'      => $type,
 					]
 				);
+			}
+			// 文字揃え.
+			foreach ( $text_align_elements as $text_align_element ) {
 				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
 					[
-						'selector'  => $selector,
-						'prop_name' => "custom-heading--padding-{$pos}",
-						'property'  => "padding-{$pos}",
+						'selector'  => $text_align_element['selector'],
+						'prop_name' => $text_align_element['prop_name'],
+						'property'  => 'text-align',
+						'type'      => $type,
+					]
+				);
+			}
+			// 余白.
+			foreach ( $spacing_elements as $spacing_element ) {
+				foreach ( [ 'top', 'right', 'bottom', 'left' ] as $pos ) {
+					foreach ( [ 'margin', 'padding' ] as $property ) {
+						$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+							[
+								'selector'  => $spacing_element['selector'],
+								'prop_name' => "{$spacing_element['prefix']}--{$property}-{$pos}",
+								'property'  => "{$property}-{$pos}",
+								'type'      => $type,
+							]
+						);
+					}
+				}
+			}
+			// 見出しグループの間隔.
+			$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+				[
+					'selector'  => $group_selector,
+					'prop_name' => 'custom-heading-group--block-gap',
+					'property'  => 'gap',
+					'type'      => $type,
+				]
+			);
+			// 見出しグループの配置.
+			foreach ( $layout_properties as $prop_name => $property ) {
+				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+					[
+						'selector'  => $group_selector,
+						'prop_name' => "custom-heading-group--{$prop_name}",
+						'property'  => $property,
 						'type'      => $type,
 					]
 				);

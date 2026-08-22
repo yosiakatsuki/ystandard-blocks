@@ -2,6 +2,40 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Save from '../save';
 
+const getFontSizeStyle = (
+	fontSize?: string,
+	responsiveFontSize?: {
+		desktop?: string;
+		tablet?: string;
+		mobile?: string;
+	}
+) => ( {
+	style: {
+		...( fontSize
+			? {
+					typography: {
+						fontSize,
+					},
+			  }
+			: {} ),
+		...( responsiveFontSize
+			? {
+					ystdb: {
+						customHeading: {
+							responsive: {
+								main: {
+									typography: {
+										fontSize: responsiveFontSize,
+									},
+								},
+							},
+						},
+					},
+			  }
+			: {} ),
+	},
+} );
+
 // スナップショットテスト
 describe( 'Custom Heading Block <Save /> snapshot', () => {
 	it( '001: 最小限の属性', () => {
@@ -40,7 +74,7 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '004: フォントサイズ指定', () => {
+	it( '004: プリセットフォントサイズの反映はBlock Supportsに任せる', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
@@ -53,13 +87,13 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '005: カスタムフォントサイズ指定', () => {
+	it( '005: 任意フォントサイズの反映はBlock Supportsに任せる', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
 					content: 'カスタムフォントサイズ指定',
 					level: 2,
-					customFontSize: '2em',
+					...getFontSizeStyle( '2em' ),
 				} }
 			/>
 		);
@@ -72,11 +106,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'レスポンシブフォントサイズ指定',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						desktop: '2rem',
 						tablet: '1.5rem',
 						mobile: '1.2rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -89,7 +123,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'テキストセンター揃え',
 					level: 2,
-					textAlign: 'center',
+					style: {
+						typography: {
+							textAlign: 'center',
+						},
+					},
 				} }
 			/>
 		);
@@ -102,20 +140,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'テキスト右揃え',
 					level: 2,
-					textAlign: 'right',
-				} }
-			/>
-		);
-		expect( asFragment() ).toMatchSnapshot();
-	} );
-
-	it( '009: スタイルクリア有効', () => {
-		const { asFragment } = render(
-			<Save
-				attributes={ {
-					content: 'スタイルクリアあり',
-					level: 2,
-					clearStyle: true,
+					style: {
+						typography: {
+							textAlign: 'right',
+						},
+					},
 				} }
 			/>
 		);
@@ -128,9 +157,12 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '全属性指定',
 					level: 3,
-					textAlign: 'center',
 					fontSize: 'large',
-					clearStyle: false,
+					style: {
+						typography: {
+							textAlign: 'center',
+						},
+					},
 				} }
 			/>
 		);
@@ -143,45 +175,16 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'カスタム＆レスポンシブ',
 					level: 2,
-					customFontSize: '2em',
-					responsiveFontSize: {
-						desktop: '2rem',
-						tablet: '1.5rem',
-						mobile: '1.2rem',
-					},
-					textAlign: 'center',
-				} }
-			/>
-		);
-		expect( asFragment() ).toMatchSnapshot();
-	} );
-
-	// フォントサイズ優先順位のテスト
-	it( '012: フォントサイズとカスタムフォントサイズの組み合わせ（fontSizeが優先）', () => {
-		const { asFragment } = render(
-			<Save
-				attributes={ {
-					content: 'fontSize優先',
-					level: 2,
-					fontSize: 'large',
-					customFontSize: '3em',
-				} }
-			/>
-		);
-		expect( asFragment() ).toMatchSnapshot();
-	} );
-
-	it( '013: フォントサイズとレスポンシブフォントサイズの組み合わせ（fontSizeが優先）', () => {
-		const { asFragment } = render(
-			<Save
-				attributes={ {
-					content: 'fontSize優先',
-					level: 2,
-					fontSize: 'large',
-					responsiveFontSize: {
-						desktop: '2rem',
-						tablet: '1.5rem',
-						mobile: '1.2rem',
+					style: {
+						...getFontSizeStyle( '2em', {
+							desktop: '2rem',
+							tablet: '1.5rem',
+							mobile: '1.2rem',
+						} ).style,
+						typography: {
+							fontSize: '2em',
+							textAlign: 'center',
+						},
 					},
 				} }
 			/>
@@ -189,19 +192,51 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 		expect( asFragment() ).toMatchSnapshot();
 	} );
 
-	it( '014: 全フォントサイズ指定の組み合わせ（fontSizeが優先）', () => {
+	// 単一設定とレスポンシブ設定の組み合わせを確認.
+	it( '012: プリセットと任意フォントサイズの組み合わせ', () => {
 		const { asFragment } = render(
 			<Save
 				attributes={ {
 					content: 'fontSize優先',
 					level: 2,
 					fontSize: 'large',
-					customFontSize: '3em',
-					responsiveFontSize: {
+					...getFontSizeStyle( '3em' ),
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '013: プリセットとレスポンシブフォントサイズの組み合わせ', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'fontSize優先',
+					level: 2,
+					fontSize: 'large',
+					...getFontSizeStyle( undefined, {
 						desktop: '2rem',
 						tablet: '1.5rem',
 						mobile: '1.2rem',
-					},
+					} ),
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '014: プリセット、任意値、レスポンシブ値の組み合わせ', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'fontSize優先',
+					level: 2,
+					fontSize: 'large',
+					...getFontSizeStyle( '3em', {
+						desktop: '2rem',
+						tablet: '1.5rem',
+						mobile: '1.2rem',
+					} ),
 				} }
 			/>
 		);
@@ -215,9 +250,9 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'デスクトップのみ',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						desktop: '2rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -230,9 +265,9 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'タブレットのみ',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						tablet: '1.5rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -245,9 +280,9 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'モバイルのみ',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						mobile: '1.2rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -260,10 +295,10 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'デスクトップ＋タブレット',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						desktop: '2rem',
 						tablet: '1.5rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -276,10 +311,10 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'デスクトップ＋モバイル',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						desktop: '2rem',
 						mobile: '1.2rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -292,10 +327,10 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'タブレット＋モバイル',
 					level: 2,
-					responsiveFontSize: {
+					...getFontSizeStyle( undefined, {
 						tablet: '1.5rem',
 						mobile: '1.2rem',
-					},
+					} ),
 				} }
 			/>
 		);
@@ -321,7 +356,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字色カスタム指定',
 					level: 2,
-					customTextColor: '#ff0000',
+					style: {
+						color: {
+							text: '#ff0000',
+						},
+					},
 				} }
 			/>
 		);
@@ -334,7 +373,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字太さ指定(400)',
 					level: 2,
-					fontWeight: '400',
+					style: {
+						typography: {
+							fontWeight: '400',
+						},
+					},
 				} }
 			/>
 		);
@@ -347,7 +390,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字太さ指定(700)',
 					level: 2,
-					fontWeight: '700',
+					style: {
+						typography: {
+							fontWeight: '700',
+						},
+					},
 				} }
 			/>
 		);
@@ -360,7 +407,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字スタイル指定(italic)',
 					level: 2,
-					fontStyle: 'italic',
+					style: {
+						typography: {
+							fontStyle: 'italic',
+						},
+					},
 				} }
 			/>
 		);
@@ -373,7 +424,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字スタイル指定(normal)',
 					level: 2,
-					fontStyle: 'normal',
+					style: {
+						typography: {
+							fontStyle: 'normal',
+						},
+					},
 				} }
 			/>
 		);
@@ -386,7 +441,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '文字間隔指定',
 					level: 2,
-					letterSpacing: '0.1em',
+					style: {
+						typography: {
+							letterSpacing: '0.1em',
+						},
+					},
 				} }
 			/>
 		);
@@ -399,7 +458,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '行の高さ指定',
 					level: 2,
-					lineHeight: 1.8,
+					style: {
+						typography: {
+							lineHeight: 1.8,
+						},
+					},
 				} }
 			/>
 		);
@@ -412,7 +475,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '行の高さ指定(0指定)',
 					level: 2,
-					lineHeight: 0,
+					style: {
+						typography: {
+							lineHeight: 0,
+						},
+					},
 				} }
 			/>
 		);
@@ -425,7 +492,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: 'フォントファミリー指定',
 					level: 2,
-					fontFamily: 'Arial, sans-serif',
+					style: {
+						typography: {
+							fontFamily: 'Arial, sans-serif',
+						},
+					},
 				} }
 			/>
 		);
@@ -438,22 +509,289 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 				attributes={ {
 					content: '余白指定',
 					level: 2,
-					margin: {
-						top: '1rem',
-						bottom: '2rem',
-					},
-					padding: {
-						left: 'var:preset|spacing|40',
-						right: '3rem',
-					},
-					responsiveMargin: {
-						desktop: {
-							top: '4rem',
+					style: {
+						spacing: {
+							margin: {
+								top: '1rem',
+								bottom: '2rem',
+							},
+							padding: {
+								left: 'var:preset|spacing|40',
+								right: '3rem',
+							},
+						},
+						ystdb: {
+							customHeading: {
+								responsive: {
+									main: {
+										spacing: {
+											margin: {
+												desktop: {
+													top: '4rem',
+												},
+											},
+											padding: {
+												mobile: {
+													bottom: '5rem',
+												},
+											},
+										},
+									},
+								},
+							},
 						},
 					},
-					responsivePadding: {
-						mobile: {
-							bottom: '5rem',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '032: サブテキストあり', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '033: サブテキスト設定を無効にした場合は見出し単体を維持する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 3,
+					hasSubText: false,
+					subText: '保持されるサブテキスト',
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '034: サブテキストありでもBlock Supportsを見出しへ適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					fontSize: 'large',
+					textColor: 'ys-blue',
+					style: {
+						spacing: {
+							margin: {
+								top: '1rem',
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '035: リンク色を見出しへ適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'リンクを含む見出し',
+					level: 2,
+					style: {
+						elements: {
+							link: {
+								color: {
+									text: 'var:preset|color|ys-blue',
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '036: メインテキストへ枠線と角丸を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: '枠線付き見出し',
+					level: 2,
+					style: {
+						border: {
+							color: '#111111',
+							radius: '8px',
+							style: 'solid',
+							width: '1px',
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '037: サブテキストと見出しグループへ独自スタイルを適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						typography: {
+							textAlign: 'center',
+						},
+						ystdb: {
+							customHeading: {
+								sub: {
+									typography: {
+										fontSize: 'var:preset|font-size|small',
+										fontWeight: '700',
+									},
+									color: { text: '#333333' },
+									border: {
+										color: '#cccccc',
+										radius: '4px',
+										style: 'solid',
+										width: '1px',
+									},
+									spacing: {
+										padding: {
+											left: '1rem',
+											right: '1rem',
+										},
+									},
+								},
+								group: {
+									color: {
+										background: '#f7f7f7',
+									},
+									border: { radius: '12px' },
+									spacing: {
+										margin: { top: '2rem', bottom: '2rem' },
+										padding: {
+											top: '1rem',
+											bottom: '1rem',
+										},
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '038: 見出しグループを横並びにしてブロック間隔を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								group: {
+									layout: {
+										orientation: 'horizontal',
+									},
+									spacing: {
+										blockGap: 'var:preset|spacing|40',
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '039: 見出しグループへ配置設定を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								group: {
+									layout: {
+										alignItems: 'center',
+										justifyContent: 'space-between',
+									},
+								},
+							},
+						},
+					},
+				} }
+			/>
+		);
+		expect( asFragment() ).toMatchSnapshot();
+	} );
+
+	it( '040: サブテキストと見出しグループへレスポンシブ設定を適用する', () => {
+		const { asFragment } = render(
+			<Save
+				attributes={ {
+					content: 'メインテキスト',
+					level: 2,
+					hasSubText: true,
+					subText: 'サブテキスト',
+					style: {
+						ystdb: {
+							customHeading: {
+								responsive: {
+									sub: {
+										typography: {
+											fontSize: { tablet: '1rem' },
+										},
+										spacing: {
+											padding: {
+												mobile: { left: '2rem' },
+											},
+										},
+									},
+									group: {
+										typography: {
+											textAlign: {
+												desktop: 'right',
+											},
+										},
+										spacing: {
+											blockGap: { desktop: '1rem' },
+											margin: {
+												tablet: { top: '3rem' },
+											},
+										},
+										layout: {
+											mobile: {
+												orientation: 'horizontal',
+												alignItems: 'baseline',
+												justifyContent: 'center',
+											},
+										},
+									},
+								},
+							},
 						},
 					},
 				} }

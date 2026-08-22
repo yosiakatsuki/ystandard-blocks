@@ -9,6 +9,11 @@ module.exports = {
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: [ '<rootDir>/tests/integration/setup-tests.js' ],
 	moduleNameMapper: {
+		// RichTextとブロックシリアライザーが同じElement実装を使うように統一する.
+		'^@wordpress/element$':
+			'<rootDir>/node_modules/@wordpress/blocks/node_modules/@wordpress/element',
+		// rich-text型のinstanceof判定がパッケージの解決元で分かれないように統一する.
+		'^@wordpress/rich-text$': '<rootDir>/node_modules/@wordpress/rich-text',
 		'^@aktk/blocks/(.+)': '<rootDir>/src/blocks/$1',
 		'^@aktk/blocks-old/(.+)': '<rootDir>/src/js/$1',
 		'^@aktk/block-components/(.+)':

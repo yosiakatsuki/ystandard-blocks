@@ -14,6 +14,11 @@ import cardMetadata from '../../../src/blocks/block-library/card/block.json';
 import sectionMetadata from '../../../src/blocks/block-library/section/block.json';
 import sectionSave from '../../../src/blocks/block-library/section/save';
 
+// custom-heading.
+import customHeadingMetadata from '../../../src/blocks/block-library/custom-heading/block.json';
+import customHeadingSave from '../../../src/blocks/block-library/custom-heading/save';
+import { deprecated as customHeadingDeprecated } from '../../../src/blocks/block-library/custom-heading/deprecated';
+
 const NoopEdit = () => null;
 
 function registerOnce( name, settings ) {
@@ -39,5 +44,13 @@ export function registerSectionTestBlock() {
 	registerOnce( sectionMetadata.name, {
 		...sectionMetadata,
 		save: sectionSave,
+	} );
+}
+
+export function registerCustomHeadingTestBlock() {
+	registerOnce( customHeadingMetadata.name, {
+		...customHeadingMetadata,
+		save: customHeadingSave,
+		deprecated: customHeadingDeprecated,
 	} );
 }

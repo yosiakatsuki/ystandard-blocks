@@ -6,19 +6,27 @@ import { InspectorControls as WPInspectorControls } from '@wordpress/block-edito
 /**
  * Block dependencies.
  */
-import { LayoutPanel } from './layout';
 import { MainTextPanel } from './text-main';
-import { GroupSpacingPanel } from './spacing-group';
-import { ClearStylePanel } from './clear-style';
+import { SubTextPanel } from './sub-text';
+import { ResponsiveMainPanel } from './styles/responsive-main';
+import { ResponsiveGroupPanel } from './styles/responsive-group';
+import { ResponsiveSubPanel } from './styles/responsive-sub';
+import { ElementStylePanels } from './styles/element-styles';
 
 // @ts-ignore
 export function InspectorControls( props ) {
 	return (
-		<WPInspectorControls>
-			<LayoutPanel { ...props } />
-			<MainTextPanel { ...props } />
-			<GroupSpacingPanel { ...props } />
-			<ClearStylePanel { ...props } />
-		</WPInspectorControls>
+		<>
+			<WPInspectorControls>
+				<MainTextPanel { ...props } />
+				<SubTextPanel { ...props } />
+			</WPInspectorControls>
+			<WPInspectorControls group="styles">
+				<ElementStylePanels { ...props } />
+				<ResponsiveMainPanel { ...props } />
+				<ResponsiveSubPanel { ...props } />
+				<ResponsiveGroupPanel { ...props } />
+			</WPInspectorControls>
+		</>
 	);
 }

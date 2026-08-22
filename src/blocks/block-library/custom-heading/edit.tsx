@@ -1,73 +1,166 @@
+import classnames from 'classnames';
+
 /**
  * WordPress dependencies.
  */
-import { useBlockProps, RichText, withColors } from '@wordpress/block-editor';
-import { compose } from '@wordpress/compose';
+import { RichText, useSettings, useBlockProps } from '@wordpress/block-editor';
 import { Platform } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Aktk dependencies.
+ */
+import { getInnerBlockSupportProps } from '@aktk/block-components/utils/block-supports';
 
 /**
  * Block dependencies.
  */
 import type { Attributes } from './types';
 import { InspectorControls } from './inspector-controls';
-import { getMainTextClasses, getMainTextStyles } from './utils';
+import {
+	getCustomHeadingElementStyle,
+	getGroupResponsiveStyles,
+	getHeadingGroupClasses,
+	getMainTextBlockSupportAttributes,
+	getMainTextClasses,
+	getMainTextStyles,
+	getSubTextResponsiveStyles,
+} from './utils';
 
 // @ts-ignore.
 function Edit( props ) {
-	const { attributes, setAttributes, textColor, mergeBlocks, onReplace } =
-		props;
-	const { content, level, textAlign, placeholder } = attributes as Attributes;
+	const { attributes, setAttributes, mergeBlocks, onReplace } = props;
+	const { content, level, hasSubText, subText, placeholder } =
+		attributes as Attributes;
 	// 見出しタグ.
 	const tagName = 'h' + level;
 
 	// メインテキストのクラスとスタイルを生成.
-	const mainTextClasses = getMainTextClasses( {
-		...attributes,
-		textColor: textColor?.slug,
+	const mainTextClasses = getMainTextClasses();
+	const mainTextStyles = getMainTextStyles( attributes );
+	const [ fluidTypographySettings, layoutSettings ] = useSettings(
+		'typography.fluid',
+		'layout'
+	);
+	const mainBlockSupportProps = getInnerBlockSupportProps(
+		getMainTextBlockSupportAttributes( attributes ),
+		{
+			typography: {
+				fluid: fluidTypographySettings,
+			},
+			layout: layoutSettings,
+		}
+	);
+	const mainTextProps = {
+		className: classnames(
+			mainTextClasses,
+			mainBlockSupportProps.className
+		),
+		style: {
+			...mainBlockSupportProps.style,
+			...mainTextStyles,
+		},
+	};
+	const subTextBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'sub' ),
 	} );
-	const mainTextStyles = getMainTextStyles( {
-		...attributes,
-		customTextColor: textColor?.color,
+	const subTextProps = {
+		className: classnames(
+			'ystdb-custom-heading-sub',
+			subTextBlockSupportProps.className
+		),
+		style: {
+			...subTextBlockSupportProps.style,
+			...getSubTextResponsiveStyles( attributes ),
+		},
+	};
+	const groupBlockSupportProps = getInnerBlockSupportProps( {
+		style: getCustomHeadingElementStyle( attributes, 'group' ),
 	} );
+	const groupProps = {
+		className: classnames(
+			getHeadingGroupClasses( attributes ),
+			groupBlockSupportProps.className
+		),
+		style: {
+			...groupBlockSupportProps.style,
+			...getGroupResponsiveStyles( attributes ),
+		},
+	};
 
 	// ブロックProps.
-	const blockProps = useBlockProps( {
-		className: mainTextClasses,
-		style: mainTextStyles,
-	} );
+	const blockProps = useBlockProps( hasSubText ? groupProps : mainTextProps );
 
 	// メインテキストの変更.
 	const onMainTextContentChange = ( newContent: string ) => {
 		setAttributes( { content: newContent } );
 	};
+	const onSubTextContentChange = ( newContent: string ) => {
+		setAttributes( { subText: newContent } );
+	};
+
+	const mainText = (
+		<RichText
+			identifier="content"
+			withoutInteractiveFormatting
+			// @ts-ignore
+			tagName={ tagName }
+			{ ...mainTextProps }
+			value={ content || '' }
+			onChange={ onMainTextContentChange }
+			onMerge={ mergeBlocks }
+			onReplace={ onReplace }
+			onRemove={ () => onReplace( [] ) }
+			placeholder={
+				placeholder ||
+				__( 'カスタム見出しテキスト…', 'ystandard-blocks' )
+			}
+			// @ts-ignore
+			{ ...( Platform.isNative && { deleteEnter: true } ) }
+		/>
+	);
 
 	return (
 		<>
 			<InspectorControls { ...props } />
-			<RichText
-				identifier="content"
-				// @ts-ignore
-				tagName={ tagName }
-				value={ content || '' }
-				onChange={ onMainTextContentChange }
-				onMerge={ mergeBlocks }
-				onReplace={ onReplace }
-				onRemove={ () => onReplace( [] ) }
-				placeholder={
-					placeholder ||
-					__( 'カスタム見出しテキスト…', 'ystandard-blocks' )
-				}
-				textAlign={ textAlign }
-				// @ts-ignore
-				{ ...( Platform.isNative && { deleteEnter: true } ) }
-				{ ...blockProps }
-			/>
+			{ hasSubText ? (
+				<hgroup { ...blockProps }>
+					{ mainText }
+					<RichText
+						identifier="subText"
+						withoutInteractiveFormatting
+						tagName="p"
+						{ ...subTextProps }
+						value={ subText || '' }
+						onChange={ onSubTextContentChange }
+						placeholder={ __(
+							'サブテキストを入力…',
+							'ystandard-blocks'
+						) }
+					/>
+				</hgroup>
+			) : (
+				<RichText
+					identifier="content"
+					withoutInteractiveFormatting
+					// @ts-ignore
+					tagName={ tagName }
+					value={ content || '' }
+					onChange={ onMainTextContentChange }
+					onMerge={ mergeBlocks }
+					onReplace={ onReplace }
+					onRemove={ () => onReplace( [] ) }
+					placeholder={
+						placeholder ||
+						__( 'カスタム見出しテキスト…', 'ystandard-blocks' )
+					}
+					// @ts-ignore
+					{ ...( Platform.isNative && { deleteEnter: true } ) }
+					{ ...blockProps }
+				/>
+			) }
 		</>
 	);
 }
 
-// @ts-expect-error
-export default compose( [
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Edit );
+export default Edit;

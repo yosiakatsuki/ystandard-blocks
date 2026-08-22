@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - production
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy
@@ -28,15 +33,26 @@ jobs:
       - name: Release File Copy
         run: npm run copy:production
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./upload/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}/
-          log-level: verbose
+      - name: Upload release files
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
+        run: |
+          REMOTE_DIR="${FTP_REMOTE_DIR%/}"
+          REMOTE_DIR="/${REMOTE_DIR#/}"
+          BASE_URL="ftp://${FTP_SERVER}${REMOTE_DIR}"
+
+          curl --fail --show-error --ftp-create-dirs \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file upload/ystandard-blocks.zip \
+            "${BASE_URL}/ystandard-blocks.zip"
+
+          curl --fail --show-error --ftp-create-dirs \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file upload/ystandard-blocks.json \
+            "${BASE_URL}/ystandard-blocks.json"
 
   notify:
     name: Notify
@@ -49,7 +65,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          title: "Failure : Production Build"
+          title: "🚨 [yStandard Blocks]正規版のアップデート準備に失敗しました"
           color: 0x962305
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -59,7 +75,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          title: '[yStandard Blocks]新バージョンのアップデート準備OK！'
+          title: "✅ [yStandard Blocks]正規版のアップデート準備OK！"
           color: 0x059669
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}

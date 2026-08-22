@@ -1,0 +1,25 @@
+.aktk-responsive-font-size-control
+	.components-font-size-picker__header
+	> .components-base-control__label {
+	display: none;
+}
+
+.aktk-responsive-font-size-control .components-font-size-picker {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	gap: 0.25em;
+}
+
+.aktk-responsive-font-size-control
+	.components-font-size-picker
+	> .components-spacer {
+	flex: 0 0 auto;
+	margin-bottom: 0;
+}
+
+.aktk-responsive-font-size-control
+	.components-font-size-picker
+	> *:not(.components-spacer) {
+	flex: 1 1 auto;
+}

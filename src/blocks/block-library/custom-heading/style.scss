@@ -1,4 +1,35 @@
-.ystdb-custom-heading {
+.ystdb-custom-heading-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5em;
+
+	&:where(.is-horizontal) {
+		flex-direction: row;
+		align-items: baseline;
+	}
+
+	> :where(.ystdb-custom-heading) {
+		margin: 0;
+		padding: 0;
+	}
+
+	> :where(.ystdb-custom-heading-sub) {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+:where(
+		.ystdb-custom-heading,
+		.ystdb-custom-heading-sub,
+		.ystdb-custom-heading-group
+	).has-background {
+	padding: 0.5em;
+}
+
+:is(.ystdb-custom-heading, .ystdb-custom-heading-group) {
 
 	&:where(.has-text-align-left) {
 		text-align: left;
@@ -10,24 +41,5 @@
 
 	&:where(.has-text-align-right) {
 		text-align: right;
-	}
-
-	&:where(.is-clear-style:not([class*="is-style-ystdtb"])) {
-		position: relative;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		background: none;
-		font-weight: 400;
-		box-shadow: none;
-
-		&::before,
-		&::after {
-			display: none;
-		}
-
-		&:where(:not(.has-text-color)) {
-			color: inherit;
-		}
 	}
 }

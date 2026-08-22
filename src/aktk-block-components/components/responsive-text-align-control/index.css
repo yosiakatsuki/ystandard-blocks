@@ -1,0 +1,16 @@
+.aktk-responsive-text-align-control {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1rem;
+}
+
+.aktk-responsive-text-align-control__device {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.aktk-responsive-text-align-control__device > svg {
+	flex-shrink: 0;
+	color: var(--aktk-component--text-color--gray);
+}

@@ -1,4 +1,4 @@
-import { presetTokenToCssVar } from '../index';
+import { getResponsiveCustomProperties, presetTokenToCssVar } from '../index';
 
 describe( 'presetTokenToCssVar', () => {
 	it( 'ラッパー付き', () => {
@@ -24,5 +24,44 @@ describe( 'presetTokenToCssVar', () => {
 	it( 'トークンでない場合', () => {
 		const token = '1.5rem';
 		expect( presetTokenToCssVar( token ) ).toBe( token );
+	} );
+} );
+
+describe( 'getResponsiveCustomProperties', () => {
+	it( '設定済みのデバイスだけCSSカスタムプロパティへ変換する', () => {
+		expect(
+			getResponsiveCustomProperties( 'heading--font-size', {
+				desktop: '32px',
+				mobile: '16px',
+			} )
+		).toEqual( {
+			'--ystdb--desktop--heading--font-size': '32px',
+			'--ystdb--mobile--heading--font-size': '16px',
+		} );
+	} );
+
+	it( '0を有効な値として保持する', () => {
+		expect(
+			getResponsiveCustomProperties( 'sample', {
+				desktop: 0,
+			} )
+		).toEqual( {
+			'--ystdb--desktop--sample': 0,
+		} );
+	} );
+
+	it( '変換後に無効になった値は出力しない', () => {
+		expect(
+			getResponsiveCustomProperties(
+				'sample',
+				{
+					desktop: 'keep',
+					tablet: 'remove',
+				},
+				( value ) => ( 'remove' === value ? undefined : value )
+			)
+		).toEqual( {
+			'--ystdb--desktop--sample': 'keep',
+		} );
 	} );
 } );
