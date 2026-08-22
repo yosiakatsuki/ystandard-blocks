@@ -76,6 +76,24 @@ jobs:
       - name: Unit Test
         run: npm run test:unit-js
 
+  integration-test:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.16.0
+          cache: 'npm'
+
+      - name: npm ci
+        run: npm ci --no-audit --no-fund
+
+      - name: Integration Test
+        run: npm run test:integration
+
   php-unit-test:
     name: PHP Unit Test
     runs-on: ubuntu-latest
@@ -102,7 +120,7 @@ jobs:
       - name: npm ci
         run: npm ci --no-audit --no-fund
 
-      - name: PHP Unit Test
+      - name: PHP Unit Test (Playground)
         run: npm run test:unit-php
 
   build-check:
@@ -125,7 +143,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [ lint, php-syntax-check, js-unit-test, php-unit-test, build-check ]
+    needs: [ lint, php-syntax-check, js-unit-test, integration-test, php-unit-test, build-check ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -148,18 +166,30 @@ jobs:
       - name: Release File Copy
         run: npm run copy:develop
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./upload/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}/
+      - name: Upload release files
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
+        run: |
+          REMOTE_DIR="${FTP_REMOTE_DIR%/}"
+          REMOTE_DIR="/${REMOTE_DIR#/}"
+          BASE_URL="ftp://${FTP_SERVER}${REMOTE_DIR}"
+
+          curl --fail --show-error --ftp-create-dirs \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file upload/ystandard-blocks.zip \
+            "${BASE_URL}/ystandard-blocks.zip"
+
+          curl --fail --show-error --ftp-create-dirs \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file upload/ystandard-blocks.json \
+            "${BASE_URL}/ystandard-blocks.json"
 
   notify:
     name: Notify
-    needs: [ lint, php-syntax-check, js-unit-test, php-unit-test, build-check, deploy ]
+    needs: [ lint, php-syntax-check, js-unit-test, integration-test, php-unit-test, build-check, deploy ]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -168,7 +198,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          title: "Failure : Develop Build"
+          title: "🚨 [yStandard Blocks]開発バージョンのアップデート準備に失敗しました"
           color: 0x962305
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -178,7 +208,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          title: "[yStandard Blocks]開発バージョンのアップデート準備OK！"
+          title: "✅ [yStandard Blocks]開発バージョンのアップデート準備OK！"
           color: 0x059669
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
