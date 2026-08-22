@@ -8,6 +8,10 @@ import { __ } from '@wordpress/i18n';
  */
 import { ResponsiveFontSizeControl } from '@aktk/block-components/components/responsive-font-size-control';
 import {
+	hasResponsiveTextAlignValue,
+	ResponsiveTextAlignControl,
+} from '@aktk/block-components/components/responsive-text-align-control';
+import {
 	hasResponsiveSpacingValue,
 	ResponsiveSpacingControl,
 } from '@aktk/block-components/components/responsive-spacing-control';
@@ -24,19 +28,21 @@ import type { Attributes } from '../../../types';
 import {
 	getMainResponsiveFontSize,
 	getMainResponsiveSpacing,
+	getMainResponsiveTextAlign,
 	updateMainResponsiveFontSize,
 	updateMainResponsiveSpacing,
+	updateMainResponsiveTextAlign,
 } from '../../../utils';
 
 // @ts-ignore.
 export function ResponsiveMainPanel( props ) {
 	const { attributes, setAttributes } = props;
+	const blockAttributes = attributes as Attributes;
 	const panelId = 'ystdb-custom-heading-responsive-main';
-	const responsiveFontSize = getMainResponsiveFontSize(
-		attributes as Attributes
-	);
+	const responsiveFontSize = getMainResponsiveFontSize( blockAttributes );
+	const responsiveTextAlign = getMainResponsiveTextAlign( blockAttributes );
 	const { margin: responsiveMargin, padding: responsivePadding } =
-		getMainResponsiveSpacing( attributes as Attributes ) ?? {};
+		getMainResponsiveSpacing( blockAttributes ) ?? {};
 	const hasResponsiveFontSize = () =>
 		Object.values( responsiveFontSize ?? {} ).some(
 			( fontSize ) => undefined !== fontSize && '' !== fontSize
@@ -44,6 +50,11 @@ export function ResponsiveMainPanel( props ) {
 	const resetResponsiveFontSize = () => {
 		setAttributes( {
 			style: updateMainResponsiveFontSize( attributes.style, undefined ),
+		} );
+	};
+	const resetResponsiveTextAlign = () => {
+		setAttributes( {
+			style: updateMainResponsiveTextAlign( attributes.style, undefined ),
 		} );
 	};
 	const hasMargin = () => hasResponsiveSpacingValue( responsiveMargin );
@@ -65,18 +76,25 @@ export function ResponsiveMainPanel( props ) {
 		} );
 	};
 	const resetAll = () => {
-		const style = updateMainResponsiveFontSize(
+		const styleWithoutFontSize = updateMainResponsiveFontSize(
 			attributes.style,
 			undefined
 		);
+		const styleWithoutTypography = updateMainResponsiveTextAlign(
+			styleWithoutFontSize,
+			undefined
+		);
 		setAttributes( {
-			style: updateMainResponsiveSpacing( style, undefined ),
+			style: updateMainResponsiveSpacing(
+				styleWithoutTypography,
+				undefined
+			),
 		} );
 	};
 
 	return (
 		<ToolsPanel
-			label={ __( 'レスポンシブ（メイン）', 'ystandard-blocks' ) }
+			label={ __( 'レスポンシブ（見出し）', 'ystandard-blocks' ) }
 			panelId={ panelId }
 			resetAll={ resetAll }
 			icon={ <PanelIcon /> }
@@ -103,6 +121,33 @@ export function ResponsiveMainPanel( props ) {
 					} }
 				/>
 			</ToolsPanelItem>
+			{ /* 見出しグループがある場合は同じ設定をグループ側へ表示する. */ }
+			{ ! blockAttributes.hasSubText && (
+				<ToolsPanelItem
+					className="single-column"
+					hasValue={ () =>
+						hasResponsiveTextAlignValue( responsiveTextAlign )
+					}
+					label={ __( '文字揃え', 'ystandard-blocks' ) }
+					onDeselect={ resetResponsiveTextAlign }
+					panelId={ panelId }
+					isShownByDefault={ false }
+				>
+					<ResponsiveTextAlignControl
+						id="custom-heading-responsive-main-text-align"
+						label={ __( '文字揃え', 'ystandard-blocks' ) }
+						value={ responsiveTextAlign }
+						onChange={ ( textAlign ) => {
+							setAttributes( {
+								style: updateMainResponsiveTextAlign(
+									attributes.style,
+									textAlign
+								),
+							} );
+						} }
+					/>
+				</ToolsPanelItem>
+			) }
 			<ToolsPanelItem
 				className="single-column"
 				hasValue={ hasPadding }

@@ -3,6 +3,10 @@
  */
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
 import type { ResponsiveLayout } from '@aktk/block-components/components/responsive-layout-control';
+import type {
+	ResponsiveTextAlign,
+	TextAlign,
+} from '@aktk/block-components/components/responsive-text-align-control';
 import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
 import type {
 	ResponsiveSpacing,
@@ -13,6 +17,7 @@ import type { ResponsiveValues } from '@aktk/block-components/types';
 export type ResponsiveTextStyle = {
 	typography?: {
 		fontSize?: ResponsiveFontSize;
+		textAlign?: ResponsiveTextAlign;
 	};
 	spacing?: {
 		margin?: ResponsiveSpacing;
@@ -22,6 +27,9 @@ export type ResponsiveTextStyle = {
 
 export type ResponsiveGroupStyle = {
 	layout?: ResponsiveLayout;
+	typography?: {
+		textAlign?: ResponsiveTextAlign;
+	};
 	spacing?: {
 		blockGap?: ResponsiveValues;
 		margin?: ResponsiveSpacing;
@@ -64,7 +72,7 @@ export interface Attributes {
 			fontWeight?: string;
 			lineHeight?: string | number;
 			letterSpacing?: string;
-			textAlign?: 'left' | 'center' | 'right' | 'justify';
+			textAlign?: TextAlign;
 			textDecoration?: string;
 			textTransform?: string;
 			writingMode?: string;

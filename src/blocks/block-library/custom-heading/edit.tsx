@@ -21,6 +21,7 @@ import {
 	getCustomHeadingElementStyle,
 	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
+	getMainTextBlockSupportAttributes,
 	getMainTextClasses,
 	getMainTextStyles,
 	getSubTextResponsiveStyles,
@@ -41,12 +42,15 @@ function Edit( props ) {
 		'typography.fluid',
 		'layout'
 	);
-	const mainBlockSupportProps = getInnerBlockSupportProps( attributes, {
-		typography: {
-			fluid: fluidTypographySettings,
-		},
-		layout: layoutSettings,
-	} );
+	const mainBlockSupportProps = getInnerBlockSupportProps(
+		getMainTextBlockSupportAttributes( attributes ),
+		{
+			typography: {
+				fluid: fluidTypographySettings,
+			},
+			layout: layoutSettings,
+		}
+	);
 	const mainTextProps = {
 		className: classnames(
 			mainTextClasses,

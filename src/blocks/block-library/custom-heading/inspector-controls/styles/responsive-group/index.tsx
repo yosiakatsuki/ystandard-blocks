@@ -16,6 +16,10 @@ import {
 	ResponsiveSpacingControl,
 	ResponsiveSpacingSizeControl,
 } from '@aktk/block-components/components/responsive-spacing-control';
+import {
+	hasResponsiveTextAlignValue,
+	ResponsiveTextAlignControl,
+} from '@aktk/block-components/components/responsive-text-align-control';
 import { PanelIcon } from '@aktk/block-components/components/ystandard-icon';
 import { stripUndefined } from '@aktk/block-components/utils/object';
 import {
@@ -53,6 +57,7 @@ export function ResponsiveGroupPanel( props ) {
 	const margin = responsiveStyle?.spacing?.margin;
 	const padding = responsiveStyle?.spacing?.padding;
 	const layout = responsiveStyle?.layout;
+	const textAlign = responsiveStyle?.typography?.textAlign;
 	const updateStyle = ( style?: ResponsiveGroupStyle ) => {
 		setAttributes( {
 			style: updateCustomHeadingResponsiveElementStyle(
@@ -78,6 +83,16 @@ export function ResponsiveGroupPanel( props ) {
 			} ) as ResponsiveGroupStyle | undefined
 		);
 	};
+	const updateTypography = (
+		typography?: ResponsiveGroupStyle[ 'typography' ]
+	) => {
+		updateStyle(
+			stripUndefined( {
+				...responsiveStyle,
+				typography,
+			} ) as ResponsiveGroupStyle | undefined
+		);
+	};
 
 	return (
 		<ToolsPanel
@@ -86,6 +101,31 @@ export function ResponsiveGroupPanel( props ) {
 			panelId={ panelId }
 			resetAll={ () => updateStyle( undefined ) }
 		>
+			<ToolsPanelItem
+				className="single-column"
+				hasValue={ () => hasResponsiveTextAlignValue( textAlign ) }
+				isShownByDefault={ false }
+				label={ __( '文字揃え', 'ystandard-blocks' ) }
+				onDeselect={ () =>
+					updateTypography( {
+						...responsiveStyle?.typography,
+						textAlign: undefined,
+					} )
+				}
+				panelId={ panelId }
+			>
+				<ResponsiveTextAlignControl
+					id="custom-heading-responsive-group-text-align"
+					label={ __( '文字揃え', 'ystandard-blocks' ) }
+					value={ textAlign }
+					onChange={ ( nextTextAlign ) =>
+						updateTypography( {
+							...responsiveStyle?.typography,
+							textAlign: nextTextAlign,
+						} )
+					}
+				/>
+			</ToolsPanelItem>
 			<ToolsPanelItem
 				className="single-column"
 				hasValue={ () => hasResponsiveSpacingSizeValue( blockGap ) }

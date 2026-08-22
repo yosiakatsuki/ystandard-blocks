@@ -5,6 +5,7 @@
 @import "./components/element-style-controls/index.css";
 @import "./components/responsive-font-size-control/index.css";
 @import "./components/responsive-spacing-control/index.css";
+@import "./components/responsive-text-align-control/index.css";
 @import "./components/responsive-layout-control/index.css";
 
 /* コンポーネント共通CSS変数 */

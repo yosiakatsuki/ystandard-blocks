@@ -29,7 +29,7 @@
 	padding: 0.5em;
 }
 
-.ystdb-custom-heading {
+:is(.ystdb-custom-heading, .ystdb-custom-heading-group) {
 
 	&:where(.has-text-align-left) {
 		text-align: left;

@@ -58,9 +58,9 @@ describe( 'ElementBackgroundPanel', () => {
 
 		const controls = screen.getAllByRole( 'region' );
 
-		expect( controls[ 0 ].parentElement?.className ).toBe(
-			'aktk-element-background-panel'
-		);
+		expect(
+			controls[ 0 ].closest( '.aktk-element-background-panel' )
+		).not.toBeNull();
 		expect( controls.map( ( control ) => control.ariaLabel ) ).toEqual( [
 			'色',
 			'グラデーション',

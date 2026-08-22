@@ -24,6 +24,9 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 				subText: RichTextData.fromPlainText( 'サブテキスト' ),
 				fontSize: 'large',
 				style: {
+					typography: {
+						textAlign: 'center',
+					},
 					spacing: {
 						margin: { top: '1rem' },
 					},
@@ -36,6 +39,9 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 									},
 								},
 								group: {
+									typography: {
+										textAlign: { desktop: 'right' },
+									},
 									layout: {
 										mobile: {
 											orientation: 'horizontal',
@@ -62,6 +68,9 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 		] );
 		const [ block ] = parse( content );
 
+		expect( content ).toContain(
+			'ystdb-custom-heading-group is-horizontal has-text-align-center'
+		);
 		expect( block.isValid ).toBe( true );
 		expect( block.attributes.subText.toHTMLString() ).toBe(
 			'サブテキスト'
@@ -80,6 +89,9 @@ describe( 'ystdb/custom-headingの保存互換性', () => {
 					typography: { fontSize: { tablet: '1rem' } },
 				},
 				group: {
+					typography: {
+						textAlign: { desktop: 'right' },
+					},
 					layout: {
 						mobile: {
 							orientation: 'horizontal',

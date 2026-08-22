@@ -648,6 +648,9 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 					hasSubText: true,
 					subText: 'サブテキスト',
 					style: {
+						typography: {
+							textAlign: 'center',
+						},
 						ystdb: {
 							customHeading: {
 								sub: {
@@ -768,6 +771,11 @@ describe( 'Custom Heading Block <Save /> snapshot', () => {
 										},
 									},
 									group: {
+										typography: {
+											textAlign: {
+												desktop: 'right',
+											},
+										},
 										spacing: {
 											blockGap: { desktop: '1rem' },
 											margin: {

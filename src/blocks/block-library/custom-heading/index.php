@@ -61,10 +61,10 @@ class Custom_Heading_Block {
 			'mobile'  => '',
 		];
 		// プリセットの !important 指定よりレスポンシブ値を優先するため、詳細度を 0.1.1 にする.
-		$main_selector     = ':is(h1,h2,h3,h4,h5,h6).ystdb-custom-heading';
-		$sub_selector      = ':is(p).ystdb-custom-heading-sub';
-		$group_selector    = ':is(hgroup).ystdb-custom-heading-group';
-		$text_elements     = [
+		$main_selector       = ':is(h1,h2,h3,h4,h5,h6).ystdb-custom-heading';
+		$sub_selector        = ':is(p).ystdb-custom-heading-sub';
+		$group_selector      = ':is(hgroup).ystdb-custom-heading-group';
+		$text_elements       = [
 			[
 				'selector'  => $main_selector,
 				'font_prop' => 'heading--font-size',
@@ -74,7 +74,17 @@ class Custom_Heading_Block {
 				'font_prop' => 'custom-heading-sub--font-size',
 			],
 		];
-		$spacing_elements  = [
+		$text_align_elements = [
+			[
+				'selector'  => $main_selector,
+				'prop_name' => 'custom-heading--text-align',
+			],
+			[
+				'selector'  => $group_selector,
+				'prop_name' => 'custom-heading-group--text-align',
+			],
+		];
+		$spacing_elements    = [
 			[
 				'selector' => $main_selector,
 				'prefix'   => 'custom-heading',
@@ -88,12 +98,12 @@ class Custom_Heading_Block {
 				'prefix'   => 'custom-heading-group',
 			],
 		];
-		$layout_properties = [
+		$layout_properties   = [
 			'flex-direction'  => 'flex-direction',
 			'align-items'     => 'align-items',
 			'justify-content' => 'justify-content',
 		];
-		$css               = '';
+		$css                 = '';
 		foreach ( $types as $type ) {
 			// フォントサイズ.
 			foreach ( $text_elements as $text_element ) {
@@ -102,6 +112,17 @@ class Custom_Heading_Block {
 						'selector'  => $text_element['selector'],
 						'prop_name' => $text_element['font_prop'],
 						'property'  => 'font-size',
+						'type'      => $type,
+					]
+				);
+			}
+			// 文字揃え.
+			foreach ( $text_align_elements as $text_align_element ) {
+				$responsive[ $type ] .= Styles::get_responsive_custom_prop_css(
+					[
+						'selector'  => $text_align_element['selector'],
+						'prop_name' => $text_align_element['prop_name'],
+						'property'  => 'text-align',
 						'type'      => $type,
 					]
 				);

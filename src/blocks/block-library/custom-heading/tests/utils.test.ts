@@ -5,15 +5,18 @@ import type { Attributes } from '../types';
 import {
 	getMainResponsiveSpacing,
 	getMainResponsiveFontSize,
+	getMainResponsiveTextAlign,
 	getCustomHeadingElementStyle,
 	getCustomHeadingResponsiveElementStyle,
 	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
 	getMainTextClasses,
+	getMainTextBlockSupportAttributes,
 	getMainTextStyles,
 	getSubTextResponsiveStyles,
 	updateMainResponsiveSpacing,
 	updateMainResponsiveFontSize,
+	updateMainResponsiveTextAlign,
 	updateCustomHeadingElementStyle,
 	updateCustomHeadingResponsiveElementStyle,
 } from '../utils';
@@ -108,6 +111,33 @@ describe( 'Custom Heading Block utils', () => {
 					},
 				} )
 			).toBe( 'ystdb-custom-heading-group is-horizontal' );
+		} );
+
+		it( 'サブテキストありの場合は文字揃えクラスを追加する', () => {
+			expect(
+				getHeadingGroupClasses( {
+					...getBaseAttributes(),
+					hasSubText: true,
+					style: { typography: { textAlign: 'center' } },
+				} )
+			).toBe( 'ystdb-custom-heading-group has-text-align-center' );
+		} );
+	} );
+
+	describe( 'getMainTextBlockSupportAttributes', () => {
+		it( 'サブテキストありの場合は文字揃えだけを見出しから除外する', () => {
+			expect(
+				getMainTextBlockSupportAttributes( {
+					...getBaseAttributes(),
+					hasSubText: true,
+					style: {
+						typography: {
+							fontSize: '2rem',
+							textAlign: 'right',
+						},
+					},
+				} ).style
+			).toEqual( { typography: { fontSize: '2rem' } } );
 		} );
 	} );
 
@@ -222,6 +252,53 @@ describe( 'Custom Heading Block utils', () => {
 				'--ystdb--desktop--heading--font-size': '32px',
 			} );
 			expect( styles.fontSize ).toBeUndefined();
+		} );
+
+		it( '見出しのみの場合はレスポンシブ文字揃えを出力する', () => {
+			const styles = getMainTextStyles( {
+				...getBaseAttributes(),
+				style: {
+					ystdb: {
+						customHeading: {
+							responsive: {
+								main: {
+									typography: {
+										textAlign: { tablet: 'center' },
+									},
+								},
+							},
+						},
+					},
+				},
+			} );
+
+			expect( styles ).toMatchObject( {
+				'--ystdb--tablet--custom-heading--text-align': 'center',
+			} );
+		} );
+
+		it( 'サブテキストありの場合は見出しのレスポンシブ文字揃えを出力しない', () => {
+			const styles = getMainTextStyles( {
+				...getBaseAttributes(),
+				hasSubText: true,
+				style: {
+					ystdb: {
+						customHeading: {
+							responsive: {
+								main: {
+									typography: {
+										textAlign: { tablet: 'center' },
+									},
+								},
+							},
+						},
+					},
+				},
+			} );
+
+			expect(
+				styles[ '--ystdb--tablet--custom-heading--text-align' ]
+			).toBeUndefined();
 		} );
 
 		it( '単一タイポグラフィ設定の反映はBlock Supportsに任せる', () => {
@@ -366,6 +443,9 @@ describe( 'Custom Heading Block utils', () => {
 								},
 							},
 							group: {
+								typography: {
+									textAlign: { desktop: 'right' },
+								},
 								spacing: {
 									blockGap: {
 										desktop: 'var:preset|spacing|40',
@@ -406,6 +486,7 @@ describe( 'Custom Heading Block utils', () => {
 
 		it( '見出しグループの間隔と配置をCSS変数へ変換する', () => {
 			expect( getGroupResponsiveStyles( attributes ) ).toEqual( {
+				'--ystdb--desktop--custom-heading-group--text-align': 'right',
 				'--ystdb--desktop--custom-heading-group--block-gap':
 					'var(--wp--preset--spacing--40)',
 				'--ystdb--tablet--custom-heading-group--margin-top': '3rem',
@@ -580,6 +661,65 @@ describe( 'Custom Heading Block utils', () => {
 			expect(
 				updateMainResponsiveFontSize( attributes.style, undefined )
 			).toBeUndefined();
+		} );
+	} );
+
+	describe( 'レスポンシブ文字揃え属性', () => {
+		it( 'style属性へ保存した値を取得する', () => {
+			const attributes: Attributes = {
+				...getBaseAttributes(),
+				style: {
+					ystdb: {
+						customHeading: {
+							responsive: {
+								main: {
+									typography: {
+										textAlign: { mobile: 'right' },
+									},
+								},
+							},
+						},
+					},
+				},
+			};
+
+			expect( getMainResponsiveTextAlign( attributes ) ).toEqual( {
+				mobile: 'right',
+			} );
+		} );
+
+		it( '既存のレスポンシブ文字サイズを保って更新する', () => {
+			expect(
+				updateMainResponsiveTextAlign(
+					{
+						ystdb: {
+							customHeading: {
+								responsive: {
+									main: {
+										typography: {
+											fontSize: { desktop: '2rem' },
+										},
+									},
+								},
+							},
+						},
+					},
+					{ tablet: 'center' }
+				)
+			).toMatchObject( {
+				ystdb: {
+					customHeading: {
+						responsive: {
+							main: {
+								typography: {
+									fontSize: { desktop: '2rem' },
+									textAlign: { tablet: 'center' },
+								},
+							},
+						},
+					},
+				},
+			} );
 		} );
 	} );
 } );

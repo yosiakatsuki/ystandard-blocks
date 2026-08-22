@@ -3,6 +3,10 @@
  */
 import type { ResponsiveSpacing } from '@aktk/block-components/components/responsive-spacing-control';
 import type { ResponsiveFontSize } from '@aktk/block-components/components/responsive-font-size-control';
+import type {
+	ResponsiveTextAlign,
+	TextAlign,
+} from '@aktk/block-components/components/responsive-text-align-control';
 import type { ElementStyle } from '@aktk/block-components/components/element-style-controls';
 import { getElementLayoutDefaultValues } from '@aktk/block-components/components/element-style-controls/layout-defaults';
 import { stripUndefined } from '@aktk/block-components/utils/object';
@@ -26,6 +30,7 @@ import type {
 import { CUSTOM_HEADING_LAYOUT_DEFAULT_VALUES } from './config';
 
 const positions = [ 'top', 'right', 'bottom', 'left' ] as const;
+const textAlignValues: TextAlign[] = [ 'left', 'center', 'right' ];
 export type CustomHeadingElement = 'group' | 'sub';
 type ResponsiveElementStyleMap = {
 	group: ResponsiveGroupStyle;
@@ -42,6 +47,44 @@ export function getMainTextClasses() {
 }
 
 /**
+ * 単一設定の文字揃えクラスを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return 文字揃えクラス.
+ */
+export function getTextAlignClass( attributes: Attributes ) {
+	const textAlign = attributes.style?.typography?.textAlign;
+
+	return textAlign && textAlignValues.includes( textAlign )
+		? `has-text-align-${ textAlign }`
+		: undefined;
+}
+
+/**
+ * メインテキストへ適用するBlock Supports属性を取得.
+ *
+ * @param attributes ブロック属性.
+ * @return メインテキスト用Block Supports属性.
+ */
+export function getMainTextBlockSupportAttributes( attributes: Attributes ) {
+	// 見出しだけの場合はコアの文字揃えを含む全設定をそのまま適用する.
+	if ( ! attributes.hasSubText ) {
+		return attributes;
+	}
+
+	return {
+		...attributes,
+		style: stripUndefined( {
+			...attributes.style,
+			typography: {
+				...attributes.style?.typography,
+				textAlign: undefined,
+			},
+		} ) as Attributes[ 'style' ],
+	};
+}
+
+/**
  * 見出しグループのクラスを生成.
  *
  * @param attributes ブロック属性.
@@ -51,9 +94,13 @@ export function getHeadingGroupClasses( attributes: Attributes ) {
 	const orientation = getCustomHeadingElementStyle( attributes, 'group' )
 		?.layout?.orientation;
 
-	return orientation === 'horizontal'
-		? 'ystdb-custom-heading-group is-horizontal'
-		: 'ystdb-custom-heading-group';
+	return [
+		'ystdb-custom-heading-group',
+		'horizontal' === orientation ? 'is-horizontal' : undefined,
+		attributes.hasSubText ? getTextAlignClass( attributes ) : undefined,
+	]
+		.filter( Boolean )
+		.join( ' ' );
 }
 
 /**
@@ -65,6 +112,17 @@ export function getHeadingGroupClasses( attributes: Attributes ) {
 export function getMainResponsiveFontSize( attributes: Attributes ) {
 	return attributes.style?.ystdb?.customHeading?.responsive?.main?.typography
 		?.fontSize;
+}
+
+/**
+ * メインテキストのレスポンシブ文字揃えを取得.
+ *
+ * @param attributes ブロック属性.
+ * @return レスポンシブ文字揃え.
+ */
+export function getMainResponsiveTextAlign( attributes: Attributes ) {
+	return attributes.style?.ystdb?.customHeading?.responsive?.main?.typography
+		?.textAlign;
 }
 
 /**
@@ -92,6 +150,39 @@ export function updateMainResponsiveFontSize(
 							...style?.ystdb?.customHeading?.responsive?.main
 								?.typography,
 							fontSize,
+						},
+					},
+				},
+			},
+		},
+	} ) as Attributes[ 'style' ];
+}
+
+/**
+ * メインテキストのレスポンシブ文字揃えを更新.
+ *
+ * @param style     コアのstyle属性.
+ * @param textAlign レスポンシブ文字揃え.
+ * @return 更新後のstyle属性.
+ */
+export function updateMainResponsiveTextAlign(
+	style: Attributes[ 'style' ],
+	textAlign?: ResponsiveTextAlign
+) {
+	return stripUndefined( {
+		...style,
+		ystdb: {
+			...style?.ystdb,
+			customHeading: {
+				...style?.ystdb?.customHeading,
+				responsive: {
+					...style?.ystdb?.customHeading?.responsive,
+					main: {
+						...style?.ystdb?.customHeading?.responsive?.main,
+						typography: {
+							...style?.ystdb?.customHeading?.responsive?.main
+								?.typography,
+							textAlign,
 						},
 					},
 				},
@@ -302,12 +393,20 @@ function getResponsiveTextStyles(
  * @return
  */
 export function getMainTextStyles( attributes: Attributes ) {
-	return getResponsiveTextStyles( 'heading--font-size', 'custom-heading', {
-		typography: {
-			fontSize: getMainResponsiveFontSize( attributes ),
-		},
-		spacing: getMainResponsiveSpacing( attributes ),
-	} );
+	return {
+		...getResponsiveTextStyles( 'heading--font-size', 'custom-heading', {
+			typography: {
+				fontSize: getMainResponsiveFontSize( attributes ),
+			},
+			spacing: getMainResponsiveSpacing( attributes ),
+		} ),
+		...getResponsiveCustomProperties(
+			'custom-heading--text-align',
+			attributes.hasSubText
+				? undefined
+				: getMainResponsiveTextAlign( attributes )
+		),
+	};
 }
 
 /**
@@ -394,6 +493,10 @@ export function getGroupResponsiveStyles( attributes: Attributes ) {
 	} );
 
 	return {
+		...getResponsiveCustomProperties(
+			'custom-heading-group--text-align',
+			style?.typography?.textAlign
+		),
 		...getResponsiveSpacingStyles( 'custom-heading-group', style?.spacing ),
 		...blockGapStyles,
 		...layoutStyles,

@@ -56,6 +56,14 @@ jest.mock(
 	} )
 );
 
+jest.mock(
+	'@aktk/block-components/components/responsive-text-align-control',
+	() => ( {
+		hasResponsiveTextAlignValue: () => false,
+		ResponsiveTextAlignControl: () => <div />,
+	} )
+);
+
 jest.mock( '@aktk/block-components/components/ystandard-icon', () => ( {
 	PanelIcon: () => <span />,
 } ) );
@@ -72,10 +80,32 @@ const expectAllItemsHiddenByDefault = () => {
 };
 
 describe( 'カスタム見出しのレスポンシブパネル', () => {
-	it( 'メイン設定をフォントサイズ、パディング、マージンの順に表示する', () => {
+	it( '見出しのみではフォントサイズの次に文字揃えを表示する', () => {
 		render(
 			<ResponsiveMainPanel
 				attributes={ { content: '', level: 2 } }
+				setAttributes={ jest.fn() }
+			/>
+		);
+
+		expect(
+			document.querySelector(
+				'[data-panel-label="レスポンシブ（見出し）"]'
+			)
+		).not.toBeNull();
+		expect( getItemLabels() ).toEqual( [
+			'フォントサイズ',
+			'文字揃え',
+			'パディング',
+			'マージン',
+		] );
+		expectAllItemsHiddenByDefault();
+	} );
+
+	it( 'サブテキストありでは見出しパネルの文字揃えを隠す', () => {
+		render(
+			<ResponsiveMainPanel
+				attributes={ { content: '', level: 2, hasSubText: true } }
 				setAttributes={ jest.fn() }
 			/>
 		);
@@ -85,7 +115,6 @@ describe( 'カスタム見出しのレスポンシブパネル', () => {
 			'パディング',
 			'マージン',
 		] );
-		expectAllItemsHiddenByDefault();
 	} );
 
 	it( 'サブテキスト使用時だけサブと見出しグループを表示する', () => {
@@ -129,6 +158,7 @@ describe( 'カスタム見出しのレスポンシブパネル', () => {
 			'フォントサイズ',
 			'パディング',
 			'マージン',
+			'文字揃え',
 			'ブロックの間隔',
 			'パディング',
 			'マージン',

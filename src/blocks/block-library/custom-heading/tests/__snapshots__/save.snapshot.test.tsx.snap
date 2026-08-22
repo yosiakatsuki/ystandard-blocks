@@ -396,7 +396,7 @@ exports[`Custom Heading Block <Save /> snapshot 036: メインテキストへ枠
 exports[`Custom Heading Block <Save /> snapshot 037: サブテキストと見出しグループへ独自スタイルを適用する 1`] = `
 <DocumentFragment>
   <hgroup
-    class="ystdb-custom-heading-group has-background"
+    class="ystdb-custom-heading-group has-text-align-center has-background"
     style="background-color: rgb(247, 247, 247); margin-top: 2rem; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem; border-radius: 12px;"
   >
     <h2
@@ -458,7 +458,7 @@ exports[`Custom Heading Block <Save /> snapshot 040: サブテキストと見出
 <DocumentFragment>
   <hgroup
     class="ystdb-custom-heading-group"
-    style="--ystdb--tablet--custom-heading-group--margin-top: 3rem; --ystdb--desktop--custom-heading-group--block-gap: 1rem; --ystdb--mobile--custom-heading-group--flex-direction: row; --ystdb--mobile--custom-heading-group--align-items: baseline; --ystdb--mobile--custom-heading-group--justify-content: center;"
+    style="--ystdb--desktop--custom-heading-group--text-align: right; --ystdb--tablet--custom-heading-group--margin-top: 3rem; --ystdb--desktop--custom-heading-group--block-gap: 1rem; --ystdb--mobile--custom-heading-group--flex-direction: row; --ystdb--mobile--custom-heading-group--align-items: baseline; --ystdb--mobile--custom-heading-group--justify-content: center;"
   >
     <h2
       class="ystdb-custom-heading"

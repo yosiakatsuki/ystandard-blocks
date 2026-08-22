@@ -61,11 +61,13 @@ WordPressコアのパネルを利用し、Block Supportsが生成したクラス
 
 各パネル内の項目はすべて初期表示せず、設定済みの場合または`+`メニューから追加した場合だけ表示する。
 
--   レスポンシブ（メイン）: フォントサイズ、パディング、マージン
+-   レスポンシブ（見出し）: フォントサイズ、文字揃え（見出しのみの場合）、パディング、マージン
 -   レスポンシブ（サブテキスト）: フォントサイズ、パディング、マージン
--   レスポンシブ（見出しグループ）: ブロックの間隔、パディング、マージン、配置
+-   レスポンシブ（見出しグループ）: 文字揃え、ブロックの間隔、パディング、マージン、配置
 
 配置はデスクトップ、タブレット、モバイルのアイコンタブで切り替え、各タブ内に並び方向と有効な配置をまとめる。縦並びでは縦方向の配置を隠し、横方向の配置からベースラインを除外する。横並びでは縦方向の配置と横方向の配置を表示する。共通UIの詳細は[`ResponsiveLayoutControl配置設定仕様`](../../../aktk-block-components/components/responsive-layout-control/responsive-layout-control.md)を正本にする。
+
+文字揃えはデスクトップ、タブレット、モバイルの3設定を縦に並べる。見出しのみの場合は見出しへ、サブテキストありの場合は`hgroup`へ適用する。共通UIの詳細は[`ResponsiveTextAlignControl文字揃え設定仕様`](../../../aktk-block-components/components/responsive-text-align-control/responsive-text-align-control.md)を正本にする。
 
 レスポンシブ値はCSSカスタムプロパティとして各対象要素へ出力し、PHPで生成するデバイス別メディアクエリ内で適用する。対象デバイスの値が未設定の場合は、単一設定へフォールバックする。
 
@@ -77,9 +79,17 @@ WordPressコアのパネルを利用し、Block Supportsが生成したクラス
 		"ystdb": {
 			"customHeading": {
 				"responsive": {
-					"main": {},
+					"main": {
+						"typography": {
+							"fontSize": {},
+							"textAlign": {}
+						}
+					},
 					"sub": {},
 					"group": {
+						"typography": {
+							"textAlign": {}
+						},
 						"spacing": {
 							"blockGap": {},
 							"padding": {},

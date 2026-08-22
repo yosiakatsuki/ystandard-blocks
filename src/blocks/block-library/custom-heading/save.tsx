@@ -18,6 +18,7 @@ import {
 	getCustomHeadingElementStyle,
 	getGroupResponsiveStyles,
 	getHeadingGroupClasses,
+	getMainTextBlockSupportAttributes,
 	getMainTextClasses,
 	getMainTextStyles,
 	getSubTextResponsiveStyles,
@@ -31,7 +32,9 @@ function Save( { attributes } ) {
 	// メインテキストのクラスとスタイルを生成.
 	const mainTextClasses = getMainTextClasses();
 	const mainTextStyles = getMainTextStyles( attributes );
-	const mainBlockSupportProps = getInnerBlockSupportProps( attributes );
+	const mainBlockSupportProps = getInnerBlockSupportProps(
+		getMainTextBlockSupportAttributes( attributes )
+	);
 	const mainTextProps = {
 		className: classnames(
 			mainTextClasses,
