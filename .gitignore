@@ -4,6 +4,7 @@ ystandard-blocks/
 /vendor/
 *.map
 temp/
+plans/
 blocks-temp/
 .wp-content/
 /artifacts
