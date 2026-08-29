@@ -1,5 +1,4 @@
 const wordpress = require('@wordpress/eslint-plugin');
-const tailwindcss = require('eslint-plugin-tailwindcss');
 
 module.exports = [
 	{
@@ -19,7 +18,6 @@ module.exports = [
 		...c,
 		files: ['**/test/**/*.js', '**/__tests__/**/*.js', '**/?(*.)test.js'],
 	})),
-	...tailwindcss.configs['flat/recommended'],
 	{
 		languageOptions: {
 			globals: {
@@ -38,7 +36,6 @@ module.exports = [
 			'jsdoc/check-param-names': 'off',
 			'jsdoc/no-undefined-types': 'off',
 			'react-hooks/exhaustive-deps': 'off',
-			'tailwindcss/no-custom-classname': 'off',
 		},
 	},
 	{

@@ -167,25 +167,15 @@ jobs:
         run: npm run copy:develop
 
       - name: Upload release files
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
-        run: |
-          REMOTE_DIR="${FTP_REMOTE_DIR%/}"
-          REMOTE_DIR="/${REMOTE_DIR#/}"
-          BASE_URL="ftp://${FTP_SERVER}${REMOTE_DIR}"
-
-          curl --fail --show-error --ftp-create-dirs \
-            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
-            --upload-file upload/ystandard-blocks.zip \
-            "${BASE_URL}/ystandard-blocks.zip"
-
-          curl --fail --show-error --ftp-create-dirs \
-            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
-            --upload-file upload/ystandard-blocks.json \
-            "${BASE_URL}/ystandard-blocks.json"
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./upload/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}/
+          timeout: 120000
+          log-level: standard
 
   notify:
     name: Notify

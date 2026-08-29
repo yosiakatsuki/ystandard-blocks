@@ -10,9 +10,6 @@ module.exports = {
 			'<rootDir>/tests/unit/__mocks__/wordpress-block-editor.js',
 	},
 	preset: '@wordpress/jest-preset-default',
-	transform: {
-		'^.+\\.js$': 'babel-jest',
-	},
 	testEnvironmentOptions: {
 		url: 'http://localhost:10010/',
 	},

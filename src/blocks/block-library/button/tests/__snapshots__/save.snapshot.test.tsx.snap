@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Button Block <Save /> snapshot matches snapshot with borderRadius 0 1`] = `
 <DocumentFragment>

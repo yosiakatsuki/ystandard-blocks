@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Custom Heading Block <Save /> snapshot 001: 最小限の属性 1`] = `
 <DocumentFragment>
