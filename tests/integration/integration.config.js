@@ -26,9 +26,6 @@ module.exports = {
 		'\\.scss$': 'identity-obj-proxy',
 	},
 	preset: '@wordpress/jest-preset-default',
-	transform: {
-		'^.+\\.[tj]sx?$': 'babel-jest',
-	},
 	// node_modules 内の ESM パッケージも babel-jest で transform する.
 	transformIgnorePatterns: [
 		'/node_modules/(?!(parsel-js|@wordpress|@babel|change-case|memize|fast-deep-equal|hast-util-|unist-util-|mdast-util-|micromark|decode-named-character-reference|character-entities|property-information|space-separated-tokens|comma-separated-tokens|web-namespaces|ccount|escape-string-regexp|markdown-table|zwitch|longest-streak|trim-lines|uuid)/)',
