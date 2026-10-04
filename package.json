@@ -92,7 +92,7 @@
 		"@wordpress/env": "^11.2.0",
 		"@wordpress/jest-preset-default": "^14.1.0",
 		"@wordpress/prettier-config": "^4.22.0",
-		"@wordpress/scripts": "^34.2.0",
+		"@wordpress/scripts": "^36.0.0",
 		"@wp-playground/cli": "3.1.48",
 		"autoprefixer": "^10.4.21",
 		"babel-plugin-inline-json-import": "^0.3.2",
